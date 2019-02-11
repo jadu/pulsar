@@ -35,10 +35,76 @@ PulsarUIComponent.prototype.init = function () {
     this.initCountdown();
 };
 
+PulsarUIComponent.prototype.getDatatableOptions = function ($table) {
+    let dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+        pageLength = 25,
+        select = {
+            className: 'dt-row-selected',
+            style: 'multi',
+            selector: 'td.table-selection'
+        };
+    
+    if (!$table.data('empty-table')) {
+        $table.data('empty-table', 'There are currently no items to display');
+    }
+
+    if ($table.data('page-length')) {
+        pageLength = $table.data('page-length');
+    }
+
+    if ($table.data('select') === false) {
+        dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"p>';
+        select = false;
+    }
+
+    const options = {
+        aaSorting: [],
+        bAutoWidth: false,
+        buttons: [],
+        className: 'dt-row-selected',
+        columnDefs: [
+            { 
+                className: 'control', 
+                orderable: false, 
+                targets: 0
+            },
+            { 
+                searchable: false, 
+                targets: [0]
+            },
+            {
+                orderable: false,
+                targets: [0, 1]
+            }
+        ],
+        dom: dom,
+        language: {
+            emptyTable: $table.data('empty-table'),
+            info: "Showing _START_ to _END_ of _TOTAL_ items",
+            infoEmpty: 'No items',
+            infoFiltered: " (filtered from _MAX_ items)",
+            zeroRecords: "No items matched your filter, please clear it and try again",
+            search: "Filter records"
+        },
+        lengthChange: false,
+        pageLength: pageLength,
+        responsive: {
+            details: {
+                type: 'column'
+            }
+        },
+        select: select,
+        selector: 'td.table-selection',
+        stateSave: false,
+        style: 'multi'
+    };
+
+    return options;
+};
+
 PulsarUIComponent.prototype.initTables = function () {
 
-    // Wrap non datatable tables in responsive container so they can scroll
-    // when required
+    // Wrap non datatable tables in responsive container so they can scroll when required
     var $tables = this.$html.find('.table:not(.datatable), .table--datagrid:not(.datatable)');
 
     $tables.each(function(i, v) {
@@ -56,58 +122,11 @@ PulsarUIComponent.prototype.initDataTables = function () {
         datatablesHorizontal = component.$html.find('.datatable.table--horizontal');
 
     datatables.each(function () {
-        var $this = $(this),
-            pageLength = 25;
+        var $this = $(this);
 
-        var select = {
-            className: 'dt-row-selected',
-            style:     'multi',
-            selector:  'td.table-selection'
-        }
+        const datatableOptions = component.getDatatableOptions($this);
 
-        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>';
-
-        if (!$this.data('empty-table')) {
-            $this.data('empty-table', 'There are currently no items to display');
-        }
-
-        if ($this.data('page-length')) {
-            pageLength = $this.data('page-length');
-        }
-
-        if ($this.data('select') === false) {
-            dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"p>';
-            select = false;
-        }
-
-        let table = $this.DataTable({
-            dom: dom,
-            aaSorting: [],
-            bAutoWidth: false,
-            pageLength: pageLength,
-            lengthChange: false,
-            buttons: [],
-            columnDefs: [
-                { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": [0] },
-                { "orderable": false, "targets": [0, 1] }
-            ],
-            language: {
-                "emptyTable": $this.data('empty-table'),
-                "info": "Showing _START_ to _END_ of _TOTAL_ items",
-                "infoEmpty": 'No items',
-                "infoFiltered": " (filtered from _MAX_ items)",
-                "zeroRecords": "No items matched your filter, please clear it and try again",
-                "search": "Filter records"
-            },
-            responsive: {
-                details: {
-                    type: 'column'
-                }
-            },
-            select: select,
-            stateSave: false
-        });
+        let table = $this.DataTable(datatableOptions);
 
         $this.on('click', '.js-select-all', function(e) {
             var $checkbox = $(e.target),
@@ -127,52 +146,27 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
     datatablesHorizontal.each(function () {
         var $this = $(this),
-            pageLength = 25;
-
-        var select = {
-            className: 'dt-row-selected',
-            style:     'multi',
-            selector:  '.js-select',
-            info:       true
-        }
-
-        var dom = '<"dataTables_top"Birf><"dataTables_actions"T><"table-container"t><"dataTables_bottom"p>';
-
-        if (!$this.data('empty-table')) {
-            $this.data('empty-table', 'There are currently no items to display');
-        }
-
-        if ($this.data('page-length')) {
-            pageLength = $this.data('page-length');
-        }
-
+            dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+            select = {
+                className: 'dt-row-selected',
+                style:     'multi',
+                selector:  '.js-select',
+                info:       true
+            };
+            
         if ($this.data('select') === false) {
             dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"<"table-container"t>><"dataTables_bottom"lp>';
             select = false;
         }
 
-        let table = $this.DataTable({
+        const datatableOptions = component.getDatatableOptions($this);
+
+        const horizontalOptions = $.extend({}, datatableOptions, {
             dom: dom,
-            aaSorting: [],
-            bAutoWidth: false,
-            stateSave: true,
-            pageLength: pageLength,
-            lengthChange: false,
-            buttons: [],
-            columnDefs: [
-                { className: 'control', orderable: false, targets: 0 },
-            ],
-            language: {
-                "emptyTable": $this.data('empty-table'),
-                "info": "Showing _START_ to _END_ of _TOTAL_ items",
-                "infoEmpty": 'No items',
-                "infoFiltered": " (filtered from _MAX_ items)",
-                "zeroRecords": "No items matched your filter, please clear it and try again",
-                "search": "Quick filter"
-            },
             select: select,
-            stateSave: false
         });
+        
+        let table = $this.DataTable(horizontalOptions);
 
         // Add sticky scroll bar
         component.stickyScrollBarComponent.init($this.parent());
@@ -187,7 +181,6 @@ PulsarUIComponent.prototype.initDataTables = function () {
             }
         });
 
-            
         $this.on('click', '.js-select-all', function(e) {
             var $checkbox = $(e.target),
                 $allCheckboxes = $this.find('.js-select');
