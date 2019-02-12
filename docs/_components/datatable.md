@@ -42,6 +42,59 @@ You will need both the base tables styles, and the datatables extras.
 
 The `DataTable` plugin is called on any table containing the `datatable` class. Pulsar has a core configuration within `pulsarUIComponent`, but there may be times when you need to create your own custom config.
 
+### DataTable options
+
+Where possible you should use Pulsar's default options to initialise your datatable, if you're using the `html.datatable()` twig helper, or a regular HTML table with the `.datatable` class, these options should be intialised for you automatically.
+
+If you need to have more control over your table and want to opt-out of Pulsar's automatic initialisation method, you must supply the `data-init="false"` attribute on the `table` element.
+
+```twig
+{{ 
+    html.datatable({
+        'id': 'myDatatable',
+        'data-init': 'false',
+        'data': data
+    }) 
+}}
+
+or
+
+<table id="myDatatable' class="datatable table--horizontal" data-init="false">...</table>
+```
+
+You can access the Pulsar datatable options via the `getDatatableOptions()` method, you should pass a reference to the table in the DOM so that the method can access any data attributes that may have been set.
+
+```javascript
+// Store a reference to your desired table
+let $myDatatable = $('#myDatatable');
+
+// Fetch the default Pulsar options
+const pulsarDatatableOptions = pulsar.pulsarUI.getDatatableOptions($myDatatable);
+
+// This presumes you're requiring the relevant DataTable files in your code
+let table = this.DataTable(pulsarDatatableOptions);
+```
+
+### Extending the default DataTable options
+
+You can replace/extend values of the default options to suit your DataTable needs.
+
+```javascript
+// Store a reference to your desired table
+let $myDatatable = $('#myDatatable');
+
+// Fetch the default Pulsar options
+const pulsarDatatableOptions = pulsar.pulsarUI.getDatatableOptions($myDatatable);
+
+// Example to show us changing the value of `stateSave`
+const customDatatableOptions = $.extend({}, pulsarDatatableOptions, {
+    stateSave: true
+});
+
+// This presumes you're requiring the relevant DataTable files in your code
+let table = this.DataTable(customDatatableOptions);
+```
+
 ## Example usage
 
 {% code_example html_helpers/datatable %}
