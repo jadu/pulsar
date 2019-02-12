@@ -303,6 +303,11 @@ td.table__form .rules + .form__group:last-of-type {
  * The following version 2 was developed to meet the needs of XFP conditional logic rules
  */
 .rules-container--v2 {
+    $rule-color-if:     #3f8ccc;
+    $rule-color-and:    #f7d183;
+    $rule-color-or:     #9d7ee3;
+    $rule-color-return: #7dbc8e;
+
     border-left: 4px solid color(gray, lightest);
     padding-left: 20px;
     position: relative;
@@ -328,20 +333,6 @@ td.table__form .rules + .form__group:last-of-type {
         bottom: 0;
     }
 
-    .rule-links button {
-        border: 1px solid color(border);
-        border-radius: 5px;
-        display: inline-block;
-        margin-left: 25px;
-        min-width: 50px;
-        padding: 8px 0;
-        text-align: center;
-
-        &:hover {
-            background-color: color(background, light);
-        }
-    }
-
     .rule-link {
         position: relative;
         padding-top: 10px;
@@ -355,6 +346,20 @@ td.table__form .rules + .form__group:last-of-type {
             left: 0;
             position: absolute;
             top: 17px;
+        }
+
+        .btn {
+            border: 1px solid color(border);
+            border-radius: 5px;
+            display: inline-block;
+            margin-left: 25px;
+            min-width: 50px;
+            padding: 8px 0;
+            text-align: center;
+
+            &:hover {
+                background-color: color(background, light);
+            }
         }
     }
 
@@ -374,8 +379,8 @@ td.table__form .rules + .form__group:last-of-type {
             left: 3px;
         }
 
-        button {
-            background-color: lighten(#9d7ee3, 25);
+        .btn {
+            background-color: lighten($rule-color-or, 25);
         }
     }
 
@@ -402,32 +407,32 @@ td.table__form .rules + .form__group:last-of-type {
         border-left: 4px solid color(gray, lightest);
         margin-left: 20px;
 
-        button {
-            background-color: lighten(#e8b750, 30);
+        .btn {
+            background-color: lighten($rule-color-and, 20);
         }
     }
 
     .rule-link--else-if {
         margin-left: -20px;
-        padding-top: 20px;
         padding-bottom: 20px;
+        padding-top: 20px;
 
         &::before {
             border-top: 2px dashed color(gray, lightest);
             content: '';
             display: block;
-            width: 100%;
             height: 3px;
             position: absolute;
             top: 38px;
+            width: 100%;
         }
 
         &::after {
             top: 27px;
         }
 
-        button {
-            background-color: lighten(#3f8ccc, 40);
+        .btn {
+            background-color: lighten($rule-color-if, 40);
             margin-left: 30px;
             min-width: 76px;
         }
@@ -439,7 +444,7 @@ td.table__form .rules + .form__group:last-of-type {
 
         // visually distinguish blocks close together
         .rule-block__header {
-            border-top: 1px solid rgba(255, 255, 255, .5);
+            border-top: 1px solid rgba(white, .5);
         }
     }
 
@@ -466,7 +471,7 @@ td.table__form .rules + .form__group:last-of-type {
         box-shadow: none;
         color: color(white);
         font-family: $font-family-regular;
-        font-size: 18.66px; // For AA large text
+        font-size: $font-size-large;
         padding: .5em;
 
         @include respond-min($screen-tablet) {
@@ -480,8 +485,8 @@ td.table__form .rules + .form__group:last-of-type {
 
     .rule-block--if,
     .rule-block--else-if {
-        background-color: lighten(#3f8ccc, 40);
-        border-color: #3f8ccc;
+        background-color: lighten($rule-color-if, 40);
+        border-color: $rule-color-if;
         border-top-left-radius: 15px;
 
         @include respond-min($screen-tablet) {
@@ -489,7 +494,7 @@ td.table__form .rules + .form__group:last-of-type {
         }
 
         .rule-block__header {
-            background-color: #3f8ccc;
+            background-color: $rule-color-if;
             border-top-left-radius: 14px;
         }
 
@@ -507,11 +512,11 @@ td.table__form .rules + .form__group:last-of-type {
             border-top: 4px solid color(gray, lightest);
             content: '';
             display: block;
-            width: 24px;
             height: 4px;
             left: -25px;
             position: absolute;
             top: 35px;
+            width: 24px;
         }
 
         .rule-block__header {
@@ -520,31 +525,31 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block--and {
-        background-color: lighten(#e8b750, 30);
-        border-color: #e8b750;
+        background-color: lighten($rule-color-and, 20);
+        border-color: darken($rule-color-and, 10);
         margin-top: 0;
 
         .rule-block__header {
-            background-color: #f7d183;
+            background-color: $rule-color-and;
             color: color(black);
         }
     }
 
     .rule-block--or {
-        background-color: lighten(#9d7ee3, 25);
-        border-color: #9d7ee3;
+        background-color: lighten($rule-color-or, 25);
+        border-color: $rule-color-or;
 
         .rule-block__header {
-            background-color: #9d7ee3;
+            background-color: $rule-color-or;
         }
     }
 
     .rule-block--else {
-        background-color: lighten(#3f8ccc, 30);
-        border-color: #3f8ccc;
+        background-color: lighten($rule-color-if, 30);
+        border-color: $rule-color-if;
 
         .rule-block__header {
-            background-color: #3f8ccc;
+            background-color: $rule-color-if;
         }
 
         + .rule-block--return {
@@ -558,13 +563,13 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block--return {
-        background-color: lighten(#7dbc8e, 30);
-        border-color: #7dbc8e;
+        background-color: lighten($rule-color-return, 30);
+        border-color: $rule-color-return;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
 
         .rule-block__header {
-            background-color: #7dbc8e;
+            background-color: $rule-color-return;
 
             @include respond-min($screen-tablet) {
                 border-bottom-left-radius: 14px;
