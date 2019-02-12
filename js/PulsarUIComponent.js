@@ -37,6 +37,7 @@ PulsarUIComponent.prototype.init = function () {
 
 PulsarUIComponent.prototype.getDatatableOptions = function ($table) {
     let dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+        langEmptyTable = 'There are currently no items to display',
         pageLength = 25,
         select = {
             className: 'dt-row-selected',
@@ -44,15 +45,15 @@ PulsarUIComponent.prototype.getDatatableOptions = function ($table) {
             selector: 'td.table-selection'
         };
     
-    if (!$table.data('empty-table')) {
-        $table.data('empty-table', 'There are currently no items to display');
+    if ($table.length && $table.data('empty-table')) {
+        langEmptyTable = $table.data('empty-table');
     }
 
-    if ($table.data('page-length')) {
+    if ($table.length && $table.data('page-length')) {
         pageLength = $table.data('page-length');
     }
 
-    if ($table.data('select') === false) {
+    if ($table.length && $table.data('select') === false) {
         dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"p>';
         select = false;
     }
@@ -79,7 +80,7 @@ PulsarUIComponent.prototype.getDatatableOptions = function ($table) {
         ],
         dom: dom,
         language: {
-            emptyTable: $table.data('empty-table'),
+            emptyTable: langEmptyTable,
             info: "Showing _START_ to _END_ of _TOTAL_ items",
             infoEmpty: 'No items',
             infoFiltered: " (filtered from _MAX_ items)",
@@ -118,9 +119,9 @@ PulsarUIComponent.prototype.initTables = function () {
 
 PulsarUIComponent.prototype.initDataTables = function () {
     var component = this,
-        datatables = component.$html.find('.datatable:not(.table--horizontal)'),
-        datatablesHorizontal = component.$html.find('.datatable.table--horizontal');
-
+        datatables = component.$html.find('.datatable:not([data-init="false"]):not(.table--horizontal)'),
+        datatablesHorizontal = component.$html.find('.datatable.table--horizontal:not([data-init="false"])');
+        
     datatables.each(function () {
         var $this = $(this);
 
