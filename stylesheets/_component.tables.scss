@@ -287,12 +287,6 @@ td.row__actions {
             border-bottom: 1px solid color(border);
         }
     }
-
-    td a,
-    th a {
-        position: relative;
-        z-index: 2;
-    }
 }
 
 .table--overflow-left {

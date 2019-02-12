@@ -415,7 +415,9 @@ NavMainComponent.prototype.moreIconClickHandler = function ($moreLink) {
     if (component.$navTertiary.find('.nav-list').hasClass('is-active')) {
         $moreLink.attr('aria-expanded', 'false');
         component.$navTertiary.removeClass('is-open');
+        component.$navQuaternary.removeClass('is-open');
         component.$navTertiary.find('.nav-list').removeClass('is-active');
+        component.$navQuaternary.find('.nav-list').removeClass('is-active');
     } else {
         $moreLink.attr('aria-expanded', 'true');
 

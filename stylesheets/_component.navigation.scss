@@ -45,10 +45,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-
-    @include respond-min($screen-desktop) {
-        width: auto;
-    }
+    width: 100%;
 
     @include ie-lte(9) {
         height: 49px;
