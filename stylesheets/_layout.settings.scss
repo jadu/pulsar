@@ -481,6 +481,12 @@
     .form__group:not(.form__group--flush):not(.form__group--toggle):not(.form-checkbox):not(.form-radio) {
         margin-bottom: 12px;
 
+        @include ie(9) {
+            &.colorpicker .form__control {
+                width: calc(100% - 48px);
+            }
+        }
+
         > .control__label {
             padding-top: 0;
         }
@@ -491,10 +497,6 @@
         .form__control + .select2,
         .input-group {
             width: 100%;
-        }
-
-        .ie9 &.colorpicker .form__control {
-            width: calc(100% - 48px);
         }
 
         .help-block {
@@ -533,14 +535,14 @@
         position: relative;
 
         > .control__label {
-            padding-left: 30px;
             min-width: 300px;
+            padding-left: 30px;
             width: 300px;
         }
 
         .controls {
-            min-width: 20px;
             left: 0;
+            min-width: 20px;
             position: absolute;
             top: 1px;
             width: 20px;
