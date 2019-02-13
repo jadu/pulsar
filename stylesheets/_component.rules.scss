@@ -318,10 +318,14 @@ td.table__form .rules + .form__group:last-of-type {
         background-color: color(white);
         content: '';
         display: block;
-        height: 35px;
+        height: 23px;
         left: -4px;
         position: absolute;
         width: 24px;
+
+        @include respond-min($screen-tablet) {
+            height: 35px;
+        }
     }
 
     &::before {
@@ -489,14 +493,16 @@ td.table__form .rules + .form__group:last-of-type {
         background-color: lighten($rule-color-if, 40);
         border-color: $rule-color-if;
         border-top-left-radius: 15px;
-
-        @include respond-min($screen-tablet) {
-            border-top-right-radius: 15px;
-        }
+        border-top-right-radius: 15px;
 
         .rule-block__header {
             background-color: $rule-color-if;
             border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+
+            @include respond-min($screen-tablet) {
+                border-top-right-radius: 0;
+            }
         }
 
         .remove-control {
@@ -533,6 +539,10 @@ td.table__form .rules + .form__group:last-of-type {
         .rule-block__header {
             background-color: $rule-color-and;
             color: color(black);
+        }
+
+        .remove__control {
+            color: color(text);
         }
     }
 
@@ -586,10 +596,12 @@ td.table__form .rules + .form__group:last-of-type {
         .rule-block__header {
             background-color: color(gray, dark);
             border-top-left-radius: 14px;
+            border-top-right-radius: 15px;
             color: color(white);
 
             @include respond-min($screen-small) {
                 border-top-left-radius: 14px;
+                border-top-right-radius: 0;
                 border-bottom-left-radius: 14px;
                 width: 120px;
             }
@@ -610,9 +622,14 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .remove__control {
-        color: color(text);
+        color: color(white);
+        font-size: $font-size-large;
         position: absolute;
         right: 10px;
         top: 10px;
+
+        @include respond-min($screen-tablet) {
+            color: color(text);
+        }
     }
 }
