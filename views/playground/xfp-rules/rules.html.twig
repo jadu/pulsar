@@ -55,424 +55,176 @@
     }}
 {%- endblock -%}
 
-{% block tab_content %}
-    <table class="table datatable table--full" data-select="false">
-        <thead>
-            <tr>
-                <td class="table-responsive"></td>
-                <th class="shrink-to-fit centered"><a href="#">Active</a></th>
-                <th><a href="#">Name</a></th>
-                <th><a href="#">Last triggered</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="u-no-border">
-                <td class="table-responsive">
-                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
-                </td>
-                <td class="centered">{{ html.status('active') }}</td>
-                <td><a href="#">Create green waste case</a></td>
-                <td>01/02/03 12:34pm</td>
-            </tr>
-            <tr data-col="2" class="temporary-branch page is-branched is-branched--from-1 is-open u-no-hover">
-                <td class="shrink-to-fit centered no-border"></td>
-                <td class="route no-border">
-                    <span class="ri--no-dot ri--vertical"></span>
-                    <span class="ri--dot ri--vertical"></span>
-                    <span class="ri--no-dot ri--vertical"></span>
-                </td>
-                <td class="no-border" colspan="4">
-
-                    <table class="table table--full is-sortable table--contrast table--white-bg">
-                        <thead>
-                            <tr>
-                                <th>Priority</th>
-                                <th>Branching rule</th>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{ html.icon('reorder') }} 1</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number one</a></td>
-                                <td class="u-text-align-right">
-                                    {{ html.icon('pencil') }}
-                                    {{ html.icon('times-circle') }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>{{ html.icon('reorder') }} 2</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number two</a></td>
-                                <td class="u-text-align-right">
-                                    {{ html.icon('pencil') }}
-                                    {{ html.icon('times-circle') }}
-                                </td>
-                            </tr>
-                            <tr class="is-editing">
-                                <td>{{ html.icon('reorder') }} 3</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number three</a></td>
-                                <td class="u-text-align-right">
-                                    {{
-                                        html.label({
-                                            'label': 'editing',
-                                            'class': 'label--warning'
-                                        })
-                                    }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table__form" colspan="3">
-                                <fieldset>
-                                    <legend class="legend">Edit rule</legend>
-
-<div class="wrapper">
-
-    {{
-        form.text({
-            'label': 'Name'
-        })
-    }}
-    <div class="rules">
-        <input type="hidden" class="branching-is-new" value="false">
-        <div data-block-type="triggers" class="rule-block-triggers">
-            <div class="rule-block rule-block--when">
-                <div class="rule-block__header rule-block__header--when">
-                    <h4 class="rule-block__heading">When</h4>
-                </div>
-                <div class="rule-block__controls">
-                    <div class="rule-block__control">
-                        <label class="control__label hide">Select input</label>
-                        <select class="form__control form__control--medium select branching-question">
-                            <option value="{&quot;questionName&quot;:&quot;&quot;,&quot;sectionName&quot;:&quot;&quot;,&quot;pageID&quot;:&quot;-1&quot;}">Select...</option>
-                            <optgroup label="Logic" class="js-opt-logic">
-                                <option value="new-logic">Create new...</option>
-                            </optgroup>
-                            <optgroup label="Foo">
-                                <option value="{&quot;questionName&quot;:&quot;q7038a37ecd0b6c7904eb7b6673797c3ccb06e12a&quot;,&quot;sectionName&quot;:&quot;main&quot;,&quot;pageID&quot;:&quot;11&quot;}" data-options="undefined">far</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="rule-block__control">
-                        <label class="control__label hide">Select input</label>
-                        <select class="form__control form__control--medium select branching-operator">
-                            <option value="equal">is equal to</option>
-                            <option class="js-literal-op" value="less">is less than</option>
-                            <option class="js-literal-op" value="greater">is more than</option>
-                            <option class="js-literal-op" value="less equal">is less than or equal to</option>
-                            <option class="js-literal-op" value="greater equal">is more than or equal to</option>
-                            <option value="not equal">is not equal to</option>
-                            <option class="js-literal-op" value="contains">contains</option>
-                            <option class="js-literal-op" value="not contains">does not contain</option>
-                        </select>
-                    </div>
-                    <div class="rule-block__control">
-                        <label class="control__label hide">Select input</label>
-                        <input type="text" class="form__control form__control--medium branching-value">
-                        <select class="form__control form__control--medium branching-value-opt hide"></select>
-                    </div>
-                </div>
-            </div>
-            <div class="conditional-block conditional-block--indented">
-                <a href="#" class="conditional-block__link conditional-block__link--when js-or-link"><i class="icon-arrow-right"></i><span>Or</span></a>
-            </div>
-        </div>
-        <div data-block-type="actions" class="rule-block-actions">
-            <div class="rule-block rule-block--then">
-                <div class="rule-block__header rule-block__header--then">
-                    <h4 class="rule-block__heading">Then</h4>
-                </div>
-                <div class="rule-block__controls">
-                    <div class="rule-block__control">
-                        <label class="control__label hide">Select input</label>
-                        <select class="form__control form__control--medium select branching-action">
-                            <option value="branch">Branch</option>
-                        </select>
-                    </div>
-                    <div class="rule-block__control"> to </div>
-                    <div class="rule-block__control">
-                        <input type="hidden" class="branching-target" value="13"><strong><span class="branching-target-label">fdsafdsadsadsa</span></strong>
-                    </div>
-                </div>
-            </div>
+{% set controls = '
+<div class="rule-block__control">
+    <div class="form__group form__group--medium">
+        <label class="control__label hide">Choose trigger</label>
+        <div class="controls">
+            <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                <option value="foo">Choose condition</option>
+            </select>
         </div>
     </div>
 </div>
-{{
-    form.end({
-        'class': 'form__actions--flush',
-        'actions': [
-            form.submit({
-                'class': 'btn--primary',
-                'label': 'Save'
-            }),
-            html.button({
-                'class': 'btn--naked',
-                'type': 'link',
-                'label': 'Cancel',
-                'href': '/home'
-            })
-        ]
-    })
-}}
-                                    </fieldset>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>{{ html.icon('reorder') }} 4</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number four</a></td>
-                                <td class="u-text-align-right">
-                                    {{ html.icon('pencil') }}
-                                    {{ html.icon('times-circle') }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>{{ html.icon('reorder') }} 5</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number five</a></td>
-                                <td class="u-text-align-right">
-                                    {{ html.icon('pencil') }}
-                                    {{ html.icon('times-circle') }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+<div class="rule-block__control">
+    <div class="form__group form__group--small">
+        <label class="control__label hide">Choose trigger</label>
+        <div class="controls">
+            <select placeholder="Choose condition" class="form__control select" tabindex="-1" aria-hidden="true">
+                <option value="foo">is</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="rule-block__control">
+    <div class="form__group form__group--medium">
+        <label class="control__label hide">Choose value</label>
+        <div class="controls">
+            <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                <option value="foo">Choose value</option>
+            </select>
+        </div>
+    </div>
+</div>' %}
 
-            </td>
-        </tr>
-            {% for i in 0..5 %}
-            <tr>
-                <td class="table-responsive">
-                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
-                </td>
-                <td class="centered">{{ html.status('active') }}</td>
-                <td><a href="#">Create green waste case</a></td>
-                <td>01/02/03 12:34pm</td>
-            </tr>
+{% set return = '
+<div class="rule-block__control">
+    <div class="form__group form__group--medium">
+        <label class="control__label hide">Choose trigger</label>
+        <div class="controls">
+            <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                <option value="foo">Choose return value</option>
+            </select>
+        </div>
+    </div>
+</div>' %}
 
-            <tr>
-                <td class="table-responsive">
-                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
-                </td>
-                <td class="centered">{{ html.status('inactive') }}</td>
-                <td><a href="#">Create brown waste case</a></td>
-                <td>01/02/03 12:34pm</td>
-            </tr>
-            {% endfor %}
+{% block tab_content %}
 
-        </tbody>
-        <tfoot>
-            <tr>
-                <td class="table__form" colspan="4">
-                    <div id="rule-form-container" class="rules-container">
-                        {{
-                            form.create()
-                        }}
 
-                        {{
-                            form.fieldset_start({
-                                'legend': 'Create rule'
-                            })
-                        }}
+<div id="rule-form-container" class="rules-container rules-container--v2">
 
-                        {{
-                            form.text({
-                                'class': 'form__group--full',
-                                'id': 'rule_name',
-                                'name': 'rule[name]',
-                                'label': 'Name',
-                                'required': true,
-                                'value': 'foo'
-                            })
-                        }}
+    <div class="rule-block rule-block--if">
+        <div class="rule-block__header">
+            <span class="rule-block__heading">if</span>
+        </div>
+        <div class="rule-block__controls">
+            {{ controls|raw }}
+        </div>
+    </div>
 
-                        <div class="rules">
-                            {# This block will be filled with different forms by the AjaxFormListener.js #}
-                            {# It's also overriden on the children pages - i.e. create, edit and delete rules. #}
-                            {% block ruleFormBlock %}{% endblock %}
+    <div class="rule-block--indent">
 
-                            {{
-                                rule.block_when({
-                                    'polly': 'bar',
-                                    'removeable': false,
-                                    'inputs': [
-                                        form.select2({
-                                            'label': 'Choose trigger',
-                                            'placeholder': 'Choose trigger',
-                                            'show-label': false,
-                                            'options':
-                                            [
-                                                {
-                                                    'label': 'XForms Pro',
-                                                    'options': [
-                                                        {
-                                                            'label': 'Form is submitted',
-                                                            'value': 'foo'
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        })
-                                    ]
-                                })
-                            }}
+        <div class="rule-block rule-block--or">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">or</span>
+            </div>
+            <div class="rule-block__controls">
+                {{ controls|raw }}
+            </div>
+            <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
+        </div>
 
-                            {{
-                                rule.block_and({
-                                    'inputs': [
-                                        form.select2({
-                                            'label': 'Choose trigger',
-                                            'placeholder': 'Choose condition',
-                                            'show-label': false,
-                                            'options':
-                                            [
-                                                {
-                                                    'label': 'User type',
-                                                    'value': 'foo'
-                                                }
-                                            ]
-                                        }),
-                                        form.select({
-                                            'class': 'form__group--small',
-                                            'label': 'Choose',
-                                            'placeholder': 'Choose',
-                                            'show-label': false,
-                                            'options':
-                                            [
-                                                {
-                                                    'label': 'is',
-                                                    'value': 'foo'
-                                                },
-                                                {
-                                                    'label': 'is not',
-                                                    'value': 'foo'
-                                                }
-                                            ]
-                                        }),
-                                        form.select2({
-                                            'label': 'Choose user type',
-                                            'show-label': false,
-                                            'options':
-                                            [
-                                                {
-                                                    'label': 'Registered user',
-                                                    'value': 'foo'
-                                                },
-                                                {
-                                                    'label': 'Anonymous user',
-                                                    'value': 'foo'
-                                                },
-                                                {
-                                                    'label': 'Admin on behalf of user',
-                                                    'value': 'foo'
-                                                }
-                                            ]
-                                        })
-                                    ]
-                                })
-                            }}
+        <div class="rule-block rule-block--or">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">or</span>
+            </div>
+            <div class="rule-block__controls">
+                {{ controls|raw }}
+            </div>
+            <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
+        </div>
 
-                            {{
-                                rule.block_then({
-                                    'inputs': [
-                                        form.select2({
-                                            'label': 'Choose action',
-                                            'show-label': false,
-                                            'options':
-                                            [
-                                                {
-                                                    'label': 'Send email',
-                                                    'value': 'foo'
-                                                },
-                                                {
-                                                    'label': 'Continuum CXM',
-                                                    'options': [
-                                                        {
-                                                            'label': 'Choose',
-                                                            'value': 'foo'
-                                                        },
-                                                        {
-                                                            'label': 'Apply transition',
-                                                            'value': 'foo'
-                                                        },
-                                                        {
-                                                            'label': 'Create case',
-                                                            'value': 'foo',
-                                                            'selected': true
-                                                        },
-                                                        {
-                                                            'label': 'Set case values',
-                                                            'value': 'foo'
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }),
-                                        form.select2({
-                                            'label': 'Using template',
-                                            'data-html': 'true',
-                                            'show-label': false,
-                                            'options':
-                                             [
-                                                {
-                                                    'label': html.icon('plus') ~ ' Create template',
-                                                    'value': 'foo'
-                                                },
-                                                {
-                                                    'label': 'New brown waste case',
-                                                    'value': 'foo'
-                                                },
-                                                {
-                                                    'label': 'New green waste case',
-                                                    'value': 'foo'
-                                                },
-                                            ]
-                                        })
-                                    ]
-                                })
-                            }}
-                        </div>
+        <div class="rule-links">
+            <div class="rule-link rule-link--or">
+                <button class="btn" aria-label="Add a new OR condition">or</button>
+            </div>
+        </div>
 
-                        {{
-                            form.toggle_switch({
-                                'checked': true,
-                                'label': 'Enabled'
-                            })
-                        }}
+    </div><!-- /.ruleblock--indent -->
 
-                        {{
-                            form.fieldset_end()
-                        }}
+    <div class="rule-block rule-block--and">
+        <div class="rule-block__header">
+            <span class="rule-block__heading">and</span>
+        </div>
+        <div class="rule-block__controls">
+            {{ controls|raw }}
+        </div>
+        <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
+    </div>
 
-                        {{
-                            form.end({
-                                'class': 'form__actions--flush',
-                                'actions': [
-                                    form.submit({
-                                        'class': 'btn--primary',
-                                        'label': 'Save'
-                                    }),
-                                    html.button({
-                                        'class': 'btn--naked',
-                                        'type': 'link',
-                                        'label': 'Cancel',
-                                        'href': '/home'
-                                    })
-                                ]
-                            })
-                        }}
-                    </div>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="rule-links">
+        <div class="rule-link rule-link--or">
+            <button class="btn" aria-label="Add a new OR condition">or</button>
+        </div>
+        <div class="rule-link rule-link--and">
+            <button class="btn" aria-label="Add a new AND condition">and</button>
+        </div>
+    </div>
 
+    <div class="rule-block rule-block--return">
+        <div class="rule-block__header">
+            <span class="rule-block__heading">return</span>
+        </div>
+        <div class="rule-block__controls">
+            {{ return|raw }}
+        </div>
+    </div>
+
+    <div class="rule-links">
+        <div class="rule-link rule-link--else-if">
+            <button class="btn">else if</button>
+        </div>
+    </div>
+
+    <div class="rule-block rule-block--else-if">
+        <div class="rule-block__header">
+            <span class="rule-block__heading">else if</span>
+        </div>
+        <div class="rule-block__controls">
+            {{ controls|raw }}
+        </div>
+        <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
+    </div>    
+
+    <div class="rule-links">
+        <div class="rule-link rule-link--or">
+            <button class="btn" aria-label="Add a new OR condition">or</button>
+        </div>
+        <div class="rule-link rule-link--and">
+            <button class="btn" aria-label="Add a new AND condition">and</button>
+        </div>
+    </div>
+
+    <div class="rule-block rule-block--return">
+        <div class="rule-block__header">
+            <span class="rule-block__heading">return</span>
+        </div>
+        <div class="rule-block__controls">
+            {{ return|raw }}
+        </div>
+    </div>
+    
+    <div class="rule-links">
+        <div class="rule-link rule-link--else-if">
+            <button class="btn">else if</button>
+        </div>
+    </div>
+
+    <div class="rule-block rule-block--else-return">
+        <div class="rule-block__header">
+            <span class="rule-block__heading">else return</span>
+        </div>
+        <div class="rule-block__controls">
+            {{ return|raw }}
+        </div>
+    </div>
+
+</div><!-- /.rules-container -->
 
 {% endblock tab_content %}
 
-{% block tab_sidebar %}
-    <h2>{{ html.icon('info-sign') }} Create powerful event-driven rules</h2>
-    <p>Create rules to automatically perform actions when specific events occur.</p>
-    <p>Rules can do things like send emails, or make changes to integrated third-party systems too.</p>
-{% endblock tab_sidebar %}
+
 
 
 
