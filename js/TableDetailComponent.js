@@ -86,7 +86,7 @@ class TableDetailComponent {
             if (event.keyCode == 27) {
                 this.closeDetail();
                 $triggeringElement.focus();
-            };
+            }
         });
     }
     /**
