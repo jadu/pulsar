@@ -83,10 +83,10 @@ class TableDetailComponent {
 
         // Close ESC button
         this.$html.on('keydown', (event) => {
-            if (event.keyCode == 27) {
+            if (event.keyCode === 27) {
                 this.closeDetail();
                 $triggeringElement.focus();
-            };
+            }
         });
     }
     /**
