@@ -298,3 +298,338 @@ td.table__form .rules + .form__group:last-of-type {
         width: auto;
     }
 }
+
+/**
+ * The following version 2 was developed to meet the needs of XFP conditional logic rules
+ */
+.rules-container--v2 {
+    $rule-color-if:     #3f8ccc;
+    $rule-color-and:    #f7d183;
+    $rule-color-or:     #9d7ee3;
+    $rule-color-return: #7dbc8e;
+    $rule-color-help:   #b54745;
+
+    border-left: 4px solid color(gray, lightest);
+    padding-left: 20px;
+    position: relative;
+
+    &::before,
+    &::after {
+        background-color: color(white);
+        content: '';
+        display: block;
+        height: 23px;
+        left: -4px;
+        position: absolute;
+        width: 24px;
+
+        @include respond-min($screen-tablet) {
+            height: 35px;
+        }
+    }
+
+    &::before {
+        border-bottom: 4px solid color(gray, lightest);
+        top: 0;
+    }
+
+    &::after {
+        border-top: 4px solid color(gray, lightest);
+        bottom: 0;
+    }
+
+    .rule-link {
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        &::after {
+            color: #dedede;
+            content: '\f061';
+            font-family: 'FontAwesome';
+            font-size: 19px;
+            left: 0;
+            position: absolute;
+            top: 17px;
+        }
+
+        .btn {
+            border: 1px solid color(border);
+            border-radius: 5px;
+            display: inline-block;
+            margin-left: 25px;
+            min-width: 50px;
+            padding: 8px 0;
+            text-align: center;
+
+            &:hover {
+                background-color: color(background, light);
+            }
+        }
+    }
+
+    .rule-link--or {
+        &::before {
+            content: '';
+            display: inline-block;
+            border-left: 4px solid color(gray, lightest);
+            margin-right: -5px;
+            height: 45px;
+            position: absolute;
+            top: -14px;
+            width: 0;
+        }
+
+        &::after {
+            left: 3px;
+        }
+
+        .btn {
+            background-color: lighten($rule-color-or, 25);
+        }
+    }
+
+    .rule-block--else-if + .rule-links .rule-link--or,
+    .rule-block--and + .rule-links .rule-link--or {
+        border-left: 4px solid color(gray, lightest);
+        margin-left: 20px;
+        padding-left: 40px;
+
+        &::after {
+            left: 44px;
+        }
+    }
+
+    .rule-link--or + .rule-link--and {
+        padding-top: 0;
+
+        &::after {
+            top: 7px;
+        }
+    }
+
+    .rule-link--and {
+        border-left: 4px solid color(gray, lightest);
+        margin-left: 20px;
+
+        .btn {
+            background-color: lighten($rule-color-and, 20);
+        }
+    }
+
+    .rule-link--else-if {
+        margin-left: -20px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+
+        &::before {
+            border-top: 2px dashed color(gray, lightest);
+            content: '';
+            display: block;
+            height: 3px;
+            position: absolute;
+            top: 38px;
+            width: 100%;
+        }
+
+        &::after {
+            top: 27px;
+        }
+
+        .btn {
+            background-color: lighten($rule-color-if, 40);
+            margin-left: 30px;
+            min-width: 76px;
+        }
+    }
+
+    .rule-block + .rule-block,
+    .rule-block--indent > .rule-block {
+        margin-top: -1px;
+
+        // visually distinguish blocks close together
+        .rule-block__header {
+            border-top: 1px solid rgba(white, .5);
+        }
+    }
+
+    // first block, indented one spot
+    .rule-block + .rule-block--return,
+    .rule-block--if + .rule-block--or {
+        margin-left: 40px;
+        width: calc(100% - 40px);
+    }
+
+    .rule-block--indent > .rule-links,
+    .rule-block--indent > .rule-block--indent + .rule-links {
+        padding-left: 20px;
+    }
+
+    .rule-block--indent {
+        border-left: 4px solid color(gray, lightest);
+        margin-left: 20px;
+        padding-left: 20px;
+    }
+
+    .rule-block__header {
+        border: 0;
+        box-shadow: none;
+        color: color(white);
+        font-family: $font-family-regular;
+        font-size: $font-size-large;
+        padding: .5em;
+
+        @include respond-min($screen-tablet) {
+            padding: 0;
+        }
+    }
+
+    .rule-block__heading {
+        padding: 0;
+    }
+
+    .rule-block--if,
+    .rule-block--else-if {
+        background-color: lighten($rule-color-if, 40);
+        border-color: $rule-color-if;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+
+        .rule-block__header {
+            background-color: $rule-color-if;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+
+            @include respond-min($screen-tablet) {
+                border-top-right-radius: 0;
+            }
+        }
+
+        .remove-control {
+            color: color(white);
+
+            @include respond-min($screen-tablet) {
+                color: color(text);
+            }
+        }
+    }
+
+    .rule-block--else-if {
+        &::after {
+            border-top: 4px solid color(gray, lightest);
+            content: '';
+            display: block;
+            height: 4px;
+            left: -25px;
+            position: absolute;
+            top: 35px;
+            width: 24px;
+        }
+
+        .rule-block__header {
+            border-top: 0;
+        }
+    }
+
+    .rule-block--and {
+        background-color: lighten($rule-color-and, 20);
+        border-color: darken($rule-color-and, 10);
+        margin-top: 0;
+
+        .rule-block__header {
+            background-color: $rule-color-and;
+            color: color(black);
+        }
+
+        .remove__control {
+            color: color(text);
+        }
+    }
+
+    .rule-block--or {
+        background-color: lighten($rule-color-or, 25);
+        border-color: $rule-color-or;
+
+        .rule-block__header {
+            background-color: $rule-color-or;
+        }
+    }
+
+    .rule-block--else {
+        background-color: lighten($rule-color-if, 30);
+        border-color: $rule-color-if;
+
+        .rule-block__header {
+            background-color: $rule-color-if;
+        }
+
+        + .rule-block--return {
+            margin-left: 30px;
+            width: calc(100% - 30px);
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    .rule-block--return {
+        background-color: lighten($rule-color-return, 30);
+        border-color: $rule-color-return;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+
+        .rule-block__header {
+            background-color: $rule-color-return;
+
+            @include respond-min($screen-tablet) {
+                border-bottom-left-radius: 14px;
+            }
+        }
+    }
+
+    .rule-block--else-return {
+        background-color: color(gray, lightest);
+        border-color: color(gray, dark);
+        border-radius: 15px;
+
+        .rule-block__header {
+            background-color: color(gray, dark);
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            color: color(white);
+
+            @include respond-min($screen-small) {
+                border-top-left-radius: 14px;
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 14px;
+                width: 120px;
+            }
+        }
+    }
+
+    .rule-block__controls {
+        margin-top: .5em;
+    }
+
+    // Fix alignment when help-blocks are present
+    .rule-block__control {
+        vertical-align: top;
+    }
+
+    .form__group:not(.form__group--partial-state).has-error .help-block {
+        color: $rule-color-help;
+    }
+
+    .remove__control {
+        color: color(white);
+        font-size: $font-size-large;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        @include respond-min($screen-tablet) {
+            color: color(text);
+        }
+    }
+}
