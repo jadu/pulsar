@@ -143,6 +143,9 @@ class TableDetailComponent {
             .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
             .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]')
             .attr('tabindex', '-1');
+
+        // Remove previously bound listener
+        this.$html.off('keydown', this.boundKeydownListener);
     }
 
     /**
@@ -189,7 +192,8 @@ class TableDetailComponent {
             this.$detailPanel.find('[data-table-detail-close-panel]').focus();
         }
 
-        this.$html.on('keydown', this.keydownListener.bind(this, $focusableElements));
+        this.boundKeydownListener = this.keydownListener.bind(this, $focusableElements);
+        this.$html.on('keydown', this.boundKeydownListener);
     }
 }
 
