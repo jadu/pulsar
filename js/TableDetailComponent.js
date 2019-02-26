@@ -18,26 +18,26 @@ class TableDetailComponent {
         }
 
         let $panelHtml = $(
-            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true">' +
+            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true" aria-hidden="true">' +
             '   <div class="table-detail__header">' +
-            '       <button type="button" class="close table-detail__header-close" data-table-detail-close-panel aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+            '       <button type="button" class="close table-detail__header-close" data-table-detail-close-panel aria-label="Close" tabindex="-1"><span aria-hidden="true">&times;</span></button>' +
             '       <h1 class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
             '   </div>' +
             '   <div class="table-detail__body" data-table-detail-panel-body></div>' +
             '</div>'
             ),
             $elementToAppendTo,
-            $containerHasMainElement = this.$html.find('main'),
-            $containerHasRoleMainElement = this.$html.find('[role="main"]'),
+            $main = this.$html.find('main'),
+            $roleMain = this.$html.find('[role="main"]'),
             $triggeringElement;
 
         this.$table = this.$html.find('[data-table-detail-table]');
 
         // If main or role="main" is present append alerts to that (to satify WCAG 1.3.1 Info and Relationships)
-        if ($containerHasMainElement.length) {
-            $elementToAppendTo = $containerHasMainElement;
-        } else if ($containerHasRoleMainElement.length) {
-            $elementToAppendTo = $containerHasRoleMainElement;
+        if ($main.length > 0) {
+            $elementToAppendTo = $main;
+        } else if ($roleMain.length > 0) {
+            $elementToAppendTo = $roleMain;
         } else {
             $elementToAppendTo = this.$html.find('body');
         }
@@ -100,6 +100,9 @@ class TableDetailComponent {
             this.$detailPanelTitle.html(customDetailPanelTitle);
         }
 
+        // Remove aria-hidden so SR can read
+        this.$detailPanel.removeAttr('aria-hidden');
+
         // Remove any previously added contents
         this.$detailPanelBody.empty();
 
@@ -111,6 +114,12 @@ class TableDetailComponent {
 
         // Open panel
         this.$detailPanel.addClass('table-detail--open');
+
+        // Make elements focusable again
+        this.$detailPanel
+            .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
+            .not('[disabled], :hidden, [aria-hidden]')
+            .removeAttr('tabindex');
 
         // Trap focus within the panel
         this.trapFocus();
@@ -125,6 +134,15 @@ class TableDetailComponent {
 
         // Close panel
         this.$detailPanel.removeClass('table-detail--open');
+
+        // Hide panel contents from screen readers
+        this.$detailPanel.attr('aria-hidden', 'true');
+
+        // Make sure focusable elemnts cannot gain focus whilst panel is closed
+        this.$detailPanel
+            .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
+            .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]')
+            .attr('tabindex', '-1');
     }
 
     /**
@@ -157,14 +175,16 @@ class TableDetailComponent {
      * Trap keyboard focus in the panel
      */
     trapFocus () {
-        let $focusableElements = this.$detailPanel
+        let $focusablePanelBodyElements = this.$detailPanelBody
                 .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
                 .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]'),
-            $panelHasForm = this.$detailPanelBody.find('form').length > 0;
+            $focusableElements = this.$detailPanel
+                .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
+                .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]');
 
-        // If modal contains a form, we should focus the first field
-        if ($panelHasForm) {
-            this.$detailPanelBody.find('form :input:not([disabled]):not([aria-hidden]):visible:first').focus();
+        // If the panel body contains a focusable element we should focus that rather than the close button
+        if ($focusablePanelBodyElements.length > 0) {
+            $focusablePanelBodyElements.first().focus();
         } else {
             this.$detailPanel.find('[data-table-detail-close-panel]').focus();
         }

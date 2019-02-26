@@ -93,6 +93,32 @@ describe('TableDetailComponent', () => {
 		});
 	});
 
+	describe('When the panel is added', () => {
+		it('should have the role="dialog" attribute', () => {
+			tableDetailComponent.init($body);
+
+			expect($body.find('.table-detail[role="dialog"]')).to.have.length(1);
+		});
+
+		it('should have the aria-modal="true" attribute', () => {
+			tableDetailComponent.init($body);
+
+			expect($body.find('.table-detail[aria-modal="true"]')).to.have.length(1);
+		});
+
+		it('should have the aria-hidden="true" attribute', () => {
+			tableDetailComponent.init($body);
+
+			expect($body.find('.table-detail[aria-hidden="true"]')).to.have.length(1);
+		});
+
+		it('should have the tabindex attribute on the close button', () => {
+			tableDetailComponent.init($body);
+
+			expect($body.find('.table-detail__header-close[tabindex="-1"]')).to.have.length(1);
+		});
+	});
+
 	describe('When the view panel link is clicked', () => {
 		it('should prevent the default behaviour of the click', () => {
 			tableDetailComponent.init($body);
@@ -135,7 +161,7 @@ describe('TableDetailComponent', () => {
 			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.true;
 		});
 
-		it('should focus the close button if there is no form in the panel', () => {
+		it('should focus the close button if there is no other focusable element in the panel', () => {
 			tableDetailComponent.init($body);
 			$body.find('[data-table-detail-content]').attr('data-table-detail-content', '<p>Content</p>')
 
@@ -144,7 +170,7 @@ describe('TableDetailComponent', () => {
 			expect($body.find('[data-table-detail-close-panel]').is(':focus')).to.be.true;
 		});
 
-		it('should focus the first focusable element in the form, if a form is present ', () => {
+		it('should focus the first focusable element if one is present ', () => {
 			tableDetailComponent.init($body);
 
 			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
@@ -196,13 +222,44 @@ describe('TableDetailComponent', () => {
 			expect($body.find('.table-detail-backdrop').hasClass('in')).to.be.false;
 		});
 
-		it('remove the "table-detail--open" class to the panel to open it', () => {
+		it('should remove the "table-detail--open" class from the panel', () => {
 			tableDetailComponent.init($body);
 
 			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
 			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.false;
+		});
+
+		it('should add tabindex="-1" to all focusable elements', () => {
+			tableDetailComponent.init($body);
+
+			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
+
+			expect($body.find('[data-table-detail-panel-body] button').attr('tabindex')).to.equal('-1');
+			expect($body.find('[data-table-detail-close-panel]').attr('tabindex')).to.equal('-1');
+		});
+	});
+
+	describe('When the panel is opened and closed', () => {
+		it('should not be possible to focus elements in the panel', () => {
+			tableDetailComponent.init($body);
+
+			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
+
+			expect($body.find('[data-table-detail-panel-body] button').attr('tabindex')).to.equal('-1');
+			expect($body.find('[data-table-detail-close-panel]').attr('tabindex')).to.equal('-1');
+		});
+
+		it('should add the aria-hidden="true" attribute to the panel', () => {
+			tableDetailComponent.init($body);
+
+			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
+
+			expect($body.find('.table-detail[aria-hidden="true"]')).to.have.length(1);
 		});
 	});
 
