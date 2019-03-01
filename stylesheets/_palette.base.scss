@@ -172,7 +172,7 @@ $palette-alias: (
         disabled:  map-get(map-get($palette-monochromes, gray), lighter)
     ),
     border: (
-        base:      map-get(map-get($palette-monochromes, gray), lighter),
+        base:      map-get(map-get($palette-monochromes, gray), base),
         focus:     #ffbf47
     ),
     background: (

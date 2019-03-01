@@ -13,12 +13,12 @@
 
     // Slider thumb
     &::-webkit-slider-thumb {
-        margin-top: -5px;
+        margin-top: -7px;
         appearance: none;
         background: color(primary);
         border: 0;
         border-radius: 50%;
-        cursor: pointer;
+        cursor: grab;
         height: $gutter-width;
         transition: background .15s ease-in-out;
         width: $gutter-width;
@@ -32,7 +32,7 @@
         background: color(primary);
         border: 0;
         border-radius: 50%;
-        cursor: pointer;
+        cursor: grab;
         height: $gutter-width;
         margin-top: 1px;
         transition: background .15s ease-in-out;
@@ -52,7 +52,7 @@
         background: color(primary);
         border: 0;
         border-radius: 50%;
-        cursor: pointer;
+        cursor: grab;
         height: $gutter-width;
         transition: background .15s ease-in-out;
         width: $gutter-width;
@@ -68,45 +68,42 @@
 
     // Slider track
     &::-webkit-slider-runnable-track {
-        background: color(gray, lighter);
+        background: color(gray, lightest);
         border-radius: 5px;
-        border: 0;
+        border: 1px solid $input-border;
         color: transparent;
-        cursor: pointer;
-        height: $padding-base;
+        height: 7px;
         width: 100%;
     }
 
     &::-ms-track {
-        background: color(gray, lighter);
+        background: color(gray, lightest);
         border-radius: 5px;
-        border: 0;
+        border: 1px solid $input-border;
         color: transparent;
-        cursor: pointer;
-        height: $padding-base;
+        height: 7px;
         width: 100%;
         overflow: visible;
     }
 
     &::-ms-fill-lower {
-        background: color(gray, lighter);
+        background: color(gray, lightest);
         border-radius: 5px;
         overflow: visible;
     }
 
     &::-ms-fill-upper {
-        background: color(gray, lighter);
+        background: color(gray, lightest);
         border-radius: 5px;
         overflow: visible;
     }
 
     &::-moz-range-track {
-        background: color(gray, lighter);
+        background: color(gray, lightest);
         border-radius: 5px;
-        border: 0;
+        border: 1px solid $input-border;
         color: transparent;
-        cursor: pointer;
-        height: $padding-base;
+        height: 7px;
         width: 100%;
     }
 
@@ -117,7 +114,18 @@
     &:focus {
         border: 0;
         box-shadow: none;
-        outline: 3px solid color(border, focus);
-        outline-offset: 0;
+        outline: none;
+
+        &::-webkit-slider-thumb {
+            box-shadow: 0 0 0 3px color(white), 0 0 0 6px color(border, focus);
+        }
+
+        &::-moz-range-thumb {
+            box-shadow: 0 0 0 3px color(white), 0 0 0 6px color(border, focus);
+        }
+
+        &::-ms-thumb {
+            box-shadow: 0 0 0 3px color(white), 0 0 0 6px color(border, focus);
+        }
     }
 }
