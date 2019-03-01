@@ -35,7 +35,7 @@ PulsarUIComponent.prototype.init = function () {
     this.initCountdown();
 };
 
-PulsarUIComponent.prototype.getDatatableOptions = function ($table) {
+PulsarUIComponent.getDatatableOptions = function ($table) {
     let dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
         langEmptyTable = 'There are currently no items to display',
         pageLength = 25,
@@ -125,7 +125,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
     datatables.each(function () {
         var $this = $(this);
 
-        const datatableOptions = component.getDatatableOptions($this);
+        const datatableOptions = PulsarUIComponent.getDatatableOptions($this);
 
         let table = $this.DataTable(datatableOptions);
 
@@ -160,7 +160,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             select = false;
         }
 
-        const datatableOptions = component.getDatatableOptions($this);
+        const datatableOptions = PulsarUIComponent.getDatatableOptions($this);
 
         const horizontalOptions = $.extend({}, datatableOptions, {
             dom: dom,
