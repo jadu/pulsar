@@ -126,8 +126,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
         var $this = $(this);
 
         const datatableOptions = PulsarUIComponent.getDatatableOptions($this);
-
-        let table = $this.DataTable(datatableOptions);
+        
+        const table = $this.DataTable(datatableOptions);
 
         $this.on('click', '.js-select-all', function(e) {
             var $checkbox = $(e.target),
@@ -160,14 +160,14 @@ PulsarUIComponent.prototype.initDataTables = function () {
             select = false;
         }
 
-        const datatableOptions = PulsarUIComponent.getDatatableOptions($this);
+        const datatableOptions = PulsarUIComponent.getDatatableOptions($this)
 
         const horizontalOptions = $.extend({}, datatableOptions, {
             dom: dom,
             select: select,
         });
         
-        let table = $this.DataTable(horizontalOptions);
+        const table = $this.DataTable(horizontalOptions);
 
         // Add sticky scroll bar
         component.stickyScrollBarComponent.init($this.parent());
