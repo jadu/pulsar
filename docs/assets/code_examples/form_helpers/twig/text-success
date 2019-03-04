@@ -1,9 +1,0 @@
-{{
-    form.text({
-        'label': 'First name',
-        'class': 'has-success',
-        'help': 'Optional help text'
-        'id': 'inputTextSuccess',
-        'name': 'inputTextSuccess',
-    })
-}}

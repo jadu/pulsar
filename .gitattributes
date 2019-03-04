@@ -1,7 +1,6 @@
 /.sass-cache                export-ignore
 /app/                       export-ignore
 /coverage/                  export-ignore
-/docs/                      export-ignore
 /features/                  export-ignore
 /hook/                      export-ignore
 /node_modules/              export-ignore

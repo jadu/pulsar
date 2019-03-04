@@ -1,9 +1,0 @@
-{{
-    form.textarea({
-        'label': 'Description',
-        'class': 'has-changed',
-        'help': 'Optional help text',
-        'id': 'inputTextareaChanged',
-        'name': 'inputTextareaChanged'
-    })
-}}

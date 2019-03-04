@@ -1,5 +1,0 @@
-{{
-    html.progress({
-        "value": 25
-    })
-}}

@@ -1,7 +1,0 @@
-{{
-    form.color({
-        'label': 'Pick colour',
-        'id': 'foo',
-        'disabled': true
-    })
-}}
