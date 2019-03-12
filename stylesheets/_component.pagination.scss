@@ -15,14 +15,6 @@
   li {
     @include inline-block;
     list-style-type: none;
-
-    &:not(:first-child):not(:last-child) {
-        display: none;
-
-        @include respond-min($screen-tablet) {
-            display: inline-block;
-        }
-    }
   }
 
   a,

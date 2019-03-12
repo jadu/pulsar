@@ -253,6 +253,7 @@ fieldset {
 }
 
 .form__group > .control__label {
+    color: color(text);
     padding-top: 11px;
     padding-right: 10px;
 
@@ -656,6 +657,22 @@ fieldset {
     background-color: transparent;
     height: 48px;
     padding: 0;
+
+    @include ie-lte(9) {
+        background-color: #fafafa;
+        border: 1px solid $input-border;
+        border-radius: $input-border-radius;
+        height: $input-height-base;
+        line-height: $input-height-base;
+        padding: 0 0 0 $padding-base-horizontal;
+
+        &:focus {
+            border: 1px solid color(black);
+            box-shadow: 0 0 0 1px color(black);
+            outline: 3px solid color(border, focus);
+            outline-offset: 2px;
+        }
+    }
 }
 
 .form-range .input-group-addon:first-child,
