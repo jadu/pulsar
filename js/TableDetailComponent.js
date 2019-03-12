@@ -26,27 +26,31 @@ class TableDetailComponent {
             '   <div class="table-detail__body" data-table-detail-panel-body></div>' +
             '</div>'
             ),
-            $elementToAppendTo,
+            $panelAlreadyExists = this.$html.find('[data-table-detail-panel]'),
             $main = this.$html.find('main'),
             $roleMain = this.$html.find('[role="main"]'),
+            $elementToAppendTo,
             $triggeringElement;
 
         this.$table = this.$html.find('[data-table-detail-table]');
 
-        // If main or role="main" is present append alerts to that (to satify WCAG 1.3.1 Info and Relationships)
-        if ($main.length > 0) {
-            $elementToAppendTo = $main;
-        } else if ($roleMain.length > 0) {
-            $elementToAppendTo = $roleMain;
-        } else {
-            $elementToAppendTo = this.$html.find('body');
-        }
+        // Check panel hasn't already been added, in case of a datatable re-initting this component on paginated page draw
+        if ($panelAlreadyExists.length === 0) {
+            // If main or role="main" is present append alerts to that (to satify WCAG 1.3.1 Info and Relationships)
+            if ($main.length > 0) {
+                $elementToAppendTo = $main;
+            } else if ($roleMain.length > 0) {
+                $elementToAppendTo = $roleMain;
+            } else {
+                $elementToAppendTo = this.$html.find('body');
+            }
 
-        // Add backdrop and detail panel if UI contains a table detail pattern
-        if (this.$table.length) {
-            $elementToAppendTo
-                .append('<div class="table-detail-backdrop"></div>')
-                .append($panelHtml);
+            // Add backdrop and detail panel if UI contains a table detail pattern
+            if (this.$table.length) {
+                $elementToAppendTo
+                    .append('<div class="table-detail-backdrop"></div>')
+                    .append($panelHtml);
+            }
         }
 
         // Grab detail panel bits we need

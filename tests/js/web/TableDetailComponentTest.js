@@ -48,6 +48,14 @@ describe('TableDetailComponent', () => {
             }).to.throw('$html must be passed to TableDetailComponent');
 		});
 
+		it('should not add the detail panel to the DOM if a panel is already present', () => {
+			$body.append('<div class="table-detail" data-table-detail-panel></div>');
+
+			tableDetailComponent.init($body);
+
+			expect($body.find('.table-detail')).to.have.length(1);
+		});
+
 		it('should add the detail panel to the body if no main elements are present', () => {
 			tableDetailComponent.init($body);
 
