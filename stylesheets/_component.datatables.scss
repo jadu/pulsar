@@ -333,14 +333,6 @@ th.sorting_disabled:hover {
         width: auto;
     }
 
-    span {
-        display: none;
-
-        @include respond-min($screen-tablet) {
-            display: inline;
-        }
-    }
-
     .paginate_button {
         @include inline-block;
         color: color(text);
