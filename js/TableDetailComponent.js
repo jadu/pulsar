@@ -153,7 +153,7 @@ class TableDetailComponent {
      * @param {jQuery} $focusableElements - Collection of focusable elements in the details panel
      */
     keydownListener ($focusableElements, event) {
-        let keyCode = event.keyCode || event.which;
+        const keyCode = event.keyCode || event.which;
 
         // If tab key is pressed
         if (keyCode === 9) {
