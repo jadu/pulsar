@@ -157,7 +157,7 @@ $state-colors:
 
 $palette-alias: (
     text: (
-        base:     map-get(map-get($palette-monochromes, gray), darker),
+        base:     #000,
         help:     map-get(map-get($palette-monochromes, gray), dull),
         light:    map-get(map-get($palette-monochromes, gray), lighter),
         disabled: map-get(map-get($palette-monochromes, gray), lighter)
@@ -172,7 +172,7 @@ $palette-alias: (
         disabled:  map-get(map-get($palette-monochromes, gray), lighter)
     ),
     border: (
-        base:      map-get(map-get($palette-monochromes, gray), lighter),
+        base:      map-get(map-get($palette-monochromes, gray), base),
         focus:     #ffbf47
     ),
     background: (
