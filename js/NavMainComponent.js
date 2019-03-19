@@ -32,7 +32,7 @@ NavMainComponent.prototype.init = function () {
     component.$navSecondary = this.$html.find('.nav-secondary');
     component.$navTertiary = component.$navMain.find('.nav-tertiary');
     component.$navQuaternary = component.$navMain.find('.nav-quaternary');
-    component.$primaryNavLinks = component.$navPrimary.find('.nav-link');
+    component.$primaryNavLinks = component.$navPrimary.find('.nav-primary-contents > .nav-items > .nav-item > .nav-link');
     component.$tertiaryNavLinks = component.$navTertiary.find('.nav-link');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
     component.$mobileMenuButton = this.$html.find('.mobile-menu-button');
@@ -41,7 +41,7 @@ NavMainComponent.prototype.init = function () {
     component.adjustNavItems();
 
     // Check which tabindexes should be applied to navigation links to ensure WCAG compliance
-    component.manageTabIndexes();
+    //component.manageTabIndexes();
 
     // Open navigation on mobile
     component.$mobileMenuButton.on('click', function(event) {
@@ -53,13 +53,13 @@ NavMainComponent.prototype.init = function () {
         if ($self.text() === 'Menu') {
             $self.text('Close');
             $self.attr('aria-expanded', 'true');
-            component.$brandingLink.attr('tabindex', '3');
-            component.$primaryNavLinks.attr('tabindex', '3');
+            // component.$brandingLink.attr('tabindex', '3');
+            // component.$primaryNavLinks.attr('tabindex', '3');
         } else {
             $self.text('Menu');
             $self.attr('aria-expanded', 'false');
-            component.$brandingLink.attr('tabindex', '-1');
-            component.$primaryNavLinks.attr('tabindex', '-1');
+            // component.$brandingLink.attr('tabindex', '-1');
+            // component.$primaryNavLinks.attr('tabindex', '-1');
         }
     });
 
@@ -70,10 +70,10 @@ NavMainComponent.prototype.init = function () {
         component.moreIconClickHandler($self)
     });
 
-    // Re-adjust nav items on window resize to calc if more button is needed 
+    // Re-adjust nav items on window resize to calc if more button is needed
     component.$window.resize(function () {
         component.adjustNavItems();
-        component.manageTabIndexes();
+        //component.manageTabIndexes();
     });
 
     // Close navs on main content click
@@ -88,14 +88,14 @@ NavMainComponent.prototype.init = function () {
 
     // Open quaternary nav on tertiary nav item click
     component.$tertiaryNavLinks.on('click', function (event) {
-        var $self = $(this),
+        var $this = $(this),
             target;
 
-        if ($self.attr('href')) {
-            target = $self.attr('href');
+        if ($this.attr('href')) {
+            target = $this.attr('href');
         }
-        else if ($self.attr('data-target')) {
-            target = $self.attr('data-target');
+        else if ($this.attr('data-target')) {
+            target = $this.attr('data-target');
         } else {
             throw new Error(NavMainComponent.MISSING_ATTR_ERROR);
         }
@@ -104,10 +104,13 @@ NavMainComponent.prototype.init = function () {
             event.preventDefault();
 
             // Change aria expanded to true
-            $self.attr('aria-expanded', 'true');
+            $this.attr('aria-expanded', 'true');
+
+            // Add active class so we can return focus to it when quaternary nav is closed
+            $this.addClass('is-active');
         }
 
-        component.openQuaternaryNav(target);
+        component.openQuaternaryNav(target, $this);
     });
 
     // Close respective navs on close link click
@@ -117,22 +120,22 @@ NavMainComponent.prototype.init = function () {
     });
 };
 
+// This method needs removing as it breaks the focus order of sub navs. Needs to remove toolbar and search tabindexs too and rely on source order.
 /**
  * Unto the tabindex if the main nav is in responsive mode
  * This maintains the tab order to ensure WCAG compliance
  */
-NavMainComponent.prototype.manageTabIndexes = function () {
-    var component = this,
-        isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
-
-    if (isMobile) {
-        component.$brandingLink.attr('tabindex', '-1');
-        component.$primaryNavLinks.attr('tabindex', '-1');
-    } else {
-        component.$brandingLink.attr('tabindex', '1');
-        component.$primaryNavLinks.attr('tabindex', '1');
-    }
-};
+// NavMainComponent.prototype.manageTabIndexes = function () {
+//     var component = this,
+//         isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
+//         if (isMobile) {
+//             component.$brandingLink.attr('tabindex', '-1');
+//             component.$primaryNavLinks.attr('tabindex', '-1');
+//         } else {
+//             component.$brandingLink.attr('tabindex', '1');
+//             component.$primaryNavLinks.attr('tabindex', '1');
+//         }
+// };
 
 /**
  * Open secondary navigation, close all other navs and highlight primary nav item parent
@@ -162,11 +165,13 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
 
     // If href is a fragment (therefore opens a sub nav), don't add it to the URL because it breaks the back button
     if (target.indexOf('#') !== -1) {
+        var $closestSecondaryNav = $(event.currentTarget).closest('.nav-item').find('.nav-secondary');
         event.preventDefault();
+
         $linkClicked.attr('aria-expanded', 'true');
-        component.$navSecondary.addClass('is-open');
-        component.$navSecondary.find('.nav-list.is-active').removeClass('is-active');
-        component.$navSecondary.find('[data-nav="' + target + '"]').addClass('is-active');
+        $linkClicked.attr('aria-expanded', 'true');
+        $closestSecondaryNav.addClass('is-open');
+        $closestSecondaryNav.find('.nav-list').addClass('is-active');
     }
 
     if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
@@ -175,7 +180,6 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
         component.closeNavs($linkClicked);
     }
 
-    component.$navPrimary.find('.is-active').removeClass('is-active');
     component.$navPrimary.find('[href="' + target + '"], [data-target="' + target + '"]').addClass('is-active');
 };
 
@@ -193,6 +197,9 @@ NavMainComponent.prototype.openQuaternaryNav = function (target) {
 
     // Show the target nav-list in the opened nav
     component.$navQuaternary.find('[data-nav="' + target + '"]').addClass('is-active');
+
+    // Set focus to close button
+    component.$navQuaternary.find('[data-nav-action="close"]').focus();
 };
 
 /**
@@ -204,14 +211,17 @@ NavMainComponent.prototype.closeNavs = function ($linkClicked) {
         $linkParent = $linkClicked.parent();
 
     if ($linkParent.hasClass('nav-secondary')) {
+        component.$navPrimary.find('.is-active').focus();
         component.closeSecondaryNav();
     }
 
     else if ($linkParent.hasClass('nav-tertiary')) {
+        component.$navPrimary.find('.is-active').focus();
         component.closeTertiaryNav();
     }
 
     else if ($linkParent.hasClass('nav-quaternary')) {
+        component.$navTertiary.find('.is-active').focus();
         component.closeQuaternaryNav();
     }
 
@@ -259,9 +269,9 @@ NavMainComponent.prototype.closeQuaternaryNav = function () {
 
     component.$navQuaternary.removeClass('is-open');
     component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
-
-    // Reset aria-expanded on tertiary link
-    component.$navTertiary.find('[aria-expanded=true]').attr('aria-expanded', 'false');
+    component.$navTertiary.find('[aria-expanded=true]')
+        .attr('aria-expanded', 'false')
+        .removeClass('is-active');
 }
 
 /**
@@ -270,17 +280,17 @@ NavMainComponent.prototype.closeQuaternaryNav = function () {
 NavMainComponent.prototype.adjustNavItems = function () {
     var component = this,
         availableHeight = component.$window.height(),
-        navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true)),
+        navItemsHeight = (component.$html.find('.nav-primary > .nav-primary-contents > .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true)),
         moreIconHeight = 72, // Pre calculated height of the "More" nav item
-        navItemsCountTotal = component.$html.find('.nav-primary .nav-items li').length,
+        navItemsCountTotal = component.$html.find('.nav-primary > .nav-primary-contents > .nav-items > li').length,
         numberOfHiddenNavItems = 0;
-        
+
     // When nav items + more icon height is greater than available window height
     if (navItemsHeight + moreIconHeight > availableHeight) {
         // If there is not enough space hide the last primary nav items
         component.hidePrimaryNavItems(navItemsHeight, moreIconHeight, availableHeight);
         // Get the number of hidden items to make only them visible in the tertiary menu
-        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+        numberOfHiddenNavItems = component.$html.find('.nav-primary > .nav-primary-contents > .nav-items > li:hidden').length;
         // Add "More" nav item and check its visibility if already exists
         component.addMoreNavItem(numberOfHiddenNavItems);
         // Hide the primary nav items duplicate in tertiary menu
@@ -288,7 +298,7 @@ NavMainComponent.prototype.adjustNavItems = function () {
     } else if (navItemsHeight + moreIconHeight < availableHeight) {
         // Unhide items if they were hidden and there is space in the primary nav
         component.unhidePrimaryNavItems();
-        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+        numberOfHiddenNavItems = component.$html.find('.nav-primary > .nav-primary-contents > .nav-items > li:hidden').length;
         component.lastItemSubstitution(numberOfHiddenNavItems);
     }
 };
@@ -301,8 +311,8 @@ NavMainComponent.prototype.adjustNavItems = function () {
  */
 NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreIconHeight, availableHeight) {
     var component = this,
-        navItems = component.$html.find('.nav-primary .nav-items'),
-        lastPrimaryNavItem =  navItems.find('li:last-child'),
+        navItems = component.$html.find('.nav-primary > .nav-primary-contents > .nav-items'),
+        lastPrimaryNavItem =  component.$html.find('.nav-primary > .nav-primary-contents > .nav-items > li:last-child'),
         nthChild = 2; // This number represents the item before the last in the nth-last-child;
 
     while (navItemsHeight + moreIconHeight > availableHeight) {
@@ -311,7 +321,7 @@ NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreI
             lastPrimaryNavItem.hide();
         } else {
             // If last nav item is hidden hide the next one up
-            navItems.find('li:nth-last-child('+ nthChild +')').hide();
+            component.$html.find('.nav-primary > .nav-primary-contents > .nav-items > li:nth-last-child('+ nthChild +')').hide();
             nthChild++;
         }
 
@@ -325,12 +335,11 @@ NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreI
  */
 NavMainComponent.prototype.unhidePrimaryNavItems = function () {
     var component = this,
-        navItems = component.$html.find('.nav-primary .nav-items'),
+        navItems = component.$html.find('.nav-primary > .nav-primary-contents > .nav-items'),
         navItemMore = navItems.find('.more-icon'),
-        firstHiddenPrimaryNavItem = navItems.find('li:hidden').first();
+        firstHiddenPrimaryNavItem = component.$html.find('.nav-primary > .nav-primary-contents > .nav-items > li:hidden').first();
 
         if ((firstHiddenPrimaryNavItem.length > 0) && (navItemMore.is(':visible'))) {
-
             // Reset display type to list-item rather than show() to make sure they don't get recreated as inline-block
             firstHiddenPrimaryNavItem.css({display: 'list-item'});
         }
@@ -342,12 +351,12 @@ NavMainComponent.prototype.unhidePrimaryNavItems = function () {
  */
 NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     var component = this,
-        navItems = component.$html.find('.nav-primary .nav-items'),
+        navItems = component.$html.find('.nav-primary > .nav-primary-contents > .nav-items'),
         navItemMore = navItems.find('.more-icon');
 
     // Add the "More" nav item
     if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)) {
-        navItems.append('<li class="nav-item t-nav-item more-icon"><button class="nav-link t-nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-tertiary-nav"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></button></li>');
+        navItems.append('<li class="nav-item t-nav-item more-icon"><button class="nav-link nav-link-primary t-nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-tertiary-nav"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></button></li>');
     }
 
     // Check if "More" nav item is visible
@@ -389,7 +398,7 @@ NavMainComponent.prototype.hideMoreCategoriesTopItems = function (navItemsCountT
  */
 NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavItems) {
     var component = this,
-        navItems = component.$html.find('.nav-primary .nav-items'),
+        navItems = component.$html.find('.nav-primary > .nav-primary-contents > .nav-items'),
         navItemMore = navItems.find('.more-icon');
 
     if (numberOfHiddenNavItems === 0) {

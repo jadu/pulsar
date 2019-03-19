@@ -27,6 +27,18 @@
     }
 }
 
+.nav-primary-contents {
+    background-color: $nav-color-light;
+    bottom: 0;
+    box-shadow: inset -4px 0 0 $nav-color-dark;
+    position: absolute;
+    top: 0;
+
+    .nav-main.is-open & {
+        box-shadow: inset 0 0 0 $nav-color-dark;
+    }
+}
+
 .nav-primary,
 .nav-secondary,
 .nav-tertiary,
@@ -224,7 +236,6 @@
 
 .nav-primary {
     background-color: $nav-color-light;
-    box-shadow: inset 0 0 0 $nav-color-dark;
     overflow-y: hidden;
     text-align: center;
     transition: box-shadow 100ms linear;
@@ -239,11 +250,7 @@
         background-color: $nav-color-dark;
     }
 
-    .nav-main:not(.is-open) & {
-        box-shadow: inset -4px 0 0 $nav-color-dark;
-    }
-
-    .nav-link {
+    .nav-link.nav-link-primary {
         background-color: transparent;
         border: 0;
         color: color(white);
@@ -327,14 +334,13 @@
     background-color: $nav-color-dark;
     box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
     left: $nav-primary-width;
-    margin-left: -320px;
+    margin-left: -330px;
     overflow-x: hidden;
     overflow-y: auto;
     position: absolute;
     top: 0;
     transition: margin-left 100ms ease-in-out;
     width: 245px;
-    z-index: $zindex-nav-secondary;
 
     @include respond-min($screen-desktop) {
         position: fixed;
@@ -352,6 +358,10 @@
     .nav-container.is-active {
         display: block;
         margin: 0 20px;
+    }
+
+    .nav-item--header {
+        text-align: left;
     }
 
     .nav-link {
@@ -374,7 +384,13 @@
     }
 }
 
+.nav-secondary {
+    z-index: -1;
+}
+
 .nav-tertiary {
+    z-index: $zindex-nav-secondary;
+
     @include ie-lte(9) {
         box-sizing: content-box;
     }
@@ -392,6 +408,7 @@
     margin-left: 242px;
     transition: all 100ms linear;
     width: 0;
+    z-index: $zindex-nav-secondary;
 }
 
 .nav-remove-search {

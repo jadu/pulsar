@@ -85,7 +85,13 @@
 {% block body %}
     <div role="main" class="container" id="top">
         <div class="inner-wrapper">
-            {{ nav.primary({ 'data': nav_data|default() }) }}
+            {#{{ nav.primary({ 'data': nav_data|default() }) }}#}
+
+
+            {% include '@pulsar/pulsar/components/dummynav.html.twig' %}
+
+
+
 
             {% include '@pulsar/pulsar/components/flash.html.twig' %}
 
