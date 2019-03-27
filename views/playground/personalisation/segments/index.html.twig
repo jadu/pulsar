@@ -1,0 +1,25 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+{% import "@pulsar/pulsar/v2/helpers/html.html.twig" as html %}
+
+{% set heading = 'Personalisation' %}
+
+{% 
+    set flash_message = {
+    'message': 'You are currently in <strong>demo</strong> mode, to unlock the full Personalisation module you will need to purchase a license. ' ~ html.button({ 'label': 'Learn More', 'class': 'btn--outline btn--inverse btn--small', 'data-target': '#unlock', 'data-toggle': 'modal' }),
+        'type': 'warning'
+    }
+%}
+
+{% set tab %}
+    {% include '/playground/personalisation/segments/tab.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "segments",
+            "label" : "Segments",
+            "src"   : tab,
+        }
+    ]
+%}

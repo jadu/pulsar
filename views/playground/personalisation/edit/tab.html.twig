@@ -1,0 +1,243 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import "@pulsar/pulsar/v2/helpers/rules.html.twig" as rule %}
+
+{% block tab_content %}
+
+    <p>A segment is a group of website visitors who match that segment’s rules. An individual visitor may belong to more than one segment at a time. Segments can be used to personalise content on your live website. <a href="#">Find out more</a>.
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.text({
+            'label': 'Name',
+            'class': 'form__group--large',
+            'help': 'For example: out of area, mobile phone users or snow forecast',
+            'required': true,
+            'value': 'Mobile users, ESOL'
+        })
+    }}
+
+<fieldset>
+    <legend>Segment rules</legend>
+
+    <div id="rule-form-container" class="rules-container rules-container--v2 rules-container--no-default">
+
+        <div class="rule-block rule-block--if">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">If</span>
+            </div>
+            <div class="rule-block__controls">
+                <div class="rule-block__control">
+                    <div class="form__group form__group--medium">
+                        <label class="control__label hide">Choose trigger</label>
+                        <div class="controls">
+                            <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                <option value="">Choose a signal</option>
+                                <optgroup label="Strong persona signals">
+                                    <option value="1">Accessibility settings value</option>
+                                    <option value="2">Case submissions</option>
+                                    <option value="3">Form submissions</option>
+                                    <option value="4">Postcode</option>
+                                    <option value="5">Search keywords</option>
+                                    <option value="6">User profile valies</option>
+                                </optgroup>
+                                <optgroup label="Weak persona signals">
+                                    <option value="11">Browser</option>
+                                    <option value="12">Browsing history</option>
+                                    <option value="13" selected>Device</option>
+                                    <option value="14">IP address</option>
+                                    <option value="15">Landing URL</option>
+                                    <option value="16">Location</option>
+                                    <option value="17">Preferred language</option>
+                                    <option value="18">Referral URL</option>
+                                    <option value="19">Visit duration</option>
+                                </optgroup>
+                                <optgroup label="Environmental signals">
+                                    <option value="31">Local events</option>
+                                    <option value="32">Weather</option>
+                                    <option value="33">Time of day</option>
+                                    <option value="34">Time of year</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="rule-block__control">
+                    <div class="form__group form__group--small">
+                        <label class="control__label hide">Choose trigger</label>
+                        <div class="controls">
+                            <select placeholder="Choose condition" class="form__control select" tabindex="-1" aria-hidden="true">
+                                <option value="foo">is</option>
+                                <option value="foo">is not</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="rule-block__control">
+                    <div class="form__group form__group--medium">
+                        <label class="control__label hide">Choose value</label>
+                        <div class="controls">
+                            <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                <option value="">Choose device</option>
+                                <option value="" selected>Mobile</option>
+                                <option value="">Tablet</option>
+                                <option value="">Desktop</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rule-block--indent">
+            <div class="rule-links">
+                <div class="rule-link rule-link--or">
+                    <button class="btn" aria-label="Add a new OR condition">or</button>
+                </div>
+            </div>
+        </div><!-- /.ruleblock--indent -->
+
+        <div class="rule-block rule-block--and">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">And</span>
+            </div>
+            <div class="rule-block__controls">
+                <div class="rule-block__control">
+    <div class="form__group form__group--medium">
+        <label class="control__label hide">Choose trigger</label>
+        <div class="controls">
+            <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                <option value="">Choose a signal</option>
+                <optgroup label="Strong persona signals">
+                    <option value="1">Accessibility settings value</option>
+                    <option value="2">Case submissions</option>
+                    <option value="3">Form submissions</option>
+                    <option value="4">Postcode</option>
+                    <option value="5">Search keywords</option>
+                    <option value="6">User profile valies</option>
+                </optgroup>
+                <optgroup label="Weak persona signals">
+                    <option value="11">Browser</option>
+                    <option value="12">Browsing history</option>
+                    <option value="13">Device</option>
+                    <option value="14">IP address</option>
+                    <option value="15">Landing URL</option>
+                    <option value="16">Location</option>
+                    <option value="17" selected>Preferred language</option>
+                    <option value="18">Referral URL</option>
+                    <option value="19">Visit duration</option>
+                </optgroup>
+                <optgroup label="Environmental signals">
+                    <option value="31">Local events</option>
+                    <option value="32">Weather</option>
+                    <option value="33">Time of day</option>
+                    <option value="34">Time of year</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="rule-block__control">
+    <div class="form__group form__group--small">
+        <label class="control__label hide">Choose trigger</label>
+        <div class="controls">
+            <select placeholder="Choose condition" class="form__control select" tabindex="-1" aria-hidden="true">
+                <option value="foo">is</option>
+                <option value="foo" selected>is not</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="rule-block__control">
+    <div class="form__group form__group--medium">
+        <label class="control__label hide">Choose value</label>
+        <div class="controls">
+            <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                <option value="">Choose language</option>
+                <option value="" selected>English (All Countries)</option>
+                <option value="">List</option>
+                <option value="">of</option>
+                <option value="">Other</option>
+                <option value="">Languages</option>
+            </select>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+
+        <div class="rule-block--indent">
+            <div class="rule-links">
+                <div class="rule-link rule-link--or">
+                    <button class="btn" aria-label="Add a new OR condition">or</button>
+                </div>
+            </div>
+        </div><!-- /.ruleblock--indent -->
+
+        <div class="rule-link rule-link--and">
+            <button class="btn" aria-label="Add a new AND condition">and</button>
+        </div>
+
+        <div class="rule-block rule-block--return">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">Then</span>
+            </div>
+            <div class="rule-block__controls">
+                <p class="rule-block__text">Add visitors to segment</p>
+            </div>
+        </div>
+
+    </div><!-- /.rules-container -->
+</fieldset>
+
+    {{
+        form.end({
+            'class': 'form__actions--flush',
+            'actions': [
+                form.submit({
+                    'class': 'btn--primary',
+                    'label': 'Save'
+                }),
+                html.button({
+                    'class': 'btn--naked',
+                    'type': 'link',
+                    'label': 'Cancel',
+                    'href': 'segments'
+                })
+            ]
+        })
+    }}
+
+    <div class="modal" id="unlock" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                    <h1 class="modal__title" id="myModal-title">Unlock the full power of CMS personalisation</h1>
+                </div>
+                <div class="modal__body">
+                    <p>You are able to see the full range of settings for configuring personalisation, however these settings will not be used to personalise your live website until you unlock the full version.</p>
+
+                    <p>A personalisation license is required to unlock the full functionality within your Continuum CMS, if you would like us to call you to discuss your organisation's requirements, or simply want more information, please visit:</p>
+
+                    <div class="box u-text-align-center">
+                        <a href="https://jadu.net/personalisation">https://jadu.net/personalisation</a>
+                    </div>
+                </div>
+                <div class="modal__footer">
+                    <button type="button" class="btn btn--primary" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+
+{% endblock tab_content %}
+
+
+
+
+
+

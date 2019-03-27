@@ -87,8 +87,6 @@
         <div class="inner-wrapper">
             {{ nav.primary({ 'data': nav_data|default() }) }}
 
-            {% include '@pulsar/pulsar/components/flash.html.twig' %}
-
             <div class="toolbar">
 
                 <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
@@ -132,6 +130,8 @@
                 <button id="search-submit" tabindex="3" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
             </form>
             {% endblock %}
+
+            {% include '@pulsar/pulsar/components/flash.html.twig' %}
 
             <div class="content-main">
                 <div class="tabs__content">

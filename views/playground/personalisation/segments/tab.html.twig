@@ -1,0 +1,121 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import "@pulsar/pulsar/v2/helpers/html.html.twig" as html %}
+{% import "@pulsar/pulsar/v2/helpers/rules.html.twig" as rule %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'New Segment',
+                        'href': 'new',
+                        'icon': 'plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Delete',
+                        'href': '/delete',
+                        'icon': 'remove'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'New Segment',
+            'class': 'btn--primary',
+            'type': 'link',
+            'href': 'new'
+        })
+    }}
+{%- endblock -%}
+
+{% 
+    set data = {
+        'columns': [
+            { 'title': 'Name' },
+            { 'title': 'Modified' }
+        ],
+        'data': [
+            {
+                'Title': html.link({'label': 'In area', 'href': 'edit'}),
+                'Modified': '1991-07-01 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Out of area', 'href': 'edit'}),
+                'Modified': '1991-07-01 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Mobile, ESOL', 'href': 'edit'}),
+                'Modified': '1991-07-01 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Desktop', 'href': 'edit'}),
+                'Modified': '1991-07-01 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Snow forecast today', 'href': 'edit'}),
+                'Modified': '1991-07-01 12:34',
+            },
+            
+        ]
+    }
+%}
+
+{% block tab_content %}
+
+{{ 
+    html.datatable({
+        'class': 'table--full table--horizontal',
+        'data-order': '[[ 2, "desc" ]]',
+        'data': data
+    }) 
+}}
+
+<div class="modal" id="unlock" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                <h1 class="modal__title" id="myModal-title">Unlock the full power of CMS personalisation</h1>
+            </div>
+            <div class="modal__body">
+                <p>You are able to see the full range of settings for configuring personalisation, however these settings will not be used to personalise your live website until you unlock the full version.</p>
+
+                <p>A personalisation license is required to unlock the full functionality within your Continuum CMS, if you would like us to call you to discuss your organisation's requirements, or simply want more information, please visit:</p>
+
+                <div class="box u-text-align-center">
+                    <a href="https://jadu.net/personalisation">https://jadu.net/personalisation</a>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="btn btn--primary" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} How to personalise your site</h2>
+
+    <p>Dynamically deliver different content to different groups of visitors (segments) based on the signals gathered for each individual.</p>
+
+    <p>A <strong>segment</strong> is a collection of visitors based on their signals.</p>
+
+    <p>A <strong>signal</strong> may be the type of device they’re using, their current location, or the current weather forecast in their area.</p>
+
+    <p>Segments can be used when designing parts of your site (such as a homepage widget) to create a personalised experience for those users.</p>
+{% endblock tab_sidebar %}
+
+
+
+
+
