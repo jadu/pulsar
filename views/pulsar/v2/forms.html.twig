@@ -3,23 +3,36 @@
 {% block form_widget_simple %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
 
+    {% if prependIcon is defined and prependIcon is not empty %}
+        {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
+    {% endif %}
+
+    {% if appendIcon is defined and appendIcon is not empty %}
+        {% set attr = attr|merge({'data-append-icon': appendIcon}) %}
+    {% endif %}
+
     {% if attr['data-datepicker'] is defined %}
-        {% set appendIcon = 'icon-calendar' %}
+        {% set attr = attr|merge({'data-append-icon': 'icon-calendar'}) %}
     {% endif %}
 
     {% if attr.class is defined and 'colorpicker' in attr.class %}
+        {% set attr = attr|merge({'data-prepend': '#'}) %}
+    {% endif %}
+
+    {% if attr['data-prepend'] is defined or attr['data-append'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
         <div class="input-group">
-            <span class="input-group-addon">#</span>
-            {{ parent() }}
-        </div>
-    {% elseif (prependIcon is defined and prependIcon is not empty) or (appendIcon is defined and appendIcon is not empty) %}
-        <div class="input-group">
-            {% if prependIcon is defined and prependIcon is not empty %}
-                <div class="input-group-addon"><i class="{{ prependIcon }} icon-fw"></i></div>
+            {% if attr['data-prepend-icon'] is defined %}
+                <div class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></div>
+            {% endif %}
+            {% if attr['data-prepend'] is defined %}
+                <div class="input-group-addon">{{ attr['data-prepend'] }}</div>
             {% endif %}
             {{ parent() }}
-            {% if appendIcon is defined and appendIcon is not empty %}
-                <div class="input-group-addon"><i class="{{ appendIcon }} icon-fw"></i></div>
+            {% if attr['data-append'] is defined %}
+                <div class="input-group-addon">{{ attr['data-append'] }}</div>
+            {% endif %}
+            {% if attr['data-append-icon'] is defined %}
+                <div class="input-group-addon"><i class="{{ attr['data-append-icon'] }} icon-fw"></i></div>
             {% endif %}
         </div>
     {% else %}
