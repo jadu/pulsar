@@ -167,6 +167,18 @@ $form = $formFactory->createBuilder()
     ->add('Submit', SubmitType::class, array(
         'label' => 'Submit'
     ))
+    ->add('TextfieldHelpText', TextType::class, array(
+        'label' => 'Text field (with help text)',
+        'attr' => [
+            'data-help-text' => 'Some useful <u>information</u>',
+        ]
+    ))
+    ->add('TextfieldHelpHTML', TextType::class, array(
+        'label' => 'Text field (with help HTML)',
+        'attr' => [
+            'data-help-html' => 'Some useful <u>information</u>',
+        ]
+    ))
     ->add('TextfieldPrependAppend', TextType::class, array(
         'label' => 'Text field (with prepended / appended text)',
         'attr' => [

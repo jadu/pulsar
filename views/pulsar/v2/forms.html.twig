@@ -232,9 +232,15 @@
 
                 {# Help #}
                 {% if attr.help_text is defined and attr.help_text is not null %}
-                    <p class="help-block" id="{{ helpId }}">{{ attr.help_text }}</p>
+                    {% set attr = attr|merge({'data-help-text': attr.help_text}) %}
                 {% elseif attr.help_html is defined and attr.help_html is not null %}
-                    <p class="help-block" id="{{ helpId }}">{{ attr.help_html|raw }}</p>
+                    {% set attr = attr|merge({'data-help-text': attr.help_html}) %}
+                {% endif %}
+
+                {% if attr['data-help-text'] is defined %}
+                    <p class="help-block" id="{{ helpId }}">{{ attr['data-help-text'] }}</p>
+                {% elseif attr['data-help-html'] is defined %}
+                    <p class="help-block" id="{{ helpId }}">{{ attr['data-help-html']|raw }}</p>
                 {% endif %}
             </div>
             {% if attr['data-toggle-switch'] is defined %}
