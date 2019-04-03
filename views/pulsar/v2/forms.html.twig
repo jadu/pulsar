@@ -66,6 +66,16 @@
     {{ parent() }}
 {% endblock choice_widget_collapsed %}
 
+{% block checkbox_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
+    {{ parent() }}
+{% endblock checkbox_widget %}
+
+{% block radio_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
+    {{ parent() }}
+{% endblock radio_widget %}
+
 {%- block date_widget -%}
     {# Force date widgets to be text for pickaday #}
     {%- set type = 'text' -%}
