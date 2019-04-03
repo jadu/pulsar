@@ -80,6 +80,9 @@
 {% endblock choice_widget_collapsed %}
 
 {% block checkbox_widget %}
+    {% if attr['data-toggle-switch'] is defined %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' toggle-switch')|trim}) %}
+    {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
     {{ parent() }}
 {% endblock checkbox_widget %}
@@ -122,14 +125,22 @@
                 {% set label = name|humanize %}
             {%- endif -%}
         {%- endif -%}
+        {%- if attr['data-toggle-switch'] is defined -%}
+        <span{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {%- else -%}
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {%- endif -%}
         {%- if translation_domain is same as(false) -%}
             {{- label -}}
         {%- else -%}
             {{- label|trans({}, translation_domain) -}}
         {%- endif -%}
         {{ util.required(required|default(false)) }}
+        {%- if attr['data-toggle-switch'] is defined -%}
+        </span>
+        {%- else -%}
         </label>
+        {%- endif -%}
     {%- endif -%}
 {%- endblock form_label -%}
 
@@ -144,7 +155,14 @@
 {# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
 {% block form_row %}
     {% spaceless %}
-        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}">
+        {% if inputClass is defined and 'toggle-switch' in inputClass %}
+            {% set attr = attr|merge({'data-toggle-switch': 'true'}) %}
+        {% endif %}
+
+        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}{% if attr['data-toggle-switch'] is defined %} form__group--toggle{% endif %}">
+            {% if attr['data-toggle-switch'] is defined %}
+            <label class="toggle-switch-wrapper-label" for="{{ id }}">
+            {% endif %}
             {{ form_label(form) }}
             <div class="controls">
 
@@ -191,16 +209,13 @@
 
                 {# If extra input specific classes are present, add to input/widget #}
                 {% if inputClass is defined %}
-                    {% set attr = attr|merge({'class': (inputClass ~ ' form__control')|trim}) %}
+                    {% set attr = attr|merge({'class': inputClass|trim}) %}
                 {% endif %}
 
                 {{ form_widget(form) }}
 
-                {# Extra label if field is toggle switch #}
-                {% if inputClass is defined and 'toggle-switch' in inputClass %}
-                    <label for="{{ form.vars.id }}" class="control__label toggle-switch-label">
-                        <span class="hide">Toggle switch</span>
-                    </label>
+                {% if attr['data-toggle-switch'] is defined %}
+                    <span class="toggle-switch-label"></span>
                 {% endif %}
 
                 {# Errors #}
@@ -217,6 +232,9 @@
                     <p class="help-block" id="{{ helpId }}">{{ attr.help_html|raw }}</p>
                 {% endif %}
             </div>
+            {% if attr['data-toggle-switch'] is defined %}
+            </label>
+            {% endif %}
         </div>
     {% endspaceless %}
 {% endblock form_row %}
