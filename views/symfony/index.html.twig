@@ -1,0 +1,17 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Symfony Form Prototype' %}
+
+{% set tab %}
+    {% include 'symfony/tab.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "symfony",
+          "label" : "Symfony Form",
+          "src"   : tab
+        }
+    ]
+%}

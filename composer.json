@@ -13,6 +13,12 @@
     },
     "require-dev": {
         "phpunit/phpunit": "*",
+        "symfony/form": "^3.4",
+        "symfony/validator": "^3.4",
+        "symfony/config": "^3.4",
+        "symfony/translation": "^3.4",
+        "symfony/twig-bridge": "^3.4",
+        "symfony/security-csrf": "^3.4",
         "symfony/yaml": "*"
     }
 }
