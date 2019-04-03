@@ -3,23 +3,41 @@
 {% block form_widget_simple %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
 
+    {# Stop hidden fields having invalid required attibute #}
+    {% if type == 'hidden' %}
+        {% set required = false %}
+    {% endif %}
+
+    {% if prependIcon is defined and prependIcon is not empty %}
+        {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
+    {% endif %}
+
+    {% if appendIcon is defined and appendIcon is not empty %}
+        {% set attr = attr|merge({'data-append-icon': appendIcon}) %}
+    {% endif %}
+
     {% if attr['data-datepicker'] is defined %}
-        {% set appendIcon = 'icon-calendar' %}
+        {% set attr = attr|merge({'data-append-icon': 'icon-calendar'}) %}
     {% endif %}
 
     {% if attr.class is defined and 'colorpicker' in attr.class %}
+        {% set attr = attr|merge({'data-prepend': '#'}) %}
+    {% endif %}
+
+    {% if attr['data-prepend'] is defined or attr['data-append'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
         <div class="input-group">
-            <span class="input-group-addon">#</span>
-            {{ parent() }}
-        </div>
-    {% elseif (prependIcon is defined and prependIcon is not empty) or (appendIcon is defined and appendIcon is not empty) %}
-        <div class="input-group">
-            {% if prependIcon is defined and prependIcon is not empty %}
-                <div class="input-group-addon"><i class="{{ prependIcon }} icon-fw"></i></div>
+            {% if attr['data-prepend-icon'] is defined %}
+                <div class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></div>
+            {% endif %}
+            {% if attr['data-prepend'] is defined %}
+                <div class="input-group-addon">{{ attr['data-prepend'] }}</div>
             {% endif %}
             {{ parent() }}
-            {% if appendIcon is defined and appendIcon is not empty %}
-                <div class="input-group-addon"><i class="{{ appendIcon }} icon-fw"></i></div>
+            {% if attr['data-append'] is defined %}
+                <div class="input-group-addon">{{ attr['data-append'] }}</div>
+            {% endif %}
+            {% if attr['data-append-icon'] is defined %}
+                <div class="input-group-addon"><i class="{{ attr['data-append-icon'] }} icon-fw"></i></div>
             {% endif %}
         </div>
     {% else %}
@@ -66,6 +84,19 @@
     {{ parent() }}
 {% endblock choice_widget_collapsed %}
 
+{% block checkbox_widget %}
+    {% if attr['data-toggle-switch'] is defined %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' toggle-switch')|trim}) %}
+    {% endif %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
+    {{ parent() }}
+{% endblock checkbox_widget %}
+
+{% block radio_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
+    {{ parent() }}
+{% endblock radio_widget %}
+
 {%- block date_widget -%}
     {# Force date widgets to be text for pickaday #}
     {%- set type = 'text' -%}
@@ -99,14 +130,22 @@
                 {% set label = name|humanize %}
             {%- endif -%}
         {%- endif -%}
+        {%- if attr['data-toggle-switch'] is defined -%}
+        <span{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {%- else -%}
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {%- endif -%}
         {%- if translation_domain is same as(false) -%}
             {{- label -}}
         {%- else -%}
             {{- label|trans({}, translation_domain) -}}
         {%- endif -%}
         {{ util.required(required|default(false)) }}
+        {%- if attr['data-toggle-switch'] is defined -%}
+        </span>
+        {%- else -%}
         </label>
+        {%- endif -%}
     {%- endif -%}
 {%- endblock form_label -%}
 
@@ -121,7 +160,14 @@
 {# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
 {% block form_row %}
     {% spaceless %}
-        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}">
+        {% if inputClass is defined and 'toggle-switch' in inputClass %}
+            {% set attr = attr|merge({'data-toggle-switch': 'true'}) %}
+        {% endif %}
+
+        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}{% if attr['data-toggle-switch'] is defined %} form__group--toggle{% endif %}">
+            {% if attr['data-toggle-switch'] is defined %}
+            <label class="toggle-switch-wrapper-label" for="{{ id }}">
+            {% endif %}
             {{ form_label(form) }}
             <div class="controls">
 
@@ -168,22 +214,19 @@
 
                 {# If extra input specific classes are present, add to input/widget #}
                 {% if inputClass is defined %}
-                    {% set attr = attr|merge({'class': (inputClass ~ ' form__control')|trim}) %}
+                    {% set attr = attr|merge({'class': inputClass|trim}) %}
                 {% endif %}
 
                 {{ form_widget(form) }}
 
-                {# Extra label if field is toggle switch #}
-                {% if inputClass is defined and 'toggle-switch' in inputClass %}
-                    <label for="{{ form.vars.id }}" class="control__label toggle-switch-label">
-                        <span class="hide">Toggle switch</span>
-                    </label>
+                {% if attr['data-toggle-switch'] is defined %}
+                    <span class="toggle-switch-label"></span>
                 {% endif %}
 
                 {# Errors #}
                 {% if errors|length > 0 %}
                     {% for error in errors %}
-                        <p class="help-block" id="{{ attribute(errorIds, loop.index0) }}">{{ error.message|trans }}</p>
+                        <p class="help-block is-error" id="{{ attribute(errorIds, loop.index0) }}"><i aria-hidden="true" class="icon-warning-sign"></i> {{ error.message|trans }}</p>
                     {% endfor %}
                 {% endif %}
 
@@ -194,6 +237,9 @@
                     <p class="help-block" id="{{ helpId }}">{{ attr.help_html|raw }}</p>
                 {% endif %}
             </div>
+            {% if attr['data-toggle-switch'] is defined %}
+            </label>
+            {% endif %}
         </div>
     {% endspaceless %}
 {% endblock form_row %}
