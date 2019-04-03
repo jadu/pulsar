@@ -80,7 +80,7 @@ $form = $formFactory->createBuilder()
             'Maybe' => null,
             'Yes' => true,
             'No' => false,
-        ]   
+        ]
     ))
     ->add('ChoiceExpanded', ChoiceType::class, array(
         'label' => 'Choice (expanded)',
@@ -89,7 +89,7 @@ $form = $formFactory->createBuilder()
             'Maybe' => null,
             'Yes' => true,
             'No' => false,
-        ]   
+        ]
     ))
     ->add('ChoiceMultiple', ChoiceType::class, array(
         'label' => 'Choice (multiple)',
@@ -98,7 +98,7 @@ $form = $formFactory->createBuilder()
             'Maybe' => null,
             'Yes' => true,
             'No' => false,
-        ]   
+        ]
     ))
     ->add('ChoiceExpandedMultiple', ChoiceType::class, array(
         'label' => 'Choice (expanded multiple)',
@@ -108,7 +108,7 @@ $form = $formFactory->createBuilder()
             'Maybe' => null,
             'Yes' => true,
             'No' => false,
-        ]   
+        ]
     ))
     ->add('Country', CountryType::class, array(
         'label' => 'Country'
@@ -161,11 +161,31 @@ $form = $formFactory->createBuilder()
     ->add('Submit', SubmitType::class, array(
         'label' => 'Submit'
     ))
+    ->add('TextfieldPrependAppend', TextType::class, array(
+        'label' => 'Text field (with prepended / appended text)',
+        'attr' => [
+            'data-prepend' => 'Before',
+            'data-append' => 'After',
+        ]
+    ))
+    ->add('TextfieldPrependAppendIcon', TextType::class, array(
+        'label' => 'Text field (with prepended / appended icon)',
+        'attr' => [
+            'data-prepend-icon' => 'icon-calendar',
+            'data-append-icon' => 'icon-phone',
+        ]
+    ))
+    ->add('ToggleSwitch', CheckboxType::class, array(
+        'label' => 'Toggle Switch',
+        'attr' => [
+            'data-toggle-switch' => 'true', // This should probably be a custom Pulsar ToggleSwitchType ideally.
+        ]
+    ))
 
-    
-    
+
+
     ->getForm();
-    
+
 if (isset($_POST[$form->getName()])) {
     $form->submit($_POST[$form->getName()]);
 

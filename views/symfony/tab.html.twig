@@ -55,6 +55,13 @@
             {{ form_row(symfonyForm.Reset) }}
             {{ form_row(symfonyForm.Submit) }}
         </fieldset>
-    
+
+        <fieldset>
+            <legend class="legend">Non-Symfony Standard</legend>
+            {{ form_row(symfonyForm.TextfieldPrependAppend) }}
+            {{ form_row(symfonyForm.TextfieldPrependAppendIcon) }}
+            {{ form_row(symfonyForm.ToggleSwitch) }}
+        </fieldset>
+
     {{ form_end(symfonyForm, {'render_rest': false}) }}
 {% endblock %}
