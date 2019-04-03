@@ -76,8 +76,8 @@ $twig->addExtension(new TranslationExtension($translator));
 $twig->addExtension(new FormExtension(new TwigRenderer($formEngine, $csrfTokenManager)));
 
 $twig->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
-    \Symfony\Component\Form\FormRenderer::class => function () use ($formEngine, $csrfManager) {
-        return new \Symfony\Component\Form\FormRenderer($formEngine, $csrfManager);
+    \Symfony\Component\Form\FormRenderer::class => function () use ($formEngine, $csrfTokenManager) {
+        return new \Symfony\Component\Form\FormRenderer($formEngine, $csrfTokenManager);
     },
 )));
 
