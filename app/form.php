@@ -128,17 +128,23 @@ $form = $formFactory->createBuilder()
     ->add('Date', DateType::class, array(
         'label' => 'Date'
     ))
-    ->add('Date', DateType::class, array(
-        'label' => 'Date'
-    ))
     ->add('DateInterval', DateIntervalType::class, array(
         'label' => 'Date Interval'
     ))
     ->add('DateTime', DateTimeType::class, array(
         'label' => 'Date Time'
     ))
-    ->add('Time', TimeType::class, array(
-        'label' => 'Time'
+    ->add('TimeChoice', TimeType::class, array(
+        'label' => 'Time (choice)',
+        'widget' => 'choice',
+    ))
+    ->add('TimeText', TimeType::class, array(
+        'label' => 'Time (text)',
+        'widget' => 'text',
+    ))
+    ->add('TimeSingleText', TimeType::class, array(
+        'label' => 'Time (single text)',
+        'widget' => 'single_text',
     ))
     ->add('Birthday', BirthdayType::class, array(
         'label' => 'Birthday'
