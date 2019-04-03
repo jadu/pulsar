@@ -4,7 +4,7 @@
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
 
     {# Stop hidden fields having invalid required attibute #}
-    {% if type == 'hidden' %}
+    {% if type is defined and type == 'hidden' %}
         {% set required = false %}
     {% endif %}
 
