@@ -193,7 +193,7 @@
                 {# Errors #}
                 {% if errors|length > 0 %}
                     {% for error in errors %}
-                        <p class="help-block" id="{{ attribute(errorIds, loop.index0) }}">{{ error.message|trans }}</p>
+                        <p class="help-block is-error" id="{{ attribute(errorIds, loop.index0) }}"><i aria-hidden="true" class="icon-warning-sign"></i> {{ error.message|trans }}</p>
                     {% endfor %}
                 {% endif %}
 
