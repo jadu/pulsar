@@ -3,6 +3,11 @@
 {% block form_widget_simple %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
 
+    {# Stop hidden fields having invalid required attibute #}
+    {% if type == 'hidden' %}
+        {% set required = false %}
+    {% endif %}
+
     {% if prependIcon is defined and prependIcon is not empty %}
         {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
     {% endif %}
