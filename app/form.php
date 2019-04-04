@@ -191,9 +191,172 @@ $form = $formFactory->createBuilder()
             'data-toggle-switch' => 'true', // This should probably be a custom Pulsar ToggleSwitchType ideally.
         ]
     ))
+    ->getForm();
 
-
-
+$textForm = $formFactory->createBuilder()
+    ->add('basic', TextType::class, array(
+        'label' => 'Text field',
+        'required' => false
+    ))
+    ->add('withValue', TextType::class, array(
+        'label' => 'Text field with value',
+        'required' => false,
+        'data' => 'My value'
+    ))
+    ->add('required', TextType::class, array(
+        'label' => 'Required'
+    ))
+    ->add('placeholder', TextType::class, array(
+        'label' => 'Placeholder',
+        'required' => false,
+        'attr' => array(
+            'placeholder' => 'Oh, hello',
+       ),
+    ))
+    ->add('helpText', TextType::class, array(
+        'label' => 'Text field with help',
+        'required' => false,
+        'attr' => [
+            'data-help-text' => 'Help text to give more information about expected input',
+        ]
+    ))
+    ->add('guidanceText', TextType::class, array(
+        'label' => 'Text field with guidance',
+        'required' => false,
+        'attr' => [
+            'data-guidance-text' => 'Help text to give more information about expected input',
+        ]
+    ))
+    ->add('guidanceTextRequired', TextType::class, array(
+        'label' => 'Required with guidance',
+        'attr' => [
+            'data-guidance-text' => 'Help text to give more information about expected input',
+        ]
+    ))
+    ->add('noLabel', TextType::class, array(
+        'label' => false,
+        'required' => false,
+        'attr' => [
+            'data-help-text' => 'This example omits the label option entirely   '
+        ]
+    ))
+    ->add('showLabelFalse', TextType::class, array(
+        'label' => 'No label',
+        'required' => false,
+        'attr' => [
+            'data-help-text' => 'This example hides the label with the show-label option',
+            'data-show-label' => false
+        ]
+    ))
+    ->add('longLabel', TextType::class, array(
+        'label' => 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+        'required' => false,
+        'attr' => [
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('formGroupTop', TextType::class, array(
+        'label' => 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line ',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('formGroupFlush', TextType::class, array(
+        'label' => 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge             ',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('legacyMini', TextType::class, array(
+        'label' => 'form__group--top form__group--flush and form__group--mini',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush form__group--mini',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('legacyMini', TextType::class, array(
+        'label' => 'form__group--top form__group--flush and form__group--mini',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush form__group--mini',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('legacySmall', TextType::class, array(
+        'label' => 'form__group--top form__group--flush and form__group-small',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush form__group--small',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('legacyMedium', TextType::class, array(
+        'label' => 'form__group--top form__group--flush and form__group--medium',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush form__group--medium',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('legacyDefault', TextType::class, array(
+        'label' => 'form__group--top form__group--flush',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('legacyLarge', TextType::class, array(
+        'label' => 'form__group--top form__group--flush and form__group--large',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush form__group--large',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('legacyXLarge', TextType::class, array(
+        'label' => 'form__group--top form__group--flush and form__group--xlarge',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush form__group--xlarge',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
+    ->add('legacyFull', TextType::class, array(
+        'label' => 'form__group--top form__group--flush and form__group--full',
+        'required' => false,
+        'attr' => [
+            'class' => 'form__group--top form__group--flush form__group--full',
+            'data-guidance-text' => 'Help text to give more information about expected input',
+            'placeholder' => 'Placeholder',
+            'data-help-text' => 'Example block-level help text here',
+        ]
+    ))
     ->getForm();
 
 if (isset($_POST[$form->getName()])) {
@@ -209,4 +372,5 @@ $template = $twig->loadTemplate('symfony/index.html.twig');
 
 print $template->render(array(
     'symfonyForm' => $form->createView(),
+    'textForm' => $textForm->createView(),
 ));

@@ -5,13 +5,22 @@
 {% set tab %}
     {% include 'symfony/tab.html.twig' %}
 {% endset %}
+{% set tab_text %}
+    {% include 'symfony/text.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
         {
           "id"    : "symfony",
-          "label" : "Symfony Form",
+          "label" : "All types",
           "src"   : tab
+        },
+        {
+          "id"    : "text",
+          "label" : "Text",
+          "src"   : tab_text,
+          "active": true
         }
     ]
 %}

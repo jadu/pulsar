@@ -227,6 +227,11 @@ td.no-results {
     @include sr-hidden-on-desktop;
 }
 
+%u-visibility-hidden,
+.u-visibility-hidden {
+    visibility: hidden !important;
+}
+
 %u-display-none,
 .u-display-none {
     display: none !important;

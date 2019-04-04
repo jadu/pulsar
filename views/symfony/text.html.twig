@@ -1,0 +1,36 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% form_theme textForm '/pulsar/v2/forms.html.twig' %}
+
+{% block tab_content %}
+    {{ form_start(textForm) }}
+
+    {{ form_row(textForm.basic) }}
+    {{ form_row(textForm.withValue) }}
+    {{ form_row(textForm.required) }}
+    {{ form_row(textForm.placeholder) }}
+    {{ form_row(textForm.helpText) }}
+    {{ form_row(textForm.guidanceText) }}
+    {{ form_row(textForm.guidanceTextRequired) }}
+
+    <fieldset>
+        <legend class="legend">Alignment</legend>
+        {{ form_row(textForm.noLabel) }}
+        {{ form_row(textForm.showLabelFalse) }}
+        {{ form_row(textForm.longLabel) }}
+        {{ form_row(textForm.formGroupTop) }}
+        {{ form_row(textForm.formGroupFlush) }}
+    </fieldset>
+
+    <fieldset>
+        <legend class="legend">Alignment top, flush and legacy sizes</legend>
+        {{ form_row(textForm.legacyMini) }}
+        {{ form_row(textForm.legacySmall) }}
+        {{ form_row(textForm.legacyMedium) }}
+        {{ form_row(textForm.legacyDefault) }}
+        {{ form_row(textForm.legacyLarge) }}
+        {{ form_row(textForm.legacyXLarge) }}
+        {{ form_row(textForm.legacyFull) }}
+    </fieldset>
+
+    {{ form_end(textForm, {'render_rest': false}) }}
+{% endblock %}

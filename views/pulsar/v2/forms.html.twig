@@ -104,6 +104,12 @@
     {{ parent() }}
 {%- endblock date_widget -%}
 
+{% block file_widget %}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control file')|trim}) -%}
+    {%- set type = type|default('file') -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} />
+{% endblock file_widget %}
+
 {%- block telephone_widget -%}
     {%- set type = type|default('tel') -%}
     {{ block('form_widget_simple') }}
@@ -141,6 +147,7 @@
             {{- label|trans({}, translation_domain) -}}
         {%- endif -%}
         {{ util.required(required|default(false)) }}
+        {{ util.guidance(attr['data-guidance-text']|default, { 'guidance-container': attr['data-guidance-container']|default }) }}
         {%- if attr['data-toggle-switch'] is defined -%}
         </span>
         {%- else -%}
@@ -303,7 +310,7 @@
 {% block form_rows %}
     {% spaceless %}
         {% for child in form %}
-            <label class="control__label">
+            <label class="control__label">!
                 {{ form_widget(child, {attr: attr}) }}
                 {% if child.vars.label is defined and child.vars.label is not empty %}
                     {{- child.vars.label|trans({}, translation_domain) -}}
