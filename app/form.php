@@ -159,7 +159,8 @@ $form = $formFactory->createBuilder()
         'label' => 'Radio'
     ))
     ->add('Button', ButtonType::class, array(
-        'label' => 'Button'
+        'label' => 'Button',
+        'attr' => ['class' => 'btn--primary']
     ))
     ->add('Reset', ResetType::class, array(
         'label' => 'Reset'
