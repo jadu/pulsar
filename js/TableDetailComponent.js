@@ -7,6 +7,7 @@ class TableDetailComponent {
      */
     constructor ($html) {
         this.$html = $html;
+        this.focusableElementList = 'a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]';
     }
 
     /**
@@ -121,7 +122,7 @@ class TableDetailComponent {
 
         // Make elements focusable again
         this.$detailPanel
-            .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
+            .find(this.focusableElementList)
             .not('[disabled], :hidden, [aria-hidden]')
             .removeAttr('tabindex');
 
@@ -144,7 +145,7 @@ class TableDetailComponent {
 
         // Make sure focusable elemnts cannot gain focus whilst panel is closed
         this.$detailPanel
-            .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
+            .find(this.focusableElementList)
             .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]')
             .attr('tabindex', '-1');
 
