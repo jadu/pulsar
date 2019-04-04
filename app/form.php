@@ -68,12 +68,6 @@ $form = $formFactory->createBuilder()
     ->add('Range', RangeType::class, array(
         'label' => 'Range'
     ))
-    ->add('Tel', TelType::class, array(
-        'label' => 'Tel'
-    ))
-    ->add('Color', ColorType::class, array(
-        'label' => 'Color'
-    ))
     ->add('ChoiceDefault', ChoiceType::class, array(
         'label' => 'Choice (default)',
         'choices'  => [
@@ -127,9 +121,6 @@ $form = $formFactory->createBuilder()
     ))
     ->add('Date', DateType::class, array(
         'label' => 'Date'
-    ))
-    ->add('DateInterval', DateIntervalType::class, array(
-        'label' => 'Date Interval'
     ))
     ->add('DateTime', DateTimeType::class, array(
         'label' => 'Date Time'
