@@ -5,10 +5,6 @@
         </testsuite>
     </testsuites>
     <filter>
-        <blacklist>
-            <directory suffix=".php">tests/unit</directory>
-            <directory suffix=".php">vendor</directory>
-        </blacklist>
         <whitelist>
             <directory suffix=".php">src</directory>
         </whitelist>

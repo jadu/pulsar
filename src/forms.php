@@ -32,6 +32,8 @@ define('VENDOR_FORM_DIR', VENDOR_DIR . '/symfony/form');
 define('VENDOR_VALIDATOR_DIR', VENDOR_DIR . '/symfony/validator');
 define('VENDOR_TWIG_BRIDGE_DIR', VENDOR_DIR . '/symfony/twig-bridge');
 define('VIEWS_DIR', realpath(__DIR__ . '/../views'));
+define('FIXTURES_DIR', realpath(__DIR__ . '/../tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures'));
+define('TEST_LAYOUT_DIR', realpath(__DIR__ . '/../tests/css'));
 
 // Set up the CSRF Token Manager
 $csrfTokenManager = new CsrfTokenManager();
@@ -47,10 +49,13 @@ $translator->addResource('xlf', VENDOR_VALIDATOR_DIR . '/Resources/translations/
 
 $loader = new Twig_Loader_Filesystem(array(
     VIEWS_DIR,
+    FIXTURES_DIR,
+    TEST_LAYOUT_DIR,
     VENDOR_TWIG_BRIDGE_DIR . '/Resources/views/Form',
 ));
 
 $loader->addPath(VIEWS_DIR, 'pulsar');
+$loader->addPath(__DIR__ . '/../tests/css', 'cssTests');
 
 $twig = new Twig_Environment($loader,
     array(

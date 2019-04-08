@@ -1,0 +1,332 @@
+{% extends "form_div_layout.html.twig" %}
+
+{% block form_widget_simple %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
+
+    {# Stop hidden fields having invalid required attibute #}
+    {% if type is defined and type == 'hidden' %}
+        {% set required = false %}
+    {% endif %}
+
+    {% if prependIcon is defined and prependIcon is not empty %}
+        {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
+    {% endif %}
+
+    {% if appendIcon is defined and appendIcon is not empty %}
+        {% set attr = attr|merge({'data-append-icon': appendIcon}) %}
+    {% endif %}
+
+    {% if attr['data-datepicker'] is defined %}
+        {% set attr = attr|merge({'data-append-icon': 'icon-calendar'}) %}
+    {% endif %}
+
+    {% if attr.class is defined and 'colorpicker' in attr.class %}
+        {% set attr = attr|merge({'data-prepend': '#'}) %}
+    {% endif %}
+
+    {% if attr['data-prepend'] is defined or attr['data-append'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
+        <div class="input-group">
+            {% if attr['data-prepend-icon'] is defined %}
+                <div class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></div>
+            {% endif %}
+            {% if attr['data-prepend'] is defined %}
+                <div class="input-group-addon">{{ attr['data-prepend'] }}</div>
+            {% endif %}
+            {{ parent() }}
+            {% if attr['data-append'] is defined %}
+                <div class="input-group-addon">{{ attr['data-append'] }}</div>
+            {% endif %}
+            {% if attr['data-append-icon'] is defined %}
+                <div class="input-group-addon"><i class="{{ attr['data-append-icon'] }} icon-fw"></i></div>
+            {% endif %}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock form_widget_simple %}
+
+{# Remove the surrounding div #}
+{% block form_widget_compound %}
+    {%- if form is rootform -%}
+        {{ form_errors(form) }}
+    {%- endif -%}
+    {{- block('form_rows') -}}
+    {{- form_rest(form) -}}
+{% endblock form_widget_compound %}
+
+{% block textarea_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control textarea')|trim}) %}
+    {{ parent() }}
+{% endblock textarea_widget %}
+
+{% block choice_widget_expanded %}
+    {% if choices_style is defined and choices_style == 'inline' %}
+        <div class="controls" {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                <label class="control__label" for="{{ child.vars.id }}">
+                    {{- form_widget(child, {attr: {'class': 'checkbox'}}) -}}
+                    {{- child.vars.label -}}
+                </label>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% for child in form %}
+            <label class="control__label">
+                {{- form_widget(child, {attr: attr}) -}}
+                {{- child.vars.label|trans({}, translation_domain) -}}
+            </label>
+        {% endfor %}
+    {% endif %}
+{% endblock choice_widget_expanded %}
+
+{% block choice_widget_collapsed %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control select')|trim}) %}
+    {{ parent() }}
+{% endblock choice_widget_collapsed %}
+
+{% block checkbox_widget %}
+    {% if attr['data-toggle-switch'] is defined %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' toggle-switch')|trim}) %}
+    {% endif %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
+    {{ parent() }}
+{% endblock checkbox_widget %}
+
+{% block radio_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
+    {{ parent() }}
+{% endblock radio_widget %}
+
+{%- block date_widget -%}
+    {# Force date widgets to be text for pickaday #}
+    {%- set type = 'text' -%}
+    {%- set attr = attr|merge({'data-datepicker': 'true'|trim, 'placeholder': attr.placeholder|default('dd/mm/yyyy')}) -%}
+    {{ parent() }}
+{%- endblock date_widget -%}
+
+{% block file_widget %}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control file')|trim}) -%}
+    {%- set type = type|default('file') -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} />
+{% endblock file_widget %}
+
+{%- block telephone_widget -%}
+    {%- set type = type|default('tel') -%}
+    {{ block('form_widget_simple') }}
+{%- endblock telephone_widget -%}
+
+{# Need to copy this whole block because unable to add the util.required #}
+{%- block form_label -%}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% if label is not same as(false) -%}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control__label')|trim}) %}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        {%- if attr['data-toggle-switch'] is defined -%}
+        <span{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {%- else -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {%- endif -%}
+        {%- if translation_domain is same as(false) -%}
+            {{- label -}}
+        {%- else -%}
+            {{- label|trans({}, translation_domain) -}}
+        {%- endif -%}
+        {{ util.required(required|default(false)) }}
+        {{ util.guidance(attr['data-guidance-text']|default, { 'guidance-container': attr['data-guidance-container']|default }) }}
+        {%- if attr['data-toggle-switch'] is defined -%}
+        </span>
+        {%- else -%}
+        </label>
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{% block repeated_row %}
+    {#
+    No need to render the errors here, as all errors are mapped
+    to the first child (see RepeatedTypeValidatorExtension).
+    #}
+    {{- block('form_rows_repeated') -}}
+{% endblock repeated_row %}
+
+{# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
+{% block form_row %}
+    {% spaceless %}
+        {% if inputClass is defined and 'toggle-switch' in inputClass %}
+            {% set attr = attr|merge({'data-toggle-switch': 'true'}) %}
+        {% endif %}
+
+        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}{% if attr['data-toggle-switch'] is defined %} form__group--toggle{% endif %}">
+            {% if attr['data-toggle-switch'] is defined %}
+            <label class="toggle-switch-wrapper-label" for="{{ id }}">
+            {% endif %}
+            {{ form_label(form) }}
+            <div class="controls">
+
+                {# Build aria-described guids for help blocks and errors #}
+                {% set describedByIds = [] %}
+                {% set helpId = null %}
+                {% set errorIds = [] %}
+
+                {# If errors are present, mark field as invalid and build error block guids  #}
+                {% if errors|length > 0 %}
+                    {% set attr = attr|merge({ 'aria-invalid': 'true' }) %}
+
+                    {% for error in errors %}
+                        {% set errorIds = errorIds|merge(['guid-' ~ random()] ) %}
+                    {% endfor %}
+
+                    {# Merge into describedByIds for aria-describedby on the input #}
+                    {% set describedByIds = describedByIds|merge(errorIds) %}
+                {% endif %}
+
+                {% if helpText is defined and helpText is not null %}
+                    {% set attr = attr|merge({'help_text': helpText}) %}
+                {% endif %}
+
+                {# If help text are present, build help block guids  #}
+                {% if attr.help_text is defined and attr.help_text is not null %}
+                    {# need to separate out the help block guids #}
+                    {% set helpId = 'guid-' ~ random() %}
+
+                    {# Merge into describedByIds for aria-describedby on the input #}
+                    {% set describedByIds = describedByIds|merge([helpId]) %}
+                {% elseif attr.help_html is defined and attr.help_html is not null %}
+                    {# need to separate out the help block guids #}
+                    {% set helpId = 'guid-' ~ random() %}
+
+                    {# Merge into describedByIds for aria-describedby on the input #}
+                    {% set describedByIds = describedByIds|merge([helpId]) %}
+                {% endif %}
+
+                {# If we have describedByIds, add aria-describedby to attr #}
+                {% if describedByIds is defined and describedByIds is not empty %}
+                    {% set attr = attr|merge({ 'aria-describedby': describedByIds|join(' ') }) %}
+                {% endif %}
+
+                {# If extra input specific classes are present, add to input/widget #}
+                {% if inputClass is defined %}
+                    {% set attr = attr|merge({'class': inputClass|trim}) %}
+                {% endif %}
+
+                {{ form_widget(form) }}
+
+                {% if attr['data-toggle-switch'] is defined %}
+                    <span class="toggle-switch-label"></span>
+                {% endif %}
+
+                {# Errors #}
+                {% if errors|length > 0 %}
+                    {% for error in errors %}
+                        <p class="help-block is-error" id="{{ attribute(errorIds, loop.index0) }}"><i aria-hidden="true" class="icon-warning-sign"></i> {{ error.message|trans }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                {# Help #}
+                {% if attr.help_text is defined and attr.help_text is not null %}
+                    {% set attr = attr|merge({'data-help-text': attr.help_text}) %}
+                {% elseif attr.help_html is defined and attr.help_html is not null %}
+                    {% set attr = attr|merge({'data-help-text': attr.help_html}) %}
+                {% endif %}
+
+                {% if attr['data-help-text'] is defined %}
+                    <p class="help-block" id="{{ helpId }}">{{ attr['data-help-text'] }}</p>
+                {% elseif attr['data-help-html'] is defined %}
+                    <p class="help-block" id="{{ helpId }}">{{ attr['data-help-html']|raw }}</p>
+                {% endif %}
+            </div>
+            {% if attr['data-toggle-switch'] is defined %}
+            </label>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block button_row %}
+    <div class="form__group">
+        {{- form_widget(form) -}}
+    </div>
+{% endblock button_row %}
+
+{%- block button_widget -%}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- elseif label is same as(false) -%}
+            {% set translation_domain = false %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <button{{ attributes(attr|defaults({'class': 'btn'})) }} type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</button>
+{%- endblock button_widget -%}
+
+{# Misc #}
+
+{# We add the form class to the form :) #}
+{% block form_start %}
+    {%- do form.setMethodRendered() -%}
+    {% set method = method|upper %}
+    {%- if method in ["GET", "POST"] -%}
+        {% set form_method = method %}
+    {%- else -%}
+        {% set form_method = "POST" %}
+    {%- endif -%}
+    <form class="{% if attr.skipDefaultClasses is not defined %}form {% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}" method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+    {%- if form_method != method -%}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {%- endif -%}
+{% endblock form_start %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% for error in errors %}
+            <p class="help-block">
+                {{ error.message }}
+            </p>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{# Used when form_row is used to generate a group of compound fields, such as a group of check boxes #}
+{% block form_rows %}
+    {% spaceless %}
+        {% for child in form %}
+            <label class="control__label">!
+                {{ form_widget(child, {attr: attr}) }}
+                {% if child.vars.label is defined and child.vars.label is not empty %}
+                    {{- child.vars.label|trans({}, translation_domain) -}}
+                {% else %}
+                    {{- child.vars.name|trans({}, translation_domain) -}}
+                {% endif %}
+            </label>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{# Used when form_row is used to generate a group of repeated fields, such as 2 text inputs #}
+{% block form_rows_repeated %}
+    {% spaceless %}
+        {% for child in form %}
+            {{ form_row(child, {attr: repeated_attr is defined ? repeated_attr : {}}) }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_rows_repeated %}
