@@ -98,10 +98,10 @@ class AttributeParserExtension extends \Twig_Extension
     public function parseAttributes($attributes, array $args = array())
     {
         $html = array();
-
+        
         $disableableElements = array('button', 'fieldset', 'input', 'optgroup', 'option', 'select', 'textarea');
         $usingTag = false;
-
+        
         if (isset($args['tag'])) {
             $usingTag = true;
             $tag = $args['tag'];
@@ -110,6 +110,9 @@ class AttributeParserExtension extends \Twig_Extension
         else if (empty($attributes)) {
             return '';
         }
+
+        // Alphabetically sort attrbutes, this makes it somewhat easier to compare v2 helper output against Symfony
+        ksort($attributes);
 
         // As classes can be supplied as a string, we'll' switch them to an
         // array to allow us to add new classes based on other attributes

@@ -39,50 +39,51 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
 
-    public function setUp()
+    private function initForm ($input)
     {
         $baseDir = __DIR__ . '/../../../../../../';
 
-        define('DEFAULT_FORM_THEME', 'form_div_layout.html.twig');
+        define('DEFAULT_FORM_THEME', 'pulsar.html.twig');
         
+        define('FIXTURES_DIR', realpath(__DIR__ . '/Fixtures/'));
         define('VENDOR_DIR', realpath($baseDir . 'vendor'));
         define('VENDOR_FORM_DIR', VENDOR_DIR . '/symfony/form');
         define('VENDOR_TWIG_BRIDGE_DIR', VENDOR_DIR . '/symfony/twig-bridge');
-        define('VIEWS_DIR', realpath(__DIR__ . '/../views'));
-    }
-
-    private function initForm ($input)
-    {
+        define('VIEWS_DIR', realpath($baseDir . 'views'));
+        
         // Set up the Translation component
         $translator = new Translator('en');
         $translator->addLoader('xlf', new XliffFileLoader());
         $translator->addResource('xlf', VENDOR_FORM_DIR . '/Resources/translations/validators.en.xlf', 'en', 'validators');
-
-        $loader1 = new \Twig\Loader\ArrayLoader([
-            'index.html' => $input
-        ]);
             
-        $loader2 = new Twig_Loader_Filesystem(array(
+        $loader = new Twig_Loader_Filesystem(array(
+            __DIR__,
+            FIXTURES_DIR,
+            VENDOR_TWIG_BRIDGE_DIR . '/Resources/views/Form',
             VIEWS_DIR,
-            VENDOR_TWIG_BRIDGE_DIR . '/Resources/views/Form'
         ));
-
-        $loader = new \Twig\Loader\ChainLoader([$loader1, $loader2]);
-
+        
+        $loader->addPath($baseDir . 'views', 'pulsar');
+        $loader->addPath($baseDir . 'tests/css', 'cssTests');
+        
+        // $loader = new \Twig\Loader\ChainLoader([$loader1, $loader2]);
+        
         $this->twig = new \Twig\Environment($loader,
             array(
                 'cache' => false,
                 'strict_variables' => true
-            )
-        );
+                )
+            );
         
         $this->twig->addExtension(new ArrayExtension());
         $this->twig->addExtension(new AttributeParserExtension());
+        $this->twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
         $this->twig->addExtension(new ConstantDefinedExtension());
         $this->twig->addExtension(new HelperOptionsModifierExtension());
         $this->twig->addExtension(new TranslationExtension($translator));
-
+        
         $formEngine = new TwigRendererEngine(array(DEFAULT_FORM_THEME));
+
         $formEngine->setEnvironment($this->twig);
 
         $this->twig->addExtension(new FormExtension(new TwigRenderer($formEngine)));
@@ -93,31 +94,54 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
             },
         )));
         
-        // Set up the Form component
+        // // Set up the Form component
         $this->formFactory = Forms::createFormFactoryBuilder()->getFormFactory();
     }
 
-    private function renderForm ($input, $form)
+    /**
+     * The Twig macros will often return unpretty HTML. This method normalizes the HTML
+     * rendered by Twig and in the expected output file so that they match more loosely.
+     *
+     * @param string $output
+     */
+    private function normalizeOutput($output)
     {
+        // Remove extra whitesapce
+        $output = implode(' ', preg_split('/\s+/', trim($output)));
+
+        // Remove extra whitespace within tags
+        $output = preg_replace('/>\s+/', '>', $output);
+        $output = preg_replace('/\s+</', '<', $output);
+
+        // Normalise random ids generated and used by help text
+        $output = preg_replace('/(guid-)\w+/', 'guid-1', $output);
         
-        return $this->twig->render('index.html', ['formTest' => $form->createView()]);
+        return $output;
+    }
+
+    public function compareOutput($input, $form, $fixture)
+    {
+        $expected = $this->normalizeOutput($this->twig->render('form/' . $fixture));
+        preg_match("/<body[^>]*>(.*?)<\/body>/is", $expected, $expectedMatches);
+        
+        $actual = $this->twig->render('symfony.html.twig', ['formTest' => $form->createView()]);
+        preg_match("/<form[^>]*>(.*?)<\/form>/is", $actual, $actualMatches);
+        
+        $this->assertEquals($this->normalizeOutput($expectedMatches[1]), $this->normalizeOutput($actualMatches[1]));
     }
     
     public function testBasicTextField ()
-    {       
-        $input = '{{ form_row(formTest.basic) }}';
+    {
+        $input = '{{ form_row(formTest.field) }}';
         
         $this->initForm($input);
-
         $form = $this->formFactory->createBuilder()
-            ->add('basic', TextType::class, array(
-                'label' => 'Text field foo',
-                'required' => false
+            ->add('field', TextType::class, array(
+                'label' => 'foo',
+                'required' => false,
             ))
             ->getForm();
             
-        $expected = '<div><label for="form_basic">Text field</label><input type="text" id="form_basic" name="form[basic]" /></div>';
-            
-        $this->assertEquals($expected, $this->renderForm($input, $form));
+        $this->compareOutput($input, $form, 'text-label.html.twig');
     }
 }

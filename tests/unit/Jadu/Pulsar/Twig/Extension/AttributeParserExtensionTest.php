@@ -42,7 +42,7 @@ class AttributeParserExtensionTest extends \PHPUnit\Framework\TestCase
     public function testParseAttributesParsesMultipleAttributes()
     {
         $dataIn = array('slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true);
-        $dataOut = ' slim="shady" marshall="mathers" eminem';
+        $dataOut = ' eminem marshall="mathers" slim="shady"';
         $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
