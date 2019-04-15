@@ -39,7 +39,7 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
 
-    private function initForm ($input)
+    public function setUp()
     {
         $baseDir = __DIR__ . '/../../../../../../';
 
@@ -84,7 +84,6 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         $this->twig->addExtension(new TranslationExtension($translator));
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
 
-        
         $formEngine = new TwigRendererEngine(array(DEFAULT_FORM_THEME));
 
         $formEngine->setEnvironment($this->twig);
@@ -136,8 +135,7 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
     public function testTextFieldBasic ()
     {
         $input = '{{ form_row(formTest.field) }}';
-        
-        $this->initForm($input);
+
         $form = $this->formFactory->createBuilder()
             ->add('field', TextType::class, array(
                 'label' => 'foo',
@@ -151,8 +149,7 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
     public function testTextFieldHelp ()
     {
         $input = '{{ form_row(formTest.field) }}';
-        
-        $this->initForm($input);
+
         $form = $this->formFactory->createBuilder()
             ->add('field', TextType::class, array(
                 'label' => 'foo',
