@@ -38,6 +38,8 @@ use RegexIterator;
 class SymfonyTest extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
+    protected $preserveGlobalState = FALSE;
+    protected $runTestInSeparateProcess = TRUE;
 
     public function setUp()
     {
