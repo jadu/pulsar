@@ -71,6 +71,7 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         $this->twig = new \Twig\Environment($loader,
             array(
                 'cache' => false,
+                'debug' => true,
                 'strict_variables' => true
                 )
             );
@@ -81,6 +82,8 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         $this->twig->addExtension(new ConstantDefinedExtension());
         $this->twig->addExtension(new HelperOptionsModifierExtension());
         $this->twig->addExtension(new TranslationExtension($translator));
+        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
+
         
         $formEngine = new TwigRendererEngine(array(DEFAULT_FORM_THEME));
 
@@ -130,7 +133,7 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->normalizeOutput($expectedMatches[1]), $this->normalizeOutput($actualMatches[1]));
     }
     
-    public function testBasicTextField ()
+    public function testTextFieldBasic ()
     {
         $input = '{{ form_row(formTest.field) }}';
         
@@ -143,5 +146,23 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
             ->getForm();
             
         $this->compareOutput($input, $form, 'text-label.html.twig');
+    }
+
+    public function testTextFieldHelp ()
+    {
+        $input = '{{ form_row(formTest.field) }}';
+        
+        $this->initForm($input);
+        $form = $this->formFactory->createBuilder()
+            ->add('field', TextType::class, array(
+                'label' => 'foo',
+                'required' => false,
+                'attr' => [
+                    'data-help-text' => 'my help text',
+                ]
+            ))
+            ->getForm();
+            
+        $this->compareOutput($input, $form, 'text-help.html.twig');
     }
 }
