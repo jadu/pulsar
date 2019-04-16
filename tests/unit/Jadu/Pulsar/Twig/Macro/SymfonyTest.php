@@ -39,7 +39,7 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
     protected $preserveGlobalState = FALSE;
-    protected $runTestInSeparateProcess = TRUE;
+    // protected $runTestInSeparateProcess = TRUE;
 
     public function setUp()
     {
@@ -123,7 +123,7 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         return $output;
     }
 
-    public function compareOutput($input, $form, $fixture)
+    public function compareOutput($form, $fixture)
     {
         $expected = $this->normalizeOutput($this->twig->render('form/' . $fixture));
         preg_match("/<body[^>]*>(.*?)<\/body>/is", $expected, $expectedMatches);
@@ -136,8 +136,6 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
     
     public function testTextFieldBasic ()
     {
-        $input = '{{ form_row(formTest.field) }}';
-
         $form = $this->formFactory->createBuilder()
             ->add('field', TextType::class, array(
                 'label' => 'foo',
@@ -145,13 +143,11 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($input, $form, 'text-label.html.twig');
+        $this->compareOutput($form, 'text-label.html.twig');
     }
 
     public function testTextFieldHelp ()
     {
-        $input = '{{ form_row(formTest.field) }}';
-
         $form = $this->formFactory->createBuilder()
             ->add('field', TextType::class, array(
                 'label' => 'foo',
@@ -162,6 +158,21 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($input, $form, 'text-help.html.twig');
+        $this->compareOutput($form, 'text-help.html.twig');
+    }
+
+    public function testTextFieldGuidanceText ()
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('field', TextType::class, array(
+                'label' => 'foo',
+                'required' => false,
+                'attr' => [
+                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
+                ]
+            ))
+            ->getForm();
+            
+        $this->compareOutput($form, 'text-guidance.html.twig');
     }
 }

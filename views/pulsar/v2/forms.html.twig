@@ -127,14 +127,6 @@
             {% set attr = attr|merge({'data-toggle-switch': 'true'}) %}
         {% endif %}
 
-        {% set helpText = null %}
-
-        {% if attr['data-help-text'] is defined %}
-            {% set helpText = attr['data-help-text'] %}
-        {% elseif attr['data-help-html'] is defined %}
-            {% set helpText = attr['data-help-html']|raw %}
-        {% endif %}
-
         <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}{% if attr['data-toggle-switch'] is defined %} form__group--toggle{% endif %}">
             {% if attr['data-toggle-switch'] is defined %}
             <label class="toggle-switch-wrapper-label" for="{{ id }}">
@@ -160,7 +152,10 @@
                 {% endif %}
 
                 {# If help text are present, build help block guids  #}
-                {% if helpText is defined and helpText is not null %}
+                {% 
+                    if (attr['data-help-text'] is defined and attr['data-help-text'] is not null) 
+                    or (attr['data-help-html'] is defined and attr['data-help-html'] is not null)
+                %}
                     {# need to separate out the help block guids #}
                     {% set helpId = 'guid-' ~ random() %}
 
@@ -192,8 +187,10 @@
                 {% endif %}
 
                 {# Help #}
-                {% if helpText is defined and helpText is not null %}
-                    <span class="help-block" id="{{ helpId }}">{{ helpText }}</span>
+                {% if attr['data-help-text'] is defined and attr['data-help-text'] is not null %}
+                    <span class="help-block" id="{{ helpId }}">{{ attr['data-help-text'] }}</span>
+                {% elseif attr['data-help-html'] is defined and attr['data-help-html'] is not null %}
+                    <span class="help-block" id="{{ helpId }}">{{ attr['data-help-html']|raw }}</span>
                 {% endif %}
             </div>
             {% if attr['data-toggle-switch'] is defined %}
@@ -251,15 +248,17 @@
         </div>
     {% else %}
         {% set attr = attr|merge({'type': type|default('text')}) %}
-        {# {{ attributes(attr|exclude('data-help-text')|defaults({'class': 'form__control'})) }} #}
-        <input{{ attributes(attr|exclude('data-help-text')|defaults({'class': 'form__control'})) }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        <input{{ attributes(attr|
+            exclude('data-help-text data-guidance-text')|
+            defaults({'class': 'form__control'})) 
+        }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {% endif %}
 {% endblock form_widget_simple %}
 
 
 {%- block widget_attributes -%}
     id="{{ id }}" name="{{ full_name }}"
-    {%- if read_only %} readonly="readonly"{% endif -%}
+    {%- if read_only is defined and read_only is not null %} readonly="readonly"{% endif -%}
     {%- if disabled %} disabled="disabled"{% endif -%}
     {%- if required %} required="required"{% endif -%}
     

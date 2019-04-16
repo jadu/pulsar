@@ -214,10 +214,17 @@ $textForm = $formFactory->createBuilder()
        ),
     ))
     ->add('helpText', TextType::class, array(
-        'label' => 'Text field with help',
+        'label' => 'Text field with help (text)',
         'required' => false,
         'attr' => [
-            'data-help-text' => 'Help text to give more information about expected input',
+            'data-help-text' => 'Help text to give <strong>more information</strong> about expected input',
+        ]
+    ))
+    ->add('helpHtml', TextType::class, array(
+        'label' => 'Text field with help (html)',
+        'required' => false,
+        'attr' => [
+            'data-help-html' => 'Help text to give <strong>more information</strong> about expected input',
         ]
     ))
     ->add('guidanceText', TextType::class, array(
