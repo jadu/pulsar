@@ -1,6 +1,6 @@
 <?php
 
-namespace Jadu\Pulsar\Twig\Macro;
+namespace Jadu\Pulsar\Symfony;
 
 use Jadu\Pulsar\Twig\Extension\ArrayExtension;
 use Jadu\Pulsar\Twig\Extension\AttributeParserExtension;
@@ -25,8 +25,6 @@ use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-
 use Twig_Environment;
 use Twig_Loader_Filesystem;
 use Twig_Loader_Array;
@@ -35,7 +33,7 @@ use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
 
-class SymfonyTest extends \PHPUnit\Framework\TestCase
+class Symfony_TestCase extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
     protected $preserveGlobalState = FALSE;
@@ -43,11 +41,11 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        $baseDir = __DIR__ . '/../../../../../../';
+        $baseDir = __DIR__ . '/../../../../../';
 
         define('DEFAULT_FORM_THEME', 'pulsar.html.twig');
         
-        define('FIXTURES_DIR', realpath(__DIR__ . '/Fixtures/'));
+        define('FIXTURES_DIR', realpath(__DIR__ . '/../Twig/Macro/Fixtures/'));
         define('VENDOR_DIR', realpath($baseDir . 'vendor'));
         define('VENDOR_FORM_DIR', VENDOR_DIR . '/symfony/form');
         define('VENDOR_TWIG_BRIDGE_DIR', VENDOR_DIR . '/symfony/twig-bridge');
@@ -68,15 +66,13 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         $loader->addPath($baseDir . 'views', 'pulsar');
         $loader->addPath($baseDir . 'tests/css', 'cssTests');
         
-        // $loader = new \Twig\Loader\ChainLoader([$loader1, $loader2]);
-        
         $this->twig = new \Twig\Environment($loader,
             array(
                 'cache' => false,
                 'debug' => true,
                 'strict_variables' => true
-                )
-            );
+            )
+        );
         
         $this->twig->addExtension(new ArrayExtension());
         $this->twig->addExtension(new AttributeParserExtension());
@@ -87,7 +83,6 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
 
         $formEngine = new TwigRendererEngine(array(DEFAULT_FORM_THEME));
-
         $formEngine->setEnvironment($this->twig);
 
         $this->twig->addExtension(new FormExtension(new TwigRenderer($formEngine)));
@@ -133,103 +128,9 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         
         $this->assertEquals($this->normalizeOutput($expectedMatches[1]), $this->normalizeOutput($actualMatches[1]));
     }
-    
-    public function testTextFieldBasic ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TextType::class, array(
-                'label' => 'foo',
-                'required' => false,
-            ))
-            ->getForm();
-            
-        $this->compareOutput($form, 'text-label.html.twig');
+
+    function test_common() {
+        $this->assertTrue(true);
     }
 
-    public function testTextFieldRequired ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TextType::class, array(
-                'label' => 'foo'
-            ))
-            ->getForm();
-            
-        $this->compareOutput($form, 'text-required.html.twig');
-    }
-
-    public function testTextFieldHelp ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TextType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-help-text' => 'my help text',
-                ]
-            ))
-            ->getForm();
-            
-        $this->compareOutput($form, 'text-help.html.twig');
-    }
-
-    public function testTextFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TextType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-            
-        $this->compareOutput($form, 'text-guidance.html.twig');
-    }
-
-    public function testTextFieldPrependText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TextType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-prepend-text' => 'bar'
-                ]
-            ))
-            ->getForm();
-            
-        $this->compareOutput($form, 'text-prepend.html.twig');
-    }
-
-    public function testTextFieldAppendText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TextType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-append-text' => 'bar'
-                ]
-            ))
-            ->getForm();
-            
-        $this->compareOutput($form, 'text-append.html.twig');
-    }
-
-    public function testTextFieldPrependTextAppendText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TextType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-prepend-text' => 'bar',
-                    'data-append-text' => 'baz'
-                ]
-            ))
-            ->getForm();
-            
-        $this->compareOutput($form, 'text-prepend-append.html.twig');
-    }
 }

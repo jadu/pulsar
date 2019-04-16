@@ -242,20 +242,21 @@
 
     {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
         <div class="input-group">
-            {% if attr['data-prepend-icon'] is defined %}
-                <span class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></span>
-            {% endif %}
-            {% if attr['data-prepend-text'] is defined %}
-                <span class="input-group-addon">{{ attr['data-prepend-text'] }}</span>
-            {% endif %}
+        {% if attr['data-prepend-icon'] is defined %}
+            <span class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></span>
         {% endif %}
+        {% if attr['data-prepend-text'] is defined %}
+            <span class="input-group-addon">{{ attr['data-prepend-text'] }}</span>
+        {% endif %}
+    {% endif %}
 
         <input{{ attributes(attr|
-            exclude('data-help-text data-guidance-text data-append-text data-prepend-text')|
+            exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
             defaults({'class': 'form__control'})) 
         }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 
-        {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
+    
+    {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
             {% if attr['data-append-text'] is defined %}
                 <span class="input-group-addon">{{ attr['data-append-text'] }}</span>
             {% endif %}
@@ -283,8 +284,6 @@
             {{- attrname }}="{{ attrname }}"
         {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"
-        {%- else -%}
-            !!!
         {%- endif -%}
     {%- endfor -%}
 {%- endblock widget_attributes -%}
