@@ -146,6 +146,17 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
         $this->compareOutput($form, 'text-label.html.twig');
     }
 
+    public function testTextFieldRequired ()
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('field', TextType::class, array(
+                'label' => 'foo'
+            ))
+            ->getForm();
+            
+        $this->compareOutput($form, 'text-required.html.twig');
+    }
+
     public function testTextFieldHelp ()
     {
         $form = $this->formFactory->createBuilder()
@@ -174,5 +185,51 @@ class SymfonyTest extends \PHPUnit\Framework\TestCase
             ->getForm();
             
         $this->compareOutput($form, 'text-guidance.html.twig');
+    }
+
+    public function testTextFieldPrependText ()
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('field', TextType::class, array(
+                'label' => 'foo',
+                'required' => false,
+                'attr' => [
+                    'data-prepend-text' => 'bar'
+                ]
+            ))
+            ->getForm();
+            
+        $this->compareOutput($form, 'text-prepend.html.twig');
+    }
+
+    public function testTextFieldAppendText ()
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('field', TextType::class, array(
+                'label' => 'foo',
+                'required' => false,
+                'attr' => [
+                    'data-append-text' => 'bar'
+                ]
+            ))
+            ->getForm();
+            
+        $this->compareOutput($form, 'text-append.html.twig');
+    }
+
+    public function testTextFieldPrependTextAppendText ()
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('field', TextType::class, array(
+                'label' => 'foo',
+                'required' => false,
+                'attr' => [
+                    'data-prepend-text' => 'bar',
+                    'data-append-text' => 'baz'
+                ]
+            ))
+            ->getForm();
+            
+        $this->compareOutput($form, 'text-prepend-append.html.twig');
     }
 }

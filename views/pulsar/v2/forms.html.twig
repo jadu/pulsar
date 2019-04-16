@@ -79,9 +79,9 @@
             {% set label_attr = label_attr|merge({'for': id}) %}
         {%- endif -%}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control__label')|trim}) %}
-        {% if required is defined and required != false -%}
+        {# {% if required is defined and required != false -%}
             {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
-        {%- endif -%}
+        {%- endif -%} #}
         {% if label is empty -%}
             {%- if label_format is not empty -%}
                 {% set label = label_format|replace({
@@ -201,6 +201,8 @@
 {% endblock form_row %}
 
 {% block form_widget_simple %}
+    {% set attr = attr|merge({'type': type|default('text')}) %}
+
     {# Stop hidden fields having invalid required attibute #}
     {% if type is defined and type == 'hidden' %}
         {% set required = false %}
@@ -212,6 +214,14 @@
 
     {% if full_name is defined and full_name is not empty %}
         {% set attr = attr|merge({'name': full_name}) %}
+    {% endif %}
+
+    {% if disabled %}
+        {% set attr = attr|merge({'disabled': true}) %}
+    {% endif %}
+
+    {% if required %}
+        {% set attr = attr|merge({'required': true}) %}
     {% endif %}
 
     {% if prependIcon is defined and prependIcon is not empty %}
@@ -227,31 +237,32 @@
     {% endif %}
 
     {% if attr.class is defined and 'colorpicker' in attr.class %}
-        {% set attr = attr|merge({'data-prepend': '#'}) %}
+        {% set attr = attr|merge({'data-prepend-text': '#'}) %}
     {% endif %}
 
-    {% if attr['data-prepend'] is defined or attr['data-append'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
+    {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
         <div class="input-group">
             {% if attr['data-prepend-icon'] is defined %}
-                <div class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></div>
+                <span class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></span>
             {% endif %}
-            {% if attr['data-prepend'] is defined %}
-                <div class="input-group-addon">{{ attr['data-prepend'] }}</div>
+            {% if attr['data-prepend-text'] is defined %}
+                <span class="input-group-addon">{{ attr['data-prepend-text'] }}</span>
             {% endif %}
-            {{ parent() }}
-            {% if attr['data-append'] is defined %}
-                <div class="input-group-addon">{{ attr['data-append'] }}</div>
-            {% endif %}
-            {% if attr['data-append-icon'] is defined %}
-                <div class="input-group-addon"><i class="{{ attr['data-append-icon'] }} icon-fw"></i></div>
-            {% endif %}
-        </div>
-    {% else %}
-        {% set attr = attr|merge({'type': type|default('text')}) %}
+        {% endif %}
+
         <input{{ attributes(attr|
-            exclude('data-help-text data-guidance-text')|
+            exclude('data-help-text data-guidance-text data-append-text data-prepend-text')|
             defaults({'class': 'form__control'})) 
         }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+
+        {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
+            {% if attr['data-append-text'] is defined %}
+                <span class="input-group-addon">{{ attr['data-append-text'] }}</span>
+            {% endif %}
+            {% if attr['data-append-icon'] is defined %}
+                <span class="input-group-addon"><i class="{{ attr['data-append-icon'] }} icon-fw"></i></span>
+            {% endif %}
+        </div>
     {% endif %}
 {% endblock form_widget_simple %}
 
