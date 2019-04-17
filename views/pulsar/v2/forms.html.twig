@@ -1,5 +1,12 @@
 {% extends "form_div_layout.html.twig" %}
 
+{%- block form_widget -%}
+    {% if compound %}
+        {{- block('form_widget_compound') -}}
+    {% else %}
+        {{- block('form_widget_simple') -}}
+    {% endif %}
+{%- endblock form_widget -%}
 
 {# Remove the surrounding div #}
 {% block form_widget_compound %}
@@ -9,11 +16,6 @@
     {{- block('form_rows') -}}
     {{- form_rest(form) -}}
 {% endblock form_widget_compound %}
-
-{% block textarea_widget %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control textarea')|trim}) %}
-    {{ parent() }}
-{% endblock textarea_widget %}
 
 {% block choice_widget_expanded %}
     {% if choices_style is defined and choices_style == 'inline' %}
@@ -44,8 +46,13 @@
     {% if attr['data-toggle-switch'] is defined %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' toggle-switch')|trim}) %}
     {% endif %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
-    {{ parent() }}
+    <input{{ attributes(attr|
+        exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
+        defaults({
+            'class': 'form__control checkbox',
+            'type': 'checkbox'
+        })
+    ) }} />
 {% endblock checkbox_widget %}
 
 {% block radio_widget %}
@@ -70,6 +77,14 @@
     {%- set type = type|default('tel') -%}
     {{ block('form_widget_simple') }}
 {%- endblock telephone_widget -%}
+
+{% block textarea_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control textarea')|trim}) %}
+    <textarea{{ attributes(attr|
+        exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
+        defaults({'class': 'form__control'})) 
+    }}>{{ value }}</textarea>
+{% endblock textarea_widget %}
 
 {# Need to copy this whole block because unable to add the util.required #}
 {%- block form_label -%}
@@ -123,11 +138,57 @@
 {# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
 {% block form_row %}
     {% spaceless %}
+        {% set groupClass = '' %}
+
+        {% if checked is defined and checked == true %}
+            {% set attr = attr|merge({'checked': true}) %}
+        {% endif %}
+
+        {% if disabled %}
+            {% set attr = attr|merge({'disabled': true}) %}
+        {% endif %}
+
+        {% if full_name is defined and full_name is not empty %}
+            {% set attr = attr|merge({'name': full_name}) %}
+        {% endif %}
+
+        {% if id is defined and id is not empty %}
+            {% set attr = attr|merge({'id': id}) %}
+        {% endif %}
+
+        {% if required %}
+            {% set attr = attr|merge({'required': true}) %}
+        {% endif %}
+
+        {% if value is defined %}
+            {% set attr = attr|merge({'value': value}) %}
+        {% endif %}
+
+        {% if prependIcon is defined and prependIcon is not empty %}
+            {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
+        {% endif %}
+
+        {% if appendIcon is defined and appendIcon is not empty %}
+            {% set attr = attr|merge({'data-append-icon': appendIcon}) %}
+        {% endif %}
+
+        {% if attr['data-datepicker'] is defined %}
+            {% set attr = attr|merge({'data-append-icon': 'icon-calendar'}) %}
+        {% endif %}
+
+        {% if attr.class is defined and 'colorpicker' in attr.class %}
+            {% set attr = attr|merge({'data-prepend-text': '#'}) %}
+        {% endif %}
+
         {% if inputClass is defined and 'toggle-switch' in inputClass %}
             {% set attr = attr|merge({'data-toggle-switch': 'true'}) %}
         {% endif %}
 
-        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}{% if attr['data-toggle-switch'] is defined %} form__group--toggle{% endif %}">
+        {% if form.vars.checked is defined %}
+            {% set groupClass = ' form-checkbox' %}
+        {% endif %}
+
+        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr['data-toggle-switch'] is defined %} form__group--toggle{% endif %}{{ groupClass }}">
             {% if attr['data-toggle-switch'] is defined %}
             <label class="toggle-switch-wrapper-label" for="{{ id }}">
             {% endif %}
@@ -206,38 +267,6 @@
     {# Stop hidden fields having invalid required attibute #}
     {% if type is defined and type == 'hidden' %}
         {% set required = false %}
-    {% endif %}
-
-    {% if id is defined and id is not empty %}
-        {% set attr = attr|merge({'id': id}) %}
-    {% endif %}
-
-    {% if full_name is defined and full_name is not empty %}
-        {% set attr = attr|merge({'name': full_name}) %}
-    {% endif %}
-
-    {% if disabled %}
-        {% set attr = attr|merge({'disabled': true}) %}
-    {% endif %}
-
-    {% if required %}
-        {% set attr = attr|merge({'required': true}) %}
-    {% endif %}
-
-    {% if prependIcon is defined and prependIcon is not empty %}
-        {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
-    {% endif %}
-
-    {% if appendIcon is defined and appendIcon is not empty %}
-        {% set attr = attr|merge({'data-append-icon': appendIcon}) %}
-    {% endif %}
-
-    {% if attr['data-datepicker'] is defined %}
-        {% set attr = attr|merge({'data-append-icon': 'icon-calendar'}) %}
-    {% endif %}
-
-    {% if attr.class is defined and 'colorpicker' in attr.class %}
-        {% set attr = attr|merge({'data-prepend-text': '#'}) %}
     {% endif %}
 
     {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}

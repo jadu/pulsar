@@ -3,7 +3,10 @@
 {{
     form.checkbox({
         'label': 'foo',
-        'guidance': 'bar'
+        'id': 'form_field',
+        'name': 'form[field]',
+        'guidance': 'foo <span class="bar">bar</span>',
+        'value': '1'
     })
 }}
 {% endblock %}

@@ -1,5 +1,5 @@
 <div class="form__group">
-    <label for="form_field" class="control__label">foo <i
+    <label for="form_field" class="control__label">foo&nbsp;<span class="required-indicator" data-toggle="tooltips" title="required">*</span><i
         aria-hidden="true"
         data-autoclose="true"
         data-container="body"
@@ -8,6 +8,6 @@
         data-toggle="popover"
         class="icon-question-sign input-group-guidance"></i></label>
     <div class="controls">
-        <textarea id="form_field" name="form[field]" class="form__control textarea"></textarea>
+        <textarea id="form_field" name="form[field]" required aria-required="true" class="form__control textarea"></textarea>
     </div>
 </div>

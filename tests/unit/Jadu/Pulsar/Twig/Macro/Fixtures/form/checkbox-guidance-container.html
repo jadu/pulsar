@@ -1,15 +1,15 @@
 <div class="form__group form-checkbox">
-    <label class="control__label">foo
+    <label for="form_field" class="control__label">foo
         <i 
         aria-hidden="true" 
         data-autoclose="true" 
         data-container="baz" 
-        data-content="bar" 
+        data-content="foo &lt;span class=&quot;bar&quot;&gt;bar&lt;/span&gt;" 
         data-placement="top" 
         data-toggle="popover" 
         class="icon-question-sign input-group-guidance"></i>
     </label>
     <div class="controls">
-        <input type="checkbox" class="form__control checkbox" />
+        <input id="form_field" name="form[field]" type="checkbox" value="1" class="form__control checkbox" />
     </div>
 </div>

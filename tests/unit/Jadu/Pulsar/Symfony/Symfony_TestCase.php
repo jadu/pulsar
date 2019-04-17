@@ -33,39 +33,39 @@ use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
 
-class Symfony_TestCase extends \PHPUnit\Framework\TestCase
+abstract class Symfony_TestCase extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
-    protected $preserveGlobalState = FALSE;
-    // protected $runTestInSeparateProcess = TRUE;
+    protected $preserveGlobalState = false;
+    // protected $runTestInSeparateProcess = true;
 
     public function setUp()
     {
         $baseDir = __DIR__ . '/../../../../../';
 
         define('DEFAULT_FORM_THEME', 'pulsar.html.twig');
-        
+
         define('FIXTURES_DIR', realpath(__DIR__ . '/../Twig/Macro/Fixtures/'));
         define('VENDOR_DIR', realpath($baseDir . 'vendor'));
         define('VENDOR_FORM_DIR', VENDOR_DIR . '/symfony/form');
         define('VENDOR_TWIG_BRIDGE_DIR', VENDOR_DIR . '/symfony/twig-bridge');
         define('VIEWS_DIR', realpath($baseDir . 'views'));
-        
+
         // Set up the Translation component
         $translator = new Translator('en');
         $translator->addLoader('xlf', new XliffFileLoader());
         $translator->addResource('xlf', VENDOR_FORM_DIR . '/Resources/translations/validators.en.xlf', 'en', 'validators');
-            
+
         $loader = new Twig_Loader_Filesystem(array(
             __DIR__,
             FIXTURES_DIR,
             VENDOR_TWIG_BRIDGE_DIR . '/Resources/views/Form',
             VIEWS_DIR,
         ));
-        
+
         $loader->addPath($baseDir . 'views', 'pulsar');
         $loader->addPath($baseDir . 'tests/css', 'cssTests');
-        
+
         $this->twig = new \Twig\Environment($loader,
             array(
                 'cache' => false,
@@ -73,7 +73,7 @@ class Symfony_TestCase extends \PHPUnit\Framework\TestCase
                 'strict_variables' => true
             )
         );
-        
+
         $this->twig->addExtension(new ArrayExtension());
         $this->twig->addExtension(new AttributeParserExtension());
         $this->twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
@@ -86,13 +86,13 @@ class Symfony_TestCase extends \PHPUnit\Framework\TestCase
         $formEngine->setEnvironment($this->twig);
 
         $this->twig->addExtension(new FormExtension(new TwigRenderer($formEngine)));
-        
+
         $this->twig->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
             \Symfony\Component\Form\FormRenderer::class => function () use ($formEngine) {
                 return new \Symfony\Component\Form\FormRenderer($formEngine);
             },
         )));
-        
+
         // // Set up the Form component
         $this->formFactory = Forms::createFormFactoryBuilder()->getFormFactory();
     }

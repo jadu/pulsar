@@ -1,13 +1,12 @@
 {% extends '@cssTests/visual-regression-layout.html.twig' %}
 {% block body %}
 {{
-    form.checkbox({
+    form.textarea({
         'label': 'foo',
         'id': 'form_field',
         'name': 'form[field]',
         'guidance': 'foo <span class="bar">bar</span>',
-        'value': '1',
-        'guidance-container': 'baz'
+        'required': true
     })
 }}
 {% endblock %}
