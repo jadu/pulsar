@@ -3,9 +3,11 @@
 {{
     form.radio({
         'label': 'foo',
-        'name': 'form[field]',
         'id': 'form_field',
-        'value': '1'
+        'name': 'form[field]',
+        'guidance': 'foo <span class="bar">bar</span>',
+        'value': '1',
+        'guidance-container': 'baz'
     })
 }}
 {% endblock %}

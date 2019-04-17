@@ -57,7 +57,13 @@
 
 {% block radio_widget %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
-    {{ parent() }}
+    <input{{ attributes(attr|
+        exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
+        defaults({
+            'class': 'form__control radio',
+            'type': 'radio'
+        })
+    ) }} />
 {% endblock radio_widget %}
 
 {%- block date_widget -%}
@@ -184,7 +190,9 @@
             {% set attr = attr|merge({'data-toggle-switch': 'true'}) %}
         {% endif %}
 
-        {% if form.vars.checked is defined %}
+        {% if 'radio' in form.vars.block_prefixes %}
+            {% set groupClass = ' form-radio' %}
+        {% elseif 'checkbox' in form.vars.block_prefixes %}
             {% set groupClass = ' form-checkbox' %}
         {% endif %}
 
