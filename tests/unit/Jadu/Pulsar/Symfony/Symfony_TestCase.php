@@ -33,17 +33,17 @@ use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
 
+define('DEFAULT_FORM_THEME', 'pulsar.html.twig');
+
 abstract class Symfony_TestCase extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
-    protected $preserveGlobalState = false;
+    // protected $preserveGlobalState = false;
     // protected $runTestInSeparateProcess = true;
 
-    public function setUp()
+    protected function setUp()
     {
         $baseDir = __DIR__ . '/../../../../../';
-
-        define('DEFAULT_FORM_THEME', 'pulsar.html.twig');
 
         define('FIXTURES_DIR', realpath(__DIR__ . '/../Twig/Macro/Fixtures/'));
         define('VENDOR_DIR', realpath($baseDir . 'vendor'));
