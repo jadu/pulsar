@@ -34,6 +34,11 @@ use RecursiveRegexIterator;
 use RegexIterator;
 
 define('DEFAULT_FORM_THEME', 'pulsar.html.twig');
+define('FIXTURES_DIR', realpath(__DIR__ . '/../Twig/Macro/Fixtures/'));
+define('VENDOR_DIR', realpath($baseDir . 'vendor'));
+define('VENDOR_FORM_DIR', VENDOR_DIR . '/symfony/form');
+define('VENDOR_TWIG_BRIDGE_DIR', VENDOR_DIR . '/symfony/twig-bridge');
+define('VIEWS_DIR', realpath($baseDir . 'views'));
 
 abstract class Symfony_TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -44,12 +49,6 @@ abstract class Symfony_TestCase extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         $baseDir = __DIR__ . '/../../../../../';
-
-        define('FIXTURES_DIR', realpath(__DIR__ . '/../Twig/Macro/Fixtures/'));
-        define('VENDOR_DIR', realpath($baseDir . 'vendor'));
-        define('VENDOR_FORM_DIR', VENDOR_DIR . '/symfony/form');
-        define('VENDOR_TWIG_BRIDGE_DIR', VENDOR_DIR . '/symfony/twig-bridge');
-        define('VIEWS_DIR', realpath($baseDir . 'views'));
 
         // Set up the Translation component
         $translator = new Translator('en');
