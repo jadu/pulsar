@@ -3,10 +3,11 @@
 {{
     form.text({
         'label': 'foo',
-        'name': 'form[field]',
         'id': 'form_field',
-        'type': 'email',
-        'help': 'my help text'
+        'name': 'form[field]',
+        'guidance': 'foo <span class="bar">bar</span>',
+        'guidance-container': 'baz',
+        'type': 'email'
     })
 }}
 {% endblock %}
