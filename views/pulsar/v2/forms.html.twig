@@ -79,6 +79,25 @@
     <input type="{{ type }}" {{ block('widget_attributes') }} />
 {% endblock file_widget %}
 
+{% block money_widget -%}
+    {% set prepend = not (money_pattern starts with '{{') %}
+    {% set append = not (money_pattern ends with '}}') %}
+    {% if prepend %}
+        {% set attr = attr|merge({'data-prepend-text': money_pattern|form_encode_currency }) %}
+    {% endif %}
+    {% if append %}
+        {% set attr = attr|merge({'data-append-text': money_pattern|form_encode_currency }) %}
+    {% endif %}
+    {{- block('form_widget_simple') -}}
+{%- endblock money_widget %}
+
+{% block percent_widget -%}
+    <div class="input-group">
+        {{- block('form_widget_simple') -}}
+        <span class="input-group-addon">%</span>
+    </div>
+{%- endblock percent_widget %}
+
 {%- block telephone_widget -%}
     {%- set type = type|default('tel') -%}
     {{ block('form_widget_simple') }}
