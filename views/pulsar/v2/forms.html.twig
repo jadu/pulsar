@@ -92,10 +92,8 @@
 {%- endblock money_widget %}
 
 {% block percent_widget -%}
-    <div class="input-group">
-        {{- block('form_widget_simple') -}}
-        <span class="input-group-addon">%</span>
-    </div>
+    {% set attr = attr|merge({'data-append-text': '%' }) %}
+    {{- block('form_widget_simple') -}}
 {%- endblock percent_widget %}
 
 {%- block telephone_widget -%}
