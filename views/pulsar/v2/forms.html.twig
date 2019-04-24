@@ -211,6 +211,8 @@
             {% set groupClass = ' form-radio' %}
         {% elseif 'checkbox' in form.vars.block_prefixes %}
             {% set groupClass = ' form-checkbox' %}
+        {% elseif 'range' in form.vars.block_prefixes %}
+            {% set groupClass = ' form-range' %}
         {% endif %}
 
         <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr['data-toggle-switch'] is defined %} form__group--toggle{% endif %}{{ groupClass }}">
