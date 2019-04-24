@@ -3,10 +3,11 @@
 {{
     form.text({
         'label': 'foo',
-        'name': 'form[field]',
+        'required': true,
         'id': 'form_field',
-        'inputmode': 'url',
-        'type': 'text'
+        'name': 'form[field]',
+        'guidance': 'foo <span class="bar">bar</span>',
+        'type': 'search'
     })
 }}
 {% endblock %}

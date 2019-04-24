@@ -2,11 +2,11 @@
 {% block body %}
 {{
     form.text({
-		'label': 'foo',
-        'name': 'form[field]',
+        'label': 'foo',
         'id': 'form_field',
-    	'help': 'my help text',
-        'append': '%'
-	})
+        'name': 'form[field]',
+        'guidance': 'foo <span class="bar">bar</span>',
+        'type': 'search'
+    })
 }}
 {% endblock %}
