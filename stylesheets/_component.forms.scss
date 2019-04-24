@@ -464,7 +464,7 @@ fieldset {
     clear: both;
     color: color(text, help);
     display: block;
-    font-size: $font-size-small;
+    font-size: $font-size-base;
 }
 
 // if a control label is in the help block (like a bare input) it doesn't need
