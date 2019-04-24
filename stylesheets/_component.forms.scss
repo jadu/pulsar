@@ -112,7 +112,7 @@ fieldset {
     &.select {
         appearance: none;
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
-        background-position: 97%;
+        background-position: calc(100% - 5px);
         background-repeat: no-repeat;
         border: 1px solid $input-border;
         padding: 0 20px 0 $padding-base-horizontal;
