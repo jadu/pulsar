@@ -12,7 +12,7 @@
         "twig/twig": "^1.21"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
+        "phpunit/phpunit": "~7.5",
         "symfony/form": "^3.4",
         "symfony/validator": "^3.4",
         "symfony/config": "^3.4",
