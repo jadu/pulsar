@@ -2,20 +2,21 @@
 {% block body %}
 {{
     form.choice({
+        'label': 'foo',
         'options': [
             {
                 'label': 'Foo',
-                'name': 'choice',
+                'name': 'form[field_one]',
                 'value': 'foo'
             },
             {
                 'label': 'Bar',
-                'name': 'choice',
+                'name': 'form[field_two]',
                 'value': 'bar'
             },
             {
                 'label': 'Baz',
-                'name': 'choice',
+                'name': 'form[field_three]',
                 'value': 'baz'
             }
         ]

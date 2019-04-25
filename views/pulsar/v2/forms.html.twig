@@ -15,7 +15,7 @@
             {% for child in form %}
                 <label class="control__label" for="{{ child.vars.id }}">
                     {{- form_widget(child, {attr: {'class': 'checkbox'}}) -}}
-                    {{- child.vars.label -}}
+                    <span class="form-choice__label">{{- child.vars.label -}}</span>
                 </label>
             {% endfor %}
         </div>
@@ -23,7 +23,7 @@
         {% for child in form %}
             <label class="control__label">
                 {{- form_widget(child, {attr: attr}) -}}
-                {{- child.vars.label|trans({}, translation_domain) -}}
+                <span class="form-choice__label">{{- child.vars.label|trans({}, translation_domain) -}}</span>
             </label>
         {% endfor %}
     {% endif %}
@@ -47,6 +47,18 @@
 {% endblock checkbox_row %}
 
 {% block radio_widget %}
+    {% if id is defined and id is not empty %}
+        {% set attr = attr|merge({'id': id}) %}
+    {% endif %}
+
+    {% if name is defined and name is not empty %}
+        {% set attr = attr|merge({'name': name}) %}
+    {% endif %}
+
+    {% if value is defined and value is not empty %}
+        {% set attr = attr|merge({'value': value}) %}
+    {% endif %}
+
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
     {{ parent() }}
 {% endblock radio_widget %}
