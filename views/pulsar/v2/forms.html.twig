@@ -105,7 +105,7 @@
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control textarea')|trim}) %}
     <textarea{{ attributes(attr|
         exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
-        defaults({'class': 'form__control'})) 
+        defaults({'class': 'form__control'}))
     }}>{{ value }}</textarea>
 {% endblock textarea_widget %}
 
@@ -225,23 +225,19 @@
                 {# Build aria-described guids for help blocks and errors #}
                 {% set describedByIds = [] %}
                 {% set helpId = null %}
-                {% set errorIds = [] %}
 
                 {# If errors are present, mark field as invalid and build error block guids  #}
                 {% if errors|length > 0 %}
                     {% set attr = attr|merge({ 'aria-invalid': 'true' }) %}
 
                     {% for error in errors %}
-                        {% set errorIds = errorIds|merge(['guid-' ~ random()] ) %}
+                        {% set describedByIds = describedByIds|merge([id ~ '--error_' ~ loop.index0] ) %}
                     {% endfor %}
-
-                    {# Merge into describedByIds for aria-describedby on the input #}
-                    {% set describedByIds = describedByIds|merge(errorIds) %}
                 {% endif %}
 
                 {# If help text are present, build help block guids  #}
-                {% 
-                    if (attr['data-help-text'] is defined and attr['data-help-text'] is not null) 
+                {%
+                    if (attr['data-help-text'] is defined and attr['data-help-text'] is not null)
                     or (attr['data-help-html'] is defined and attr['data-help-html'] is not null)
                 %}
                     {# need to separate out the help block guids #}
@@ -267,12 +263,7 @@
                     <span class="toggle-switch-label"></span>
                 {% endif %}
 
-                {# Errors #}
-                {% if errors|length > 0 %}
-                    {% for error in errors %}
-                        <p class="help-block is-error" id="{{ attribute(errorIds, loop.index0) }}"><i aria-hidden="true" class="icon-warning-sign"></i> {{ error.message|trans }}</p>
-                    {% endfor %}
-                {% endif %}
+                {{ form_errors(form) }}
 
                 {# Help #}
                 {% if attr['data-help-text'] is defined and attr['data-help-text'] is not null %}
@@ -308,10 +299,10 @@
 
         <input{{ attributes(attr|
             exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
-            defaults({'class': 'form__control'})) 
+            defaults({'class': 'form__control'}))
         }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 
-    
+
     {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
             {% if attr['data-append-text'] is defined %}
                 <span class="input-group-addon">{{ attr['data-append-text'] }}</span>
@@ -329,7 +320,7 @@
     {%- if read_only is defined and read_only is not null %} readonly="readonly"{% endif -%}
     {%- if disabled %} disabled="disabled"{% endif -%}
     {%- if required %} required="required"{% endif -%}
-    
+
     {%- for attrname, attrvalue in attr if 'readonly' != attrname or not read_only -%}
         {{- " " -}}
         {%- if attrname in ['data-help-text'] -%}
@@ -387,8 +378,8 @@
 {% block form_errors %}
     {% spaceless %}
         {% for error in errors %}
-            <p class="help-block">
-                {{ error.message }}
+            <p class="help-block is-error" id="{{ id ~ '--error_' ~ loop.index0 }}">
+                <i aria-hidden="true" class="icon-warning-sign"></i> {{ error.message|trans }}
             </p>
         {% endfor %}
     {% endspaceless %}

@@ -2,11 +2,12 @@
 {% form_theme textForm '/pulsar/v2/forms.html.twig' %}
 
 {% block tab_content %}
-    
+
     {{ form_start(textForm) }}
 
     {{ form_row(textForm.basic) }}
     {{ form_row(textForm.withValue) }}
+    {{ form_row(textForm.withErrors) }}
     {{ form_row(textForm.required) }}
     {{ form_row(textForm.placeholder) }}
     {{ form_row(textForm.helpText) }}

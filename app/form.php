@@ -203,6 +203,9 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'data' => 'My value'
     ))
+    ->add('withErrors', TextType::class, array(
+        'label' => 'Text field with errors'
+    ))
     ->add('required', TextType::class, array(
         'label' => 'Required'
     ))
@@ -374,6 +377,9 @@ if (isset($_POST[$form->getName()])) {
         die;
     }
 }
+
+$textForm->get('withErrors')->addError(new \Symfony\Component\Form\FormError('This is not valid.'));
+$textForm->get('withErrors')->addError(new \Symfony\Component\Form\FormError('This must be greater than 0.'));
 
 $template = $twig->loadTemplate('symfony/index.html.twig');
 
