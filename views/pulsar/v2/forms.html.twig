@@ -1,13 +1,5 @@
 {% extends "form_div_layout.html.twig" %}
 
-{%- block form_widget -%}
-    {% if compound %}
-        {{- block('form_widget_compound') -}}
-    {% else %}
-        {{- block('form_widget_simple') -}}
-    {% endif %}
-{%- endblock form_widget -%}
-
 {# Remove the surrounding div #}
 {% block form_widget_compound %}
     {%- if form is rootform -%}
@@ -360,20 +352,10 @@
 
 {# Misc #}
 
-{# We add the form class to the form :) #}
-{% block form_start %}
-    {%- do form.setMethodRendered() -%}
-    {% set method = method|upper %}
-    {%- if method in ["GET", "POST"] -%}
-        {% set form_method = method %}
-    {%- else -%}
-        {% set form_method = "POST" %}
-    {%- endif -%}
-    <form class="{% if attr.skipDefaultClasses is not defined %}form {% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}" method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
-    {%- if form_method != method -%}
-        <input type="hidden" name="_method" value="{{ method }}" />
-    {%- endif -%}
-{% endblock form_start %}
+{%- block form_start -%}
+    {% set attr = attr|merge({'class': (attr.skipDefaultClasses is not defined ? 'form' : '') ~ (attr.class is defined ? ' ' ~ attr.class : '')}) %}
+    {{ parent() }}
+{%- endblock form_start -%}
 
 {% block form_errors %}
     {% spaceless %}
