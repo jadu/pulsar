@@ -844,7 +844,7 @@
     }}
 
     {{
-        form.select({
+        form.select2({
             'id': 'select2-31',
             'label': 'Prepended button',
             'prepend': html.button({ 'label': 'foo' }),
@@ -901,6 +901,113 @@
             ]
         })
     }}
+
+    {% set options = [
+            {
+                'label': 'Value one',
+                'value': 'value1'
+            },
+            {
+                'label': 'Value two',
+                'value': 'value2'
+            }
+        ]
+    %}
+
+    {{ form.fieldset_start({ 'legend': 'Prepended Grid Sizes' }) }}
+    {% for i in 1..9 %}
+        {{
+            form.select2({
+                'id': 'prepended-' ~ random(),
+                'name': 'prepended-' ~ random(),
+                'prepend': 'Prepend',
+                'label': i ~ ' columns',
+                'class': 'form__control-col--' ~ i,
+                'options': options
+            })
+        }}
+    {% endfor %}
+    {{ form.fieldset_end() }}
+
+    {{ form.fieldset_start({ 'legend': 'Prepended Legacy Grid Sizes' }) }}
+    {% set legacyGrid = ['mini', 'small', 'medium', 'regular', 'large', 'xlarge', 'full'] %}
+    {% for width in legacyGrid %}
+        {{
+            form.select2({
+                'id': 'prepended-' ~ random(),
+                'name': 'prepended-' ~ random(),
+                'prepend': 'Prepend',
+                'label': width,
+                'class': 'form__group--' ~ width,
+                'options': options
+            })
+        }}
+    {% endfor %}
+   {{ form.fieldset_end() }}
+
+    {{ form.fieldset_start({ 'legend': 'Appended Grid Sizes' }) }}
+    {% for i in 1..9 %}
+        {{
+            form.select2({
+                'id': 'appended-' ~ random(),
+                'name': 'appended-' ~ random(),
+                'append': 'Append',
+                'label': i ~ ' columns',
+                'class': 'form__control-col--' ~ i,
+                'options': options
+            })
+        }}
+    {% endfor %}
+    {{ form.fieldset_end() }}
+
+    {{ form.fieldset_start({ 'legend': 'Appended Legacy Grid Sizes' }) }}
+    {% set legacyGrid = ['mini', 'small', 'medium', 'regular', 'large', 'xlarge', 'full'] %}
+    {% for width in legacyGrid %}
+        {{
+            form.select2({
+                'id': 'appended-' ~ random(),
+                'name': 'appended-' ~ random(),
+                'append': 'Append',
+                'label': width,
+                'class': 'form__group--' ~ width,
+                'options': options
+            })
+        }}
+    {% endfor %}
+    {{ form.fieldset_end() }}
+
+    {{ form.fieldset_start({ 'legend': 'Prepended & Appended Grid Sizes' }) }}
+    {% for i in 1..9 %}
+        {{
+            form.select2({
+                'id': 'appended-prepended-' ~ random(),
+                'name': 'appended-prepended-' ~ random(),
+                'append': 'Append',
+                'prepend': 'Prepend',
+                'label': i ~ ' columns',
+                'class': 'form__control-col--' ~ i,
+                'options': options
+            })
+        }}
+    {% endfor %}
+    {{ form.fieldset_end() }}
+
+    {{ form.fieldset_start({ 'legend': 'Prepended Legacy Grid Sizes' }) }}
+    {% set legacyGrid = ['mini', 'small', 'medium', 'regular', 'large', 'xlarge', 'full'] %}
+    {% for width in legacyGrid %}
+        {{
+            form.select2({
+                'id': 'appended-prepended-' ~ random(),
+                'name': 'appended-prepended-' ~ random(),
+                'append': 'Append',
+                'prepend': 'Prepend',
+                'label': width,
+                'class': 'form__group--' ~ width,
+                'options': options
+            })
+        }}
+    {% endfor %}
+    {{ form.fieldset_end() }}
 
     {{
         form.end()
