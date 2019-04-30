@@ -108,6 +108,7 @@
             {%- endif -%}
         {%- endif -%}
         {%- if attr['data-toggle-switch'] is defined -%}
+        {% set label_attr = label_attr|exclude('for') %}
         <span{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {%- else -%}
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
@@ -173,7 +174,11 @@
             <label class="toggle-switch-wrapper-label" for="{{ id }}">
             {% endif %}
             {{ form_label(form) }}
+            {% if attr['data-toggle-switch'] is defined %}
+            <span class="controls">
+            {% else %}
             <div class="controls">
+            {% endif %}
 
                 {# Build aria-described guids for help blocks and errors #}
                 {% set describedByIds = [] %}
@@ -224,9 +229,11 @@
                 {% elseif attr['data-help-html'] is defined and attr['data-help-html'] is not null %}
                     <span class="help-block" id="{{ helpId }}">{{ attr['data-help-html']|raw }}</span>
                 {% endif %}
-            </div>
             {% if attr['data-toggle-switch'] is defined %}
+            </span>
             </label>
+            {% else %}
+            </div>
             {% endif %}
         </div>
     {% endspaceless %}
