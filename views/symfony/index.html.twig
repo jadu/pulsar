@@ -2,25 +2,33 @@
 
 {% set heading = 'Symfony Form Prototype' %}
 
-{% set tab %}
-    {% include 'symfony/tab.html.twig' %}
+{% set tab_symfony %}
+    {% include 'symfony/tab_symfony.html.twig' %}
+{% endset %}
+{% set tab_pulsar %}
+    {% include 'symfony/tab_pulsar.html.twig' %}
 {% endset %}
 {% set tab_text %}
-    {% include 'symfony/text.html.twig' %}
+    {% include 'symfony/tab_text.html.twig' %}
 {% endset %}
 
 {%
     set tabs_content = [
         {
-          "id"    : "symfony",
-          "label" : "All types",
-          "src"   : tab
+            "id"    : "symfony",
+            "label" : "Standard Symfony",
+            "src"   : tab_symfony
         },
         {
-          "id"    : "text",
-          "label" : "Text",
-          "src"   : tab_text,
-          "active": true
+            "id"    : "pulsar",
+            "label" : "Pulsar Custom",
+            "src"   : tab_pulsar
+        },
+        {
+            "id"    : "text",
+            "label" : "Text",
+            "src"   : tab_text,
+            "active": true
         }
     ]
 %}

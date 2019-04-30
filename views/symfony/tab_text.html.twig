@@ -16,6 +16,12 @@
     {{ form_row(textForm.guidanceTextRequired) }}
 
     <fieldset>
+        <legend class="legend">Input groups</legend>
+        {{ form_row(textForm.prependAppendText) }}
+        {{ form_row(textForm.prependAppendIcon) }}
+    </fieldset>
+
+    <fieldset>
         <legend class="legend">Alignment</legend>
         {{ form_row(textForm.noLabel) }}
         {{ form_row(textForm.showLabelFalse) }}

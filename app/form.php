@@ -159,32 +159,6 @@ $form = $formFactory->createBuilder()
     ->add('Submit', SubmitType::class, array(
         'label' => 'Submit'
     ))
-    ->add('TextfieldHelpText', TextType::class, array(
-        'label' => 'Text field (with help text)',
-        'attr' => [
-            'data-help-text' => 'Some useful <u>information</u>',
-        ]
-    ))
-    ->add('TextfieldHelpHTML', TextType::class, array(
-        'label' => 'Text field (with help HTML)',
-        'attr' => [
-            'data-help-html' => 'Some useful <u>information</u>',
-        ]
-    ))
-    ->add('TextfieldPrependAppend', TextType::class, array(
-        'label' => 'Text field (with prepended / appended text)',
-        'attr' => [
-            'data-prepend-text' => 'Before',
-            'data-append-text' => 'After',
-        ]
-    ))
-    ->add('TextfieldPrependAppendIcon', TextType::class, array(
-        'label' => 'Text field (with prepended / appended icon)',
-        'attr' => [
-            'data-prepend-icon' => 'icon-calendar',
-            'data-append-icon' => 'icon-phone',
-        ]
-    ))
     ->add('ToggleSwitch', CheckboxType::class, array(
         'label' => 'Toggle Switch',
         'attr' => [
@@ -220,14 +194,14 @@ $textForm = $formFactory->createBuilder()
         'label' => 'Text field with help (text)',
         'required' => false,
         'attr' => [
-            'data-help-text' => 'Help text to give <strong>more information</strong> about expected input',
+            'data-help-text' => 'Help text to give <u>more information</u> about expected input',
         ]
     ))
     ->add('helpHtml', TextType::class, array(
         'label' => 'Text field with help (html)',
         'required' => false,
         'attr' => [
-            'data-help-html' => 'Help text to give <strong>more information</strong> about expected input',
+            'data-help-html' => 'Help text to give <u>more information</u> about expected input',
         ]
     ))
     ->add('guidanceText', TextType::class, array(
@@ -241,6 +215,22 @@ $textForm = $formFactory->createBuilder()
         'label' => 'Required with guidance',
         'attr' => [
             'data-guidance-text' => 'Help text to give more information about expected input',
+        ]
+    ))
+    ->add('prependAppendText', TextType::class, array(
+        'label' => 'Text field with prepended / appended text',
+        'required' => false,
+        'attr' => [
+            'data-prepend-text' => 'Before',
+            'data-append-text' => 'After',
+        ]
+    ))
+    ->add('prependAppendIcon', TextType::class, array(
+        'label' => 'Text field with prepended / appended icon',
+        'required' => false,
+        'attr' => [
+            'data-prepend-icon' => 'icon-calendar',
+            'data-append-icon' => 'icon-phone',
         ]
     ))
     ->add('noLabel', TextType::class, array(
