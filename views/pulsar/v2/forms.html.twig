@@ -38,24 +38,13 @@
     {% if attr['data-toggle-switch'] is defined %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' toggle-switch')|trim}) %}
     {% endif %}
-    <input{{ attributes(attr|
-        exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
-        defaults({
-            'class': 'form__control checkbox',
-            'type': 'checkbox'
-        })
-    ) }} />
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
+    {{ parent() }}
 {% endblock checkbox_widget %}
 
 {% block radio_widget %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
-    <input{{ attributes(attr|
-        exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
-        defaults({
-            'class': 'form__control radio',
-            'type': 'radio'
-        })
-    ) }} />
+    {{ parent() }}
 {% endblock radio_widget %}
 
 {%- block date_widget -%}
@@ -67,8 +56,7 @@
 
 {% block file_widget %}
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control file')|trim}) -%}
-    {%- set type = type|default('file') -%}
-    <input type="{{ type }}" {{ block('widget_attributes') }} />
+    {{- block('form_widget_simple') -}}
 {% endblock file_widget %}
 
 {% block money_widget -%}
@@ -95,10 +83,7 @@
 
 {% block textarea_widget %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control textarea')|trim}) %}
-    <textarea{{ attributes(attr|
-        exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
-        defaults({'class': 'form__control'}))
-    }}>{{ value }}</textarea>
+    {{ parent() }}
 {% endblock textarea_widget %}
 
 {# Need to copy this whole block because unable to add the util.required #}
@@ -154,30 +139,6 @@
 {% block form_row %}
     {% spaceless %}
         {% set groupClass = '' %}
-
-        {% if checked is defined and checked == true %}
-            {% set attr = attr|merge({'checked': true}) %}
-        {% endif %}
-
-        {% if disabled %}
-            {% set attr = attr|merge({'disabled': true}) %}
-        {% endif %}
-
-        {% if full_name is defined and full_name is not empty %}
-            {% set attr = attr|merge({'name': full_name}) %}
-        {% endif %}
-
-        {% if id is defined and id is not empty %}
-            {% set attr = attr|merge({'id': id}) %}
-        {% endif %}
-
-        {% if required %}
-            {% set attr = attr|merge({'required': true}) %}
-        {% endif %}
-
-        {% if value is defined %}
-            {% set attr = attr|merge({'value': value}) %}
-        {% endif %}
 
         {% if prependIcon is defined and prependIcon is not empty %}
             {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
@@ -272,7 +233,7 @@
 {% endblock form_row %}
 
 {% block form_widget_simple %}
-    {% set attr = attr|merge({'type': type|default('text')}) %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
 
     {# Stop hidden fields having invalid required attibute #}
     {% if type is defined and type == 'hidden' %}
@@ -281,19 +242,15 @@
 
     {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
         <div class="input-group">
-        {% if attr['data-prepend-icon'] is defined %}
-            <span class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></span>
-        {% endif %}
-        {% if attr['data-prepend-text'] is defined %}
-            <span class="input-group-addon">{{ attr['data-prepend-text'] }}</span>
-        {% endif %}
+            {% if attr['data-prepend-icon'] is defined %}
+                <span class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></span>
+            {% endif %}
+            {% if attr['data-prepend-text'] is defined %}
+                <span class="input-group-addon">{{ attr['data-prepend-text'] }}</span>
+            {% endif %}
     {% endif %}
 
-        <input{{ attributes(attr|
-            exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')|
-            defaults({'class': 'form__control'}))
-        }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-
+    {{ parent() }}
 
     {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
             {% if attr['data-append-text'] is defined %}
@@ -306,28 +263,6 @@
     {% endif %}
 {% endblock form_widget_simple %}
 
-
-{%- block widget_attributes -%}
-    id="{{ id }}" name="{{ full_name }}"
-    {%- if read_only is defined and read_only is not null %} readonly="readonly"{% endif -%}
-    {%- if disabled %} disabled="disabled"{% endif -%}
-    {%- if required %} required="required"{% endif -%}
-
-    {%- for attrname, attrvalue in attr if 'readonly' != attrname or not read_only -%}
-        {{- " " -}}
-        {%- if attrname in ['data-help-text'] -%}
-
-        {%- elseif attrname in ['placeholder', 'title'] -%}
-            {{- attrname }}="{{ translation_domain is same as(false) ? attrvalue : attrvalue|trans({}, translation_domain) }}"
-        {%- elseif attrvalue is same as(true) -%}
-            {{- attrname }}="{{ attrname }}"
-        {%- elseif attrvalue is not same as(false) -%}
-            {{- attrname }}="{{ attrvalue }}"
-        {%- endif -%}
-    {%- endfor -%}
-{%- endblock widget_attributes -%}
-
-
 {% block button_row %}
     <div class="form__group">
         {{- form_widget(form) -}}
@@ -335,19 +270,8 @@
 {% endblock button_row %}
 
 {%- block button_widget -%}
-    {%- if label is empty -%}
-        {%- if label_format is not empty -%}
-            {% set label = label_format|replace({
-                '%name%': name,
-                '%id%': id,
-            }) %}
-        {%- elseif label is same as(false) -%}
-            {% set translation_domain = false %}
-        {%- else -%}
-            {% set label = name|humanize %}
-        {%- endif -%}
-    {%- endif -%}
-    <button{{ attributes(attr|defaults({'class': 'btn'})) }} type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</button>
+    {% set attr = attr|merge({'class': 'btn ' ~ (attr.class|default(''))|trim}) %}
+    {{ parent() }}
 {%- endblock button_widget -%}
 
 {# Misc #}
@@ -392,3 +316,31 @@
     {% endspaceless %}
 {% endblock form_rows_repeated %}
 
+{%- block widget_attributes -%}
+    {% set attr = attr|merge({'id': id, 'name': full_name, 'disabled': disabled, 'required': required}) %}
+    {{ block('attributes') }}
+{%- endblock widget_attributes -%}
+
+{%- block widget_container_attributes -%}
+    {%- if id is not empty %}
+        {% set attr = attr|merge({'id': id}) %}
+    {% endif -%}
+    {{ block('attributes') }}
+{%- endblock widget_container_attributes -%}
+
+{%- block button_attributes -%}
+    {% set attr = attr|merge({'id': id, 'name': name, 'disabled': disabled}) %}
+    {{ block('attributes') }}
+{%- endblock button_attributes -%}
+
+{% block attributes -%}
+    {% set print_attr = {} %}
+    {%- for attrname, attrvalue in attr -%}
+        {%- if attrname in ['placeholder', 'title'] -%}
+            {% set print_attr = print_attr|merge({(attrname): translation_domain is same as(false) ? attrvalue : attrvalue|trans({}, translation_domain)}) %}
+        {% else %}
+            {% set print_attr = print_attr|merge({(attrname): attrvalue}) %}
+        {%- endif -%}
+    {%- endfor -%}
+    {{ attributes(print_attr|exclude('data-help-text data-guidance-container data-guidance-text data-append-text data-prepend-text')) }}
+{%- endblock attributes -%}

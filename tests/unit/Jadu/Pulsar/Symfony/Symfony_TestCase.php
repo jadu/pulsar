@@ -113,7 +113,18 @@ abstract class Symfony_TestCase extends \PHPUnit\Framework\TestCase
 
         // Normalise random ids generated and used by help text
         $output = preg_replace('/(guid-)\w+/', 'guid-1', $output);
-        
+
+        $inputs = explode('<input', $output);
+        foreach ($inputs as $i => $input) {
+            $matches = [];
+            preg_match('/\stype=([^\s]*)/', $input, $matches);
+            $inputs[$i] = reset($matches) . preg_replace('/\stype=([^\s]*)/', '', $input, 1);
+        }
+
+        $output = implode('<input', $inputs);
+
+        $output = preg_replace('/\sclass="([^"]*)"\svalue="([^"]*)"/', ' value="$2" class="$1"', $output);
+
         return $output;
     }
 
