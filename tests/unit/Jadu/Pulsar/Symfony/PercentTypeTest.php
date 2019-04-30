@@ -4,8 +4,6 @@ namespace Jadu\Pulsar\Symfony;
 
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
 
-include_once 'Symfony_TestCase.php';
-
 class PercentTypeTest extends Symfony_TestCase
 {
     /**
@@ -19,7 +17,7 @@ class PercentTypeTest extends Symfony_TestCase
                 'required' => false,
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'percent.html.twig');
     }
 
@@ -33,7 +31,7 @@ class PercentTypeTest extends Symfony_TestCase
                 'label' => 'foo'
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'percent-required.html.twig');
     }
 
@@ -51,7 +49,7 @@ class PercentTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'percent-help.html.twig');
     }
 
@@ -69,7 +67,7 @@ class PercentTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'percent-guidance.html.twig');
     }
 
@@ -88,7 +86,7 @@ class PercentTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'percent-guidance-container.html.twig');
     }
 
@@ -105,7 +103,7 @@ class PercentTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'percent-required-guidance.html.twig');
     }
 
@@ -122,8 +120,8 @@ class PercentTypeTest extends Symfony_TestCase
                     'data-prepend-text' => 'bar'
                 ]
             ))
-            ->getForm(); 
-            
+            ->getForm();
+
         $this->compareOutput($form, 'percent-prepend.html.twig');
     }
 

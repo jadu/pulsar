@@ -1,6 +1,6 @@
 <?php
 
-$baseDir = '/var/www/html';
+$baseDir = __DIR__ . '..';
 $templateDir = $baseDir . '/tests/twig';
 
 require_once $baseDir . '/vendor/autoload.php';

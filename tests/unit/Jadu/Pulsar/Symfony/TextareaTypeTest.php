@@ -4,8 +4,6 @@ namespace Jadu\Pulsar\Symfony;
 
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-include_once 'Symfony_TestCase.php';
-
 class TextareaTypeTest extends Symfony_TestCase
 {
     public function testTextareaFieldBasic ()
@@ -16,7 +14,7 @@ class TextareaTypeTest extends Symfony_TestCase
                 'required' => false,
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'textarea.html.twig');
     }
 
@@ -27,7 +25,7 @@ class TextareaTypeTest extends Symfony_TestCase
                 'label' => 'foo'
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'textarea-required.html.twig');
     }
 
@@ -42,7 +40,7 @@ class TextareaTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'textarea-help.html.twig');
     }
 
@@ -57,7 +55,7 @@ class TextareaTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'textarea-guidance.html.twig');
     }
 
@@ -73,7 +71,7 @@ class TextareaTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'textarea-guidance-container.html.twig');
     }
 
@@ -87,7 +85,7 @@ class TextareaTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'textarea-required-guidance.html.twig');
     }
 

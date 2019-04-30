@@ -4,8 +4,13 @@
     "version": "10.2.1",
     "license": "MIT",
     "autoload": {
-        "psr-0": {
-            "Jadu\\Pulsar": "src"
+        "psr-4": {
+            "Jadu\\Pulsar\\": "src/Jadu/Pulsar"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jadu\\Pulsar\\": "tests/unit/Jadu/Pulsar/"
         }
     },
     "require": {

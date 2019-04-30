@@ -1,6 +1,6 @@
 <?php
 
-$baseDir = '/var/www/html';
+$baseDir = __DIR__ . '..';
 $templateDir = $baseDir . '/views';
 
 require_once $baseDir . '/vendor/autoload.php';

@@ -4,8 +4,6 @@ namespace Jadu\Pulsar\Symfony;
 
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
-include_once 'Symfony_TestCase.php';
-
 class IntegerTypeTest extends Symfony_TestCase
 {
     /**
@@ -19,7 +17,7 @@ class IntegerTypeTest extends Symfony_TestCase
                 'required' => false,
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'number.html.twig');
     }
 
@@ -33,7 +31,7 @@ class IntegerTypeTest extends Symfony_TestCase
                 'label' => 'foo'
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'number-required.html.twig');
     }
 
@@ -51,7 +49,7 @@ class IntegerTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'number-help.html.twig');
     }
 
@@ -69,7 +67,7 @@ class IntegerTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'number-guidance.html.twig');
     }
 
@@ -88,7 +86,7 @@ class IntegerTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'number-guidance-container.html.twig');
     }
 
@@ -105,7 +103,7 @@ class IntegerTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'number-required-guidance.html.twig');
     }
 
@@ -122,8 +120,8 @@ class IntegerTypeTest extends Symfony_TestCase
                     'data-prepend-text' => 'bar'
                 ]
             ))
-            ->getForm(); 
-            
+            ->getForm();
+
         $this->compareOutput($form, 'number-prepend.html.twig');
     }
 
@@ -141,7 +139,7 @@ class IntegerTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'number-append.html.twig');
     }
 
@@ -160,7 +158,7 @@ class IntegerTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'number-prepend-append.html.twig');
     }
 }

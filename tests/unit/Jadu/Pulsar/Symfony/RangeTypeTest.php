@@ -4,8 +4,6 @@ namespace Jadu\Pulsar\Symfony;
 
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 
-include_once 'Symfony_TestCase.php';
-
 class RangeTypeTest extends Symfony_TestCase
 {
     /**
@@ -19,7 +17,7 @@ class RangeTypeTest extends Symfony_TestCase
                 'required' => false,
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'range.html.twig');
     }
 
@@ -33,7 +31,7 @@ class RangeTypeTest extends Symfony_TestCase
                 'label' => 'foo'
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'range-required.html.twig');
     }
 
@@ -51,7 +49,7 @@ class RangeTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'range-help.html.twig');
     }
 
@@ -69,7 +67,7 @@ class RangeTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'range-guidance.html.twig');
     }
 
@@ -88,7 +86,7 @@ class RangeTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'range-guidance-container.html.twig');
     }
 
@@ -105,7 +103,7 @@ class RangeTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'range-required-guidance.html.twig');
     }
 
@@ -122,8 +120,8 @@ class RangeTypeTest extends Symfony_TestCase
                     'data-prepend-text' => 'bar'
                 ]
             ))
-            ->getForm(); 
-            
+            ->getForm();
+
         $this->compareOutput($form, 'range-prepend.html.twig');
     }
 
@@ -141,7 +139,7 @@ class RangeTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'range-append.html.twig');
     }
 
@@ -160,7 +158,7 @@ class RangeTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'range-prepend-append.html.twig');
     }
 }

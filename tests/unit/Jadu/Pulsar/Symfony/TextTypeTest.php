@@ -4,8 +4,6 @@ namespace Jadu\Pulsar\Symfony;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-include_once 'Symfony_TestCase.php';
-
 class TextTypeTest extends Symfony_TestCase
 {
     /**
@@ -19,7 +17,7 @@ class TextTypeTest extends Symfony_TestCase
                 'required' => false,
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'text-label.html.twig');
     }
 
@@ -33,7 +31,7 @@ class TextTypeTest extends Symfony_TestCase
                 'label' => 'foo'
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'text-required.html.twig');
     }
 
@@ -51,7 +49,7 @@ class TextTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'text-help.html.twig');
     }
 
@@ -69,7 +67,7 @@ class TextTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'text-guidance.html.twig');
     }
 
@@ -88,7 +86,7 @@ class TextTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'text-guidance-container.html.twig');
     }
 
@@ -105,7 +103,7 @@ class TextTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'text-required-guidance.html.twig');
     }
 
@@ -122,8 +120,8 @@ class TextTypeTest extends Symfony_TestCase
                     'data-prepend-text' => 'bar'
                 ]
             ))
-            ->getForm(); 
-            
+            ->getForm();
+
         $this->compareOutput($form, 'text-prepend.html.twig');
     }
 
@@ -141,7 +139,7 @@ class TextTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'text-append.html.twig');
     }
 
@@ -160,7 +158,7 @@ class TextTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'text-prepend-append.html.twig');
     }
 }

@@ -4,8 +4,6 @@ namespace Jadu\Pulsar\Symfony;
 
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-include_once 'Symfony_TestCase.php';
-
 class CheckboxTypeTest extends Symfony_TestCase
 {
     /**
@@ -19,7 +17,7 @@ class CheckboxTypeTest extends Symfony_TestCase
                 'required' => false,
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'checkbox-label.html.twig');
     }
 
@@ -30,7 +28,7 @@ class CheckboxTypeTest extends Symfony_TestCase
                 'label' => 'foo'
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'checkbox-required.html.twig');
     }
 
@@ -45,7 +43,7 @@ class CheckboxTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'checkbox-help.html.twig');
     }
 
@@ -60,7 +58,7 @@ class CheckboxTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'checkbox-guidance.html.twig');
     }
 
@@ -76,7 +74,7 @@ class CheckboxTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'checkbox-guidance-container.html.twig');
     }
 
@@ -90,7 +88,7 @@ class CheckboxTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'checkbox-required-guidance.html.twig');
     }
 

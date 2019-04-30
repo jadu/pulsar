@@ -4,8 +4,6 @@ namespace Jadu\Pulsar\Symfony;
 
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 
-include_once 'Symfony_TestCase.php';
-
 class RadioTypeTest extends Symfony_TestCase
 {
     /**
@@ -19,7 +17,7 @@ class RadioTypeTest extends Symfony_TestCase
                 'required' => false,
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'radio-label.html.twig');
     }
 
@@ -30,7 +28,7 @@ class RadioTypeTest extends Symfony_TestCase
                 'label' => 'foo'
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'radio-required.html.twig');
     }
 
@@ -45,7 +43,7 @@ class RadioTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'radio-help.html.twig');
     }
 
@@ -60,7 +58,7 @@ class RadioTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'radio-guidance.html.twig');
     }
 
@@ -76,7 +74,7 @@ class RadioTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'radio-guidance-container.html.twig');
     }
 
@@ -90,7 +88,7 @@ class RadioTypeTest extends Symfony_TestCase
                 ]
             ))
             ->getForm();
-            
+
         $this->compareOutput($form, 'radio-required-guidance.html.twig');
     }
 
