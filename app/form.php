@@ -119,11 +119,29 @@ $form = $formFactory->createBuilder()
     ->add('Currency', CurrencyType::class, array(
         'label' => 'Currency'
     ))
-    ->add('Date', DateType::class, array(
-        'label' => 'Date'
+    ->add('DateChoice', DateType::class, array(
+        'label' => 'Date (choice)',
+        'widget' => 'choice',
     ))
-    ->add('DateTime', DateTimeType::class, array(
-        'label' => 'Date Time'
+    ->add('DateText', DateType::class, array(
+        'label' => 'Date (text)',
+        'widget' => 'text',
+    ))
+    ->add('DateSingleText', DateType::class, array(
+        'label' => 'Date (single text)',
+        'widget' => 'single_text',
+    ))
+    ->add('DateTimeChoice', DateTimeType::class, array(
+        'label' => 'Date Time (choice)',
+        'widget' => 'choice',
+    ))
+    ->add('DateTimeText', DateTimeType::class, array(
+        'label' => 'Date Time (text)',
+        'widget' => 'text',
+    ))
+    ->add('DateTimeSingleText', DateTimeType::class, array(
+        'label' => 'Date Time (single text)',
+        'widget' => 'single_text',
     ))
     ->add('TimeChoice', TimeType::class, array(
         'label' => 'Time (choice)',
@@ -137,8 +155,17 @@ $form = $formFactory->createBuilder()
         'label' => 'Time (single text)',
         'widget' => 'single_text',
     ))
-    ->add('Birthday', BirthdayType::class, array(
-        'label' => 'Birthday'
+    ->add('BirthdayChoice', BirthdayType::class, array(
+        'label' => 'Birthday (choice)',
+        'widget' => 'choice',
+    ))
+    ->add('BirthdayText', BirthdayType::class, array(
+        'label' => 'Birthday (text)',
+        'widget' => 'text',
+    ))
+    ->add('BirthdaySingleText', BirthdayType::class, array(
+        'label' => 'Birthday (single text)',
+        'widget' => 'single_text',
     ))
     ->add('Checkbox', CheckboxType::class, array(
         'label' => 'Checkbox'

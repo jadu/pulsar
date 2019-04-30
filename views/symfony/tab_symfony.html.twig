@@ -34,12 +34,18 @@
 
         <fieldset>
             <legend class="legend">Date and Time fields</legend>
-            {{ form_row(symfonyForm.Date) }}
-            {{ form_row(symfonyForm.DateTime) }}
+            {{ form_row(symfonyForm.DateChoice) }}
+            {{ form_row(symfonyForm.DateText) }}
+            {{ form_row(symfonyForm.DateSingleText) }}
+            {{ form_row(symfonyForm.DateTimeChoice) }}
+            {{ form_row(symfonyForm.DateTimeText) }}
+            {{ form_row(symfonyForm.DateTimeSingleText) }}
             {{ form_row(symfonyForm.TimeChoice) }}
             {{ form_row(symfonyForm.TimeText) }}
             {{ form_row(symfonyForm.TimeSingleText) }}
-            {{ form_row(symfonyForm.Birthday) }}
+            {{ form_row(symfonyForm.BirthdayChoice) }}
+            {{ form_row(symfonyForm.BirthdayText) }}
+            {{ form_row(symfonyForm.BirthdaySingleText) }}
         </fieldset>
 
         <fieldset>

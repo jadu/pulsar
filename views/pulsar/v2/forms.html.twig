@@ -48,11 +48,35 @@
 {% endblock radio_widget %}
 
 {%- block date_widget -%}
-    {# Force date widgets to be text for pickaday #}
-    {%- set type = 'text' -%}
-    {%- set attr = attr|merge({'data-datepicker': 'true'|trim, 'placeholder': attr.placeholder|default('dd/mm/yyyy')}) -%}
+    {% if widget == 'single_text' %}
+        {# Force date widgets to be text for pickaday #}
+        {%- set type = 'text' -%}
+        {%- set attr = attr|merge({'data-datepicker': 'true'|trim, 'placeholder': attr.placeholder|default('dd/mm/yyyy')}) -%}
+    {% else %}
+        {% set attr = attr|merge({'class': 'input-group'}) %}
+    {% endif %}
     {{ parent() }}
 {%- endblock date_widget -%}
+
+{%- block time_widget -%}
+    {%- if widget == 'single_text' -%}
+        {{ block('form_widget_simple') }}
+    {%- else -%}
+        {% set attr = attr|merge({'class': 'input-group'}) %}
+        {%- set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} -%}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_widget(form.hour, vars) }}
+            {% if with_minutes %}
+                <span class="input-group-addon">:</span>
+                {{ form_widget(form.minute, vars) }}
+            {% endif %}
+            {% if with_seconds %}
+                <span class="input-group-addon">:</span>
+                {{ form_widget(form.second, vars) }}
+            {% endif %}
+        </div>
+    {%- endif -%}
+{%- endblock time_widget -%}
 
 {% block file_widget %}
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control file')|trim}) -%}
