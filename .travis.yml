@@ -3,6 +3,7 @@ language: php
 cache:
   directories:
     - vendor
+    - node_modules
     - $HOME/.composer/cache
 
 php:
