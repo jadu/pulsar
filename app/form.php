@@ -174,8 +174,8 @@ $form = $formFactory->createBuilder()
     ->add('TextfieldPrependAppend', TextType::class, array(
         'label' => 'Text field (with prepended / appended text)',
         'attr' => [
-            'data-prepend' => 'Before',
-            'data-append' => 'After',
+            'data-prepend-text' => 'Before',
+            'data-append-text' => 'After',
         ]
     ))
     ->add('TextfieldPrependAppendIcon', TextType::class, array(
