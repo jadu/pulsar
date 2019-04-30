@@ -21,7 +21,7 @@
         </div>
     {% else %}
         {% for child in form %}
-            <label class="control__label">
+            <label for="{{ child.vars.id }}" class="control__label">
                 {{- form_widget(child, {attr: attr}) -}}
                 <span class="form-choice__label">{{- child.vars.label|trans({}, translation_domain) -}}</span>
             </label>

@@ -30,20 +30,52 @@ class ChoiceTypeTest extends Symfony_TestCase
         $this->compareOutput($form, 'choice.html.twig');
     }
 
-    // /**
-    //  * @group choice
-    //  */
-    // public function testChoiceFieldRequired ()
-    // {
-    //     $form = $this->formFactory->createBuilder()
-    //         ->add('field', ChoiceType::class, array(
-    //             'label' => 'foo'
-    //         ))
-    //         ->getForm();
+    /**
+     * @group choice
+     */
+    public function testChoiceFieldRadiosRequired ()
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('field', ChoiceType::class, array(
+                'label' => 'foo',
+                'expanded' => true,
+                'multiple' => false,
+                'choices'  => [
+                    'Foo' => null,
+                    'Bar' => true,
+                    'Baz' => 'false',
+                ]
+            ))
+            ->getForm();
             
-    //     $this->compareOutput($form, 'choice-required.html.twig');
-    // }
+        $this->compareOutput($form, 'choice-required.html.twig');
+    }
 
+    /**
+     * @group choice
+     */
+    public function testChoiceFieldRadiosHelp ()
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('field', ChoiceType::class, array(
+                'label' => 'foo',
+                'required' => false,
+                'expanded' => true,
+                'multiple' => false,
+                'choices'  => [
+                    'Foo' => null,
+                    'Bar' => true,
+                    'Baz' => 'false',
+                ],
+                'attr' => [
+                    'data-help-text' => 'my help text',
+                ]
+            ))
+            ->getForm();
+            
+        $this->compareOutput($form, 'choice-help.html.twig');
+    }
+    
     // /**
     //  * @group choice
     //  */

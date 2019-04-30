@@ -1,30 +1,46 @@
 <div class="form__group form-choice">
+    <label class="control__label">foo</label>
     <div class="controls">
-        <label class="control__label">
-            <input 
+        <label for="form_field_placeholder" class="control__label">
+        <input 
             aria-describedby="guid-1" 
-            name="choice" 
+            id="form_field_placeholder" 
+            name="placeholder" 
             type="radio" 
-            value="foo" 
-            class="form__control radio" />
+            value="0" 
+            class="form__control radio" 
+            />
+            <span class="form-choice__label">None</span>
+        </label>
+        <label for="form_field_0" class="control__label">
+        <input 
+            aria-describedby="guid-1" 
+            id="form_field_0" 
+            name="0" 
+            type="radio" 
+            value="0" 
+            class="form__control radio" 
+            />
             <span class="form-choice__label">Foo</span>
         </label>
-        <label class="control__label">
-            <input 
+        <label for="form_field_1" class="control__label">
+        <input 
             aria-describedby="guid-1" 
-            name="choice" 
+            id="form_field_1" 
+            name="1" 
             type="radio" 
-            value="bar" 
-            class="form__control radio" />
+            value="1" 
+            class="form__control radio" 
+            />
             <span class="form-choice__label">Bar</span>
         </label>
-        <label class="control__label">
-            <input 
-            aria-describedby="guid-1" 
-            name="choice" 
+        <label for="form_field_2" class="control__label">
+        <input id="form_field_2" 
+            name="2" 
             type="radio" 
-            value="baz" 
-            class="form__control radio" />
+            value="2" 
+            class="form__control radio" 
+            />
             <span class="form-choice__label">Baz</span>
         </label>
         <span class="help-block" id="guid-1">my help text</span>
