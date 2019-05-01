@@ -19,6 +19,7 @@ class ChoiceTypeTest extends Symfony_TestCase
                 'required' => false,
                 'expanded' => true,
                 'multiple' => false,
+                'placeholder' => false,
                 'choices'  => [
                     'Foo' => null,
                     'Bar' => true,
@@ -64,6 +65,7 @@ class ChoiceTypeTest extends Symfony_TestCase
                 'required' => false,
                 'expanded' => true,
                 'multiple' => false,
+                'placeholder' => false,
                 'choices'  => [
                     'Foo' => null,
                     'Bar' => true,
@@ -89,6 +91,7 @@ class ChoiceTypeTest extends Symfony_TestCase
                 'required' => false,
                 'expanded' => true,
                 'multiple' => false,
+                'placeholder' => false,
                 'choices'  => [
                     'Foo' => null,
                     'Bar' => true,
@@ -114,6 +117,7 @@ class ChoiceTypeTest extends Symfony_TestCase
                 'required' => false,
                 'expanded' => true,
                 'multiple' => false,
+                'placeholder' => false,
                 'choices'  => [
                     'Foo' => null,
                     'Bar' => true,

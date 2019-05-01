@@ -9,7 +9,7 @@ class ToggleSwitchTypeTest extends Symfony_TestCase
     /**
      * @group toggle_switch
      */
-    public function testCheckboxFieldBasic ()
+    public function testToggleFieldBasic ()
     {
         $form = $this->formFactory->createBuilder()
             ->add('field', ToggleSwitchType::class, array(
@@ -53,7 +53,7 @@ class ToggleSwitchTypeTest extends Symfony_TestCase
         $this->compareOutput($form, 'toggle_switch-guidance.html.twig');
     }
 
-    public function testCheckboxFieldGuidanceContainer ()
+    public function testToggleFieldGuidanceContainer ()
     {
         $form = $this->formFactory->createBuilder()
             ->add('field', ToggleSwitchType::class, array(

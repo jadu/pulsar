@@ -35,12 +35,31 @@
 {%- endblock choice_widget_collapsed -%}
 
 {% block checkbox_widget %}
-    {% if attr['data-toggle-switch'] is defined %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' toggle-switch')|trim}) %}
+    {% if checked is defined and checked is not empty  and checked != false %}
+        {% set attr = attr|merge({'checked': 'checked'}) %}
     {% endif %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
-    {{ parent() }}
+
+    {% if id is defined and id is not empty %}
+        {% set attr = attr|merge({'id': id}) %}
+    {% endif %}
+
+    {% if value is defined and value is not empty %}
+        {% set attr = attr|merge({'value': value}) %}
+    {% endif %}
+
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
+
+    {% if 'toggleswitch' not in block_prefixes %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' checkbox')|trim}) %}
+    {% endif %}
+
+    <input type="checkbox" {{ block('widget_attributes') }} />
 {% endblock checkbox_widget %}
+
+{% block choice_row %}
+    {% set groupClass = 'form-choice' %}
+    {{ block('form_row') }}
+{% endblock choice_row %}
 
 {% block checkbox_row %}
     {% set groupClass = 'form-checkbox' %}
@@ -48,8 +67,23 @@
 {% endblock checkbox_row %}
 
 {% block radio_widget %}
+    {% if checked is defined and checked is not empty  and checked != false %}
+        {% set attr = attr|merge({'checked': 'checked'}) %}
+    {% endif %}
+
+    {% if id is defined and id is not empty %}
+        {% set attr = attr|merge({'id': id}) %}
+    {% endif %}
+
+    {% if name is defined and name is not empty %}
+        {% set attr = attr|merge({'name': name}) %}
+    {% endif %}
+
+    {% if value is defined and value is not empty %}
+        {% set attr = attr|merge({'value': value}) %}
+    {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
-    {{ parent() }}
+    <input type="radio" {{ block('widget_attributes') }} />
 {% endblock radio_widget %}
 
 {% block radio_row %}

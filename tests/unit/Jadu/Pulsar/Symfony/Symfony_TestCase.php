@@ -126,9 +126,9 @@ abstract class Symfony_TestCase extends TestCase
         // Move the type attribute to the start
         $inputs = explode('<input', $output);
         foreach ($inputs as $i => $input) {
-            $matches = [];
-            preg_match('/\stype=([^\s]*)/', $input, $matches);
-            $inputs[$i] = reset($matches) . preg_replace('/\stype=([^\s]*)/', '', $input, 1);
+            $typeMatches = [];
+            preg_match('/\stype=([^\s]*)/', $input, $typeMatches);
+            $inputs[$i] = reset($typeMatches) . preg_replace('/\stype=([^\s]*)/', '', $input, 1);
         }
 
         $output = implode('<input', $inputs);
