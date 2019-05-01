@@ -111,11 +111,21 @@ fieldset {
 
     &.select {
         appearance: none;
-        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
-        background-position: 97%;
-        background-repeat: no-repeat;
         border: 1px solid $input-border;
         padding: 0 20px 0 $padding-base-horizontal;
+
+        &:not([multiple]) {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
+            background-position: 97%;
+            background-repeat: no-repeat;
+        }
+
+        &[multiple] {
+            min-height: 100px;
+            padding-top: 11px;
+            padding-bottom: 11px;
+            padding-right: 11px;
+        }
 
         @include ie-lte(8) {
             height: 24px;
