@@ -35,9 +35,10 @@
 {%- endblock choice_widget_collapsed -%}
 
 {% block checkbox_widget %}
-    {% if 'form__control toggle-switch' not in attr['class']|default('') %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
+    {% if attr['data-toggle-switch'] is defined %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' toggle-switch')|trim}) %}
     {% endif %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control checkbox')|trim}) %}
     {{ parent() }}
 {% endblock checkbox_widget %}
 
@@ -47,18 +48,6 @@
 {% endblock checkbox_row %}
 
 {% block radio_widget %}
-    {% if id is defined and id is not empty %}
-        {% set attr = attr|merge({'id': id}) %}
-    {% endif %}
-
-    {% if name is defined and name is not empty %}
-        {% set attr = attr|merge({'name': name}) %}
-    {% endif %}
-
-    {% if value is defined and value is not empty %}
-        {% set attr = attr|merge({'value': value}) %}
-    {% endif %}
-
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
     {{ parent() }}
 {% endblock radio_widget %}

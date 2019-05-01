@@ -3,22 +3,30 @@
 {{
     form.choice({
         'label': 'foo',
-        'guidance': 'bar',
+        'guidance': 'foo <span class="bar">bar</span>',
         'options': [
             {
+                'label': 'None',
+                'id': 'form_field_placeholder',
+                'name': 'placeholder'
+            },
+            {
                 'label': 'Foo',
-                'name': 'choice',
-                'value': 'foo'
+                'id': 'form_field_0',
+                'name': '0',
+                'value': '0'
             },
             {
                 'label': 'Bar',
-                'name': 'choice',
-                'value': 'bar'
+                'id': 'form_field_1',
+                'name': '1',
+                'value': '1'
             },
             {
                 'label': 'Baz',
-                'name': 'choice',
-                'value': 'baz'
+                'id': 'form_field_2',
+                'name': '2',
+                'value': '2'
             }
         ]
     })
