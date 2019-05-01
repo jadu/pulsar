@@ -178,14 +178,6 @@
 {# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
 {% block form_row %}
     {% spaceless %}
-        {% if prependIcon is defined and prependIcon is not empty %}
-            {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
-        {% endif %}
-
-        {% if appendIcon is defined and appendIcon is not empty %}
-            {% set attr = attr|merge({'data-append-icon': appendIcon}) %}
-        {% endif %}
-
         {% if attr['data-datepicker'] is defined %}
             {% set attr = attr|merge({'data-append-icon': 'icon-calendar'}) %}
         {% endif %}
@@ -194,9 +186,6 @@
             {% set attr = attr|merge({'data-prepend-text': '#'}) %}
         {% endif %}
 
-        {% if inputClass is defined and 'toggle-switch' in inputClass %}
-            {% set attr = attr|merge({'data-toggle-switch': 'true'}) %}
-        {% endif %}
         {% set groupClass = groupClass|default('') ~ ' form__group' %}
 
         {% if errors|length > 0 %}
@@ -230,11 +219,6 @@
 
                 {% if describedByIds is not empty %}
                     {% set attr = attr|merge({ 'aria-describedby': describedByIds|join(' ') }) %}
-                {% endif %}
-
-                {# If extra input specific classes are present, add to input/widget #}
-                {% if inputClass is defined %}
-                    {% set attr = attr|merge({'class': inputClass|trim}) %}
                 {% endif %}
 
                 {{ form_widget(form, {attr: attr}) }}
