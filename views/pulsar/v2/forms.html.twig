@@ -186,7 +186,7 @@
             {% set attr = attr|merge({'data-prepend-text': '#'}) %}
         {% endif %}
 
-        {% set groupClass = groupClass|default('') ~ ' form__group' %}
+        {% set groupClass = 'form__group ' ~ groupClass|default('')|trim %}
 
         {% if errors|length > 0 %}
             {% set groupClass = groupClass ~ ' has-error' %}

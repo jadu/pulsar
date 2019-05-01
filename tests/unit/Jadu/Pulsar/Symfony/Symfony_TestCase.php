@@ -120,6 +120,8 @@ abstract class Symfony_TestCase extends TestCase
 
         // Normalise random ids generated and used by help text
         $output = preg_replace('/(guid-)\w+/', 'guid-1', $output);
+        $output = preg_replace('/(form_)\w+(--help_text)/', 'guid-1', $output);
+        $output = preg_replace('/(form_)\w+(--error_\d+)/', 'guid-1', $output);
 
         // Move the type attribute to the start
         $inputs = explode('<input', $output);
