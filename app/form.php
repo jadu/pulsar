@@ -40,14 +40,20 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/forms.php';
 
 $form = $formFactory->createBuilder()
-    ->add('Textfield', TextType::class, array(
-        'label' => 'Text field'
+    ->add('Text', TextType::class, array(
+        'label' => 'Text'
+    ))
+    ->add('Password', PasswordType::class, array(
+        'label' => 'Password'
     ))
     ->add('Textarea', TextareaType::class, array(
         'label' => 'Textarea'
     ))
     ->add('Email', EmailType::class, array(
         'label' => 'Email'
+    ))
+    ->add('Tel', TelType::class, array(
+        'label' => 'Tel'
     ))
     ->add('Integer', IntegerType::class, array(
         'label' => 'Integer'
