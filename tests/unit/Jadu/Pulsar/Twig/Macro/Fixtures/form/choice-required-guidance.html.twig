@@ -1,0 +1,30 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.choice({
+        'label': 'foo',
+        'required': true,
+        'guidance': 'foo <span class="bar">bar</span>',
+        'options': [
+            {
+                'label': 'Foo',
+                'id': 'form_field_0',
+                'name': '0',
+                'value': '0'
+            },
+            {
+                'label': 'Bar',
+                'id': 'form_field_1',
+                'name': '1',
+                'value': '1'
+            },
+            {
+                'label': 'Baz',
+                'id': 'form_field_2',
+                'name': '2',
+                'value': '2'
+            }
+        ]
+    })
+}}
+{% endblock %}
