@@ -35,6 +35,10 @@ class TableDetailComponent {
 
         this.$table = this.$html.find('[data-table-detail-table]');
 
+        if (!this.$table.length) {
+            return;
+        }
+
         // Check panel hasn't already been added, in case of a datatable re-initting this component on paginated page draw
         if ($panelAlreadyExists.length === 0) {
             // If main or role="main" is present append alerts to that (to satify WCAG 1.3.1 Info and Relationships)
@@ -88,7 +92,7 @@ class TableDetailComponent {
 
         // Close ESC button
         this.$html.on('keydown', (event) => {
-            if (event.keyCode === 27) {
+            if (event.keyCode === 27 && this.$tableDetailBackdrop.hasClass('in')) {
                 this.closeDetail();
                 $triggeringElement.focus();
             }
