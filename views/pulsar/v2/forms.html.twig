@@ -42,10 +42,25 @@
     {{ parent() }}
 {% endblock checkbox_widget %}
 
+{% block checkbox_row %}
+    {% set groupClass = 'form-checkbox' %}
+    {{ block('form_row') }}
+{% endblock checkbox_row %}
+
 {% block radio_widget %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control radio')|trim}) %}
     {{ parent() }}
 {% endblock radio_widget %}
+
+{% block radio_row %}
+    {% set groupClass = 'form-radio' %}
+    {{ block('form_row') }}
+{% endblock radio_row %}
+
+{% block range_row %}
+    {% set groupClass = 'form-range' %}
+    {{ block('form_row') }}
+{% endblock range_row %}
 
 {%- block date_widget -%}
     {% if widget == 'single_text' %}
@@ -163,8 +178,6 @@
 {# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
 {% block form_row %}
     {% spaceless %}
-        {% set groupClass = '' %}
-
         {% if prependIcon is defined and prependIcon is not empty %}
             {% set attr = attr|merge({'data-prepend-icon': prependIcon}) %}
         {% endif %}
@@ -184,31 +197,22 @@
         {% if inputClass is defined and 'toggle-switch' in inputClass %}
             {% set attr = attr|merge({'data-toggle-switch': 'true'}) %}
         {% endif %}
+        {% set groupClass = groupClass|default('') ~ ' form__group' %}
 
-        {% if 'radio' in form.vars.block_prefixes %}
-            {% set groupClass = ' form-radio' %}
-        {% elseif 'checkbox' in form.vars.block_prefixes %}
-            {% set groupClass = ' form-checkbox' %}
-        {% elseif 'range' in form.vars.block_prefixes %}
-            {% set groupClass = ' form-range' %}
+        {% if errors|length > 0 %}
+            {% set groupClass = groupClass ~ ' has-error' %}
         {% endif %}
 
-        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr['data-toggle-switch'] is defined %} form__group--toggle{% endif %}{{ groupClass }}">
+        <div class="{{ groupClass|trim }}">
             {% if attr['data-toggle-switch'] is defined %}
+                {% set controlsElement = 'span' %}
             <label class="toggle-switch-wrapper-label" for="{{ id }}">
             {% endif %}
             {{ form_label(form) }}
-            {% if attr['data-toggle-switch'] is defined %}
-            <span class="controls">
-            {% else %}
-            <div class="controls">
-            {% endif %}
+            <{{ controlsElement|default('div') }} class="controls">
 
-                {# Build aria-described guids for help blocks and errors #}
                 {% set describedByIds = [] %}
-                {% set helpId = null %}
 
-                {# If errors are present, mark field as invalid and build error block guids  #}
                 {% if errors|length > 0 %}
                     {% set attr = attr|merge({ 'aria-invalid': 'true' }) %}
 
@@ -217,20 +221,14 @@
                     {% endfor %}
                 {% endif %}
 
-                {# If help text are present, build help block guids  #}
                 {%
                     if (attr['data-help-text'] is defined and attr['data-help-text'] is not null)
                     or (attr['data-help-html'] is defined and attr['data-help-html'] is not null)
                 %}
-                    {# need to separate out the help block guids #}
-                    {% set helpId = 'guid-' ~ random() %}
-
-                    {# Merge into describedByIds for aria-describedby on the input #}
-                    {% set describedByIds = describedByIds|merge([helpId]) %}
+                    {% set describedByIds = describedByIds|merge([id ~ '--help_text']) %}
                 {% endif %}
 
-                {# If we have describedByIds, add aria-describedby to attr #}
-                {% if describedByIds is defined and describedByIds is not empty %}
+                {% if describedByIds is not empty %}
                     {% set attr = attr|merge({ 'aria-describedby': describedByIds|join(' ') }) %}
                 {% endif %}
 
@@ -247,17 +245,16 @@
 
                 {{ form_errors(form) }}
 
-                {# Help #}
                 {% if attr['data-help-text'] is defined and attr['data-help-text'] is not null %}
-                    <span class="help-block" id="{{ helpId }}">{{ attr['data-help-text'] }}</span>
+                    <span class="help-block" id="{{ id ~ '--help_text' }}">{{ attr['data-help-text'] }}</span>
                 {% elseif attr['data-help-html'] is defined and attr['data-help-html'] is not null %}
-                    <span class="help-block" id="{{ helpId }}">{{ attr['data-help-html']|raw }}</span>
+                    <span class="help-block" id="{{ id ~ '--help_text' }}">{{ attr['data-help-html']|raw }}</span>
                 {% endif %}
-            {% if attr['data-toggle-switch'] is defined %}
-            </span>
+
+            </{{ controlsElement|default('div') }}>
+
+            {% if 'toggleswitch' in block_prefixes %}
             </label>
-            {% else %}
-            </div>
             {% endif %}
         </div>
     {% endspaceless %}
