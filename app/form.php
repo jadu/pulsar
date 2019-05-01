@@ -40,6 +40,9 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/forms.php';
 
 $form = $formFactory->createBuilder()
+    ->add('Hidden', HiddenType::class, array(
+        'label' => 'Hidden',
+    ))
     ->add('Text', TextType::class, array(
         'label' => 'Text'
     ))
