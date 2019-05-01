@@ -114,6 +114,16 @@ fieldset {
         border: 1px solid $input-border;
         padding: 0 20px 0 $padding-base-horizontal;
 
+        @include ie-lte(8) {
+            height: 24px;
+        }
+
+        // select arrows can't be hidden in IE8 & 9, so reset to default styles
+        @include ie-lte(9) {
+            background-image: none;
+            padding-right: 0;
+        }
+
         &:not([multiple]) {
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
             background-position: 97%;
@@ -125,16 +135,6 @@ fieldset {
             padding-top: 11px;
             padding-bottom: 11px;
             padding-right: 11px;
-        }
-
-        @include ie-lte(8) {
-            height: 24px;
-        }
-
-        // select arrows can't be hidden in IE8 & 9, so reset to default styles
-        @include ie-lte(9) {
-            background-image: none;
-            padding-right: 0;
         }
 
         // remove the arrow in IE10 & 11, modern browsers are taken care of
