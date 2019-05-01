@@ -76,6 +76,9 @@ $form = $formFactory->createBuilder()
     ->add('Range', RangeType::class, array(
         'label' => 'Range'
     ))
+    ->add('Repeated', RepeatedType::class, array(
+        'label' => 'Repeated',
+    ))
     ->add('ChoiceDefault', ChoiceType::class, array(
         'label' => 'Choice (default)',
         'choices'  => [

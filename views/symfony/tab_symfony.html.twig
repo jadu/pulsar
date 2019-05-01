@@ -22,6 +22,11 @@
         </fieldset>
 
         <fieldset>
+            <legend class="legend">Repeated fields</legend>
+            {{ form_row(symfonyForm.Repeated) }}
+        </fieldset>
+
+        <fieldset>
             <legend class="legend">Choice fields</legend>
             {{ form_row(symfonyForm.ChoiceDefault) }}
             {{ form_row(symfonyForm.ChoiceExpanded) }}
