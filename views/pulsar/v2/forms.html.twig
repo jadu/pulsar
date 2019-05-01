@@ -29,10 +29,10 @@
     {% endif %}
 {% endblock choice_widget_expanded %}
 
-{% block choice_widget_collapsed %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control select')|trim}) %}
-    {{ parent() }}
-{% endblock choice_widget_collapsed %}
+{%- block choice_widget_collapsed -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control select')|trim}) -%}
+    {{- parent() -}}
+{%- endblock choice_widget_collapsed -%}
 
 {% block checkbox_widget %}
     {% if 'form__control toggle-switch' not in attr['class']|default('') %}
@@ -62,35 +62,93 @@
 {% endblock range_row %}
 
 {%- block date_widget -%}
-    {% if widget == 'single_text' %}
+    {%- if widget == 'single_text' -%}
         {# Force date widgets to be text for pickaday #}
         {%- set type = 'text' -%}
         {%- set attr = attr|merge({'data-datepicker': 'true'|trim, 'placeholder': attr.placeholder|default('dd/mm/yyyy')}) -%}
-    {% else %}
-        {% set attr = attr|merge({'class': 'input-group'}) %}
-    {% endif %}
-    {{ parent() }}
+        {{- block('form_widget_simple') -}}
+    {%- else -%}
+        {%- if not skipWidgetContainer|default(false) -%}<div {{ block('widget_container_attributes') }}>{%- endif -%}
+            {{- date_pattern|replace({
+                '{{ year }}':  form_widget(form.year, {'attr': {'class': 'form__control-col--2'}}),
+                '{{ month }}': form_widget(form.month, {'attr': {'class': 'form__control-col--2'}}),
+                '{{ day }}':   form_widget(form.day, {'attr': {'class': 'form__control-col--1'}}),
+            })|raw -}}
+        {%- if not skipWidgetContainer|default(false) -%}</div>{%- endif -%}
+    {%- endif -%}
 {%- endblock date_widget -%}
+
+{%- block date_label -%}
+    {%- if widget != 'single_text' -%}
+        {%- set element = 'legend' -%}
+    {%- endif -%}
+    {{ block('form_label') }}
+{%- endblock date_label -%}
+
+{%- block date_row -%}
+    {%- if widget != 'single_text' -%}
+        {%- set groupElement = 'fieldset' -%}
+        {%- set groupClass = 'form__group--compound' -%}
+    {%- endif -%}
+    {{- block('form_row') -}}
+{%- endblock date_row -%}
 
 {%- block time_widget -%}
     {%- if widget == 'single_text' -%}
         {{ block('form_widget_simple') }}
     {%- else -%}
-        {% set attr = attr|merge({'class': 'input-group'}) %}
         {%- set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} -%}
-        <div {{ block('widget_container_attributes') }}>
-            {{ form_widget(form.hour, vars) }}
-            {% if with_minutes %}
-                <span class="input-group-addon">:</span>
-                {{ form_widget(form.minute, vars) }}
-            {% endif %}
-            {% if with_seconds %}
-                <span class="input-group-addon">:</span>
-                {{ form_widget(form.second, vars) }}
-            {% endif %}
-        </div>
+        {%- set vars = vars|merge({'attr': vars.attr|default({})|merge({'class': 'form__control-col--1'})}) -%}
+        {%- if not skipWidgetContainer|default(false) -%}<div {{ block('widget_container_attributes') }}>{%- endif -%}
+            {{- form_widget(form.hour, vars) -}}
+            {%- if with_minutes -%}<span class="padding-right">:</span>{{- form_widget(form.minute, vars) -}}{%- endif -%}
+            {%- if with_seconds -%}<span class="padding-right">:</span>{{- form_widget(form.second, vars) -}}{%- endif -%}
+        {%- if not skipWidgetContainer|default(false) -%}</div>{%- endif -%}
     {%- endif -%}
 {%- endblock time_widget -%}
+
+{%- block time_label -%}
+    {%- if widget != 'single_text' -%}
+        {%- set element = 'legend' -%}
+    {%- endif -%}
+    {{- block('form_label') -}}
+{%- endblock time_label -%}
+
+{%- block time_row -%}
+    {% if widget != 'single_text' %}
+        {% set groupElement = 'fieldset' %}
+        {% set groupClass = 'form__group--compound' %}
+    {% endif %}
+    {{ block('form_row') }}
+{%- endblock time_row -%}
+
+{%- block datetime_widget -%}
+    {% if widget == 'single_text' %}
+        {{- block('form_widget_simple') -}}
+    {%- else -%}
+        <div {{ block('widget_container_attributes') }}>
+            {{- form_widget(form.date, {'skipWidgetContainer': true}) -}}
+            {{- form_widget(form.time, {'skipWidgetContainer': true}) -}}
+        </div>
+        {{- form_errors(form.date) -}}
+        {{- form_errors(form.time) -}}
+    {%- endif -%}
+{%- endblock datetime_widget -%}
+
+{%- block datetime_label -%}
+    {% if widget != 'single_text' %}
+        {% set element = 'legend' %}
+    {% endif %}
+    {{ block('form_label') }}
+{%- endblock datetime_label -%}
+
+{%- block datetime_row -%}
+    {% if widget != 'single_text' %}
+        {% set groupElement = 'fieldset' %}
+        {% set groupClass = 'form__group--compound' %}
+    {% endif %}
+    {{ block('form_row') }}
+{%- endblock datetime_row -%}
 
 {% block file_widget %}
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control file')|trim}) -%}
@@ -196,7 +254,7 @@
             {% set groupClass = groupClass ~ ' has-error' %}
         {% endif %}
 
-        <div class="{{ groupClass|trim }}">
+        <{{ groupElement|default('div') }} class="{{ groupClass|trim }}">
             {% if 'toggleswitch' in block_prefixes %}
             <label class="toggle-switch-wrapper-label" for="{{ id }}">
             {% endif %}
@@ -240,19 +298,19 @@
             {% if 'toggleswitch' in block_prefixes %}
             </label>
             {% endif %}
-        </div>
+        </{{ groupElement|default('div') }}>
     {% endspaceless %}
 {% endblock form_row %}
 
-{% block form_widget_simple %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
+{% block form_widget_simple -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) -%}
 
-    {# Stop hidden fields having invalid required attibute #}
-    {% if type is defined and type == 'hidden' %}
-        {% set required = false %}
-    {% endif %}
+    {#- Stop hidden fields having invalid required attibute -#}
+    {%- if type is defined and type == 'hidden' -%}
+        {%- set required = false -%}
+    {%- endif -%}
 
-    {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
+    {%- if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined -%}
         <div class="input-group">
             {% if attr['data-prepend-icon'] is defined %}
                 <span class="input-group-addon"><i class="{{ attr['data-prepend-icon'] }} icon-fw"></i></span>
@@ -260,11 +318,11 @@
             {% if attr['data-prepend-text'] is defined %}
                 <span class="input-group-addon">{{ attr['data-prepend-text'] }}</span>
             {% endif %}
-    {% endif %}
+    {%- endif -%}
 
-    {{ parent() }}
+    {{- parent() -}}
 
-    {% if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined %}
+    {%- if attr['data-prepend-text'] is defined or attr['data-append-text'] is defined or attr['data-prepend-icon'] is defined or attr['data-append-icon'] is defined -%}
             {% if attr['data-append-text'] is defined %}
                 <span class="input-group-addon">{{ attr['data-append-text'] }}</span>
             {% endif %}
@@ -272,8 +330,8 @@
                 <span class="input-group-addon"><i class="{{ attr['data-append-icon'] }} icon-fw"></i></span>
             {% endif %}
         </div>
-    {% endif %}
-{% endblock form_widget_simple %}
+    {%- endif -%}
+{%- endblock form_widget_simple -%}
 
 {% block button_row %}
     <div class="form__group">
