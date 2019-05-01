@@ -181,6 +181,22 @@ $form = $formFactory->createBuilder()
         'label' => 'Birthday (single text)',
         'widget' => 'single_text',
     ))
+    ->add('DateIntervalChoice', DateIntervalType::class, array(
+        'label' => 'Date Interval (choice)',
+        'widget' => 'choice',
+    ))
+    ->add('DateIntervalText', DateIntervalType::class, array(
+        'label' => 'Date Interval (text)',
+        'widget' => 'text',
+    ))
+    ->add('DateIntervalInteger', DateIntervalType::class, array(
+        'label' => 'Date Interval (integer)',
+        'widget' => 'integer',
+    ))
+    ->add('DateIntervalSingleText', DateIntervalType::class, array(
+        'label' => 'Date Interval (single text)',
+        'widget' => 'single_text',
+    ))
     ->add('Checkbox', CheckboxType::class, array(
         'label' => 'Checkbox'
     ))

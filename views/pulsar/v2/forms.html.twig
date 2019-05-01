@@ -150,6 +150,43 @@
     {{ block('form_row') }}
 {%- endblock datetime_row -%}
 
+{%- block dateinterval_widget -%}
+    {%- if widget == 'single_text' -%}
+        {{- block('form_widget_simple') -}}
+    {%- else -%}
+        {% set displays = {
+            'years' : with_years,
+            'months' : with_months,
+            'weeks' : with_weeks,
+            'days' : with_days,
+            'hours' : with_hours,
+            'minutes' : with_minutes,
+            'seconds' : with_seconds,
+        } %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for display, show in displays -%}
+                {%- if show -%}
+                    <div class="input-group padding-right pull-left">
+                        {{ form_widget(form[display]) }}
+                        <span class="input-group-addon">{{ display|capitalize }}</span>
+                    </div>
+                {%- endif -%}
+            {%- endfor %}
+        </div>
+        {%- if with_invert -%}
+            {{ form_widget(form.invert) }}
+        {%- endif %}
+        {{- form_errors(form) -}}
+    {%- endif -%}
+{%- endblock dateinterval_widget -%}
+
+{%- block dateinterval_row -%}
+    {% if widget != 'single_text' %}
+        {% set groupClass = 'form__group--medium' %}
+    {% endif %}
+    {{ block('form_row') }}
+{%- endblock dateinterval_row -%}
+
 {% block file_widget %}
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control file')|trim}) -%}
     {{- block('form_widget_simple') -}}
