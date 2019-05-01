@@ -3,8 +3,10 @@
 {{
     form.toggle_switch({
         'label': 'Toggle',
-        'guidance': 'bar',
-        'id': 'toggletest'
+        'guidance': 'foo <span class="bar">bar</span>',
+        'id': 'form_field',
+        'name': 'form[field]',
+        'value': '1'
     })
 }}
 {% endblock %}

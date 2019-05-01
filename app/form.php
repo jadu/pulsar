@@ -1,20 +1,20 @@
 <?php
 
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-
+use Jadu\Pulsar\Form\Type\ToggleSwitchType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
@@ -24,6 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -33,6 +34,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\FormError;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/forms.php';
@@ -186,11 +188,8 @@ $form = $formFactory->createBuilder()
     ->add('Submit', SubmitType::class, array(
         'label' => 'Submit'
     ))
-    ->add('ToggleSwitch', CheckboxType::class, array(
+    ->add('ToggleSwitch', ToggleSwitchType::class, array(
         'label' => 'Toggle Switch',
-        'attr' => [
-            'data-toggle-switch' => 'true', // This should probably be a custom Pulsar ToggleSwitchType ideally.
-        ]
     ))
     ->getForm();
 
@@ -395,8 +394,8 @@ if (isset($_POST[$form->getName()])) {
     }
 }
 
-$textForm->get('withErrors')->addError(new \Symfony\Component\Form\FormError('This is not valid.'));
-$textForm->get('withErrors')->addError(new \Symfony\Component\Form\FormError('This must be greater than 0.'));
+$textForm->get('withErrors')->addError(new FormError('This is not valid.'));
+$textForm->get('withErrors')->addError(new FormError('This must be greater than 0.'));
 
 $template = $twig->loadTemplate('symfony/index.html.twig');
 

@@ -3,9 +3,11 @@
 {{
     form.toggle_switch({
         'label': 'Toggle',
-        'guidance': 'bar',
-        'id': 'toggletest',
-        'guidance-container': 'baz'
+        'guidance': 'foo <span class="bar">bar</span>',
+        'id': 'form_field',
+        'guidance-container': 'baz',
+        'name': 'form[field]',
+        'value': '1'
     })
 }}
 {% endblock %}
