@@ -2,6 +2,7 @@
     <testsuites>
         <testsuite name="Pulsar Unit Tests">
             <directory>tests/unit</directory>
+            <exclude>src/forms.php</exclude>
         </testsuite>
     </testsuites>
     <filter>
