@@ -100,7 +100,7 @@
     {%- if widget == 'single_text' -%}
         {# Force date widgets to be text for pickaday #}
         {%- set type = 'text' -%}
-        {%- set attr = attr|merge({'data-datepicker': 'true'|trim, 'placeholder': attr.placeholder|default('dd/mm/yyyy')}) -%}
+        {%- set attr = attr|merge({'data-append-icon': 'icon-calendar', 'data-datepicker': 'true', 'placeholder': attr.placeholder|default('dd/mm/yyyy')}) -%}
         {{- block('form_widget_simple') -}}
     {%- else -%}
         {%- if not skipWidgetContainer|default(false) -%}<div {{ block('widget_container_attributes') }}>{%- endif -%}
@@ -324,10 +324,6 @@
 {# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
 {% block form_row %}
     {% spaceless %}
-        {% if attr['data-datepicker'] is defined %}
-            {% set attr = attr|merge({'data-append-icon': 'icon-calendar'}) %}
-        {% endif %}
-
         {% set group_attr = group_attr|default({})|merge({'class': 'form__group ' ~ group_attr.class|default('')|trim}) %}
 
         {% if errors|length > 0 %}
