@@ -1,3 +1,5 @@
 coverage:
   status:
     patch: false
+ignore:
+  - "src/forms.php"  # ignore folders and all its contents
