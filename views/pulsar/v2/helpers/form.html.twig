@@ -455,6 +455,8 @@ show-label | bool   | Control visibility of the `<label>` element without affect
             'bare': true,
             'id': options.id|default,
             'multiple': options.multiple,
+            'name': options.name|default,
+            'selected': options.selected|default,
             'options': select_options,
             'aria-describedby': describedByIds|join(' ')
         }%}

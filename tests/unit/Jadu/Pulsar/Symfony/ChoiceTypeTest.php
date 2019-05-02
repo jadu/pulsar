@@ -57,6 +57,30 @@ class ChoiceTypeTest extends Symfony_TestCase
     /**
      * @group choice
      */
+    public function testChoiceFieldSelectBasic ()
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('field', ChoiceType::class, array(
+                'label' => 'foo',
+                'required' => false,
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => false,
+                'choices'  => [
+                    'Foo' => null,
+                    'Bar' => true,
+                    'Baz' => 'false',
+                ],
+                'attr' => ['class' => 'js-select2']
+            ))
+            ->getForm();
+            
+        $this->compareOutput($form, 'choice-select.html.twig');
+    }
+
+    /**
+     * @group choice
+     */
     public function testChoiceFieldRadiosRequired ()
     {
         $this->markTestSkipped('Can’t compare required to v2 helpers due to https://github.com/jadu/pulsar/issues/971');
