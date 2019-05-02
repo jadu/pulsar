@@ -57,12 +57,12 @@
 {% endblock checkbox_widget %}
 
 {% block choice_row %}
-    {% set groupClass = 'form-choice' %}
+    {% set group_attr = {'class': 'form-choice'} %}
     {{ block('form_row') }}
 {% endblock choice_row %}
 
 {% block checkbox_row %}
-    {% set groupClass = 'form-checkbox' %}
+    {% set group_attr = {'class': 'form-checkbox'} %}
     {{ block('form_row') }}
 {% endblock checkbox_row %}
 
@@ -87,12 +87,12 @@
 {% endblock radio_widget %}
 
 {% block radio_row %}
-    {% set groupClass = 'form-radio' %}
+    {% set group_attr = {'class': 'form-radio'} %}
     {{ block('form_row') }}
 {% endblock radio_row %}
 
 {% block range_row %}
-    {% set groupClass = 'form-range' %}
+    {% set group_attr = {'class': 'form-range'} %}
     {{ block('form_row') }}
 {% endblock range_row %}
 
@@ -122,8 +122,8 @@
 
 {%- block date_row -%}
     {%- if widget != 'single_text' -%}
-        {%- set groupElement = 'fieldset' -%}
-        {%- set groupClass = 'form__group--compound' -%}
+        {%- set group_element = 'fieldset' -%}
+        {%- set group_attr = {'class': 'form__group--compound'} -%}
     {%- endif -%}
     {{- block('form_row') -}}
 {%- endblock date_row -%}
@@ -151,8 +151,8 @@
 
 {%- block time_row -%}
     {% if widget != 'single_text' %}
-        {% set groupElement = 'fieldset' %}
-        {% set groupClass = 'form__group--compound' %}
+        {% set group_element = 'fieldset' %}
+        {% set group_attr = {'class': 'form__group--compound'} %}
     {% endif %}
     {{ block('form_row') }}
 {%- endblock time_row -%}
@@ -179,8 +179,8 @@
 
 {%- block datetime_row -%}
     {% if widget != 'single_text' %}
-        {% set groupElement = 'fieldset' %}
-        {% set groupClass = 'form__group--compound' %}
+        {% set group_element = 'fieldset' %}
+        {% set group_attr = {'class': 'form__group--compound'} %}
     {% endif %}
     {{ block('form_row') }}
 {%- endblock datetime_row -%}
@@ -217,7 +217,7 @@
 
 {%- block dateinterval_row -%}
     {% if widget != 'single_text' %}
-        {% set groupClass = 'form__group--medium' %}
+        {% set group_attr = {'class': 'form__group--medium'} %}
     {% endif %}
     {{ block('form_row') }}
 {%- endblock dateinterval_row -%}
@@ -266,7 +266,7 @@
 {%- endblock toggleswitch_label -%}
 
 {% block toggleswitch_row %}
-    {% set groupClass = 'form__group--toggle' %}
+    {% set group_attr = {'class': 'form__group--toggle'} %}
     {% set controlsElement = 'span' %}
     {{ block('form_row') }}
 {% endblock toggleswitch_row %}
@@ -320,13 +320,13 @@
             {% set attr = attr|merge({'data-prepend-text': '#'}) %}
         {% endif %}
 
-        {% set groupClass = 'form__group ' ~ groupClass|default('')|trim %}
+        {% set group_attr = group_attr|default({})|merge({'class': 'form__group ' ~ group_attr.class|default('')|trim}) %}
 
         {% if errors|length > 0 %}
-            {% set groupClass = groupClass ~ ' has-error' %}
+            {% set group_attr = group_attr|merge({'class': group_attr.class ~ ' has-error'}) %}
         {% endif %}
 
-        <{{ groupElement|default('div') }} class="{{ groupClass|trim }}">
+        <{{ group_element|default('div') }} {{ attributes(group_attr) }}>
             {% if 'toggleswitch' in block_prefixes %}
             <label class="toggle-switch-wrapper-label" for="{{ id }}">
             {% endif %}
@@ -370,7 +370,7 @@
             {% if 'toggleswitch' in block_prefixes %}
             </label>
             {% endif %}
-        </{{ groupElement|default('div') }}>
+        </{{ group_element|default('div') }}>
     {% endspaceless %}
 {% endblock form_row %}
 
