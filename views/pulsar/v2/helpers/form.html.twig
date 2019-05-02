@@ -473,13 +473,18 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
         {% for input_options in options.options %}
             {% set input_options = input_options|merge({
-            'bare': true,
-            'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
-            'aria-describedby': describedByIds|join(' ')
+                'bare': true,
+                'required-indicator': false,
+                'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
+                'aria-describedby': describedByIds|join(' ')
             }) %}
 
             {% if options.error is defined and options.error is not empty %}
                 {% set input_options = input_options|merge({ 'has_error': true }) %}
+            {% endif %}
+
+            {% if options.required is defined and options.required == true %}
+                {% set input_options = input_options|merge({ 'required': true }) %}
             {% endif %}
 
             {% if options.multiple %}
@@ -1701,6 +1706,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
                     'for': options.id|default,
                     'label': label,
                     'required': options.required|default,
+                    'required-indicator': options['required-indicator']|default,
                     'guidance': options.guidance|default,
                     'guidance-container': options['guidance-container']|default
                 })
