@@ -30,9 +30,22 @@
 {% endblock choice_widget_expanded %}
 
 {%- block choice_widget_collapsed -%}
-    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control select')|trim}) -%}
+    {%- set attr = attr|merge({'class': ('form__control select ' ~ attr.class|default(''))|trim}) -%}
     {{- parent() -}}
 {%- endblock choice_widget_collapsed -%}
+
+{%- block choice_widget_options -%}
+    {% for group_label, choice in options %}
+        {%- if choice is iterable -%}
+            <optgroup label="{{ choice_translation_domain is same as(false) ? group_label : group_label|trans({}, choice_translation_domain) }}">
+                {% set options = choice %}
+                {{- block('choice_widget_options') -}}
+            </optgroup>
+        {%- else -%}
+            <option value="{{ choice.value }}"{% if choice.attr %} {% set attr = choice.attr %}{{ block('attributes') }}{% endif %}{% if choice is selectedchoice(value) %} selected{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}</option>
+        {%- endif -%}
+    {% endfor %}
+{%- endblock choice_widget_options -%}
 
 {% block checkbox_widget %}
     {% if checked is defined and checked is not empty and checked != false %}
