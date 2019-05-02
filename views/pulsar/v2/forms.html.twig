@@ -14,8 +14,8 @@
         <div class="controls" {{ block('widget_container_attributes') }}>
             {% for child in form %}
                 <label class="control__label" for="{{ child.vars.id }}">
-                    {{- form_widget(child, {attr: {'class': 'checkbox'}}) -}}
-                    <span class="form-choice__label">{{- child.vars.label -}}</span>
+                    {{- form_widget(child, {attr: attr}) -}}
+                    <span class="form-choice__label">{{- child.vars.label|trans({}, translation_domain) -}}</span>
                 </label>
             {% endfor %}
         </div>
@@ -35,7 +35,7 @@
 {%- endblock choice_widget_collapsed -%}
 
 {% block checkbox_widget %}
-    {% if checked is defined and checked is not empty  and checked != false %}
+    {% if checked is defined and checked is not empty and checked != false %}
         {% set attr = attr|merge({'checked': 'checked'}) %}
     {% endif %}
 
@@ -67,7 +67,7 @@
 {% endblock checkbox_row %}
 
 {% block radio_widget %}
-    {% if checked is defined and checked is not empty  and checked != false %}
+    {% if checked is defined and checked is not empty and checked != false %}
         {% set attr = attr|merge({'checked': 'checked'}) %}
     {% endif %}
 
