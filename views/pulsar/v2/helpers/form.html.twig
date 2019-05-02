@@ -277,9 +277,10 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
             'inputs': [
                 elem.label({
                     'for': options.id|default,
-                    'guidance': options.guidance|default,
                     'label': label,
                     'required': options.required|default,
+                    'required-indicator': options['required-indicator']|default,
+                    'guidance': options.guidance|default,
                     'guidance-container': options['guidance-container']|default
                 })
             ]
