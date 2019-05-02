@@ -130,7 +130,6 @@ PulsarFormComponent.prototype.initColourpickers = function () {
             isDisabled = false,
             existingPicker = $input.next('[data-colour-picker-input]'),
             includePrefix = $this.attr('data-colour-picker-include-prefix') === 'true';
-        console.log($this, $this.attr('data-colour-picker-include-prefix'));
 
         if (typeof disabledAttr !== typeof undefined && disabledAttr !== false) {
             isDisabled = true;
