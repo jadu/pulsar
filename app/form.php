@@ -79,6 +79,9 @@ $form = $formFactory->createBuilder()
     ->add('Range', RangeType::class, array(
         'label' => 'Range'
     ))
+    ->add('Color', ColorType::class, array(
+        'label' => 'Color',
+    ))
     ->add('Repeated', RepeatedType::class, array(
         'label' => 'Repeated',
     ))

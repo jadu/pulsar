@@ -271,6 +271,18 @@
     {{ block('form_row') }}
 {% endblock toggleswitch_row %}
 
+{% block color_widget %}
+    {% set type = 'text' %}
+    <div class="input-group">
+        {{ parent() }}
+    </div>
+{% endblock color_widget %}
+
+{% block color_row %}
+    {% set group_attr = {'class': 'colorpicker', 'data-colour-picker': 'true', 'data-colour-picker-include-prefix': 'true'} %}
+    {{ block('form_row') }}
+{% endblock color_row %}
+
 {# Need to copy this whole block in order to add the util.required etc #}
 {%- block form_label -%}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
@@ -314,10 +326,6 @@
     {% spaceless %}
         {% if attr['data-datepicker'] is defined %}
             {% set attr = attr|merge({'data-append-icon': 'icon-calendar'}) %}
-        {% endif %}
-
-        {% if attr.class is defined and 'colorpicker' in attr.class %}
-            {% set attr = attr|merge({'data-prepend-text': '#'}) %}
         {% endif %}
 
         {% set group_attr = group_attr|default({})|merge({'class': 'form__group ' ~ group_attr.class|default('')|trim}) %}
