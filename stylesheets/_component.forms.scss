@@ -77,6 +77,7 @@ fieldset {
     &[type="tel"],
     &[type="text"],
     &[type="time"],
+    &[type="datetime-local"],
     &[type="url"],
     &[type="week"] {
         border: 1px solid $input-border;
