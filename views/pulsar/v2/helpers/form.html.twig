@@ -621,6 +621,18 @@ https://jadu.github.io/pulsar/form-helpers/compound
 
     <div class="controls">
         {% for input in options.inputs %}
+            {%
+                if (input.prepend is defined and input.prepend is not empty)
+                or (input.append is defined and input.append is not empty)
+            %}
+                <div class="input-group">
+                {% if input.prepend is defined and input.prepend is not empty %}
+                    <span class="input-group-addon">
+                        {{ util.addon(input.prepend|default) }}
+                    </span>
+                {% endif %}
+            {% endif %}
+            
             {{
                 elem.label(input
                     |only('label guidance-container required show-label')
@@ -642,7 +654,24 @@ https://jadu.github.io/pulsar/form-helpers/compound
             {% else %}
                 {{ elem.input(inputOptions) }}
             {% endif %}
+
+            {% if input.append is defined and input.append is not empty %}
+                {% if input.append is defined and input.append is not empty %}
+                    <span class="input-group-addon">
+                        {{ util.addon(input.append|default) }}
+                    </span>
+                {% endif %}
+            {% endif %}
+
+            {%
+                if (input.prepend is defined and input.prepend is not empty)
+                or (input.append is defined and input.append is not empty)
+            %}
+                </div>
+            {% endif %}
+
         {% endfor %}
+
 
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {{ form.error({ 'value': options.error|default, 'error_ids':  options.error_ids }) }}

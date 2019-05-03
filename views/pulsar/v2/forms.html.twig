@@ -190,6 +190,13 @@
     {{ block('form_label') }}
 {%- endblock datetime_label -%}
 
+{%- block dateinterval_label -%}
+    {% if widget != 'single_text' %}
+        {% set element = 'legend' %}
+    {% endif %}
+    {{ block('form_label') }}
+{%- endblock dateinterval_label -%}
+
 {%- block datetime_row -%}
     {% if widget != 'single_text' %}
         {% set group_element = 'fieldset' %}
@@ -211,15 +218,19 @@
             'minutes' : with_minutes,
             'seconds' : with_seconds,
         } %}
+        {% set help_text = '' %}
         <div {{ block('widget_container_attributes') }}>
             {% for display, show in displays -%}
                 {%- if show -%}
-                    <div class="input-group padding-right pull-left">
-                        {{ form_widget(form[display]) }}
-                        <span class="input-group-addon">{{ display|capitalize }}</span>
-                    </div>
+                    {{ form_widget(form[display]) }}
+                    {% if loop.first %}
+                        {%- set help_text = display|capitalize -%}
+                    {% else %}
+                        {%- set help_text = help_text ~ ' / ' ~ display|capitalize -%}
+                    {% endif %}
                 {%- endif -%}
             {%- endfor %}
+            <span class="help-block">{{ help_text }}</span>
         </div>
         {%- if with_invert -%}
             {{ form_widget(form.invert) }}
@@ -230,7 +241,8 @@
 
 {%- block dateinterval_row -%}
     {% if widget != 'single_text' %}
-        {% set group_attr = {'class': 'form__group--medium'} %}
+        {% set group_element = 'fieldset' %}
+        {% set group_attr = {'class': 'form__group--compound form__control-col--2'} %}
     {% endif %}
     {{ block('form_row') }}
 {%- endblock dateinterval_row -%}

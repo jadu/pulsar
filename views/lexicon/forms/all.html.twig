@@ -8,6 +8,41 @@
     }}
 
     {{
+        form.compound({
+            'id': 'comp-' ~ i,
+            'class': 'form__control-col--2',
+            'help': 'For example: 25 12 1980',
+            'label': 'Date of birth',
+            'inputs': [
+                {
+                    'label': 'Day',
+                    'id': 'dd-' ~ i,
+                    'placeholder': 'DD',
+                    'append': 'Days',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'label': 'Month',
+                    'id': 'mm-' ~ i,
+                    'prepend': 'Month',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'label': 'Year',
+                    'id': 'yyyy-' ~ i,
+                    'append': 'Years',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
         form.text({
             'label': 'Text',
             'id': i
@@ -22,18 +57,6 @@
         })
     }}
     {% set i = i + 1 %}
-
-    <div class="form__group"><label class="control__label required">Periods&nbsp;<span class="required-indicator" data-toggle="tooltips" title="" data-original-title="required">*</span></label><div class="controls"><div class="table-container"><table class="table"><thead><tr><th>Day</th><th class="u-text-align-center">Bookable</th><th>Periods</th></tr></thead><tbody><tr><td>Monday</td><td class="u-text-align-center"><i title="" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-active" data-original-title="Bookable"></i></td><td><button class="btn btn--small">All Day</button>
-                &nbsp;
-                        <button class="btn btn--small"><i aria-hidden="true" class="icon-plus"></i></button></td></tr><tr><td>Tuesday</td><td class="u-text-align-center"><i title="" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-active" data-original-title="Bookable"></i></td><td><button class="btn btn--small">All Day</button>
-                &nbsp;
-                        <button class="btn btn--small"><i aria-hidden="true" class="icon-plus"></i></button></td></tr><tr><td>Wednesday</td><td class="u-text-align-center"><i title="" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-active" data-original-title="Bookable"></i></td><td><button class="btn btn--small">All Day</button>
-                &nbsp;
-                        <button class="btn btn--small"><i aria-hidden="true" class="icon-plus"></i></button></td></tr><tr><td>Thursday</td><td class="u-text-align-center"><i title="" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-active" data-original-title="Bookable"></i></td><td><button class="btn btn--small">All Day</button>
-                &nbsp;
-                        <button class="btn btn--small"><i aria-hidden="true" class="icon-plus"></i></button></td></tr><tr><td>Friday</td><td class="u-text-align-center"><i title="" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-active" data-original-title="Bookable"></i></td><td><button class="btn btn--small">All Day</button>
-                &nbsp;
-                        <button class="btn btn--small"><i aria-hidden="true" class="icon-plus"></i></button></td></tr><tr><td>Saturday</td><td class="u-text-align-center"><i title="" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-times-rectangle status--icon is-offline" data-original-title="Not Bookable"></i></td><td><button class="btn btn--small"><i aria-hidden="true" class="icon-plus"></i></button></td></tr><tr><td>Sunday</td><td class="u-text-align-center"><i title="" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-times-rectangle status--icon is-offline" data-original-title="Not Bookable"></i></td><td><button class="btn btn--small"><i aria-hidden="true" class="icon-plus"></i></button></td></tr></tbody></table></div></div></div>
 
     {{
         form.password({
