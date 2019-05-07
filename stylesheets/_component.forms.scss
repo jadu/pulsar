@@ -397,6 +397,7 @@ fieldset {
 .form__group.form__group .input-group .select2.select2,
 .form__group.form__group .input-group .form__control.form__control {
     flex: 1 1 auto;
+    overflow: hidden;
     width: 1%; // needed to stop overflow, when option has a long string on < desktop
 
     @include ie-lte(9) {
