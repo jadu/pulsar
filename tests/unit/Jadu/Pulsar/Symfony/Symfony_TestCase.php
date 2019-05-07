@@ -124,14 +124,16 @@ abstract class Symfony_TestCase extends TestCase
         $output = preg_replace('/(form_)\w+(--error_\d+)/', 'guid-1', $output);
 
         // Move the type attribute to the start
-        $inputs = explode('<input', $output);
-        foreach ($inputs as $i => $input) {
-            $typeMatches = [];
-            preg_match('/\stype=([^\s]*)/', $input, $typeMatches);
-            $inputs[$i] = reset($typeMatches) . preg_replace('/\stype=([^\s]*)/', '', $input, 1);
-        }
+        foreach(['<input', '<button'] as $element) {
+            $inputs = explode($element, $output);
+            foreach ($inputs as $i => $input) {
+                $typeMatches = [];
+                preg_match('/\stype=([^\s]*)/', $input, $typeMatches);
+                $inputs[$i] = reset($typeMatches) . preg_replace('/\stype=([^\s]*)/', '', $input, 1);
+            }
 
-        $output = implode('<input', $inputs);
+            $output = implode($element, $inputs);
+        }
 
         // Switch around class and value when they're in the wrong order
         $output = preg_replace('/\sclass="([^"]*)"\svalue="([^"]*)"/', ' value="$2" class="$1"', $output);
@@ -149,7 +151,7 @@ abstract class Symfony_TestCase extends TestCase
      */
     public function compareOutput($form, $fixture)
     {
-        $expected = $this->normalizeOutput($this->twig->render('form/' . $fixture));
+        $expected = $this->normalizeOutput($this->twig->render($fixture));
         preg_match("/<body[^>]*>(.*?)<\/body>/is", $expected, $expectedMatches);
 
         $actual = $this->twig->render('symfony.html.twig', ['formTest' => $form->createView()]);

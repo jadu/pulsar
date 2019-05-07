@@ -18,7 +18,7 @@ class PercentTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'percent.html.twig');
+        $this->compareOutput($form, 'form/percent.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class PercentTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'percent-required.html.twig');
+        $this->compareOutput($form, 'form/percent-required.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class PercentTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'percent-help.html.twig');
+        $this->compareOutput($form, 'form/percent-help.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class PercentTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'percent-guidance.html.twig');
+        $this->compareOutput($form, 'form/percent-guidance.html.twig');
     }
 
     /**
@@ -87,7 +87,7 @@ class PercentTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'percent-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/percent-guidance-container.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class PercentTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'percent-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/percent-required-guidance.html.twig');
     }
 
     /**
@@ -122,7 +122,7 @@ class PercentTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'percent-prepend.html.twig');
+        $this->compareOutput($form, 'form/percent-prepend.html.twig');
     }
 
 }

@@ -18,7 +18,7 @@ class CheckboxTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'checkbox-label.html.twig');
+        $this->compareOutput($form, 'form/checkbox-label.html.twig');
     }
 
     public function testCheckboxFieldRequired ()
@@ -29,7 +29,7 @@ class CheckboxTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'checkbox-required.html.twig');
+        $this->compareOutput($form, 'form/checkbox-required.html.twig');
     }
 
     public function testCheckboxFieldHelp ()
@@ -44,7 +44,7 @@ class CheckboxTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'checkbox-help.html.twig');
+        $this->compareOutput($form, 'form/checkbox-help.html.twig');
     }
 
     public function testCheckboxFieldGuidanceText ()
@@ -59,7 +59,7 @@ class CheckboxTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'checkbox-guidance.html.twig');
+        $this->compareOutput($form, 'form/checkbox-guidance.html.twig');
     }
 
     public function testCheckboxFieldGuidanceContainer ()
@@ -75,7 +75,7 @@ class CheckboxTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'checkbox-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/checkbox-guidance-container.html.twig');
     }
 
     public function testCheckboxFieldRequiredGuidanceText ()
@@ -89,7 +89,7 @@ class CheckboxTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'checkbox-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/checkbox-required-guidance.html.twig');
     }
 
 }

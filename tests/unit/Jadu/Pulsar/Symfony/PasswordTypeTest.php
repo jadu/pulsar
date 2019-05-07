@@ -18,7 +18,7 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password.html.twig');
+        $this->compareOutput($form, 'form/password.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password-required.html.twig');
+        $this->compareOutput($form, 'form/password-required.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password-help.html.twig');
+        $this->compareOutput($form, 'form/password-help.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password-guidance.html.twig');
+        $this->compareOutput($form, 'form/password-guidance.html.twig');
     }
 
     /**
@@ -87,7 +87,7 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/password-guidance-container.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/password-required-guidance.html.twig');
     }
 
     /**
@@ -122,7 +122,7 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password-prepend.html.twig');
+        $this->compareOutput($form, 'form/password-prepend.html.twig');
     }
 
     /**
@@ -140,7 +140,7 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password-append.html.twig');
+        $this->compareOutput($form, 'form/password-append.html.twig');
     }
 
     /**
@@ -159,6 +159,6 @@ class PasswordTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'password-prepend-append.html.twig');
+        $this->compareOutput($form, 'form/password-prepend-append.html.twig');
     }
 }

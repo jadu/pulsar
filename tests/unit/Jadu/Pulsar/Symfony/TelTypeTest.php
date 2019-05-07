@@ -18,7 +18,7 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel.html.twig');
+        $this->compareOutput($form, 'form/tel.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel-required.html.twig');
+        $this->compareOutput($form, 'form/tel-required.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel-help.html.twig');
+        $this->compareOutput($form, 'form/tel-help.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel-guidance.html.twig');
+        $this->compareOutput($form, 'form/tel-guidance.html.twig');
     }
 
     /**
@@ -87,7 +87,7 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/tel-guidance-container.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/tel-required-guidance.html.twig');
     }
 
     /**
@@ -122,7 +122,7 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel-prepend.html.twig');
+        $this->compareOutput($form, 'form/tel-prepend.html.twig');
     }
 
     /**
@@ -140,7 +140,7 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel-append.html.twig');
+        $this->compareOutput($form, 'form/tel-append.html.twig');
     }
 
     /**
@@ -159,6 +159,6 @@ class TelTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'tel-prepend-append.html.twig');
+        $this->compareOutput($form, 'form/tel-prepend-append.html.twig');
     }
 }

@@ -18,7 +18,7 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range.html.twig');
+        $this->compareOutput($form, 'form/range.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range-required.html.twig');
+        $this->compareOutput($form, 'form/range-required.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range-help.html.twig');
+        $this->compareOutput($form, 'form/range-help.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range-guidance.html.twig');
+        $this->compareOutput($form, 'form/range-guidance.html.twig');
     }
 
     /**
@@ -87,7 +87,7 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/range-guidance-container.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/range-required-guidance.html.twig');
     }
 
     /**
@@ -122,7 +122,7 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range-prepend.html.twig');
+        $this->compareOutput($form, 'form/range-prepend.html.twig');
     }
 
     /**
@@ -140,7 +140,7 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range-append.html.twig');
+        $this->compareOutput($form, 'form/range-append.html.twig');
     }
 
     /**
@@ -159,6 +159,6 @@ class RangeTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'range-prepend-append.html.twig');
+        $this->compareOutput($form, 'form/range-prepend-append.html.twig');
     }
 }

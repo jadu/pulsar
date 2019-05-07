@@ -3,8 +3,10 @@
 {{
     form.file({
         'label': 'foo',
-        'guidance': 'bar',
-        'guidance-container': 'baz'
+        'guidance': 'foo <span class="bar">bar</span>',
+        'name': 'form[field]',
+        'guidance-container': 'baz',
+        'id': 'form_field'
     })
 }}
 {% endblock %}

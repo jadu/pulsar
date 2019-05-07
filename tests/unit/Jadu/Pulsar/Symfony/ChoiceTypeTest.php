@@ -28,7 +28,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice.html.twig');
+        $this->compareOutput($form, 'form/choice.html.twig');
     }
 
     /**
@@ -51,7 +51,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-checkbox.html.twig');
+        $this->compareOutput($form, 'form/choice-checkbox.html.twig');
     }
 
     /**
@@ -75,7 +75,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-select.html.twig');
+        $this->compareOutput($form, 'form/choice-select.html.twig');
     }
 
     /**
@@ -99,7 +99,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-required.html.twig');
+        $this->compareOutput($form, 'form/choice-required.html.twig');
     }
 
     /**
@@ -125,7 +125,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-help.html.twig');
+        $this->compareOutput($form, 'form/choice-help.html.twig');
     }
 
     /**
@@ -151,7 +151,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-checkbox-help.html.twig');
+        $this->compareOutput($form, 'form/choice-checkbox-help.html.twig');
     }
 
     /**
@@ -177,7 +177,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-guidance.html.twig');
+        $this->compareOutput($form, 'form/choice-guidance.html.twig');
     }
 
     /**
@@ -203,7 +203,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-checkbox-guidance.html.twig');
+        $this->compareOutput($form, 'form/choice-checkbox-guidance.html.twig');
     }
 
     /**
@@ -230,7 +230,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/choice-guidance-container.html.twig');
     }
 
     /**
@@ -257,7 +257,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-checkbox-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/choice-checkbox-guidance-container.html.twig');
     }
 
     /**
@@ -284,7 +284,7 @@ class ChoiceTypeTest extends Symfony_TestCase
             ))
             ->getForm();
             
-        $this->compareOutput($form, 'choice-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/choice-required-guidance.html.twig');
     }
 
 }
