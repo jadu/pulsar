@@ -109,6 +109,14 @@
     {{ block('form_row') }}
 {% endblock range_row %}
 
+{% block range_widget %}
+    {% if required %}
+        {# A range imput is not allowed the HTML5 `required` attribute. It will always send a value. #}
+        {% set required = false %}
+    {% endif %}
+    {{ parent() }}
+{% endblock range_widget %}
+
 {%- block date_widget -%}
     {%- if widget == 'single_text' -%}
         {# Force date widgets to be text for pickaday #}
