@@ -1,6 +1,6 @@
-.colorpicker .input-group:not(.has-btn-prepended):not(.has-btn-appended) .form__control:not(:last-child) {
-    border-bottom-right-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+.colorpicker .input-group:not(.has-btn-prepended):not(.has-btn-appended) .form__control {
+    border-bottom-right-radius: $border-radius !important;
+    border-top-right-radius: $border-radius !important;
     width: 110px;
 }
 
