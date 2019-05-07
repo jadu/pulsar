@@ -1,6 +1,0 @@
-<div class="form__group form-range">
-    <label for="foo" class="control__label">Size</label>
-    <div class="controls">
-        <input id="foo" name="bar" disabled type="range" class="form__control">
-    </div>
-</div>
