@@ -18,7 +18,7 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url.html.twig');
+        $this->compareOutput($form, 'form/url.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url-required.html.twig');
+        $this->compareOutput($form, 'form/url-required.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url-help.html.twig');
+        $this->compareOutput($form, 'form/url-help.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url-guidance.html.twig');
+        $this->compareOutput($form, 'form/url-guidance.html.twig');
     }
 
     /**
@@ -87,7 +87,7 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/url-guidance-container.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/url-required-guidance.html.twig');
     }
 
     /**
@@ -122,7 +122,7 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url-prepend.html.twig');
+        $this->compareOutput($form, 'form/url-prepend.html.twig');
     }
 
     /**
@@ -140,7 +140,7 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url-append.html.twig');
+        $this->compareOutput($form, 'form/url-append.html.twig');
     }
 
     /**
@@ -159,6 +159,6 @@ class UrlTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'url-prepend-append.html.twig');
+        $this->compareOutput($form, 'form/url-prepend-append.html.twig');
     }
 }

@@ -18,7 +18,7 @@ class ToggleSwitchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'toggle_switch.html.twig');
+        $this->compareOutput($form, 'form/toggle_switch.html.twig');
     }
 
     public function testCheckboxFieldHelp ()
@@ -35,7 +35,7 @@ class ToggleSwitchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'toggle_switch-help.html.twig');
+        $this->compareOutput($form, 'form/toggle_switch-help.html.twig');
     }
 
     public function testCheckboxFieldGuidanceText ()
@@ -50,7 +50,7 @@ class ToggleSwitchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'toggle_switch-guidance.html.twig');
+        $this->compareOutput($form, 'form/toggle_switch-guidance.html.twig');
     }
 
     public function testToggleFieldGuidanceContainer ()
@@ -66,7 +66,7 @@ class ToggleSwitchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'toggle_switch-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/toggle_switch-guidance-container.html.twig');
     }
 
 }

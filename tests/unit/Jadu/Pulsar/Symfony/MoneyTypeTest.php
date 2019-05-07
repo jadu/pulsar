@@ -18,7 +18,7 @@ class MoneyTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'money.html.twig');
+        $this->compareOutput($form, 'form/money.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class MoneyTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'money-required.html.twig');
+        $this->compareOutput($form, 'form/money-required.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class MoneyTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'money-help.html.twig');
+        $this->compareOutput($form, 'form/money-help.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class MoneyTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'money-guidance.html.twig');
+        $this->compareOutput($form, 'form/money-guidance.html.twig');
     }
 
     /**
@@ -87,7 +87,7 @@ class MoneyTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'money-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/money-guidance-container.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class MoneyTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'money-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/money-required-guidance.html.twig');
     }
 
     /**
@@ -122,7 +122,7 @@ class MoneyTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'money-prepend.html.twig');
+        $this->compareOutput($form, 'form/money-prepend.html.twig');
     }
 
     /**
@@ -140,7 +140,7 @@ class MoneyTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'money-append.html.twig');
+        $this->compareOutput($form, 'form/money-append.html.twig');
     }
 
 }

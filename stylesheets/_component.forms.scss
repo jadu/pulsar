@@ -632,7 +632,7 @@ fieldset {
 }
 
 .form-choice {
-    > .controls {
+    > .controls > .control__label:first-of-type {
         margin-top: 11px; // magic number to align with main label
 
         > .control__label {

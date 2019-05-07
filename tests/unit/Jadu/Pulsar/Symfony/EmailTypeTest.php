@@ -18,7 +18,7 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email.html.twig');
+        $this->compareOutput($form, 'form/email.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email-required.html.twig');
+        $this->compareOutput($form, 'form/email-required.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email-help.html.twig');
+        $this->compareOutput($form, 'form/email-help.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email-guidance.html.twig');
+        $this->compareOutput($form, 'form/email-guidance.html.twig');
     }
 
     /**
@@ -87,7 +87,7 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/email-guidance-container.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/email-required-guidance.html.twig');
     }
 
     /**
@@ -122,7 +122,7 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email-prepend.html.twig');
+        $this->compareOutput($form, 'form/email-prepend.html.twig');
     }
 
     /**
@@ -140,7 +140,7 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email-append.html.twig');
+        $this->compareOutput($form, 'form/email-append.html.twig');
     }
 
     /**
@@ -159,6 +159,6 @@ class EmailTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'email-prepend-append.html.twig');
+        $this->compareOutput($form, 'form/email-prepend-append.html.twig');
     }
 }

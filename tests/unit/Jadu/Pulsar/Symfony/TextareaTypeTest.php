@@ -15,7 +15,7 @@ class TextareaTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'textarea.html.twig');
+        $this->compareOutput($form, 'form/textarea.html.twig');
     }
 
     public function testTextareaFieldRequired ()
@@ -26,7 +26,7 @@ class TextareaTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'textarea-required.html.twig');
+        $this->compareOutput($form, 'form/textarea-required.html.twig');
     }
 
     public function testTextareaFieldHelp ()
@@ -41,7 +41,7 @@ class TextareaTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'textarea-help.html.twig');
+        $this->compareOutput($form, 'form/textarea-help.html.twig');
     }
 
     public function testTextareaFieldGuidanceText ()
@@ -56,7 +56,7 @@ class TextareaTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'textarea-guidance.html.twig');
+        $this->compareOutput($form, 'form/textarea-guidance.html.twig');
     }
 
     public function testTextareaFieldGuidanceContainer ()
@@ -72,7 +72,7 @@ class TextareaTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'textarea-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/textarea-guidance-container.html.twig');
     }
 
     public function testTextareaFieldRequiredGuidanceText ()
@@ -86,7 +86,7 @@ class TextareaTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'textarea-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/textarea-required-guidance.html.twig');
     }
 
 }

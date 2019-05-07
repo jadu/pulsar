@@ -1,11 +1,11 @@
 {% extends '@cssTests/visual-regression-layout.html.twig' %}
 {% block body %}
 {{
-    form.file({
+    html.button({
         'label': 'foo',
-        'help': 'my help text',
-        'name': 'form[field]',
-        'id': 'form_field'
+        'id': 'form_field',
+        'name': 'field',
+        'type': 'button'
     })
 }}
 {% endblock %}

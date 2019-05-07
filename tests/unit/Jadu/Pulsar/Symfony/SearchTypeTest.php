@@ -18,7 +18,7 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search.html.twig');
+        $this->compareOutput($form, 'form/search.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search-required.html.twig');
+        $this->compareOutput($form, 'form/search-required.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search-help.html.twig');
+        $this->compareOutput($form, 'form/search-help.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search-guidance.html.twig');
+        $this->compareOutput($form, 'form/search-guidance.html.twig');
     }
 
     /**
@@ -87,7 +87,7 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search-guidance-container.html.twig');
+        $this->compareOutput($form, 'form/search-guidance-container.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search-required-guidance.html.twig');
+        $this->compareOutput($form, 'form/search-required-guidance.html.twig');
     }
 
     /**
@@ -122,7 +122,7 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search-prepend.html.twig');
+        $this->compareOutput($form, 'form/search-prepend.html.twig');
     }
 
     /**
@@ -140,7 +140,7 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search-append.html.twig');
+        $this->compareOutput($form, 'form/search-append.html.twig');
     }
 
     /**
@@ -159,6 +159,6 @@ class SearchTypeTest extends Symfony_TestCase
             ))
             ->getForm();
 
-        $this->compareOutput($form, 'search-prepend-append.html.twig');
+        $this->compareOutput($form, 'form/search-prepend-append.html.twig');
     }
 }
