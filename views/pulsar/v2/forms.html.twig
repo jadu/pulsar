@@ -124,13 +124,11 @@
         {%- set attr = attr|merge({'data-append-icon': 'icon-calendar', 'data-datepicker': 'true', 'placeholder': attr.placeholder|default('dd/mm/yyyy')}) -%}
         {{- block('form_widget_simple') -}}
     {%- else -%}
-        {%- if not skipWidgetContainer|default(false) -%}<div {{ block('widget_container_attributes') }}>{%- endif -%}
-            {{- date_pattern|replace({
-                '{{ year }}':  form_widget(form.year, {'attr': {'class': 'form__control-col--2'}}),
-                '{{ month }}': form_widget(form.month, {'attr': {'class': 'form__control-col--2'}}),
-                '{{ day }}':   form_widget(form.day, {'attr': {'class': 'form__control-col--1'}}),
-            })|raw -}}
-        {%- if not skipWidgetContainer|default(false) -%}</div>{%- endif -%}
+        {{- date_pattern|replace({
+            '{{ year }}':  form_label(form.year, null, {'label_attr': {'class': 'hide'} }) ~ form_widget(form.year, {'attr': {'class': 'form__control-col--1', 'placeholder': widget == 'choice' ? null : 'Year'} }),
+            '{{ month }}': form_label(form.month, null, {'label_attr': {'class': 'hide'} }) ~ form_widget(form.month, {'attr': {'class': 'form__control-col--1', 'placeholder': widget == 'choice' ? null : 'Month'} }),
+            '{{ day }}':   form_label(form.day, null, {'label_attr': {'class': 'hide'} }) ~ form_widget(form.day, {'attr': {'class': 'form__control-col--1', 'placeholder': widget == 'choice' ? null : 'Day'} }),
+        })|raw -}}
     {%- endif -%}
 {%- endblock date_widget -%}
 
@@ -153,13 +151,11 @@
     {%- if widget == 'single_text' -%}
         {{ block('form_widget_simple') }}
     {%- else -%}
-        {%- set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} -%}
-        {%- set vars = vars|merge({'attr': vars.attr|default({})|merge({'class': 'form__control-col--1'})}) -%}
-        {%- if not skipWidgetContainer|default(false) -%}<div {{ block('widget_container_attributes') }}>{%- endif -%}
-            {{- form_widget(form.hour, vars) -}}
-            {%- if with_minutes -%}<span class="padding-right">:</span>{{- form_widget(form.minute, vars) -}}{%- endif -%}
-            {%- if with_seconds -%}<span class="padding-right">:</span>{{- form_widget(form.second, vars) -}}{%- endif -%}
-        {%- if not skipWidgetContainer|default(false) -%}</div>{%- endif -%}
+        {%- set vars = widget == 'text' ? { 'attr': { 'size': 1 } } : { 'attr' : {} } -%}
+        {{- form_label(form.hour, null, {'label_attr': {'class': 'hide'} }) -}}
+        {{- form_widget(form.hour, vars|merge({'attr': vars.attr|merge({'class': 'form__control-col--1', 'placeholder': widget == 'choice' ? null : 'Hours'})})) -}}
+        {%- if with_minutes -%}<span class="padding-right">:</span>{{- form_label(form.minute, null, {'label_attr': {'class': 'hide'} }) -}}{{- form_widget(form.minute, vars|merge({'attr': vars.attr|merge({'class': 'form__control-col--1', 'placeholder': widget == 'choice' ? null : 'Minutes'})})) -}}{%- endif -%}
+        {%- if with_seconds -%}<span class="padding-right">:</span>{{- form_label(form.second, null, {'label_attr': {'class': 'hide'} }) -}}{{- form_widget(form.second, vars|merge({'attr': vars.attr|merge({'class': 'form__control-col--1', 'placeholder': widget == 'choice' ? null : 'Seconds'})})) -}}{%- endif -%}
     {%- endif -%}
 {%- endblock time_widget -%}
 
@@ -182,10 +178,8 @@
     {% if widget == 'single_text' %}
         {{- block('form_widget_simple') -}}
     {%- else -%}
-        <div {{ block('widget_container_attributes') }}>
-            {{- form_widget(form.date, {'skipWidgetContainer': true}) -}}
-            {{- form_widget(form.time, {'skipWidgetContainer': true}) -}}
-        </div>
+        {{- form_widget(form.date) -}}
+        {{- form_widget(form.time) -}}
         {{- form_errors(form.date) -}}
         {{- form_errors(form.time) -}}
     {%- endif -%}
