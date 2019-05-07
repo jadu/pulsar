@@ -195,6 +195,7 @@ $form = $formFactory->createBuilder()
     ->add('DateIntervalInteger', DateIntervalType::class, array(
         'label' => 'Date Interval (integer)',
         'widget' => 'integer',
+        'with_invert' => true,
     ))
     ->add('DateIntervalSingleText', DateIntervalType::class, array(
         'label' => 'Date Interval (single text)',

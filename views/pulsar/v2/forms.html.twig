@@ -226,22 +226,20 @@
             'minutes' : with_minutes,
             'seconds' : with_seconds,
         } %}
-        {% set help_text = '' %}
-        <div {{ block('widget_container_attributes') }}>
-            {% for display, show in displays -%}
-                {%- if show -%}
+        {% for display, show in displays -%}
+            {%- if show -%}
+                <div class="input-group">
+                    {{ form_label(form[display], null, {'label_attr': {'class': 'hide'} }) }}
                     {{ form_widget(form[display]) }}
-                    {% if loop.first %}
-                        {%- set help_text = display|capitalize -%}
-                    {% else %}
-                        {%- set help_text = help_text ~ ' / ' ~ display|capitalize -%}
-                    {% endif %}
-                {%- endif -%}
-            {%- endfor %}
-            <span class="help-block">{{ help_text }}</span>
-        </div>
-        {%- if with_invert -%}
-            {{ form_widget(form.invert) }}
+                    <span class="input-group-addon">{{ display|capitalize }}</span>
+                </div>
+            {%- endif -%}
+        {%- endfor %}
+        {% if with_invert -%}
+            <label class="control__label">
+                {{ form_widget(form.invert) }}
+                Invert
+            </label>
         {%- endif %}
         {{- form_errors(form) -}}
     {%- endif -%}
