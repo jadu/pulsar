@@ -731,25 +731,42 @@ fieldset.form__group--compound {
     }
 
     > .controls {
-        // override regular stacked styling
+        @include respond-min($screen-small) {
+            > .input-group {
+                display: inline-flex;
+            }
+        }
+
         > .form__control,
         > .control__label,
         &:first-child > .control__label {
-            clear: none;
             display: inline-block;
+        }
+
+        // override regular stacked styling
+        > .form__control,
+        > .control__label,
+        &:first-child > .control__label,
+        > .input-group {
+            clear: none;
             float: none;
-            vertical-align: top;
+            vertical-align: middle;
         }
 
         // make sure inputs are suitably spaced when they stack with 100% width
         // at small screen widths
-        .form__control:not(:last-child) {
-            margin-right: 1%; // needs to be grid gutter var
+        > .form__control,
+        > .control__label,
+        &:first-child > .control__label,
+        > .input-group {
             margin-top: 5px;
 
             @include respond-min($screen-small) {
-                margin-right: 10px;
                 margin-top: 0;
+
+                &:not(:last-child) {
+                    margin-right: 10px;
+                }
             }
         }
 
