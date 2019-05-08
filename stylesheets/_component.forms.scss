@@ -754,15 +754,7 @@ fieldset.form__group--compound {
             clear: none;
             float: none;
             vertical-align: middle;
-        }
-
-        // make sure inputs are suitably spaced when they stack with 100% width
-        // at small screen widths
-        > .form__control,
-        > .control__label,
-        &:first-child > .control__label,
-        > .input-group {
-            margin-bottom: 5px;
+            margin-bottom: 5px; // make sure inputs are suitably spaced when they stack
 
             @include respond-min($screen-small) {
                 &:not(:last-child) {
