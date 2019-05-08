@@ -1,6 +1,0 @@
-<div class="form__group">
-    <label for="inputTextareaRows" class="control__label">Description</label>
-    <div class="controls">
-        <textarea id="inputTextareaRows" rows="5" class="form__control textarea"></textarea>
-    </div>
-</div>

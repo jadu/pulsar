@@ -1,7 +1,0 @@
-<h1 id="aria-billing-address">Billing address</h1>
-{{
-    form.text({
-        'id': 'foo',
-        'aria-labelledby': 'aria-billing-address'
-    })
-}}

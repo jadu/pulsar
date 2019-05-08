@@ -1,6 +1,0 @@
-<div class="form__group form-radio">
-    <label for="foo" class="control__label">Disabled radio</label>
-    <div class="controls">
-        <input id="foo" name="bar" checked="" disabled type="radio" class="form__control radio">
-    </div>
-</div>

@@ -1,7 +1,0 @@
-<div class="form__group form__control--col-1">
-    <label for="inputTextareaWidth" class="control__label">Description</label>
-    <div class="controls">
-        <textarea id="inputTextareaWidth" rows="2" class="form__control textarea"></textarea>
-        <span class="help-block">Optional help text</span>
-    </div>
-</div>

@@ -1,8 +1,0 @@
-{{
-    form.date({
-        'label': 'Date picker',
-        'id': 'foo',
-        'name': 'bar',
-        'disabled': true
-    })
-}}

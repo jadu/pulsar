@@ -1,9 +1,0 @@
-<div class="form__group colorpicker js-colorpicker">
-    <label for="foo" class="control__label">Pick colour</label>
-    <div class="controls">
-        <div class="input-group">
-            <span class="input-group-addon">#</span>
-            <input id="foo" type="text" class="form__control">    
-        </div>
-    </div>
-</div>

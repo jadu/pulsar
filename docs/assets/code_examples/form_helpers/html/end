@@ -1,5 +1,0 @@
-    <div class="form__actions">
-        <button class="btn btn--primary" type="submit">Primary Action</button>
-        <a href="/home" class="btn btn--naked">Cancel</button>
-    </div>
-</form>

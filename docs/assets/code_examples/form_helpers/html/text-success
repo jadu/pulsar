@@ -1,7 +1,0 @@
-<div class="form__group has-success">
-    <label for="inputTextSuccess" class="control__label">First name</label>
-    <div class="controls">
-        <input id="inputTextSuccess" name="inputTextSuccess" type="text" class="form__control">
-        <span class="help-block">Optional help text</span>
-    </div>
-</div>
