@@ -8,6 +8,7 @@ class TableDetailComponent {
     constructor ($html) {
         this.$html = $html;
         this.focusableElementList = 'a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]';
+        this.panelIsOpen = false;
     }
 
     /**
@@ -34,6 +35,10 @@ class TableDetailComponent {
             $triggeringElement;
 
         this.$table = this.$html.find('[data-table-detail-table]');
+
+        if (!this.$table.length) {
+            return;
+        }
 
         // Check panel hasn't already been added, in case of a datatable re-initting this component on paginated page draw
         if ($panelAlreadyExists.length === 0) {
@@ -80,7 +85,8 @@ class TableDetailComponent {
         // Close with backdrop click
         this.$tableDetailBackdrop.on('click', (event) => {
             event.preventDefault();
-            if (this.$tableDetailBackdrop.hasClass('in')) {
+            if (this.panelIsOpen) {
+                console.log('backdrop clicked');
                 this.closeDetail();
                 $triggeringElement.focus();
             }
@@ -88,7 +94,8 @@ class TableDetailComponent {
 
         // Close ESC button
         this.$html.on('keydown', (event) => {
-            if (event.keyCode === 27) {
+            if (event.keyCode === 27 && this.panelIsOpen) {
+                console.log('esc pressed');
                 this.closeDetail();
                 $triggeringElement.focus();
             }
@@ -117,6 +124,9 @@ class TableDetailComponent {
         // Apply backdrop
         this.$tableDetailBackdrop.addClass('in');
 
+        // Mark panel as open
+        this.panelIsOpen = true;
+
         // Open panel
         this.$detailPanel.addClass('table-detail--open');
 
@@ -139,6 +149,9 @@ class TableDetailComponent {
 
         // Close panel
         this.$detailPanel.removeClass('table-detail--open');
+
+        // Mark panel as closed
+        this.panelIsOpen = false;
 
         // Hide panel contents from screen readers
         this.$detailPanel.attr('aria-hidden', 'true');
