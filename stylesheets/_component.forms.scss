@@ -728,6 +728,7 @@ fieldset.form__group--compound {
         float: left; // as we can't use inline-block
         font-size: inherit;
         line-height: inherit;
+        margin: 0;
     }
 
     > .controls {
