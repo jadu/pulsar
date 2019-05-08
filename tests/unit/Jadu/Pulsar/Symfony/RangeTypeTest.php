@@ -22,7 +22,7 @@ class RangeTypeTest extends Symfony_TestCase
     }
 
     /**
-     * @group range
+     * @group range1
      */
     public function testRangeFieldRequired ()
     {

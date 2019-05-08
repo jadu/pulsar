@@ -109,6 +109,14 @@
     {{ block('form_row') }}
 {% endblock range_row %}
 
+{%- block range_label -%}
+    {% if required %}
+        {# A range imput is not allowed the HTML5 `required` attribute. It will always send a value. #}
+        {% set required = false %}
+    {% endif %}
+    {{ block('form_label') }}
+{%- endblock range_label -%}
+
 {% block range_widget %}
     {% if required %}
         {# A range imput is not allowed the HTML5 `required` attribute. It will always send a value. #}
