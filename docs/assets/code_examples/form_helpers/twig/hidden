@@ -1,6 +1,0 @@
-{{
-    form.hidden({
-        'id': 'mySecret',
-        'value': 'Shh, you can’t see me...'
-    })
-}}

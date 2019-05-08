@@ -1,7 +1,0 @@
-{{
-    html.panel({
-        'title': 'In West Philadelphia born and raised',
-        'body': 'In the playground was where I spent most of my days.',
-        'icon': 'info-sign'
-    })
-}}

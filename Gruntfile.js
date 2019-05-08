@@ -282,17 +282,6 @@ module.exports = function(grunt) {
                     ],
                     dest: 'dist/'
                 }]
-            },
-            docs: {
-                files: [{
-                    cwd: '',
-                    expand: true,
-                    flatten: true,
-                    src: [
-                        'dist/js/bundle.js'
-                    ],
-                    dest: 'docs/assets/'
-                }]
             }
         },
 
@@ -550,14 +539,6 @@ module.exports = function(grunt) {
             files: {
                 src: ['../pulsar/tests/validation/html_output/*.html']
             }
-        },
-
-	    'gh-pages': {
-            options: {
-                base: 'docs/_site',
-                repo: 'https://github.com/jadu/pulsar.git'
-            },
-            src: ['**']
         }
 
     });
@@ -566,8 +547,6 @@ module.exports = function(grunt) {
 
     grunt.config.set('leadingIndent.files', {
         src : [
-            'docs/**/*.md',
-            'docs/**/*.php',
             'css/**/*',
             'js/**/*',
             'src/**/*',

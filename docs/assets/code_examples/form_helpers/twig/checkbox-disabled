@@ -1,8 +1,0 @@
-{{
-    form.checkbox({
-        'label': 'My label',
-        'id': 'foo', 
-        'name': 'bar',
-        'disabled': true
-    })
-}}
