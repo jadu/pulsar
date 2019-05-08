@@ -124,21 +124,24 @@ abstract class Symfony_TestCase extends TestCase
         $output = preg_replace('/(form_)\w+(--error_\d+)/', 'guid-1', $output);
 
         // Move the type attribute to the start
+        $element = false;
         if (stristr($output, '<input')) {
             $element = '<input';
         } else if (stristr($output, '<button')) {
             $element = '<button';
         }
 
-        $inputs = explode($element, $output);
-        
-        foreach ($inputs as $i => $input) {
-            $typeMatches = [];
-            preg_match('/\stype=([^\s]*)/', $input, $typeMatches);
-            $inputs[$i] = reset($typeMatches) . preg_replace('/\stype=([^\s]*)/', '', $input, 1);
-        }
+        if ($element) {
+            $inputs = explode($element, $output);
+            
+            foreach ($inputs as $i => $input) {
+                $typeMatches = [];
+                preg_match('/\stype=([^\s]*)/', $input, $typeMatches);
+                $inputs[$i] = reset($typeMatches) . preg_replace('/\stype=([^\s]*)/', '', $input, 1);
+            }
 
-        $output = implode($element, $inputs);
+            $output = implode($element, $inputs);
+        }
 
         // Switch around class and value when they're in the wrong order
         $output = preg_replace('/\sclass="([^"]*)"\svalue="([^"]*)"/', ' value="$2" class="$1"', $output);
