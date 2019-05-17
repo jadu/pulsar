@@ -13,7 +13,7 @@
     "chartist": "^0.9.8",
     "font-awesome": "4.7.0",
     "html5shiv": "latest",
-    "jquery": "1.x",
+    "jquery": "3.x",
     "jquery-autosize": "latest",
     "jquery-placeholder": "2.3.1",
     "jquery.countdown": "^2.1.0",
