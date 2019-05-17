@@ -138,7 +138,9 @@
                     {{ nav.breadcrumbs(breadcrumbs|default) }}
                     {% block header_actions %}{% endblock %}
                     {% set _ribbon = '' %}
-                    {% set _ribbon = block('ribbon') %}
+                    {% if block('ribbon') is defined %}
+                        {% set _ribbon = block('ribbon') %}
+                    {% endif %}
                     {% if _ribbon is not empty %}
                         {% block ribbon_content %}
                             <div class="ribbon-wrapper">

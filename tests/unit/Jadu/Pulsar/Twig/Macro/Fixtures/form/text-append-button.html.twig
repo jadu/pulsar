@@ -1,6 +1,7 @@
 {% extends '@cssTests/visual-regression-layout.html.twig' %}
-{% block body %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% block body %}
 {{
     form.text({
         'append': html.button({
