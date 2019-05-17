@@ -10,8 +10,6 @@ class ConstantDefinedExtensionTest extends \PHPUnit\Framework\TestCase
     public function setUp()
     {
         $this->ext = new ConstantDefinedExtension();
-
-        define('FOO', true);
     }
 
     public function testGetName()
@@ -27,6 +25,8 @@ class ConstantDefinedExtensionTest extends \PHPUnit\Framework\TestCase
 
         $twig = new Twig_Environment($loader);
         $twig->addExtension(new ConstantDefinedExtension());
+
+        define('FOO', true);
 
         $this->assertEquals('true', $twig->render('index.html'));
     }
