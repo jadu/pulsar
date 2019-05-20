@@ -1,8 +1,0 @@
-{# see 'JSON table data' for information on how to structure the `data` option #}
-{{ 
-    html.datatable({
-        'class': 'table--full table--horizontal',
-        'data-order': '[[ 3, "desc" ]]',
-        'data': data
-    }) 
-}}

@@ -48,6 +48,22 @@ describe('TableDetailComponent', () => {
             }).to.throw('$html must be passed to TableDetailComponent');
 		});
 
+		it('should not add the backdrop if data-table-detail-table attribute is not present', () => {
+			$body.find('[data-table-detail-table]').removeAttr('data-table-detail-table');
+
+			tableDetailComponent.init($body);
+
+			expect($body.find('.table-detail-backdrop')).to.have.length(0);
+		});
+
+		it('should not add the panel markup if data-table-detail-table attribute is not present', () => {
+			$body.find('[data-table-detail-table]').removeAttr('data-table-detail-table');
+
+			tableDetailComponent.init($body);
+
+			expect($body.find('.table-detail')).to.have.length(0);
+		});
+
 		it('should not add the detail panel to the DOM if a panel is already present', () => {
 			$body.append('<div class="table-detail" data-table-detail-panel></div>');
 
