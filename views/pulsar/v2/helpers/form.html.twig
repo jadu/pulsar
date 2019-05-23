@@ -2374,6 +2374,7 @@ add-another-group-text  | string | The text content of the add another new entry
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import _self as form %}
 {% set headingLength = options.headings|length %}
+{% set values = options.values|default([]) %}
 {% spaceless %}
     <div
         class="repeater"
@@ -2382,6 +2383,7 @@ add-another-group-text  | string | The text content of the add another new entry
         data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
         data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
         data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
+        data-repeater-initial-state="{{ values|json_encode }}"
     >
         <div class="repeater__saved-data u-display-none" data-repeater-saved-entries-root></div>
         <div class="form__group">

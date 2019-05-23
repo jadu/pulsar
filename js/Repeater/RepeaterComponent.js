@@ -53,8 +53,9 @@ class Repeater {
 
     /**
      * Initialise
+     * @param {array} initialState
      */
-    init () {
+    init (initialState = []) {
         // Preview UI HTML that is dynamically added to preview rows
         this.previewUiHTML = `           
             <a ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} href="#edit" class="remove__control alt-link margin-right">
@@ -100,6 +101,45 @@ class Repeater {
                 'click',
                 this.handleCancelGroup.bind(this)
             );
+
+        if (initialState.length > 0) {
+            this.parseInitialState(initialState);
+        }
+    }
+
+    parseInitialState (initialState) {
+        initialState.forEach(state => {
+            const group = this.createEditEntryGroup();
+
+            // Create edit form and add values to inputs
+            state.forEach(({ name, value }) => {
+                const input = group.querySelector(`[${this.queryService.getAttr('name')}="${name}"]`);
+
+                if (input === null) {
+                    throw new Error(`Unable to map initial state data with name "${name}"`);
+                }
+
+                // Map select inputs will multiple values
+                if (Array.isArray(value) && input.tagName === 'SELECT') {
+                    value.forEach(val => {
+                        const option = input.querySelector(`[value="${val}"]`);
+
+                        if  (option === null) {
+                            throw new Error(`Unable to map initial state data in select "${name}" to option "${val}"`);
+                        }
+
+                        option.selected = true;
+                    });
+
+                    return;
+                }
+
+                input.value = value;
+            });
+
+            this.handleSaveGroup(null, this.createState(group));
+            this.saveData(group);
+        });
     }
 
     /**
@@ -115,15 +155,20 @@ class Repeater {
     /**
      * Handle the save group action
      * @param event
+     * @param state
      */
-    handleSaveGroup (event) {
+    handleSaveGroup (event = null, state = null) {
         const colspan = parseInt(this.repeater.getAttribute(this.queryService.getAttr('preview-colspan')), 10);
         const previewUi = document.createElement('td');
 
-        event.preventDefault();
+        if (event !== null) {
+            event.preventDefault();
+        }
 
         // Create state object from the current form
-        this.state[this.repeaterEntries] = this.createState(this.queryService.get('add-group-form'));
+        this.state[this.repeaterEntries] = state !== null ?
+            state :
+            this.createState(this.queryService.get('add-group-form'));
 
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
@@ -163,11 +208,13 @@ class Repeater {
             )
         );
 
-        // Create saved data
-        this.repeaterDataService.create(this.queryService.get('add-group-form'), this.repeaterEntries);
+        // Create saved data if this is not the initial parse
+        if (state === null) {
+            this.saveData(this.queryService.get('add-group-form'));
+        }
 
         // Create the edit form
-        this.createEditEntryGroup(this.queryService.get('add-group-form'));
+        this.addGroupToRepeater(this.createEditEntryGroup());
 
         // Remove "empty" placeholder
         this.repeaterPlaceholderService.remove();
@@ -195,6 +242,14 @@ class Repeater {
 
         // Hide new repeater group form
         $(this.queryService.get('add-group-form')).hide();
+    }
+
+    /**
+     * Save repeater state to the DOM
+     * @param group
+     */
+    saveData(group) {
+        this.repeaterDataService.create(group, this.repeaterEntries);
     }
 
     /**
@@ -229,18 +284,9 @@ class Repeater {
 
     /**
      * Create an inline edit form beneath each preview row
-     * @param group {HTMLElement}
      */
-    createEditEntryGroup (group) {
-        const preview = this.repeater.querySelector(
-            `[${this.queryService.getAttr('preview-id')}="${this.repeaterEntries}"]`
-        );
-        const clone = group.cloneNode(true);
-        const clonedControls = clone.querySelector(this.queryService.getQuery('add-group-controls'));
-        const inputsWithState = $(group)
-            .find(this.queryService.getQuery('name'))
-            .toArray()
-            .map(input => this.inputCloneService.clone(input));
+    createEditEntryGroup () {
+        const clone = this.queryService.get('add-group-form').cloneNode(true);
 
         // Add repeater ID to the group
         clone.setAttribute(this.queryService.getAttr('edit-id'), this.repeaterEntries);
@@ -251,8 +297,21 @@ class Repeater {
         // Remove group input name attrs
         this.removeGroupInputNames(clone);
 
+        return clone;
+    }
+
+    addGroupToRepeater (group) {
+        const clonedControls = group.querySelector(this.queryService.getQuery('add-group-controls'));
+        const preview = this.repeater.querySelector(
+            `[${this.queryService.getAttr('preview-id')}="${this.repeaterEntries}"]`
+        );
+        const inputsWithState = $(group)
+            .find(this.queryService.getQuery('name'))
+            .toArray()
+            .map(input => this.inputCloneService.clone(input));
+
         // Add cloned group after preview, this will act as the edit group
-        $(preview).after(clone);
+        $(preview).after(group);
 
         // Append our "deep" cloned inputs
         inputsWithState.forEach(input => {
@@ -274,13 +333,13 @@ class Repeater {
         this.pulsarFormComponent.refresh();
 
         // Hide edit form
-        $(clone).hide();
+        $(group).hide();
 
         // Add events to the save / cancel UI within the group
-        clone.querySelector(this.queryService.getQuery('save-group-button'))
-            .addEventListener('click', this.handleUpdateGroup.bind(this, clone, this.repeaterEntries));
-        clone.querySelector(this.queryService.getQuery('cancel-save-group-button'))
-            .addEventListener('click', this.handleCancelGroupUpdate.bind(this, clone, this.repeaterEntries));
+        group.querySelector(this.queryService.getQuery('save-group-button'))
+            .addEventListener('click', this.handleUpdateGroup.bind(this, group, this.repeaterEntries));
+        group.querySelector(this.queryService.getQuery('cancel-save-group-button'))
+            .addEventListener('click', this.handleCancelGroupUpdate.bind(this, group, this.repeaterEntries));
     }
 
     /**
@@ -290,7 +349,7 @@ class Repeater {
      */
     handleEditGroup (repeaterId, event) {
         const edit = this.queryService.get('preview-root')
-            .querySelector(`[${this.queryService.getAttr('edit-id')}="${repeaterId}"]`)
+            .querySelector(`[${this.queryService.getAttr('edit-id')}="${repeaterId}"]`);
 
         event.preventDefault();
         this.repeaterPreviewService.toggleUi();
@@ -416,7 +475,7 @@ class Repeater {
         });
 
         // Revert radio inputs to pre-edited values
-        this.pseudoRadioInputService.setState(this.state[repeaterId])
+        this.pseudoRadioInputService.setState(this.state[repeaterId]);
 
         // Enable preview UI
         this.repeaterPreviewService.toggleUi();
