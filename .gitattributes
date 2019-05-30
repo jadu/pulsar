@@ -218,7 +218,6 @@
 /libs/moment/bower.json                                         export-ignore
 /libs/moment/CHANGELOG.md                                       export-ignore
 /libs/moment/LICENSE                                            export-ignore
-/libs/moment/locale/                                            export-ignore
 /libs/moment/min/                                               export-ignore
 /libs/moment/moment.d.ts                                        export-ignore
 /libs/moment/readme.md                                          export-ignore
