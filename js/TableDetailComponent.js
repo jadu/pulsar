@@ -86,7 +86,6 @@ class TableDetailComponent {
         this.$tableDetailBackdrop.on('click', (event) => {
             event.preventDefault();
             if (this.panelIsOpen) {
-                console.log('backdrop clicked');
                 this.closeDetail();
                 $triggeringElement.focus();
             }
@@ -95,7 +94,6 @@ class TableDetailComponent {
         // Close ESC button
         this.$html.on('keydown', (event) => {
             if (event.keyCode === 27 && this.panelIsOpen) {
-                console.log('esc pressed');
                 this.closeDetail();
                 $triggeringElement.focus();
             }
