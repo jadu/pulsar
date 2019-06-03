@@ -99,7 +99,7 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
 
             // Add aria-labels to numbered links
             paginationNumbers = pagination.find('.paginate_button:not(.first, .previous, .next, .last)');
-            paginationNumbers.each(function (i) {
+            paginationNumbers.each(function () {
                 let $numberLink = $(this);
                 $numberLink.attr('aria-label', 'Page ' + $numberLink.text());
             });
