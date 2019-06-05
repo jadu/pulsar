@@ -79,7 +79,6 @@
     "sinon": "^2.4.1",
     "sinon-chai": "^2.8.0",
     "sinon-jquery": "^1.0.2",
-    "twig": "^0.9.4",
     "uglifyify": "^3.0.1"
   },
   "browserify": {
