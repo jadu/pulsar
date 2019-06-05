@@ -36,14 +36,6 @@ build:
 	@ sudo gem install scss_lint -v ${SASSLINTVER} --no-ri --no-rdoc --no-user-install
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling PhantomJS...${HR}\n"
-	@ -brew install phantomjs
-	@ echo "\n${CHECK} Done"
-
-	@ echo "${HR}\nInstalling ImageMagick...${HR}\n"
-	@ -brew install imagemagick
-	@ echo "\n${CHECK} Done"
-
 	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"
 	@ -brew install node
 	@ npm install -g npm
