@@ -3,8 +3,8 @@
 var $ = require('jquery'),
     StickyScrollBarComponent = require('./StickyScrollBarComponent');
 
-const { initComplete } = require('./DataTables/datatablesInitComplete');
-const { drawCallback } = require('./DataTables/datatablesDrawCallback');
+const { initComplete } = require('./DataTables/dataTablesInitComplete');
+const { drawCallback } = require('./DataTables/dataTablesDrawCallback');
 
 require('datatables.net')(window, $);
 require('datatables.net-buttons')(window, $);
