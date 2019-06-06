@@ -3,6 +3,9 @@
 var $ = require('jquery'),
     StickyScrollBarComponent = require('./StickyScrollBarComponent');
 
+const { initComplete } = require('./DataTables/datatablesInitComplete');
+const { drawCallback } = require('./DataTables/datatablesDrawCallback');
+
 require('datatables.net')(window, $);
 require('datatables.net-buttons')(window, $);
 require('datatables.net-responsive')(window, $);
@@ -78,32 +81,8 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
                 targets: [0, 1]
             }
         ],
-        initComplete: function () {
-            let pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
-
-            // Wrap pagination in nav
-            pagination.wrap('<nav aria-label="Table pagination"></nav>');
-        },
-        drawCallback: function() {
-            let pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate'),
-                paginationNumbers;
-
-            // Only show pagination when needed
-            pagination.toggle(this.api().page.info().pages > 1);
-
-            // Add aria-current to current page number
-            pagination.find('.paginate_button.current').attr('aria-current', 'true');
-
-            // Remove disable links
-            pagination.find('.paginate_button.disabled').addClass('u-display-none');
-
-            // Add aria-labels to numbered links
-            paginationNumbers = pagination.find('.paginate_button:not(.first, .previous, .next, .last)');
-            paginationNumbers.each(function () {
-                let $numberLink = $(this);
-                $numberLink.attr('aria-label', 'Page ' + $numberLink.text());
-            });
-        },
+        initComplete: initComplete,
+        drawCallback: drawCallback,
         dom: dom,
         language: {
             emptyTable: langEmptyTable,
