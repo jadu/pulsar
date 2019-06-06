@@ -42,6 +42,7 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
     let dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"pl>',
         langEmptyTable = 'There are currently no items to display',
         pageLength = 25,
+        lengthChange = false,
         select = {
             className: 'dt-row-selected',
             style: 'multi',
@@ -54,6 +55,10 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
 
     if ($table.length && $table.data('page-length')) {
         pageLength = $table.data('page-length');
+    }
+
+    if ($table.length && $table.data('length-change')) {
+        lengthChange = $table.data('length-change');
     }
 
     if ($table.length && $table.data('select') === false) {
@@ -100,7 +105,7 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
                 }
             }
         },
-        lengthChange: true,
+        lengthChange: lengthChange,
         pageLength: pageLength,
         pagingType: 'full_numbers',
         responsive: {
