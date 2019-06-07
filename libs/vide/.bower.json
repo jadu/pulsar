@@ -32,18 +32,18 @@
     "jquery": "*"
   },
   "devDependencies": {
-    "qunit": "~1.18.0",
+    "qunit": "^1.19.0",
     "jquery": "jquery#^1.11.3",
     "jquery2": "jquery#^2.1.4"
   },
-  "version": "0.3.7",
-  "_release": "0.3.7",
+  "version": "0.5.1",
+  "_release": "0.5.1",
   "_resolution": {
     "type": "version",
-    "tag": "0.3.7",
-    "commit": "ec11341874552f03476feb002134df653360f64d"
+    "tag": "0.5.1",
+    "commit": "d3a2cbc04bf44fbc49d23761aa77a77425bf4e20"
   },
   "_source": "https://github.com/VodkaBears/Vide.git",
-  "_target": "~0.3.1",
+  "_target": "~0.5.1",
   "_originalSource": "vide"
 }

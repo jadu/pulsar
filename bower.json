@@ -30,7 +30,7 @@
     "susy": "~2.2.6",
     "svgeezy": "latest",
     "Vague.js": "0.0.4",
-    "vide": "~0.3.1",
+    "vide": "~0.5.1",
     "spectrum": "^1.8.0",
     "jt.timepicker": "jquery-timepicker-jt#^1.11.12"
   },

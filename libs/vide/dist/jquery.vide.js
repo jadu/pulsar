@@ -1,5 +1,5 @@
 /*
- *  Vide - v0.3.7
+ *  Vide - v0.5.1
  *  Easy as hell jQuery plugin for video backgrounds.
  *  http://vodkabears.github.io/vide/
  *
@@ -40,7 +40,9 @@
     autoplay: true,
     position: '50% 50%',
     posterType: 'detect',
-    resizing: true
+    resizing: true,
+    bgColor: 'transparent',
+    className: ''
   };
 
   /**
@@ -170,10 +172,10 @@
       callback(this.src);
     };
 
-    $('<img src="' + path + '.gif">').load(onLoad);
-    $('<img src="' + path + '.jpg">').load(onLoad);
-    $('<img src="' + path + '.jpeg">').load(onLoad);
-    $('<img src="' + path + '.png">').load(onLoad);
+    $('<img src="' + path + '.gif">').on('load', onLoad);
+    $('<img src="' + path + '.jpg">').on('load', onLoad);
+    $('<img src="' + path + '.jpeg">').on('load', onLoad);
+    $('<img src="' + path + '.png">').on('load', onLoad);
   }
 
   /**
@@ -239,21 +241,24 @@
     var $wrapper;
 
     // Set styles of a video wrapper
-    $wrapper = vide.$wrapper = $('<div>').css({
-      position: 'absolute',
-      'z-index': -1,
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-      overflow: 'hidden',
-      '-webkit-background-size': 'cover',
-      '-moz-background-size': 'cover',
-      '-o-background-size': 'cover',
-      'background-size': 'cover',
-      'background-repeat': 'no-repeat',
-      'background-position': position.x + ' ' + position.y
-    });
+    $wrapper = vide.$wrapper = $('<div>')
+      .addClass(settings.className)
+      .css({
+        position: 'absolute',
+        'z-index': -1,
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        overflow: 'hidden',
+        '-webkit-background-size': 'cover',
+        '-moz-background-size': 'cover',
+        '-o-background-size': 'cover',
+        'background-size': 'cover',
+        'background-color': settings.bgColor,
+        'background-repeat': 'no-repeat',
+        'background-position': position.x + ' ' + position.y
+      });
 
     // Get a poster path
     if (typeof path === 'object') {
@@ -339,7 +344,8 @@
       transform: 'translate(-' + position.x + ', -' + position.y + ')',
 
       // Disable visibility, while loading
-      visibility: 'hidden'
+      visibility: 'hidden',
+      opacity: 0
     })
 
     // Resize a video, when it's loaded
@@ -349,7 +355,10 @@
 
     // Make it visible, when it's already playing
     .one('playing.' + PLUGIN_NAME, function() {
-      $video.css('visibility', 'visible');
+      $video.css({
+        visibility: 'visible',
+        opacity: 1
+      });
       $wrapper.css('background-image', 'none');
     });
 
