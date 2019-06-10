@@ -55,7 +55,7 @@ var $ = require('jquery');
         .trigger('shown.bs.dropdown')
     }
 
-    $this.focus()
+    $this.trigger('focus');
 
     return false
   }
@@ -74,7 +74,7 @@ var $ = require('jquery');
     var isActive = $parent.hasClass('open')
 
     if (!isActive || (isActive && e.keyCode == 27)) {
-      if (e.which == 27) $parent.find(toggle).focus()
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
       return $this.click()
     }
 
@@ -88,7 +88,7 @@ var $ = require('jquery');
     if (e.keyCode == 40 && index < $items.length - 1) index++                        // down
     if (!~index)                                      index=0
 
-    $items.eq(index).focus()
+    $items.eq(index).trigger('focus')
   }
 
   function clearMenus() {

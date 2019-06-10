@@ -59,7 +59,7 @@ DisableUiComponent.prototype.enable = function (target) {
         $this.find(FORM_ELEMENTS)
             .off('click', preventDefaultAndStopPropagation)
             .removeClass('disabled')
-            .removeAttr('disabled');
+            .prop('disabled', false);
 
         // Enable labels
         $this.find(LABEL_ELEMENTS).removeClass('u-cursor-not-allowed');
