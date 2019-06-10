@@ -5,8 +5,6 @@
 /hook/                      export-ignore
 /node_modules/              export-ignore
 /coverage/                  export-ignore
-/shots/                     export-ignore
-/shots_history/             export-ignore
 /tests/                     export-ignore
 /tmp/                       export-ignore
 /vendor/                    export-ignore
