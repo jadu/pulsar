@@ -1,15 +1,52 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
 
 {% block tab_content %}
-<div class="pagination">
-    <ul class="pull-left"><!--
-        --><li class="is-disabled"><a href="#prev"><i class="icon-double-angle-left"></i> Previous</a></li><!--
-        --><li><a href="#1">1</a></li><!--
-        --><li class="selected"><a href="#2">2</a></li><!--
-        --><li><a href="#3">3</a></li><!--
-        --><li><a href="#4">4</a></li><!--
-        --><li><a href="#5">5</a></li><!--
-        --><li><a href="#next">Next <i class="icon-double-angle-right"></i></a></li><!--
-    --></ul>
+{% spaceless %}
+<div class="u-margin-bottom--large">
+    <h2 class="heading">Previous link hidden on first page</h2>
+    <nav aria-label="Table pagination" class="pagination">
+        <ul class="pull-left">
+            <li class="selected"><a href="#1" aria-current="true" aria-label="Current page, page 1">1</a></li>
+            <li><a href="#2" aria-label="page 2">2</a></li>
+            <li><a href="#3" aria-label="page 3">3</a></li>
+            <li><a href="#4" aria-label="page 4">4</a></li>
+            <li><a href="#5" aria-label="page 5">5</a></li>
+            <li><a href="#next" aria-label="next page">Next</a></li>
+        </ul>
+    </nav>
 </div>
+{% endspaceless %}
+
+{% spaceless %}
+<div class="u-margin-bottom--large">
+    <h2 class="heading">Previous and next link shown when previous or next pages exist</h2>
+    <nav aria-label="Table pagination" class="pagination">
+        <ul class="pull-left">
+            <li><a href="#prev" aria-label="previous page">Previous</a></li>
+            <li><a href="#1" aria-label="page 1">1</a></li>
+            <li class="selected"><a href="#2" aria-current="true" aria-label="Current page, page 2">2</a></li>
+            <li><a href="#3" aria-label="page 3">3</a></li>
+            <li><a href="#4" aria-label="page 4">4</a></li>
+            <li><a href="#5" aria-label="page 5">5</a></li>
+            <li><a href="#next" aria-label="next page">Next</a></li>
+        </ul>
+    </nav>
+</div>
+{% endspaceless %}
+
+{% spaceless %}
+<div>
+    <h2 class="heading">Next link hidden on last page</h2>
+    <nav aria-label="Table pagination" class="pagination">
+        <ul class="pull-left">
+            <li><a href="#prev" aria-label="previous page">Previous</a></li>
+            <li><a href="#1" aria-label="page 1">1</a></li>
+            <li><a href="#2" aria-label="page 2">2</a></li>
+            <li><a href="#3" aria-label="page 3">3</a></li>
+            <li><a href="#4" aria-label="page 4">4</a></li>
+            <li class="selected"><a href="#5" aria-current="true" aria-label="Current page, page 5">5</a></li>
+        </ul>
+    </nav>
+</div>
+{% endspaceless %}
 {% endblock tab_content %}
