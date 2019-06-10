@@ -207,7 +207,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
     this.$html.find('.table--horizontal').each(function () {
         var $table = $(this).parent();
 
-        $table.scroll(function () {
+        $table.on('scroll', function () {
             component.styleTableOverflows($table);
         });
 

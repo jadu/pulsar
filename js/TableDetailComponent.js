@@ -79,25 +79,23 @@ class TableDetailComponent {
         this.$detailPanel.find('[data-table-detail-close-panel]').on('click', (event) => {
             event.preventDefault();
             this.closeDetail();
-            $triggeringElement.focus();
+            $triggeringElement.trigger('focus');
         });
 
         // Close with backdrop click
         this.$tableDetailBackdrop.on('click', (event) => {
             event.preventDefault();
             if (this.panelIsOpen) {
-                console.log('backdrop clicked');
                 this.closeDetail();
-                $triggeringElement.focus();
+                $triggeringElement.trigger('focus');
             }
         });
 
         // Close ESC button
         this.$html.on('keydown', (event) => {
             if (event.keyCode === 27 && this.panelIsOpen) {
-                console.log('esc pressed');
                 this.closeDetail();
-                $triggeringElement.focus();
+                $triggeringElement.trigger('focus');
             }
         });
     }
@@ -180,13 +178,13 @@ class TableDetailComponent {
                 // Focus previous, check if first element is is currently in focus, if so focus last element
                 if ($focusableElements.first().is(':focus')) {
                     event.preventDefault();
-                    $focusableElements.last().focus();
+                    $focusableElements.last().trigger('focus');
                 }
             } else {
                 // Focus next, check if last element is is currently in focus, if so focus first element
                 if ($focusableElements.last().is(':focus')) {
                     event.preventDefault();
-                    $focusableElements.first().focus();
+                    $focusableElements.first().trigger('focus');
                 }
             }
         }
@@ -205,9 +203,9 @@ class TableDetailComponent {
 
         // If the panel body contains a focusable element we should focus that rather than the close button
         if ($focusablePanelBodyElements.length > 0) {
-            $focusablePanelBodyElements.first().focus();
+            $focusablePanelBodyElements.first().trigger('focus');
         } else {
-            this.$detailPanel.find('[data-table-detail-close-panel]').focus();
+            this.$detailPanel.find('[data-table-detail-close-panel]').trigger('focus');
         }
 
         this.boundKeydownListener = this.keydownListener.bind(this, $focusableElements);
