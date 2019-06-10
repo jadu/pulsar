@@ -73,8 +73,8 @@ var $ = require('jquery');
     var $parent  = getParent($this)
     var isActive = $parent.hasClass('open')
 
-    if (!isActive || (isActive && e.keyCode == 27)) {
-      if (e.which == 27) $parent.find(toggle).trigger('focus')
+    if (!isActive || (isActive && e.keyCode === 27)) {
+      if (e.which === 27) $parent.find(toggle).trigger('focus');
       return $this.click()
     }
 
@@ -84,9 +84,9 @@ var $ = require('jquery');
 
     var index = $items.index($items.filter(':focus'))
 
-    if (e.keyCode == 38 && index > 0)                 index--                        // up
-    if (e.keyCode == 40 && index < $items.length - 1) index++                        // down
-    if (!~index)                                      index=0
+    if (e.keyCode === 38 && index > 0)                 index--                        // up
+    if (e.keyCode === 40 && index < $items.length - 1) index++                        // down
+    if (!~index)                                       index=0
 
     $items.eq(index).trigger('focus')
   }
