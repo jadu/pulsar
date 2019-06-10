@@ -164,6 +164,61 @@ describe('Pulsar UI Component', function() {
         it('should recalculate the table', function() {
             expect(this.recalc).to.have.been.calledOnce;
         });
+    });
 
+    describe('initialising DataTables', function() {
+
+        beforeEach(function() {
+            $.fn.DataTable = sinon.stub();
+        });
+
+        afterEach(function () {
+            delete $.fn.DataTable;
+        });
+
+        it('should not show the length change select by default', function() {
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].lengthChange).to.equal(false);
+        });
+
+        it('should show the length change select if the data-length-change attribute is true', function () {
+            let $tableWithLengthChangeDataAttribute = $('<table class="table datatable qa-datatable-length-change" data-length-change="true"></table>');
+            $tableWithLengthChangeDataAttribute.appendTo(this.$body);
+
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].lengthChange).to.equal(true);
+        })
+
+        it('should default to 25 rows pageLength', function() {
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].pageLength).to.equal(25);
+        });
+
+        it('should change the page length to the value provided by data-page-length', function() {
+            let $tableWithPageLengthDataAttribute = $(' <table class="table datatable" data-page-length="20"></table>');
+            $tableWithPageLengthDataAttribute.appendTo(this.$body);
+
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].pageLength).to.equal(20);
+        });
+
+        it('should initialise datatables with the default DOM option value', function() {
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].dom).to.equal('<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"pl>');
+        });
+
+        it('should change the DOM option value when data-select is false', function() {
+            let $tableWithSelectFalseDataAttribute = $(' <table class="table datatable" data-select="false"></table>');
+            $tableWithSelectFalseDataAttribute.appendTo(this.$body);
+
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].dom).to.equal('<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"pl>');
+        });
     });
 });
