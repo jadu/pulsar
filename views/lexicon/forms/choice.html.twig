@@ -86,6 +86,34 @@
     {{
         form.choice({
             'class': '',
+            'label': 'Required Choice',
+            'multiple': true,
+            'required': true,
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'one',
+                    'disabled': true
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'one'
+                }
+            ],
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': '',
             'label': 'Choice radios',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option',
