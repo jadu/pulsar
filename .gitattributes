@@ -82,17 +82,6 @@
 /libs/html5shiv/package.json                                    export-ignore
 /libs/html5shiv/readme.md                                       export-ignore
 
-# jquery
-/libs/jquery/.bower.json                                        export-ignore
-/libs/jquery/AUTHORS.txt                                        export-ignore
-/libs/jquery/bower.json                                         export-ignore
-/libs/jquery/dist/jquery.js                                     export-ignore
-/libs/jquery/dist/jquery.min.map                                export-ignore
-/libs/jquery/external/                                          export-ignore
-/libs/jquery/LICENSE.txt                                        export-ignore
-/libs/jquery/README.md                                          export-ignore
-/libs/jquery/src/                                               export-ignore
-
 # jquery-ui
 /libs/jquery-ui/themes/
 /libs/jquery-ui/.bower.json
