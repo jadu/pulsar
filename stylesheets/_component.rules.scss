@@ -306,7 +306,7 @@ td.table__form .rules + .form__group:last-of-type {
     $rule-color-if:     #3f8ccc;
     $rule-color-and:    #f7d183;
     $rule-color-or:     #9d7ee3;
-    $rule-color-return: #7dbc8e;
+    $rule-color-return: #6aa17a;
     $rule-color-help:   #b54745;
 
     border-left: 4px solid color(gray, lightest);
@@ -389,8 +389,9 @@ td.table__form .rules + .form__group:last-of-type {
         }
     }
 
-    .rule-block--else-if + .rule-links .rule-link--or,
-    .rule-block--and + .rule-links .rule-link--or {
+    .rule-block--if + .rule-links .rule-link--or,
+    .rule-block--and + .rule-links .rule-link--or,
+    .rule-block--else-if + .rule-links .rule-link--or {
         border-left: 4px solid color(gray, lightest);
         margin-left: 20px;
         padding-left: 40px;
@@ -622,11 +623,14 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .remove__control {
+        background: none;
+        border: 0;
         color: color(white);
         font-size: $font-size-large;
+        padding: 2px 6px;
         position: absolute;
-        right: 10px;
-        top: 10px;
+        right: 2px;
+        top: 5px;
 
         @include respond-min($screen-tablet) {
             color: color(text);

@@ -249,7 +249,6 @@ th.sorting_disabled:hover {
 
 .dataTables_bottom {
     display: block;
-    margin-top: -1px;
     width: 100%;
 }
 
@@ -320,6 +319,8 @@ th.sorting_disabled:hover {
 }
 
 .dataTables_bottom {
+    @include clear-fix;
+
     margin-bottom: 24px;
 }
 
@@ -329,6 +330,8 @@ th.sorting_disabled:hover {
     width: 100%;
 
     @include respond-min($screen-tablet) {
+        display: inline-block;
+        float: left;
         text-align: left;
         width: auto;
     }
@@ -342,25 +345,8 @@ th.sorting_disabled:hover {
         text-decoration: none;
     }
 
-    .paginate_button.previous::before {
-        content: '\f100';
-        font-family: 'FontAwesome';
-        padding-right: 5px;
-    }
-
-    .paginate_button.next::after {
-        content: '\f101';
-        font-family: 'FontAwesome';
-        padding-left: 5px;
-    }
-
     .paginate_button.current {
         background-color: darken(color(white), 10%);
-    }
-
-    .paginateButton.disabled,
-    .ellipsis {
-        color: color(text, disabled);
     }
 }
 
@@ -379,6 +365,10 @@ th.sorting_disabled:hover {
         margin-bottom: 0;
         text-align: left;
         width: auto;
+    }
+
+    select:focus {
+        outline: 3px solid color(border, focus);
     }
 }
 
