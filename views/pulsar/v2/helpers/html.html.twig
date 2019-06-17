@@ -440,6 +440,8 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         {% set caret = 0 %}
     {% endif %}
 
+    {% set dropdown_guid = 'guid-' ~ random() %}
+
     <div{{
         attributes({
             'class': 'btn__group drop' ~ options.direction|default('down') ~ (options.parent_class is defined ? ' ' ~ options.parent_class : '')
@@ -449,6 +451,9 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
             html.button(options
                 |exclude('direction parent_class placement items')
                 |defaults({
+                    'aria-haspopup': 'true',
+                    'aria-expanded': 'false',
+                    'aria-controls': dropdown_guid,
                     'caret': caret,
                     'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                     'data-toggle': 'dropdown'
@@ -459,6 +464,7 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         {{
             html.list({
                 'class': 'dropdown__menu pull-' ~ options.placement|default('left'),
+                'id': dropdown_guid,
                 'items': options.items|default
             })
         }}
