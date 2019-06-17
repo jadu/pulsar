@@ -187,11 +187,11 @@ class DropdownButtonComponent {
 
         index = $dropdownItems.index($dropdownItems.filter(':focus'));
 
-        if (event.keyCode == Keycodes.UP && index > 0) {
+        if (event.keyCode === Keycodes.UP && index > 0) {
             index--;
         }
 
-        if (event.keyCode == Keycodes.DOWN && index < $dropdownItems.length) {
+        if (event.keyCode === Keycodes.DOWN && index < $dropdownItems.length) {
             index++;
         }
 
@@ -204,9 +204,8 @@ class DropdownButtonComponent {
 
     /**
      * Close drop menu when focus leaves parent btn__group
-     * @param {Event} event
      */
-    handleDropParentFocusout (event) {
+    handleDropParentFocusout () {
         // Using timeout due to :focus return body when an element loses focus before new element gains focus
         setTimeout(() => {
             const $elementWithFocus = $(':focus');
