@@ -270,6 +270,7 @@ td.row__actions {
 .table--overflow-left,
 .table--overflow-right {
     &.table-container {
+        -webkit-overflow-scrolling: touch;
         overflow-x: auto;
 
         &::-webkit-scrollbar {
@@ -329,6 +330,7 @@ td.row__actions {
 .table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar,
 .table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar {
     -webkit-appearance: none;
+    -webkit-overflow-scrolling: touch;
     background: color(background, light);
     width: 7px;
 }
