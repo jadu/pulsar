@@ -1,4 +1,5 @@
 .pagination {
+  @include clear-fix;
   background-color: color(white);
 
   // We assume pagination will always sit underneath an element, and that
