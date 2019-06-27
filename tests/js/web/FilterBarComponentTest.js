@@ -3,7 +3,7 @@
 var $ = require('jquery'),
 	FilterBarComponent = require('../../../js/FilterBarComponent');
 
-describe('FilterBar component', function () {
+describe('FilterBarComponent', function () {
 	beforeEach(function() {
 		this.$html = $('<html></html>');
 		this.$body = $('<body></body>').appendTo(this.$html);
@@ -61,8 +61,7 @@ describe('FilterBar component', function () {
 	});
 
 	afterEach(function () {
-        delete $.fn.select2;
-        delete $.fn.popover;
+		this.$body.empty();
     });
 
     describe('On init', function() {
@@ -201,14 +200,14 @@ describe('FilterBar component', function () {
 		});
 
 		it('should prevent the default behavior', function () {
-			this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
+			this.$popoverFilterLink = this.$container.find('.filter-bar__list [data-filter-id="colour"]');
 			this.$popoverFilterLink.trigger(this.clickEvent);
 
 			expect(this.clickEvent.isDefaultPrevented()).to.be.true;
 		});
 
 		it('should hide the link parent in the filter list', function () {
-			this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
+			this.$popoverFilterLink = this.$container.find('.filter-bar__list [data-filter-id="colour"]');
 			this.$popoverFilterLink.trigger(this.clickEvent);
 
 			var addFilterButtonList = this.$showFilterListButton.attr('data-content'),
@@ -222,12 +221,12 @@ describe('FilterBar component', function () {
 		describe('If the filter field type is a checkbox', function() {
 
 			beforeEach(function() {
-		        this.$popoverFilterLink = this.$container.find('[data-filter-id="inStock"]');
+		        this.$popoverFilterLink = this.$container.find('.filter-bar__list [data-filter-id="inStock"]');
 				this.$popoverFilterLink.trigger(this.clickEvent);
 			});
 
 			it('should add a label to the filter bar for the clicked filter', function () {
-				expect(this.$container.find('span.label--inverse')).to.have.length(1);
+				expect(this.$container.find('span.label--inverse[data-filter-id="inStock"]')).to.have.length(1);
 			});
 
 			it('should add the correct data-filter-id to the label', function () {
@@ -250,16 +249,16 @@ describe('FilterBar component', function () {
 		describe('If the filter field type not a checkbox', function() {
 
 			beforeEach(function() {
-		        this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
+		        this.$popoverFilterLink = this.$container.find('.filter-bar__list [data-filter-id="colour"]');
 				this.$popoverFilterLink.trigger(this.clickEvent);
 			});
 
 			it('should add a label to the filter bar for the clicked filter', function () {
-				expect(this.$container.find('span.label--primary')).to.have.length(1);
+				expect(this.$container.find('span.label--inverse[data-filter-id="colour"]')).to.have.length(1);
 			});
 
 			it('should add the correct data-filter-id to the label', function () {
-				expect(this.$container.find('span[data-filter-id="colour"]')).to.have.length(1);
+				expect(this.$container.find('span.label--inverse[data-filter-id="colour"]')).to.have.length(1);
 			});
 
 			it('should add the is-disabled class to the filter list button', function () {
@@ -288,7 +287,7 @@ describe('FilterBar component', function () {
 				$filterItemParents.addClass('display--none');
 				this.$showFilterListButton.attr('data-content', $addFilterButtonList[0].outerHTML);
 
-				this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
+				this.$popoverFilterLink = this.$container.find('.filter-bar__list [data-filter-id="colour"]');
 				this.$popoverFilterLink.trigger(this.clickEvent);
 
 				expect(this.$showFilterListButton.hasClass('display--none')).to.be.true;
@@ -354,10 +353,10 @@ describe('FilterBar component', function () {
 				expect(this.$showFilterListButton.hasClass('display--none')).to.be.false;
 			});
 
-			it('should not display the form actions if no other labels exist', function () {
+			it('should show form actions', function () {
 				this.$removeFilterButton.trigger(this.clickEvent);
 
-				expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(0);
+				expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(1);
 			});
 
 			it('should display the form actions if other labels exist', function () {
@@ -403,10 +402,10 @@ describe('FilterBar component', function () {
 				expect(this.$showFilterListButton.hasClass('display--none')).to.be.false;
 			});
 
-			it('should not display the form actions if no other labels exist', function () {
+			it('should show form actions', function () {
 				this.$removeFilterButtonInPopover.trigger(this.clickEvent2);
 
-				expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(0);
+				expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(1);
 			});
 		});
 
