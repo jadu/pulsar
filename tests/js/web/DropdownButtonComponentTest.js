@@ -373,8 +373,5 @@ describe('DropdownButtonComponent', () => {
                 }, 1);
             });
         });
-
-
-        // dont forget disabled checks for button click, down arrow and up arrow
     });
 });
