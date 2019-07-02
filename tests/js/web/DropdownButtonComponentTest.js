@@ -366,7 +366,7 @@ describe('DropdownButtonComponent', () => {
                 }, 1);
             })
 
-            it('should trigger the `hidden.bs.dropdown` event', () => {
+            it('should trigger the `hidden.bs.dropdown` event', (done) => {
                 setTimeout(() => {
                     expect(hiddenBsDropdownEventSpy).to.to.have.been.calledOnce;
                     done();
