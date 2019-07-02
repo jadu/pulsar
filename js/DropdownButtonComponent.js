@@ -143,10 +143,10 @@ class DropdownButtonComponent {
             }
 
             if (!$parentButtonGroup.hasClass(Selectors.OPEN)) {
-                $keydownElement.click();
+                $keydownElement.trigger('click');
             }
 
-            $dropdownItems.first().focus();
+            $dropdownItems.first().trigger('focus');
         }
 
         if (event.keyCode === Keycodes.UP && direction === 'up') {
@@ -157,10 +157,10 @@ class DropdownButtonComponent {
             }
 
             if (!$parentButtonGroup.hasClass(Selectors.OPEN)) {
-                $keydownElement.click();
+                $keydownElement.trigger('click');
             }
 
-            $dropdownItems.last().focus();
+            $dropdownItems.last().trigger('focus');
         }
     }
 
@@ -199,7 +199,7 @@ class DropdownButtonComponent {
             index = 0;
         }
 
-        $dropdownItems.eq(index).focus();
+        $dropdownItems.eq(index).trigger('focus');
     }
 
     /**
