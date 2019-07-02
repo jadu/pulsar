@@ -114,7 +114,7 @@ class DropdownButtonComponent {
 
         if (event.keyCode === Keycodes.ESC) {
             if ($elementWithFocus.closest(Selectors.BTN_GROUP_DROP)) {
-                $elementWithFocus.closest(Selectors.BTN_GROUP_DROP).find(Selectors.DATA_TOGGLE).focus();
+                $elementWithFocus.closest(Selectors.BTN_GROUP_DROP).find(Selectors.DATA_TOGGLE).trigger('focus');
             }
 
             this.closeAllDropdowns();
