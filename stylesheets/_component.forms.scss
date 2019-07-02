@@ -111,11 +111,16 @@ fieldset {
 
     &.select {
         appearance: none;
-        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
-        background-position: calc(100% - 5px);
+        background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, color(gray, off-white), color(gray, off-white));
+        background-position: calc(100% - 10px) calc(1em + 5px), calc(100% - 5px) calc(1em + 5px), 100% 0;
+        background-size: 5px 5px, 5px 5px, 22px 100%;
         background-repeat: no-repeat;
         border: 1px solid $input-border;
-        padding: 0 20px 0 $padding-base-horizontal;
+        padding: 0 22px 0 $padding-base-horizontal;
+
+        @media screen and (-ms-high-contrast: active) {
+            padding-right: 0;
+        }
 
         @include ie-lte(8) {
             height: 24px;
@@ -131,6 +136,10 @@ fieldset {
         // by the `appearance` property
         &::-ms-expand {
             display: none;
+
+            @media screen and (-ms-high-contrast: active) {
+                display: block;
+            }
         }
     }
 
