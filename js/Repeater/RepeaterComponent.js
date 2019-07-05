@@ -109,36 +109,11 @@ class Repeater {
 
     parseInitialState (initialState) {
         initialState.forEach(state => {
-            const group = this.createEditEntryGroup();
-
-            // Create edit form and add values to inputs
             state.forEach(({ name, value }) => {
-                const input = group.querySelector(`[${this.queryService.getAttr('name')}="${name}"]`);
-
-                if (input === null) {
-                    throw new Error(`Unable to map initial state data with name "${name}"`);
-                }
-
-                // Map select inputs will multiple values
-                if (Array.isArray(value) && input.tagName === 'SELECT') {
-                    value.forEach(val => {
-                        const option = input.querySelector(`[value="${val}"]`);
-
-                        if  (option === null) {
-                            throw new Error(`Unable to map initial state data in select "${name}" to option "${val}"`);
-                        }
-
-                        option.selected = true;
-                    });
-
-                    return;
-                }
-
-                input.value = value;
+                $(this.repeater).find(`[data-repeater-name="${name}"]`).val(value);
             });
 
-            this.handleSaveGroup(null, this.createState(group));
-            this.saveData(group);
+            this.handleSaveGroup();
         });
     }
 
