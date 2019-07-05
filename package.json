@@ -1,6 +1,6 @@
 {
   "name": "jadu-pulsar",
-  "version": "10.2.3",
+  "version": "10.2.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -72,14 +72,10 @@
     "mocha": "^2.4.5",
     "mochify": "^5.2.0",
     "mochify-istanbul": "^2.4.2",
-    "phpruntime": "^5.0.0",
-    "phptoast": "^3.17.0",
-    "phptojs": "^3.16.0",
     "require-globify": "^1.4.1",
     "sinon": "^2.4.1",
     "sinon-chai": "^2.8.0",
     "sinon-jquery": "^1.0.2",
-    "twig": "^0.9.4",
     "uglifyify": "^3.0.1"
   },
   "browserify": {
