@@ -1,8 +1,11 @@
 'use strict';
 
 var $ = require('jquery'),
-    TimePickerComponent = require('./TimePickerComponent');
+    TimePickerComponent = require('./TimePickerComponent'),
+    moment = require('moment');
 
+require('moment/locale/en-au');
+require('moment/locale/en-gb');
 require('../libs/pikaday/plugins/pikaday.jquery');
 require('../libs/select2/dist/js/select2.min');
 require('../libs/spectrum/spectrum');
@@ -86,31 +89,56 @@ PulsarFormComponent.prototype.initDatePickers = function () {
     const datepickers = this.$html.find('[data-datepicker="true"]');
     let defaultDateFormat = 'DD/MM/YYYY';
 
+    moment.locale(window.navigator.userLanguage || window.navigator.language);
+
     datepickers.each((index, element) => {
-        let dateFormat = element.getAttribute('data-format');
+        let formatKey = element.getAttribute('data-format');
+        let dateFormat = defaultDateFormat;
 
         // Check if data-format attribute exists and lowercase it
         // to eliminate different styles of writing issues
-        if (dateFormat !== null) {
-            dateFormat = dateFormat.toLowerCase();
+        if (formatKey !== null) {
+            formatKey = formatKey.toLowerCase();
         }
 
-        switch (dateFormat) {
+        switch (formatKey) {
             case 'us':
-                defaultDateFormat = 'MM/DD/YYYY';
+                dateFormat = 'MM/DD/YYYY';
                 break;
             case 'reverse':
-                defaultDateFormat = 'YYYY/MM/DD';
+                dateFormat = 'YYYY/MM/DD';
+                break;
+            case 'locale':
+                dateFormat = moment.localeData().longDateFormat('L');
                 break;
             default:
-                defaultDateFormat = 'DD/MM/YYYY';
+                dateFormat = 'DD/MM/YYYY';
         }
 
         // Initialize pikaday with the correct date format
-        $(element).pikaday({ format: defaultDateFormat });
+        $(element).pikaday({ format: dateFormat });
 
         // Initialize placeholder attribute based on the date format
-        $(element).attr('placeholder', defaultDateFormat.toLowerCase());
+        $(element).attr('placeholder', dateFormat.toLowerCase());
+
+        if (element.hasAttribute('data-iso') && element.hasAttribute('name')) {
+            let elementName = $(element).attr('name');
+            let hiddenElement = $('<input>', {'type': 'hidden', 'name': elementName});
+
+            $(element).removeAttr('name');
+            $(element).after(hiddenElement);
+
+            $(element).change(function() {
+                let parsed = moment($(this).val(), dateFormat);
+                let ISOTime = parsed.toISOString(true);
+
+                if (ISOTime !== null) {
+                    ISOTime = ISOTime.substr(0, 10);
+                }
+
+                hiddenElement.val(ISOTime || '');
+            });
+        }
     });
 }
 

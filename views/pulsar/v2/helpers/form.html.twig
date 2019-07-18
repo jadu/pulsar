@@ -859,7 +859,8 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 disabled    | bool   | Stops the element from being interactive if true
 form        | string | Specific one or more forms this label belongs to
-format      | string | Options for this can be `default`, `US` or `reverse`
+format      | string | Options for this can be `default`, `US`, `reverse` or `locale`
+iso         | bool   | Convert the value to an ISO format (default false)
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
@@ -878,8 +879,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         set options = options|default({})|merge({
             'placeholder': options.placeholder|default('dd/mm/yyyy'),
             'data-datepicker': options['data-datepicker']|default('true'),
+            'data-iso': options.iso|default(false),
             'data-format': options.format|default('default')
-        })
+        })|exclude([
+            'iso'
+        ])
     %}
 
     {% set options = modify_options(options|default({})) %}

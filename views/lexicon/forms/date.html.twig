@@ -41,6 +41,23 @@
 
     {{
         form.date({
+            'format': 'locale',
+            'id': 'date-locale',
+            'label': 'Date locale style',
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-locale',
+            'name': 'date-locale',
+            'label': 'Date with iso value',
+            'iso': true,
+        })
+    }}
+
+    {{
+        form.date({
             'id': 'date-2',
             'label': 'Date field with value',
             'value': '04/07/1981'
@@ -404,7 +421,7 @@
     }}
 
     {{ form.fieldset_end() }}
-    
+
 
     {{ form.fieldset_start({ 'legend': 'Prepended Grid Sizes' }) }}
     {% for i in 1..9 %}
