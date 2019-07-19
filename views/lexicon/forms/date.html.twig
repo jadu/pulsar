@@ -23,9 +23,9 @@
 
     {{
         form.date({
-            'format': 'US',
+            'locale': 'en_US',
             'id': 'date-US',
-            'label': 'Date US style',
+            'label': 'Date US locale',
             'placeholder': 'mm/dd/yyyy'
         })
     }}
@@ -34,27 +34,28 @@
         form.date({
             'format': 'reverse',
             'id': 'date-reverse',
-            'label': 'Date reverse style',
+            'label': 'Date reverse format',
             'placeholder': 'yyyy/mm/dd'
         })
     }}
 
     {{
         form.date({
-            'format': 'locale',
-            'id': 'date-locale',
-            'label': 'Date locale style',
+            'id': 'date-iso',
+            'name': 'date-iso',
+            'label': 'Date with iso value',
+            'iso': true,
+            'help': 'Current Value: \'<span id="date-iso-value"></span>\''
         })
     }}
 
-    {{
-        form.date({
-            'id': 'date-locale',
-            'name': 'date-locale',
-            'label': 'Date with iso value',
-            'iso': true,
+    <script>
+        $(document).ready(function () {
+            $(document).on('change', '[name=date-iso]', function () {
+                $('#date-iso-value').text($(this).val());
+            })
         })
-    }}
+    </script>
 
     {{
         form.date({

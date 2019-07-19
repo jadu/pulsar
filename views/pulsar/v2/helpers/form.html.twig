@@ -859,7 +859,7 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 disabled    | bool   | Stops the element from being interactive if true
 form        | string | Specific one or more forms this label belongs to
-format      | string | Options for this can be `default`, `US`, `reverse` or `locale`
+locale      | string | The locale to format the date in
 iso         | bool   | Convert the value to an ISO format (default false)
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
@@ -880,9 +880,12 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'placeholder': options.placeholder|default('dd/mm/yyyy'),
             'data-datepicker': options['data-datepicker']|default('true'),
             'data-iso': options.iso|default(false),
-            'data-format': options.format|default('default')
+            'data-format': options.format|default(false),
+            'data-locale': options.locale|default('en_gb'),
         })|exclude([
-            'iso'
+            'iso',
+            'format',
+            'locale',
         ])
     %}
 

@@ -87,32 +87,29 @@ PulsarFormComponent.prototype.initTimePickers = function () {
  */
 PulsarFormComponent.prototype.initDatePickers = function () {
     const datepickers = this.$html.find('[data-datepicker="true"]');
-    let defaultDateFormat = 'DD/MM/YYYY';
-
-    moment.locale(window.navigator.userLanguage || window.navigator.language);
 
     datepickers.each((index, element) => {
+        let dateFormat;
         let formatKey = element.getAttribute('data-format');
-        let dateFormat = defaultDateFormat;
+        let locale = element.getAttribute('data-locale');
 
-        // Check if data-format attribute exists and lowercase it
-        // to eliminate different styles of writing issues
-        if (formatKey !== null) {
-            formatKey = formatKey.toLowerCase();
+        if (typeof locale === 'string') {
+            dateFormat = moment.localeData(locale).longDateFormat('L');
         }
 
-        switch (formatKey) {
-            case 'us':
-                dateFormat = 'MM/DD/YYYY';
-                break;
-            case 'reverse':
-                dateFormat = 'YYYY/MM/DD';
-                break;
-            case 'locale':
-                dateFormat = moment.localeData().longDateFormat('L');
-                break;
-            default:
-                dateFormat = 'DD/MM/YYYY';
+        if (typeof formatKey === 'string') {
+            formatKey = formatKey.toLowerCase();
+
+            switch (formatKey) {
+                case 'us':
+                    dateFormat = 'MM/DD/YYYY';
+                    break;
+                case 'reverse':
+                    dateFormat = 'YYYY/MM/DD';
+                    break;
+                default:
+                    dateFormat = 'DD/MM/YYYY';
+            }
         }
 
         // Initialize pikaday with the correct date format
@@ -136,7 +133,7 @@ PulsarFormComponent.prototype.initDatePickers = function () {
                     ISOTime = ISOTime.substr(0, 10);
                 }
 
-                hiddenElement.val(ISOTime || '');
+                hiddenElement.val(ISOTime || '').change();
             });
         }
     });
