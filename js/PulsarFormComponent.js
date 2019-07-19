@@ -89,6 +89,7 @@ PulsarFormComponent.prototype.initDatePickers = function () {
     const datepickers = this.$html.find('[data-datepicker="true"]');
 
     datepickers.each((index, element) => {
+        let $element = $(element);
         let dateFormat;
         let formatKey = element.getAttribute('data-format');
         let locale = element.getAttribute('data-locale');
@@ -113,19 +114,19 @@ PulsarFormComponent.prototype.initDatePickers = function () {
         }
 
         // Initialize pikaday with the correct date format
-        $(element).pikaday({ format: dateFormat });
+        $element.pikaday({ format: dateFormat });
 
         // Initialize placeholder attribute based on the date format
-        $(element).attr('placeholder', dateFormat.toLowerCase());
+        $element.attr('placeholder', dateFormat.toLowerCase());
 
         if (element.hasAttribute('data-iso') && element.hasAttribute('name')) {
-            let elementName = $(element).attr('name');
+            let elementName = $element.attr('name');
             let hiddenElement = $('<input>', {'type': 'hidden', 'name': elementName});
 
-            $(element).removeAttr('name');
-            $(element).after(hiddenElement);
+            $element.removeAttr('name');
+            $element.after(hiddenElement);
 
-            $(element).change(function() {
+            $element.change(function() {
                 let parsed = moment($(this).val(), dateFormat);
                 let ISOTime = parsed.toISOString(true);
 
