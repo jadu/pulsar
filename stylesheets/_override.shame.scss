@@ -138,3 +138,27 @@
     color: color(text);
     padding: .75em $gutter-width;
 }
+
+main {
+  border: 2px solid red !important;
+}
+
+aside {
+  border: 2px solid blue !important;
+}
+
+section {
+  border: 2px solid orange !important;
+}
+
+nav {
+  border: 2px solid limegreen !important;
+}
+
+footer {
+  border: 2px solid yellow !important;
+}
+
+header {
+  border: 2px solid black;
+}
