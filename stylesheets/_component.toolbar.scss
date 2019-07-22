@@ -9,7 +9,7 @@
 
     @include respond-min($screen-desktop) {
         background-color: color(white);
-        height: 60px;
+        //height: 60px;
         margin-bottom: 0;
         padding: 14px 20px;
     }
@@ -22,6 +22,7 @@
         }
     }
 
+    // might be brokened
     .dropdown__menu {
         clear: both;
         left: $padding-small-horizontal;
