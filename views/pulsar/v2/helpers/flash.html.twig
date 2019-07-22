@@ -12,20 +12,23 @@
         {% set icon = 'info-sign' %}
     {% endif %}
 
-    <div class="flash flash--{{ options.type|default('default') }}">
+    {% set flash_guid = 'guid-' ~ random() %}
+
+    <section class="flash flash--{{ options.type|default('default') }}" aria-labelledby="{{ flash_guid }}">
 
         {%
             if options.dismissable is not defined or options.dismissable == true
         %}
-            <button class="close" data-dismiss="flash">
+            <button class="close" data-dismiss="flash" tabindex="1">
                 {{ html.icon('remove', { 'label': 'Close' }) }}
             </button>
         {% endif %}
 
         {{ html.icon(icon) }}
-        {{ options.message|raw }}
 
-    </div>
+        <h2 id="{{ flash_guid }}">{{ options.message|raw }}</h2>
+
+    </section>
 
 {% endspaceless %}
 {% endmacro %}
