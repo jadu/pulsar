@@ -80,14 +80,14 @@
     {% block pageStyle %}{% endblock %}
 </head>
 <body class="language-html theme-slate">
-<a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
+    {% include '@pulsar/pulsar/components/flash.html.twig' %}
+
+    <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
 
 {% block body %}
     <div class="container" id="top">
         <div class="inner-wrapper">
             {{ nav.primary({ 'data': nav_data|default() }) }}
-
-            {% include '@pulsar/pulsar/components/flash.html.twig' %}
 
             <header class="toolbar">
 
@@ -131,6 +131,8 @@
                 </form>
                 {% endblock %}
 
+                {{ nav.breadcrumbs(breadcrumbs|default) }}
+
                 {% set _ribbon = '' %}
                 {% set _ribbon = block('ribbon') %}
                 {% if _ribbon is empty %}
@@ -141,14 +143,13 @@
 
             <div class="content-main">
                 <div class="tabs__content">
-                    {{ nav.breadcrumbs(breadcrumbs|default) }}
                     {% block header_actions %}{% endblock %}
                     {% if _ribbon is not empty %}
                         {% block ribbon_content %}
                             <div class="ribbon-wrapper">
-                                <header class="ribbon">
+                                <aside class="ribbon" aria-label="content summary">
                                     {{ _ribbon|raw }}
-                                </header>
+                                </aside>
                             </div>
                         {% endblock %}
                     {% endif %}
