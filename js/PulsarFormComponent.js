@@ -90,7 +90,7 @@ PulsarFormComponent.prototype.initDatePickers = function () {
 
     datepickers.each((index, element) => {
         let $element = $(element);
-        let dateFormat;
+        let dateFormat = 'DD/MM/YYYY';
         let formatKey = element.getAttribute('data-format');
         let locale = element.getAttribute('data-locale');
 
@@ -108,8 +108,6 @@ PulsarFormComponent.prototype.initDatePickers = function () {
                 case 'reverse':
                     dateFormat = 'YYYY/MM/DD';
                     break;
-                default:
-                    dateFormat = 'DD/MM/YYYY';
             }
         }
 
