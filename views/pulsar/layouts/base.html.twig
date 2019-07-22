@@ -89,7 +89,7 @@
 
             {% include '@pulsar/pulsar/components/flash.html.twig' %}
 
-            <div class="toolbar">
+            <header class="toolbar">
 
                 <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
 
@@ -124,21 +124,25 @@
 
                 {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
 
-            </div>
+                {% block search %}
+                <form action="/search" class="main-search" data-ui="search-box">
+                    <input type="search" tabindex="3" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
+                    <button id="search-submit" tabindex="3" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
+                </form>
+                {% endblock %}
 
-            {% block search %}
-            <form action="/search" class="main-search" data-ui="search-box">
-                <input type="search" tabindex="3" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
-                <button id="search-submit" tabindex="3" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
-            </form>
-            {% endblock %}
+                {% set _ribbon = '' %}
+                {% set _ribbon = block('ribbon') %}
+                {% if _ribbon is empty %}
+                <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+                {% endif %}
+
+            </header>
 
             <div class="content-main">
                 <div class="tabs__content">
                     {{ nav.breadcrumbs(breadcrumbs|default) }}
                     {% block header_actions %}{% endblock %}
-                    {% set _ribbon = '' %}
-                    {% set _ribbon = block('ribbon') %}
                     {% if _ribbon is not empty %}
                         {% block ribbon_content %}
                             <div class="ribbon-wrapper">
@@ -147,13 +151,9 @@
                                 </header>
                             </div>
                         {% endblock %}
-                    {% else %}
-                        <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
                     {% endif %}
                     {% block tabs_list %}{% endblock %}
-                    <div id="skip-target">
-                        {% block tabs_content %}{% endblock %}
-                    </div>
+                    {% block tabs_content %}{% endblock %}
                 </div>
             </div>
 
