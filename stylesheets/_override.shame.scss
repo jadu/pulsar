@@ -138,3 +138,7 @@
     color: color(text);
     padding: .75em $gutter-width;
 }
+
+main {
+  border: 2px solid red !important;
+}
