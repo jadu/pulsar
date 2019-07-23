@@ -138,3 +138,351 @@
     color: color(text);
     padding: .75em $gutter-width;
 }
+
+
+
+
+// checkboxes in top left
+// .file-picker {
+//     background-color: color(gray, off-white);
+//     border: 1px solid color(gray, lightest);
+//     display: flex;
+//     flex-wrap: wrap;
+//     //justify-content: space-between;
+
+//     @include respond-min($screen-tablet) {
+//         max-height: 500px;
+//         overflow-y: scroll;
+//     }
+// }
+
+// .file-picker__item {
+//     padding: $padding-base * 2;
+//     position: relative;
+//     width: 100%;
+
+//     @include respond-min($screen-phone) {
+//         width: auto;
+//     }
+// }
+
+// .file-picker__label {
+//     display: block;
+
+//     // doesn't look like this is needed - test and remove
+//     @include respond-min($screen-phone) {
+//         display: inline-block;
+//     }
+// }
+
+// .file-picker__checkbox.form__control.checkbox {
+//     box-shadow: 0 0 0 2px color(border);
+//     position: absolute;
+//     right: 13px;
+//     top: 13px;
+
+//     &:checked {
+//         box-shadow: 0 0 0 2px color(primary);
+//     }
+// }
+
+// .file-picker__checkbox:checked ~ .file-picker__label .file-picker__image,
+// .file-picker__checkbox:checked ~ .file-picker__label .file-picker__file {
+//     border-color: color(primary);
+// }
+
+// .file-picker__checkbox:checked ~ .file-picker__label .file-picker__text,
+// .file-picker__checkbox:checked ~ .file-picker__label .file-picker__file {
+//     color: color(primary, dark);
+//     font-family: $font-family-regular;
+// }
+
+// .file-picker__image {
+//     //border: 4px solid color(gray, lighter);
+//     border: 4px solid color(gray, off-white);
+//     width: 100%;
+//     height: 250px;
+//     background-size: cover;
+//     //box-sizing: content-box;
+//     margin-bottom: 10px;
+//     background-position: center;
+
+//     @include respond-min($screen-phone) {
+//         height: 150px;
+//         width: 150px;
+//     }
+// }
+
+// .file-picker__file {
+//     background: color(white);
+//     //border: 4px solid color(gray, lighter);
+//     border: 4px solid color(gray, off-white);
+//     //box-sizing: content-box;
+//     display: flex;
+//     height: 250px; // not sure this is best...
+//     width: 100;
+//     justify-content: center;
+//     align-items: center;
+//     margin-bottom: 10px;
+
+//     @include respond-min($screen-phone) {
+//         height: 150px;
+//         width: 150px;
+//     }
+// }
+
+// .file-picker__file-icon {
+//     font-size: 48px; // use var
+
+//     &.icon-file-word-o {
+//         color: color(jadu-blue, darkest);
+//     }
+
+//     &.icon-file-excel-o {
+//         color: color(jadu-green, darkest);
+//     }
+
+//     &.icon-file-pdf-o {
+//         color: color(jadu-red);
+//     }
+// }
+
+// .file-picker__text {
+//     margin-bottom: 0;
+//     padding-left: 4px;
+// }
+
+
+// Move to partial
+.file-picker {
+    background-color: color(gray, off-white);
+    border: 1px solid color(gray, lightest);
+    display: flex;
+    flex-wrap: wrap;
+    //justify-content: space-between;
+    padding: 10px; //var
+
+    @include respond-min($screen-tablet) {
+        max-height: 500px;
+        overflow-y: scroll;
+    }
+
+    // .has-error & {
+    //     background-color: $state-danger-bg;
+    //     border-color: $state-danger-border;
+    // }
+}
+
+.file-picker--has-error {
+    background-color: $state-danger-bg;
+    border-color: $state-danger-border;
+}
+
+.file-picker__item {
+    margin: 10px 1%;
+    position: relative;
+    width: 100%;
+
+    @include respond-min($screen-phone) {
+        width: 48%;
+    }
+
+    @include respond-min($screen-tablet) {
+        width: 31%;
+    }
+
+    @include respond-min(1500px) {
+        width: 23%;
+    }
+
+    //1984
+    @include respond-min($screen-desktop * 2) {
+        width: 18%;
+    }
+
+    // &::after {
+    //     content: '';
+    //     display: block;
+    //     background-color: #fff;
+    //     height: 38px;
+    //     width: 36px;
+    //     position: absolute;
+    //     top: 2px;
+    //     right: 2px;
+    //     border-top-right-radius: 2px;
+    //     border-left: 2px solid color(gray, lighter);
+    //     border-bottom: 2px solid color(gray, lighter);
+    // }
+
+    // need hover styles to make it more obvious they can be clicked
+
+    // also consider widths when in a modal and when sidebar is present - is sidebar an issue?
+}
+
+.file-picker__label {
+    background-color: color(white);
+    border: 2px solid color(gray, lighter);
+    border-radius: $border-radius;
+    display: block;
+    padding-bottom: 5px;
+    overflow: hidden;
+    transition: transform .2s, border .2s;
+    position: relative;
+
+    &:hover,
+    &:focus {
+        border-color: color(primary);
+
+        .file-picker__image {
+            transform: scale(1.2);
+        }
+
+        .file-picker__file-icon {
+            transform: scale(1.2);
+        }
+
+        &::after {
+            border-left: 2px solid color(primary);
+            border-bottom: 2px solid color(primary);
+        }
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        background-color: #fff;
+        height: 38px;
+        width: 36px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-top-right-radius: 2px;
+        border-left: 2px solid color(gray, lighter);
+        border-bottom: 2px solid color(gray, lighter);
+        transition: border .2s;
+    }
+}
+
+.file-picker__input.form__control.checkbox,
+.file-picker__input.form__control.radio {
+    box-shadow: 0 0 0 2px color(border);
+
+    //display: none;
+
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 9999; // use var
+
+    &:checked {
+        box-shadow: 0 0 0 2px color(primary);
+    }
+
+    // fixes issue where hovering on the input caused the label to be not hovered - doesn't work!
+    // &:hover .file-picker__label,
+    // &:focus .file-picker__label {
+    //     border-color: color(primary);
+
+    //     .file-picker__image {
+    //         transform: scale(1.2);
+    //     }
+
+    //     .file-picker__file-icon {
+    //         transform: scale(1.2);
+    //     }
+
+    //     &::after {
+    //         border-left: 2px solid color(primary);
+    //         border-bottom: 2px solid color(primary);
+    //     }
+    // }
+}
+
+.file-picker__input:checked ~ .file-picker__label {
+    background-color: color(info, light);
+    border-color: color(primary);
+
+    .file-picker__meta {
+        background-color: color(info, light);
+    }
+
+    .file-picker__image {
+        transform: scale(1.2);
+    }
+
+    .file-picker__file-icon {
+        transform: scale(1.2);
+    }
+
+    .file-picker__selection-marker {
+        display: block;
+    }
+
+    &::after {
+        border-left: 2px solid color(primary);
+        border-bottom: 2px solid color(primary);
+    }
+}
+
+.file-picker__image {
+    border-bottom: 1px solid color(gray, lighter);
+    width: 100%;
+    height: 150px;
+    background-size: cover;
+    //margin-bottom: 5px;
+    background-position: center;
+    transition: transform .2s;
+}
+
+.file-picker__file {
+    background: color(white);
+    border-bottom: 1px solid color(gray, lighter);
+    display: flex;
+    height: 150px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-picker__file-icon {
+    font-size: $font-size-base * 3;
+    transition: transform .2s;
+
+    &.icon-file-word-o {
+        color: color(jadu-blue, darkest);
+    }
+
+    &.icon-file-excel-o {
+        color: color(jadu-green, darkest);
+    }
+
+    &.icon-file-pdf-o {
+        color: color(jadu-red);
+    }
+
+    // other file type icons?
+}
+
+.file-picker__meta {
+    background: color(white); // might clash with selected blue
+    position: relative;
+    z-index: 4444; // use var
+}
+
+.file-picker__text {
+    //@include word-wrap();
+    margin-bottom: 0;
+    padding: 5px 10px 0;
+    overflow-wrap: break-word; // various old FF and Saf
+    word-break: break-word; // chrome
+    word-wrap: break-word; // various old FF and Saf
+}
+
+// overriding agressive form-group error styling
+.form__group:not(.form__group--partial-state).has-error .form__control.file-picker__input {
+    background-color: color(white);
+
+    &:focus {
+        box-shadow: 0 0 0 2px color(primary);
+    }
+}

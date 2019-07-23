@@ -6,6 +6,219 @@
         form.create()
     }}
 
+<div class="form__group form-choice has-error">
+    <label class="control__label">Add attachment&nbsp;<span class="required-indicator" data-toggle="tooltips" title="required">*</span></label>
+    <div class="controls">
+
+        <div class="file-picker file-picker--has-error">
+            <div class="file-picker__item">
+                <input
+                    id="attachment1"
+                    name="attachments"
+                    value="0"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment1" class="file-picker__label">
+                    <div class="file-picker__image" style="background-image:url('https://picsum.photos/id/1/400/500')"></div>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">example image file.png</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>13/05/2019</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="file-picker__item">
+                <input
+                    id="attachment2"
+                    name="attachments"
+                    value="1"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment2" class="file-picker__label">
+                    <div class="file-picker__image" style="background-image:url('https://picsum.photos/id/10/600/600')"></div>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">example2.png</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>12/05/2019</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="file-picker__item">
+                <input
+                    id="attachment3"
+                    name="attachments"
+                    value="2"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment3" class="file-picker__label">
+                    <div class="file-picker__image" style="background-image:url('https://picsum.photos/id/100/300/200')"></div>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">averyveryveryveryveryveryveryveryveryveryveryverylongunbrokenstring.png</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>11/05/2019</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="file-picker__item">
+                <input
+                    id="attachment4"
+                    name="attachments"
+                    value="3"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment4" class="file-picker__label">
+                    <div class="file-picker__image" style="background-image:url('https://picsum.photos/id/1005/300/200')"></div>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">averyveryveryveryveryvery-veryveryveryveryveryvery_longunbrokenstring.png.png</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>11/05/2019</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="file-picker__item">
+                <input
+                    id="attachment9"
+                    name="attachments"
+                    value="4"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment9" class="file-picker__label">
+                    <span class="file-picker__file">
+                        {{
+                            html.icon('file-pdf-o', {
+                                'class': 'file-picker__file-icon'
+                            })
+                        }}
+                    </span>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">pdfdoc.pdf</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>11/05/2019</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="file-picker__item">
+                <input
+                    id="attachment10"
+                    name="attachments"
+                    value="5"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment10" class="file-picker__label">
+                    <span class="file-picker__file">
+                        {{
+                            html.icon('file-pdf-o', {
+                                'class': 'file-picker__file-icon'
+                            })
+                        }}
+                    </span>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">pdfdoc.pdf</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>11/05/2019</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="file-picker__item">
+                <input
+                    id="attachment11"
+                    name="attachments"
+                    value="6"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment11" class="file-picker__label">
+                    <span class="file-picker__file">
+                        {{
+                            html.icon('file-excel-o', {
+                                'class': 'file-picker__file-icon'
+                            })
+                        }}
+                    </span>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">spreadsheet.xls</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>11/05/2019</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="file-picker__item">
+                <input
+                    id="attachment12"
+                    name="attachments"
+                    value="7"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment12" class="file-picker__label">
+                    <span class="file-picker__file">
+                        {{
+                            html.icon('file-word-o', {
+                                'class': 'file-picker__file-icon'
+                            })
+                        }}
+                    </span>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">screenshotinword.doc</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>11/05/2019</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="file-picker__item">
+                <input
+                    id="attachment13"
+                    name="attachments"
+                    value="8"
+                    required aria-required="true"
+                    type="radio"
+                    class="form__control radio file-picker__input"
+                    {#{% if error %} aria-describedby="{% error-guid %}" {% endif %}#}
+                />
+                <label for="attachment13" class="file-picker__label">
+                    <span class="file-picker__file">
+                        {{
+                            html.icon('file-text-o', {
+                                'class': 'file-picker__file-icon'
+                            })
+                        }}
+                    </span>
+                    <div class="file-picker__meta">
+                        <p class="file-picker__text">anothertypeoffile.txt</p>
+                        <p class="file-picker__text"><span class="hide">Uploaded </span>11/05/2019</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+        {# errors go here - add note on guid when moves to CC  #}
+        <span class="help-block is-error" id="guid-1779815813">Please select at least one file</span>
+    </div>
+</div>
+
+{#}
+
     {{
         form.choice({
             'class': '',
@@ -833,13 +1046,13 @@
             ]
         })
     }}
-
+#}
     {{
         form.end()
     }}
 
 {% endblock tab_content %}
-
+{#}
 {% block tab_sidebar %}
     <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
         <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157" />
@@ -854,3 +1067,4 @@
     }}
 
 {% endblock tab_sidebar %}
+#}

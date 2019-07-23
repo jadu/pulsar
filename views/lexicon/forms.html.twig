@@ -23,7 +23,7 @@
 {% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
 {% set tab_jstree %}{% include 'lexicon/forms/jstree.html.twig' %}{% endset %}
 {% set tab_repeater %}{% include 'lexicon/forms/repeater.html.twig' %}{% endset %}
-
+{#}
 {%
     set tabs_content = [
         {
@@ -44,7 +44,8 @@
         {
           "id"    : "choice",
           "label" : "Choice",
-          "src"   : tab_choice
+          "src"   : tab_choice,
+          "active": true
         },
         {
           "id"    : "colour",
@@ -114,8 +115,7 @@
         {
           "id"    : "text",
           "label" : "Text",
-          "src"   : tab_text,
-          "active": true
+          "src"   : tab_text
         },
         {
           "id"    : "textarea",
@@ -126,6 +126,22 @@
           "id"    : "time",
           "label" : "Time",
           "src"   : tab_time
+        },
+        {
+          "id"    : "toggleswitch",
+          "label" : "Toggle Switch",
+          "src"   : tab_toggleswitch
+        }
+    ]
+%}
+#}
+{%
+    set tabs_content = [
+        {
+          "id"    : "choice",
+          "label" : "Choice",
+          "src"   : tab_choice,
+          "active": true
         },
         {
           "id"    : "toggleswitch",
