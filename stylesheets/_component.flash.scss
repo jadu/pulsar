@@ -12,7 +12,7 @@
         z-index: $zindex-flash;
     }
 
-        &.is-sticky {
+    &.is-sticky {
         display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
     }
 
@@ -23,6 +23,11 @@
             margin-right: $gutter-width / 2;
         }
     }
+}
+
+.flash h2 {
+    display: inline;
+    font-size: $font-size-base;
 }
 
 // Make sure sticky flashes appear over the breadcrumb
@@ -94,11 +99,8 @@
 }
 
 .flash-container {
-    clear: both;
-    top: -5px;
-    left: 0;
-    margin-bottom: 0;
-    position: relative;
-    width: auto;
+    left: $nav-primary-width;
+    position: fixed;
+    right: 0;
     z-index: $zindex-flash;
 }
