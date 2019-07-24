@@ -119,11 +119,13 @@ var $ = require('jquery');
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
 
+    var $tip = this.tip()
+
     clearTimeout(self.timeout)
 
     self.hoverState = 'out'
-
-    if (!self.options.delay || !self.options.delay.hide) return self.hide()
+  
+    if (!self.options.delay || !self.options.delay.hide) return $tip.hide()
 
     self.timeout = setTimeout(function () {
       if (self.hoverState == 'out') self.hide()
@@ -404,10 +406,6 @@ var $ = require('jquery');
       var $this   = $(this)
       var data    = $this.data('bs.tooltips')
       var options = typeof option == 'object' && option
-
-      if ('ontouchstart' in window) {
-        return;
-      }
 
       if (!data && option == 'destroy') return
       if (!data) $this.data('bs.tooltips', (data = new Tooltips(this, options)))
