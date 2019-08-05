@@ -12,7 +12,7 @@
 
     @include respond-min($screen-desktop) {
         //left: $nav-primary-width + $gutter-width;
-        margin: 0 0 20px;
+        margin: 0;
         //position: absolute;
         //top: 18px;
         clear: none;
