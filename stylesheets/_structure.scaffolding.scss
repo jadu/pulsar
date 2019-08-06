@@ -71,10 +71,10 @@ a.disabled {
 
   &:focus {
     display: block;
-    left: 0;
+    left: 85px;
     outline-offset: -2px;
     outline: 3px solid color(border, focus);
-    position: relative;
+    position: absolute;
     top: 0;
     width: 100%;
   }
