@@ -24,7 +24,6 @@ var $                     = require('jquery'),
     countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
     pikaday   = require('../libs/pikaday/plugins/pikaday.jquery'),
     svgeezy   = require('../libs/svgeezy/svgeezy.min'),
-    select2   = require('../libs/select2/dist/js/select2.min'),
     tinycon   = require('../libs/tinyicon/tinycon.min'),
 
     dt            = require('datatables.net')(window, $),
