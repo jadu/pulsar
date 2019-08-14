@@ -11,8 +11,6 @@ require('babel-polyfill');
 // Expose jQuery globals
 window.$ = window.jQuery = $;
 
-console.log($.fn.jquery);
-
 // Load chai extensions
 chai.use(sinonChai);
 chai.use(chaiDom);
