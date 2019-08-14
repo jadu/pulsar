@@ -66,15 +66,22 @@
   }
 
   // Links within the dropdown menu
-  > li > a {
-    display: block;
-    padding: 3px 15px 3px 10px;
+  > li > a,
+  > li > .btn {
+    background: none !important; // .btn styles are immutable
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
     clear: both;
+    color: $dropdown-link-color !important;
+    display: block;
     font-weight: normal;
     line-height: $line-height-base;
-    color: $dropdown-link-color;
-    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    padding: 3px 15px 3px 10px;
+    text-align: left;
     text-decoration: none;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    width: 100%;
 
     [class^="icon-"],
     [class*=" icon-"] {
@@ -89,19 +96,23 @@
 
 // Hover/Focus state
 // -----------
-.dropdown__menu > li > a:not(.is-disabled) {
+.dropdown__menu > li > a:not(.is-disabled),
+.dropdown__menu > li > .btn:not(.is-disabled) {
   &:hover,
   &:focus,
   &.active {
+    background-color: $dropdown-link-hover-bg !important;
+    box-shadow: 0;
+    color: $dropdown-link-hover-color !important;
     text-decoration: none;
-    background-color: $dropdown-link-hover-bg;
-    color: $dropdown-link-hover-color;
+    transform: none;
   }
 }
 
 // Active state
 // ------------
-.dropdown__menu > .active > a {
+.dropdown__menu > .active > a,
+.dropdown__menu > .active > .btn {
   &,
   &:hover,
   &:focus {
@@ -115,7 +126,8 @@
 // Disabled state
 // --------------
 // Gray out text and ensure the hover/focus state remains gray
-.dropdown__menu > .disabled > a {
+.dropdown__menu > .disabled > a,
+.dropdown__menu > .disabled > .btn {
   &,
   &:hover,
   &:focus {
@@ -123,7 +135,8 @@
   }
 }
 // Nuke hover/focus effects
-.dropdown__menu > .disabled > a {
+.dropdown__menu > .disabled > a,
+.dropdown__menu > .disabled > .btn {
   &:hover,
   &:focus {
     text-decoration: none;
@@ -143,7 +156,8 @@
   }
 
   // Remove the outline when :focus is triggered
-  > a {
+  > a,
+  > .btn {
     outline: 0;
   }
 }
@@ -198,7 +212,8 @@
   }
 }
 
-.dropdown__menu > li > a {
+.dropdown__menu > li > a,
+.dropdown__menu > li > .btn {
   &:hover > .badge {
     @extend %badge--primary;
     background-color: darken($dropdown-link-active-bg, 20%);
@@ -293,7 +308,8 @@
   min-width: 300px;
 }
 
-.dropdown__menu > li > a > .progress {
+.dropdown__menu > li > a > .progress,
+.dropdown__menu > li > .btn > .progress {
   height: 3px;
   margin-bottom: 0;
 
