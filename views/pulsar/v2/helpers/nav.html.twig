@@ -6,7 +6,7 @@
 <nav class="nav-main" aria-label="Primary" id="aria-main-nav">
     <a class="skip-link" href="#main-content" tabindex="1">Skip to main content</a>
     <div class="nav-primary t-nav-primary">
-        <a tabindex="1" href="{{ options.brand_link|default('#') }}" class="jadu-branding" aria-label="Home">
+        <a href="{{ options.brand_link|default('#') }}" class="jadu-branding" aria-label="Home">
             <span class="jadu-logomark"><span class="hide">Return to home</span></span>
             <span class="jadu-wordmark">Jadu</span>
         </a>
@@ -23,7 +23,7 @@
 
     <div class="nav-secondary t-nav-secondary" id="aria-secondary-nav">
 
-        <button class="nav-close" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
+        <button class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
         {% if options.data is iterable %}
             {% for options in options.data %}
@@ -54,7 +54,7 @@
 
     <div class="nav-tertiary t-nav-tertiary" id="aria-tertiary-nav">
 
-        <button class="nav-close" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
+        <button class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
         <div class="nav-list">
             <h2 class="nav-item nav-item--header t-nav-header" id="aria-tertiary-nav-heading">More Categories</h2>
@@ -73,7 +73,7 @@
 
     <div class="nav-quaternary t-nav-quaternary" id="aria-quaternary-nav">
 
-        <button class="nav-close-ltr" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
+        <button class="nav-close-ltr" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
            {% if options.data is iterable %}
                {% for options in options.data %}
@@ -127,7 +127,7 @@
         }}
     >
         <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }} 
-            tabindex="1" 
+            
             class="nav-link t-nav-link" 
             {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} 
             {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false" 
