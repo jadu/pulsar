@@ -132,15 +132,8 @@
 
                     {% block notifications %}{% endblock %}
                 </div>
-
-            </div>
-
-            
-
-            <div class="content-main">
-                <div class="tabs__content">
-                    {{ nav.breadcrumbs(breadcrumbs|default) }}
-                    {% block header_actions %}{% endblock %}
+                {{ nav.breadcrumbs(breadcrumbs|default) }}
+                {% block header_actions %}{% endblock %}
                     {% set _ribbon = '' %}
                     {% set _ribbon = block('ribbon') %}
                     {% if _ribbon is not empty %}
@@ -154,6 +147,12 @@
                     {% else %}
                         <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
                     {% endif %}
+            </div>
+
+            
+
+            <div class="content-main">
+                <div class="tabs__content">
                     {% block tabs_list %}{% endblock %}
                     <div id="skip-target">
                         {% block tabs_content %}{% endblock %}

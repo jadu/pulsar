@@ -3,6 +3,7 @@
 .toolbar {
     // display: block;
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     // float: left;
     // margin-bottom: 18px;
@@ -14,6 +15,13 @@
         // height: 60px;
         // margin-bottom: 0;
         // padding: 14px 20px;
+    }
+
+    // Force breadcrumbs / main title to wrap onto the next row
+    &::before {
+        content: '';
+        order: 1;
+        width: 100%;
     }
 
     .dropdown {
