@@ -20,7 +20,7 @@ describe('NavMainComponent', function () {
             <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
             <nav class="nav-main" aria-label="Primary" id="aria-main-nav">
                <div class="nav-primary">
-                   <a tabindex="1" href="http://jadu.net" class="jadu-branding">Jadu</a>
+                   <a href="http://jadu.net" class="jadu-branding">Jadu</a>
                    <ul class="nav-items">
                        <li class="nav-item">
                            <a href="#one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">1</a>
@@ -48,14 +48,14 @@ describe('NavMainComponent', function () {
                    <div class="nav-list" data-nav="#one">
                        <ul class="nav-items">
                            <li class="nav-item">
-                               <a tabindex="1" href="#one_one" class="nav-link">1.1</a>
+                               <a href="#one_one" class="nav-link">1.1</a>
                            </li>
                        </ul>
                    </div>
                    <div class="nav-list" data-nav="#two">
                        <ul class="nav-items">
                            <li class="nav-item">
-                               <button tabindex="1" data-target="#two_one" class="nav-link">2.1</a>
+                               <button data-target="#two_one" class="nav-link">2.1</a>
                            </li>
                        </ul>
                    </div>
@@ -65,16 +65,16 @@ describe('NavMainComponent', function () {
                    <div class="nav-list">
                        <ul class="nav-items">
                            <li class="nav-item">
-                               <a tabindex="1" href="#three_one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.1</a>
+                               <a href="#three_one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.1</a>
                            </li>
                            <li class="nav-item">
-                                <button tabindex="1" data-target="#three_two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.2</a>
+                                <button data-target="#three_two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.2</a>
                             </li>
                             <li class="nav-item">
-                                <button tabindex="1" class="nav-link qa-tertiary-missing-target" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">5</button>
+                                <button class="nav-link qa-tertiary-missing-target" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">5</button>
                             </li>
                             <li class="nav-item">
-                                <a tabindex="1" class="nav-link qa-tertiary-missing-href" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">4</a>
+                                <a class="nav-link qa-tertiary-missing-href" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">4</a>
                             </li>
                        </ul>
                    </div>
@@ -84,14 +84,14 @@ describe('NavMainComponent', function () {
                    <div class="nav-list" data-nav="#three_one">
                        <ul class="nav-items">
                            <li class="nav-item">
-                               <a tabindex="1" href="#four_one" class="nav-link">4.1</a>
+                               <a href="#four_one" class="nav-link">4.1</a>
                            </li>
                        </ul>
                    </div>
                    <div class="nav-list" data-nav="#three_two">
                        <ul class="nav-items">
                            <li class="nav-item">
-                               <a tabindex="1" href="#four_two" class="nav-link">4.2</a>
+                               <a href="#four_two" class="nav-link">4.2</a>
                            </li>
                        </ul>
                    </div>
@@ -171,7 +171,7 @@ describe('NavMainComponent', function () {
         });
 
         it('should maintain the initial tabindex', function () {
-            expect(this.$linkOne.attr('tabindex')).to.equal('1');
+            expect(this.$linkOne.attr('tabindex')).to.equal('0');
         });
     });
 
