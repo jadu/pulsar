@@ -45,7 +45,7 @@ SignInComponent.prototype.init = function () {
 	component.$videoBlock = this.$html.find('#video-bg');
 
 	// Handle background video and OS motion control
-	component.handleReduceMotion(component.motionQuery);
+	component.handleReduceMotion();
 	component.motionQuery.addListener(component.handleReduceMotion.bind(this));
 
 
@@ -451,7 +451,7 @@ SignInComponent.prototype.success = function () {
 
 }
 
-SignInComponent.prototype.handleReduceMotion = function (motionQuery) {
+SignInComponent.prototype.handleReduceMotion = function () {
 
 	var component = this,
 		videVideoPath = component.$videoBlock.attr('data-video-bg'),
