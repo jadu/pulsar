@@ -2,7 +2,6 @@ $nav-color-light: color(jadu-blue) !default;
 $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .tab-help-container {
-
     backface-visibility: hidden;
     background: $nav-color-dark;
     box-shadow: inset 4px 0 0 darken($nav-color-dark, 5%);
@@ -38,6 +37,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     transform-origin: 50% 0%;
     transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
     transition: opacity 300ms 100ms ease, transform 400ms ease;
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
 
     .open-help & {
         filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
