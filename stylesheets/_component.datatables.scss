@@ -83,6 +83,8 @@ a.dt-button {
 
     td,
     th {
+        overflow: hidden;
+
         &.sorting:hover,
         &.sorting_asc:hover,
         &.sorting_desc:hover {
@@ -383,8 +385,6 @@ th.sorting_disabled:hover {
     display: none;
 }
 
-// scss-lint:enable SelectorFormat
-
 .dtr-details {
     .dtr-title {
         a {
@@ -404,3 +404,5 @@ th.sorting_disabled:hover {
         }
     }
 }
+
+// scss-lint:enable SelectorFormat
