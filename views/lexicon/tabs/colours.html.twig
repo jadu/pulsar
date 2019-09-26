@@ -254,6 +254,26 @@
         </div>
     {% endfor %}
 
+    <h2 class="heading">Jadu Purple</h2>
+
+    {%
+        set jadu_purple = {
+            "jadu-purple-darkest": "jadu-purple, darkest",
+            "jadu-purple-dark": "jadu-purple, dark",
+            "jadu-purple-base": "jadu-purple"
+        }
+    %}
+
+    {% for colour, address in jadu_purple %}
+        <div class="swatch swatch--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+
     <h2 class="heading">Jadu Blue</h2>
 
     {%
