@@ -1,0 +1,17 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Error sumamry' %}
+
+{% set tab_one %}
+    {% include '/lexicon/patterns/error-summary/error-summary.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "one",
+            "label" : "Error summary",
+            "src"   : tab_one
+        }
+    ]
+%}
