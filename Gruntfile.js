@@ -467,6 +467,39 @@ module.exports = function(grunt) {
                         }
                     }
                 }
+            },
+            deployer: {
+                src: 'images/favicons/src/favicon-deployer.svg',
+                dest: 'images/favicons/deployer',
+                options: {
+                    iconsPath: '/images/favicons/deployer/',
+                    html: [ 'views/pulsar/components/favicons-deployer.html' ],
+                    design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#3d4796',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#3d4796',
+                            themeColor: '#3d4796',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
+                        windows: {
+                            pictureAspect: 'whiteSilhouette',
+                            backgroundColor: '#3d4796',
+                            onConflict: 'override'
+                        }
+                    }
+                }
             }
         },
 
