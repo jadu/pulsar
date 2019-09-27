@@ -494,7 +494,7 @@ module.exports = function(grunt) {
                             }
                         },
                         windows: {
-                            pictureAspect: 'whiteSilhouette',
+                            pictureAspect: 'noChange',
                             backgroundColor: '#3d4796',
                             onConflict: 'override'
                         }
