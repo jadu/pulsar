@@ -17,6 +17,7 @@ describe('DropdownButtonComponent', () => {
     let dropdownButtonComponent;
     let dropdownButtonComponentWithoutHTML;
     let hiddenBsDropdownEventSpy;
+    let clock;
 
     beforeEach(() => {
         $html = $('html');
@@ -82,10 +83,10 @@ describe('DropdownButtonComponent', () => {
         downArrowKeyDownEvent4 = $.Event('keydown');
         upArrowKeyDownEvent = $.Event('keydown');
         tabKeyDownevent = $.Event('keydown');
-
         hiddenBsDropdownEventSpy = sinon.spy();
         $dropdownButtonBtnGroup.on('hidden.bs.dropdown', hiddenBsDropdownEventSpy);
         $dropupButtonBtnGroup.on('hidden.bs.dropdown', hiddenBsDropdownEventSpy);
+        clock = sinon.useFakeTimers();
 
         dropdownButtonComponent = new DropdownButtonComponent($html);
         dropdownButtonComponent.init();
@@ -97,6 +98,7 @@ describe('DropdownButtonComponent', () => {
         $html.find('[data-toggle="dropdown"]').off();
         $html.find('.dropdown__menu').off();
         $dropdownButtonBtnGroup.off();
+        clock.restore();
     });
 
     describe('init()', () => {
@@ -290,39 +292,30 @@ describe('DropdownButtonComponent', () => {
                 downArrowKeyDownEvent4.keyCode = 40;
             });
 
-            it('should focus the next focusable element when the down arrow is pressed', (done) => {
+            it('should focus the next focusable element when the down arrow is pressed', () => {
                 $dropdownButtonBtnGroup.find('[data-toggle="dropdown"]').trigger(downArrowKeyDownEvent);
                 $dropdownButtonBtnGroup.find('.dropdown__menu').trigger(downArrowKeyDownEvent2);
 
-                setTimeout(() => {
-                    expect($dropdownButtonBtnGroup.find('#dropdownButtonItem5').is(':focus')).to.be.true;
-                    done();
-                }, 1);
+                expect($dropdownButtonBtnGroup.find('#dropdownButtonItem5').is(':focus')).to.be.true;
             });
 
-            it('should focus the next focusable element when the down arrow is pressed again', (done) => {
+            it('should focus the next focusable element when the down arrow is pressed again', () => {
                 $dropdownButtonBtnGroup.find('[data-toggle="dropdown"]').trigger(downArrowKeyDownEvent);
                 $dropdownButtonBtnGroup.find('.dropdown__menu')
                     .trigger(downArrowKeyDownEvent2)
                     .trigger(downArrowKeyDownEvent3);
 
-                setTimeout(() => {
-                    expect($dropdownButtonBtnGroup.find('#dropdownButtonItem6').is(':focus')).to.be.true;
-                    done();
-                }, 1);
+                expect($dropdownButtonBtnGroup.find('#dropdownButtonItem6').is(':focus')).to.be.true;
             });
 
-            it('should keep the focus on the last time when the down arrow is pressed again', (done) => {
+            it('should keep the focus on the last time when the down arrow is pressed again', () => {
                 $dropdownButtonBtnGroup.find('[data-toggle="dropdown"]').trigger(downArrowKeyDownEvent);
                 $dropdownButtonBtnGroup.find('.dropdown__menu')
                     .trigger(downArrowKeyDownEvent2)
                     .trigger(downArrowKeyDownEvent3)
                     .trigger(downArrowKeyDownEvent4);
 
-                setTimeout(() => {
-                    expect($dropdownButtonBtnGroup.find('#dropdownButtonItem6').is(':focus')).to.be.true;
-                    done();
-                }, 1);
+                expect($dropdownButtonBtnGroup.find('#dropdownButtonItem6').is(':focus')).to.be.true;
             });
         });
 
@@ -334,13 +327,10 @@ describe('DropdownButtonComponent', () => {
 
             });
 
-            it('should focus the next focusable element when the up arrow is pressed', (done) => {
+            it('should focus the next focusable element when the up arrow is pressed', () => {
                 $dropdownButtonBtnGroup.find('.dropdown__menu').trigger(upArrowKeyDownEvent);
 
-                setTimeout(() => {
-                    expect($dropdownButtonBtnGroup.find('#dropdownButtonItem5').is(':focus')).to.be.true;
-                    done();
-                }, 1);
+                expect($dropdownButtonBtnGroup.find('#dropdownButtonItem5').is(':focus')).to.be.true;;
             });
         });
 
@@ -353,24 +343,21 @@ describe('DropdownButtonComponent', () => {
             });
 
             it('should close the open dropdown and remove the `open` class from the dropdown', (done) => {
-                setTimeout(() => {
-                    expect($dropdownButtonBtnGroup.hasClass('open')).to.be.false;
-                    done();
-                }, 1);
+                clock.tick(1);
+                expect($dropdownButtonBtnGroup.hasClass('open')).to.be.false;
+                done();
             })
 
             it('should close the open dropdown and change `aria-expanded` to false', (done) => {
-                setTimeout(() => {
-                    expect($dropdownButtonBtnGroup.find('[data-toggle="dropdown"]').attr('aria-expanded')).to.equal('false');
-                    done();
-                }, 1);
+                clock.tick(1);
+                expect($dropdownButtonBtnGroup.find('[data-toggle="dropdown"]').attr('aria-expanded')).to.equal('false');
+                done();
             })
 
             it('should trigger the `hidden.bs.dropdown` event', (done) => {
-                setTimeout(() => {
-                    expect(hiddenBsDropdownEventSpy).to.to.have.been.calledOnce;
-                    done();
-                }, 1);
+                clock.tick(1);
+                expect(hiddenBsDropdownEventSpy).to.to.have.been.calledOnce;
+                done();
             });
         });
     });
