@@ -477,15 +477,15 @@ module.exports = function(grunt) {
                     design: {
                         ios: {
                             pictureAspect: 'backgroundAndMargin',
-                            backgroundColor: '#333c79',
+                            backgroundColor: '#3d4796',
                             margin: '14%'
                         },
                         desktopBrowser: {},
                         androidChrome: {
                             pictureAspect: 'backgroundAndMargin',
                             margin: '17%',
-                            backgroundColor: '#333c79',
-                            themeColor: '#333c79',
+                            backgroundColor: '#3d4796',
+                            themeColor: '#3d4796',
                             manifest: {
                                 name: 'Continuum',
                                 display: 'browser',
@@ -495,7 +495,7 @@ module.exports = function(grunt) {
                         },
                         windows: {
                             pictureAspect: 'whiteSilhouette',
-                            backgroundColor: '#DC5172',
+                            backgroundColor: '#3d4796',
                             onConflict: 'override'
                         }
                     }
