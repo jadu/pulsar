@@ -330,7 +330,7 @@ describe('DropdownButtonComponent', () => {
             it('should focus the next focusable element when the up arrow is pressed', () => {
                 $dropdownButtonBtnGroup.find('.dropdown__menu').trigger(upArrowKeyDownEvent);
 
-                expect($dropdownButtonBtnGroup.find('#dropdownButtonItem5').is(':focus')).to.be.true;;
+                expect($dropdownButtonBtnGroup.find('#dropdownButtonItem5').is(':focus')).to.be.true;
             });
         });
 

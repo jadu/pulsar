@@ -6,6 +6,7 @@ const $ = require('jquery'),
 describe('ErrorSummaryComponent', () => {
 	let $body,
 		$errorSummary,
+        $errorSummary2,
 		errorSummaryComponent;
 
 	beforeEach(() => {
@@ -45,7 +46,7 @@ describe('ErrorSummaryComponent', () => {
     	});
 
 		it('should throw an error if there is more than one error summary on the page', () => {
-			let $errorSummary2 = $('<div data-error-summary="true"></div>').appendTo($body);
+			$errorSummary2 = $('<div data-error-summary="true"></div>').appendTo($body);
 
 			expect(() => {
                 errorSummaryComponent.init($body);
