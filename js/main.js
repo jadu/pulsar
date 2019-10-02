@@ -10,6 +10,7 @@
 
     $html.removeClass('no-js');
 
+    pulsar.errorSummary = new pulsar.ErrorSummaryComponent();
     pulsar.button = new pulsar.ButtonComponent($html);
     pulsar.dropdownButton = new pulsar.DropdownButtonComponent($html);
     pulsar.disableUi = new pulsar.DisableUiComponent($html);
@@ -34,6 +35,7 @@
     $(function () {
         pulsar.button.init();
         pulsar.dropdownButton.init();
+        pulsar.errorSummary.init($html);
         pulsar.flash.init();
         pulsar.helpText.init();
         pulsar.helpText.updateHelpSidebar();

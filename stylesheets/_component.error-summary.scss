@@ -1,0 +1,33 @@
+.error-summary {
+    background-color: color(white);
+    border: 5px solid color(danger);
+    color: color(text);
+    margin-bottom: $margin-base * 2;
+    padding: $padding-base * 1.5;
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+    }
+}
+
+.error-summary__title {
+    margin-bottom: $margin-base * 1.5;
+}
+
+.error-summary__list {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.error-summary__list-item {
+    margin-bottom: $margin-small-vertical;
+}
+
+.error-summary__list-link {
+    color: color(danger);
+
+    &:hover {
+        color: color(danger);
+    }
+}
