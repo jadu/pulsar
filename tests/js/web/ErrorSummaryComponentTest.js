@@ -4,10 +4,10 @@ const $ = require('jquery'),
 	ErrorSummaryComponent = require('../../../js/ErrorSummaryComponent');
 
 describe('ErrorSummaryComponent', () => {
-	let $body,
-		$errorSummary,
+    let $body,
+        $errorSummary,
         $errorSummary2,
-		errorSummaryComponent;
+        errorSummaryComponent;
 
 	beforeEach(() => {
 		$body = $('body');
