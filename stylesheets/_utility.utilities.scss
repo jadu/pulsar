@@ -355,6 +355,11 @@ td.no-results {
     width: auto !important;
 }
 
+%u-width-full,
+.u-width-full {
+    width: 100% !important;
+}
+
 %u-margin-top,
 .u-margin-top {
     margin-top: $margin-base !important;
@@ -374,6 +379,16 @@ td.no-results {
 %u-margin-bottom,
 .u-margin-bottom {
     margin-bottom: $margin-base !important;
+}
+
+%u-margin-bottom-small,
+.u-margin-bottom-small {
+    margin-bottom: $margin-base / 2 !important;
+}
+
+%u-margin-top-large,
+.u-margin-top-large {
+    margin-top: $margin-base * 2 !important;
 }
 
 %u-margin-bottom--large,
