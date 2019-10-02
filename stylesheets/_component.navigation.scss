@@ -303,6 +303,11 @@
         transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
         transition: opacity 300ms 100ms ease, transform 500ms ease;
 
+        @include prefers-reduced-motion() {
+            transition: none;
+            transform: none;
+        }
+
         @include respond-min($screen-desktop) {
             filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
             opacity: 1;
@@ -338,6 +343,10 @@
 
     @include respond-min($screen-desktop) {
         position: fixed;
+    }
+
+    @include prefers-reduced-motion() {
+        transition: none;
     }
 
     // cope with presence of scrollbars in IE
@@ -392,6 +401,10 @@
     margin-left: 242px;
     transition: all 100ms linear;
     width: 0;
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
 }
 
 .nav-remove-search {

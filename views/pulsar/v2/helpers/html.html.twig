@@ -1019,12 +1019,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <span{{
         attributes(options
+            |exclude('label')
             |defaults({
                 'class': 'loading'
             })
         )
     }}>
-        <i>Loading...</i>
+        <i>{{- options.label|default('Loading...') -}}</i>
     </span>
 
 {% endspaceless %}

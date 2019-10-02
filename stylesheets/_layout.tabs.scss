@@ -60,6 +60,11 @@
         width: 100%;
     }
 
+    @include prefers-reduced-motion() {
+        left: $nav-primary-width;
+        transform: none;
+    }
+
     .lt-ie10 & {
         left: $nav-primary-width;
     }
@@ -77,6 +82,12 @@
         transform: none;
         transition: transform 500ms ease;
         width: 100%;
+    }
+
+    @include prefers-reduced-motion() {
+        left: -300px;
+        transform: none;
+        transition: none;
     }
 }
 
