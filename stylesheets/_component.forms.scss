@@ -594,6 +594,12 @@ fieldset {
         color: color(text);
         content: '\f00c';
     }
+
+    &:indeterminate::before {
+        color: color(text);
+        content: '\f068';
+        left: 3.5px;
+    }
 }
 
 .form__control.radio {
