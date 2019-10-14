@@ -658,6 +658,18 @@ td.table__form .rules + .form__group:last-of-type {
         }
     }
 
+    // Make multiple select2 fit same height as single select2
+    .select2-container {
+        vertical-align: top;
+
+        .select2-search__field {
+            min-height: auto;
+        }
+
+        .select2-selection--multiple {
+            min-height: 48px;
+        }
+    }
 }
 
 .rules-container--spaced {
