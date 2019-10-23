@@ -6,7 +6,7 @@
     }
 
     &:checked + .toggle-switch-label {
-        background-color: color(success); //#1ABC9C
+        background-color: color(success);
         border-color: transparent;
         color: color(white);
 
@@ -31,8 +31,7 @@
     }
 
     &:focus + .toggle-switch-label {
-        outline: 3px solid color(border, focus);
-        outline-offset: 1px;
+        @include pulsar-toggle-focused;
     }
 
     &.toggle-switch--large + .toggle-switch-label {

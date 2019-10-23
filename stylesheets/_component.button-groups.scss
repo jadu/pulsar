@@ -31,11 +31,6 @@
         border-right: 1px solid #ccc;
     }
 
-    .form__control:focus + .control__label {
-        outline: 3px solid #ffbf47;
-        outline-offset: 2px;
-    }
-
     @each $state, $state-color, $state-color-alt in $state-colors {
         > .btn--#{$state}:not(:first-of-type):not(.btn--naked):not(.edit-button):not(.remove-button) {
             border-left-color: darken(color($state), 10);
@@ -172,10 +167,6 @@
 // Remove the gradient and set the same inset shadow as the :active state
 .btn__group.open .dropdown__toggle {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-
-    &:focus {
-        outline: 3px solid color(border, focus);
-    }
 }
 
 // Reposition the caret

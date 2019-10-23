@@ -97,9 +97,7 @@ a.dt-button {
         &.sorting:focus,
         &.sorting_asc:focus,
         &.sorting_desc:focus {
-            outline: 3px solid color(border, focus);
-            outline-offset: -3px;
-            z-index: 1;
+            @include pulsar-datatables-sorting-focused;
         }
 
         &.sorting::after,
@@ -214,9 +212,7 @@ th.sorting_disabled:hover {
         padding: 5px;
 
         &:focus {
-            border: 1px solid color(primary);
-            outline: 3px solid color(border, focus);
-            outline-offset: 2px;
+            @include pulsar-input-focused;
         }
     }
 }
@@ -254,10 +250,6 @@ th.sorting_disabled:hover {
 
 .paginate_button {
     padding: 5px;
-
-    &:focus {
-        outline: 3px solid color(border, focus);
-    }
 }
 
 // scss-lint:enable SelectorFormat
@@ -343,10 +335,18 @@ th.sorting_disabled:hover {
         padding: 0 $gutter-width;
         text-align: center;
         text-decoration: none;
+
+        &:focus {
+            @include pulsar-pagination-focused;
+        }
     }
 
     .paginate_button.current {
         background-color: darken(color(white), 10%);
+
+        &:focus {
+            @include pulsar-pagination-focused;
+        }
     }
 }
 
@@ -368,7 +368,7 @@ th.sorting_disabled:hover {
     }
 
     select:focus {
-        outline: 3px solid color(border, focus);
+        @include pulsar-input-focused;
     }
 }
 
