@@ -4,5 +4,9 @@
 
     a {
         color: color(gray, dark); // must be AA 4.5:1
+
+        &:focus {
+            color: color(black);
+        }
     }
 }
