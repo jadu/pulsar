@@ -62,9 +62,7 @@
     &__item {
         display: inline-block;
         font-size: 1.1em;
-        line-height: 46px;
         margin-right: $padding-small-horizontal;
-        padding: 0 $gutter-width;
 
         &:last-of-type {
             margin-right: 0;
@@ -82,7 +80,10 @@
     }
 
     &__link {
+        display: inline-block;
         color: color(gray, light);
+        line-height: 46px;
+        padding: 0 $gutter-width;
         text-decoration: none;
 
         &:hover,
