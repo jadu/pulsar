@@ -97,6 +97,10 @@
             }
         }
 
+        &:focus {
+            @include pulsar-inline-nav-link-focused;
+        }
+
         &.is-disabled {
             color: color(text, disabled);
         }
