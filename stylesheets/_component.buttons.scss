@@ -207,7 +207,6 @@ $btn-white:                 'white';
     &:disabled {
         background-color: transparent !important;
         box-shadow: none !important;
-        color: color(text, disabled) !important;
     }
 
     &.btn--naked {
