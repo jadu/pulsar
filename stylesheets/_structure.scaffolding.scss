@@ -49,14 +49,11 @@ a {
     color: color(link, focus);
     outline: 3px solid color(border, focus);
   }
-}
 
-a.disabled {
-  opacity: .5;
-  cursor: not-allowed !important;
-
-  &:hover {
-    cursor: not-allowed !important;
+  &.is-disabled,
+  &.disabled {
+    color: color(link, disabled);
+    cursor: not-allowed;
   }
 }
 
