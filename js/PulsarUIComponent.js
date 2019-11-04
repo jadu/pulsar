@@ -29,7 +29,7 @@ PulsarUIComponent.prototype.init = function () {
 };
 
 PulsarUIComponent.prototype.initDisabledLinks = function() {
-    let $links = $('a.is-disabled');
+    let $links = this.$html.find('a.is-disabled');
 
     $links.each(function() {
         let $this = $(this);
