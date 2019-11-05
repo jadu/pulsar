@@ -41,3 +41,9 @@
         }
     }
 }
+
+@mixin prefers-reduced-motion() {
+    @media screen and (prefers-reduced-motion: reduce) {
+        @content;
+    }
+}

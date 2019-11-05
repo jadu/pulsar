@@ -1019,12 +1019,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <span{{
         attributes(options
+            |exclude('label')
             |defaults({
                 'class': 'loading'
             })
         )
     }}>
-        <i>Loading...</i>
+        <i>{{- options.label|default('Loading...') -}}</i>
     </span>
 
 {% endspaceless %}
@@ -1537,13 +1538,16 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
 
     {% if options.overflow is defined and options.overflow == 'collapse' %}
         {% set overflow = options.overflow %}
+        {% set options = options|merge({ 'data-overflow': overflow }) %}
     {% else %}
         {% set overflow = 'scroll' %}
-        {% set options = options|merge({ 'class': 'table--horizontal' }) %}
+        {% set options = options|merge({ 'class': 'table--horizontal', 'data-overflow': overflow }) %}
     {% endif %}
 
     {% if options.data is defined and options.data is not empty %}
-    <table{{ attributes(options|defaults({ 'class': 'table datatable table--full' })) }}>
+    <table{{ attributes(options
+                |exclude('overflow')
+                |defaults({ 'class': 'table datatable table--full' })) }} style="width: 100%">
         <thead>
             <tr>
                 {% if overflow == 'collapse' %}

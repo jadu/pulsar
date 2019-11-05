@@ -5,6 +5,8 @@ cache:
     - vendor
     - $HOME/.composer/cache
 
+dist: trusty
+
 php:
   - 5.5
 
