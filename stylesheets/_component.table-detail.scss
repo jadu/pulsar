@@ -21,6 +21,10 @@
     @include respond-min($screen-desktop) {
         display: table-cell;
     }
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
 }
 
 .table-detail.table-detail--open {
@@ -39,6 +43,10 @@
 
     @include respond-min($screen-tablet) {
         width: 600px;
+    }
+
+    @include prefers-reduced-motion() {
+        transition: none;
     }
 }
 

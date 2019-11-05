@@ -8,6 +8,12 @@
     {{ html.loading() }}
     <br />
 
+    <h2 class="heading">Standalone with custom label</h2>
+    {{ html.loading({
+        'label': 'Custom loading'
+    }) }}
+    <br />
+
     <h2 class="heading">After form inputs</h2>
     {{ form.create() }}
     {{

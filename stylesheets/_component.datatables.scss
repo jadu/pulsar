@@ -83,6 +83,8 @@ a.dt-button {
 
     td,
     th {
+        overflow: hidden;
+
         &.sorting:hover,
         &.sorting_asc:hover,
         &.sorting_desc:hover {
@@ -383,8 +385,6 @@ th.sorting_disabled:hover {
     display: none;
 }
 
-// scss-lint:enable SelectorFormat
-
 .dtr-details {
     .dtr-title {
         a {
@@ -404,3 +404,10 @@ th.sorting_disabled:hover {
         }
     }
 }
+
+// Prevent interactive elements in the original head from taking focus on tab
+.dataTables_scrollBody thead tr[role="row"] {
+    visibility: collapse;
+}
+
+// scss-lint:enable SelectorFormat
