@@ -166,7 +166,7 @@ $palette-alias: (
     text: (
         base:     #000,
         help:     map-get(map-get($palette-monochromes, gray), dull),
-        light:    map-get(map-get($palette-monochromes, gray), lighter),
+        light:    map-get(map-get($palette-monochromes, gray), dull),
         disabled: map-get(map-get($palette-monochromes, gray), lighter),
         placeholder: #737373
     ),
