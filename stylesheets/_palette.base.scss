@@ -9,6 +9,13 @@
 \* -------------------------------------------------------------------------- */
 
 $palette-branding: (
+    jadu-purple: (
+        darkest:    rgb(46, 54, 112),
+        dark:       rgb(52, 61, 128),
+        base:       rgb(61, 71, 150),
+        light:      rgb(86, 96, 173),
+        pale:       rgb(104, 113, 183)
+    ),
     jadu-red: (
         darkest:     rgb(115, 19, 19),
         dark:        rgb(154, 23, 23),
@@ -159,7 +166,7 @@ $palette-alias: (
     text: (
         base:     #000,
         help:     map-get(map-get($palette-monochromes, gray), dull),
-        light:    map-get(map-get($palette-monochromes, gray), lighter),
+        light:    map-get(map-get($palette-monochromes, gray), dull),
         disabled: map-get(map-get($palette-monochromes, gray), lighter)
     ),
     link: (
