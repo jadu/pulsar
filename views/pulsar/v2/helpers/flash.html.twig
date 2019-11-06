@@ -14,16 +14,15 @@
 
     <div class="flash flash--{{ options.type|default('default') }}">
 
-        {%
-            if options.dismissable is not defined or options.dismissable == true
-        %}
+        {{ html.icon(icon) }}
+        {{ options.message|raw }}
+
+        {# need to change twig tests for this move #}
+        {% if options.dismissable is not defined or options.dismissable == true %}
             <button class="close" data-dismiss="flash">
                 {{ html.icon('remove', { 'label': 'Close' }) }}
             </button>
         {% endif %}
-
-        {{ html.icon(icon) }}
-        {{ options.message|raw }}
 
     </div>
 
