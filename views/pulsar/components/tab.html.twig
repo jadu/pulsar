@@ -53,7 +53,7 @@
         </aside>
         {% endif %}
         {% if _hasSettings == true %}
-        <section class="tab__settings" {# consider use of context specific label here to convert to region #}>
+        <section class="tab__settings" aria-label="settings">
             {{ _settings|raw }}
         </section>
         {% endif %}
