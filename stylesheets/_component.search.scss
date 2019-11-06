@@ -3,7 +3,7 @@
     border-radius: 4px;
     clear: both;
     display: block;
-    margin: 0 20px 12px;
+    margin: 20px 0;
     position: relative;
 
     @include respond-min($screen-tablet) {
@@ -11,10 +11,8 @@
     }
 
     @include respond-min($screen-desktop) {
-        left: $nav-primary-width + $gutter-width;
         margin: 0;
-        position: absolute;
-        top: 18px;
+        clear: none;
     }
 }
 

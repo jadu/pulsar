@@ -13,7 +13,7 @@ describe('FlashMessage component', function() {
         this.$html = $('<html></html>');
         this.$body = $('<body></body>').appendTo(this.$html);
         this.$markup = $('<div class="js-flash-container"></div>').appendTo(this.$html);
-        this.$flashElement = $('<div class="flash flash--default"><button class="close" data-dismiss="flash"><i class="icon-remove"></i></button></div>');
+        this.$flashElement = $('<section class="flash flash--default"><button class="close" data-dismiss="flash"><i class="icon-remove"></i></button></section>');
 
         $.fn.sticky = sinon.stub().returnsThis();
 
