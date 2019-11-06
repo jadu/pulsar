@@ -83,7 +83,7 @@
 .site-switcher__label {
     height: 42px;
     line-height: 42px;
-    padding: 0;
+    padding: 0 10px;
     top: 0;
     vertical-align: top;
 }
@@ -94,12 +94,12 @@
     font-size: 24px;
     line-height: 42px; // maintain alignment in toolbar
     margin-left: $gutter-width;
-    padding: 4px 0;
+    padding: 0 4px;
     position: relative; // stop is-new indicator wandering off when parents switch to static position
     text-decoration: none;
 
     @include respond-min($screen-phone) {
-        padding: 0;
+        padding: 0 5px;
     }
 
     &,

@@ -112,20 +112,6 @@
     }
 
     &:focus {
-        border: 0;
-        box-shadow: none;
-        outline: none;
-
-        &::-webkit-slider-thumb {
-            box-shadow: 0 0 0 3px color(white), 0 0 0 6px color(border, focus);
-        }
-
-        &::-moz-range-thumb {
-            box-shadow: 0 0 0 3px color(white), 0 0 0 6px color(border, focus);
-        }
-
-        &::-ms-thumb {
-            box-shadow: 0 0 0 3px color(white), 0 0 0 6px color(border, focus);
-        }
+        @include pulsar-range-focused;
     }
 }

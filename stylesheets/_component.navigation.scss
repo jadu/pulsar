@@ -62,9 +62,7 @@
     &__item {
         display: inline-block;
         font-size: 1.1em;
-        line-height: 46px;
         margin-right: $padding-small-horizontal;
-        padding: 0 $gutter-width;
 
         &:last-of-type {
             margin-right: 0;
@@ -82,7 +80,10 @@
     }
 
     &__link {
+        display: inline-block;
         color: color(gray, light);
+        line-height: 46px;
+        padding: 0 $gutter-width;
         text-decoration: none;
 
         &:hover,
@@ -94,6 +95,10 @@
             .caret {
                 border-top-color: color(black);
             }
+        }
+
+        &:focus {
+            @include pulsar-inline-nav-link-focused;
         }
 
         &.is-disabled {
@@ -178,8 +183,6 @@
     margin-top: 5px;
     padding: 8px 14px 6px;
     text-decoration: none;
-    -webkit-transition: all 200ms ease-in;
-    transition: all 200ms ease-in;
 
     @include respond-min($screen-desktop) {
         display: none;
@@ -192,8 +195,7 @@
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
-        outline-offset: 2px;
+        @include pulsar-outline-button-focused;
     }
 }
 
@@ -215,10 +217,6 @@
 .nav-link {
     color: color(white);
     text-decoration: none;
-
-    &:focus {
-        outline: 3px solid color(border, focus);
-    }
 }
 
 .nav-primary {
@@ -256,18 +254,20 @@
         padding: 16px 5px;
         position: relative;
         text-overflow: ellipsis;
-        transition: background-color 50ms linear, color 50ms linear;
-    }
+        transition: background-color 50ms linear, color 50ms linear, box-shadow 50ms linear, outline 50ms linear;
 
-    .nav-link:hover,
-    .nav-link:focus {
-        background-color: darken($nav-color-dark, 2%);
-        color: color(white);
-    }
+        &:hover {
+            background-color: darken($nav-color-dark, 2%);
+            color: color(white);
+        }
 
-    .nav-link.is-active:hover,
-    .nav-link.is-active:focus {
-        background-color: $nav-color-dark;
+        &:focus {
+            @include pulsar-link-focused;
+
+            .nav-link__icon {
+                color: color(black);
+            }
+        }
     }
 
     .nav-link__icon {
@@ -369,15 +369,20 @@
         border-bottom-left-radius: 8px;
         text-align: left;
 
-        &:hover,
-        &:focus {
+        &:hover {
             background-color: darken($nav-color-dark, 4%);
             color: color(white);
         }
 
+        &:focus {
+            @include pulsar-link-focused;
+        }
+
         &:active {
             background-color: color(white);
+            box-shadow: none;
             color: $nav-color-dark;
+            outline: none;
         }
     }
 }
@@ -444,6 +449,10 @@
     &.is-active {
         background: none;
     }
+
+    &:focus .jadu-logomark {
+        background: url($branding-navigation-focus), linear-gradient(transparent, transparent);
+    }
 }
 
 .nav-search {
@@ -496,11 +505,10 @@
     &:hover i::before,
     &:focus i::before {
         content: '\f0a8';
-        color: color(white);
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
+        @include pulsar-button-focused;
     }
 
     .nav-secondary.is-open &,
