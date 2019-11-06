@@ -97,7 +97,7 @@ module.exports = function(grunt) {
                     src:    '*.scss'
                 }]
             },
-            dist_modern: {
+            dist: {
                 options: {
                     outputStyle: 'compressed'
                 },
@@ -109,20 +109,6 @@ module.exports = function(grunt) {
                     ext:    '.css',
                     extDot: 'first',
                     src:    ['pulsar.scss']
-                }]
-            },
-            dist_ie: {
-                options: {
-                    outputStyle: 'nested'
-                },
-                files: [{
-                    cwd:    'stylesheets/',
-                    dest:   'dist/css/',
-                    expand: true,
-                    flatten: true,
-                    ext:    '.css',
-                    extDot: 'first',
-                    src:    'pulsar-ie*.scss'
                 }]
             },
             lexicon: {
@@ -141,45 +127,10 @@ module.exports = function(grunt) {
             }
         },
 
-        replace: {
-            projector: {
-                src: ['stylesheets/pulsar.scss'],
-                dest: 'stylesheets/pulsar-theme-projector.scss',
-                replacements: [{
-                    from: 'palette.base',
-                    to: 'palette.projector'
-                }]
-            },
-            projector_ie9: {
-                src: ['stylesheets/pulsar-ie9.scss'],
-                dest: 'stylesheets/pulsar-ie9-theme-projector.scss',
-                replacements: [{
-                    from: 'palette.base',
-                    to: 'palette.projector'
-                }]
-            },
-            projector_ie8: {
-                src: ['stylesheets/pulsar-ie8.scss'],
-                dest: 'stylesheets/pulsar-ie8-theme-projector.scss',
-                replacements: [{
-                    from: 'palette.base',
-                    to: 'palette.projector'
-                }]
-            },
-            projector_ie7: {
-                src: ['stylesheets/pulsar-ie7.scss'],
-                dest: 'stylesheets/pulsar-ie7-theme-projector.scss',
-                replacements: [{
-                    from: 'palette.base',
-                    to: 'palette.projector'
-                }]
-            }
-        },
-
         autoprefixer: {
             dev: {
                 options: {
-                    browsers: ['last 2 version', 'ie 7', 'ie 8', 'ie 9']
+                    browsers: ['last 2 version']
                 },
                 expand: true,
                 src:    'css/*.css'
@@ -199,7 +150,7 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
-                tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer', 'bless:css']
+                tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer']
             },
             scsslint: {
                 files: 'stylesheets/**/*.scss',
@@ -503,24 +454,6 @@ module.exports = function(grunt) {
             }
         },
 
-        bless: {
-            css: {
-                options: {
-                    cacheBuster: true,
-                    compress: true,
-                    logCount: true
-                },
-                files: {
-                    'css/pulsar-ie7.min.css': 'css/pulsar-ie7.css',
-                    'css/pulsar-ie8.min.css': 'css/pulsar-ie8.css',
-                    'css/pulsar-ie9.min.css': 'css/pulsar-ie9.css',
-                    'css/pulsar-ie7-theme-projector.min.css': 'css/pulsar-ie7-theme-projector.css',
-                    'css/pulsar-ie8-theme-projector.min.css': 'css/pulsar-ie8-theme-projector.css',
-                    'css/pulsar-ie9-theme-projector.min.css': 'css/pulsar-ie9-theme-projector.css'
-                }
-            }
-        },
-
         compress: {
             dist: {
                 options: {
@@ -592,11 +525,9 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'copy',
         'scsslint',
-        'replace',
         'sass:dev',
         'sass:lexicon',
         'autoprefixer',
-        'bless',
         'browserify:dev',
         'browserify:lexicon',
         'browserSync',
@@ -605,16 +536,13 @@ module.exports = function(grunt) {
 
     grunt.registerTask('post-merge', [
         'exec:fixProximaNova',
-        'replace',
         'sass:dev',
         'browserify'
     ]);
 
     grunt.registerTask('build', [
         'scsslint',
-        'replace',
-        'sass:dist_modern',
-        'sass:dist_ie',
+        'sass:dist',
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
@@ -622,9 +550,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('deploy', [
-        'replace',
-        'sass:dist_modern',
-        'sass:dist_ie',
+        'sass:dist',
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
