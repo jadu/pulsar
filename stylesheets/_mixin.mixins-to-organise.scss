@@ -88,6 +88,7 @@
 @mixin placeholder($color: $input-color-placeholder) {
     &::-moz-placeholder { // Firefox 19+
         color: $color;
+        opacity: 1;
     }
 
     &:-ms-input-placeholder { // Internet Explorer 10+
@@ -127,21 +128,33 @@
         border-color: $border-color;
 
         &:focus {
-            border-color: darken($border-color, 10%);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px lighten($border-color, 20%);
+            @include pulsar-input-focused;
         }
 
         &::-webkit-input-placeholder { /* Webkit */
-            color: lighten($text-color, 20%);
+            color: $text-color;
         }
 
         &:-ms-input-placeholder { /* Internet Explorer 10+ */
-            color: lighten($text-color, 20%);
+            color: $text-color;
         }
 
         &::-moz-placeholder { /* Mozilla Firefox 19+ */
-            color: lighten($text-color, 20%);
+            color: $text-color;
             opacity: 1;
+        }
+    }
+
+    .form__control.checkbox {
+        &:focus {
+            @include pulsar-checkbox-focused;
+        }
+    }
+
+    .form__control.radio {
+        &:focus {
+            @include pulsar-radio-focused;
+            border-radius: $border-radius-large; // Re-add border radius due to use of .not() in state styles
         }
     }
 
@@ -162,6 +175,7 @@
 
     .select2-selection {
         background-color: $background-color;
+        background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, darken($background-color, 10%), darken($background-color, 10%));
         border-color: $border-color;
     }
 }
@@ -207,11 +221,6 @@
     // Set the border and box shadow on specific inputs to match
     background-color: $background-color;
     border-color: $border-color;
-
-    &:focus {
-        border-color: darken($border-color, 10%);
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px lighten($border-color, 20%);
-    }
 
     &::-webkit-input-placeholder { /* Webkit */
         color: lighten($text-color, 20%);

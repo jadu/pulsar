@@ -5,8 +5,11 @@
     position: relative;
 
     &__title {
+        border: 0;
+        clear: none;
         font-size: $font-size-xlarge;
         line-height: 32px;
+        margin-bottom: 0;
         padding: 8px 5px 0 10px;
 
         i::before {
@@ -76,6 +79,10 @@
         .panel--#{$state} {
             background-color: $state-color;
             color: $state-color-alt;
+
+            .panel__title {
+                color: $state-color-alt;
+            }
 
             a,
             a:link,

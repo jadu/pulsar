@@ -150,14 +150,4 @@
         vertical-align: top;
         width: auto;
     }
-
-    &:hover,
-    &:active,
-    &:focus {
-        @include button-states('primary');
-
-        i {
-            color: color(white);
-        }
-    }
 }

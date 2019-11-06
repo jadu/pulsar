@@ -41,6 +41,14 @@ SignInComponent.prototype.init = function () {
 	component.transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
 	component.twoStepAttempt = 0;
 
+	component.motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
+	component.$videoBlock = this.$html.find('#video-bg');
+
+	// Handle background video and OS motion control
+	component.handleReduceMotion();
+	component.motionQuery.addListener(component.handleReduceMotion.bind(this));
+
+
 	// Polyfill placeholder behaviour in oldIE
 	this.$html.find('input').placeholder();
 
@@ -440,6 +448,28 @@ SignInComponent.prototype.success = function () {
 
 	component.$alert.append(document.createTextNode(component.successMessage));
 	component.$container.addClass('active-success');
+
+}
+
+SignInComponent.prototype.handleReduceMotion = function () {
+
+	var component = this,
+		videVideoPath = component.$videoBlock.attr('data-video-bg'),
+		videPosterPath = component.$videoBlock.attr('data-video-poster'),
+		videOptions;
+
+	if (!component.motionQuery.matches) {
+		videOptions = {
+			mp4: videVideoPath,
+			poster: videPosterPath
+		};
+	} else {
+		videOptions = {
+			poster: videPosterPath
+		};
+	}
+
+	component.$videoBlock.vide(videOptions);
 
 }
 

@@ -21,6 +21,10 @@
     @include respond-min($screen-desktop) {
         display: table-cell;
     }
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
 }
 
 .table-detail.table-detail--open {
@@ -40,6 +44,10 @@
     @include respond-min($screen-tablet) {
         width: 600px;
     }
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
 }
 
 .table-detail__header {
@@ -47,8 +55,9 @@
     padding: $modal-title-padding;
 }
 
-.table-detail__header-close {
-    margin-top: -2px;
+.table-detail__header-close.table-detail__header-close {
+    margin: -15px -15px 0 0;
+    padding: 15px 15px 14px;
 }
 
 .table-detail__title {

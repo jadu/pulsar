@@ -2381,6 +2381,7 @@ add-another-group-text  | string | The text content of the add another new entry
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import _self as form %}
 {% set headingLength = options.headings|length %}
+{% set values = options.values|default([]) %}
 {% spaceless %}
     <div
         class="repeater"
@@ -2389,6 +2390,7 @@ add-another-group-text  | string | The text content of the add another new entry
         data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
         data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
         data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
+        data-repeater-initial-state="{{ values|json_encode }}"
     >
         <div class="repeater__saved-data u-display-none" data-repeater-saved-entries-root></div>
         <div class="form__group">
@@ -2460,5 +2462,70 @@ add-another-group-text  | string | The text content of the add another new entry
             </div>
         </div>
     </div>
+{% endspaceless %}
+{% endmacro %}
+
+
+
+{# -----------------------------------------------------------------------------
+
+# Error summary
+
+Generate a error summary that contains a list of error messages relating to form inputs with errors. Each error message is a link to the respective invalid input.
+
+## Example usage
+
+```twig
+{{
+    form.error_summary({
+        'heading': 'There is a problem',
+        'errors': [
+            {
+                'label': 'Enter your first name',
+                'href': 'first-name'
+            },
+            {
+                'label': 'Enter your last name',
+                'href': 'last-name'
+            }
+        ]
+    })
+}}
+```
+
+## Options
+
+Option                  | Type   | Description
+-------------           | ------ | -------------------------------------------------------
+heading                 | string | The error summary heading, defaults to "There is a problem"
+errors                  | Array  | An array of error objects. Label should match input error text, href is the ID of the input
+
+#}
+{% macro error_summary(options) %}
+{% spaceless %}
+    {% if options.errors is defined and options.errors is not empty %}
+    <section{{
+        attributes(options
+            |exclude('aria-labelledby autofocus autocomplete disabled error form guidance heading help href label name placeholder required show-label tabindex value')
+            |defaults({
+                'class': 'error-summary',
+                'aria-labelledby': 'error-summary-title',
+                'data-error-summary': 'true',
+                'tabindex': '-1'
+            })
+        )
+    }}>
+        <h2 class="error-summary__title" id="error-summary-title">
+            {{- options.heading|default('There is a problem') -}}
+        </h2>
+        <ul class="error-summary__list">
+            {% for error in options.errors %}
+                <li class="error-summary__list-item">
+                    <a class="error-summary__list-link" href="#{{- error.href -}}">{{- error.label -}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
