@@ -130,7 +130,7 @@ module.exports = function(grunt) {
         autoprefixer: {
             dev: {
                 options: {
-                    browsers: ['last 2 version']
+                    browsers: ['last 2 versions', 'IE 10']
                 },
                 expand: true,
                 src:    'css/*.css'
