@@ -76,7 +76,7 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
 
     const options = {
         aaSorting: [],
-        bAutoWidth: false,
+        autoWidth: false,
         buttons: [],
         className: 'dt-row-selected',
         columnDefs: [
@@ -191,6 +191,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
         const horizontalOptions = $.extend({}, datatableOptions, {
             dom: dom,
+            responsive: null,
+            scrollX: true,
             select: select,
         });
 
@@ -240,6 +242,9 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
         $(window).on('load resize', function () {
             component.styleTableOverflows($table);
+            
+            // reset column widths so headers match the body
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
         });
 
         // Add sticky scroll bar

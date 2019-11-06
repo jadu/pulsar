@@ -3,7 +3,7 @@
     border-radius: 4px;
     clear: both;
     display: block;
-    margin: 0 20px 12px;
+    margin: 20px 0;
     position: relative;
 
     @include respond-min($screen-tablet) {
@@ -11,10 +11,8 @@
     }
 
     @include respond-min($screen-desktop) {
-        left: $nav-primary-width + $gutter-width;
         margin: 0;
-        position: absolute;
-        top: 18px;
+        clear: none;
     }
 }
 
@@ -41,8 +39,7 @@ input.main-search__field {
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
-        outline-offset: 3px;
+        @include pulsar-input-focused;
     }
 }
 
@@ -54,19 +51,20 @@ input.main-search__field::-ms-clear {
     background: none;
     border: 0;
     color: #555;
-    padding: 0;
+    padding: 1px 8px 0;
     position: absolute;
-    right: 10px;
-    top: 5px;
+    right: 0;
+    top: 3px;
     z-index: 3;
 
     @include respond-min($screen-tablet) {
-        left: 155px;
+        left: 149px; // magic number to accommodate focus style
         right: auto;
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
+        @include pulsar-link-focused;
+        border-top-right-radius: $border-radius;
     }
 }
 
