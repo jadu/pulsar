@@ -148,7 +148,7 @@
 {%- macro breadcrumbs(items) -%}
     {% spaceless %}    
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-    <nav role="navigation" class="breadcrumb" aria-label="breadcrumbs">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
     {%- for item in items -%}
         {% if loop.last %}
             {% set item = item|merge({
