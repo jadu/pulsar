@@ -101,7 +101,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "jstree": "^3.3.7",
+    "jstree": "^3.3.8",
     "lodash": "^4.6.1",
     "moment": "^2.15.2"
   }
