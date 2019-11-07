@@ -1,6 +1,6 @@
 ---
 name: Roadmap item
-about: A common list of question about why a roadmap item exists
+about: Create a new high-level roadmap story
 title: ''
 labels: epic
 assignees: Stanton
