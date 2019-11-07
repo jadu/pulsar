@@ -1,9 +1,9 @@
-/** 
+/**
  * -----------------------------------------------------------------------------
  * Size and position
- * ----------------------------------------------------------------------------- 
+ * -----------------------------------------------------------------------------
  */
- 
+
 %u-float-left,
  .u-float-left {
      float: left !important;
@@ -95,31 +95,31 @@
 
  %hide,
  .hide {
-     border: 0 !important;
-     clip: rect(0 0 0 0) !important;
-     height: 1px !important;
-     margin: -1px !important;
-     overflow: hidden !important;
-     padding: 0 !important;
-     position: absolute !important;
-     width: 1px !important;
- }
- 
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}
+
  %show,
  .show {
-     clip: auto !important;
-     display: inline-block !important;
-     height: auto !important;
-     overflow: visible !important;
-     position: static !important;
-     width: auto !important;
- }
- 
- .visually-hidden {
-     display: none;
- }
+    clip: auto !important;
+    display: inline-block !important;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    width: auto !important;
+}
 
- .u-visible-print {
+.visually-hidden {
+    display: none;
+}
+
+.u-visible-print {
     display: none !important;
 
     @media print {
@@ -284,7 +284,7 @@ p.success {
 %u-word-break,
 .u-word-break {
     word-break: break-all !important;
-} 
+}
 
 %u-vertical-align-top,
 .u-vertical-align-top {
@@ -420,4 +420,3 @@ td.no-results {
 .no-results__action {
     margin: 12px 0;
 }
- 
