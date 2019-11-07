@@ -1,63 +1,49 @@
-.show-baseline {
-    @include baseline-grid;
+/** 
+ * -----------------------------------------------------------------------------
+ * Size and position
+ * ----------------------------------------------------------------------------- 
+ */
+ 
+%u-float-left,
+ .u-float-left {
+     float: left !important;
 }
 
-%hide,
-.hide {
-    border: 0 !important;
-    clip: rect(0 0 0 0) !important;
-    height: 1px !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: absolute !important;
-    width: 1px !important;
+%u-float-right,
+.u-float-right {
+    float: right !important;
+}
+    
+%u-float-none,
+.u-float-none {
+    float: none !important;
 }
 
-%show,
-.show {
-    clip: auto !important;
-    display: inline-block !important;
-    height: auto !important;
-    overflow: visible !important;
-    position: static !important;
-    width: auto !important;
+%u-clear-left,
+.u-clear-left {
+    clear: left !important;
 }
 
-.visually-hidden {
-    display: none;
+%u-clear-right,
+.u-clear-right {
+    clear: right !important;
 }
 
-.muted {
-    color: color(gray, dull);
+%u-clear-both,
+.u-clear-both {
+    clear: both !important;
 }
 
-p.success {
-    background: rgba(0, 153, 51, .8);
-    color: color(white);
-    padding: 5px;
-    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
-
-    i {
-        margin: 0 4px;
-    }
+%u-clear-none,
+.u-clear-none {
+    clear: none !important;
 }
 
-// Removes default link styling
-.naked-link,
-.naked-link:hover {
-    text-decoration: none;
-    color: inherit;
-}
-
-.no-select {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+/**
+ * -----------------------------------------------------------------------------
+ * Margin and padding
+ * -----------------------------------------------------------------------------
+ */
 
 .double-top {
     margin-top: 2em;
@@ -71,64 +57,69 @@ p.success {
     margin-right: $gutter-width;
 }
 
-.no-results {
-    background-color: color(gray, off-white);
-    background-image: url($image-path + 'stripes.png');
-    background-repeat: repeat;
-    margin: 0 auto;
-    padding: 1em 0;
-    text-align: center;
-    width: 80%;
-
-    @include respond-min($screen-desktop) {
-        width: 50%;
-    }
+%u-margin-top,
+.u-margin-top {
+    margin-top: $margin-base !important;
 }
 
-td.no-results {
-    margin: inherit;
-    width: 100%;
-
-    @include respond-min($screen-desktop) {
-        width: 100%;
-    }
+%u-margin-top--large,
+.u-margin-top--large {
+    margin-top: $margin-base * 2 !important;
 }
 
-// Should span full width of content area
-.tab__content > .no-results,
-.tab__content *:not(table) .no-results {
-    width: 100%;
+%u-margin-top-none,
+.u-margin-top-none {
+    margin-top: 0 !important;
 }
 
-.controls > .no-results {
-    width: 100%;
-    margin: 0;
-    padding: 1px 0;
+%u-margin-bottom,
+.u-margin-bottom {
+    margin-bottom: $margin-base !important;
 }
 
-.no-results__message > p,
-.no-results__action {
-    margin: 12px 0;
+%u-margin-bottom--large,
+.u-margin-bottom--large {
+    margin-bottom: $margin-base * 2 !important;
 }
 
-// Replicates <hr /> but with nicer spacing
-.divider {
-    border-top: 1px solid color(border);
-    display: block;
-    margin: 10px 0;
+%u-margin-bottom-none,
+.u-margin-bottom-none {
+    margin-bottom: 0 !important;
 }
 
-%u-no-wrap,
-.u-no-wrap {
-    white-space: nowrap !important;
-}
+/**
+ * -----------------------------------------------------------------------------
+ * Visibility
+ * -----------------------------------------------------------------------------
+ */
 
-%u-word-break,
-.u-word-break {
-    word-break: break-all !important;
-}
+ %hide,
+ .hide {
+     border: 0 !important;
+     clip: rect(0 0 0 0) !important;
+     height: 1px !important;
+     margin: -1px !important;
+     overflow: hidden !important;
+     padding: 0 !important;
+     position: absolute !important;
+     width: 1px !important;
+ }
+ 
+ %show,
+ .show {
+     clip: auto !important;
+     display: inline-block !important;
+     height: auto !important;
+     overflow: visible !important;
+     position: static !important;
+     width: auto !important;
+ }
+ 
+ .visually-hidden {
+     display: none;
+ }
 
-.u-visible-print {
+ .u-visible-print {
     display: none !important;
 
     @media print {
@@ -247,40 +238,53 @@ td.no-results {
     display: inline-block !important;
 }
 
-%u-float-none,
-.u-float-none {
-    float: none !important;
+/**
+ * -----------------------------------------------------------------------------
+ * Text and links
+ * -----------------------------------------------------------------------------
+ */
+
+.muted {
+    color: color(gray, dull);
 }
 
-%u-float-left,
-.u-float-left {
-    float: left !important;
+p.success {
+    background: rgba(0, 153, 51, .8);
+    color: color(white);
+    padding: 5px;
+    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+
+    i {
+        margin: 0 4px;
+    }
 }
 
-%u-float-right,
-.u-float-right {
-    float: right !important;
+// Removes default link styling
+.naked-link,
+.naked-link:hover {
+    text-decoration: none;
+    color: inherit;
 }
 
-%u-clear-left,
-.u-clear-left {
-    clear: left !important;
+// Prevent users from being able to select text (use with caution)
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-%u-clear-right,
-.u-clear-right {
-    clear: right !important;
+%u-no-wrap,
+.u-no-wrap {
+    white-space: nowrap !important;
 }
 
-%u-clear-both,
-.u-clear-both {
-    clear: both !important;
-}
-
-%u-clear-none,
-.u-clear-none {
-    clear: none !important;
-}
+%u-word-break,
+.u-word-break {
+    word-break: break-all !important;
+} 
 
 %u-vertical-align-top,
 .u-vertical-align-top {
@@ -327,17 +331,33 @@ td.no-results {
     font-size: $font-size-small !important;
 }
 
+/**
+ * -----------------------------------------------------------------------------
+ * Misc
+ * -----------------------------------------------------------------------------
+ */
+
+.show-baseline {
+    @include baseline-grid;
+}
+
+// Replicates <hr /> but with nicer spacing
+.divider {
+    border-top: 1px solid color(border);
+    display: block;
+    margin: 10px 0;
+}
+
+%u-cursor-not-allowed,
+.u-cursor-not-allowed {
+    cursor: not-allowed !important;
+}
 
 %u-ui-disabled,
 .u-ui-disabled.u-ui-disabled {
     @extend %u-cursor-not-allowed;
 
     opacity: .25 !important;
-}
-
-%u-cursor-not-allowed,
-.u-cursor-not-allowed {
-    cursor: not-allowed !important;
 }
 
 %u-no-hover:hover,
@@ -355,28 +375,49 @@ td.no-results {
     width: auto !important;
 }
 
-%u-margin-top,
-.u-margin-top {
-    margin-top: $margin-base !important;
+/**
+ * -----------------------------------------------------------------------------
+ * No results
+ * -----------------------------------------------------------------------------
+ */
+
+.no-results {
+    background-color: color(gray, off-white);
+    background-image: url($image-path + 'stripes.png');
+    background-repeat: repeat;
+    margin: 0 auto;
+    padding: 1em 0;
+    text-align: center;
+    width: 80%;
+
+    @include respond-min($screen-desktop) {
+        width: 50%;
+    }
 }
 
+td.no-results {
+    margin: inherit;
+    width: 100%;
 
-%u-margin-top-none,
-.u-margin-top-none {
-    margin-top: 0 !important;
+    @include respond-min($screen-desktop) {
+        width: 100%;
+    }
 }
 
-%u-margin-bottom-none,
-.u-margin-bottom-none {
-    margin-bottom: 0 !important;
+// Should span full width of content area
+.tab__content > .no-results,
+.tab__content *:not(table) .no-results {
+    width: 100%;
 }
 
-%u-margin-bottom,
-.u-margin-bottom {
-    margin-bottom: $margin-base !important;
+.controls > .no-results {
+    width: 100%;
+    margin: 0;
+    padding: 1px 0;
 }
 
-%u-margin-bottom--large,
-.u-margin-bottom--large {
-    margin-bottom: $margin-base * 2 !important;
+.no-results__message > p,
+.no-results__action {
+    margin: 12px 0;
 }
+ 
