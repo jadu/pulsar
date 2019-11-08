@@ -353,9 +353,10 @@ class Repeater {
         event.preventDefault();
 
         // Remove DOM
-        preview.remove();
-        edit.remove();
-        saved.remove();
+        
+        $(preview).remove();
+        $(edit).remove();
+        $(saved).remove();
 
         // Update state
         this.savedEntries--;
