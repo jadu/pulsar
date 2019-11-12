@@ -3,6 +3,9 @@
 var $ = require('jquery'),
     StickyScrollBarComponent = require('./StickyScrollBarComponent');
 
+const { initComplete } = require('./DataTables/dataTablesInitComplete');
+const { drawCallback } = require('./DataTables/dataTablesDrawCallback');
+
 require('datatables.net')(window, $);
 require('datatables.net-buttons')(window, $);
 require('datatables.net-responsive')(window, $);
@@ -36,15 +39,16 @@ PulsarUIComponent.prototype.init = function () {
 };
 
 PulsarUIComponent.getDatatableOptions = function ($table) {
-    let dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+    let dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"pl>',
         langEmptyTable = 'There are currently no items to display',
         pageLength = 25,
+        lengthChange = false,
         select = {
             className: 'dt-row-selected',
             style: 'multi',
             selector: 'td.table-selection'
         };
-    
+
     if ($table.length && $table.data('empty-table')) {
         langEmptyTable = $table.data('empty-table');
     }
@@ -53,24 +57,28 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
         pageLength = $table.data('page-length');
     }
 
+    if ($table.length && $table.data('length-change')) {
+        lengthChange = $table.data('length-change');
+    }
+
     if ($table.length && $table.data('select') === false) {
-        dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"p>';
+        dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"pl>';
         select = false;
     }
 
     const options = {
         aaSorting: [],
-        bAutoWidth: false,
+        autoWidth: false,
         buttons: [],
         className: 'dt-row-selected',
         columnDefs: [
-            { 
-                className: 'control', 
-                orderable: false, 
+            {
+                className: 'control',
+                orderable: false,
                 targets: 0
             },
-            { 
-                searchable: false, 
+            {
+                searchable: false,
                 targets: [0]
             },
             {
@@ -78,6 +86,8 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
                 targets: [0, 1]
             }
         ],
+        initComplete: initComplete,
+        drawCallback: drawCallback,
         dom: dom,
         language: {
             emptyTable: langEmptyTable,
@@ -85,10 +95,19 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
             infoEmpty: 'No items',
             infoFiltered: " (filtered from _MAX_ items)",
             zeroRecords: "No items matched your filter, please clear it and try again",
-            search: "Filter records"
+            search: "Filter records",
+            aria: {
+                paginate: {
+                    first:    'First page',
+                    previous: 'Previous page',
+                    next:     'Next page',
+                    last:     'Last page'
+                }
+            }
         },
-        lengthChange: false,
+        lengthChange: lengthChange,
         pageLength: pageLength,
+        pagingType: 'full_numbers',
         responsive: {
             details: {
                 type: 'column'
@@ -121,12 +140,12 @@ PulsarUIComponent.prototype.initDataTables = function () {
     var component = this,
         datatables = component.$html.find('.datatable:not([data-init="false"]):not(.table--horizontal)'),
         datatablesHorizontal = component.$html.find('.datatable.table--horizontal:not([data-init="false"])');
-        
+
     datatables.each(function () {
         var $this = $(this);
 
         const datatableOptions = PulsarUIComponent.getDatatableOptions($this);
-        
+
         const table = $this.DataTable(datatableOptions);
 
         $this.on('click', '.js-select-all', function(e) {
@@ -154,7 +173,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
                 selector:  '.js-select',
                 info:       true
             };
-            
+
         if ($this.data('select') === false) {
             dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"<"table-container"t>><"dataTables_bottom"lp>';
             select = false;
@@ -164,9 +183,11 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
         const horizontalOptions = $.extend({}, datatableOptions, {
             dom: dom,
+            responsive: null,
+            scrollX: true,
             select: select,
         });
-        
+
         const table = $this.DataTable(horizontalOptions);
 
         // Add sticky scroll bar
@@ -213,6 +234,9 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
         $(window).on('load resize', function () {
             component.styleTableOverflows($table);
+            
+            // reset column widths so headers match the body
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
         });
 
         // Add sticky scroll bar
@@ -286,7 +310,7 @@ PulsarUIComponent.prototype.toggleBulkActions = function(table) {
                 'data-container': 'body',
                 'title': 'Select one or more items to perform this bulk action'
             }).tooltips();
-    } 
+    }
     else {
         $bulkActionsBadge
             .attr('aria-label', count + ' row' + ((count > 1) ? 's' : '') + ' selected')

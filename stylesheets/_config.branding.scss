@@ -14,6 +14,7 @@ $branding-site-width:                 65px;
 $branding-site-radius:                0;
 
 $branding-navigation:                 $image-path + 'branding/logo-cms-white.svg' !default;
+$branding-navigation-focus:           $image-path + 'branding/logo-cms-black.svg' !default;
 $branding-navigation-fallback:        $image-path + 'branding/logo-cms-white.png' !default;
 $branding-navigation-height:          50px !default;
 $branding-navigation-width:           50px !default;

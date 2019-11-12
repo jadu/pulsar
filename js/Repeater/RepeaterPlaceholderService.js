@@ -30,7 +30,7 @@ class RepeaterPlaceholderService {
         this.queryService.updateRef('preview-placeholder', placeholder.cloneNode(true));
 
         // remove the placeholder from the DOM
-        placeholder.remove();
+        $(placeholder).remove();
     }
 }
 

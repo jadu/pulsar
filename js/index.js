@@ -13,7 +13,6 @@ require('babel-polyfill');
 
 // Global UI components
 var $                     = require('jquery'),
-    dropdown              = require('./libs/dropdown'),
     modal                 = require('./libs/modal'),
     tab                   = require('./libs/tab'),
     popover               = require('./libs/popover'),
@@ -33,7 +32,9 @@ var $                     = require('jquery'),
     dt_select     = require('datatables.net-select')(window, $),
 
     ButtonComponent = require('./ButtonComponent'),
+    DropdownButtonComponent = require('./DropdownButtonComponent'),
     DisableUiComponent = require('./DisableUiComponent'),
+    ErrorSummaryComponent = require('./ErrorSummaryComponent'),
     HelpTextComponent = require('./HelpTextComponent'),
     FilterBarComponent = require('./FilterBarComponent'),
     FlashMessageComponent = require('./FlashMessageComponent'),
@@ -55,8 +56,10 @@ require('../libs/history.js/scripts/bundled/html5/jquery.history');
 
 module.exports = {
     ButtonComponent,
+    DropdownButtonComponent,
     DropZoneComponentFactory,
     DisableUiComponent,
+    ErrorSummaryComponent,
     HelpTextComponent,
     FilterBarComponent,
     FlashMessageComponent,
