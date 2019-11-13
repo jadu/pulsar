@@ -104,6 +104,6 @@
     "jstree": "^3.3.8",
     "lodash": "^4.6.1",
     "moment": "^2.15.2",
-    "select2": "github:jadu/selectWoo"
+    "select2": "github:jadu/selectWoo#improvement/a11y"
   }
 }
