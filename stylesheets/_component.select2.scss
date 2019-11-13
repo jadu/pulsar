@@ -730,4 +730,8 @@ span.select2-selection.select2-selection--single {
     outline: 3px solid color(border, focus);
     outline-offset: 2px;
 }
+
+.select2-selections {
+  display: none;
+}
 // scss-lint:enable all
