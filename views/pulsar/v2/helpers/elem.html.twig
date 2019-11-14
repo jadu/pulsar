@@ -349,7 +349,7 @@ value       | string | Specifies the value of the input
     {% import _self as elem %}
 
     {% if options.label is defined and options.label is not empty %}
-        {% set options = options|merge({'data-label' : options.label}) %}
+        {% set options = options|merge({'data-label': options.label}) %}
     {% endif %}
 
     {{ elem.select(options|merge({'class': 'select js-select2'})) }}
