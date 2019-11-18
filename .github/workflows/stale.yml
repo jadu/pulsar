@@ -17,6 +17,3 @@ jobs:
         stale-pr-message: 'Stale pull request message'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
-        
-- name: GitHub Action for Slack
-  uses: Ilshidur/action-slack@1.6.2:  
