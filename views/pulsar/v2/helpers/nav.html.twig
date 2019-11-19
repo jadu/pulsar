@@ -29,7 +29,7 @@
             {% for options in options.data %}
                 {% if options.items is defined and options.items is iterable %}
                     <div class="nav-list" data-nav="{{ options.href }}" id="{{ options.label|lower }}">
-                        <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace(' ', '-')|raw }}">{{ options.label|raw }}</h2>
+                        <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
 
                         <ul class="nav-items">
                             {% set heading_id = 'aria-secondary-nav-heading-' ~ options.label|raw %}
@@ -80,7 +80,7 @@
                    {% if options.items is defined and options.items is iterable %}
 
                        <div class="nav-list" data-nav="{{ options.href }}">
-                           <h2 class="nav-item nav-item--header t-nav-header" id="aria-quaternary-nav-heading-{{ options.label|striptags|replace(' ', '-')|raw }}">{{ options.label|raw }}</h2>
+                           <h2 class="nav-item nav-item--header t-nav-header" id="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
                            {% set heading_id = 'aria-quaternary-nav-heading-' ~ options.label|raw %}
 
                            <ul class="nav-items">
@@ -147,7 +147,7 @@
 {% endmacro %}
 
 {%- macro breadcrumbs(items) -%}
-    {% spaceless %}    
+    {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     <nav class="breadcrumb" aria-label="breadcrumbs">
     {%- for item in items -%}
@@ -156,9 +156,9 @@
                 'aria-current': 'page'
             }) %}
         {% endif %}
-        
+
         {{ html.link(item) }}
-        
+
         {%- if not loop.last -%}/{%- endif -%}
     {%- endfor -%}
     </nav>
@@ -176,7 +176,7 @@
                     'class': 'toolbar-help-link btn--naked',
                     'label': html.icon('question-sign') ~ ' user guides',
                     'tabindex': options.tabindex|default('0'),
-                    'data-toggle': 'dropdown'                  
+                    'data-toggle': 'dropdown'
                 })
             }}
 
