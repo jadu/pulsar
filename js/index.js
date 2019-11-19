@@ -46,7 +46,6 @@ var $                     = require('jquery'),
     FaviconEditor = require('./Notifications/FaviconEditor');
 
 require('jstree');
-// require('history.js');
 
 module.exports = {
     ButtonComponent,
