@@ -479,33 +479,7 @@ module.exports = function(grunt) {
                 reloadOnRestart: true,
                 watchTask: true
             }
-	    },
-
-        casperjs: {
-            options: {
-                async: {
-                    parallel: false
-                },
-                silent: false
-            },
-            files: ['../pulsar/tests/js/casper.js']
-        },
-
-        validation: {
-            options: {
-                reset: grunt.option('reset') || false,
-                stoponerror: false,
-                maxTry: 3,
-                relaxerror: ['Bad value X-UA-Compatible for attribute http-equiv on element meta.'], // ignores these errors
-                generateReport: true,
-                errorHTMLRootDir: "tests/validation/error_reports",
-                useTimeStamp: true,
-                errorTemplate: "tests/validation/w3c_validation_error_Template.html"
-            },
-            files: {
-                src: ['../pulsar/tests/validation/html_output/*.html']
-            }
-        }
+	    }
 
     });
 
@@ -568,11 +542,6 @@ module.exports = function(grunt) {
         'exec:updateBower',
         'exec:updateGems',
         'exec:updateNpm'
-    ]);
-
-    grunt.registerTask('validate', [
-        'casperjs',
-        'validation'
     ]);
 
     grunt.registerTask('javascript:tests', [
