@@ -11,7 +11,6 @@ function HelpTextComponent(html, window, document) {
 
 HelpTextComponent.prototype.init = function () {
     var component = this,
-        $tabsContent = component.$html.find('.tabs__content'),
         $tabHelpContainer = component.$html.find('.tab-help-container'),
         $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container');
 
@@ -19,7 +18,7 @@ HelpTextComponent.prototype.init = function () {
     $tabHelpContainer.addClass('hide');
 
     // Help toggle click bind
-    $tabsContent.on('touchstart click', '.js-show-page-help', function(e) {
+    component.$html.on('touchstart click', '.js-show-page-help', function(e) {
         e.preventDefault();
         e.stopPropagation();
         component.toggleHelpSidebar();
