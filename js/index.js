@@ -19,12 +19,6 @@ var $                     = require('jquery'),
     tooltip               = require('./libs/tooltip'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
-    
-    jqueryui  = require('jquery-ui'),
-    countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
-    pikaday   = require('../libs/pikaday/plugins/pikaday.jquery'),
-    svgeezy   = require('../libs/svgeezy/svgeezy.min'),
-    tinycon   = require('../libs/tinyicon/tinycon.min'),
 
     dt            = require('datatables.net')(window, $),
     dt_buttons    = require('datatables.net-buttons')(window, $),
@@ -52,7 +46,7 @@ var $                     = require('jquery'),
     FaviconEditor = require('./Notifications/FaviconEditor');
 
 require('jstree');
-require('../libs/history.js/scripts/bundled/html5/jquery.history');
+// require('history.js');
 
 module.exports = {
     ButtonComponent,

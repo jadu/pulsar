@@ -3,8 +3,8 @@
 var $ = require('jquery'),
     TimePickerComponent = require('./TimePickerComponent');
 
-require('../libs/pikaday/plugins/pikaday.jquery');
-require('../libs/spectrum/spectrum');
+require('pikaday');
+require('spectrum-colorpicker');
 require('select2')();
 
 function PulsarFormComponent(html) {

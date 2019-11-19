@@ -468,42 +468,42 @@ $rich-list-item-text-selected-color:  color(white) !default;
 //
 //  _structure.grid.scss
 // -----------------------------------------------------------------------------
-@import '../libs/susy/sass/susy';
+// @import '../libs/susy/sass/susy';
 
 // Susy grid settings
-$susy: (
-    columns: 12,
-    container: 100%,
-    gutters: .25,
-);
+// $susy: (
+//     columns: 12,
+//     container: 100%,
+//     gutters: .25,
+// );
 
-.grid-container {
-    @include container;
-}
+// .grid-container {
+//     @include container;
+// }
 
-@for $i from 1 through 12 {
-    .grid-col--#{$i} {
-        @include respond-min($screen-phone) {
-            @include span($i);
-        }
-    }
+// @for $i from 1 through 12 {
+//     .grid-col--#{$i} {
+//         @include respond-min($screen-phone) {
+//             @include span($i);
+//         }
+//     }
 
-    .grid-col-push--#{$i} {
-        @include respond-min($screen-phone) {
-            @include push($i of 12);
-        }
-    }
-}
+//     .grid-col-push--#{$i} {
+//         @include respond-min($screen-phone) {
+//             @include push($i of 12);
+//         }
+//     }
+// }
 
-.grid-col {
-    margin-top: gutter();
+// .grid-col {
+//     margin-top: gutter();
 
-    &:last-child {
-        @include respond-min($screen-phone) {
-            @include last;
-        }
-    }
-}
+//     &:last-child {
+//         @include respond-min($screen-phone) {
+//             @include last;
+//         }
+//     }
+// }
 
 // -----------------------------------------------------------------------------
 //  18/01/2018
