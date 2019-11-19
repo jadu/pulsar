@@ -19,8 +19,8 @@ var $                     = require('jquery'),
     tooltip               = require('./libs/tooltip'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
-
-    jqueryui  = require('../libs/jquery-ui/jquery-ui.min'),
+    
+    jqueryui  = require('jquery-ui'),
     countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
     pikaday   = require('../libs/pikaday/plugins/pikaday.jquery'),
     svgeezy   = require('../libs/svgeezy/svgeezy.min'),

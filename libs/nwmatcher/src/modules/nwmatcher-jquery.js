@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007-2015 Diego Perini
+ * Copyright (C) 2007-2017 Diego Perini
  * All rights reserved.
  *
  * this is just a small example to show
@@ -60,10 +60,10 @@ NW.Dom.registerSelector(
       }
 
       // compiler will add this to "source"
-      return global.Object({
+      return {
         'source': source,
         'status': status
-      });
+      };
 
     };
 
@@ -116,10 +116,10 @@ NW.Dom.registerSelector(
       }
 
       // compiler will add this to "source"
-      return global.Object({
+      return {
         'source': source,
         'status': status
-      });
+      };
 
     };
 

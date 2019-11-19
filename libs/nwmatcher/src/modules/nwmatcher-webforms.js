@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007-2015 Diego Perini
+ * Copyright (C) 2007-2017 Diego Perini
  * All rights reserved.
  *
  * this is just a small example to show
@@ -24,10 +24,10 @@ NW.Dom.registerSelector(
 
       var status = true,
 
-      HTML5PseudoClasses = global.Object({
+      HTML5PseudoClasses = {
         'default': 4, 'indeterminate': 4, 'invalid': 4, 'valid': 4,
         'optional': 4, 'required': 4, 'read-write': 4, 'read-only': 4
-      });
+      };
 
       switch (match[1]) {
 
@@ -94,10 +94,10 @@ NW.Dom.registerSelector(
       }
 
       // compiler will add this to "source"
-      return global.Object({
+      return {
         'source': source,
         'status': status
-      });
+      };
 
     };
 

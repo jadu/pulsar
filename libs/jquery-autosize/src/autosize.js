@@ -41,7 +41,7 @@ function assign(ta) {
 	if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || map.has(ta)) return;
 
 	let heightOffset = null;
-	let clientWidth = ta.clientWidth;
+	let clientWidth = null;
 	let cachedHeight = null;
 
 	function init() {
@@ -100,21 +100,16 @@ function assign(ta) {
 	}
 
 	function resize() {
-		const originalHeight = ta.style.height;
-		const overflows = getParentOverflows(ta);
-		const docTop = document.documentElement && document.documentElement.scrollTop; // Needed for Mobile IE (ticket #240)
-
-		ta.style.height = 'auto';
-
-		let endHeight = ta.scrollHeight+heightOffset;
-
 		if (ta.scrollHeight === 0) {
 			// If the scrollHeight is 0, then the element probably has display:none or is detached from the DOM.
-			ta.style.height = originalHeight;
 			return;
 		}
 
-		ta.style.height = endHeight+'px';
+		const overflows = getParentOverflows(ta);
+		const docTop = document.documentElement && document.documentElement.scrollTop; // Needed for Mobile IE (ticket #240)
+
+		ta.style.height = '';
+		ta.style.height = (ta.scrollHeight+heightOffset)+'px';
 
 		// used to check if an update is actually necessary on window.resize
 		clientWidth = ta.clientWidth;
@@ -134,22 +129,24 @@ function assign(ta) {
 
 		const styleHeight = Math.round(parseFloat(ta.style.height));
 		const computed = window.getComputedStyle(ta, null);
-		var actualHeight = Math.round(parseFloat(computed.height));
+
+		// Using offsetHeight as a replacement for computed.height in IE, because IE does not account use of border-box
+		var actualHeight = computed.boxSizing === 'content-box' ? Math.round(parseFloat(computed.height)) : ta.offsetHeight;
 
 		// The actual height not matching the style height (set via the resize method) indicates that 
-		// the max-height has been exceeded, in which case the overflow should be set to visible.
-		if (actualHeight !== styleHeight) {
-			if (computed.overflowY !== 'visible') {
-				changeOverflow('visible');
+		// the max-height has been exceeded, in which case the overflow should be allowed.
+		if (actualHeight < styleHeight) {
+			if (computed.overflowY === 'hidden') {
+				changeOverflow('scroll');
 				resize();
-				actualHeight = Math.round(parseFloat(window.getComputedStyle(ta, null).height));
+				actualHeight = computed.boxSizing === 'content-box' ? Math.round(parseFloat(window.getComputedStyle(ta, null).height)) : ta.offsetHeight;
 			}
 		} else {
 			// Normally keep overflow set to hidden, to avoid flash of scrollbar as the textarea expands.
 			if (computed.overflowY !== 'hidden') {
 				changeOverflow('hidden');
 				resize();
-				actualHeight = Math.round(parseFloat(window.getComputedStyle(ta, null).height));
+				actualHeight = computed.boxSizing === 'content-box' ? Math.round(parseFloat(window.getComputedStyle(ta, null).height)) : ta.offsetHeight;
 			}
 		}
 
@@ -171,7 +168,7 @@ function assign(ta) {
 		}
 	};
 
-	const destroy = style => {
+	const destroy = (style => {
 		window.removeEventListener('resize', pageResize, false);
 		ta.removeEventListener('input', update, false);
 		ta.removeEventListener('keyup', update, false);
@@ -183,7 +180,7 @@ function assign(ta) {
 		});
 
 		map.delete(ta);
-	}.bind(ta, {
+	}).bind(ta, {
 		height: ta.style.height,
 		resize: ta.style.resize,
 		overflowY: ta.style.overflowY,

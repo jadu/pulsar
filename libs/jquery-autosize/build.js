@@ -2,26 +2,8 @@ var pkg = require('./package.json');
 var fs = require('fs');
 var ugly = require('uglify-js');
 var jshint = require('jshint').JSHINT;
-var babel = require('babel');
+var babel = require('babel-core');
 var gaze = require('gaze');
-
-function writeBower() {
-	var bower = {
-		name: pkg.config.bower.name,
-		description: pkg.description,
-		dependencies: pkg.dependencies,
-		keywords: pkg.keywords,
-		authors: [pkg.author],
-		license: pkg.license,
-		homepage: pkg.homepage,
-		ignore: pkg.config.bower.ignore,
-		repository: pkg.repository,
-		main: pkg.main,
-		moduleType: pkg.config.bower.moduleType,
-	};
-	fs.writeFile('bower.json', JSON.stringify(bower, null, '\t'));
-	return true;
-}
 
 function lint(full) {
 	jshint(full.toString(), {
@@ -32,6 +14,7 @@ function lint(full) {
 		eqeqeq: true,
 		eqnull: true,
 		noarg: true,
+		immed: false,
 		predef: ['define', 'module', 'exports', 'Map']
 	});
 
@@ -47,25 +30,28 @@ function lint(full) {
 }
 
 function build(code) {
-	var minified = ugly.minify(code, {fromString: true}).code;
+	var minified = ugly.minify(code).code;
 	var header = [
-		'/*!',
-		'	'+pkg.config.title+' '+pkg.version,
-		'	license: MIT',
-		'	'+pkg.homepage,
-		'*/',
-		''
+		`/*!`,
+		`	${pkg.name} ${pkg.version}`,
+		`	license: ${pkg.license}`,
+		`	${pkg.homepage}`,
+		`*/`,
+		``
 	].join('\n');
 
-	fs.writeFile('dist/'+pkg.config.filename+'.js', header+code);
-	fs.writeFile('dist/'+pkg.config.filename+'.min.js', header+minified);
-	writeBower();
-	
+	fs.writeFile('dist/'+pkg.name+'.js', header+code);
+	fs.writeFile('dist/'+pkg.name+'.min.js', header+minified);
 	console.log('dist built');
 }
 
 function transform(filepath) {
-	babel.transformFile(filepath, {modules: 'umd'}, function (err,res) {
+	babel.transformFile(filepath, {
+		plugins: [
+			"add-module-exports", ["transform-es2015-modules-umd", {"strict": true, "noInterop": true}]
+		],
+		presets: ["env"],
+	}, function (err,res) {
 		if (err) {
 			return console.log(err);
 		} else {
@@ -75,7 +61,7 @@ function transform(filepath) {
 	});
 }
 
-gaze('src/'+pkg.config.filename+'.js', function(err, watcher){
+gaze('src/'+pkg.name+'.js', function(err, watcher){
 	// On file changed
 	this.on('changed', function(filepath) {
 		transform(filepath);
@@ -84,4 +70,4 @@ gaze('src/'+pkg.config.filename+'.js', function(err, watcher){
 	console.log('watching');
 });
 
-transform('src/'+pkg.config.filename+'.js');
+transform('src/'+pkg.name+'.js');

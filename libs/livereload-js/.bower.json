@@ -1,6 +1,6 @@
 {
   "name": "livereload-js",
-  "version": "2.2.1",
+  "version": "3.1.0",
   "main": "dist/livereload.js",
   "homepage": "http://livereload.com",
   "authors": [
@@ -14,9 +14,6 @@
   ],
   "license": "MIT",
   "ignore": [
-    "Rakefile",
-    "lib",
-    "lib-cov",
     "src",
     "test",
     "**/.*",
@@ -27,11 +24,11 @@
   "moduleType": [
     "globals"
   ],
-  "_release": "2.2.1",
+  "_release": "3.1.0",
   "_resolution": {
     "type": "version",
-    "tag": "v2.2.1",
-    "commit": "91fdfa00a3e7fac0482397a315e18947c54bbfd3"
+    "tag": "v3.1.0",
+    "commit": "120fe7c53d972a6dfadb71d298fb48630223a02e"
   },
   "_source": "https://github.com/livereload/livereload-js.git",
   "_target": "*",

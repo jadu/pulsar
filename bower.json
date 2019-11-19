@@ -16,7 +16,6 @@
     "jquery-autosize": "latest",
     "jquery-placeholder": "2.3.1",
     "jquery.countdown": "^2.1.0",
-    "jquery-ui": "^1.12.1",
     "moment": "^2.18.1",
     "normalize-css": "3.0.3",
     "nwmatcher": "latest",
@@ -27,8 +26,6 @@
     "store.js": "latest",
     "susy": "~2.2.6",
     "svgeezy": "latest",
-    "Vague.js": "0.0.4",
-    "vide": "~0.5.1",
     "spectrum": "^1.8.0",
     "jt.timepicker": "jquery-timepicker-jt#^1.11.12"
   },

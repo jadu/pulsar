@@ -1,213 +1,279 @@
-store.js
+Store.js
 ========
 
-store.js exposes a simple API for cross browser local storage
+[![Build Status](https://travis-ci.org/marcuswestin/store.js.svg?branch=master)](https://travis-ci.org/marcuswestin/store.js)
+[![npm version](https://badge.fury.io/js/store.svg)](https://badge.fury.io/js/store)
+[![npm](https://img.shields.io/npm/dm/store.svg?maxAge=2592000)](https://npm-stat.com/charts.html?package=store)
+
+1. [Version 2.0](#user-content-version-20)
+	- What's new?
+2. [Basic Usage](#user-content-basic-usage)
+	- All you need to get started
+	- [API](#user-content-api)
+	- [Installation](#user-content-installation)
+3. [Supported Browsers](#user-content-supported-browsers)
+	- All of them, pretty much :)
+	- [List of supported browsers](#user-content-list-of-supported-browsers)
+4. [Plugins](#user-content-plugins)
+	- Additional common functionality
+	- [List of all Plugins](#user-content-list-of-all-plugins)
+	- [Using Plugins](#user-content-using-plugins)
+	- [Write your own Plugin](#user-content-write-your-own-plugin)
+5. [Builds](#user-content-builds)
+	- Choose which build is right for you
+	- [List of default Builds](#user-content-list-of-default-builds)
+	- [Make your own Build](#user-content-make-your-own-build)
+6. [Storages](#user-content-storages)
+	- Storages provide underlying persistence
+	- [List of all Storages](#user-content-list-of-all-storages)
+	- [Storages limits](#user-content-storages-limits)
+	- [Write your own Storage](#user-content-write-your-own-storage)
+
+
+Version 2.0
+-----------
+
+Store.js has been around since 2010 ([first commit](https://github.com/marcuswestin/store.js/commit/cb0198c2c02ff5f17c084276eeb4f28c79849d5e)! [HN discussion](https://news.ycombinator.com/item?id=1468802)!), and is live on tens of thousands of websites - like cnn.com!
+
+For many years v1.x provided basic cross-browser persistent storage, and over time more and more people [started asking](https://github.com/marcuswestin/store.js/issues?q=is%3Aissue+is%3Aclosed) for additional functionality.
+
+Store.js version 2 is a full revamp with pluggable storage (it will automatically fall back to one that works in every scenario by default), pluggable extra functionality (like [expirations](plugins/expire.js), [default values](plugins/defaults.js), common [array/object operations](plugins/operations.js), etc), and fully cross-browser automatic testing using saucelabs.com.
+
+
+
+Basic Usage
+-----------
+
+All you need to know to get started:
+
+### API
+
+store.js exposes a simple API for cross-browser local storage:
 
 ```js
-// Store 'marcus' at 'username'
-store.set('username', 'marcus')
+// Store current user
+store.set('user', { name:'Marcus' })
 
-// Get 'username'
-store.get('username')
+// Get current user
+store.get('user')
 
-// Remove 'username'
-store.remove('username')
+// Remove current user
+store.remove('user')
 
 // Clear all keys
-store.clear()
-
-// Store an object literal - store.js uses JSON.stringify under the hood
-store.set('user', { name: 'marcus', likes: 'javascript' })
-
-// Get the stored object - store.js uses JSON.parse under the hood
-var user = store.get('user')
-alert(user.name + ' likes ' + user.likes)
-
-// Get all stored values
-store.getAll().user.name == 'marcus'
+store.clearAll()
 
 // Loop over all stored values
-store.forEach(function(key, val) {
-	console.log(key, '==', val)
+store.each(function(value, key) {
+	console.log(key, '==', value)
 })
 ```
 
+### Installation
 
-How does it work?
-------------------
-store.js uses localStorage when available, and falls back on the userData behavior in IE6 and IE7. No flash to slow down your page load. No cookies to fatten your network requests.
+Using npm:
 
-store.js depends on JSON for serialization to disk.
+```js
+// Example store.js usage with npm
+var store = require('store')
+store.set('user', { name:'Marcus' })
+store.get('user').name == 'Marcus'
+```
 
-
-Installation
-------------
-Just grab [store.min.js] or [store+json2.min.js] and include them with a script tag.
-
-
-`store.enabled` flag
---------------------
-If your product depends on store.js, you must check the `store.enabled` flag first:
+Using script tag (first download one of the [builds](dist/)):
 
 ```html
-<script src="store.min.js"></script>
+<!-- Example store.js usage with script tag -->
+<script src="path/to/my/store.legacy.min.js"></script>
 <script>
-	init()
-	function init() {
-		if (!store.enabled) {
-			alert('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.')
-			return
-		}
-		var user = store.get('user')
-		// ... and so on ...
-	}
+var store = require('store')
+store.set('user', { name:'Marcus' })
+store.get('user').name == 'Marcus'
 </script>
 ```
 
-LocalStorage may sometimes appear to be available but throw an error when used. An example is Safari's private browsing mode. Other browsers allow the user to temporarily disable localStorage. Store.js detects these conditions and sets the `store.enabled` flag appropriately.
 
 
-Screencast
------------
-[Introductory Screencast to Store.js](http://javascriptplayground.com/blog/2012/06/javascript-local-storage-store-js-tutorial) by Jack Franklin.
-
-
-Contributors & Forks
---------------------
-Contributors: https://github.com/marcuswestin/store.js/graphs/contributors
-
-Forks: https://github.com/marcuswestin/store.js/network/members
-
-
-In node.js
-----------
-store.js works as expected in node.js, assuming that global.localStorage has been set:
-
-```
-global.localStorage = require('localStorage')
-var store = require('./store')
-store.set('foo', 1)
-console.log(store.get('foo'))
-```
-
-
-Supported browsers
+Supported Browsers
 ------------------
- - Tested in iOS 4+
- - Tested in Firefox 3.5
- - Tested in Firefox 3.6
- - Tested in Firefox 4.0+
- - Support dropped for Firefox < 3.5 (see notes below)
- - Tested in Chrome 5
- - Tested in Chrome 6
- - Tested in Chrome 7
- - Tested in Chrome 8
- - Tested in Chrome 10
- - Tested in Chrome 11+
- - Tested in Safari 4
- - Tested in Safari 5
- - Tested in IE6
- - Tested in IE7
- - Tested in IE8
- - Tested in IE9
- - Tested in IE10
- - Tested in Opera 10
- - Tested in Opera 11
- - Tested in Opera 12
- - Tested in Node.js v0.10.4 (with https://github.com/coolaj86/node-localStorage 1.0.2)
 
-*Private mode* Store.js may not work while browsing in private mode. This is as it should be. Check the `store.enabled` flag before relying on store.js.
+All of them, pretty much :)
 
-*Saucelabs.com rocks* Extensive browser testing of store.js is possible thanks to Saucelabs.com. Check them out, they're awesome.
+To support all browsers (including IE 6, IE 7, Firefox 4, etc.), use `require('store')` (alias for `require('store/dist/store.legacy')`) or [store.legacy.min.js](dist/store.legacy.min.js).
 
-*Firefox 3.0 & 2.0:* Support for FF 2 & 3 was dropped in v1.3.6. If you require support for ancient versions of FF, use v1.3.5 of store.js.
+To save some kilobytes but still support all modern browsers, use `require('store/dist/store.modern')` or [store.modern.min.js](dist/store.modern.min.js) instead.
 
-*Important note:* In IE6 and IE7, many special characters are not allowed in the keys used to store any key/value pair. With [@mferretti](https://github.com/mferretti)'s help, there's a suitable workaround which replaces most forbidden characters with "___".
+### List of supported browsers
+
+- Tested on IE6+
+- Tested on iOS 8+
+- Tested on Android 4+
+- Tested on Firefox 4+
+- Tested on Chrome 27+
+- Tested on Safari 5+
+- Tested on Opera 11+
+- Tested on Node (with https://github.com/coolaj86/node-localStorage)
 
 
-Storage limits
---------------
- - IE6 & IE7: 1MB total, but 128kb per "path" or "document" (see http://msdn.microsoft.com/en-us/library/ms531424(v=vs.85).aspx)
- - See http://dev-test.nemikor.com/web-storage/support-test/ for a list of limits per browser
-
-Unsupported browsers
--------------------
- - Firefox 1.0: no means (beside cookies and flash)
- - Safari 2: no means (beside cookies and flash)
- - Safari 3: no synchronous api (has asynch sqlite api, but store.js is synch)
- - Opera 9: don't know if there is synchronous api for storing data locally
- - Firefox 1.5: don't know if there is synchronous api for storing data locally
- - Microsoft IIS & IE7: With meta tag & "charset=iso-8859-1", things stop working. See issue #47.
 
 
-Some notes on serialization
----------------------------
-localStorage, when used without store.js, calls toString on all stored values. This means that you can't conveniently store and retrieve numbers, objects or arrays:
+Plugins
+-------
+
+Plugins provide additional common functionality that some users might need:
+
+### List of all Plugins
+
+- [all.js](plugins/all.js):                      All the plugins in one handy place.
+- [defaults.js](plugins/defaults.js):            Declare default values. [Example usage](plugins/defaults_test.js)
+- [dump.js](plugins/dump.js):                    Dump all stored values. [Example usage](plugins/dump_test.js)
+- [events.js](plugins/events.js):                Get notified when stored values change. [Example usage](plugins/events_test.js)
+- [expire.js](plugins/expire.js):                Expire stored values at a given time. [Example usage](plugins/expire_test.js)
+- [observe.js](plugins/observe.js):              Observe stored values and their changes. [Example usage](plugins/observe_test.js)
+- [operations.js](plugins/operations.js):        Useful operations like push, shift & assign. [Example usage](plugins/operations_test.js)
+- [update.js](plugins/update.js):                Update a stored object, or create it if null. [Example usage](plugins/update_test.js)
+- [v1-backcompat.js](plugins/v1-backcompat.js):  Full backwards compatibility with store.js v1. [Example usage](plugins/v1-backcompat_test.js)
+
+### Using Plugins
+
+With npm:
 
 ```js
-localStorage.myage = 24
-localStorage.myage !== 24
-localStorage.myage === '24'
-
-localStorage.user = { name: 'marcus', likes: 'javascript' }
-localStorage.user === "[object Object]"
-
-localStorage.tags = ['javascript', 'localStorage', 'store.js']
-localStorage.tags.length === 32
-localStorage.tags === "javascript,localStorage,store.js"
+// Example plugin usage:
+var expirePlugin = require('store/plugins/expire')
+store.addPlugin(expirePlugin)
 ```
 
-What we want (and get with store.js) is
+If you're using script tags, you can either use [store.everything.min.js](dist/store.everything.min.js) (which
+has all plugins built-in), or clone this repo to add or modify a build and run `make build`.
+
+### Write your own plugin
+
+A store.js plugin is a function that returns an object that gets added to the store.
+If any of the plugin functions overrides existing functions, the plugin function can still call
+the original function using the first argument (super_fn).
 
 ```js
-store.set('myage', 24)
-store.get('myage') === 24
-
-store.set('user', { name: 'marcus', likes: 'javascript' })
-alert("Hi my name is " + store.get('user').name + "!")
-
-store.set('tags', ['javascript', 'localStorage', 'store.js'])
-alert("We've got " + store.get('tags').length + " tags here")
-```
-
-The native serialization engine of javascript is JSON. Rather than leaving it up to you to serialize and deserialize your values, store.js uses JSON.stringify() and JSON.parse() on each call to store.set() and store.get(), respectively.
-
-Some browsers do not have native support for JSON. For those browsers you should include [JSON2.js] \(non-minified copy is included in this repo).
-
-
-No sessionStorage/auto-expiration?
-----------------------------------
-No. I believe there is no way to provide sessionStorage semantics cross browser. However, it is trivial to expire values on read on top of store.js:
-
-```js
-var storeWithExpiration = {
-	set: function(key, val, exp) {
-		store.set(key, { val:val, exp:exp, time:new Date().getTime() })
-	},
-	get: function(key) {
-		var info = store.get(key)
-		if (!info) { return null }
-		if (new Date().getTime() - info.time > info.exp) { return null }
-		return info.val
+// Example plugin that stores a version history of every value
+var versionHistoryPlugin = function() {
+	var historyStore = this.namespace('history')
+	return {
+		set: function(super_fn, key, value) {
+			var history = historyStore.get(key) || []
+			history.push(value)
+			historyStore.set(key, history)
+			return super_fn()
+		},
+		getHistory: function(key) {
+			return historyStore.get(key)
+		}
 	}
 }
-storeWithExpiration.set('foo', 'bar', 1000)
-setTimeout(function() { console.log(storeWithExpiration.get('foo')) }, 500) // -> "bar"
-setTimeout(function() { console.log(storeWithExpiration.get('foo')) }, 1500) // -> null
+store.addPlugin(versionHistoryPlugin)
+store.set('foo', 'bar 1')
+store.set('foo', 'bar 2')
+store.getHistory('foo') == ['bar 1', 'bar 2']
+```
+
+Let me know if you need more info on writing plugins. For the moment I recommend
+taking a look at the [current plugins](plugins/). Good example plugins are
+[plugins/defaults](plugins/defaults.js), [plugins/expire](plugins/expire.js) and
+[plugins/events](plugins/events.js).
+
+
+
+Builds
+------
+
+Choose which build is right for you!
+
+### List of default builds
+
+- [store.everything.min.js](dist/store.everything.min.js): All the plugins, all the storages. [Source](dist/store.everything.js)
+- [store.legacy.min.js](dist/store.legacy.min.js): Full support for all tested browsers. Add plugins separately. [Source](dist/store.legacy.js)
+- [store.modern.min.js](dist/store.modern.min.js): Full support for all modern browsers. Add plugins separately. [Source](dist/store.modern.js)
+- [store.v1-backcompat.min.js](dist/store.v1-backcompat.min.js): Full backwards compatibility with [store.js v1](https://github.com/marcuswestin/store.js/releases/tag/v1.3.20). [Source](dist/store.v1-backcompat.js)
+
+### Make your own Build
+
+If you're using npm you can create your own build:
+
+```js
+// Example custom build usage:
+var engine = require('store/src/store-engine')
+var storages = [
+	require('store/storages/localStorage'),
+	require('store/storages/cookieStorage')
+]
+var plugins = [
+	require('store/plugins/defaults'),
+	require('store/plugins/expire')
+]
+var store = engine.createStore(storages, plugins)
+store.set('foo', 'bar', new Date().getTime() + 3000) // Using expire plugin to expire in 3 seconds
 ```
 
 
-Testing
--------
-For a browser: Go to http://marcuswestin.github.io/store.js/test.html to test the latest version of store.js.
-
-For a browser, locally: do `npm install node-static && ./node_modules/node-static/bin/cli.js` and go to http://localhost:8080
-
-(Note that test.html must be served over http:// or https://. This is because localStore does not work in some browsers when using the file:// protocol.)
-
-For Nodejs: do `npm install . localStorage && node test-node.js`
 
 
-  [JSON2.js]: https://raw.githubusercontent.com/douglascrockford/JSON-js/master/json2.js
-  [store.min.js]: https://raw.github.com/marcuswestin/store.js/master/store.min.js
-  [store+json2.min.js]: https://raw.github.com/marcuswestin/store.js/master/store+json2.min.js
+Storages
+--------
+Store.js will pick the best available storage, and automatically falls back to the first available storage that works:
+
+### List of all Storages
+
+- [all.js](storages/all.js)                                     All the storages in one handy place.
+- [localStorage.js](storages/localStorage.js)                   Store values in localStorage. Great for all modern browsers.
+- [sessionStorage.js](storages/sessionStorage.js)               Store values in sessionStorage.
+- [cookieStorage.js](storages/cookieStorage.js)                 Store values in cookies. Useful for Safari Private mode.
+- [memoryStorage.js](storages/memoryStorage.js)                 Store values in memory. Great fallback to ensure store functionality at all times.
+- [oldFF-globalStorage.js](storages/oldFF-globalStorage.js)     Store values in globalStorage. Only useful for legacy Firefox 3+.
+- [oldIE-userDataStorage.js](storages/oldIE-userDataStorage.js) Store values in userData. Only useful for legacy IE 6+.
+
+
+### Storages limits
+
+Each storage has different limits, restrictions and overflow behavior on different browser. For example, Android has has a 4.57M localStorage limit in 4.0, a 2.49M limit in 4.1, and a 4.98M limit in 4.2... Yeah.
+
+To simplify things we provide these recommendations to ensure cross browser behavior:
+
+| Storage         | Targets                | Recommendations                 | More info                                        |
+|:----------------|:-----------------------|:--------------------------------|:-------------------------------------------------|
+| all             | All browsers           | Store < 1 million characters    | (Except Safari Private mode)                     |
+| all             | All & Private mode     | Store < 32 thousand characters  | (Including Safari Private mode)                  |
+| localStorage    | Modern browsers        | Max 2mb  (~1M chars)            | [limits][local-limits], [android][local-android] |
+| sessionStorage  | Modern browsers        | Max 5mb  (~2M chars)            | [limits][session-limits]                         |
+| cookieStorage   | Safari Private mode    | Max 4kb  (~2K chars)            | [limits][cookie-limits]                          |
+| userDataStorage | IE5, IE6 & IE7         | Max 64kb (~32K chars)           | [limits][userdata-limits]                        |
+| globalStorage   | Firefox 2-5            | Max 5mb  (~2M chars)            | [limits][global-limits]                          |
+| memoryStorage   | All browsers, fallback | Does not persist across pages!  |                                                  |
+
+[local-limits]: https://arty.name/localstorage.html
+[local-android]: http://dev-test.nemikor.com/web-storage/support-test/
+[session-limits]: http://stackoverflow.com/questions/15840976/how-large-is-html5-session-storage
+[cookie-limits]: http://browsercookielimits.squawky.net/
+[userdata-limits]: https://msdn.microsoft.com/en-us/library/ms533015(v=vs.85).aspx
+[global-limits]: https://github.com/jeremydurham/persist-js/blob/master/README.md#4-size-limits
+[more]: https://www.html5rocks.com/en/tutorials/offline/quota-research/
+
+
+### Write your own Storage
+
+Chances are you won't ever need another storage. But if you do...
+
+See [storages/](storages/) for examples. Two good examples are [memoryStorage](storages/memoryStorage.js) and [localStorage](storages/localStorage.js).
+
+Basically, you just need an object that looks like this:
+
+```js
+// Example custom storage
+var storage = {
+	name: 'myStorage',
+	read: function(key) { ... },
+	write: function(key, value) { ... },
+	each: function(fn) { ... },
+	remove: function(key) { ... },
+	clearAll: function() { ... }
+}
+var store = require('store').createStore(storage)
+```

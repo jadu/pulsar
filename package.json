@@ -65,6 +65,7 @@
     "grunt-text-replace": "^0.4.0",
     "grunt-w3c-html-validation": "^0.1.8",
     "jquery": "^3.4.1",
+    "jquery-ui": "^1.12.1",
     "jsdom": "^9.12.0",
     "jsdom-global": "^2.1.1",
     "matchdep": "^1.0.1",
@@ -99,6 +100,7 @@
     "jstree": "^3.3.8",
     "lodash": "^4.17.13",
     "moment": "^2.24.0",
-    "select2": "github:jadu/selectWoo#jadu-1.1.0"
+    "select2": "github:jadu/selectWoo#jadu-1.1.0",
+    "vide": "^0.5.1"
   }
 }

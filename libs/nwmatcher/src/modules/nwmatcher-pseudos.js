@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007-2015 Diego Perini
+ * Copyright (C) 2007-2017 Diego Perini
  * All rights reserved.
  *
  * CSS3 pseudo-classes extension for NWMatcher
@@ -23,11 +23,11 @@
 
 (function(global) {
 
-  var LINK_NODES = global.Object({
+  var LINK_NODES = {
     'a': 1, 'A': 1,
     'area': 1, 'AREA': 1,
     'link': 1, 'LINK': 1
-  }),
+  },
 
   root = document.documentElement,
 
@@ -122,8 +122,8 @@ NW.Dom.registerSelector(
               a = 2;
               b = 1;
             } else {
-              b = ((n = match[2].match(/(-?\d+)$/)) ? global.parseInt(n[1], 10) : 0);
-              a = ((n = match[2].match(/(-?\d*)n/i)) ? global.parseInt(n[1], 10) : 0);
+              b = ((n = match[2].match(/(-?\d+)$/)) ? parseInt(n[1], 10) : 0);
+              a = ((n = match[2].match(/(-?\d*)n/i)) ? parseInt(n[1], 10) : 0);
               if (n && n[1] == '-') a = -1;
             }
             test = a > 1 ?
@@ -157,10 +157,10 @@ NW.Dom.registerSelector(
           break;
       }
 
-      return global.Object({
+      return {
         'source': source,
         'status': status
-      });
+      };
 
     };
 
@@ -168,16 +168,16 @@ NW.Dom.registerSelector(
 
 NW.Dom.registerSelector(
   'nwmatcher:dpseudos',
-  /^\:(link|visited|target|active|focus|hover|checked|disabled|enabled|selected|lang\(([-\w]{2,})\)|not\(([^()]*|.*)\))?(.*)/i,
+  /^\:(link|visited|target|active|focus|hover|checked|disabled|enabled|selected|lang\(([-\w]{2,})\)|not\(\s*(:nth(?:-last)?(?:-child|-of-type)\(\s*(?:even|odd|(?:[-+]{0,1}\d*n\s*)?[-+]{0,1}\s*\d*)\s*\)|[^()]*)\s*\))?(.*)/i,
   (function(global) {
 
     var doc = global.document,
     Config = NW.Dom.Config,
     Tokens = NW.Dom.Tokens,
 
-    reTrimSpace = global.RegExp('^\\s+|\\s+$', 'g'),
+    reTrimSpace = RegExp('^\\s+|\\s+$', 'g'),
 
-    reSimpleNot = global.RegExp('^((?!:not)' +
+    reSimpleNot = RegExp('^((?!:not)' +
       '(' + Tokens.prefixes + '|' + Tokens.identifier +
       '|\\([^()]*\\))+|\\[' + Tokens.attributes + '\\])$');
 
@@ -190,10 +190,10 @@ NW.Dom.registerSelector(
         case 'not':
           expr = match[3].replace(reTrimSpace, '');
           if (Config.SIMPLENOT && !reSimpleNot.test(expr)) {
-            NW.Dom.emit('Negation pseudo-class only accepts simple selectors "' + match.join('') + '"');
+            NW.Dom.emit('Negation pseudo-class only accepts simple selectors "' + selector + '"');
           } else {
             if ('compatMode' in doc) {
-              source = 'if(!' + NW.Dom.compile(expr, '', false) + '(e,s,r,d,h,g)){' + source + '}';
+              source = 'if(!' + NW.Dom.compile(expr, '', false) + '(e,s,d,h,g)){' + source + '}';
             } else {
               source = 'if(!s.match(e, "' + expr.replace(/\x22/g, '\\"') + '",g)){' + source +'}';
             }
@@ -263,10 +263,45 @@ NW.Dom.registerSelector(
           break;
       }
 
-      return global.Object({
+      return {
         'source': source,
         'status': status
-      });
+      };
+
+    };
+
+  })(this));
+
+NW.Dom.registerSelector(
+  'nwmatcher:epseudos',
+  /^((?:[:]{1,2}(?:after|before|first-letter|first-line))|(?:[:]{2,2}(?:selection|backdrop|placeholder)))?(.*)/i,
+  (function(global) {
+
+    return function(match, source) {
+
+      var status = true;
+
+      switch (match[1].match(/(\w+)$/)[0]) {
+
+        case 'after':
+        case 'before':
+        case 'first-letter':
+        case 'first-line':
+        case 'selection':
+        case 'backdrop':
+        case 'placeholder':
+          source = 'if(!(/1|11/).test(e.nodeType)){' + source + '}';
+          break;
+
+        default:
+          status = false;
+          break;
+      }
+
+      return {
+        'source': source,
+        'status': status
+      };
 
     };
 

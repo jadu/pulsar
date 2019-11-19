@@ -16,8 +16,9 @@ The server notifies the client whenever a change is made. Available servers are:
 * [rack-livereload](https://github.com/johnbintz/rack-livereload)
 * [guard-livereload](https://github.com/guard/guard-livereload)
 * [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)
+* [python-livereload](https://github.com/lepture/python-livereload)
 * more available on Google :-)
-* you can even write your own; refer to the [LiveReload protocol](http://help.livereload.com/kb/ecosystem/livereload-protocol)
+* you can even write your own; refer to the [LiveReload protocol](http://livereload.com/api/protocol/)
 
 If you are a web developer looking to _use_ LiveReload, you should refer to your LiveReload server/app/tool's documentation, rather that this repository. **You should use the copy of livereload.js script bundled with your server**, because it's guaranteed to be compatible, and may be customized for that server.
 
@@ -53,22 +54,35 @@ Would love, but doesn't seem possible:
 * live JS reloading
 
 
-Installing using Bower and npm
-------------------------------
+Installing using Bower
+----------------------
 
-This script is published on Bower and npm. (But, to reiterate: the preferred method is to avoid installing it altogether, and instead use the one bundled with your LiveReload server/app/tool.)
+This script is published on Bower. (But, to reiterate: the preferred method is to avoid installing it altogether, and instead use the one bundled with your LiveReload server/app/tool.)
 
-Using Bower:
+Installation:
 
     bower install livereload-js --save-dev
 
 This gives you a component containing a single script file, `dist/livereload.js`.
 
-If you're using Browserify, you can require LiveReload via npm:
+
+Installing using npm and Browserify
+-----------------------------------
+
+Including livereload.js into your Browserify bundle probably makes no sense, because livereload.js isn't something you would ship to production.
+
+But if you insist _and_ you know what you're doing, you can install LiveReload via npm:
 
     npm install livereload-js --save
 
-Note that the package uses `window` and `document` globals, so won't run under Node.js environment.
+and then add this to your bundle:
+
+    window.LiveReloadOptions = { host: 'localhost' };
+    require('livereload-js');
+
+Note that livereload-js package uses `window` and `document` globals, so won't run under Node.js environment.
+
+The reason you need to specify `LiveReloadOptions` is that `livereload.js` won't be able to find its `<script>` tag and would normally bail out with an error message.
 
 
 Using livereload.js
@@ -121,6 +135,22 @@ Alternatively, instead of loading livereload.js from the LiveReload server, you 
 ```
 
 
+Options
+-------
+
+Options can either be specified as query parameters of the `<script src="..../livereload.js">` tag's source URL, or as a global `window.LiveReloadOptions` dictionary. If the dictionary is specified, `livereload.js` does not even try looking for its `<script>` tag.
+
+The set of supported options is the same for both methods:
+
+* `host`: the host that runs a LiveReload server; required if specifying `LiveReloadOptions`, otherwise will be autodetected as the origin of the `<script>` tag
+* `port`: optional server port override
+* `path`: optional path to livereload server (default: 'livereload')
+* `mindelay`, `maxdelay`: range of reconnection delays (if `livereload.js` cannot connect to the server, it will attempt to reconnect with increasing delays); defaults to 1,000 ms minimum and 60,000 ms maximum
+* `handshake_timeout`: timeout for a protocol handshake to be completed after a connection attempt; mostly only needed if you're running an interactive debugger on your web socket server
+* `isChromeExtension`: reload chrome runtime instead of page when true (default: false)
+* `reloadMissingCSS`: prevent reload of CSS when changed stylesheet isn't found in page (default: true)
+
+
 Issues & Limitations
 --------------------
 
@@ -157,7 +187,6 @@ Hacking on LiveReload.js
 Requirements:
 
 * Node.js with npm
-* Grunt (`npm install grunt-cli`)
 
 To install additional prerequisites:
 
@@ -165,27 +194,27 @@ To install additional prerequisites:
 
 To build:
 
-    grunt build
+    npm run build
 
 To run tests:
 
-    grunt
+    npm test
+
+Manual testing: open files in `test/html/*` in various browsers, make some changes and make sure they are applied.
+
+Testing the Browserify usage scenario: `npm run test-manual`, then perform manual testing of `test/html/browserified/`.
 
 
 Releasing a new version
 -----------------------
 
-1. Update the version number in `package.json`.
-
-1. Run `rake version` to update the version numbers in all other files, using the one from `package.json`.
-
-1. Run `grunt`.
+1. Run `npm version` with the applicable identifier (`major`/`minor`/`patch`/...).
 
 1. Do some manual testing.
 
-1. Tag the version in Git: `rake tag` then `git push --tags`.
+1. Create a release on GitHub.
 
-1. `npm publish`
+1. Run `npm publish`.
 
 
 License
@@ -208,8 +237,8 @@ Version history
 
 2.1.0 (Jan 16, 2015)
 
-* use case-insensitive matching for `rel` attribute in `<link rel="stylesheet">` tags, to accomodate legacy Rails versions
-* avoid usage of `console` when it's not definited
+* use case-insensitive matching for `rel` attribute in `<link rel="stylesheet">` tags, to accommodate legacy Rails versions
+* avoid usage of `console` when it's not defined
 * some README changes
 
 2.0.8 (May 22, 2012)
