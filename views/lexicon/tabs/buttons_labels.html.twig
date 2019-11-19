@@ -29,7 +29,16 @@
     })
 }}
         
+    <h2 class="heading">Links</h2>
 
+    <a href="#one">Normal</a>
+    <a href="#two" class="is-disabled">disabled</a>
+    {{
+        html.link({
+            'label': 'twig link',
+            'disabled': true
+        })
+    }}
 
     <h2 class="heading">Button variations</h2>
 

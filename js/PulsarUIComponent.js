@@ -22,20 +22,28 @@ function PulsarUIComponent(html, history) {
 PulsarUIComponent.prototype.init = function () {
     var component = this;
 
-    // Stop disabled links from being interactive
-    this.$html.on('click', 'a[disabled]', function(e) {
-        e.preventDefault();
-    });
-
-    // Watch for push-state requests via data-html attribute
-    this.$html.on('click', '[data-href]', function(e) {
-        var href = $(this).data('href');
-        component.history.pushState({state:1}, href, href);
-    });
-
+    this.initDisabledLinks();
     this.initTables();
     this.initDataTables();
     this.initCountdown();
+};
+
+PulsarUIComponent.prototype.initDisabledLinks = function() {
+    let $links = this.$html.find('a.is-disabled');
+
+    $links.each(function() {
+        let $this = $(this);
+
+        $this
+            .attr('aria-disabled', 'true')
+            .attr('tabindex', '-1')
+            .attr('role', 'button')
+            .attr('data-href', $this.attr('href'))
+            .removeAttr('href')
+            .on('click', function(e) {
+                e.preventDefault();
+            });
+    });
 };
 
 PulsarUIComponent.getDatatableOptions = function ($table) {
