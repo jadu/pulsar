@@ -10,6 +10,11 @@
 
     tbody > tr:hover {
         background-color: color(background, light);
+
+        [href],
+        .continuum-cms & [href]:link {
+            color: color(link, dark);
+        }
     }
 
     tr {
@@ -270,6 +275,7 @@ td.row__actions {
 .table--overflow-left,
 .table--overflow-right {
     &.table-container {
+        -webkit-overflow-scrolling: touch;
         overflow-x: auto;
 
         &::-webkit-scrollbar {
@@ -286,12 +292,6 @@ td.row__actions {
             background-color: color(grey, lightest);
             border-bottom: 1px solid color(border);
         }
-    }
-
-    td a,
-    th a {
-        position: relative;
-        z-index: 2;
     }
 }
 
@@ -335,6 +335,7 @@ td.row__actions {
 .table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar,
 .table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar {
     -webkit-appearance: none;
+    -webkit-overflow-scrolling: touch;
     background: color(background, light);
     width: 7px;
 }

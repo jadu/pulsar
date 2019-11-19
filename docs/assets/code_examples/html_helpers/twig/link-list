@@ -1,8 +1,0 @@
-{{
-    html.link_list({
-        items: {
-            'Value one': '#href_one',
-            'Value two': '#href_two'
-        }
-    })
-}}

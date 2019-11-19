@@ -282,17 +282,6 @@ module.exports = function(grunt) {
                     ],
                     dest: 'dist/'
                 }]
-            },
-            docs: {
-                files: [{
-                    cwd: '',
-                    expand: true,
-                    flatten: true,
-                    src: [
-                        'dist/js/bundle.js'
-                    ],
-                    dest: 'docs/assets/'
-                }]
             }
         },
 
@@ -334,15 +323,6 @@ module.exports = function(grunt) {
             },
             updateNpm: {
                 cmd: 'sudo npm install'
-            },
-            wraithUpdate: {
-                cmd: 'php tests/css/updateWraith.php'
-            },
-            wraithHistory: {
-                cmd: 'wraith history wraith.yml'
-            },
-            wraithLatest: {
-                cmd: 'wraith latest wraith.yml'
             },
             fixProximaNova: {
                 cmd: 'git update-index --skip-worktree fonts/_config.fonts.scss'
@@ -487,6 +467,39 @@ module.exports = function(grunt) {
                         }
                     }
                 }
+            },
+            deployer: {
+                src: 'images/favicons/src/favicon-deployer.svg',
+                dest: 'images/favicons/deployer',
+                options: {
+                    iconsPath: '/images/favicons/deployer/',
+                    html: [ 'views/pulsar/components/favicons-deployer.html' ],
+                    design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#3d4796',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#3d4796',
+                            themeColor: '#3d4796',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
+                        windows: {
+                            pictureAspect: 'noChange',
+                            backgroundColor: '#3d4796',
+                            onConflict: 'override'
+                        }
+                    }
+                }
             }
         },
 
@@ -559,14 +572,6 @@ module.exports = function(grunt) {
             files: {
                 src: ['../pulsar/tests/validation/html_output/*.html']
             }
-        },
-
-	    'gh-pages': {
-            options: {
-                base: 'docs/_site',
-                repo: 'https://github.com/jadu/pulsar.git'
-            },
-            src: ['**']
         }
 
     });
@@ -575,8 +580,6 @@ module.exports = function(grunt) {
 
     grunt.config.set('leadingIndent.files', {
         src : [
-            'docs/**/*.md',
-            'docs/**/*.php',
             'css/**/*',
             'js/**/*',
             'src/**/*',
@@ -631,15 +634,6 @@ module.exports = function(grunt) {
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'
-    ]);
-
-    grunt.registerTask('wraith', [
-        'exec:wraithLatest'
-    ]);
-
-    grunt.registerTask('wraith-update', [
-        'exec:wraithUpdate',
-        'exec:wraithHistory'
     ]);
 
     grunt.registerTask('update', [

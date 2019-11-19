@@ -1,7 +1,0 @@
-{{
-    form.text({
-        'label': 'First name',
-        'id': 'inputText',
-        'name': 'inputText'
-    })
-}}

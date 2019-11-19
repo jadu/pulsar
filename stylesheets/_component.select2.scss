@@ -74,7 +74,7 @@
 
 .select2-dropdown {
     background-color: white;
-    border: 1px solid #aaa;
+    border: 1px solid $input-border;
     border-radius: 4px;
     box-sizing: border-box;
     display: block;
@@ -169,8 +169,8 @@
 }
 
 .select2-container--default .select2-selection--single {
-    background-color: #fff;
-    border: 1px solid #aaa;
+    background-color: #fafafa;
+    border: 1px solid $input-border;
     border-radius: 4px;
 }
 
@@ -230,8 +230,8 @@
 }
 
 .select2-container--default .select2-selection--multiple {
-    background-color: white;
-    border: 1px solid #aaa;
+    background-color: #fafafa;
+    border: 1px solid $input-border;
     border-radius: 4px;
     cursor: text;
 }
@@ -360,7 +360,7 @@
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
-    border: 1px solid #aaa;
+    border: 1px solid $input-border;
 }
 
 .select2-container--default .select2-search--inline .select2-search__field {
@@ -441,7 +441,7 @@
 
 .select2-container--classic .select2-selection--single {
     background-color: #f7f7f7;
-    border: 1px solid #aaa;
+    border: 1px solid $input-border;
     border-radius: 4px;
     outline: 0;
     background-image: -webkit-linear-gradient(top, white 50%, #eee 100%);
@@ -477,7 +477,7 @@
 .select2-container--classic .select2-selection--single .select2-selection__arrow {
     background-color: #ddd;
     border: 0;
-    border-left: 1px solid #aaa;
+    border-left: 1px solid $input-border;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     height: 26px;
@@ -511,7 +511,7 @@
 
 .select2-container--classic[dir="rtl"] .select2-selection--single .select2-selection__arrow {
     border: 0;
-    border-right: 1px solid #aaa;
+    border-right: 1px solid $input-border;
     border-radius: 0;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -557,7 +557,7 @@
 
 .select2-container--classic .select2-selection--multiple {
     background-color: white;
-    border: 1px solid #aaa;
+    border: 1px solid $input-border;
     border-radius: 4px;
     cursor: text;
     outline: 0;
@@ -582,7 +582,7 @@
 
 .select2-container--classic .select2-selection--multiple .select2-selection__choice {
     background-color: #e4e4e4;
-    border: 1px solid #aaa;
+    border: 1px solid $input-border;
     border-radius: 4px;
     cursor: default;
     float: left;
@@ -634,7 +634,7 @@
 }
 
 .select2-container--classic .select2-search--dropdown .select2-search__field {
-    border: 1px solid #aaa;
+    border: 1px solid $input-border;
     outline: 0;
 }
 
@@ -677,16 +677,12 @@
 .select2-container--classic .select2-results__group {
     cursor: default;
     display: block;
-    padding: 6p
-    x;
+    padding: 6px;
 }
 
 .select2-container--classic.select2-container--open .select2-dropdown {
     border-color: #5897fb;
 }
-
-
-
 
 span.select2-selection.select2-selection--single {
     height: $input-height-base;
@@ -707,9 +703,15 @@ span.select2-selection.select2-selection--single {
 }
 
 .select2-selection {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
-    background-position: 97%;
+    background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, color(gray, off-white), color(gray, off-white));
+    background-position: calc(100% - 10px) calc(1em + 5px), calc(100% - 5px) calc(1em + 5px), 100% 0;
+    background-size: 5px 5px, 5px 5px, 22px 100%;
     background-repeat: no-repeat;
+
+    @include ie-lte(9) {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
+        background-position: calc(100% - 5px);
+    }
 }
 
 .select2-container .select2-selection--multiple {

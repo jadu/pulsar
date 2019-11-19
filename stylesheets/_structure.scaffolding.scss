@@ -10,16 +10,11 @@ body {
 body {
   background-color: color(white);
   font-family: $font-family-base;
-  font-size: $font-size-medium;
-  line-height: $line-height-small;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
   margin: 0 0 ($line-height-base * 2);
   overflow-x: hidden;
   padding: 0;
-
-  @include respond-min($screen-phone) {
-    font-size: $font-size-base;
-    line-height: $line-height-base;
-  }
 }
 
 .container {
@@ -28,7 +23,7 @@ body {
   height: 100%;
   // Allow any content to clear the fixed footer
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
   width: 100%;
 
@@ -76,10 +71,10 @@ a.disabled {
 
   &:focus {
     display: block;
-    left: 0;
+    left: 85px;
     outline-offset: -2px;
     outline: 3px solid color(border, focus);
-    position: relative;
+    position: absolute;
     top: 0;
     width: 100%;
   }

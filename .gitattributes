@@ -1,13 +1,10 @@
 /.sass-cache                export-ignore
 /app/                       export-ignore
 /coverage/                  export-ignore
-/docs/                      export-ignore
 /features/                  export-ignore
 /hook/                      export-ignore
 /node_modules/              export-ignore
 /coverage/                  export-ignore
-/shots/                     export-ignore
-/shots_history/             export-ignore
 /tests/                     export-ignore
 /tmp/                       export-ignore
 /vendor/                    export-ignore
@@ -219,7 +216,6 @@
 /libs/moment/bower.json                                         export-ignore
 /libs/moment/CHANGELOG.md                                       export-ignore
 /libs/moment/LICENSE                                            export-ignore
-/libs/moment/locale/                                            export-ignore
 /libs/moment/min/                                               export-ignore
 /libs/moment/moment.d.ts                                        export-ignore
 /libs/moment/readme.md                                          export-ignore

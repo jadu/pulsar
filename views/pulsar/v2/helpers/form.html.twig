@@ -277,9 +277,10 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
             'inputs': [
                 elem.label({
                     'for': options.id|default,
-                    'guidance': options.guidance|default,
                     'label': label,
                     'required': options.required|default,
+                    'required-indicator': options['required-indicator']|default,
+                    'guidance': options.guidance|default,
                     'guidance-container': options['guidance-container']|default
                 })
             ]
@@ -473,13 +474,18 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
         {% for input_options in options.options %}
             {% set input_options = input_options|merge({
-            'bare': true,
-            'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
-            'aria-describedby': describedByIds|join(' ')
+                'bare': true,
+                'required-indicator': false,
+                'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
+                'aria-describedby': describedByIds|join(' ')
             }) %}
 
             {% if options.error is defined and options.error is not empty %}
                 {% set input_options = input_options|merge({ 'has_error': true }) %}
+            {% endif %}
+
+            {% if options.required is defined and options.required == true %}
+                {% set input_options = input_options|merge({ 'required': true }) %}
             {% endif %}
 
             {% if options.multiple %}
@@ -1701,6 +1707,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
                     'for': options.id|default,
                     'label': label,
                     'required': options.required|default,
+                    'required-indicator': options['required-indicator']|default,
                     'guidance': options.guidance|default,
                     'guidance-container': options['guidance-container']|default
                 })
@@ -2374,6 +2381,7 @@ add-another-group-text  | string | The text content of the add another new entry
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import _self as form %}
 {% set headingLength = options.headings|length %}
+{% set values = options.values|default([]) %}
 {% spaceless %}
     <div
         class="repeater"
@@ -2382,6 +2390,7 @@ add-another-group-text  | string | The text content of the add another new entry
         data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
         data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
         data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
+        data-repeater-initial-state="{{ values|json_encode }}"
     >
         <div class="repeater__saved-data u-display-none" data-repeater-saved-entries-root></div>
         <div class="form__group">

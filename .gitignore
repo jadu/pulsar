@@ -15,8 +15,6 @@
 /coverage
 /css
 /dist
-/docs/_site
-/docs/.sass-cache
 /tests/logs
 /css
 libs/livereload-js
@@ -35,6 +33,6 @@ pulsar.zip
 /stylesheets/pulsar-ie8-theme-*
 /stylesheets/pulsar-ie9-theme-*
 /stylesheets/pulsar-theme-*
-/docs/assets/bundle.js
 /.vscode
 /ngrok
+/.vagrant

@@ -440,6 +440,8 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         {% set caret = 0 %}
     {% endif %}
 
+    {% set dropdown_guid = 'guid-' ~ random() %}
+
     <div{{
         attributes({
             'class': 'btn__group drop' ~ options.direction|default('down') ~ (options.parent_class is defined ? ' ' ~ options.parent_class : '')
@@ -449,6 +451,9 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
             html.button(options
                 |exclude('direction parent_class placement items')
                 |defaults({
+                    'aria-haspopup': 'true',
+                    'aria-expanded': 'false',
+                    'aria-controls': dropdown_guid,
                     'caret': caret,
                     'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                     'data-toggle': 'dropdown'
@@ -459,6 +464,7 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         {{
             html.list({
                 'class': 'dropdown__menu pull-' ~ options.placement|default('left'),
+                'id': dropdown_guid,
                 'items': options.items|default
             })
         }}
@@ -1013,12 +1019,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <span{{
         attributes(options
+            |exclude('label')
             |defaults({
                 'class': 'loading'
             })
         )
     }}>
-        <i>Loading...</i>
+        <i>{{- options.label|default('Loading...') -}}</i>
     </span>
 
 {% endspaceless %}
@@ -1199,23 +1206,24 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% set actions_placements = ['inline', 'left', 'center', 'right'] %}
+    {% set guid = 'guid-' ~ random() %}
 
-    <div{{
+    <section{{
         attributes(options
-            |exclude('actions actions_placement icon title body')
+            |exclude('actions actions_placement heading_level icon title body')
             |defaults({
                 'class': 'panel'
             })
         )
-    }}>
+    }} aria-labelledby="{{ guid }}">
         {% if options.icon is defined and options.icon is not empty %}
             {{ html.icon(options.icon|default, { 'class': 'panel__icon' }) }}
         {% endif %}
 
         {% if options.title is defined and options.title is not empty %}
-        <div class="panel__title">
+        <{{ options.heading_level|default('h2') }} class="panel__title" id="{{ guid }}">
             {{ options.title|raw }}
-        </div>
+        </{{ options.heading_level|default('h2') }}>
         {% endif %}
         <div class="panel__body">
             {{- options.body|raw -}}
@@ -1236,7 +1244,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
                 </div>
             {% endif %}
         </div>
-    </div>
+    </section>
 
 {% endspaceless %}
 {% endmacro %}
@@ -1467,10 +1475,10 @@ All DropZone options should be prefixed with `data-dropzone-`, for example `data
 
 Option                              | Type      | Description
 ----------------------------------- | --------- | ----------------------------------------------------
-helperLabel                         | string    | The label for the default helper text popup
-helperTitle                         | string    | The heading for the default helper text popup
-helperContent                       | string    | The content for the default helper text popup
-helperContainer                     | string    | The selector for the container of the helper text popup
+data-helper-label                   | string    | The label for the default helper text popup
+data-helper-title                   | string    | The heading for the default helper text popup
+data-helper-content                 | string    | The content for the default helper text popup
+data-helper-container               | string    | The selector for the container of the helper text popup
 data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
 data-dropzone-max-size              | string    | The combined file size limit of a group of files
 data-dropzone-idle-timer-duration   | string    | The duration
@@ -1509,13 +1517,13 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
             <p class="dropzone__help"
                data-toggle="popover"
                data-autoclose="true"
-               data-title="{{ options.helperTitle|default('Helper title')|raw }}"
-               data-content="{{ options.helperContent|default('Helper content')|raw }}"
+               data-title="{{ options['data-helper-title']|default('Helper title')|raw }}"
+               data-content="{{ options['data-helper-content']|default('Helper content')|raw }}"
                data-html="true"
                data-placement="bottom"
-               data-container="{{ options.helperContainer|default('#' ~ options.id) }}"
+               data-container="{{ options['data-helper-container']|default('#' ~ options.id) }}"
             >
-                {{ html.icon('question-sign') }} {{ options.helperLabel|default('Only certain file types are allowed') }}
+                {{ html.icon('question-sign') }} {{ options['data-helper-label']|default('Only certain file types are allowed') }}
             </p>
         </div>
     {% endspaceless %}

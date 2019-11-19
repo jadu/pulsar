@@ -1,9 +1,0 @@
-<div class="form__group form__group--toggle">
-    <label class="control__label">Toggle switch</label>
-    <div class="controls">
-        <input id="foo" name="bar" disabled type="checkbox" class="form__control toggle-switch is-disabled">
-        <label for="foo" class="control__label toggle-switch-label">
-            <span class="hide">Toggle switch</span>
-        </label>
-    </div>
-</div>

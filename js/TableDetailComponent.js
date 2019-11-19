@@ -7,6 +7,8 @@ class TableDetailComponent {
      */
     constructor ($html) {
         this.$html = $html;
+        this.focusableElementList = 'a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]';
+        this.panelIsOpen = false;
     }
 
     /**
@@ -18,22 +20,43 @@ class TableDetailComponent {
         }
 
         let $panelHtml = $(
-            '<div class="table-detail t-table-detail" data-table-detail-panel>' +
+            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true" aria-hidden="true">' +
             '   <div class="table-detail__header">' +
-            '       <button type="button" class="close table-detail__header-close" data-table-detail-close-panel aria-hidden="true">&times;</button>' +
+            '       <button type="button" class="close table-detail__header-close" data-table-detail-close-panel aria-label="Close" tabindex="-1"><span aria-hidden="true">&times;</span></button>' +
             '       <h1 class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
             '   </div>' +
             '   <div class="table-detail__body" data-table-detail-panel-body></div>' +
             '</div>'
-        );
+            ),
+            $panelAlreadyExists = this.$html.find('[data-table-detail-panel]'),
+            $main = this.$html.find('main'),
+            $roleMain = this.$html.find('[role="main"]'),
+            $elementToAppendTo,
+            $triggeringElement;
 
         this.$table = this.$html.find('[data-table-detail-table]');
 
-        // Add backdrop and detail panel if UI contains a table detail pattern
-        if (this.$table.length) {
-            this.$html.find('body')
-                .append('<div class="table-detail-backdrop"></div>')
-                .append($panelHtml);
+        if (!this.$table.length) {
+            return;
+        }
+
+        // Check panel hasn't already been added, in case of a datatable re-initting this component on paginated page draw
+        if ($panelAlreadyExists.length === 0) {
+            // If main or role="main" is present append alerts to that (to satify WCAG 1.3.1 Info and Relationships)
+            if ($main.length > 0) {
+                $elementToAppendTo = $main;
+            } else if ($roleMain.length > 0) {
+                $elementToAppendTo = $roleMain;
+            } else {
+                $elementToAppendTo = this.$html.find('body');
+            }
+
+            // Add backdrop and detail panel if UI contains a table detail pattern
+            if (this.$table.length) {
+                $elementToAppendTo
+                    .append('<div class="table-detail-backdrop"></div>')
+                    .append($panelHtml);
+            }
         }
 
         // Grab detail panel bits we need
@@ -45,9 +68,9 @@ class TableDetailComponent {
         // Open click listener
         this.$table.find('[data-table-detail-view-detail]').on('click', (event) => {
             event.preventDefault();
-
             let detailContent = $(event.currentTarget).closest('tr').data('table-detail-content');
             let customDetailPanelTitle = $(event.currentTarget).closest('tr').data('table-detail-panel-custom-title');
+            $triggeringElement = $(event.target);
 
             this.viewDetail(detailContent, customDetailPanelTitle);
         });
@@ -56,13 +79,23 @@ class TableDetailComponent {
         this.$detailPanel.find('[data-table-detail-close-panel]').on('click', (event) => {
             event.preventDefault();
             this.closeDetail();
+            $triggeringElement.focus();
         });
 
-        //Close with backdrop click
+        // Close with backdrop click
         this.$tableDetailBackdrop.on('click', (event) => {
             event.preventDefault();
-            if (this.$tableDetailBackdrop.hasClass('in')) {
+            if (this.panelIsOpen) {
                 this.closeDetail();
+                $triggeringElement.focus();
+            }
+        });
+
+        // Close ESC button
+        this.$html.on('keydown', (event) => {
+            if (event.keyCode === 27 && this.panelIsOpen) {
+                this.closeDetail();
+                $triggeringElement.focus();
             }
         });
     }
@@ -77,6 +110,9 @@ class TableDetailComponent {
             this.$detailPanelTitle.html(customDetailPanelTitle);
         }
 
+        // Remove aria-hidden so SR can read
+        this.$detailPanel.removeAttr('aria-hidden');
+
         // Remove any previously added contents
         this.$detailPanelBody.empty();
 
@@ -86,8 +122,20 @@ class TableDetailComponent {
         // Apply backdrop
         this.$tableDetailBackdrop.addClass('in');
 
+        // Mark panel as open
+        this.panelIsOpen = true;
+
         // Open panel
         this.$detailPanel.addClass('table-detail--open');
+
+        // Make elements focusable again
+        this.$detailPanel
+            .find(this.focusableElementList)
+            .not('[disabled], :hidden, [aria-hidden]')
+            .removeAttr('tabindex');
+
+        // Trap focus within the panel
+        this.trapFocus();
     }
 
     /**
@@ -99,6 +147,69 @@ class TableDetailComponent {
 
         // Close panel
         this.$detailPanel.removeClass('table-detail--open');
+
+        // Mark panel as closed
+        this.panelIsOpen = false;
+
+        // Hide panel contents from screen readers
+        this.$detailPanel.attr('aria-hidden', 'true');
+
+        // Make sure focusable elemnts cannot gain focus whilst panel is closed
+        this.$detailPanel
+            .find(this.focusableElementList)
+            .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]')
+            .attr('tabindex', '-1');
+
+        // Remove previously bound listener
+        this.$html.off('keydown', this.boundKeydownListener);
+    }
+
+    /**
+     * Listen for keyboard navigation, trap tabbing within the panels focusable elements
+     * @param {jQuery} $focusableElements - Collection of focusable elements in the details panel
+     */
+    keydownListener ($focusableElements, event) {
+        const keyCode = event.keyCode || event.which;
+
+        // If tab key is pressed
+        if (keyCode === 9) {
+            // Check for shift tab
+            if (event.shiftKey) {
+                // Focus previous, check if first element is is currently in focus, if so focus last element
+                if ($focusableElements.first().is(':focus')) {
+                    event.preventDefault();
+                    $focusableElements.last().focus();
+                }
+            } else {
+                // Focus next, check if last element is is currently in focus, if so focus first element
+                if ($focusableElements.last().is(':focus')) {
+                    event.preventDefault();
+                    $focusableElements.first().focus();
+                }
+            }
+        }
+    }
+
+    /**
+     * Trap keyboard focus in the panel
+     */
+    trapFocus () {
+        let $focusablePanelBodyElements = this.$detailPanelBody
+                .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
+                .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]'),
+            $focusableElements = this.$detailPanel
+                .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
+                .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]');
+
+        // If the panel body contains a focusable element we should focus that rather than the close button
+        if ($focusablePanelBodyElements.length > 0) {
+            $focusablePanelBodyElements.first().focus();
+        } else {
+            this.$detailPanel.find('[data-table-detail-close-panel]').focus();
+        }
+
+        this.boundKeydownListener = this.keydownListener.bind(this, $focusableElements);
+        this.$html.on('keydown', this.boundKeydownListener);
     }
 }
 

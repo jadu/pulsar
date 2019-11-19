@@ -3,7 +3,7 @@
     background: color(white);
     border-left: 1px solid $modal-header-border-color;
     bottom: 0;
-    display: table-cell;
+    display: none;
     height: 100%;
     overflow-x: none;
     overflow-y: auto;
@@ -17,6 +17,22 @@
     will-change: transform;
     z-index: $zindex-modal;
 
+    // Safari transition bug fix, if "display: table-cell" on mobile, content shifts left after panel opens.
+    @include respond-min($screen-desktop) {
+        display: table-cell;
+    }
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
+}
+
+.table-detail.table-detail--open {
+    -webkit-transform: none;
+    display: table-cell;
+    transform: none;
+    transition: transform .2s;
+
     @include respond-min($screen-xsmall) {
         width: 400px;
     }
@@ -29,10 +45,8 @@
         width: 600px;
     }
 
-    &.table-detail--open {
-        -webkit-transform: none;
-        transform: none;
-        transition: transform .2s;
+    @include prefers-reduced-motion() {
+        transition: none;
     }
 }
 

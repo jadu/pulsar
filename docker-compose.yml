@@ -6,4 +6,4 @@ services:
         volumes:
           - ./:/var/www/html/:cached        
         ports:
-          - 3000:80
+          - 9000:80

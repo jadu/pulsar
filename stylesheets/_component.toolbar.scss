@@ -1,17 +1,27 @@
 @import 'component.labels';
 
 .toolbar {
-    display: block;
-    float: left;
-    margin-bottom: 18px;
-    padding: 12px 20px;
+    // display: block;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    // float: left;
+    // margin-bottom: 18px;
+    padding: 12px 20px 6px;
     width: 100%;
 
     @include respond-min($screen-desktop) {
         background-color: color(white);
-        height: 60px;
-        margin-bottom: 0;
-        padding: 14px 20px;
+        // height: 60px;
+        // margin-bottom: 0;
+        // padding: 14px 20px;
+    }
+
+    // Force breadcrumbs / main title to wrap onto the next row
+    &::before {
+        content: '';
+        order: 1;
+        width: 100%;
     }
 
     .dropdown {
@@ -27,7 +37,7 @@
         left: $padding-small-horizontal;
         position: absolute;
         right: $padding-small-horizontal;
-        top: 60px;
+        // top: 60px;
 
         @include respond-min($screen-xsmall) {
             left: auto;
@@ -36,6 +46,10 @@
         }
     }
 
+}
+
+.toolbar-controls {
+    display: flex;
 }
 
 .user-menu > .btn {
@@ -47,17 +61,18 @@
 }
 
 .nav-user {
-    float: right;
+    // float: left;
     font-size: $font-size-base;
+    margin: 0 10px;
 
     .btn {
         font-size: $font-size-base;
     }
 
     .dropdown {
-        float: left;
-        margin-left: 20px;
-        min-width: 60px;
+        // float: left;
+        // margin-left: 20px;
+        // min-width: 60px;
         z-index: $zindex-dropdown;
     }
 
@@ -82,8 +97,8 @@
 .nav-user > .dropdown > .btn, // pulsar
 .nav-user > .dropdown > .dropdown-toggle, // cms
 .site-switcher__label {
-    height: 42px;
-    line-height: 42px;
+    height: 34px;
+    line-height: 34px;
     padding: 0;
     top: 0;
     vertical-align: top;
@@ -91,10 +106,10 @@
 
 .toolbar-icon,
 %toolbar-icon {
-    float: right;
+    // float: left;
     font-size: 24px;
-    line-height: 42px; // maintain alignment in toolbar
-    margin-left: $gutter-width;
+    line-height: 34px; // maintain alignment in toolbar
+    // margin-left: $gutter-width;
     padding: 4px 0;
     position: relative; // stop is-new indicator wandering off when parents switch to static position
     text-decoration: none;

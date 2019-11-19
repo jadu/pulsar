@@ -1,6 +1,0 @@
-<div class="form__group">
-    <label for="inputText" class="control__label">First name</label>
-    <div class="controls">
-        <input id="inputText" name="inputText" type="text" class="form__control">
-    </div>
-</div>
