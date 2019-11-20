@@ -3,7 +3,13 @@
 /* jshint: global e, ui */
 
 var $ = require('jquery');
-require('jquery-ui');
+
+$.ui = require('jquery-ui/ui/widget.js');
+
+require('jquery-ui/ui/data');
+require('jquery-ui/ui/scroll-parent');
+require('jquery-ui/ui/widgets/mouse');
+require('jquery-ui/ui/widgets/sortable');
 
 function PulsarSortableComponent(html, window) {
     this.$html = html;
@@ -47,7 +53,7 @@ PulsarSortableComponent.prototype.initTables = function () {
         start: function(e, ui) {
             $(ui.helper).addClass('is-dragging');
         }
-    }).disableSelection();
+    });
 
      // Trigger update() on sortupdate event
      /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */

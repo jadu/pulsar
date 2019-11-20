@@ -1,9 +1,10 @@
 'use strict';
 
 var $ = require('jquery'),
-    TimePickerComponent = require('./TimePickerComponent');
+TimePickerComponent = require('./TimePickerComponent');
 
-require('pikaday');
+require('pikaday'),
+require('pikaday/plugins/pikaday.jquery');
 require('spectrum-colorpicker');
 require('select2')();
 

@@ -64,8 +64,6 @@ module.exports = {
     PulsarSortableComponent,
     SignInComponent,
     TableDetailComponent,
-    history,
-    svgeezy,
     RepeaterManagerComponent,
     repeaterComponentFactory,
     FaviconEditor
