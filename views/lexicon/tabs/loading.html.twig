@@ -30,10 +30,13 @@
     </form>
 
     <h2 class="heading">Loading block (for centering within modals or tombstone UIs)</h2>
-    <div class="loading-block">
-        {{ html.loading({'class': 'loading--large'}) }}
-        <span class="loading-block__message">Loading content&hellip;</span>
-    </div>
+    {{
+        html.loading({
+            'class': 'loading--large',
+            'message': 'Loading content...',
+            'type': 'block'
+        })
+    }}
 
     <br />
 
