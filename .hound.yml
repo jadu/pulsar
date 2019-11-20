@@ -1,7 +1,6 @@
 scss:
   config_file: .scss-lint.yml
   exclude:
-    - "libs/**/*"
     - "js/libs/**/*"
     - "node_modules/**/*"
     - "vendor/**/*"
