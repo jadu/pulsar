@@ -71,7 +71,7 @@ NavMainComponent.prototype.init = function () {
     });
 
     // Re-adjust nav items on window resize to calc if more button is needed 
-    component.$window.resize(function () {
+    component.$window.on('resize', function () {
         component.adjustNavItems();
         component.manageTabIndexes();
     });

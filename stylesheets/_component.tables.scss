@@ -1,4 +1,5 @@
 .table {
+    border-collapse: collapse;
     margin-bottom: 24px;
 
     [href],
@@ -6,6 +7,15 @@
         border-bottom: 1px dotted color(grey, light);
         color: color(link);
         text-decoration: none;
+
+        &:not(.btn):focus {
+            @include pulsar-link-focused;
+        }
+
+        &:focus {
+            border: 0;
+            color: color(black);
+        }
     }
 
     tbody > tr:hover {

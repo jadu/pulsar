@@ -10,7 +10,7 @@ require('datatables.net')(window, $);
 require('datatables.net-buttons')(window, $);
 require('datatables.net-responsive')(window, $);
 require('datatables.net-select')(window, $);
-require('../libs/jquery.countdown/dist/jquery.countdown.min');
+require('jquery-countdown');
 
 function PulsarUIComponent(html, history) {
     this.history = history;
@@ -22,20 +22,28 @@ function PulsarUIComponent(html, history) {
 PulsarUIComponent.prototype.init = function () {
     var component = this;
 
-    // Stop disabled links from being interactive
-    this.$html.on('click', 'a[disabled]', function(e) {
-        e.preventDefault();
-    });
-
-    // Watch for push-state requests via data-html attribute
-    this.$html.on('click', '[data-href]', function(e) {
-        var href = $(this).data('href');
-        component.history.pushState({state:1}, href, href);
-    });
-
+    this.initDisabledLinks();
     this.initTables();
     this.initDataTables();
     this.initCountdown();
+};
+
+PulsarUIComponent.prototype.initDisabledLinks = function() {
+    let $links = this.$html.find('a.is-disabled');
+
+    $links.each(function() {
+        let $this = $(this);
+
+        $this
+            .attr('aria-disabled', 'true')
+            .attr('tabindex', '-1')
+            .attr('role', 'button')
+            .attr('data-href', $this.attr('href'))
+            .removeAttr('href')
+            .on('click', function(e) {
+                e.preventDefault();
+            });
+    });
 };
 
 PulsarUIComponent.getDatatableOptions = function ($table) {
@@ -68,7 +76,7 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
 
     const options = {
         aaSorting: [],
-        bAutoWidth: false,
+        autoWidth: false,
         buttons: [],
         className: 'dt-row-selected',
         columnDefs: [
@@ -183,6 +191,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
         const horizontalOptions = $.extend({}, datatableOptions, {
             dom: dom,
+            responsive: null,
+            scrollX: true,
             select: select,
         });
 
@@ -226,12 +236,15 @@ PulsarUIComponent.prototype.initDataTables = function () {
     this.$html.find('.table--horizontal').each(function () {
         var $table = $(this).parent();
 
-        $table.scroll(function () {
+        $table.on('scroll', function () {
             component.styleTableOverflows($table);
         });
 
         $(window).on('load resize', function () {
             component.styleTableOverflows($table);
+            
+            // reset column widths so headers match the body
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
         });
 
         // Add sticky scroll bar

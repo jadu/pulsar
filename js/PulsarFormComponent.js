@@ -1,10 +1,11 @@
 'use strict';
 
 var $ = require('jquery'),
-    TimePickerComponent = require('./TimePickerComponent');
+TimePickerComponent = require('./TimePickerComponent');
 
-require('../libs/pikaday/plugins/pikaday.jquery');
-require('../libs/spectrum/spectrum');
+require('pikaday'),
+require('pikaday/plugins/pikaday.jquery');
+require('spectrum-colorpicker');
 require('select2')();
 
 function PulsarFormComponent(html) {
@@ -107,10 +108,15 @@ PulsarFormComponent.prototype.initDatePickers = function () {
         }
 
         // Initialize pikaday with the correct date format
-        $(element).pikaday({ format: defaultDateFormat });
+        $(element).pikaday({
+            format: defaultDateFormat
+        });
 
         // Initialize placeholder attribute based on the date format
         $(element).attr('placeholder', defaultDateFormat.toLowerCase());
+
+        // Switch off autocomplete to avoid it overlapping the date picker
+        $(element).attr('autocomplete', 'off');
     });
 }
 

@@ -57,16 +57,16 @@ DisableUiComponent.prototype.enable = function (target) {
 
         // Enable form elements
         $this.find(FORM_ELEMENTS)
-            .unbind('click', preventDefaultAndStopPropagation)
+            .off('click', preventDefaultAndStopPropagation)
             .removeClass('disabled')
-            .removeAttr('disabled');
+            .prop('disabled', false);
 
         // Enable labels
         $this.find(LABEL_ELEMENTS).removeClass('u-cursor-not-allowed');
 
         // Enable links
         $this.find(LINK_ELEMENTS)
-            .unbind('click', preventDefaultAndStopPropagation)
+            .off('click', preventDefaultAndStopPropagation)
             .removeClass('js-disabled u-cursor-not-allowed');
 
         // Remove wrapper which provides visually disabled styling

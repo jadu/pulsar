@@ -15,6 +15,7 @@
 
     @include respond-min($screen-medium) {
         margin-right: 1%;
+        max-width: 370px;
         min-width: 370px;
         width: 25%;
     }

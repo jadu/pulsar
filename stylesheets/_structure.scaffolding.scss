@@ -46,17 +46,13 @@ a {
   }
 
   &:focus {
-    color: color(link, focus);
-    outline: 3px solid color(border, focus);
+    @include pulsar-link-focused;
   }
-}
 
-a.disabled {
-  opacity: .5;
-  cursor: not-allowed !important;
-
-  &:hover {
-    cursor: not-allowed !important;
+  &.is-disabled,
+  &.disabled {
+    color: color(link, disabled);
+    cursor: not-allowed;
   }
 }
 
@@ -64,17 +60,16 @@ a.disabled {
   background-color: color(white);
   position: absolute;
   left: -9999px;
-  padding: 0 10px;
+  padding: 10px;
   text-align: left;
   top: -9999px;
-  z-index: $zindex-nav;
+  z-index: $zindex-popover;
 
   &:focus {
     display: block;
-    left: 85px;
-    outline-offset: -2px;
-    outline: 3px solid color(border, focus);
-    position: absolute;
+    left: 0;
+    position: relative;
+    text-decoration: underline;
     top: 0;
     width: 100%;
   }

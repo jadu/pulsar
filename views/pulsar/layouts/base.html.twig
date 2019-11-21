@@ -5,16 +5,8 @@
 {% set cssPath  = base_path ~ 'css/' %}
 {% set imgPath  = base_path ~ 'images/' %}
 {% set jsPath   = base_path ~ 'js/' %}
-{% set libsPath = base_path ~ 'libs/' %}
-{% set themeFile = '' %}
-{% if constant_defined('theme') %}
-    {% set themeFile = '-theme-' ~ get_constant('theme') %}
-{% endif %}
 <!DOCTYPE html>
-<!--[if IE 7]>         <html lang="en" class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
-<!--[if IE 8]>         <html lang="en" class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
-<!--[if IE 9]>         <html lang="en" class="no-js ie9 lt-ie10"><![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+<html lang="en" class="no-js">
 <head>
     <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
     <meta charset="utf-8">
@@ -44,27 +36,8 @@
     <meta name="msapplication-config" content="{{ imgPath }}favicons/cms/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie7' ~ themeFile ~ '.min.css' }}" /><![endif]-->
-    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie8' ~ themeFile ~ '.min.css' }}" /><![endif]-->
-    <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie9' ~ themeFile ~ '.min.css' }}" /><![endif]-->
-    <!--[if gt IE 9]><!-->
-    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar' ~ themeFile ~ '.css' }}" />
+    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
     <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'lexicon.css' }}" />
-    <!--<![endif]-->
-
-
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="{{ libsPath ~ 'html5shiv/dist/html5shiv.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'nwmatcher/src/nwmatcher.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'selectivizr/selectivizr.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'respond/dest/respond.min.js' }}"></script>
-    <![endif]-->
-
-    <!--[if IE 7]>
-    <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
-    <![endif]-->
-
-    <!-- <link rel="stylesheet" href="http://basehold.it/12"> -->
 
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
@@ -79,8 +52,10 @@
 
     {% block pageStyle %}{% endblock %}
 </head>
-<body class="language-html theme-slate">
-<a class="skip-link" href="#skip-target">Skip to main content</a>
+<body class="language-html">
+    {% include '@pulsar/pulsar/components/flash.html.twig' %}
+
+    <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
 
 {% block body %}
     <div role="main" class="container" id="top">
@@ -165,12 +140,6 @@
     </div>
 
     <footer class="footer">
-        {{
-            html.link({
-                'label': html.icon('circle-arrow-up', { 'label': 'Back to top' }),
-                'href': '#top'
-            })
-        }}
         {{
             html.link({
                 'label': 'Jadu Continuum',

@@ -87,7 +87,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
+        @include pulsar-button-focused;
     }
 }
 

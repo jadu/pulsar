@@ -1,6 +1,7 @@
-var $ = require('jquery'),
-	placeholder = require('../../../libs/jquery-placeholder/jquery.placeholder'),
-	vide = require('../../../libs/vide/dist/jquery.vide.min');
+var $ = require('jquery');
+
+require('jquery-placeholder');
+require('vide');
 
 function SignInComponent(html) {
 	this.$html = html;
@@ -216,7 +217,7 @@ SignInComponent.prototype.reset = function () {
 		.removeClass('signin--error')
 		.find('.signin__hint').remove();
 
-	this.$html.find('input:not([name="username"])').blur();
+	this.$html.find('input:not([name="username"])').trigger('blur');
 
 	$('.signin__input, .signin__submit, .signin__link', $('.signin-reset'))
 		.prop('tabindex', '-1');
@@ -303,7 +304,7 @@ SignInComponent.prototype.switchPanel = function (panelClass) {
 	newPanel
 		.attr('aria-hidden', 'false')
 		.find('[tabindex]')
-		.removeAttr('disabled')
+		.prop('disabled', false)
 		.each(function() {
 			$(this).attr('tabindex', '0');
 		});

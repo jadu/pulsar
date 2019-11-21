@@ -44,8 +44,7 @@
 <div class="tab__container{% if _hasSettings == true %} has-settings{% endif %}{% if _hasSidebar == true %} has-sidebar{% endif %}">
 
     {% if _actions_left is not empty or _actions_right is not empty %}
-    <section class="actionsbar" aria-labelledby="aria-page-actions">
-        <h2 class="hide" id="aria-page-actions">Page actions</h2>
+    <section class="actionsbar" aria-label="page actions">
         {% if _actions_left is not empty %}
         <div class="float--left">
             {{ _actions_left|raw }}
@@ -66,7 +65,7 @@
         </aside>
         {% endif %}
         {% if _hasSettings == true %}
-        <section class="tab__settings" {# consider use of context specific label here to convert to region #}>
+        <section class="tab__settings" aria-label="settings">
             {{ _settings|raw }}
         </section>
         {% endif %}

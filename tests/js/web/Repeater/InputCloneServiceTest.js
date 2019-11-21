@@ -79,18 +79,25 @@ describe('InputCloneService', () => {
                         <option value="blue">Blue</option>
                     </select>
                 `);
+                const data = [
+                    {
+                        disabled: false,
+                        id: 'id',
+                        selected: true,
+                        text: 'text',
+                        title: 'title'
+                    }
+                ];
 
-                $select.data('select2', {foo: 'bar'});
-                $.fn.select2.withArgs('data').returns({foo: 'bar'});
+                $select.data('select2', data);
+                $.fn.select2.withArgs('data').returns($select.data('select2'));
 
                 inputCloneService.clone($select[0]);
 
                 expect($.fn.select2).to.have.been.calledTwice;
                 expect($.fn.select2).to.have.been.calledWith('data');
                 expect($.fn.select2).to.have.been.calledWith('destroy');
-                expect($select[0].getAttribute('data-select2-data')).to.equal(JSON.stringify({
-                    foo: 'bar'
-                }));
+                expect($select[0].getAttribute('data-select2-data')).to.equal(JSON.stringify(data));
             });
         });
     });

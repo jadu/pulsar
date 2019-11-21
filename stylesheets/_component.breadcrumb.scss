@@ -1,22 +1,12 @@
 .breadcrumb {
     color: color(gray, dark); // must be AA 4.5:1
     margin-bottom: 11px;
-    font-size: $font-size-small;
-    width: 100%;
 
-    a,
-    a:link,
-    a:visited {
+    a {
         color: color(gray, dark); // must be AA 4.5:1
-    }
 
-    a:active,
-    a:hover {
-        color: color(link); // must be AA 4.5:1
-    }
-
-    a:focus {
-        outline: 3px solid color(border, focus);
-        color: color(link, focus);
+        &:focus {
+            color: color(black);
+        }
     }
 }

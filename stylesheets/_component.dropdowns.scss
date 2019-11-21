@@ -99,7 +99,6 @@
 .dropdown__menu > li > a:not(.is-disabled),
 .dropdown__menu > li > .btn:not(.is-disabled) {
   &:hover,
-  &:focus,
   &.active {
     background-color: $dropdown-link-hover-bg !important;
     box-shadow: 0;
@@ -107,6 +106,12 @@
     text-decoration: none;
     transform: none;
   }
+
+  &:focus {
+    @include pulsar-dropdown-item-focused;
+  }
+
+
 }
 
 // Active state
@@ -114,8 +119,7 @@
 .dropdown__menu > .active > a,
 .dropdown__menu > .active > .btn {
   &,
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: $dropdown-link-active-bg;
     color: $dropdown-link-active-color;
     text-decoration: none;
@@ -227,6 +231,10 @@
       background-color: darken(color(primary), 5%);
     }
 
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+    }
+
     > .badge {
       @extend %badge--primary;
       background-color: darken($badge-primary-bg, 20%);
@@ -239,6 +247,10 @@
 
     &:hover {
       background-color: darken(color(success), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
     }
 
     > .badge {
@@ -255,6 +267,10 @@
       background-color: darken(color(warning), 5%);
     }
 
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+    }
+
     > .badge {
       @extend %badge--warning;
       background-color: darken($badge-warning-bg, 20%);
@@ -267,6 +283,10 @@
 
     &:hover {
       background-color: darken(color(info), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
     }
 
     > .badge {
@@ -283,6 +303,10 @@
       background-color: darken(color(danger), 5%);
     }
 
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+    }
+
     > .badge {
       @extend %badge--danger;
       background-color: darken($badge-danger-bg, 20%);
@@ -295,6 +319,10 @@
 
     &:hover {
       background-color: darken(color(inverse), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
     }
 
     > .badge {

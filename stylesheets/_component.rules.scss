@@ -211,6 +211,12 @@
     span {
         text-decoration: underline;
     }
+
+    &:focus i {
+        color: color(black);
+        position: relative;
+        z-index: 2;
+    }
 }
 
 // Double chained to override default fieldset styling
