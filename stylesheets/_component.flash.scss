@@ -111,8 +111,13 @@
 }
 
 .flash-container {
-    left: $nav-primary-width;
+    left: 0;
     position: fixed;
     right: 0;
     z-index: $zindex-flash;
+
+    // accommodate sidebar navigation
+    @include respond-min($screen-desktop) {
+        left: $nav-primary-width;
+    }
 }
