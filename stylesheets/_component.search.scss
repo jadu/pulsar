@@ -2,6 +2,7 @@
     border: 1px solid $input-border;
     border-radius: 4px;
     flex-grow: 1;
+    height: 34px;
     // clear: both;
     // display: block;
     margin: 0 10px;
@@ -56,10 +57,10 @@ input.main-search__field::-ms-clear {
     background: none;
     border: 0;
     color: #555;
+    height: 100%;
     padding: 1px 8px 0;
     position: absolute;
     right: 0;
-    top: 3px;
     z-index: 3;
 
     @include respond-min($screen-tablet) {

@@ -1,6 +1,7 @@
 .breadcrumb {
     color: color(gray, dark); // must be AA 4.5:1
-    margin-bottom: 11px;
+    margin: 0 0 ($line-height-base / 2);
+    width: 100%;
 
     a {
         color: color(gray, dark); // must be AA 4.5:1
