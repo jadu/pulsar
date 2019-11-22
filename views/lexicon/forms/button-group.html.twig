@@ -163,9 +163,7 @@
         })
     }}
     {% set i = i + 1 %}
-    
 
-    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
@@ -560,7 +558,8 @@
             'actions': [
                 html.button({
                     'label': 'Save',
-                    'class': 'btn--primary'
+                    'class': 'btn--primary',
+                    'type': 'submit'
                 }),
                 html.button({
                     'label': 'Cancel',

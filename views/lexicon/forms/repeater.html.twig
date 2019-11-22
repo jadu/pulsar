@@ -40,7 +40,7 @@
             {{
                 form.select2({
                     'label': 'Favourite food',
-                    'id': 'repeater-select2multi',
+                    'id': 'select2-' ~ random(),
                     'name': 'select2multi',
                     'multiple': true,
                     'options': [
@@ -51,9 +51,25 @@
                 })
             }}
 
+            {{ form.fieldset_end() }}
+
         {{ form.repeater_end() }}
 
-    {{ form.end() }}
+    {{
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
+    }}
 
 {% endblock tab_content %}
 
