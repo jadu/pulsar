@@ -638,10 +638,13 @@ https://jadu.github.io/pulsar/form-helpers/compound
             {% set inputOptions = input|exclude('error label guidance-container required show-label')|merge({'aria-describedby': describedByIds|join(' ')}) %}
 
             {% if input.type == 'select' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.select(inputOptions|merge({'class': inputOptions.class|default ~ ' select'})) }}
             {% elseif input.type == 'select2' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.select2(inputOptions) }}
             {% elseif input.type == 'textarea' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.textarea(inputOptions) }}
             {% else %}
                 {{ elem.input(inputOptions) }}
@@ -716,7 +719,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.raw is defined and options.raw == true %}
         {% set input = options.value %}
     {% else %}
-        {% set input = elem.paragraph(options|exclude('bare class error guidance guidance-container help label show-label')) %}
+        {% set input = elem.paragraph(options|exclude('bare class error guidance guidance-container help label show-label disabled')) %}
     {% endif %}
 
     {{
@@ -859,7 +862,7 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 disabled    | bool   | Stops the element from being interactive if true
 form        | string | Specific one or more forms this label belongs to
-format      | string | Options for this can be `default`, `US` or `reverse`
+data-format | string | Options for this can be `default`, `US` or `reverse`
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
@@ -875,11 +878,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
 
     {%
-        set options = options|default({})|merge({
-            'placeholder': options.placeholder|default('dd/mm/yyyy'),
-            'data-datepicker': options['data-datepicker']|default('true'),
-            'data-format': options.format|default('default')
-        })
+        set options = options|default({})
+            |merge({
+                'placeholder': options.placeholder|default('dd/mm/yyyy'),
+                'data-datepicker': options['data-datepicker']|default('true'),
+                'data-format': options.format|default('default')
+            })
+            |exclude('format')
     %}
 
     {% set options = modify_options(options|default({})) %}
@@ -1131,7 +1136,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options|only('bare class error error_ids guidance guidance-container help help_id id label required show-label'),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class guidance guidance-container error help label show-label')
+                    |exclude('bare class guidance guidance-container error help label show-label placeholder')
                     |defaults({'type': 'file'})
                     |merge({'class': 'file'})
                 )
@@ -1844,7 +1849,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import _self as form %}
 
-    {{ form.text(options|defaults({'type': 'range', 'class': 'form-range'})) }}
+    {{ form.text(options
+        |exclude('required placeholder')
+        |defaults({'type': 'range', 'class': 'form-range'}))
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -1914,7 +1922,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'inputs': [
                 elem.select(
                     options
-					|exclude('bare class error guidance guidance-container help label show-label')
+					|exclude('bare class error guidance guidance-container help label show-label prepend_type append_type')
 					|merge({'class': 'select'})
                 )
             ]
@@ -1990,7 +1998,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options|only('append append_type bare class error error_ids guidance guidance-container help help_id id prepend prepend_type label required show-label'),
             'inputs': [
                 elem.select2(options
-                    |exclude('bare class error guidance guidance-container help show-label')
+                    |exclude('bare class error guidance guidance-container help show-label prepend_type append_type')
                 )
             ]
         })
