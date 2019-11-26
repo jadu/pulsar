@@ -43,6 +43,7 @@
     box-sizing: border-box;
     cursor: pointer;
     display: block;
+    line-height: 19px; // maintain same height as single selection version
     min-height: 32px;
     user-select: none;
     -webkit-user-select: none;
