@@ -4,6 +4,7 @@
 
 {% block tab_content %}
 
+    <h2>Normal</h2>
     {{
         html.media({
             'image': '/images/pulsar-brand-medium.png',
@@ -29,5 +30,40 @@
             'description': 'Description'
         })
     }}
+    <br />
+    <h2>Small image variation</h2>
+
+    {{
+        html.media({
+            'class': 'media--small',
+            'icon': 'safari',
+            'title': 'Safari'
+        })
+    }}
+
+    {{
+        html.media({
+            'class': 'media--small u-margin-top',
+            'icon': 'chrome',
+            'title': 'Chrome'
+        })
+    }}
+
+    {{
+        html.media({
+            'class': 'media--small u-margin-top',
+            'icon': 'firefox',
+            'title': 'Firefox'
+        })
+    }}
+
+    {{
+        html.media({
+            'class': 'media--small u-margin-top',
+            'icon': 'edge',
+            'title': 'Edge'
+        })
+    }}
+
 
 {% endblock %}

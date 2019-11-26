@@ -21,6 +21,10 @@ a.media {
     }
 }
 
+.media--small .media__image {
+    font-size: 24px;
+}
+
 // only paragraphs in the middle of the body have a bottom margin
 .media__body p {
     margin-bottom: 1em;
