@@ -198,26 +198,22 @@
                     </div>
                 </div>
             </div>
-
-            <div class="panel__actions">
-                {{
-                    html.button({
-                        'label': 'Cancel Approval Request',
-                        'class': 'btn--danger',
-                        'type': 'link',
-                        'href': '#cancel-approval',
-                        'data-toggle': 'modal'
-                    })
-                }}
-                {{
-                    html.button({
-                        'label': 'View detailed history of comments',
-                        'class': 'btn--naked view-history-link',
-                        'type': 'link',
-                        'href': '#document-history'
-                    })
-                }}
-            </div>
+        </div>
+        <div class="panel__actions">
+            {{
+                html.button({
+                    'label': 'Cancel Approval Request',
+                    'class': 'btn--danger'
+                })
+            }}
+            {{
+                html.button({
+                    'label': 'View detailed history of comments',
+                    'class': 'btn--naked view-history-link',
+                    'type': 'link',
+                    'href': '#'
+                })
+            }}
         </div>
     </div>
 
