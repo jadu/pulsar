@@ -68,7 +68,7 @@
 
         {{
             form.toggle_switch({
-                'id': 'optional-question-tab-1',
+                'id': 'toggle-' ~ random(),
                 'label': 'Hide optional questions with no response',
                 'checked': true
             })
@@ -140,27 +140,9 @@
             })
         }}
 
-        <h2 class="content-heading">Page 4 - Your application</h2>
-
         {{
-            form.content({
-                'label': 'Q1 - Attachments',
-                'value': html.media({
-                            'icon': 'file-pdf-o',
-                            'icon_colour': '#d42825',
-                            'title': 'My awesome PDF',
-                            'description': '6.2mb'
-                        }) ~
-                        html.media({
-                            'icon': 'file-word-o',
-                            'icon_colour': '#4d81c4',
-                            'title': 'My less-awesome word document',
-                            'description': '123.45mb'
-                        }),
-                'guidance': 'Field'
-            })
+            form.end()
         }}
-
 
     </div>
 
