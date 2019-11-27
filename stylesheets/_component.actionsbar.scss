@@ -1,4 +1,145 @@
 .actionsbar {
     margin-bottom: 16px;
     min-height: 32px;
+
+    .float--left {
+        float: none;
+
+        @include respond-min($screen-smaller) {
+            float: left;
+        }
+    }
+
+    .float--right {
+        float: none;
+
+        @include respond-min($screen-smaller) {
+            float: right;
+        }
+    }
+}
+
+.actionsbar > .float--left,
+.actionsbar > .float--right {
+    .dropdown {
+        margin-bottom: 12px;
+
+        @include respond-min($screen-smaller) {
+            margin-bottom: 0;
+        }
+
+        > .btn {
+            margin-bottom: 0;
+        }
+    }
+
+    .btn__group {
+        width: 100%;
+
+        @include respond-min($screen-smaller) {
+            width: auto;
+        }
+
+        .dropdown__menu {
+            margin-bottom: 0;
+            text-align: center;
+            width: 100%;
+
+            @include respond-min($screen-smaller) {
+                text-align: left;
+                width: inherit;
+            }
+        }
+
+        > .btn__group:first-child {
+            border-right: 0;
+            border-radius: 4px;
+
+            @include respond-min($screen-smaller) {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+                border-right: 1px solid color(base, dark);
+            }
+
+            &:not(:last-child) .btn.dropdown__toggle {
+                border-radius: 4px;
+
+                @include respond-min($screen-smaller) {
+                    border-bottom-right-radius: 0;
+                    border-top-right-radius: 0;
+                }
+            }
+        }
+
+        > .btn__group:last-child {
+            border-left: 0;
+            border-radius: 4px;
+
+            @include respond-min($screen-smaller) {
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+                border-left: 1px solid color(base, dark);
+            }
+
+            &:not(:first-child) .btn.dropdown__toggle {
+                border-radius: 4px;
+
+                @include respond-min($screen-smaller) {
+                    border-bottom-left-radius: 0;
+                    border-top-left-radius: 0;
+                }
+            }
+        }
+
+        .btn--inverse {
+            border-left: 1px solid color(gray, darker);
+            border-right: 1px solid color(gray, darker);
+
+            &:first-child:not(:last-child):not(.dropdown__toggle) {
+                @include respond-min($screen-smaller) {
+                    border-right: 1px solid color(gray, darker);
+                }
+            }
+
+            &:last-child:not(:first-child) {
+                @include respond-min($screen-smaller) {
+                    border-left: 1px solid color(gray, darker);
+                }
+            }
+
+            .caret {
+                border-top: 4px solid color(white);
+            }
+        }
+
+        > a.btn:first-child {
+            border-radius: 4px;
+
+            @include respond-min($screen-smaller) {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+
+        > a.btn:last-child {
+            border-radius: 4px;
+
+            @include respond-min($screen-smaller) {
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+            }
+        }
+    }
+
+    .btn {
+        display: block;
+        margin-bottom: 12px;
+        width: 100%;
+
+        @include respond-min($screen-smaller) {
+            display: inline-block;
+            margin-bottom: 0;
+            width: auto;
+        }
+    }
 }
