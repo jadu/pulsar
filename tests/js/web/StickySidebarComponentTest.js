@@ -8,16 +8,9 @@ describe('StickySidebarComponent', () => {
 	let $html;
     let $body;
     let $layoutHTML;
-    let $badBody;
-    let $badHTML;
-    let $htmlWithoutClass;
-    let $bodyWithoutClass;
-    let $layoutHTMLWithoutClass;
     let stickySidebarComponent;
     let componentWithoutHTML;
     let componentWithoutWindow;
-    let componentWithoutClass;
-    let componentWithBadBody;
 
 	beforeEach(() => {
 		        
