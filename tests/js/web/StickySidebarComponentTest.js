@@ -8,6 +8,8 @@ describe('StickySidebarComponent', () => {
 	let $html;
     let $body;
     let $layoutHTML;
+    let $badBody;
+    let $badHTML;
     let $htmlWithoutClass;
     let $bodyWithoutClass;
     let $layoutHTMLWithoutClass;
@@ -15,17 +17,18 @@ describe('StickySidebarComponent', () => {
     let componentWithoutHTML;
     let componentWithoutWindow;
     let componentWithoutClass;
+    let componentWithBadBody;
 
 	beforeEach(() => {
 		        
         $window = $('<div></div>');
         window = $window[0];
-
-        $html = $('<html></html>').appendTo($window);
-        $body = $('<body></body>').appendTo($html);
-
+        
+        // $html = $('html');
+        $body = $('body');
+        
 		$layoutHTML = $(
-			'<div class="tab__container has-settings">' +
+            '<div class="tab__container has-settings">' +
 			'	<div class="tab__inner">' +
 			'		<section class="tab__settings">' +
 			'   	</section>' +
@@ -34,8 +37,6 @@ describe('StickySidebarComponent', () => {
 			'	</div>' +
 			'</div>'
 		).appendTo($body);
-
-		stickySidebarComponent = new StickySidebarComponent($html);
 	});
 
 	afterEach(() => {
@@ -61,17 +62,28 @@ describe('StickySidebarComponent', () => {
     });
     
     describe('when content is taller than settings', () => {
-        beforeEach(function() {
-            $window.height(50);
-            $body.find('.tab__settings').height(100);
-            $body.find('.tab__content').height(200);
+        beforeEach(function() {    
+            $body.find('.tab__settings').outerHeight(100);
+            $body.find('.tab__content').outerHeight(200);
+            stickySidebarComponent = new StickySidebarComponent($body, window);
         });
 
-        // describe('scrolling the viewport', () => {
-        //     it('should add the is-sticky class', () => {
-        //         $window.scrollTo(50, 0).trigger('scroll');
-        //         expect($body.find('.tab__container').hasClass('is-sticky')).to.be.true;
-        //     });
-        // });
+        it('should not add the is-sticky class if the viewport hasn’t been scrolled', () => {
+            stickySidebarComponent.sticky();
+            expect($body.find('.tab__inner').hasClass('is-sticky')).to.be.false;
+        });
+
+        it('should add the is-sticky class when triggered', () => {
+            $body.find('.tab__inner').offset({'top': -10});
+            stickySidebarComponent.sticky();
+            expect($body.find('.tab__inner').hasClass('is-sticky')).to.be.true;
+        });
+
+        it('should add the is-sticky class on scroll', () => {
+            stickySidebarComponent.init();
+            $body.find('.tab__inner').offset({'top': -10});
+            $($window[0]).trigger('scroll');
+            expect($body.find('.tab__inner').hasClass('is-sticky')).to.be.true;
+        });
     });
 });
