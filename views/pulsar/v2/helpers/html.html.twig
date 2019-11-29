@@ -88,9 +88,9 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         html.button_dropdown({
             'id': 'actions_menu',
-            'label': items.label|default('Actions') ~ 
+            'label': items.label|default('Actions') ~
                 html.badge({
-                    'label': '0', 
+                    'label': '0',
                     'aria-label': '0 rows selected',
                     'class': 'label--primary js-bulk-actions-badge',
                     'style': 'display: none;'
@@ -1091,9 +1091,9 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.icon is defined and options.icon is not empty %}
         {{ html.icon(options.icon, { 'class': 'media__image', 'colour': options.icon_colour|default('#000') }) }}
     {% elseif options.image is defined and options.image is not empty %}
-        {% set alt = ' role="presentation"' %}
+        {% set alt = '' %}
         {% if options.image_alt is defined and options.image_alt is not empty %}
-            {% set alt = ' alt="' ~ options.image_alt ~ '"' %} 
+            {% set alt = ' alt="' ~ options.image_alt ~ '"' %}
         {% endif %}
         <img src="{{ options.image }}"{{ alt|default|raw }} class="media__image" />
     {% endif %}
@@ -1431,15 +1431,15 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             {% set iconGlyph = 'check-circle' %}
         {% endif %}
     {% endif %}
-    
-    {{ 
+
+    {{
         html.icon(iconGlyph|default('times-rectangle'), options
             |exclude('state icon')
             |merge({
                 'class': 'status--icon is-' ~ state|default('active'),
                 'data-placement': options['data-placement']|default('top'),
                 'data-toggle': 'tooltips',
-            }) 
+            })
         )
     }}
 
