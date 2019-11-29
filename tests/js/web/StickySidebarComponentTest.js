@@ -2,10 +2,8 @@ import $ from 'jquery';
 import StickySidebarComponent from '../../../js/StickySidebarComponent'
 
 describe('StickySidebarComponent', () => {
-	// let clickEvent;
     let $window;
     let window;
-	let $html;
     let $body;
     let $layoutHTML;
     let stickySidebarComponent;
@@ -13,11 +11,8 @@ describe('StickySidebarComponent', () => {
     let componentWithoutWindow;
 
 	beforeEach(() => {
-		        
         $window = $('<div></div>');
         window = $window[0];
-        
-        // $html = $('html');
         $body = $('body');
         
 		$layoutHTML = $(
