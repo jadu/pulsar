@@ -1,0 +1,21 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.select({
+        'id': 'select',
+        'label': 'Appended button',
+        'append': html.button({ 'label': 'foo' }),
+        'append_type': 'button',
+        'options': [
+            {
+                'label': 'Value one',
+                'value': 'value1'
+            },
+            {
+                'label': 'Value two',
+                'value': 'value2'
+            }
+        ]
+    })
+}}
+{% endblock %}
