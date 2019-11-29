@@ -18,8 +18,6 @@
     }
 
     &__body {
-        max-height: 20em;
-        overflow-y: auto;
         padding: 10px $padding-base-horizontal;
 
         p,
@@ -60,6 +58,11 @@
             opacity: .5;
         }
     }
+}
+
+.panel--scroll .panel__body {
+    max-height: 20em;
+    overflow-y: auto;
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {

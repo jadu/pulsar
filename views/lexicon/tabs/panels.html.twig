@@ -171,10 +171,10 @@
         })
     }}
 
-    <div class="panel with-timeline u-margin-top-none">
-        <div class="panel__title u-display-inline-block">Content Pending Approval</div>
+    <section class="panel panel--scroll with-timeline u-margin-top-none" aria-labelledby="guid-scroll">
+        <h2 class="panel__title" id="guid-scroll">Content Pending Approval</h2>
 
-        <div class="panel__body">
+        <div class="panel__body" tabindex="0">
             <div class="timeline__item" data-timestamp="2018-03-29T10:59:04+00:00" data-id="2650349">
                 <div class="timeline-avatar timeline-avatar--user"><span>AB</span></div>
                     <div class="timeline-content">
@@ -215,6 +215,6 @@
                 })
             }}
         </div>
-    </div>
+    </section>
 
 {% endblock tab_content %}
