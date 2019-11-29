@@ -42,24 +42,15 @@ class StickySidebarComponent {
      * if no longer required
      */
     sticky () {
-        console.log('sticky')
         const $container = this.$html.find('.tab__container.has-settings .tab__inner');
-console.log($container.length);
+
         if (!$container.length) {
-            console.log('false');
             return false;
         }
 
-        console.log(this.$html.find('.tab__container.has-settings .tab__content').outerHeight());
-        console.log(this.$html.find('.tab__container.has-settings .tab__settings').outerHeight());
-        console.log($(window).scrollTop());
-        console.log($container.offset().top);
-
         if ((this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight()) && ($(window).scrollTop() > $container.offset().top)) {
-            console.log('add');
             $container.addClass('is-sticky');
         } else {
-            console.log('remove');
             $container.removeClass('is-sticky');
         }
         
