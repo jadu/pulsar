@@ -7,7 +7,7 @@ class StickySidebarComponent {
     /**
      * StickySidebarComponent
      * @constructor 
-     * @param {jQuery} $rootWindow - jQuery wrapper of the window object
+     * @param {object} window - window object
      * @param {jQuery} $html - jQuery wrapper of the html node
      */
     constructor ($html, window) {
@@ -15,42 +15,41 @@ class StickySidebarComponent {
         this.window = window;
     }
 
+    /**
+     * Initialise component
+     * 
+     * Should be fired on page load, checks for required options, performs an 
+     * initial sticky calculation and binds to resize & scroll events
+     */
     init () {
-        if (typeof this.window === 'undefined' || !this.window) {
-            throw new Error('window must be passed to StickySidebarComponent');
-        }
-
         if (typeof this.$html === 'undefined' || !this.$html) {
             throw new Error('$html must be passed to StickySidebarComponent');
+        }
+
+        if (typeof this.window === 'undefined' || !this.window) {
+            throw new Error('window must be passed to StickySidebarComponent');
         }
 
         this.sticky()
         $(this.window).on('scroll resize', (event) => this.sticky(event));
     }
 
+    /**
+     * Sticky calculation
+     * 
+     * If content is taller than settings, and the viewport has been scrolled 
+     * enough then add the required sticky class to the container, and remove it
+     * if no longer required
+     */
     sticky () {
-console.log('sticky');        
-
         const $container = this.$html.find('.tab__container.has-settings .tab__inner');
 
         if (!$container.length) {
             return false;
         }
-        
-        let windowTop = $(window).scrollTop(),
-            containerTop = $container.offset().top;
-console.log(windowTop);
-console.log(containerTop);
 
-console.log(this.$html.find('.tab__container.has-settings .tab__content').outerHeight());
-console.log(this.$html.find('.tab__container.has-settings .tab__settings').outerHeight());
-            
-        if (this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight()) {
-            if (windowTop > containerTop) {
-                $container.addClass('is-sticky');
-            } else {
-                $container.removeClass('is-sticky');
-            }
+        if ((this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight()) && ($(window).scrollTop() > $container.offset().top)) {
+            $container.addClass('is-sticky');
         } else {
             $container.removeClass('is-sticky');
         }
@@ -59,29 +58,3 @@ console.log(this.$html.find('.tab__container.has-settings .tab__settings').outer
 }
 
 module.exports = StickySidebarComponent;
-
-
-// (function($) {
-//     function sticky() {
-        
-//         var windowTop = $(window).scrollTop(),
-//             $container = $('.tab__container.has-settings .tab__inner'),
-//             $settings = $('.tab__container.has-settings .tab__settings'),
-//             containerTop = $container.offset().top;
-
-//         if ($('.tab__container.has-settings .tab__content').outerHeight() > $('.tab__container.has-settings .tab__settings').outerHeight()) {
-//             if (windowTop > containerTop) {
-//                 $container.addClass('is-sticky');
-//             } else {
-//                 $container.removeClass('is-sticky');
-//             }
-//         } else {
-//             $container.removeClass('is-sticky');
-//         }
-//     }
-
-//     sticky();
-
-//     $(window).on('scroll resize', sticky);
-
-// })(jQuery);
