@@ -43,6 +43,7 @@
     box-sizing: border-box;
     cursor: pointer;
     display: block;
+    line-height: 19px; // maintain same height as single selection version
     min-height: 32px;
     user-select: none;
     -webkit-user-select: none;
@@ -76,12 +77,13 @@
     background-color: white;
     border: 1px solid $input-border;
     border-radius: 4px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.4);
     box-sizing: border-box;
     display: block;
     position: absolute;
     left: -100000px;
     width: 100%;
-    z-index: 1051;
+    z-index: $zindex-modal;
 }
 
 .select2-results {
@@ -690,11 +692,6 @@ span.select2-selection.select2-selection--single {
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     top: 11px;
-}
-
-.select2-dropdown {
-    box-shadow: 0 5px 10px rgba(0,0,0,.4);
-    z-index: $zindex-modal;
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered {
