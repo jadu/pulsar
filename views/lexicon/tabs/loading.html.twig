@@ -14,19 +14,4 @@
     }) }}
     <br />
 
-    <h2 class="heading">After form inputs</h2>
-    {{ form.create() }}
-    {{
-        form.select({
-            'label': 'Select input',
-            'class': 'form__group--small is-loading',
-            'id': 'inputSelect',
-            'name': 'inputSelect',
-            'options': {
-                'value1': 'loading...'
-            }
-        })
-    }}
-    </form>
-
 {% endblock tab_content %}
