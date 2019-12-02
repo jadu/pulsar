@@ -579,8 +579,9 @@
 
 @media screen and (min-width: 992px) {
     .tab__inner.is-sticky .tab__content {
-        margin-left: calc(370px + 1%);
+        left: calc(370px + 1%);
         max-width: calc(100% - 370px);
+        position: relative;
     }
 
     .tab__inner.is-sticky .tab__settings {
@@ -589,5 +590,6 @@
         overflow-y: auto;
         position: fixed;
         top: 0;
+        -webkit-overflow-scrolling: touch;
     }
 }
