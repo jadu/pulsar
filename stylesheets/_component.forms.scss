@@ -246,6 +246,7 @@ fieldset {
     &[readonly],
     fieldset[disabled] & {
         cursor: not-allowed;
+        color: color(text); // Required for cross-browser consistency
         background-color: $input-bg-disabled;
     }
 
