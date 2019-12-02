@@ -48,6 +48,14 @@ describe('StickySidebarComponent', () => {
             }).to.throw('window must be passed to StickySidebarComponent');
         });
     });
+
+    describe('when the expected container markup is not present', () => {
+        it('should not add the is-sticky class if the viewport hasn’t been scrolled', () => {
+            stickySidebarComponent = new StickySidebarComponent($('<div></div>'), window);
+
+            expect(stickySidebarComponent.sticky()).to.be.false;
+        });
+    });
     
     describe('when content is taller than settings', () => {
         beforeEach(function() {    
