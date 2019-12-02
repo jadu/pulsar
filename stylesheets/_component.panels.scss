@@ -18,7 +18,6 @@
     }
 
     &__body {
-        max-height: 20em;
         padding: 10px $padding-base-horizontal;
 
         p,
@@ -59,6 +58,11 @@
             opacity: .5;
         }
     }
+}
+
+.panel--scroll .panel__body {
+    max-height: 20em;
+    overflow-y: auto;
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
@@ -116,6 +120,15 @@
 
     .form__group--#{$variant} .panel {
         width: #{$width};
+    }
+}
+
+// When panel actions is a sibling of body, position it appropriately
+.panel__body + .panel__actions {
+    padding: 0 12px 10px;
+
+    &.panel__actions--inline {
+        padding-left: 0;
     }
 }
 
