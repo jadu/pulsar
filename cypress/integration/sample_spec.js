@@ -1,5 +1,5 @@
 beforeEach(() => {
-    cy.visit('http://localhost:3001/app/app.php/lexicon')
+    cy.visit('http://localhost:9000/app/app.php/lexicon')
     cy.injectAxe()
   })
 
