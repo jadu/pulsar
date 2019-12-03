@@ -1,35 +1,62 @@
 language: php
+sudo: required
 dist: trusty
+
+services:
+  - docker
+
 cache:
   npm: true
   directories:
-  - "~/.cache"
+    - "~/.cache"
+
 php:
-- 5.5
+  - 5.5
+
 node_js:
-- 10
+  - 10
+
 addons:
   chrome: stable
+
 before_install:
-- npm install -g npm@5.5.1
+  - npm install -g npm@5.5.1
+
 before_script:
-- npm install -g grunt-cli
-- npm install
-- mkdir -p dist/js
-- gem update --system && gem install scss_lint
+  - npm install -g grunt-cli
+  - npm install
+  - mkdir -p dist/js
+  - gem update --system && gem install scss_lint
+  - docker-compose up --build -d
+
 install:
-- composer self-update
-- composer install --prefer-dist --no-interaction
+  - composer self-update
+  - composer install --prefer-dist --no-interaction
+  - curl -sSL "https://get.docker.com/gpg" | sudo -E apt-key add -
+  - echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update
+  - sudo apt-get -o Dpkg::Options::="--force-confdef" \ -o Dpkg::Options::="--force-confold" --assume-yes install docker-engine
+  - docker version
+  - sudo pip install docker-compose
+  - docker-compose version
+
 script:
-- phpunit
-- grunt build
-- npm test
-- npm run coverage
-- "$(npm bin)/cypress run --record --key 91a66ab2-562b-47ba-93e3-aee77725f748"
+  - ./test.sh
+
+script:
+  - phpunit
+  - grunt build
+  - npm test
+  - npm run coverage
+  - "$(npm bin)/cypress run --record --key 91a66ab2-562b-47ba-93e3-aee77725f748"
+
 after_success:
-- grunt deploy
-- bash <(curl -s https://codecov.io/bash)
-sudo: required
+  - grunt deploy
+  - bash <(curl -s https://codecov.io/bash)
+
+after_script:
+  - docker-compose down
+
 deploy:
   provider: releases
   api_key:
@@ -39,6 +66,7 @@ deploy:
   on:
     tags: true
     all_branches: true
+
 env:
   global:
     secure: vw722pnA32erJjweWTAJcSlEd1LFrYF9diDeLhupPH0clb36zvXALPiG+W9uzGHx8v/LN980UoNsp5JADg/uipPPLwfQ0vEjG+QXFxW2zm/d5qcK5o/oDcLd9XQFzvQB5Y0VeDTWKAK0Yn4ac845/v7b32EUT8khVLdNNUVOHDQQrpI6sbfMVTjNnc0DJwyYD6I01VVi6MlDLGs8pKyQTl0mXFn8kXR/1TfzqEbRHFfROXQ4Ps53ilJh7MRwa/cna+n26tEmTToxD3qvp4igqBSL0HXE/w7BylJlT9gTZFAS0/6YzlG6VqY2jqM/5rG6Aw/1iMUAqQc4G6bJD29GNvfRyLlIvzC3zZRq10wlFbuEHvgnOrB8SqKTRqA7njwdBpJ05/BEGwdX1mymjNMhMhOD7261OrzORNi9jwZ/UHXjkkP6cq1kHdLEMapPF3G3e7S1V2if9x+lxYEhFaqeVWFD+0rdxPruXE3kTrp/Zx0DIm8tjG6pCwNK3ZBjcv6uzwmlw0QA1yT45CdedSM3S0V6zEjDTqg22aiexr/sxG8kxgEaPUm311AkhJhQvTZhzH+oc+5CAzFGDjDDIchb9n8qn17QanV+QnUX9++IQNxWptNpS7gxwQLUh9ww7iHEanTFajwSIo1mlTmUTVfjEJavujH76hSgiUT+BYlIyM8=
