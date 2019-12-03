@@ -11,13 +11,21 @@ a.media {
 
 .media__image {
     float: left;
-    font-size: 50px; // for icons
     margin-right: 10px;
     text-align: center;
     width: 50px;
 
     &[class^=icon] {
+        font-size: 50px;
         width: 50px;
+    }
+}
+
+.media--small .media__image {
+    width: 24px;
+
+    &[class^=icon] {
+        font-size: 24px;
     }
 }
 
