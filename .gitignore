@@ -34,3 +34,4 @@ pulsar.zip
 /.vscode
 /ngrok
 /.vagrant
+cypress/videos/*
