@@ -16,6 +16,13 @@
     }
 }
 
+// Set margin and position of loading spinner when directly adjacent to the search button
+.main-search .loading {
+    position: absolute;
+    right: -30px;
+    top: 7px;
+}
+
 input.main-search__field {
     appearance: none;
     background-color: transparent;
