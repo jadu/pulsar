@@ -1,6 +1,7 @@
 scss:
   config_file: .scss-lint.yml
   exclude:
+    - "cypress/**/*"
     - "js/libs/**/*"
     - "node_modules/**/*"
     - "vendor/**/*"

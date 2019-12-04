@@ -1,10 +1,13 @@
-beforeEach(() => {
-    cy.visit('http://localhost:9000/app/app.php/lexicon')
-    cy.injectAxe()
-  })
+describe('Test pages for accessibility issues', function() {
+    it('Lexicon homepage', () => {
+        cy.visit('http://localhost:9000/app/app.php/lexicon')
+        cy.injectAxe()
+        cy.checkA11y()
+    })
 
-describe('Lexicon homepage', function() {
-    it('Has no detectable a11y violations on load', () => {
+    it('Forms page', () => {
+        cy.visit('http://localhost:9000/app/app.php/lexicon/forms.html.twig')
+        cy.injectAxe()
         cy.checkA11y()
     })
 })
