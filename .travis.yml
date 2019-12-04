@@ -41,11 +41,8 @@ install:
   - docker-compose version
 
 script:
-  - ./test.sh
-
-script:
-  - phpunit
   - grunt build
+  - phpunit
   - npm test
   - npm run coverage
   - "$(npm bin)/cypress run --record --key 91a66ab2-562b-47ba-93e3-aee77725f748"
