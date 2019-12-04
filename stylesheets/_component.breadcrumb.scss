@@ -3,6 +3,10 @@
     margin: 0 0 ($line-height-base / 2);
     width: 100%;
 
+    @include respond-min($screen-desktop) {
+        margin-top: 11px;
+    }
+
     a {
         color: color(gray, dark); // must be AA 4.5:1
 
