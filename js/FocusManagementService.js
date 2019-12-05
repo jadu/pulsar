@@ -1,5 +1,3 @@
-const $ = require('jquery'); // might not need
-
 class FocusManagementService {
     /**
      * Focus Management Service
