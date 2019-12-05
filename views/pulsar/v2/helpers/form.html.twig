@@ -2382,6 +2382,7 @@ headings                | Array  | An array of heading config objects: { name: s
 max-entries             | int    | Maximum (inclusive) number of entries that can be added
 add-new-group-text      | string | The text content of the add new entry button
 add-another-group-text  | string | The text content of the add another new entry button
+actions-column-text     | string | The text content of the actions column header
 
 0#}
 {% macro repeater_start(options) %}
@@ -2417,7 +2418,7 @@ add-another-group-text  | string | The text content of the add another new entry
                             {% for heading in options.headings %}
                                 <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
                             {% endfor %}
-                            <th rowspan="1" colspan="1" class="shrink-to-fit"></th>
+                            <th rowspan="1" colspan="1" class="shrink-to-fit">{{ options['actions-column-text']|default('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="repeater__preview-data" data-repeater-preview-root>
