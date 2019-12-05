@@ -2410,12 +2410,13 @@ add-another-group-text  | string | The text content of the add another new entry
             }}
             <div class="controls">
                 <table class="table table--full table--horizontal repeatable__table">
+                    <caption class="hide">{{ options.label|default }}</caption>
                     <thead class="repeater__preview-headings">
                         <tr>
                             {% for heading in options.headings %}
                                 <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
                             {% endfor %}
-                            <th rowspan="1" colspan="1"></th>
+                            <th rowspan="1" colspan="1" class="shrink-to-fit"></th>
                         </tr>
                     </thead>
                     <tbody class="repeater__preview-data" data-repeater-preview-root>
