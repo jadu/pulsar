@@ -217,7 +217,7 @@ describe('RepeaterPreviewService', () => {
             repeaterPreviewService.toggleUi(1);
 
             expect(root.children[1].firstElementChild.className).to.equal('');
-            expect(root.children[1].firstElementChild.getAttribute('disabled')).to.be.undefined;
+            expect(root.children[1].firstElementChild.getAttribute('disabled')).to.be.null;
         });
     });
 
