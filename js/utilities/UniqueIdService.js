@@ -51,7 +51,7 @@ class UniqueIdService {
 
         [].slice.call(group.querySelectorAll('.select2-container'))
             .forEach(select2Container => {
-                if (select2Container.querySelector('.select2-selection--multiple')) {
+                if (select2Container.querySelector('.select2-selection--multiple') !== null) {
                     const selectWooSummary = select2Container.querySelector('.select2-selections');
                     const selectWooSearch = select2Container.querySelector('.select2-search__field');
                     const newSelectWooSummaryId = 'select2-' + orginalSelectId + '-summary';
@@ -60,7 +60,7 @@ class UniqueIdService {
                     selectWooSearch.setAttribute('aria-describedby', newSelectWooSummaryId);
                 }
 
-                if (select2Container.querySelector('.select2-selection--single')) {
+                if (select2Container.querySelector('.select2-selection--single') !== null) {
                     const selectWooSingleSelection = select2Container.querySelector('.select2-selection--single');
                     const selectWooSingleSelectionRendered = select2Container.querySelector('.select2-selection__rendered');
                     const newSelectWooSingleSelectionRenderedId = 'select2-' + orginalSelectId + '-container';

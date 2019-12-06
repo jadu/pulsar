@@ -9,7 +9,7 @@ class FocusManagementService {
 
     /**
      * Store element that focus will be returned to
-     * @param element {HTMLElement}
+     * @param {jQuery} $element - jQuery wrapper of the element
      */
     storeElement ($element) {
         this.$element = $element;
@@ -24,7 +24,7 @@ class FocusManagementService {
 
     /**
      * Move focus to first focuable element in a collection
-     * @param jquery? or do we want to jqery in here?
+     * @param {jQuery} $collection - jQuery collection of elements
      */
     focusFirstFocusableElement ($collection) {
         const $focusableElements = $collection

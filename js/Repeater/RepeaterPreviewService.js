@@ -100,10 +100,10 @@ class RepeaterPreviewService {
                 let $previewUi = $(preview).find(this.queryService.getQuery('preview-ui'));
                 $previewUi.toggleClass('disabled');
 
-                if ($previewUi.attr('disabled')) {
-                    $previewUi.removeAttr('disabled');
+                if ($previewUi.prop('disabled') !== false) {
+                    $previewUi.prop('disabled', false);
                 } else {
-                    $previewUi.attr('disabled', true);
+                    $previewUi.prop('disabled', true);
                 }
             });
     }

@@ -31,7 +31,7 @@ describe('FocusManagementService', () => {
         it('should store the element', () => {
             focusManagementService.storeElement($link);
 
-            expect(focusManagementService.$element === $link).to.be.true;
+            expect(focusManagementService.$element).to.equal($link)
         });
     });
 
@@ -85,7 +85,7 @@ describe('FocusManagementService', () => {
         });
 
         it('should not focus the first element if it has tabindex="-1"', () => {
-            let $tabIndexZeroElement = $('<a href="#" tabindex="-1">Can not focus me</a>').prependTo($body);
+            const $tabIndexZeroElement = $('<a href="#" tabindex="-1">Can not focus me</a>').prependTo($body);
 
             focusManagementService.focusFirstFocusableElement($body);
 
@@ -93,7 +93,7 @@ describe('FocusManagementService', () => {
         });
 
         it('should not focus the first element if it has the disabled attribute', () => {
-            let $disabledInput = $('<input type="text" disabled/>').prependTo($body);
+            const $disabledInput = $('<input type="text" disabled/>').prependTo($body);
 
             focusManagementService.focusFirstFocusableElement($body);
 
@@ -101,7 +101,7 @@ describe('FocusManagementService', () => {
         });
 
         it('should not focus the first element if it has type hidden', () => {
-            let $hiddenInput = $('<input type="hidden"/>').prependTo($body);
+            const $hiddenInput = $('<input type="hidden"/>').prependTo($body);
 
             focusManagementService.focusFirstFocusableElement($body);
 
@@ -109,7 +109,7 @@ describe('FocusManagementService', () => {
         });
 
         it('should not focus the first element if it has the aria-hidden attribute', () => {
-            let $ariaHiddenlink= $('<a href="#" aria-hidden="true">Can not focus me</a>').prependTo($body);
+            const $ariaHiddenlink= $('<a href="#" aria-hidden="true">Can not focus me</a>').prependTo($body);
 
             focusManagementService.focusFirstFocusableElement($body);
 

@@ -341,9 +341,7 @@ class Repeater {
      * @param event
      */
     handleEditGroup (repeaterId, event) {
-        const edit = this.queryService.get('preview-root')
-            .querySelector(`[${this.queryService.getAttr('edit-id')}="${repeaterId}"]`);
-        const $edit = $(edit);
+        const $edit = $(this.queryService.get('preview-root').querySelector(`[${this.queryService.getAttr('edit-id')}="${repeaterId}"]`));
 
         event.preventDefault();
         this.repeaterPreviewService.toggleUi();
@@ -390,8 +388,8 @@ class Repeater {
         // Enable "add group" button if we have not exceeded max saved entries
         if (this.savedEntries < this.maxSavedGroups) {
             $(this.queryService.get('add-group-button'))
-            .removeClass('disabled')
-            .removeAttr('disabled');
+                .removeClass('disabled')
+                .removeAttr('disabled');
         }
 
         // Update "add group" button text and add placeholder if we have removed all entries
