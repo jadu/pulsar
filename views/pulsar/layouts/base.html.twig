@@ -65,16 +65,17 @@
             {% include '@pulsar/pulsar/components/flash.html.twig' %}
 
             <div class="toolbar">
+                <div class="toolbar-search">
 
-                <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
+                    <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
 
-                {% block search %}
-                <form action="/search" class="main-search" data-ui="search-box">
-                    <input type="search" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
-                    <button id="search-submit" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
-                </form>
-                {% endblock %}
-
+                    {% block search %}
+                    <form action="/search" class="main-search" data-ui="search-box">
+                        <input type="search" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
+                        <button id="search-submit" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
+                    </form>
+                    {% endblock %}
+                </div>
 
                 <div class="toolbar-controls">
                     {% include '@pulsar/pulsar/components/nav_help.html.twig' %}

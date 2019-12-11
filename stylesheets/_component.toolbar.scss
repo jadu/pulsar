@@ -1,27 +1,45 @@
 @import 'component.labels';
 
 .toolbar {
-    // display: block;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    // float: left;
-    // margin-bottom: 18px;
+    display: block;
     padding: 12px 20px 6px;
     width: 100%;
 
     @include respond-min($screen-desktop) {
         background-color: color(white);
-        // height: 60px;
-        // margin-bottom: 0;
-        // padding: 14px 20px;
     }
 
-    // Force breadcrumbs / main title to wrap onto the next row
-    &::before {
-        content: '';
-        order: 1;
+    .main-search {
+        display: inline-block;
+        margin: 0 0 0 10px;
+        vertical-align: top;
+        width: calc(100% - 84px);
+
+        @include respond-min($screen-tablet) {
+            margin: 0;
+            max-width: 200px;
+            width: calc(100% - 100px);
+        }
+    }
+
+    .toolbar-search {
+        display: inline-block;
         width: 100%;
+
+        @include respond-min($screen-tablet) {
+            width: 50%;
+        }
+    }
+
+    .toolbar-controls {
+        display: flex;
+        float: right;
+        justify-content: flex-end;
+        width: 100%;
+
+        @include respond-min($screen-tablet) {
+            width: 50%;
+        }
     }
 
     .dropdown {
@@ -45,11 +63,6 @@
             top: 35px;
         }
     }
-
-}
-
-.toolbar-controls {
-    display: flex;
 }
 
 .user-menu > .btn {
@@ -152,11 +165,7 @@
 }
 
 .toolbar-help {
-    display: none;
-
-    @include respond-min($screen-tablet) {
-        display: block;
-    }
+    display: block;
 
     .dropdown__menu {
         min-width: 180px;
