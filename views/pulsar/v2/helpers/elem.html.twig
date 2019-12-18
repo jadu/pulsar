@@ -113,6 +113,9 @@ name    | string | The name of this control
     {% if options.tag is defined and options.tag == 'span' %}
         {% set tag = 'span' %}
     {% endif %}
+    {% if options.tag is defined and options.tag == 'legend' %}
+        {% set tag = 'legend' %}
+    {% endif %}
 
     {% if options.label is not empty or options.guidance is not empty %}
         <{{ attributes(options
