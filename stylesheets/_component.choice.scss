@@ -3,6 +3,21 @@
     overflow: visible;
 }
 
+fieldset.form-choice {
+    padding: 0;
+
+    > .control__label {
+        border-bottom: 0;
+        float: left; // as we can't use inline-block
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    > .controls {
+        clear: left;
+    }
+}
+
 // Align form-choice to grid
 @include respond-min($screen-tablet) {
     .form-choice > .controls > .control__label {
