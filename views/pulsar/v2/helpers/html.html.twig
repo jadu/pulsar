@@ -1225,25 +1225,24 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
             {{ options.title|raw }}
         </{{ options.heading_level|default('h2') }}>
         {% endif %}
-        <div class="panel__body">
+        <div class="panel__body"{% if 'panel--scroll' in options.class|default %} tabindex="0"{% endif %}>
             {{- options.body|raw -}}
-
-            {% if options.actions is defined %}
-                {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
-                    {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
-                {% endif %}
-
-                <div class="panel__actions{{ actions_class|default }}">
-                    {% for action in options.actions %}
-                        {% if action is iterable %}
-                            {{- html.button(action) -}}
-                        {% else %}
-                            {{- action|raw -}}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
         </div>
+        {% if options.actions is defined %}
+            {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
+                {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
+            {% endif %}
+
+            <div class="panel__actions{{ actions_class|default }}">
+                {% for action in options.actions %}
+                    {% if action is iterable %}
+                        {{- html.button(action) -}}
+                    {% else %}
+                        {{- action|raw -}}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
     </section>
 
 {% endspaceless %}

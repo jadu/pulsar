@@ -40,6 +40,37 @@ class UniqueIdService {
                 element.setAttribute('id', hash);
             });
     }
+
+    /**
+     * Update selectWoo child elements with unique IDs
+     * @param group {HTMLElement}
+     */
+    uniquifySelectWoo (group) {
+        const orginalSelect = group.querySelector('select.js-select2');
+        const orginalSelectId = orginalSelect.getAttribute('id');
+
+        [].slice.call(group.querySelectorAll('.select2-container'))
+            .forEach(select2Container => {
+                if (select2Container.querySelector('.select2-selection--multiple') !== null) {
+                    const selectWooSummary = select2Container.querySelector('.select2-selections');
+                    const selectWooSearch = select2Container.querySelector('.select2-search__field');
+                    const newSelectWooSummaryId = 'select2-' + orginalSelectId + '-summary';
+
+                    selectWooSummary.setAttribute('id', newSelectWooSummaryId);
+                    selectWooSearch.setAttribute('aria-describedby', newSelectWooSummaryId);
+                }
+
+                if (select2Container.querySelector('.select2-selection--single') !== null) {
+                    const selectWooSingleSelection = select2Container.querySelector('.select2-selection--single');
+                    const selectWooSingleSelectionRendered = select2Container.querySelector('.select2-selection__rendered');
+                    const newSelectWooSingleSelectionRenderedId = 'select2-' + orginalSelectId + '-container';
+
+                    selectWooSingleSelectionRendered.setAttribute('id', newSelectWooSingleSelectionRenderedId);
+                    selectWooSingleSelection.setAttribute('aria-controls', newSelectWooSingleSelectionRenderedId)
+                    selectWooSingleSelection.setAttribute('aria-owns', newSelectWooSingleSelectionRenderedId)
+                }
+            });
+    }
 }
 
 module.exports = UniqueIdService;
