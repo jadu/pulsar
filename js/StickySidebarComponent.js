@@ -22,11 +22,11 @@ class StickySidebarComponent {
      * initial sticky calculation and binds to resize & scroll events
      */
     init () {
-        if (typeof this.$html === 'undefined' || !this.$html) {
+        if (typeof this.$html === 'undefined') {
             throw new Error('$html must be passed to StickySidebarComponent');
         }
 
-        if (typeof this.window === 'undefined' || !this.window) {
+        if (typeof this.window === 'undefined') {
             throw new Error('window must be passed to StickySidebarComponent');
         }
 
@@ -48,7 +48,10 @@ class StickySidebarComponent {
             return false;
         }
 
-        if ((this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight()) && ($(this.window).scrollTop() > $container.offset().top)) {
+        const isContentTallerThanContent = this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight();
+        const hasScrolledPastContainer = $(this.window).scrollTop() > $container.offset().top;
+
+        if (isContentTallerThanContent && hasScrolledPastContainer) {
             $container.addClass('is-sticky');
         } else {
             $container.removeClass('is-sticky');
