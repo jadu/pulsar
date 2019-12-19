@@ -17,6 +17,7 @@
             'max-entries': 3,
             'add-new-group-text': 'Add',
             'add-another-group-text': 'Add another',
+            'actions-column-text': 'Actions',
             'values': [
                 [{ name: 'text', value: 'Mike' }, { name: 'select2multi', value: ['food_gravy'] }],
                 [{ name: 'text', value: 'James' }, { name: 'select2multi', value: ['food_gravy', 'food_pizza'] }],
@@ -40,7 +41,7 @@
             {{
                 form.select2({
                     'label': 'Favourite food',
-                    'id': 'repeater-select2multi',
+                    'id': 'select2-' ~ random(),
                     'name': 'select2multi',
                     'multiple': true,
                     'options': [
@@ -51,9 +52,25 @@
                 })
             }}
 
+            {{ form.fieldset_end() }}
+
         {{ form.repeater_end() }}
 
-    {{ form.end() }}
+    {{
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
+    }}
 
 {% endblock tab_content %}
 

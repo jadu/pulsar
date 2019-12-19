@@ -125,11 +125,11 @@
             )
         }}
     >
-        <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }} 
-            tabindex="1" 
-            class="nav-link t-nav-link" 
-            {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} 
-            {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false" 
+        <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }}
+            tabindex="1"
+            class="nav-link t-nav-link"
+            {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %}
+            {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false"
                 {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}
             {% endif %}
         >
@@ -146,7 +146,7 @@
 {% endmacro %}
 
 {%- macro breadcrumbs(items) -%}
-    {% spaceless %}    
+    {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     <nav class="breadcrumb" aria-label="breadcrumbs">
     {%- for item in items -%}
@@ -155,9 +155,9 @@
                 'aria-current': 'page'
             }) %}
         {% endif %}
-        
+
         {{ html.link(item) }}
-        
+
         {%- if not loop.last -%}/{%- endif -%}
     {%- endfor -%}
     </nav>
@@ -175,7 +175,7 @@
                     'class': 'toolbar-help-link btn--naked',
                     'label': html.icon('question-sign') ~ ' user guides',
                     'tabindex': options.tabindex|default('0'),
-                    'data-toggle': 'dropdown'                  
+                    'data-toggle': 'dropdown'
                 })
             }}
 
@@ -184,7 +184,8 @@
                 {{
                     html.media(item|merge({
                         'target': '_blank',
-                        'type': 'link'
+                        'type': 'link',
+                        'image_alt': item.title ~ ' logo'
                     }))
                 }}
             {% endfor %}

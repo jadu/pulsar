@@ -86,11 +86,11 @@
     "jquery-sticky": "^1.0.4",
     "jquery-ui": "^1.12.1",
     "jstree": "^3.3.8",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "pikaday": "^1.8.0",
-    "select2": "github:jadu/selectWoo#jadu-1.1.0",
+    "select2": "github:jadu/selectWoo#jadu-1.1.1",
     "spectrum-colorpicker": "^1.8.0",
     "timepicker": "^1.11.15",
     "vide": "^0.5.1"

@@ -12,6 +12,7 @@ const Repeater = require('./RepeaterComponent');
 const RepeaterPlaceholderService = require('./RepeaterPlaceholderService');
 const FormFieldResetService = require('../utilities/FormFieldResetService');
 const config = require('./repeaterConfig');
+const FocusManagementService = require('../FocusManagementService')
 
 /**
  * Create a repeater component instance
@@ -59,6 +60,8 @@ function repeaterComponentFactory (
         queryService
     );
     const formFieldResetService = new FormFieldResetService();
+    const focusManagementService = new FocusManagementService();
+
 
     return new Repeater(
         repeater,
@@ -73,7 +76,8 @@ function repeaterComponentFactory (
         pseudoRadioInputService,
         repeaterDataService,
         repeaterPlaceholderService,
-        formFieldResetService
+        formFieldResetService,
+        focusManagementService
     );
 }
 
