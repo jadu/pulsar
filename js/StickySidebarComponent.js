@@ -48,7 +48,7 @@ class StickySidebarComponent {
             return false;
         }
 
-        if ((this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight()) && ($(window).scrollTop() > $container.offset().top)) {
+        if ((this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight()) && ($(this.window).scrollTop() > $container.offset().top)) {
             $container.addClass('is-sticky');
         } else {
             $container.removeClass('is-sticky');
