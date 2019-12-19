@@ -470,42 +470,92 @@ show-label | bool   | Control visibility of the `<label>` element without affect
             ])
         %}
 
+        {{
+            form.group({
+                'parent': options
+                    |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
+                    |exclude('multiple')
+                    |defaults({'class': 'form-choice'}),
+                'inputs': inputs
+            })
+        }}
+
     {% else %}
 
-        {% for input_options in options.options %}
-            {% set input_options = input_options|merge({
-                'bare': true,
-                'required-indicator': false,
-                'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
-                'aria-describedby': describedByIds|join(' ')
-            }) %}
+        {% set groupClass = 'form__group form-choice' %}
 
-            {% if options.error is defined and options.error is not empty %}
-                {% set input_options = input_options|merge({ 'has_error': true }) %}
-            {% endif %}
+        {% if options.error_ids is defined and options.error_ids is not empty %}
+            {% set groupClass = groupClass ~ ' has-error' %}
+        {% endif %}
 
-            {% if options.required is defined and options.required == true %}
-                {% set input_options = input_options|merge({ 'required': true }) %}
-            {% endif %}
+        {% set showLabel = true %}
+        {% if options['show-label'] is defined and options['show-label'] is not null and options['show-label'] == false %}
+            {% set showLabel = false %}
+        {% endif %}
 
-            {% if options.multiple %}
-                {% set inputs = inputs|merge([ form.checkbox_inline(input_options) ]) %}
-            {% else %}
-                {% set inputs = inputs|merge([ form.radio_inline(input_options) ]) %}
-            {% endif %}
-        {% endfor %}
+        {% if options.bare is not defined or options.bare != true %}
+        <fieldset{{
+            attributes(options
+                |only('class id')
+                |defaults({ 'class': groupClass })
+            )
+        -}}>
+
+            {{
+                elem.label({
+                    'guidance': options.guidance|default,
+                    'label': options.label|default,
+                    'required': options.required|default,
+                    'guidance-container': options['guidance-container']|default,
+                    'tag': 'legend',
+                    'show-label': showLabel
+                })
+            }}
+
+            <div class="controls">
+        {% endif %}
+
+                {% for input_options in options.options %}
+
+                    {% set input_options = input_options|merge({
+                        'bare': true,
+                        'required-indicator': false,
+                        'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
+                        'aria-describedby': describedByIds|join(' ')
+                    }) %}
+
+                    {% if options.error is defined and options.error is not empty %}
+                        {% set input_options = input_options|merge({ 'has_error': true }) %}
+                    {% endif %}
+
+                    {% if options.required is defined and options.required == true %}
+                        {% set input_options = input_options|merge({ 'required': true }) %}
+                    {% endif %}
+
+                    {% if options.multiple %}
+                        {{ form.checkbox_inline(input_options) }}
+                    {% else %}
+                        {{ form.radio_inline(input_options) }}
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if options.error_ids is defined and options.error_ids is not empty %}
+                    {{ form.error({ 'value': options.error|default, 'error_ids':  options.error_ids }) }}
+                {% else %}
+                    {{ form.error({ 'value': options.error|default }) }}
+                {% endif %}
+
+                {% if options.help_id is defined and options.help_id is not empty %}
+                    {{ form.help({ 'value': options.help|default, 'id': options.help_id }) }}
+                {% endif %}
+
+        {% if options.bare is not defined or options.bare != true %}
+            </div>
+        </fieldset>
+        {% endif %}
 
     {% endif %}
-
-    {{
-        form.group({
-            'parent': options
-                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
-                |exclude('multiple')
-                |defaults({'class': 'form-choice'}),
-            'inputs': inputs
-        })
-    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -2382,6 +2432,7 @@ headings                | Array  | An array of heading config objects: { name: s
 max-entries             | int    | Maximum (inclusive) number of entries that can be added
 add-new-group-text      | string | The text content of the add new entry button
 add-another-group-text  | string | The text content of the add another new entry button
+actions-column-text     | string | The text content of the actions column header
 
 0#}
 {% macro repeater_start(options) %}
@@ -2405,17 +2456,19 @@ add-another-group-text  | string | The text content of the add another new entry
             {{
                 elem.label({
                     'label': options.label,
-                    'required': options.required|default(false)
+                    'required': options.required|default(false),
+                    'tag': 'span'
                 })
             }}
             <div class="controls">
                 <table class="table table--full table--horizontal repeatable__table">
+                    <caption class="hide">{{ options.label|default }}</caption>
                     <thead class="repeater__preview-headings">
                         <tr>
                             {% for heading in options.headings %}
                                 <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
                             {% endfor %}
-                            <th rowspan="1" colspan="1"></th>
+                            <th rowspan="1" colspan="1" class="shrink-to-fit">{{ options['actions-column-text']|default('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="repeater__preview-data" data-repeater-preview-root>
