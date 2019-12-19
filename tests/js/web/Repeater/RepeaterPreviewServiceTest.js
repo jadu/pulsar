@@ -171,13 +171,13 @@ describe('RepeaterPreviewService', () => {
                 <div id="html">
                     <div id="ui">
                         <div>
-                            <div data-preview-id="0" data-preview-ui class="disabled"></div>
+                            <button data-preview-id="0" data-preview-ui class="disabled">button</button>
                         </div>
                         <div>
-                            <div data-preview-id="1" data-preview-ui class=""></div>
+                            <button data-preview-id="1" data-preview-ui class="">button</button>
                         </div>
                         <div>
-                            <div data-preview-id="2" data-preview-ui class=""></div>
+                            <button data-preview-id="2" data-preview-ui class="">button</button>
                         </div>
                     </div>
                 </div>
@@ -204,7 +204,7 @@ describe('RepeaterPreviewService', () => {
             expect(root.children[2].firstElementChild.className).to.equal('');
         });
 
-        it('should disable a specific preview IU element by ID', () => {
+        it('should disable a specific preview UI element by ID', () => {
             queryServiceStub.getAttr.withArgs('preview-id').returns('data-preview-id');
             queryServiceStub.getQuery.withArgs('preview-ui').returns('[data-preview-ui]');
             queryServiceStub.get.returns([].slice.call(root.children));
@@ -212,10 +212,12 @@ describe('RepeaterPreviewService', () => {
             repeaterPreviewService.toggleUi(1);
 
             expect(root.children[1].firstElementChild.className).to.equal('disabled');
+            expect(root.children[1].firstElementChild.disabled).to.be.true;
 
             repeaterPreviewService.toggleUi(1);
 
             expect(root.children[1].firstElementChild.className).to.equal('');
+            expect(root.children[1].firstElementChild.disabled).to.be.false;
         });
     });
 

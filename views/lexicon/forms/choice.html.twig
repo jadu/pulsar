@@ -140,7 +140,7 @@
 
     {{
         form.choice({
-            'id': 'choice-3',
+            'id': 'guid-' ~ random(),
             'class': '',
             'label': 'Choice as select2',
             'help': 'Happens automatically when >5 items',
@@ -182,7 +182,7 @@
 
     {{
         form.choice({
-            'id': 'choice-4',
+            'id': 'guid-' ~ random(),
             'class': '',
             'label': 'Choice as select2 with guidance',
             'guidance': 'Help text to give more information about expected input',
@@ -835,7 +835,19 @@
     }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

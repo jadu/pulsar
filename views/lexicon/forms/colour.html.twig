@@ -8,14 +8,14 @@
 
     {{
         form.color({
-            'id': 'color-1',
+            'id': 'guid-' ~ random(),
             'label': 'Foo'
         })
     }}
 
     {{
         form.color({
-            'id': 'color-2',
+            'id': 'guid-' ~ random(),
             'label': 'Color field with value',
             'value': '#c00000'
         })
@@ -23,7 +23,7 @@
 
     {{
         form.color({
-            'id': 'color-3',
+            'id': 'guid-' ~ random(),
             'label': 'Required',
             'required': true
         })
@@ -31,7 +31,7 @@
 
     {{
         form.color({
-            'id': 'color-4',
+            'id': 'guid-' ~ random(),
             'label': 'Placeholder',
             'placeholder': 'Oh, hello'
         })
@@ -39,7 +39,7 @@
 
     {{
         form.color({
-            'id': 'color-5',
+            'id': 'guid-' ~ random(),
             'label': 'Color field with help',
             'help': 'Help text to give more information about expected input'
         })
@@ -47,7 +47,7 @@
 
     {{
         form.color({
-            'id': 'color-6',
+            'id': 'guid-' ~ random(),
             'label': 'Color field with guidance',
             'guidance': 'Help text to give more information about expected input'
         })
@@ -55,19 +55,18 @@
 
     {{
         form.color({
-            'id': 'color-7',
+            'id': 'guid-' ~ random(),
             'label': 'Required with guidance',
             'guidance': 'Help text to give more information about expected input',
             'required': true
         })
     }}
 
-    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
         form.color({
-            'id': 'color-8',
+            'id': 'guid-' ~ random(),
             'label': 'Foo',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option'
@@ -76,7 +75,7 @@
 
     {{
         form.color({
-            'id': 'color-9',
+            'id': 'guid-' ~ random(),
             'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
@@ -87,7 +86,7 @@
 
     {{
         form.color({
-            'id': 'color-10',
+            'id': 'guid-' ~ random(),
             'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
             'class': 'form__group--top',
             'name': 'inputTextLong',
@@ -99,7 +98,7 @@
 
     {{
         form.color({
-            'id': 'color-11',
+            'id': 'guid-' ~ random(),
             'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
             'class': 'form__group--top form__group--flush',
             'name': 'inputTextLong',
@@ -114,7 +113,7 @@
 
     {{
         form.color({
-            'id': 'color-12',
+            'id': 'guid-' ~ random(),
             'label': 'Color field with error',
             'error': 'Please complete this field'
         })
@@ -122,7 +121,7 @@
 
     {{
         form.color({
-            'id': 'color-13',
+            'id': 'guid-' ~ random(),
             'label': 'Color field with multiple errors',
             'error': ['Do this', 'Do this too']
         })
@@ -130,7 +129,7 @@
 
     {{
         form.color({
-            'id': 'color-14',
+            'id': 'guid-' ~ random(),
             'label': 'Color field with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
@@ -139,7 +138,7 @@
 
     {{
         form.color({
-            'id': 'color-15',
+            'id': 'guid-' ~ random(),
             'class': 'has-error',
             'label': 'Color field error with help only',
             'help': 'Help text to give more information about expected input'
@@ -151,7 +150,7 @@
 
     {{
         form.color({
-            'id': 'color-16',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
@@ -159,7 +158,7 @@
     }}
     {{
         form.color({
-            'id': 'color-17',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -168,7 +167,7 @@
 
     {{
         form.color({
-            'id': 'color-18',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
@@ -176,7 +175,7 @@
     }}
     {{
         form.color({
-            'id': 'color-19',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
@@ -184,7 +183,7 @@
     }}
     {{
         form.color({
-            'id': 'color-20',
+            'id': 'guid-' ~ random(),
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -196,7 +195,7 @@
 
     {{
         form.color({
-            'id': 'color-21',
+            'id': 'guid-' ~ random(),
             'label': 'Mini',
             'class': 'form__group--mini',
             'name': 'inputTextMini'
@@ -205,7 +204,7 @@
 
     {{
         form.color({
-            'id': 'color-22',
+            'id': 'guid-' ~ random(),
             'label': 'Small',
             'class': 'form__group--small',
             'name': 'inputTextSmall'
@@ -214,7 +213,7 @@
 
     {{
         form.color({
-            'id': 'color-23',
+            'id': 'guid-' ~ random(),
             'label': 'Medium',
             'class': 'form__group--medium',
             'name': 'inputTextMedium'
@@ -223,7 +222,7 @@
 
     {{
         form.color({
-            'id': 'color-24',
+            'id': 'guid-' ~ random(),
             'label': 'Regular',
             'name': 'inputTextRegular'
         })
@@ -231,7 +230,7 @@
 
     {{
         form.color({
-            'id': 'color-25',
+            'id': 'guid-' ~ random(),
             'label': 'Large',
             'class': 'form__group--large',
             'name': 'inputTextLarge'
@@ -240,7 +239,7 @@
 
     {{
         form.color({
-            'id': 'color-26',
+            'id': 'guid-' ~ random(),
             'label': 'Extra Large',
             'class': 'form__group--xlarge',
             'name': 'inputTextXLarge'
@@ -249,7 +248,7 @@
 
     {{
         form.color({
-            'id': 'color-27',
+            'id': 'guid-' ~ random(),
             'label': 'Full',
             'class': 'form__group--full',
             'name': 'inputTextFull'
@@ -261,42 +260,28 @@
 
     {{
         form.color({
-            'id': 'color-28',
+            'id': 'guid-' ~ random(),
             'label': 'Prepended',
             'prepend': '£'
         })
     }}
-{#
-    {{
-        form.color({
-            'id': 'color-29',
-            'label': 'Appended',
-            'append': '.00'
-        })
-    }}
 
-    {{
-        form.color({
-            'id': 'color-30',
-            'label': 'Appended with guidance',
-            'append': '.00',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.color({
-            'id': 'color-31',
-            'label': 'Prepended &amp; Appended',
-            'append': '.00',
-            'prepend': '£'
-        })
-    }}
-#}
     {{ form.fieldset_end() }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

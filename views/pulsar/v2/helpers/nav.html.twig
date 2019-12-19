@@ -184,7 +184,8 @@
                 {{
                     html.media(item|merge({
                         'target': '_blank',
-                        'type': 'link'
+                        'type': 'link',
+                        'image_alt': item.title ~ ' logo'
                     }))
                 }}
             {% endfor %}

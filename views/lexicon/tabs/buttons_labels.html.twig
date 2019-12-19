@@ -27,11 +27,11 @@
         ]
     })
 }}
-        
+
     <h2 class="heading">Links</h2>
 
-    <a href="#one">Normal</a>
-    <a href="#two" class="is-disabled">disabled</a>
+    <a href="#">Normal</a>
+    <a href="#" class="is-disabled">disabled</a>
     {{
         html.link({
             'label': 'twig link',
@@ -622,25 +622,25 @@
             set example_dropdown = [
                 html.link({
                     label: html.icon('save') ~ ' Save',
-                    href: '#save'
+                    href: '#'
                 }),
                 html.link({
                     label: html.icon('print') ~ ' Print',
-                    href: '#print'
+                    href: '#'
                 }),
                 html.link({
                     label: html.icon('lock') ~ ' Lock',
-                    href: '#lock',
+                    href: '#',
                     disabled: true
                 }),
                 html.link({
                     label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 }),
-                    href: '#collaborators'
+                    href: '#'
                 }),
                 html.divider(),
                 html.link({
                     label: html.icon('trash') ~ ' Delete',
-                    href: '#delete',
+                    href: '#',
                     class: 'link--danger'
                 })
             ]

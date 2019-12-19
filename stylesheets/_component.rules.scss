@@ -27,15 +27,16 @@
     }
 
     [href].conditional-block__link--when {
-        color: #1292c9;
+        color: color(primary, dark);
     }
 
-    [href].conditional-block__link--and {
-        color: #646464;
+    [href].conditional-block__link--and,
+    [href].conditional-block__link--or {
+        color: color(gray, dark);
     }
 
     [href].conditional-block__link--then {
-        color: #459a8c;
+        color: color(success, dark);
     }
 }
 
@@ -109,19 +110,19 @@
 }
 
 .rule-block__header--when {
-    box-shadow: inset 4px 0 0 0 #128fc5;
-    color: #128fc5;
+    box-shadow: inset 4px 0 0 0 color(primary, dark);
+    color: color(primary, dark);
 }
 
 .rule-block__header--then {
-    box-shadow: inset 4px 0 0 0 #459a8c;
-    color: #459a8c;
+    box-shadow: inset 4px 0 0 0 color(success, dark);
+    color: color(success, dark);
 }
 
 .rule-block__header--and,
 .rule-block__header--or {
-    box-shadow: inset 4px 0 0 0 #646464;
-    color: #646464;
+    box-shadow: inset 4px 0 0 0 color(gray, dark);
+    color: color(gray, dark);
 }
 
 .rule-block__heading {
@@ -255,7 +256,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block__heading {
-        color: color(danger);
+        color: color(danger, dark);
     }
 
     .help-block {
