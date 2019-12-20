@@ -313,7 +313,7 @@ SignInComponent.prototype.switchPanel = function (panelClass) {
 	oldPanel
 		.attr('aria-hidden', 'true')
 		.find('[tabindex]')
-		.prop('disabled', 'disabled')
+		.prop('disabled', true)
 		.each(function() {
 			$(this).attr('tabindex', '-1');
 		});
