@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('jquery'),
-TimePickerComponent = require('./TimePickerComponent');
+    TimePickerComponent = require('./TimePickerComponent');
 
 require('pikaday'),
 require('pikaday/plugins/pikaday.jquery');
