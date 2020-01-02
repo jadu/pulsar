@@ -54,7 +54,6 @@
         left: $padding-small-horizontal;
         position: absolute;
         right: $padding-small-horizontal;
-        // top: 60px;
 
         @include respond-min($screen-xsmall) {
             left: auto;
@@ -73,7 +72,6 @@
 }
 
 .nav-user {
-    // float: left;
     font-size: $font-size-base;
     margin: 0 10px;
 
@@ -82,9 +80,6 @@
     }
 
     .dropdown {
-        // float: left;
-        // margin-left: 20px;
-        // min-width: 60px;
         z-index: $zindex-dropdown;
     }
 
@@ -118,7 +113,6 @@
 
 .toolbar-icon,
 %toolbar-icon {
-    // float: left;
     font-size: 24px;
     line-height: 42px; // maintain alignment in toolbar
     margin-left: $gutter-width;
