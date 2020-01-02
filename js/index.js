@@ -20,12 +20,6 @@ var $                     = require('jquery'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
 
-    jqueryui  = require('../libs/jquery-ui/jquery-ui.min'),
-    countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
-    pikaday   = require('../libs/pikaday/plugins/pikaday.jquery'),
-    svgeezy   = require('../libs/svgeezy/svgeezy.min'),
-    tinycon   = require('../libs/tinyicon/tinycon.min'),
-
     dt            = require('datatables.net')(window, $),
     dt_buttons    = require('datatables.net-buttons')(window, $),
     dt_responsive = require('datatables.net-responsive')(window, $),
@@ -53,7 +47,6 @@ var $                     = require('jquery'),
     FaviconEditor = require('./Notifications/FaviconEditor');
 
 require('jstree');
-require('../libs/history.js/scripts/bundled/html5/jquery.history');
 
 module.exports = {
     ButtonComponent,
@@ -73,8 +66,6 @@ module.exports = {
     SignInComponent,
     StickySidebarComponent,
     TableDetailComponent,
-    history,
-    svgeezy,
     RepeaterManagerComponent,
     repeaterComponentFactory,
     FaviconEditor

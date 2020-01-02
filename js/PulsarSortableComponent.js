@@ -4,7 +4,13 @@
 
 var $ = require('jquery');
 
-require('../libs/jquery-ui/jquery-ui.min');
+$.ui = require('jquery-ui/ui/widget.js');
+
+require('jquery-ui/ui/data');
+require('jquery-ui/ui/disable-selection');
+require('jquery-ui/ui/scroll-parent');
+require('jquery-ui/ui/widgets/mouse');
+require('jquery-ui/ui/widgets/sortable');
 
 function PulsarSortableComponent(html, window) {
     this.$html = html;
