@@ -171,4 +171,58 @@
         })
     }}
 
+    {{
+        html.panel({
+            'title': 'A list of items being shown',
+            'icon': 'warning-sign',
+            'body': '<ul><li>Item 1</li><li>Item 2</li><li>A long item 3</li><li>Another item</li></ul>',
+        })
+    }}
+
+    <section class="panel panel--scroll with-timeline u-margin-top-none" aria-labelledby="guid-scroll">
+        <h2 class="panel__title" id="guid-scroll">Content Pending Approval</h2>
+
+        <div class="panel__body" tabindex="0">
+            <div class="timeline__item" data-timestamp="2018-03-29T10:59:04+00:00" data-id="2650349">
+                <div class="timeline-avatar timeline-avatar--user"><span>AB</span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-content__inner"><span class="timeline-content__title">Alex Bearing (Editor):</span>
+                        <div class="timeline-content__date">
+                            {{ html.icon('clock-o', {'class': 'icon--info u-hidden-print', 'label': 'Time of message'}) }}
+                            <time class="u-visible-print-inline">10 Mar 2018, 10:01 AM</time>
+                            <time class="timeago u-hidden-print" datetime="Thu, 10 Mar 2018 10:01:04 +0100" data-timezone="Europe/London"> Thursday 29th March 2018 (11:59)</time>
+                        </div>
+                        <div class="timeline-content__body" data-id="2650349">
+                            <p id="message-120530" class="timeline-content__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut congue felis aliquet, sodales leo vitae, lacinia diam. Pellentesque nec tincidunt justo, at viverra eros. Donec laoreet, neque ac consectetur auctor, nisi tellus pretium ante, at tincidunt velit nunc et ante. In placerat mi vel nunc viverra, a ultrices est facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam libero ex, sollicitudin sit amet molestie porta, ultricies a mauris. Integer condimentum imperdiet risus, ac tincidunt nisi faucibus ac. Quisque non congue augue, id ultrices ipsum. Nunc finibus urna diam, in luctus lectus viverra vitae. Mauris ligula diam, aliquam nec nisi id, posuere fringilla leo. Aenean varius felis metus, eu interdum odio suscipit id. Sed tellus mi, laoreet non lacinia ac, maximus eu sem.
+                            <br /><br />
+                            Etiam risus est, vulputate in mattis quis, pretium tincidunt ipsum. Aliquam euismod rhoncus dictum. Phasellus venenatis sapien vel velit consectetur suscipit. Maecenas vel rutrum augue. Nunc id placerat nisl. Praesent pulvinar odio sit amet diam suscipit, sed hendrerit orci laoreet. Nulla dignissim nibh quam, vitae rutrum nibh interdum ac. Cras eget volutpat felis. Quisque porta imperdiet lectus, quis scelerisque orci tristique vitae. Morbi eu nulla at odio faucibus mollis eu ut augue. Curabitur quis sapien eget metus porta venenatis eget in est. Sed tincidunt elementum mollis. Vivamus commodo lacus ante, id vehicula risus placerat at.
+                            <br /><br />
+                            Praesent tempus id risus quis posuere. Vestibulum id massa sollicitudin, porta ex sed, tristique massa. Nullam hendrerit lectus sed odio ultrices, id cursus tellus dapibus. Sed elit ante, porttitor et lacus ut, blandit posuere leo. Suspendisse placerat arcu at tortor sollicitudin, eget pretium elit congue. In commodo porttitor quam, ac facilisis lorem molestie at. Quisque a semper dolor. Duis elit felis, lacinia finibus neque at, tincidunt fringilla mi. Duis turpis ligula, molestie et orci ut, ullamcorper consequat odio. Proin ipsum eros, commodo ut quam a, auctor rhoncus urna. Sed maximus, mi non hendrerit facilisis, nibh eros convallis lorem, ut vehicula mauris urna eget neque. Suspendisse ornare est turpis, id fringilla augue porta egestas. Etiam varius sapien quis velit ultricies, sed pellentesque nulla pretium. Nunc congue sapien id leo dapibus elementum. Proin finibus, ipsum eget commodo porttitor, enim quam condimentum diam, nec ullamcorper nisi lacus et lectus.
+                            <br /><br />
+                            Etiam posuere tincidunt erat, vel pulvinar tellus aliquam eget. Proin eu euismod mi. Quisque consequat nec sem vitae aliquam. Proin ac ipsum ultricies, malesuada nisl a, porta purus. Nunc sodales, nisi vel malesuada posuere, lacus sem tincidunt mauris, at fermentum leo tellus in enim. Donec eget quam a ligula interdum efficitur vel a neque. Duis maximus ligula vitae libero iaculis placerat vel sed nunc. Suspendisse viverra convallis ultricies. Vestibulum vitae molestie massa. Vivamus eget tortor erat. Vestibulum eu justo dictum, tincidunt nibh id, consectetur arcu. Phasellus lacus lorem, mollis id finibus sit amet, varius id enim. Sed fringilla nibh orci, sed lobortis nulla fringilla scelerisque.
+                            <br /><br />
+                            Suspendisse sit amet vestibulum libero. Curabitur odio lorem, euismod eu pharetra id, viverra eu dolor. Aliquam id auctor erat. Donec quam nulla, tincidunt in lacus in, finibus pharetra eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam congue luctus suscipit. Nunc eu urna mollis, tincidunt erat sit amet, lobortis tellus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel__actions">
+            {{
+                html.button({
+                    'label': 'Cancel Approval Request',
+                    'class': 'btn--danger'
+                })
+            }}
+            {{
+                html.button({
+                    'label': 'View detailed history of comments',
+                    'class': 'btn--naked view-history-link',
+                    'type': 'link',
+                    'href': '#'
+                })
+            }}
+        </div>
+    </section>
+
 {% endblock tab_content %}

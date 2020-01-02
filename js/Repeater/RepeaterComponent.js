@@ -16,6 +16,7 @@ class Repeater {
      * @param repeaterDataService {RepeaterDataService}
      * @param repeaterPlaceholderService {RepeaterPlaceholderService}
      * @param formFieldResetService {FormFieldResetService}
+     * @param focusManagementService {FocusManagementService}
      */
     constructor (
         repeater,
@@ -30,7 +31,8 @@ class Repeater {
         pseudoRadioInputService,
         repeaterDataService,
         repeaterPlaceholderService,
-        formFieldResetService
+        formFieldResetService,
+        focusManagementService
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
         this.queryService = queryService;
@@ -44,6 +46,7 @@ class Repeater {
         this.repeaterDataService = repeaterDataService;
         this.repeaterPlaceholderService = repeaterPlaceholderService;
         this.formFieldResetService = formFieldResetService;
+        this.focusManagementService = focusManagementService;
 
         this.repeater = repeater;
         this.repeaterEntries = 0;
@@ -57,13 +60,13 @@ class Repeater {
      */
     init (initialState = []) {
         // Preview UI HTML that is dynamically added to preview rows
-        this.previewUiHTML = `           
-            <a ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} href="#edit" class="remove__control alt-link margin-right">
-                <i class="icon-pencil"><span class="hide">Edit</span></i>
-            </a>
-            <a ${this.queryService.getAttr('delete-group')} ${this.queryService.getAttr('preview-ui')} href="#delete" class="remove__control alt-link">
-                <i class="icon-remove-sign"><span class="hide">Delete</span></i>
-            </a>
+        this.previewUiHTML = `
+            <button ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} class="btn btn--outline btn--inverse">
+                Edit
+            </button>
+            <button ${this.queryService.getAttr('delete-group')} ${this.queryService.getAttr('preview-ui')} class="btn btn--outline btn--inverse">
+                Delete
+            </button>
         `;
 
         const maxItemsAttr = this.repeater.getAttribute(this.queryService.getAttr('max-saved-groups'));
@@ -122,9 +125,19 @@ class Repeater {
      * @param event
      */
     handleAddGroup (event) {
+        const $addGroupForm = $(this.queryService.get('add-group-form'));
+
         event.preventDefault();
-        $(this.queryService.get('add-group-form')).show();
-        $(this.queryService.get('add-group-button')).addClass('disabled');
+        $addGroupForm.show();
+        $(this.queryService.get('add-group-button'))
+            .addClass('disabled')
+            .attr('disabled', true);
+
+        // Shift focus to the first focusable element in the form
+        this.focusManagementService.focusFirstFocusableElement($addGroupForm);
+
+        // Capture triggering element so we can return focus when closed
+        this.focusManagementService.storeElement($(event.target));
     }
 
     /**
@@ -205,7 +218,9 @@ class Repeater {
         this.savedEntries++;
 
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
 
             // Update add new group text
             this.queryService.get('add-group-button')
@@ -298,8 +313,11 @@ class Repeater {
             );
         });
 
-        // create unique for/id
+        // Create unique for/id
         this.uniqueIdService.uniquifyFors(preview.nextElementSibling);
+
+        // Create unique IDs for selectWoo elements
+        this.uniqueIdService.uniquifySelectWoo(group);
 
         // Refresh radio state
         this.pseudoRadioInputService.refresh();
@@ -323,13 +341,20 @@ class Repeater {
      * @param event
      */
     handleEditGroup (repeaterId, event) {
-        const edit = this.queryService.get('preview-root')
-            .querySelector(`[${this.queryService.getAttr('edit-id')}="${repeaterId}"]`);
+        const $edit = $(this.queryService.get('preview-root').querySelector(`[${this.queryService.getAttr('edit-id')}="${repeaterId}"]`));
 
         event.preventDefault();
         this.repeaterPreviewService.toggleUi();
-        $(this.queryService.get('add-group-button')).addClass('disabled');
-        $(edit).show();
+        $(this.queryService.get('add-group-button'))
+            .addClass('disabled')
+            .attr('disabled', true);
+        $edit.show();
+
+        // Shift focus to the first focusable element in the form
+        this.focusManagementService.focusFirstFocusableElement($edit);
+
+        // Capture triggering element so we can return focus when closed
+        this.focusManagementService.storeElement($(event.target));
     }
 
     /**
@@ -353,7 +378,6 @@ class Repeater {
         event.preventDefault();
 
         // Remove DOM
-        
         $(preview).remove();
         $(edit).remove();
         $(saved).remove();
@@ -363,7 +387,9 @@ class Repeater {
 
         // Enable "add group" button if we have not exceeded max saved entries
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
         }
 
         // Update "add group" button text and add placeholder if we have removed all entries
@@ -382,7 +408,12 @@ class Repeater {
      */
     handleCancelGroup (event) {
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
+
+            // Return focus to triggering element
+            this.focusManagementService.returnFocusToElement();
         }
 
         event.preventDefault();
@@ -425,8 +456,13 @@ class Repeater {
 
         // Enable "add group" button if we have not exceeded max saved entries
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
         }
+
+        // Return focus to triggering element
+        this.focusManagementService.returnFocusToElement();
 
         // Hide edit group form
         $(group).hide();
@@ -458,7 +494,9 @@ class Repeater {
 
         // Enable "add group" button if we have not exceeded max saved entries
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
         }
 
         // Update any colour pickers that might exist
@@ -466,6 +504,9 @@ class Repeater {
 
         // Hide edit group
         $(group).hide();
+
+        // Return focus to triggering element
+        this.focusManagementService.returnFocusToElement();
     }
 
     /**
