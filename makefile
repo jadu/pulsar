@@ -41,11 +41,6 @@ build:
 	@ npm install -g npm
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling Bower and its dependencies...${HR}\n"
-	@ npm install -g bower
-	@ bower install
-	@ echo "\n${CHECK} Done"
-
 	@ echo "${HR}\nInstalling Grunt and its libraries...${HR}\n"
 	@ npm install -g grunt-cli
 	@ npm install
@@ -69,4 +64,3 @@ build:
 
 	@ echo "Run 'npm start' to start the Pulsar development environment."
 	@ echo "Run 'grunt' to watch for Sass changes."
-	@ echo "If you have issues, check the wiki page: https://github.com/jadu/pulsar/wiki/Make-errors"

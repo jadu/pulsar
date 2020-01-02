@@ -109,7 +109,7 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
         }
 
         // Watch for window resizes
-        $(component.window).resize(function () {
+        $(component.window).on('resize', function () {
             isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
             if (isMobile) {
                 $tabHelp.html(activeTabSideBarContentHtml);
