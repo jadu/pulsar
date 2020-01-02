@@ -51,6 +51,13 @@
             }
         }
 
+        // Restore default rounded corners when buttons collapse into full width mode
+        > .btn:not(:first-of-type):not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button) {
+            @include respond-max($screen-smaller) {
+                border-radius: $border-radius;
+            }
+        }
+
         > .btn__group:first-child {
             border-right: 0;
             border-radius: 4px;
