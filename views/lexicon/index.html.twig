@@ -26,6 +26,9 @@
 {% set tab_icons %}
     {% include 'lexicon/tabs/icons.html.twig' %}
 {% endset %}
+{% set tab_labels %}
+    {% include 'lexicon/tabs/labels.html.twig' %}
+{% endset %}
 {% set tab_loading %}
     {% include 'lexicon/tabs/loading.html.twig' %}
 {% endset %}
@@ -60,7 +63,6 @@
           "id"    : "buttons",
           "label" : "Buttons",
           "src"   : tab_buttons,
-          "active": true
         },
         {
           "id"    : "block-list",
@@ -96,6 +98,12 @@
           "id"    : "icons",
           "label" : "Icons",
           "src"   : tab_icons
+        },
+        {
+          "id"    : "labels",
+          "label" : "Labels",
+          "src"   : tab_labels,
+          "active": true
         },
         {
           "id"    : "loading",

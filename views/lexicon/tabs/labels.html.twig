@@ -1,0 +1,162 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block tab_sidebar %}
+
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Some button help</h2>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tellus dolor, condimentum efficitur arcu sed, feugiat pellentesque lacus. Pellentesque ac ipsum ac mauris cursus volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+{% endblock tab_sidebar %}
+
+
+{% block tab_content %}
+
+    <h2 class="heading">Labels</h2>
+    <div>
+        {{
+            html.label({
+                label: 'default'
+            })
+        }}
+        {{
+            html.label({
+                label: 'primary',
+                class: 'label--primary'
+            })
+        }}
+        {{
+            html.label({
+                label: 'success',
+                class: 'label--success'
+            })
+        }}
+        {{
+            html.label({
+                label: 'warning',
+                class: 'label--warning'
+            })
+        }}
+        {{
+            html.label({
+                label: 'danger',
+                class: 'label--danger'
+            })
+        }}
+        {{
+            html.label({
+                label: 'info',
+                class: 'label--info'
+            })
+        }}
+        {{
+            html.label({
+                label: 'inverse',
+                class: 'label--inverse'
+            })
+        }}
+        {{
+            html.label({
+                'label': 'label with tooltip',
+                'class': 'label--inverse',
+                'data-toggle': 'tooltips',
+                'data-title': 'Hello!'
+            })
+        }}
+        {{
+            html.label({
+                'label': 'label with right-aligned tooltip',
+                'class': 'label--inverse',
+                'data-toggle': 'tooltips',
+                'data-title': 'You look nice',
+                'data-placement': 'right'
+            })
+        }}
+        {{
+            html.label({
+                label: 'large label',
+                class: 'label--large'
+            })
+        }}
+    </div>
+
+    <h2 class="heading">Removable labels</h2>
+    <div>
+        {{
+            html.label({
+                label: 'default',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'primary',
+                class: 'label--primary',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'success',
+                class: 'label--success',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'warning',
+                class: 'label--warning',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'danger',
+                class: 'label--danger',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'info',
+                class: 'label--info',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'inverse',
+                class: 'label--inverse',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                'label': 'label with tooltip',
+                'class': 'label--inverse',
+                'data-toggle': 'tooltips',
+                'data-title': 'Hello!',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                'label': 'label with right-aligned tooltip',
+                'class': 'label--inverse',
+                'data-toggle': 'tooltips',
+                'data-title': 'You look nice',
+                'data-placement': 'right',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                class: 'label--large',
+                label: 'label large',
+                removable: true
+            })
+        }}
+    </div>
+
+{% endblock tab_content %}

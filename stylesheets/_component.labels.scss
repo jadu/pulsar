@@ -1,63 +1,101 @@
 .label,
 %label {
-    @include inline-block;
-    @include content-box;
-    @include label-variant(color(base), color(base, alt), false);
+    background-color: color(base);
     border-radius: $border-radius;
-    font-size: 75%;
-    font-weight: 500;
-    line-height: 1;
-    padding: .25em .6em;
+    display: inline-block;
+    font-size: $font-size-base;
+    padding: 2px 10px;
     text-align: center;
     text-transform: lowercase;
-    vertical-align: baseline;
     white-space: nowrap;
 
-    // Add hover effects, but only for links
-    &[href] {
-        &:hover,
-        &:focus {
-            text-decoration: none;
-            cursor: pointer;
-            background-color: color(gray, lighter);
+    // removeable labels
+    .remove-button {
+        vertical-align: middle;
+
+        // Override default button styling
+        &:active {
+            background-color: inherit !important;
         }
     }
 
-    // Removable labels
-    .btn.remove-button,
-    .btn.remove-button [class^="icon-"],
-    .btn.remove-button [class*=" icon-"] {
-        &,
-        &:hover {
-            box-shadow: none;
+    .remove-button {
+        [class^="icon-"],
+        &:hover [class^="icon-"],
+        &:focus [class^="icon-"] {
             color: inherit;
-            font-size: 1em;
-            line-height: inherit;
-            margin-left: 2px;
-            text-decoration: none;
-            top: 0;
         }
-    }
-
-    // Override default button styling
-    .btn.remove-button:active {
-        background-color: inherit !important;
     }
 }
 
-// Colors
-// Contextual variations (linked labels get darker on :hover)
 @each $state, $state-color, $state-color-alt in $state-colors {
     .label--#{$state},
     %label--#{$state} {
-        @include label-variant($state-color, $state-color-alt, true);
+        background-color: color($state);
+        color: color($state, alt);
+
+        .remove-button {
+            [class^="icon-"],
+            &:hover [class^="icon-"],
+            &:focus [class^="icon-"] {
+                color: color($state, alt);
+            }
+        }
     }
 }
 
 .label--large {
-    line-height: 2;
+    line-height: $line-height-large;
 
     .remove-button {
         line-height: inherit;
     }
 }
+//     // Add hover effects, but only for links
+//     &[href] {
+//         &:hover,
+//         &:focus {
+//             text-decoration: none;
+//             cursor: pointer;
+//             background-color: color(gray, lighter);
+//         }
+//     }
+
+//     // Removable labels
+//     .btn.remove-button,
+//     .btn.remove-button [class^="icon-"],
+//     .btn.remove-button [class*=" icon-"] {
+//         &,
+//         &:hover {
+//             box-shadow: none;
+//             color: inherit;
+//             font-size: 1em;
+//             line-height: inherit;
+//             margin-left: 2px;
+//             text-decoration: none;
+//             top: 0;
+//         }
+//     }
+
+//     // Override default button styling
+//     .btn.remove-button:active {
+//         background-color: inherit !important;
+//     }
+// }
+
+// // Colors
+// // Contextual variations (linked labels get darker on :hover)
+// @each $state, $state-color, $state-color-alt in $state-colors {
+//     .label--#{$state},
+//     %label--#{$state} {
+//         @include label-variant($state-color, $state-color-alt, true);
+//     }
+// }
+
+// .label--large {
+//     line-height: 2;
+
+//     .remove-button {
+//         line-height: inherit;
+//     }
+// }
