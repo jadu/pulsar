@@ -26,8 +26,8 @@
  * 7. Remove excess padding and border in Firefox 4+
  */
 
-$btn-padding-top:           10px;
-$btn-padding-bottom:        7px;
+$btn-padding-top:           8px;
+$btn-padding-bottom:        6px;
 $btn-padding-x:             14px;
 
 $btn-small-padding-top:     $btn-padding-top / 2.5;
@@ -50,7 +50,7 @@ $btn-white:                 'white';
     box-sizing: border-box; /* 2 */
     color: inherit; /* 3 */
     cursor: pointer;
-    font-size: 14px;
+    font-size: $font-size-base;
     font-weight: normal;
     line-height: normal; /* 4 */
     margin: 0;
