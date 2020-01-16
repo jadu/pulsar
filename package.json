@@ -72,7 +72,7 @@
   "dependencies": {
     "chartist": "^0.9.8",
     "datatables.net": "^1.10.11",
-    "datatables.net-buttons": "^1.1.2",
+    "datatables.net-buttons": "^1.6.1",
     "datatables.net-buttons-dt": "^1.1.2",
     "datatables.net-dt": "^1.10.10",
     "datatables.net-responsive": "^2.0.2",
