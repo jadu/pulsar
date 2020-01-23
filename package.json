@@ -70,7 +70,7 @@
     "uglifyify": "^3.0.1"
   },
   "dependencies": {
-    "chartist": "^0.9.8",
+    "chartist": "^0.11.4",
     "datatables.net": "^1.10.11",
     "datatables.net-buttons": "^1.1.2",
     "datatables.net-buttons-dt": "^1.1.2",
