@@ -1315,7 +1315,6 @@ controls.class    | string | A space separated list of class names
     {% set isToggleSwitch = false %}
     {% if options.parent.class is defined and 'form__group--toggle' in options.parent.class %}
         {% set isToggleSwitch = true %}
-        {% set labelTag = 'span' %}
     {% endif %}
 
     {% if options.parent.bare is not defined or options.parent.bare != true %}
@@ -2387,7 +2386,8 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options
                 |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
                 |merge({
-                    'class': options.class|default ~ ' form__group--toggle'
+                    'class': options.class|default ~ ' form__group--toggle',
+                    'labelTag': 'span',
                 }),
             'inputs': [toggle]
         })
