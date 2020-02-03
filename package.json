@@ -73,7 +73,7 @@
     "chartist": "^0.11.4",
     "datatables.net": "^1.10.11",
     "datatables.net-buttons": "^1.1.2",
-    "datatables.net-buttons-dt": "^1.1.2",
+    "datatables.net-buttons-dt": "^1.6.1",
     "datatables.net-dt": "^1.10.20",
     "datatables.net-responsive": "^2.0.2",
     "datatables.net-responsive-dt": "^2.0.0",
