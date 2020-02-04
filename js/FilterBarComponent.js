@@ -430,7 +430,8 @@ function populateFilterList ($filterbar) {
 
     var $formGroups = $filterbar.find('.form__group'),
         $labelContainer = $filterbar.find('.filter-bar__labels'),
-        $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]');
+        $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]'),
+        hiddenFormGroups = 0;
 
     $formGroups.each(function() {
         var $this = $(this),
@@ -456,11 +457,19 @@ function populateFilterList ($filterbar) {
         if (filterValue !== '' && filterValue !== null) {
             $labelContainer.prepend('<span class="label label--large label--inverse" data-filter-id="' + filterId + '">' + filterLabel + filterValue + '<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a></span>');
 
+            // Keep track of how many filters have already been applied
+            hiddenFormGroups++;
+
             // Hide the filter item in the list
             updateFilterList($addFilterButton, filterId, 'hide');
 
             // Show the filterbar
             $filterbar.removeClass('display--none');
+        }
+
+        // Don't show add filter button if all filters have been loaded
+        if ($formGroups.length === hiddenFormGroups) {
+            $addFilterButton.addClass('display--none');
         }
     });
 }

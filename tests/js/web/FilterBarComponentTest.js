@@ -508,5 +508,9 @@ describe('FilterBarComponent', function () {
 		it('should add a label to the filterbar for select inputs', function () {
 			expect(this.$container.find('span[data-filter-id="size"]')).to.have.length(1);
 		});
+
+		it('should hide the add filter button if all filters have been used', function () {
+			expect(this.$container.find('[data-ui="show-filter-list"]').hasClass('display--none')).to.be.true;
+		});
 	});
 });
