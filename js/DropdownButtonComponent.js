@@ -99,7 +99,7 @@ class DropdownButtonComponent {
     handleBodyClick (event) {
         const $clickedElement = $(event.target);
 
-        if ($clickedElement.attr('data-toggle') === 'dropdown' || $clickedElement.closest(Selectors.BTN_GROUP).hasClass(Selectors.OPEN)) {
+        if ($clickedElement.attr('data-toggle') === 'dropdown' || $clickedElement.closest(Selectors.DATA_TOGGLE).hasClass(Selectors.OPEN)) {
             return;
         }
         this.closeAllDropdowns();
