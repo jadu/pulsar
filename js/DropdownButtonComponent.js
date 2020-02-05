@@ -6,6 +6,7 @@ const Selectors = {
     'DROP_MENU': '.dropdown__menu',
     'VISIBLE_ITEMS': '.dropdown__menu li a:not(.is-disabled):not(.disabled), .dropdown__menu li button:not(.is-disabled):not(.disabled):not(:disabled)',
     'DISABLED': '.disabled, .is-disabled, :disabled',
+    'DROPDOWN': '.dropdown',
     'BTN_GROUP': '.btn__group',
     'BTN_GROUP_OPEN': '.btn__group.open',
     'BTN_GROUP_DROP': '.btn__group.dropdown, .btn__group.dropup',
@@ -99,7 +100,7 @@ class DropdownButtonComponent {
     handleBodyClick (event) {
         const $clickedElement = $(event.target);
 
-        if ($clickedElement.attr('data-toggle') === 'dropdown' || $clickedElement.closest(Selectors.DATA_TOGGLE).hasClass(Selectors.OPEN)) {
+        if ($clickedElement.attr('data-toggle') === 'dropdown' || $clickedElement.closest(Selectors.BTN_GROUP).hasClass(Selectors.OPEN) || $clickedElement.closest(Selectors.DROPDOWN).hasClass(Selectors.OPEN)) {
             return;
         }
         this.closeAllDropdowns();
