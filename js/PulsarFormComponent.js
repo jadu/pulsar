@@ -166,6 +166,10 @@ PulsarFormComponent.prototype.initColourpickers = function () {
             }
         });
 
+        // Remove the text input inside the picker, which we don't use and 
+        // causes a11y issues if left in the markup
+        component.$html.find('.sp-input-container').remove();
+
         // changing the input should update the picker
         $input.on('change', function () {
             $pickerInput.spectrum('set', '#' + $input.val());
