@@ -250,6 +250,10 @@ PulsarUIComponent.prototype.initDataTables = function () {
         // Add sticky scroll bar
         component.stickyScrollBarComponent.init($table);
     });
+
+    // Remove invalid attribute after tables are loaded
+    // https://datatables.net/forums/discussion/comment/145251/#Comment_145251
+    component.$html.find('.dataTables_empty').removeAttr('valign');
 };
 
 PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
