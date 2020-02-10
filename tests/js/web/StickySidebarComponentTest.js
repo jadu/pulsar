@@ -53,7 +53,7 @@ describe('StickySidebarComponent', () => {
         it('should not add the is-sticky class if the viewport hasn’t been scrolled', () => {
             stickySidebarComponent = new StickySidebarComponent($('<div></div>'), window);
 
-            expect(stickySidebarComponent.sticky()).to.be.false;
+            expect(stickySidebarComponent.sticky()).to.be.undefined;
         });
     });
     
