@@ -356,14 +356,14 @@ th.sorting_disabled:hover {
     display: block;
     float: none;
     font-family: $font-size-small;
-    margin: 10px 0;
+    margin: $margin-large-vertical 0;
     text-align: center;
     width: 100%;
 
     @include respond-min($screen-tablet) {
         display: inline-block;
         float: right;
-        margin: 5px 0 10px;
+        margin: $margin-small-vertical 0 $margin-small-horizontal;
         text-align: left;
         width: auto;
     }
