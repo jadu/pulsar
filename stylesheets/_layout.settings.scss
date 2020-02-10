@@ -585,11 +585,11 @@
     }
 
     .tab__inner.is-sticky .tab__settings {
+        -webkit-overflow-scrolling: touch;
         max-width: 370px;
         max-height: 100%;
         overflow-y: auto;
         position: fixed;
         top: 0;
-        -webkit-overflow-scrolling: touch;
     }
 }

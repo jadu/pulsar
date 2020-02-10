@@ -45,7 +45,7 @@ class StickySidebarComponent {
         const $container = this.$html.find('.tab__container.has-settings .tab__inner');
 
         if (!$container.length) {
-            return false;
+            return;
         }
 
         const isContentTallerThanContent = this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight();
