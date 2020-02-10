@@ -120,6 +120,19 @@
     }
 }
 
+.loading-block {
+    text-align: center;
+
+    .loading {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .loading-block__message {
+        display: block;
+        margin-top: $line-height-base / 2;
+    }
+}
 
 .form__group.is-loading {
 
