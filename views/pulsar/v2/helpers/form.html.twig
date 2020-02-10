@@ -746,7 +746,7 @@ class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
 guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
-label       | string | Text for the `<label>` companion element
+label       | string | Text for the label companion element, will be a `span` instead of a `label`
 raw         | bool   | Instead of wrapping the value in a `<p>`, just render the value/helper instead (default: false)
 show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
@@ -774,7 +774,9 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance guidance-container help id label show-label'),
+            'parent': options
+                |only('bare class error guidance guidance-container help id label show-label')
+                |merge({'labelTag': 'span'}),
             'inputs': [input]
         })
     }}
@@ -1291,6 +1293,7 @@ controls.class    | string | A space separated list of class names
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
     {% set groupClass = 'form__group' %}
+    {% set labelTag = 'label' %}
 
     {% if options.parent.error is defined and options.parent.error is not empty %}
         {% set groupClass = groupClass ~ ' has-error' %}
@@ -1303,6 +1306,10 @@ controls.class    | string | A space separated list of class names
     {% set showLabel = true %}
     {% if options.parent['show-label'] is defined and options.parent['show-label'] == false %}
         {% set showLabel = false %}
+    {% endif %}
+
+    {% if options.parent.labelTag is defined and options.parent.labelTag is not empty %}
+        {% set labelTag = options.parent.labelTag %}
     {% endif %}
 
     {% set isToggleSwitch = false %}
@@ -1333,7 +1340,7 @@ controls.class    | string | A space separated list of class names
                 'show-label': showLabel,
                 'required': options.parent.required|default,
                 'guidance-container': options.parent['guidance-container']|default,
-                'tag': (isToggleSwitch) ? 'span' : 'label'
+                'tag': labelTag
             })
         }}
 
@@ -2379,7 +2386,8 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options
                 |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
                 |merge({
-                    'class': options.class|default ~ ' form__group--toggle'
+                    'class': options.class|default ~ ' form__group--toggle',
+                    'labelTag': 'span',
                 }),
             'inputs': [toggle]
         })
