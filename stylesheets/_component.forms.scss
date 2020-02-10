@@ -783,3 +783,11 @@ fieldset.form__group--compound {
         }
     }
 }
+
+// Used in CXM mappings
+.icon--align-with-fields {
+    display: block;
+    font-size: $font-size-xlarge;
+    line-height: $line-height-large;
+    text-align: center;
+}

@@ -14,4 +14,30 @@
     }) }}
     <br />
 
+    <h2 class="heading">After form inputs</h2>
+    {{ form.create() }}
+    {{
+        form.select({
+            'label': 'Select input',
+            'class': 'form__group--small is-loading',
+            'id': 'inputSelect',
+            'name': 'inputSelect',
+            'options': {
+                'value1': 'loading...'
+            }
+        })
+    }}
+    </form>
+
+    <h2 class="heading">Loading block (for centering within modals or tombstone UIs)</h2>
+    {{
+        html.loading({
+            'class': 'loading--large',
+            'message': 'Loading content...',
+            'type': 'block'
+        })
+    }}
+
+    <br />
+
 {% endblock tab_content %}

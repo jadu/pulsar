@@ -18,6 +18,10 @@
         }
     }
 
+    [href].btn {
+        border-bottom: 0;
+    }
+
     tbody > tr:hover {
         background-color: color(background, light);
 
