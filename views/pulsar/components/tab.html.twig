@@ -8,26 +8,39 @@
 {% set _hasSettings = false %}
 {% set _hasSidebar = false %}
 
-{% set _settings = block('tab_settings') %}
-{% if _settings is not empty %}
-    {% set _hasSettings = true %}
+{% if block('tab_settings') is defined %}
+    {% set _settings = block('tab_settings') %}
+    {% if _settings is not empty %}
+        {% set _hasSettings = true %}
+    {% endif %}
 {% endif %}
 
-{% set _sidebar = block('tab_sidebar') %}
-{% if _sidebar is not empty %}
-    {% set _hasSidebar = true %}
+
+{% if block('tab_sidebar') is defined %}
+    {% set _sidebar = block('tab_sidebar') %}
+    {% if _sidebar is not empty %}
+        {% set _hasSidebar = true %}
+    {% endif %}
 {% endif %}
 
-{% set _tab_javascript = block('tab_js') %}
-{% if _tab_javascript is not empty %}
-    {% block tab_javascript %}
-        {{ _tab_javascript }}
-    {% endblock %}
+
+{% if block('tab_js') is defined %}
+    {% set _tab_javascript = block('tab_js') %}
+    {% if _tab_javascript is not empty %}
+        {% block tab_javascript %}
+            {{ _tab_javascript }}
+        {% endblock %}
+    {% endif %}
 {% endif %}
 
-{% set _actions_left = block('actions_left') %}
-{% set _actions_right = block('actions_right') %}
-
+{% set _actions_left = null %}
+{% set _actions_right = null %}
+{% if block('actions_left') is defined %}
+    {% set _actions_left = block('actions_left') %}
+{% endif %}
+{% if block('actions_right') is defined %}
+    {% set _actions_right = block('actions_right') %}
+{% endif %}
 <div class="tab__container{% if _hasSettings == true %} has-settings{% endif %}{% if _hasSidebar == true %} has-sidebar{% endif %}">
 
     {% if _actions_left is not empty or _actions_right is not empty %}
@@ -61,5 +74,3 @@
         </main>
     </div>
 </div>
-
-
