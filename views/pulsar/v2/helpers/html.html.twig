@@ -88,9 +88,9 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         html.button_dropdown({
             'id': 'actions_menu',
-            'label': items.label|default('Actions') ~ 
+            'label': items.label|default('Actions') ~
                 html.badge({
-                    'label': '0', 
+                    'label': '0',
                     'aria-label': '0 rows selected',
                     'class': 'label--primary js-bulk-actions-badge',
                     'style': 'display: none;'
@@ -1010,6 +1010,8 @@ Option | Type   | Description
 -----  | ------ | --------------------------------------------------------------
 class  | string | CSS classes, space separated
 id     | string | A unique identifier, if required
+message| string | Optional text string to be shown in block style loading elements
+type   | string | `block` or `inline` (default), block will be centered horizontally
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
@@ -1017,16 +1019,33 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <span{{
-        attributes(options
-            |exclude('label')
-            |defaults({
-                'class': 'loading'
-            })
-        )
-    }}>
-        <i>{{- options.label|default('Loading...') -}}</i>
-    </span>
+    {% set type = 'inline' %}
+    {% if options.type is defined and options.type == 'block' %}
+        {% set type = 'block' %}
+    {% endif %}
+
+    {% if type == 'block' %}
+    <div class="loading-block">
+    {% endif %}
+
+        <span{{
+            attributes(options
+                |exclude('label')
+                |defaults({
+                    'class': 'loading'
+                })
+            )
+        }}>
+            <i>{{- options.label|default('Loading...') -}}</i>
+        </span>
+
+    {% if options.message is defined and options.message is not empty %}
+        <span class="loading-block__message">{{ options.message }}</span>
+    {% endif %}
+
+    {% if type == 'block' %}
+    </div>
+    {% endif %}
 
 {% endspaceless %}
 {% endmacro %}
@@ -1091,9 +1110,9 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.icon is defined and options.icon is not empty %}
         {{ html.icon(options.icon, { 'class': 'media__image', 'colour': options.icon_colour|default('#000') }) }}
     {% elseif options.image is defined and options.image is not empty %}
-        {% set alt = ' role="presentation"' %}
+        {% set alt = '' %}
         {% if options.image_alt is defined and options.image_alt is not empty %}
-            {% set alt = ' alt="' ~ options.image_alt ~ '"' %} 
+            {% set alt = ' alt="' ~ options.image_alt ~ '"' %}
         {% endif %}
         <img src="{{ options.image }}"{{ alt|default|raw }} class="media__image" />
     {% endif %}
@@ -1205,17 +1224,22 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set tag = 'section' %}
     {% set actions_placements = ['inline', 'left', 'center', 'right'] %}
     {% set guid = 'guid-' ~ random() %}
 
-    <section{{
+    {% if options.title is not defined or options.title is empty %}
+        {% set tag = 'div' %}
+    {% endif %}
+
+    <{{ tag }}{{
         attributes(options
             |exclude('actions actions_placement heading_level icon title body')
             |defaults({
                 'class': 'panel'
             })
         )
-    }} aria-labelledby="{{ guid }}">
+    }}{% if tag == 'section' %} aria-labelledby="{{ guid }}"{% endif %}>
         {% if options.icon is defined and options.icon is not empty %}
             {{ html.icon(options.icon|default, { 'class': 'panel__icon' }) }}
         {% endif %}
@@ -1225,26 +1249,25 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
             {{ options.title|raw }}
         </{{ options.heading_level|default('h2') }}>
         {% endif %}
-        <div class="panel__body">
+        <div class="panel__body"{% if 'panel--scroll' in options.class|default %} tabindex="0"{% endif %}>
             {{- options.body|raw -}}
-
-            {% if options.actions is defined %}
-                {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
-                    {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
-                {% endif %}
-
-                <div class="panel__actions{{ actions_class|default }}">
-                    {% for action in options.actions %}
-                        {% if action is iterable %}
-                            {{- html.button(action) -}}
-                        {% else %}
-                            {{- action|raw -}}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
         </div>
-    </section>
+        {% if options.actions is defined %}
+            {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
+                {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
+            {% endif %}
+
+            <div class="panel__actions{{ actions_class|default }}">
+                {% for action in options.actions %}
+                    {% if action is iterable %}
+                        {{- html.button(action) -}}
+                    {% else %}
+                        {{- action|raw -}}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </{{ tag }}>
 
 {% endspaceless %}
 {% endmacro %}
@@ -1432,15 +1455,15 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             {% set iconGlyph = 'check-circle' %}
         {% endif %}
     {% endif %}
-    
-    {{ 
+
+    {{
         html.icon(iconGlyph|default('times-rectangle'), options
             |exclude('state icon')
             |merge({
                 'class': 'status--icon is-' ~ state|default('active'),
                 'data-placement': options['data-placement']|default('top'),
                 'data-toggle': 'tooltips',
-            }) 
+            })
         )
     }}
 

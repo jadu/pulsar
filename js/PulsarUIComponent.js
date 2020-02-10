@@ -10,7 +10,7 @@ require('datatables.net')(window, $);
 require('datatables.net-buttons')(window, $);
 require('datatables.net-responsive')(window, $);
 require('datatables.net-select')(window, $);
-require('../libs/jquery.countdown/dist/jquery.countdown.min');
+require('jquery-countdown');
 
 function PulsarUIComponent(html, history) {
     this.history = history;
@@ -236,7 +236,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
     this.$html.find('.table--horizontal').each(function () {
         var $table = $(this).parent();
 
-        $table.scroll(function () {
+        $table.on('scroll', function () {
             component.styleTableOverflows($table);
         });
 
@@ -250,6 +250,10 @@ PulsarUIComponent.prototype.initDataTables = function () {
         // Add sticky scroll bar
         component.stickyScrollBarComponent.init($table);
     });
+
+    // Remove invalid attribute after tables are loaded
+    // https://datatables.net/forums/discussion/comment/145251/#Comment_145251
+    component.$html.find('.dataTables_empty').removeAttr('valign');
 };
 
 PulsarUIComponent.prototype.styleTableOverflows = function ($container) {

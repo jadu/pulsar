@@ -3,8 +3,9 @@
 var $ = require('jquery'),
     TimePickerComponent = require('./TimePickerComponent');
 
-require('../libs/pikaday/plugins/pikaday.jquery');
-require('../libs/spectrum/spectrum');
+require('pikaday'),
+require('pikaday/plugins/pikaday.jquery');
+require('spectrum-colorpicker');
 require('select2')();
 
 function PulsarFormComponent(html) {
@@ -164,6 +165,10 @@ PulsarFormComponent.prototype.initColourpickers = function () {
                 }
             }
         });
+
+        // Remove the text input inside the picker, which we don't use and 
+        // causes a11y issues if left in the markup
+        component.$html.find('.sp-input-container').remove();
 
         // changing the input should update the picker
         $input.on('change', function () {

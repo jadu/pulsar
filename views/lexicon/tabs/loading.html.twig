@@ -29,4 +29,15 @@
     }}
     </form>
 
+    <h2 class="heading">Loading block (for centering within modals or tombstone UIs)</h2>
+    {{
+        html.loading({
+            'class': 'loading--large',
+            'message': 'Loading content...',
+            'type': 'block'
+        })
+    }}
+
+    <br />
+
 {% endblock tab_content %}

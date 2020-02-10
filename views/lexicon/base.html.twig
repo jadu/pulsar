@@ -19,16 +19,16 @@
     set actions_menu = [
         html.link({
           'label': html.icon('save') ~ ' Save',
-          'href': '#save'
+          'href': '#'
         }),
         html.link({
           'label': html.icon('print') ~ ' Print',
-          'href': '#print'
+          'href': '#'
         }),
         html.divider(),
         html.link({
           'label': html.icon('trash') ~ ' Delete',
-          'href': '#delete',
+          'href': '#',
           'class': 'link--danger disabled',
           'attributes': 'data-on-datagrid-item-selected=enable'
         })
@@ -74,39 +74,42 @@
             "items": {
                 "4.1": {
                     "4.1.1": {
+                        "label": "Common List",
+                        "href": "/app/app.php/lexicon/patterns/common-list/"
+                    },
+                    "4.1.2": {
                         "label": "Disabled UI",
                         "href": "/app/app.php/lexicon/patterns/disabled-ui/"
                     },
-                    "4.1.2": {
+                    "4.1.3": {
                         "label": "Error Summary",
                         "href": "/app/app.php/lexicon/patterns/error-summary/"
                     },
-                    "4.1.3": {
+                    "4.1.4": {
                         "label": "Filters",
                         "href": "/app/app.php/lexicon/patterns/filters/"
                     },
-                    "4.1.4": {
+                    "4.1.5": {
                         "label": "Masterswitch",
                         "href": "/app/app.php/lexicon/patterns/masterswitch/"
                     },
-                    "4.1.5": {
+                    "4.1.6": {
                         "label": "No Results",
                         "href": "/app/app.php/lexicon/patterns/no-results/"
                     },
-                    "4.1.6": {
+                    "4.1.7": {
                         "label": "Reporting",
                         "href": "/app/app.php/lexicon/patterns/reporting/"
                     },
-                    "4.1.7": {
-                        "label": "Rules",
-                        "href": "/app/app.php/lexicon/patterns/rules/",
-                    },
                     "4.1.8": {
-                        "label": "Settings",
-                        "href": "/app/app.php/lexicon/patterns/settings/",
-                        "aria-label": "Pattern Settings"
+                        "label": "Rules",
+                        "href": "/app/app.php/lexicon/patterns/rules/"
                     },
                     "4.1.9": {
+                        "label": "Settings panel",
+                        "href": "/app/app.php/lexicon/patterns/settings-panel/"
+                    },
+                    "4.1.10": {
                         "label": "Table Detail",
                         "href": "/app/app.php/lexicon/patterns/table-detail/"
                     }

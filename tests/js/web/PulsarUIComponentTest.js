@@ -3,7 +3,6 @@
 'use strict'
 
 var $ = require('jquery'),
-    history = require('../../../libs/history.js/scripts/bundled/html5/jquery.history'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
 

@@ -71,7 +71,7 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
         $pageMainTitle = component.$html.find('.main-title'),
         $tabHelp = component.$html.find('.tab-help'),
         isMobile,
-        $mobileCloseHelpButton = $('<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>');
+        mobileCloseHelpButton = '<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>';
 
     // Check if active tab has help text
     if (activeTabSideBarContentHtml && activeTabSideBarContentHtml.length > 0) {
@@ -105,17 +105,17 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
             $tabHelp.html(activeTabSideBarContentHtml);
 
             // Add mobile help close button
-            $mobileCloseHelpButton.prependTo($tabHelp);
+            $(mobileCloseHelpButton).prependTo($tabHelp);
         }
 
         // Watch for window resizes
-        $(component.window).resize(function () {
+        $(component.window).on('resize', function () {
             isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
             if (isMobile) {
                 $tabHelp.html(activeTabSideBarContentHtml);
 
                 // Add mobile help close button
-                $mobileCloseHelpButton.prependTo($tabHelp);
+                $(mobileCloseHelpButton).prependTo($tabHelp);
             }
         });
     } else {
