@@ -64,7 +64,7 @@
 
         > .btn__group:first-child {
             border-right: 0;
-            border-radius: 4px;
+            border-radius: $border-radius;
 
             @include respond-min($screen-smaller) {
                 border-bottom-right-radius: 0;
@@ -73,7 +73,7 @@
             }
 
             &:not(:last-child) .btn.dropdown__toggle {
-                border-radius: 4px;
+                border-radius: $border-radius;
 
                 @include respond-min($screen-smaller) {
                     border-bottom-right-radius: 0;
@@ -84,7 +84,7 @@
 
         > .btn__group:last-child {
             border-left: 0;
-            border-radius: 4px;
+            border-radius: $border-radius;
 
             @include respond-min($screen-smaller) {
                 border-bottom-left-radius: 0;
@@ -93,7 +93,7 @@
             }
 
             &:not(:first-child) .btn.dropdown__toggle {
-                border-radius: 4px;
+                border-radius: $border-radius;
 
                 @include respond-min($screen-smaller) {
                     border-bottom-left-radius: 0;
@@ -124,7 +124,7 @@
         }
 
         > a.btn:first-child {
-            border-radius: 4px;
+            border-radius: $border-radius;
 
             @include respond-min($screen-smaller) {
                 border-bottom-right-radius: 0;
@@ -133,7 +133,7 @@
         }
 
         > a.btn:last-child {
-            border-radius: 4px;
+            border-radius: $border-radius;
 
             @include respond-min($screen-smaller) {
                 border-bottom-left-radius: 0;
