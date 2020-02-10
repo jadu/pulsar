@@ -1,8 +1,0 @@
-<div class="form__group">
-    <label for="foo" class="control__label hide">
-        My lovely label
-    </label>
-    <div class="controls">
-        <input id="foo" type="text" class="form__control">
-    </div>
-</div>

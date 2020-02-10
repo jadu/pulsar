@@ -113,16 +113,21 @@ name    | string | The name of this control
     {% if options.tag is defined and options.tag == 'span' %}
         {% set tag = 'span' %}
     {% endif %}
+    {% if options.tag is defined and options.tag == 'legend' %}
+        {% set tag = 'legend' %}
+    {% endif %}
 
     {% if options.label is not empty or options.guidance is not empty %}
         <{{ attributes(options
-            |exclude('container guidance guidance-container label required show-label tag ' ~ (tag == 'span' ? 'for'))
+            |exclude('container guidance guidance-container label required required-indicator show-label tag ' ~ (tag == 'span' ? 'for'))
             |defaults({
                 'class': 'control__label' ~ labelVisibilityClass|default
             }), {'tag': (tag)}) }}>
 
             {{- options.label|raw -}}
-            {{ util.required(options.required|default(false)) }}
+            {%- if options['required-indicator'] is not defined or options['required-indicator'] != false -%}
+                {{ util.required(options.required|default(false)) }}
+            {%- endif -%}
             {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}
         </{{ tag }}>
     {% endif %}
@@ -345,6 +350,10 @@ value       | string | Specifies the value of the input
 {% macro select2(options) %}
 {% spaceless %}
     {% import _self as elem %}
+
+    {% if options.label is defined and options.label is not empty %}
+        {% set options = options|merge({'data-label': options.label}) %}
+    {% endif %}
 
     {{ elem.select(options|merge({'class': 'select js-select2'})) }}
 

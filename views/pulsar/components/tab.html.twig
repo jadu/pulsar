@@ -44,33 +44,33 @@
 <div class="tab__container{% if _hasSettings == true %} has-settings{% endif %}{% if _hasSidebar == true %} has-sidebar{% endif %}">
 
     {% if _actions_left is not empty or _actions_right is not empty %}
-        <div class="actionsbar">
-            {% if _actions_left is not empty %}
-                <div class="float--left">
-                    {{ _actions_left|raw }}
-                </div>
-            {% endif %}
-            {% if _actions_right is not empty %}
-                <div class="float--right">
-                    {{ _actions_right|raw }}
-                </div>
-            {% endif %}
+    <section class="actionsbar" aria-label="page actions">
+        {% if _actions_left is not empty %}
+        <div class="float--left">
+            {{ _actions_left|raw }}
         </div>
+        {% endif %}
+        {% if _actions_right is not empty %}
+        <div class="float--right">
+            {{ _actions_right|raw }}
+        </div>
+        {% endif %}
+    </section>
     {% endif %}
 
     <div class="tab__inner">
         {% if _hasSidebar == true %}
-            <div class="tab__sidebar">
-                {{ _sidebar|raw }}
-            </div>
+        <aside class="tab__sidebar" aria-label="additional information">
+            {{ _sidebar|raw }}
+        </aside>
         {% endif %}
         {% if _hasSettings == true %}
-            <div class="tab__settings">
-                {{ _settings|raw }}
-            </div>
+        <section class="tab__settings" aria-label="settings">
+            {{ _settings|raw }}
+        </section>
         {% endif %}
-        <div class="tab__content">
+        <main class="tab__content" id="skip-target">
             {% block tab_content %}{% endblock %}
-        </div>
+        </main>
     </div>
 </div>

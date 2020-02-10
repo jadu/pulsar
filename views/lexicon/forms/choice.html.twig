@@ -86,6 +86,34 @@
     {{
         form.choice({
             'class': '',
+            'label': 'Required Choice',
+            'multiple': true,
+            'required': true,
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'one',
+                    'disabled': true
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'one'
+                }
+            ],
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': '',
             'label': 'Choice radios',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option',
@@ -112,7 +140,7 @@
 
     {{
         form.choice({
-            'id': 'choice-3',
+            'id': 'guid-' ~ random(),
             'class': '',
             'label': 'Choice as select2',
             'help': 'Happens automatically when >5 items',
@@ -154,7 +182,7 @@
 
     {{
         form.choice({
-            'id': 'choice-4',
+            'id': 'guid-' ~ random(),
             'class': '',
             'label': 'Choice as select2 with guidance',
             'guidance': 'Help text to give more information about expected input',
@@ -807,7 +835,19 @@
     }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

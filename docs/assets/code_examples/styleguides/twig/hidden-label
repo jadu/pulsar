@@ -1,7 +1,0 @@
-{{
-    form.text({
-        'id': 'foo',
-        'label': 'My lovely label',
-        'show-label': false
-    })
-}}

@@ -45,10 +45,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-
-    @include respond-min($screen-desktop) {
-        width: auto;
-    }
+    width: 100%;
 
     @include ie-lte(9) {
         height: 49px;
@@ -65,9 +62,7 @@
     &__item {
         display: inline-block;
         font-size: 1.1em;
-        line-height: 46px;
         margin-right: $padding-small-horizontal;
-        padding: 0 $gutter-width;
 
         &:last-of-type {
             margin-right: 0;
@@ -85,7 +80,10 @@
     }
 
     &__link {
+        display: inline-block;
         color: color(gray, light);
+        line-height: 46px;
+        padding: 0 $gutter-width;
         text-decoration: none;
 
         &:hover,
@@ -97,6 +95,10 @@
             .caret {
                 border-top-color: color(black);
             }
+        }
+
+        &:focus {
+            @include pulsar-inline-nav-link-focused;
         }
 
         &.is-disabled {
@@ -177,13 +179,10 @@
     border-radius: 4px;
     color: $nav-color-dark;
     display: inline-block;
-    float: left;
     line-height: normal;
     margin-top: 5px;
     padding: 8px 14px 6px;
     text-decoration: none;
-    -webkit-transition: all 200ms ease-in;
-    transition: all 200ms ease-in;
 
     @include respond-min($screen-desktop) {
         display: none;
@@ -196,8 +195,7 @@
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
-        outline-offset: 2px;
+        @include pulsar-outline-button-focused;
     }
 }
 
@@ -219,10 +217,6 @@
 .nav-link {
     color: color(white);
     text-decoration: none;
-
-    &:focus {
-        outline: 3px solid color(border, focus);
-    }
 }
 
 .nav-primary {
@@ -260,18 +254,20 @@
         padding: 16px 5px;
         position: relative;
         text-overflow: ellipsis;
-        transition: background-color 50ms linear, color 50ms linear;
-    }
+        transition: background-color 50ms linear, color 50ms linear, box-shadow 50ms linear, outline 50ms linear;
 
-    .nav-link:hover,
-    .nav-link:focus {
-        background-color: darken($nav-color-dark, 2%);
-        color: color(white);
-    }
+        &:hover {
+            background-color: darken($nav-color-dark, 2%);
+            color: color(white);
+        }
 
-    .nav-link.is-active:hover,
-    .nav-link.is-active:focus {
-        background-color: $nav-color-dark;
+        &:focus {
+            @include pulsar-link-focused;
+
+            .nav-link__icon {
+                color: color(black);
+            }
+        }
     }
 
     .nav-link__icon {
@@ -305,6 +301,11 @@
         transform-origin: 50% 0%;
         transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
         transition: opacity 300ms 100ms ease, transform 500ms ease;
+
+        @include prefers-reduced-motion() {
+            transition: none;
+            transform: none;
+        }
 
         @include respond-min($screen-desktop) {
             filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
@@ -343,6 +344,10 @@
         position: fixed;
     }
 
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
+
     // cope with presence of scrollbars in IE
     @include ie-lte(10) {
         width: 280px;
@@ -364,15 +369,20 @@
         border-bottom-left-radius: 8px;
         text-align: left;
 
-        &:hover,
-        &:focus {
+        &:hover {
             background-color: darken($nav-color-dark, 4%);
             color: color(white);
         }
 
+        &:focus {
+            @include pulsar-link-focused;
+        }
+
         &:active {
             background-color: color(white);
+            box-shadow: none;
             color: $nav-color-dark;
+            outline: none;
         }
     }
 }
@@ -395,6 +405,10 @@
     margin-left: 242px;
     transition: all 100ms linear;
     width: 0;
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
 }
 
 .nav-remove-search {
@@ -434,6 +448,10 @@
 
     &.is-active {
         background: none;
+    }
+
+    &:focus .jadu-logomark {
+        background: url($branding-navigation-focus), linear-gradient(transparent, transparent);
     }
 }
 
@@ -487,11 +505,10 @@
     &:hover i::before,
     &:focus i::before {
         content: '\f0a8';
-        color: color(white);
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
+        @include pulsar-button-focused;
     }
 
     .nav-secondary.is-open &,

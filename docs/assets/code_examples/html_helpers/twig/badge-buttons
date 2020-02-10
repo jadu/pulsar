@@ -1,6 +1,0 @@
-{{
-    html.button({
-        'label': 'Primary ' ~ html.badge({ 'value': '2' }),
-        'class': 'btn--primary'
-    })
-}}

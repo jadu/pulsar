@@ -3,9 +3,10 @@
 var $ = require('jquery'),
     TimePickerComponent = require('./TimePickerComponent');
 
-require('../libs/pikaday/plugins/pikaday.jquery');
-require('../libs/select2/dist/js/select2.min');
-require('../libs/spectrum/spectrum');
+require('pikaday'),
+require('pikaday/plugins/pikaday.jquery');
+require('spectrum-colorpicker');
+require('select2')();
 
 function PulsarFormComponent(html) {
     this.$html = html;
@@ -107,10 +108,15 @@ PulsarFormComponent.prototype.initDatePickers = function () {
         }
 
         // Initialize pikaday with the correct date format
-        $(element).pikaday({ format: defaultDateFormat });
+        $(element).pikaday({
+            format: defaultDateFormat
+        });
 
         // Initialize placeholder attribute based on the date format
         $(element).attr('placeholder', defaultDateFormat.toLowerCase());
+
+        // Switch off autocomplete to avoid it overlapping the date picker
+        $(element).attr('autocomplete', 'off');
     });
 }
 
@@ -159,6 +165,10 @@ PulsarFormComponent.prototype.initColourpickers = function () {
                 }
             }
         });
+
+        // Remove the text input inside the picker, which we don't use and 
+        // causes a11y issues if left in the markup
+        component.$html.find('.sp-input-container').remove();
 
         // changing the input should update the picker
         $input.on('change', function () {

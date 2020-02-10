@@ -6,7 +6,7 @@
     }
 
     &:checked + .toggle-switch-label {
-        background-color: color(success); //#1ABC9C
+        background-color: color(success);
         border-color: transparent;
         color: color(white);
 
@@ -31,8 +31,7 @@
     }
 
     &:focus + .toggle-switch-label {
-        outline: 3px solid color(border, focus);
-        outline-offset: 1px;
+        @include pulsar-toggle-focused;
     }
 
     &.toggle-switch--large + .toggle-switch-label {
@@ -49,7 +48,7 @@
 
 .toggle-switch-label {
     background-clip: padding-box;
-    background-color: color(grey, light);
+    background-color: color(grey);
     border-color: transparent;
     border-radius: 1.5em;
     color: color(white);
@@ -85,20 +84,15 @@
         color: color(white);
         content: '\F00C \F00D';
         font-family: 'FontAwesome';
-        font-size: 14px;
+        font-size: $font-size-base;
         left: 10px;
-        letter-spacing: 10px;
+        letter-spacing: 14.4px; // Magic number - for correct alignment
         line-height: 2;
         position: absolute;
         top: 0;
         transition: .3s;
         width: 100%;
         z-index: 1;
-
-        @include respond-min($screen-xsmall) {
-            font-size: 16px;
-            letter-spacing: 14.4px;
-        }
     }
 }
 

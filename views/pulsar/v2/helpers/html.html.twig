@@ -88,9 +88,9 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         html.button_dropdown({
             'id': 'actions_menu',
-            'label': items.label|default('Actions') ~ 
+            'label': items.label|default('Actions') ~
                 html.badge({
-                    'label': '0', 
+                    'label': '0',
                     'aria-label': '0 rows selected',
                     'class': 'label--primary js-bulk-actions-badge',
                     'style': 'display: none;'
@@ -440,6 +440,8 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         {% set caret = 0 %}
     {% endif %}
 
+    {% set dropdown_guid = 'guid-' ~ random() %}
+
     <div{{
         attributes({
             'class': 'btn__group drop' ~ options.direction|default('down') ~ (options.parent_class is defined ? ' ' ~ options.parent_class : '')
@@ -449,6 +451,9 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
             html.button(options
                 |exclude('direction parent_class placement items')
                 |defaults({
+                    'aria-haspopup': 'true',
+                    'aria-expanded': 'false',
+                    'aria-controls': dropdown_guid,
                     'caret': caret,
                     'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                     'data-toggle': 'dropdown'
@@ -459,6 +464,7 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         {{
             html.list({
                 'class': 'dropdown__menu pull-' ~ options.placement|default('left'),
+                'id': dropdown_guid,
                 'items': options.items|default
             })
         }}
@@ -1013,12 +1019,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <span{{
         attributes(options
+            |exclude('label')
             |defaults({
                 'class': 'loading'
             })
         )
     }}>
-        <i>Loading...</i>
+        <i>{{- options.label|default('Loading...') -}}</i>
     </span>
 
 {% endspaceless %}
@@ -1084,9 +1091,9 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.icon is defined and options.icon is not empty %}
         {{ html.icon(options.icon, { 'class': 'media__image', 'colour': options.icon_colour|default('#000') }) }}
     {% elseif options.image is defined and options.image is not empty %}
-        {% set alt = ' role="presentation"' %}
+        {% set alt = '' %}
         {% if options.image_alt is defined and options.image_alt is not empty %}
-            {% set alt = ' alt="' ~ options.image_alt ~ '"' %} 
+            {% set alt = ' alt="' ~ options.image_alt ~ '"' %}
         {% endif %}
         <img src="{{ options.image }}"{{ alt|default|raw }} class="media__image" />
     {% endif %}
@@ -1198,45 +1205,50 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set tag = 'section' %}
     {% set actions_placements = ['inline', 'left', 'center', 'right'] %}
+    {% set guid = 'guid-' ~ random() %}
 
-    <div{{
+    {% if options.title is not defined or options.title is empty %}
+        {% set tag = 'div' %}
+    {% endif %}
+
+    <{{ tag }}{{
         attributes(options
-            |exclude('actions actions_placement icon title body')
+            |exclude('actions actions_placement heading_level icon title body')
             |defaults({
                 'class': 'panel'
             })
         )
-    }}>
+    }}{% if tag == 'section' %} aria-labelledby="{{ guid }}"{% endif %}>
         {% if options.icon is defined and options.icon is not empty %}
             {{ html.icon(options.icon|default, { 'class': 'panel__icon' }) }}
         {% endif %}
 
         {% if options.title is defined and options.title is not empty %}
-        <div class="panel__title">
+        <{{ options.heading_level|default('h2') }} class="panel__title" id="{{ guid }}">
             {{ options.title|raw }}
-        </div>
+        </{{ options.heading_level|default('h2') }}>
         {% endif %}
-        <div class="panel__body">
+        <div class="panel__body"{% if 'panel--scroll' in options.class|default %} tabindex="0"{% endif %}>
             {{- options.body|raw -}}
-
-            {% if options.actions is defined %}
-                {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
-                    {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
-                {% endif %}
-
-                <div class="panel__actions{{ actions_class|default }}">
-                    {% for action in options.actions %}
-                        {% if action is iterable %}
-                            {{- html.button(action) -}}
-                        {% else %}
-                            {{- action|raw -}}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
         </div>
-    </div>
+        {% if options.actions is defined %}
+            {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
+                {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
+            {% endif %}
+
+            <div class="panel__actions{{ actions_class|default }}">
+                {% for action in options.actions %}
+                    {% if action is iterable %}
+                        {{- html.button(action) -}}
+                    {% else %}
+                        {{- action|raw -}}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </{{ tag }}>
 
 {% endspaceless %}
 {% endmacro %}
@@ -1424,15 +1436,15 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             {% set iconGlyph = 'check-circle' %}
         {% endif %}
     {% endif %}
-    
-    {{ 
+
+    {{
         html.icon(iconGlyph|default('times-rectangle'), options
             |exclude('state icon')
             |merge({
                 'class': 'status--icon is-' ~ state|default('active'),
                 'data-placement': options['data-placement']|default('top'),
                 'data-toggle': 'tooltips',
-            }) 
+            })
         )
     }}
 
@@ -1467,10 +1479,10 @@ All DropZone options should be prefixed with `data-dropzone-`, for example `data
 
 Option                              | Type      | Description
 ----------------------------------- | --------- | ----------------------------------------------------
-helperLabel                         | string    | The label for the default helper text popup
-helperTitle                         | string    | The heading for the default helper text popup
-helperContent                       | string    | The content for the default helper text popup
-helperContainer                     | string    | The selector for the container of the helper text popup
+data-helper-label                   | string    | The label for the default helper text popup
+data-helper-title                   | string    | The heading for the default helper text popup
+data-helper-content                 | string    | The content for the default helper text popup
+data-helper-container               | string    | The selector for the container of the helper text popup
 data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
 data-dropzone-max-size              | string    | The combined file size limit of a group of files
 data-dropzone-idle-timer-duration   | string    | The duration
@@ -1509,13 +1521,13 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
             <p class="dropzone__help"
                data-toggle="popover"
                data-autoclose="true"
-               data-title="{{ options.helperTitle|default('Helper title')|raw }}"
-               data-content="{{ options.helperContent|default('Helper content')|raw }}"
+               data-title="{{ options['data-helper-title']|default('Helper title')|raw }}"
+               data-content="{{ options['data-helper-content']|default('Helper content')|raw }}"
                data-html="true"
                data-placement="bottom"
-               data-container="{{ options.helperContainer|default('#' ~ options.id) }}"
+               data-container="{{ options['data-helper-container']|default('#' ~ options.id) }}"
             >
-                {{ html.icon('question-sign') }} {{ options.helperLabel|default('Only certain file types are allowed') }}
+                {{ html.icon('question-sign') }} {{ options['data-helper-label']|default('Only certain file types are allowed') }}
             </p>
         </div>
     {% endspaceless %}
@@ -1531,13 +1543,16 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
 
     {% if options.overflow is defined and options.overflow == 'collapse' %}
         {% set overflow = options.overflow %}
+        {% set options = options|merge({ 'data-overflow': overflow }) %}
     {% else %}
         {% set overflow = 'scroll' %}
-        {% set options = options|merge({ 'class': 'table--horizontal' }) %}
+        {% set options = options|merge({ 'class': 'table--horizontal', 'data-overflow': overflow }) %}
     {% endif %}
 
     {% if options.data is defined and options.data is not empty %}
-    <table{{ attributes(options|defaults({ 'class': 'table datatable table--full' })) }}>
+    <table{{ attributes(options
+                |exclude('overflow')
+                |defaults({ 'class': 'table datatable table--full' })) }} style="width: 100%">
         <thead>
             <tr>
                 {% if overflow == 'collapse' %}

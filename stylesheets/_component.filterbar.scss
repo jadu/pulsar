@@ -100,7 +100,7 @@
                 top: 10px;
             }
 
-            .btn {
+            > .btn {
                 display: block;
                 margin-top: $gutter-width / 2;
                 width: 100%;
@@ -149,15 +149,5 @@
         margin-bottom: $gutter-width / 2;
         vertical-align: top;
         width: auto;
-    }
-
-    &:hover,
-    &:active,
-    &:focus {
-        @include button-states('primary');
-
-        i {
-            color: color(white);
-        }
     }
 }

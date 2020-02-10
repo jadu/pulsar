@@ -83,6 +83,8 @@ a.dt-button {
 
     td,
     th {
+        overflow: hidden;
+
         &.sorting:hover,
         &.sorting_asc:hover,
         &.sorting_desc:hover {
@@ -97,9 +99,7 @@ a.dt-button {
         &.sorting:focus,
         &.sorting_asc:focus,
         &.sorting_desc:focus {
-            outline: 3px solid color(border, focus);
-            outline-offset: -3px;
-            z-index: 1;
+            @include pulsar-datatables-sorting-focused;
         }
 
         &.sorting::after,
@@ -214,9 +214,7 @@ th.sorting_disabled:hover {
         padding: 5px;
 
         &:focus {
-            border: 1px solid color(primary);
-            outline: 3px solid color(border, focus);
-            outline-offset: 2px;
+            @include pulsar-input-focused;
         }
     }
 }
@@ -249,16 +247,11 @@ th.sorting_disabled:hover {
 
 .dataTables_bottom {
     display: block;
-    margin-top: -1px;
     width: 100%;
 }
 
 .paginate_button {
     padding: 5px;
-
-    &:focus {
-        outline: 3px solid color(border, focus);
-    }
 }
 
 // scss-lint:enable SelectorFormat
@@ -320,6 +313,8 @@ th.sorting_disabled:hover {
 }
 
 .dataTables_bottom {
+    @include clear-fix;
+
     margin-bottom: 24px;
 }
 
@@ -329,6 +324,8 @@ th.sorting_disabled:hover {
     width: 100%;
 
     @include respond-min($screen-tablet) {
+        display: inline-block;
+        float: left;
         text-align: left;
         width: auto;
     }
@@ -340,27 +337,18 @@ th.sorting_disabled:hover {
         padding: 0 $gutter-width;
         text-align: center;
         text-decoration: none;
-    }
 
-    .paginate_button.previous::before {
-        content: '\f100';
-        font-family: 'FontAwesome';
-        padding-right: 5px;
-    }
-
-    .paginate_button.next::after {
-        content: '\f101';
-        font-family: 'FontAwesome';
-        padding-left: 5px;
+        &:focus {
+            @include pulsar-pagination-focused;
+        }
     }
 
     .paginate_button.current {
         background-color: darken(color(white), 10%);
-    }
 
-    .paginateButton.disabled,
-    .ellipsis {
-        color: color(text, disabled);
+        &:focus {
+            @include pulsar-pagination-focused;
+        }
     }
 }
 
@@ -368,17 +356,43 @@ th.sorting_disabled:hover {
     display: block;
     float: none;
     font-family: $font-size-small;
-    line-height: 42px;
-    margin-bottom: 10px;
+    margin: $margin-large-vertical 0;
     text-align: center;
     width: 100%;
 
     @include respond-min($screen-tablet) {
         display: inline-block;
         float: right;
-        margin-bottom: 0;
+        margin: $margin-small-vertical 0 $margin-small-horizontal;
         text-align: left;
         width: auto;
+    }
+
+    select {
+        appearance: none;
+        background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, color(gray, off-white), color(gray, off-white));
+        background-position: calc(100% - 10px) calc(1em - 2px), calc(100% - 5px) calc(1em - 2px), 100% 0;
+        background-size: 5px 5px, 5px 5px, 22px 100%;
+        background-repeat: no-repeat;
+        border: 1px solid $input-border;
+        border-radius: $input-border-radius;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 30px 0 $padding-base-horizontal;
+
+        // remove the arrow in IE10 & 11, modern browsers are taken care of
+        // by the `appearance` property
+        &::-ms-expand {
+            display: none;
+
+            @media screen and (-ms-high-contrast: active) {
+                display: block;
+            }
+        }
+    }
+
+    select:focus {
+        @include pulsar-input-focused;
     }
 }
 
@@ -392,8 +406,6 @@ th.sorting_disabled:hover {
 .datatable.table--horizontal .table-responsive {
     display: none;
 }
-
-// scss-lint:enable SelectorFormat
 
 .dtr-details {
     .dtr-title {
@@ -414,3 +426,10 @@ th.sorting_disabled:hover {
         }
     }
 }
+
+// Prevent interactive elements in the original head from taking focus on tab
+.dataTables_scrollBody thead tr[role="row"] {
+    visibility: collapse;
+}
+
+// scss-lint:enable SelectorFormat

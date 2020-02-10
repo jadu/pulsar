@@ -5,57 +5,11 @@
 
 {% block tab_content %}
 
-      <div class="lex-popovers">
-        <div class="popover top">
-          <div class="arrow"></div>
-          <h3 class="popover-title">Popover top</h3>
-          <div class="popover-content">
-            <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-          </div>
-        </div>
-
-        <div class="popover right popover--standout">
-          <div class="arrow"></div>
-          <h3 class="popover-title">Popover right with standout</h3>
-          <div class="popover-content">
-            <p>This popover also contains the <code>popover--standout</code> class to make it, well, stand out.</p>
-          </div>
-          <div class="popover-footer">
-            {{ html.button({ 'label': 'An Action' }) }}
-          </div>
-        </div>
-
-        <div class="popover bottom">
-          <div class="arrow"></div>
-          <h3 class="popover-title">Popover bottom</h3>
-          <div class="popover-content">
-            <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-          </div>
-        </div>
-
-        <div class="popover left popover--danger">
-          <div class="arrow"></div>
-          <h3 class="popover-title">Danger FIFA</h3>
-          <div class="popover-content">
-            <p>You need to get lots of yellow and red cards and kick some very big goals to win.</p>
-          </div>
-          <div class="popover-footer">
-            {{ html.button({ 'label': html.icon('thumbs-up-alt') ~ ' Kick Big Goal ', 'class': 'btn--danger' }) }}
-          </div>
-        </div>
-
-        <div class="popover left popover--scrolling">
-          <div class="arrow"></div>
-          <h3 class="popover-title">Scrolling popover</h3>
-          <div class="popover-content">
-            <img src="http://media.indiedb.com/images/games/1/10/9018/61708.gif" alt="Alternative Text" />
-          </div>
-          <div class="popover-footer">
-            {{ html.button({ 'label': html.icon('thumbs-up-alt') ~ ' Longcat is Long ' }) }}
-          </div>
-        </div>
-      </div>
-
       <p><button class="btn" data-toggle="popover" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">Toggle Demo Popover</button></p>
+
+      <p><button class="btn" data-toggle="popover" data-autoclose="true" title="Foo" data-content="Bar">Autoclose Popover</button></p>
+
+      <p><button class="btn" rel="clickover" title="Foo" data-content="Bar">Legacy Clickover</button></p>
+
 
 {% endblock tab_content %}

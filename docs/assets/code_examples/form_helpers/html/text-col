@@ -1,6 +1,0 @@
-<div class="form__group form__control--col-1">
-    <label for="inputTextWidth" class="control__label">First name</label>
-    <div class="controls">
-        <input id="inputTextWidth" name="inputTextWidth" type="text" class="form__control">
-    </div>
-</div>

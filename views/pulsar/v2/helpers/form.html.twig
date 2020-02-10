@@ -277,9 +277,10 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
             'inputs': [
                 elem.label({
                     'for': options.id|default,
-                    'guidance': options.guidance|default,
                     'label': label,
                     'required': options.required|default,
+                    'required-indicator': options['required-indicator']|default,
+                    'guidance': options.guidance|default,
                     'guidance-container': options['guidance-container']|default
                 })
             ]
@@ -469,37 +470,92 @@ show-label | bool   | Control visibility of the `<label>` element without affect
             ])
         %}
 
+        {{
+            form.group({
+                'parent': options
+                    |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
+                    |exclude('multiple')
+                    |defaults({'class': 'form-choice'}),
+                'inputs': inputs
+            })
+        }}
+
     {% else %}
 
-        {% for input_options in options.options %}
-            {% set input_options = input_options|merge({
-            'bare': true,
-            'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
-            'aria-describedby': describedByIds|join(' ')
-            }) %}
+        {% set groupClass = 'form__group form-choice' %}
 
-            {% if options.error is defined and options.error is not empty %}
-                {% set input_options = input_options|merge({ 'has_error': true }) %}
-            {% endif %}
+        {% if options.error_ids is defined and options.error_ids is not empty %}
+            {% set groupClass = groupClass ~ ' has-error' %}
+        {% endif %}
 
-            {% if options.multiple %}
-                {% set inputs = inputs|merge([ form.checkbox_inline(input_options) ]) %}
-            {% else %}
-                {% set inputs = inputs|merge([ form.radio_inline(input_options) ]) %}
-            {% endif %}
-        {% endfor %}
+        {% set showLabel = true %}
+        {% if options['show-label'] is defined and options['show-label'] is not null and options['show-label'] == false %}
+            {% set showLabel = false %}
+        {% endif %}
+
+        {% if options.bare is not defined or options.bare != true %}
+        <fieldset{{
+            attributes(options
+                |only('class id')
+                |defaults({ 'class': groupClass })
+            )
+        -}}>
+
+            {{
+                elem.label({
+                    'guidance': options.guidance|default,
+                    'label': options.label|default,
+                    'required': options.required|default,
+                    'guidance-container': options['guidance-container']|default,
+                    'tag': 'legend',
+                    'show-label': showLabel
+                })
+            }}
+
+            <div class="controls">
+        {% endif %}
+
+                {% for input_options in options.options %}
+
+                    {% set input_options = input_options|merge({
+                        'bare': true,
+                        'required-indicator': false,
+                        'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
+                        'aria-describedby': describedByIds|join(' ')
+                    }) %}
+
+                    {% if options.error is defined and options.error is not empty %}
+                        {% set input_options = input_options|merge({ 'has_error': true }) %}
+                    {% endif %}
+
+                    {% if options.required is defined and options.required == true %}
+                        {% set input_options = input_options|merge({ 'required': true }) %}
+                    {% endif %}
+
+                    {% if options.multiple %}
+                        {{ form.checkbox_inline(input_options) }}
+                    {% else %}
+                        {{ form.radio_inline(input_options) }}
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if options.error_ids is defined and options.error_ids is not empty %}
+                    {{ form.error({ 'value': options.error|default, 'error_ids':  options.error_ids }) }}
+                {% else %}
+                    {{ form.error({ 'value': options.error|default }) }}
+                {% endif %}
+
+                {% if options.help_id is defined and options.help_id is not empty %}
+                    {{ form.help({ 'value': options.help|default, 'id': options.help_id }) }}
+                {% endif %}
+
+        {% if options.bare is not defined or options.bare != true %}
+            </div>
+        </fieldset>
+        {% endif %}
 
     {% endif %}
-
-    {{
-        form.group({
-            'parent': options
-                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
-                |exclude('multiple')
-                |defaults({'class': 'form-choice'}),
-            'inputs': inputs
-        })
-    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -632,10 +688,13 @@ https://jadu.github.io/pulsar/form-helpers/compound
             {% set inputOptions = input|exclude('error label guidance-container required show-label')|merge({'aria-describedby': describedByIds|join(' ')}) %}
 
             {% if input.type == 'select' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.select(inputOptions|merge({'class': inputOptions.class|default ~ ' select'})) }}
             {% elseif input.type == 'select2' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.select2(inputOptions) }}
             {% elseif input.type == 'textarea' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.textarea(inputOptions) }}
             {% else %}
                 {{ elem.input(inputOptions) }}
@@ -710,7 +769,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.raw is defined and options.raw == true %}
         {% set input = options.value %}
     {% else %}
-        {% set input = elem.paragraph(options|exclude('bare class error guidance guidance-container help label show-label')) %}
+        {% set input = elem.paragraph(options|exclude('bare class error guidance guidance-container help label show-label disabled')) %}
     {% endif %}
 
     {{
@@ -869,11 +928,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
 
     {%
-        set options = options|default({})|merge({
-            'placeholder': options.placeholder|default('dd/mm/yyyy'),
-            'data-datepicker': options['data-datepicker']|default('true'),
-            'data-format': options.format|default('default')
-        })
+        set options = options|default({})
+            |merge({
+                'placeholder': options.placeholder|default('dd/mm/yyyy'),
+                'data-datepicker': options['data-datepicker']|default('true'),
+                'data-format': options.format|default('default')
+            })
+            |exclude('format')
     %}
 
     {% set options = modify_options(options|default({})) %}
@@ -1125,7 +1186,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options|only('bare class error error_ids guidance guidance-container help help_id id label required show-label'),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class guidance guidance-container error help label show-label')
+                    |exclude('bare class guidance guidance-container error help label show-label placeholder')
                     |defaults({'type': 'file'})
                     |merge({'class': 'file'})
                 )
@@ -1701,6 +1762,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
                     'for': options.id|default,
                     'label': label,
                     'required': options.required|default,
+                    'required-indicator': options['required-indicator']|default,
                     'guidance': options.guidance|default,
                     'guidance-container': options['guidance-container']|default
                 })
@@ -1837,7 +1899,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import _self as form %}
 
-    {{ form.text(options|defaults({'type': 'range', 'class': 'form-range'})) }}
+    {{ form.text(options
+        |exclude('required placeholder')
+        |defaults({'type': 'range', 'class': 'form-range'}))
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -1907,7 +1972,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'inputs': [
                 elem.select(
                     options
-					|exclude('bare class error guidance guidance-container help label show-label')
+					|exclude('bare class error guidance guidance-container help label show-label prepend_type append_type')
 					|merge({'class': 'select'})
                 )
             ]
@@ -1983,7 +2048,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options|only('append append_type bare class error error_ids guidance guidance-container help help_id id prepend prepend_type label required show-label'),
             'inputs': [
                 elem.select2(options
-                    |exclude('bare class error guidance guidance-container help label show-label')
+                    |exclude('bare class error guidance guidance-container help show-label prepend_type append_type')
                 )
             ]
         })
@@ -2367,6 +2432,7 @@ headings                | Array  | An array of heading config objects: { name: s
 max-entries             | int    | Maximum (inclusive) number of entries that can be added
 add-new-group-text      | string | The text content of the add new entry button
 add-another-group-text  | string | The text content of the add another new entry button
+actions-column-text     | string | The text content of the actions column header
 
 0#}
 {% macro repeater_start(options) %}
@@ -2374,6 +2440,7 @@ add-another-group-text  | string | The text content of the add another new entry
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import _self as form %}
 {% set headingLength = options.headings|length %}
+{% set values = options.values|default([]) %}
 {% spaceless %}
     <div
         class="repeater"
@@ -2382,23 +2449,26 @@ add-another-group-text  | string | The text content of the add another new entry
         data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
         data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
         data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
+        data-repeater-initial-state="{{ values|json_encode }}"
     >
         <div class="repeater__saved-data u-display-none" data-repeater-saved-entries-root></div>
         <div class="form__group">
             {{
                 elem.label({
                     'label': options.label,
-                    'required': options.required|default(false)
+                    'required': options.required|default(false),
+                    'tag': 'span'
                 })
             }}
             <div class="controls">
                 <table class="table table--full table--horizontal repeatable__table">
+                    <caption class="hide">{{ options.label|default }}</caption>
                     <thead class="repeater__preview-headings">
                         <tr>
                             {% for heading in options.headings %}
                                 <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
                             {% endfor %}
-                            <th rowspan="1" colspan="1"></th>
+                            <th rowspan="1" colspan="1" class="shrink-to-fit">{{ options['actions-column-text']|default('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="repeater__preview-data" data-repeater-preview-root>
@@ -2453,5 +2523,70 @@ add-another-group-text  | string | The text content of the add another new entry
             </div>
         </div>
     </div>
+{% endspaceless %}
+{% endmacro %}
+
+
+
+{# -----------------------------------------------------------------------------
+
+# Error summary
+
+Generate a error summary that contains a list of error messages relating to form inputs with errors. Each error message is a link to the respective invalid input.
+
+## Example usage
+
+```twig
+{{
+    form.error_summary({
+        'heading': 'There is a problem',
+        'errors': [
+            {
+                'label': 'Enter your first name',
+                'href': 'first-name'
+            },
+            {
+                'label': 'Enter your last name',
+                'href': 'last-name'
+            }
+        ]
+    })
+}}
+```
+
+## Options
+
+Option                  | Type   | Description
+-------------           | ------ | -------------------------------------------------------
+heading                 | string | The error summary heading, defaults to "There is a problem"
+errors                  | Array  | An array of error objects. Label should match input error text, href is the ID of the input
+
+#}
+{% macro error_summary(options) %}
+{% spaceless %}
+    {% if options.errors is defined and options.errors is not empty %}
+    <section{{
+        attributes(options
+            |exclude('aria-labelledby autofocus autocomplete disabled error form guidance heading help href label name placeholder required show-label tabindex value')
+            |defaults({
+                'class': 'error-summary',
+                'aria-labelledby': 'error-summary-title',
+                'data-error-summary': 'true',
+                'tabindex': '-1'
+            })
+        )
+    }}>
+        <h2 class="error-summary__title" id="error-summary-title">
+            {{- options.heading|default('There is a problem') -}}
+        </h2>
+        <ul class="error-summary__list">
+            {% for error in options.errors %}
+                <li class="error-summary__list-item">
+                    <a class="error-summary__list-link" href="#{{- error.href -}}">{{- error.label -}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}

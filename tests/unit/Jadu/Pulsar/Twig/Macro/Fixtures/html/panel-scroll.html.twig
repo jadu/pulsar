@@ -1,0 +1,10 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.panel({
+        'title': 'foo',
+        'class': 'panel--scroll',
+        'body': 'bar'
+    })
+}}
+{% endblock %}

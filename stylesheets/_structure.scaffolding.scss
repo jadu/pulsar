@@ -10,16 +10,11 @@ body {
 body {
   background-color: color(white);
   font-family: $font-family-base;
-  font-size: $font-size-medium;
-  line-height: $line-height-small;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
   margin: 0 0 ($line-height-base * 2);
   overflow-x: hidden;
   padding: 0;
-
-  @include respond-min($screen-phone) {
-    font-size: $font-size-base;
-    line-height: $line-height-base;
-  }
 }
 
 .container {
@@ -28,7 +23,7 @@ body {
   height: 100%;
   // Allow any content to clear the fixed footer
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
   width: 100%;
 
@@ -51,17 +46,13 @@ a {
   }
 
   &:focus {
-    color: color(link, focus);
-    outline: 3px solid color(border, focus);
+    @include pulsar-link-focused;
   }
-}
 
-a.disabled {
-  opacity: .5;
-  cursor: not-allowed !important;
-
-  &:hover {
-    cursor: not-allowed !important;
+  &.is-disabled,
+  &.disabled {
+    color: color(link, disabled);
+    cursor: not-allowed;
   }
 }
 
@@ -69,17 +60,16 @@ a.disabled {
   background-color: color(white);
   position: absolute;
   left: -9999px;
-  padding: 0 10px;
+  padding: 10px;
   text-align: left;
   top: -9999px;
-  z-index: $zindex-nav;
+  z-index: $zindex-popover;
 
   &:focus {
     display: block;
     left: 0;
-    outline-offset: -2px;
-    outline: 3px solid color(border, focus);
     position: relative;
+    text-decoration: underline;
     top: 0;
     width: 100%;
   }

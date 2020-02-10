@@ -1,8 +1,0 @@
-{{
-    form.text({
-        'label': 'First name',
-        'error': 'Please enter a name'
-        'id': 'inputTextError',
-        'name': 'inputTextError',
-    })
-}}

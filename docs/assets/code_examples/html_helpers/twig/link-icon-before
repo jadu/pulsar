@@ -1,6 +1,0 @@
-{{
-    html.link({
-        'href': '#top',
-        'label': html.icon('arrow-up') ~ ' Back to top'
-    })
-}}

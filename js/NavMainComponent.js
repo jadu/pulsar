@@ -8,6 +8,8 @@ function NavMainComponent ($html, rootWindow) {
     this.$window = $(rootWindow);
 };
 
+NavMainComponent.MISSING_ATTR_ERROR = 'A nav link must have a href or data-target attribute';
+
 /**
  * Initialise
  */
@@ -69,7 +71,7 @@ NavMainComponent.prototype.init = function () {
     });
 
     // Re-adjust nav items on window resize to calc if more button is needed 
-    component.$window.resize(function () {
+    component.$window.on('resize', function () {
         component.adjustNavItems();
         component.manageTabIndexes();
     });
@@ -94,6 +96,8 @@ NavMainComponent.prototype.init = function () {
         }
         else if ($self.attr('data-target')) {
             target = $self.attr('data-target');
+        } else {
+            throw new Error(NavMainComponent.MISSING_ATTR_ERROR);
         }
 
         if (target.indexOf('#') !== -1) {
@@ -139,11 +143,13 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     var component = this,
         target;
 
-    if ($linkClicked[0].hasAttribute('href')) {
+    if ($linkClicked.attr('href')) {
         target = $linkClicked.attr('href');
     }
-    else if ($linkClicked[0].hasAttribute('data-target')) {
+    else if ($linkClicked.attr('data-target')) {
         target = $linkClicked.attr('data-target');
+    } else {
+        throw new Error(NavMainComponent.MISSING_ATTR_ERROR)
     }
 
     // Close any previously open navs
@@ -409,7 +415,9 @@ NavMainComponent.prototype.moreIconClickHandler = function ($moreLink) {
     if (component.$navTertiary.find('.nav-list').hasClass('is-active')) {
         $moreLink.attr('aria-expanded', 'false');
         component.$navTertiary.removeClass('is-open');
+        component.$navQuaternary.removeClass('is-open');
         component.$navTertiary.find('.nav-list').removeClass('is-active');
+        component.$navQuaternary.find('.nav-list').removeClass('is-active');
     } else {
         $moreLink.attr('aria-expanded', 'true');
 

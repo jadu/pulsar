@@ -12,7 +12,7 @@
         z-index: $zindex-flash;
     }
 
-        &.is-sticky {
+    &.is-sticky {
         display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
     }
 
@@ -23,6 +23,11 @@
             margin-right: $gutter-width / 2;
         }
     }
+}
+
+.flash h2 {
+    display: inline;
+    font-size: $font-size-base;
 }
 
 // Make sure sticky flashes appear over the breadcrumb
@@ -42,7 +47,7 @@
         text-decoration: underline;
 
         &:focus {
-            color: color(white);
+            @include pulsar-link-focused;
         }
     }
 }
@@ -62,6 +67,10 @@
             a:visited {
                 color: $state-color-alt;
             }
+
+            a:focus {
+                @include pulsar-link-focused;
+            }
         }
     }
 }
@@ -78,27 +87,32 @@
         float: right;
         font-size: 1em;
         margin-left: $gutter-width / 4;
-        margin-right: -($gutter-width / 2);
+        margin-right: -$gutter-width;
         opacity: .9;
         text-decoration: none;
 
         @include respond-min($screen-phone) {
             margin-left: $gutter-width / 2;
-            margin-right: -$gutter-width;
         }
 
         &:hover {
             opacity: 1;
         }
+
+        &:focus {
+            @include pulsar-link-focused;
+        }
+
+        i {
+            margin-right: 0;
+            padding: 0 $padding-base;
+        }
     }
 }
 
 .flash-container {
-    clear: both;
-    top: -5px;
-    left: 0;
-    margin-bottom: 0;
-    position: relative;
-    width: auto;
+    left: $nav-primary-width;
+    position: fixed;
+    right: 0;
     z-index: $zindex-flash;
 }
