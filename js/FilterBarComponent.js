@@ -41,10 +41,10 @@ function showFilterBar (component, $filterbar) {
         e.preventDefault();
 
         // Show add button if hidden by clear
-        $addFilterButton.removeClass('display--none');
+        $addFilterButton.removeClass('u-display-none');
 
         // Show filter bar
-        $filterbar.removeClass('display--none');
+        $filterbar.removeClass('u-display-none');
     });
 }
 
@@ -79,10 +79,10 @@ function createFilterListButton ($filterbar) {
 function hideFormControls ($filterbar) {
     $filterbar
         .find('.form__group')
-        .addClass('display--none');
+        .addClass('u-display-none');
     $filterbar
         .find('.form__actions')
-        .addClass('display--none');
+        .addClass('u-display-none');
 }
 
 function moveFormActions ($filterbar) {
@@ -90,7 +90,7 @@ function moveFormActions ($filterbar) {
         $fieldset = $filterbar.find('fieldset');
 
     $formActions.appendTo($fieldset);
-    $formActions.addClass('display--none');
+    $formActions.addClass('u-display-none');
 }
 
 function showAddFilterPopover ($filterbar) {
@@ -155,7 +155,7 @@ function showAddFilterPopover ($filterbar) {
 
             // Hide the control label
             $formGroup
-                .removeClass('display--none')
+                .removeClass('u-display-none')
                 .find('.control__label')
                     .addClass('hide');
 
@@ -271,7 +271,7 @@ function addFilter ($filterbar) {
             .addClass('label--inverse');
 
         // Hide the field
-        $formGroup.addClass('display--none');
+        $formGroup.addClass('u-display-none');
 
         // Move the form group out of the popover and back into the filterbar form
         $formGroup.insertAfter($legend);
@@ -325,7 +325,7 @@ function removeFilter ($filterbar) {
         }
 
         // Hide the field
-        $formGroup.addClass('display--none');
+        $formGroup.addClass('u-display-none');
 
         // Move the form group out of the popover and back into the form
         $formGroup.insertAfter($legend);
@@ -359,10 +359,10 @@ function filterListButtonVisibility ($filterbar) {
     addFilterList = $addFilterButton.attr('data-content');
     $addFilterList = $(addFilterList);
 
-    if ($addFilterList.find('li:not(.display--none)').length) {
-        $addFilterButton.removeClass('display--none');
+    if ($addFilterList.find('li:not(.u-display-none)').length) {
+        $addFilterButton.removeClass('u-display-none');
     } else {
-        $addFilterButton.addClass('display--none');
+        $addFilterButton.addClass('u-display-none');
     }
 }
 
@@ -370,9 +370,9 @@ function formActionsVisibility ($filterbar) {
     var $formActions = $filterbar.find('.form__actions');
 
     if ($filterbar.find('.label').length) {
-        $formActions.removeClass('display--none');
+        $formActions.removeClass('u-display-none');
     } else {
-        $formActions.addClass('display--none');
+        $formActions.addClass('u-display-none');
     }
 }
 
@@ -384,7 +384,7 @@ function clearAllFilters ($filterbar) {
         e.preventDefault();
 
         // Close filter bar
-        $filterbar.addClass('display--none');
+        $filterbar.addClass('u-display-none');
 
         // Remove all labels
         $filterbar.find('.label').remove();
@@ -412,11 +412,11 @@ function updateFilterList ($addFilterButton, filterId, visibility) {
     }
 
     if (visibility === 'show') {
-        $filterItemParent.removeClass('display--none');
+        $filterItemParent.removeClass('u-display-none');
     } else if (visibility === 'hide') {
-        $filterItemParent.addClass('display--none');
+        $filterItemParent.addClass('u-display-none');
     } else if (visibility === 'reset') {
-        $addFilterList.find('li.display--none').removeClass('display--none');
+        $addFilterList.find('li.u-display-none').removeClass('u-display-none');
     }
 
     $addFilterButton.attr('data-content', $addFilterList[0].outerHTML);
@@ -464,12 +464,12 @@ function populateFilterList ($filterbar) {
             updateFilterList($addFilterButton, filterId, 'hide');
 
             // Show the filterbar
-            $filterbar.removeClass('display--none');
+            $filterbar.removeClass('u-display-none');
         }
 
         // Don't show add filter button if all filters have been loaded
         if ($formGroups.length === hiddenFormGroups) {
-            $addFilterButton.addClass('display--none');
+            $addFilterButton.addClass('u-display-none');
         }
     });
 }
