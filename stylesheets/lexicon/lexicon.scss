@@ -11,3 +11,14 @@
 .lex-wrapper {
     padding: 20px;
 }
+
+// Used in reports pattern UI
+// style to show chart container in lieu of an actual working chart
+.lexicon-report-chart {
+    border: 1px dashed #ccc;
+    background-color: #efefef;
+    color: #ccc;
+    line-height: 240px;
+    text-align: center;
+    width: 100%;
+}
