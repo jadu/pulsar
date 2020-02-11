@@ -27,8 +27,8 @@
     }
 }
 
-// Hide row selection checkboxes if the DT is using the data-select="false" attribute but the developer is not using 
-// the html.datatable helper and has left the checkboxes in the markup.
+// Hide row selection checkboxes if the DT is using the data-select="false" attribute but the developer is not using
+// the html.datatable helper and has left the checkboxes in the markup
 .dt-disable-selection {
     clear: both;
 
