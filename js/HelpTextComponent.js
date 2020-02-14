@@ -7,7 +7,7 @@ function HelpTextComponent(html, window, document) {
     this.$html = html;
     this.window = window;
     this.$document = $(document);
-};
+}
 
 HelpTextComponent.prototype.init = function () {
     var component = this,
@@ -144,7 +144,7 @@ HelpTextComponent.prototype.handleFocusOut = function (e) {
                 component.toggleHelpSidebar();
             }
         }, 1);
-    };
+    }
 }
 
 module.exports = HelpTextComponent;
