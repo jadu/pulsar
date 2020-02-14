@@ -11,18 +11,19 @@ function HelpTextComponent(html, window, document) {
 
 HelpTextComponent.prototype.init = function () {
     var component = this,
-        $tabHelpContainer = component.$html.find('.tab-help-container'),
-        $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container');
+        $tabHelpContainer = component.$html.find('.tab-help-container');
 
     // Visually hide sidebar so you can't tab to it with keyboard/screenreaders
     $tabHelpContainer.addClass('hide');
 
     // Help toggle click bind
-    component.$html.on('touchstart click', '.js-show-page-help', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        component.toggleHelpSidebar();
-    });
+    component.$html
+        .on('touchstart click', '.js-show-page-help', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            component.toggleHelpSidebar();
+        })
+        .on('focusout', '.tab-help-container', (event) => component.handleFocusOut(event));
 
     // Close help button
     $tabHelpContainer.on('touchstart click', '.js-close-page-help', function(e) {
@@ -55,11 +56,17 @@ HelpTextComponent.prototype.toggleHelpSidebar = function () {
         } else {
             $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
                 $tabHelpContainer.addClass('hide');
+                component.$html.find('.js-show-page-help').trigger('focus');
             });
         }
     } else {
         $tabHelpContainer.removeClass('hide');
         component.$html.addClass('open-help');
+
+        // Jump focus to the help container
+        $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+            $tabHelpContainer.find('.js-close-page-help').trigger('focus');
+        });
     }
 };
 
@@ -122,5 +129,20 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
         $activeTabContainer.removeClass('has-sidebar');
     }
 };
+
+/**
+ * Return focus to the open help control when focus leaves the help container
+ */
+HelpTextComponent.prototype.handleFocusOut = function () {
+    var component = this;
+
+    // Using timeout due to :focus return body when an element loses focus before new element gains focus
+    setTimeout(() => {
+        const $elementWithFocus = $(':focus');
+        if (!$elementWithFocus.closest('.tab-help').length) {
+            component.toggleHelpSidebar();
+        }
+    }, 1);
+}
 
 module.exports = HelpTextComponent;
