@@ -133,16 +133,18 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
 /**
  * Return focus to the open help control when focus leaves the help container
  */
-HelpTextComponent.prototype.handleFocusOut = function () {
+HelpTextComponent.prototype.handleFocusOut = function (e) {
     var component = this;
-
-    // Using timeout due to :focus return body when an element loses focus before new element gains focus
-    setTimeout(() => {
-        const $elementWithFocus = $(':focus');
-        if (!$elementWithFocus.closest('.tab-help').length) {
-            component.toggleHelpSidebar();
-        }
-    }, 1);
+    
+    if (component.$html.hasClass('open-help')) {
+        // Using timeout due to :focus return body when an element loses focus before new element gains focus
+        setTimeout(() => {
+            const $elementWithFocus = $(':focus');
+            if (!$elementWithFocus.closest('.tab-help').length) {
+                component.toggleHelpSidebar();
+            }
+        }, 1);
+    };
 }
 
 module.exports = HelpTextComponent;
