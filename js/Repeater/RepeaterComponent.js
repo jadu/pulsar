@@ -225,6 +225,10 @@ class Repeater {
             // Update add new group text
             this.queryService.get('add-group-button')
                 .innerText = this.repeater.getAttribute(this.queryService.getAttr('add-another-group-text'));
+        } else {
+            $(this.queryService.get('add-group-button'))
+                .addClass('disabled')
+                .attr('disabled', true);
         }
 
         // Re-initialise select2 instances in the "edit" and "new group" form
