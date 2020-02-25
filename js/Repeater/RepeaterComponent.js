@@ -105,9 +105,21 @@ class Repeater {
      * @param initialState
      */
     parseInitialState (initialState) {
-        initialState.forEach(state => {
+        initialState.forEach((state, index) => {
             state.forEach(({ name, value }) => {
-                $(this.repeater).find(`[data-repeater-name="${name}"]`).val(value);
+                // Grab the input from the "add new group" form
+                let $input = $(this.repeater)
+                    .find(`[data-repeater-name="${name}"]`);
+
+                // If we get multiple inputs we are parsing multiple state
+                // entries, therefore we need to ensure we're getting the
+                // input at the correct index as there will be multiple inputs
+                // with the same data-repeater-name at this point
+                if ($input.length > 1) {
+                    $input = $input.eq(index);
+                }
+
+                $input.val(value);
             });
 
             this.handleSaveGroup();
