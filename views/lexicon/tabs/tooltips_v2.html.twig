@@ -1,0 +1,407 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Button with tooltip</h2>
+
+        <button
+            type="button"
+            class="btn"
+            data-tippy-content="Hey, this is a tooltip"
+        >Save</button>
+    </div>
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Link with tooltip</h2>
+
+        <a
+            href="#0"
+            class="btn"
+            data-tippy-content="Hey, before you go"
+        >Go somewhere</a>
+    </div>
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Button with tooltip positioned right</h2>
+
+        <button
+            type="button"
+            class="btn"
+            data-tippy-content="Hey, this is a tooltip"
+            data-tippy-placement="right"
+        >Save</button>
+    </div>
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Button with tooltip positioned bottom</h2>
+
+        <button
+            type="button"
+            class="btn"
+            data-tippy-content="Hey, this is a tooltip"
+            data-tippy-placement="bottom"
+        >Save</button>
+    </div>
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Button with tooltip positioned left</h2>
+
+        <p>Note will only display left when there is enough room</p>
+
+        <p class="centered">
+            <button
+                type="button"
+                class="btn"
+                data-tippy-content="Hey, this is a tooltip"
+                data-tippy-placement="left"
+            >Save</button>
+        </p>
+    </div>
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Button with tooltip inside overflow hidden</h2>
+
+        <div style="overflow: hidden; display: inline-block;">
+            <button
+                type="button"
+                class="btn"
+                data-tippy-content="Hey, this is a tooltip"
+            >Save</button>
+        </div>
+    </div>
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Button with tooltip containing markup (allowed by data attr)</h2>
+
+        <button
+            type="button"
+            class="btn"
+            data-tippy-content="Hey <br/> this is a tooltip <br/> <span class='label'>label</span>"
+            data-tippy-allowHTML="true"
+        >Save</button>
+    </div>
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Form elements with tooltips</h2>
+
+        {{
+            form.create()
+        }}
+
+        {{
+            form.text({
+                'id': 'guid-' ~ random(),
+                'label': 'Text',
+                'data-tippy-content': 'Hey, this is a tooltip on a text input'
+            })
+        }}
+
+        {{
+            form.text({
+                'id': 'guid-' ~ random(),
+                'label': 'Text',
+                'data-tippy-content': 'Hey, this is a tooltip on a text input',
+                'help': 'Some help text'
+            })
+        }}
+
+        {{
+            form.textarea({
+                'id': 'guid-' ~ random(),
+                'label': 'Textarea',
+                'data-tippy-content': 'Hey, this is a tooltip on a textarea'
+            })
+        }}
+
+        {{
+            form.password({
+                'id': 'guid-' ~ random(),
+                'label': 'Password',
+                'data-tippy-content': 'Hey, this is a tooltip on a password'
+            })
+        }}
+
+        {{
+            form.date({
+                'id': 'guid-' ~ random(),
+                'label': 'Date',
+                'data-tippy-content': 'Hey, this is a tooltip on a date'
+            })
+        }}
+
+        {{
+            form.time({
+                'id': 'guid-' ~ random(),
+                'label': 'Time',
+                'data-tippy-content': 'Hey, this is a tooltip on a time'
+            })
+        }}
+
+        {{
+            form.file({
+                'id': 'guid-' ~ random(),
+                'label': 'File',
+                'data-tippy-content': 'Hey, this is a tooltip on a file'
+            })
+        }}
+
+        {{
+            form.color({
+                'id': 'guid-' ~ random(),
+                'label': 'Color',
+                'data-tippy-content': 'Hey, this is a tooltip on a colour picker'
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'Select',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ],
+                'data-tippy-content': 'Hey, this is a tooltip on a select'
+            })
+        }}
+
+        {{
+            form.select2({
+                'label': 'Select2',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ],
+                'data-tippy-content': 'Hey, this is a tooltip on a select2'
+            })
+        }}
+
+        {{
+            form.compound({
+                'label': 'Compound',
+                'id': 'guid-' ~ random(),
+                'inputs': [
+                    {
+                        'class': 'form__control-col--1',
+                        'label': 'Value',
+                        'id': 'value-0',
+                        'maxlength': '3',
+                        'show-label': false,
+                        'type': 'text',
+                        'data-tippy-content': 'Hey, this is a tooltip'
+                    },
+                    {
+                        'class': 'u-width-auto',
+                        'label': 'Unit of time',
+                        'id': 'unit-0',
+                        'show-label': false,
+                        'type': 'select',
+                        'options': [
+                            {
+                                'label': 'Seconds',
+                                'value': 'sec'
+                            },
+                            {
+                                'label': 'Minutes',
+                                'value': 'min'
+                            }
+                        ]
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'id': 'guid-' ~ random(),
+                'label': 'Toggle switch',
+                'data-tippy-content': 'Hey, this is a tooltip on a toggle'
+            })
+        }}
+
+        {{
+            form.range({
+                'id': 'guid-' ~ random(),
+                'label': 'Range',
+                'data-tippy-content': 'Hey, this is a tooltip on a range'
+            })
+        }}
+
+        {{ form.fieldset_start({ 'legend': 'Checkboxes and radios' }) }}
+
+        {{
+            form.checkbox({
+                'id': 'guid-' ~ random(),
+                'label': 'Checkbox',
+                'data-tippy-content': 'Hey, this is a tooltip on a checkbox'
+            })
+        }}
+
+        {{
+            form.radio({
+                'id': 'guid-' ~ random(),
+                'label': 'Radio',
+                'data-tippy-content': 'Hey, this is a tooltip on a radio'
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice checkbox',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Checkbox One',
+                        'value': 'one',
+                        'name': 'one',
+                        'checked': true,
+                        'data-tippy-content': 'Hey, this is a tooltip on a choice'
+                    },
+                    {
+                        'label': 'Checkbox Two',
+                        'value': 'two',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Checkbox Three',
+                        'value': 'three',
+                        'name': 'one'
+                    }
+                ],
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice radio',
+                'multiple': true,
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Radio One',
+                        'value': 'one',
+                        'name': 'one',
+                        'data-tippy-content': 'Hey, this is a tooltip on a choice'
+                    },
+                    {
+                        'label': 'Radio Two',
+                        'value': 'two',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Radio Three',
+                        'value': 'three',
+                        'name': 'one'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice as select2',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Select2 One',
+                        'value': 'one',
+                        'name': 'three',
+                        'data-tippy-content': 'Hey, this is a tooltip on a choice'
+                    },
+                    {
+                        'label': 'Select2 Two',
+                        'value': 'two',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Three',
+                        'value': 'three',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Four',
+                        'value': 'four',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Five',
+                        'value': 'five',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Six',
+                        'value': 'six',
+                        'name': 'three'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'class': 'choice--block',
+                'label': 'Choice block radios',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': html.icon('bold') ~ ' Bold',
+                        'value': 'bold',
+                        'name': 'five',
+                        'checked': true,
+                        'data-tippy-content': 'Hey, this is a tooltip on a choice'
+                    },
+                    {
+                        'label': html.icon('italic') ~ ' Italic',
+                        'value': 'italic',
+                        'name': 'five'
+                    },
+                    {
+                        'label': html.icon('underline') ~ ' Underline',
+                        'value': 'underline',
+                        'name': 'five'
+                    },
+                ]
+            })
+        }}
+
+        {{ form.fieldset_end() }}
+
+        {{
+            form.end({
+                'actions': [
+                    html.button({
+                        'label': 'Save',
+                        'class': 'btn--primary',
+                        'type': 'submit'
+                    }),
+                    html.button({
+                        'label': 'Cancel',
+                        'class': 'btn--naked'
+                    })
+                ]
+            })
+        }}
+    </div>
+
+
+
+
+
+
+
+
+{% endblock tab_content %}

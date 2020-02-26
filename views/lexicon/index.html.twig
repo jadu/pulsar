@@ -53,6 +53,9 @@
 {% set tab_metadata %}
     {% include 'lexicon/tabs/metadata.html.twig' %}
 {% endset %}
+{% set tooltips_v2 %}
+    {% include 'lexicon/tabs/tooltips_v2.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
@@ -137,6 +140,12 @@
           "id"    : "tooltips",
           "label" : "Tooltips",
           "src"   : tab_tooltips
+        },
+        {
+          "id"    : "tooltips_v2",
+          "label" : "Tooltips v2",
+          "src"   : tooltips_v2,
+          "active": true
         }
     ]
 %}
