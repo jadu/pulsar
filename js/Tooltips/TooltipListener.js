@@ -39,7 +39,7 @@ class TooltipListener {
             // Interactive allows us the hover over the tooltip contents, needed for WCAG 1.4.13: Content on Hover or Focus
             // unfortunately, adding aria: 'describedby' here doesn't work as the interactive option removes it and replaces
             // with aria-expanded see https://github.com/atomiks/tippyjs/issues/709
-            // therefore we manually handle the toltip aria-describedby attribute in the onMount and onHide lifecycle hooks
+            // therefore we manually handle the tooltip aria-describedby attribute in the onMount and onHide lifecycle hooks
             interactive: true,
 
             // Custom methods, also required for WCAG compliance
