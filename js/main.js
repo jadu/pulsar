@@ -53,7 +53,8 @@
         pulsar.tableDetail.init();
         pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
         pulsar.repeaterManager.init();
-        pulsar.tooltipFactory($html);
+        pulsar.tooltipListener = pulsar.tooltipFactory($html);
+        pulsar.tooltipListener.init();
 
         // jsTree
         $('#container').jstree({

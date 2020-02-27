@@ -9,9 +9,7 @@ const TooltipListener = require('./TooltipListener');
  * @param {jQuery} $html - jQuery wrapper of the html node
  */
 function tooltipFactory ($html) {
-    const tooltipListener = new TooltipListener($html, tippy, hideAll);
-
-    tooltipListener.init();
+    return new TooltipListener($html, tippy, hideAll);
 }
 
 module.exports = tooltipFactory;

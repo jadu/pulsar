@@ -11,8 +11,8 @@ describe('TooltipListener', () => {
     let keyDownEvent = $.Event('keydown');
 
     beforeEach(() => {
-        $html = $('html');
-        $body = $('body');
+        $html = $('<div></div>');
+        $body = $('<div></div>').appendTo($html);
         $button = $('<button id="button-1" data-tippy-content="Tooltip content">Button</button>').appendTo($body);
 
         tippyStub = sinon.stub();
