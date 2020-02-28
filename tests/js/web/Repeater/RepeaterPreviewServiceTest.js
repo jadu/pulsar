@@ -1,27 +1,21 @@
 const RepeaterPreviewService = require('../../../../js/Repeater/RepeaterPreviewService');
-const QueryService = require('../../../../js/utilities/QueryService');
 const ActiveFunctionService = require('../../../../js/utilities/ActiveFunctionService');
 const InputValueService = require('../../../../js/Repeater/InputValueService');
 const $ = require('jquery');
 
 describe('RepeaterPreviewService', () => {
     let repeaterPreviewService;
-    let queryServiceStub;
     let activeFunctionServiceStub;
     let inputValueServiceStub;
 
     beforeEach(() => {
-        queryServiceStub = sinon.createStubInstance(QueryService);
         activeFunctionServiceStub = sinon.createStubInstance(ActiveFunctionService);
         inputValueServiceStub = sinon.createStubInstance(InputValueService);
         repeaterPreviewService = new RepeaterPreviewService(
-            queryServiceStub,
             activeFunctionServiceStub,
             inputValueServiceStub
         );
 
-        queryServiceStub.getAttr.withArgs('preview-heading').returns('data-repeater-for-name');
-        queryServiceStub.getAttr.withArgs('preview-update-id').returns('data-repeater-update-id');
         inputValueServiceStub.printValue.returns('printed value');
     });
 

@@ -1,15 +1,10 @@
 const RepeaterPlaceholderService = require('../../../../js/Repeater/RepeaterPlaceholderService');
-const QueryService = require('../../../../js/utilities/QueryService');
 
 describe('RepeaterPlaceholderService', () => {
     let repeaterPlaceholderService;
-    let queryServiceStub;
 
     beforeEach(() => {
-        queryServiceStub = sinon.createStubInstance(QueryService);
-        repeaterPlaceholderService = new RepeaterPlaceholderService(
-            queryServiceStub
-        );
+        repeaterPlaceholderService = new RepeaterPlaceholderService();
     });
 
     describe('add', () => {
@@ -25,8 +20,6 @@ describe('RepeaterPlaceholderService', () => {
                 </div>
             `);
             $placeholder = $('<div id="placeholder"></div>');
-            queryServiceStub.get.withArgs('preview-root').returns($html.find('#preview-root')[0]);
-            queryServiceStub.get.withArgs('preview-placeholder').returns($placeholder[0]);
         });
 
         it('should insert the placeholder as the first child element of the preview root', () => {

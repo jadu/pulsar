@@ -1,22 +1,16 @@
 const InputReplacementService = require('../../../../js/Repeater/InputReplacementService');
 const PulsarFormComponent = require('../../../../js/PulsarFormComponent');
-const QueryService = require('../../../../js/utilities/QueryService');
 
 describe('InputReplacementService', () => {
    let inputReplacementService;
    let pulsarFormComponentStub;
-   let queryServiceStub;
 
    beforeEach(() => {
         pulsarFormComponentStub = sinon.createStubInstance(PulsarFormComponent);
-        queryServiceStub = sinon.createStubInstance(QueryService);
         inputReplacementService = new InputReplacementService(
             pulsarFormComponentStub,
-            queryServiceStub
         );
 
-        queryServiceStub.getAttr.withArgs('pseudo-radio-id').returns('data-pseudo-radio-id');
-        queryServiceStub.getAttr.withArgs('select2-data').returns('data-select2');
    });
 
    describe('replace', () => {

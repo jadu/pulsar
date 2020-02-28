@@ -1,23 +1,18 @@
 const InputCloneService = require('../../../../js/Repeater/InputCloneService');
 const PulsarFormComponent = require('../../../../js/PulsarFormComponent');
-const QueryService = require('../../../../js/utilities/QueryService');
 const $ = require('jquery');
 
 describe('InputCloneService', () => {
     let inputCloneService;
     let pulsarFormComponentStub;
-    let queryServiceStub;
 
     beforeEach(() => {
         pulsarFormComponentStub = sinon.createStubInstance(PulsarFormComponent);
-        queryServiceStub = sinon.createStubInstance(QueryService);
         inputCloneService = new InputCloneService(
             pulsarFormComponentStub,
-            queryServiceStub
         );
 
         $.fn.select2 = sinon.stub();
-        queryServiceStub.getAttr.withArgs('select2-data').returns('data-select2-data');
     });
 
     afterEach(() => {

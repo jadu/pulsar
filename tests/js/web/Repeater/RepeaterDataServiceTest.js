@@ -1,31 +1,23 @@
 const RepeaterDataService = require('../../../../js/Repeater/RepeaterDataService');
-const QueryService = require('../../../../js/utilities/QueryService');
 const InputCloneService = require('../../../../js/Repeater/InputCloneService');
 const InputValueService = require('../../../../js/Repeater/InputValueService');
 const UniqueIdService = require('../../../../js/utilities/UniqueIdService');
 
 describe('RepeaterDataService', () => {
     let repeaterDataService;
-    let queryServiceStub;
     let inputCloneServiceStub;
     let inputValueServiceStub;
     let uniqueIdServiceStub;
 
     beforeEach(() => {
-        queryServiceStub = sinon.createStubInstance(QueryService);
         inputCloneServiceStub = sinon.createStubInstance(InputCloneService);
         inputValueServiceStub = sinon.createStubInstance(InputValueService);
         uniqueIdServiceStub = sinon.createStubInstance(UniqueIdService);
         repeaterDataService = new RepeaterDataService(
-            queryServiceStub,
             inputCloneServiceStub,
             inputValueServiceStub,
             uniqueIdServiceStub
         );
-
-        queryServiceStub.getQuery.withArgs('name').returns('[data-name]');
-        queryServiceStub.getAttr.withArgs('name').returns('data-name');
-        queryServiceStub.getAttr.withArgs('saved-entry-id').returns('data-saved-entry-id');
     });
 
     describe('create', () => {
