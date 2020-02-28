@@ -84,19 +84,12 @@ class RepeaterPreviewService {
     }
 
     /**
-     * Toggle disabled state of preview UI, if a preview ID is not passed in
-     * we'll disabled all preview UI elements
-     * @param {string} previewId
+     * Toggle the disabled state of preview UI buttons
      */
-    toggleUi (previewId) {
+    toggleUi () {
         const $preview = $(this.root).find('[data-repeater-preview-id]');
 
         $preview.toArray()
-            .filter(preview => {
-                return previewId !== undefined ?
-                    parseInt(preview.getAttribute('data-repeater-preview-id'), 10) !== previewId :
-                    true;
-            })
             .forEach(preview => {
                 let $previewUi = $(preview).find('[data-repeater-preview-ui]');
                 $previewUi.toggleClass('disabled');
