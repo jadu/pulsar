@@ -387,9 +387,9 @@ class Repeater {
     handleDeleteGroup (repeaterId, event) {
         const $repeater = $(this.repeater);
         const $previewRoot = $repeater.find('[data-repeater-preview-root]');
-        const $preview = $previewRoot.find(`[data-repeater-preview-id="${repeaterId}"`);
-        const $edit = $previewRoot.find(`[data-repeater-edit-id="${repeaterId}"`);
-        const $saved = $previewRoot.find(`[data-repeater-saved-data-id="${repeaterId}"`);
+        const $preview = $previewRoot.find(`[data-repeater-preview-id="${repeaterId}"]`);
+        const $edit = $repeater.find(`[data-repeater-edit-id="${repeaterId}"]`);
+        const $saved = $repeater.find(`[data-repeater-saved-data-id="${repeaterId}"]`);
 
         event.preventDefault();
 
