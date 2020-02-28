@@ -12,7 +12,6 @@
             'empty': 'You have not added any team members',
             'headings': [
                 { name: 'text', label: 'Name' },
-                { name: 'select2multi', label: 'Favourite food' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
@@ -35,20 +34,6 @@
                     'label': 'name',
                     'id': 'repeater-text',
                     'name': 'text'
-                })
-            }}
-
-            {{
-                form.select2({
-                    'label': 'Favourite food',
-                    'id': 'select2-' ~ random(),
-                    'name': 'select2multi',
-                    'multiple': true,
-                    'options': [
-                        { value: 'food_pizza', label: 'Pizza' },
-                        { value: 'food_gravy', label: 'Gravy' },
-                        { value: 'food_puds', label: 'Yorkshire Pudding' }
-                    ]
                 })
             }}
 
@@ -80,7 +65,7 @@
 
         form.addEventListener('submit', event => {
             const data = new FormData(event.target);
-            let payload = '';
+            let payload = (new Date()).toString() + '\n';
 
             event.preventDefault();
             for (const pair of data) {
