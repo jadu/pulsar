@@ -93,8 +93,10 @@ class Repeater {
         // Attach the "save new group" handler
         $saveGroup.on('click', this.handleSaveGroup.bind(this));
 
+        const $cancelGroup = $repeater.find('[data-repeater-cancel-save]');
+
         // Attach the "cancel new group" handler
-        $saveGroup.on('click', this.handleCancelGroup.bind(this));
+        $cancelGroup.on('click', this.handleCancelGroup.bind(this));
 
         if (initialState.length > 0) {
             this.parseInitialState(initialState);

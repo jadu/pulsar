@@ -96,6 +96,12 @@ describe('RepeaterComponent', () => {
             formFieldResetServiceStub,
             focusManagementServiceStub
         );
+
+        $('html').append($html);
+    });
+
+    afterEach(() => {
+        $html.remove();
     });
 
     describe('init', () => {
@@ -779,6 +785,7 @@ describe('RepeaterComponent', () => {
                     </div>
                 </div>
             `);
+            $('body').append($group);
 
             repeaterComponent.state = [
                 {
@@ -794,6 +801,10 @@ describe('RepeaterComponent', () => {
                     }
                 }
             ];
+        });
+
+        afterEach(() => {
+           $group.remove();
         });
 
         it('should prevent the default behaviour', () => {
