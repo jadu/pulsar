@@ -72,6 +72,25 @@
         })
     }}
 
+    <pre id="repeater-request"></pre>
+
+    <script>
+        const form = document.getElementById('repeater-submit-debug');
+        const preview = document.getElementById('repeater-request');
+
+        form.addEventListener('submit', event => {
+            const data = new FormData(event.target);
+            let payload = '';
+
+            event.preventDefault();
+            for (const pair of data) {
+                payload += pair[0] + '=' + pair[1] + '\n';
+            }
+
+            preview.innerText = payload;
+        });
+    </script>
+
 {% endblock tab_content %}
 
 {% block tab_sidebar %}
