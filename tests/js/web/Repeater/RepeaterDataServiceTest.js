@@ -8,31 +8,35 @@ describe('RepeaterDataService', () => {
     let inputCloneServiceStub;
     let inputValueServiceStub;
     let uniqueIdServiceStub;
+    let $html;
 
     beforeEach(() => {
+        $html = $('<div id="root">');
         inputCloneServiceStub = sinon.createStubInstance(InputCloneService);
         inputValueServiceStub = sinon.createStubInstance(InputValueService);
         uniqueIdServiceStub = sinon.createStubInstance(UniqueIdService);
         repeaterDataService = new RepeaterDataService(
+            $html[0],
             inputCloneServiceStub,
             inputValueServiceStub,
             uniqueIdServiceStub
         );
     });
 
+    afterEach(() => {
+        $html.empty();
+    });
+
     describe('create', () => {
-        let $html;
         let group;
         let data;
 
         beforeEach(() => {
-            $html = $(`
-                <div id="root">
-                    <div id="data"></div>
+            $html.append(`
+                    <div data-repeater-saved-entries-root id="data"></div>
                     <form id="form">
-                        <input id="test_input" data-name="test_input" type="text" value="foo"/>
+                        <input id="test_input" data-repeater-name="test_input" type="text" value="foo"/>
                     </form>
-                </div>
             `);
 
             group = $html.find('#form')[0];
@@ -42,30 +46,26 @@ describe('RepeaterDataService', () => {
         it('should create a saved data repeater group from a form group', () => {
             const clonedInput = group.querySelector('#test_input').cloneNode();
 
-            queryServiceStub.get.withArgs('saved-entries-root').returns(data);
             inputCloneServiceStub.clone.returns(clonedInput);
             repeaterDataService.create(group, 666);
 
             expect(data.children).to.have.length.of(1);
-            expect(data.firstElementChild.getAttribute('data-saved-entry-id')).to.equal('666');
+            expect(data.firstElementChild.getAttribute('data-repeater-saved-data-id')).to.equal('666');
             expect(clonedInput.getAttribute('name')).to.equal('test_input');
-            expect(clonedInput.getAttribute('data-name')).to.be.null;
+            expect(clonedInput.getAttribute('data-repeater-name')).to.be.null;
             expect(uniqueIdServiceStub.uniquifyIds).to.have.been.calledOnce;
         });
     });
 
     describe('update', () => {
-        let $html;
         let data;
 
         beforeEach(() => {
-            $html = $(`
-                <div id="root">
-                    <div id="data">
-                        <div data-saved-entry-id="666">
-                            <input name="foo" value="foo"/>
-                            <input name="bar" value="bar"/>
-                        </div>
+            $html.append(`
+                <div data-repeater-saved-entries-root id="data">
+                    <div data-repeater-saved-data-id="666">
+                        <input name="foo" value="foo"/>
+                        <input name="bar" value="bar"/>
                     </div>
                 </div>
             `);
@@ -82,8 +82,6 @@ describe('RepeaterDataService', () => {
                     value: [ { value: 'bar', selected: false } ]
                 }
             };
-
-            queryServiceStub.get.withArgs('saved-entries-root').returns(data);
 
             repeaterDataService.update(state, 666);
 
