@@ -9,7 +9,7 @@ class RepeaterPlaceholderService {
         root
     ) {
         this.$root = $(root);
-        this.$placeholder = this.$root.find('[data-repeater-preview-root]');
+        this.$placeholder = this.$root.find('[data-repeater-preview-placeholder]');
     }
 
     /**

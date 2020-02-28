@@ -6,9 +6,8 @@
     {{ form.create({
         'id': 'repeater-submit-debug'
     }) }}
-
         {{ form.repeater_start({
-            'label': 'The Pulsar team',
+            'label': 'The Pulsar team with pre-filled data',
             'empty': 'You have not added any team members',
             'headings': [
                 { name: 'text', label: 'Name' },
@@ -28,15 +27,41 @@
                     'legend': 'Team Member'
                 })
             }}
+                {{
+                    form.text({
+                        'label': 'name',
+                        'id': 'repeater-text',
+                        'name': 'text'
+                    })
+                }}
+            {{ form.fieldset_end() }}
+
+        {{ form.repeater_end() }}
+
+        {{ form.repeater_start({
+            'label': 'The Pulsar team',
+            'empty': 'You have not added any team members',
+            'headings': [
+                { name: 'text', label: 'Name' },
+            ],
+            'max-entries': 3,
+            'add-new-group-text': 'Add',
+            'add-another-group-text': 'Add another',
+            'actions-column-text': 'Actions',
+        }) }}
 
             {{
-                form.text({
-                    'label': 'name',
-                    'id': 'repeater-text',
-                    'name': 'text'
+                form.fieldset_start({
+                    'legend': 'Team Member'
                 })
             }}
-
+                {{
+                    form.text({
+                        'label': 'name',
+                        'id': 'repeater-text',
+                        'name': 'text'
+                    })
+                }}
             {{ form.fieldset_end() }}
 
         {{ form.repeater_end() }}
