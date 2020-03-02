@@ -1443,7 +1443,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
 
 {% if options.title is not defined %}
-    {% set options = options|default({})|merge({ 'data-tippy-content': state|default('active') }) %}
+    {% set options = options|default({})|merge({ 'title': state|default('active') }) %}
 {% endif %}
 
 {% if options.icon is defined %}
@@ -1459,7 +1459,8 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             |exclude('state icon')
             |merge({
                 'class': 'status--icon is-' ~ state|default('active'),
-                'data-tippy-placement': options['data-placement']|default('top')
+                'data-placement': options['data-placement']|default('top'),
+                'data-toggle': 'tooltips',
             })
         )
     }}
@@ -1470,10 +1471,11 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         attributes(options
             |exclude('state icon')
             |merge({
-                'data-tippy-placement': options['data-placement']|default('top')
+                'data-placement': options['data-placement']|default('top')
             })
             |defaults({
-                'class': 'status is-' ~ state|default('active')
+                'class': 'status is-' ~ state|default('active'),
+                'data-toggle': 'tooltips'
             })
         )
     }}></span>
