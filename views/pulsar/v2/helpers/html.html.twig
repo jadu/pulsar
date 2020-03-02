@@ -630,9 +630,8 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                     'class': options.class|default ~ ' edit-button',
                     'data-action': 'edit',
                     'data-action-target': options.target|default,
-                    'data-placement': options.placement|default('right'),
-                    'data-title': options.tooltip|default('Edit this item'),
-                    'data-toggle': 'tooltips',
+                    'data-tippy-content': options.tooltip|default('Edit this item'),
+                    'data-tippy-placement': options.placement|default('right'),
                     'label': html.icon('pencil'),
                     'type': options.type|default('button'),
                 })
@@ -1374,9 +1373,8 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.tooltip is not defined or options.tooltip != false %}
     {%
         set options = options|default({})|merge({
-            'data-placement': options.placement|default('right'),
-            'data-toggle': 'tooltips',
-            'data-title': options.tooltip|default('Remove this item')
+            'data-tippy-content': options.tooltip|default('Remove this item'),
+            'data-tippy-placement': options.placement|default('right')
         })
     %}
     {% endif %}
@@ -1445,7 +1443,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
 
 {% if options.title is not defined %}
-    {% set options = options|default({})|merge({ 'title': state|default('active') }) %}
+    {% set options = options|default({})|merge({ 'data-tippy-content': state|default('active') }) %}
 {% endif %}
 
 {% if options.icon is defined %}
@@ -1461,8 +1459,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             |exclude('state icon')
             |merge({
                 'class': 'status--icon is-' ~ state|default('active'),
-                'data-placement': options['data-placement']|default('top'),
-                'data-toggle': 'tooltips',
+                'data-tippy-placement': options['data-placement']|default('top')
             })
         )
     }}
@@ -1473,11 +1470,10 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         attributes(options
             |exclude('state icon')
             |merge({
-                'data-placement': options['data-placement']|default('top')
+                'data-tippy-placement': options['data-placement']|default('top')
             })
             |defaults({
-                'class': 'status is-' ~ state|default('active'),
-                'data-toggle': 'tooltips'
+                'class': 'status is-' ~ state|default('active')
             })
         )
     }}></span>
@@ -1580,7 +1576,7 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                 {% for column in options.data.columns %}
                     {% if loop.first %}
                         <th class="table-selection" data-orderable="false">
-                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="select all rows" data-tippy-placement="right" />
                         </th>
                     {% endif %}
                     <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
