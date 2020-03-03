@@ -1458,11 +1458,12 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         html.icon(iconGlyph|default('times-rectangle'), options
-            |exclude('state icon')
+            |exclude('state icon title data-placement')
             |merge({
                 'class': 'status--icon is-' ~ state|default('active'),
-                'data-placement': options['data-placement']|default('top'),
-                'data-toggle': 'tooltips',
+                'data-tippy-placement': options['data-placement']|default('top'),
+                'data-tippy-content': options['title'],
+                'label': options['title']
             })
         )
     }}
@@ -1471,16 +1472,18 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <span{{
         attributes(options
-            |exclude('state icon')
+            |exclude('state icon title data-placement')
             |merge({
-                'data-placement': options['data-placement']|default('top')
+                'data-tippy-placement': options['data-placement']|default('top')
             })
             |defaults({
                 'class': 'status is-' ~ state|default('active'),
-                'data-toggle': 'tooltips'
+                'data-tippy-content': options['title']
             })
         )
-    }}></span>
+    }}>
+        <span class="hide">{{ options['title'] }}
+    </span>
 
 {% endif %}
 
