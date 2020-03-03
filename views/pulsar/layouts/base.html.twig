@@ -98,7 +98,7 @@
                 {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
 
                 {% block search %}
-                <form action="/search" class="main-search" data-ui="search-box">
+                <form action="/search" class="main-search" data-ui="search-box" role="search">
                     <input type="search" tabindex="3" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
                     <button id="search-submit" tabindex="3" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
                 </form>
