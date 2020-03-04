@@ -1575,11 +1575,12 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
         <thead>
             <tr>
                 {% if overflow == 'collapse' %}
-                    <td></td>
+                    <td><span class="hide">Table controls</span></td>
                 {% endif %}
                 {% for column in options.data.columns %}
                     {% if loop.first %}
                         <th class="table-selection" data-orderable="false">
+                            <span class="hide">Row selection controls</span>
                             <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
                         </th>
                     {% endif %}
@@ -1592,7 +1593,9 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                 <tr>
                     {% if overflow == 'collapse' %}
                         <td class="table-responsive">
-                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                            <button class="table-child-toggle">
+                                {{ html.icon('plus-sign', { 'label': 'Toggle collapsed columns' }) }}
+                            </button>
                         </td>
                     {% endif %}
                     <td class="table-selection">
