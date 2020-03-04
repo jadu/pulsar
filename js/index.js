@@ -13,7 +13,7 @@ require('babel-polyfill');
 
 // Global UI components
 var $                     = require('jquery'),
-    modal                 = require('./libs/modal'),
+    modal                 = require('./libs/modal').DEFAULTS.backdrop = 'static',
     tab                   = require('./libs/tab'),
     popover               = require('./libs/popover'),
     tooltip               = require('./libs/tooltip'),
