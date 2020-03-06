@@ -36,6 +36,11 @@
     }
 
     // Ensure AA colour contrast
+    a {
+        color: color(link, dark);
+    }
+
+    // Ensure AA colour contrast
     .help-block {
         color: color(text);
     }
