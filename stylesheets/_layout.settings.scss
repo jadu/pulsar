@@ -41,6 +41,7 @@
     }
 
     // Ensure AA colour contrast
+    a:focus,
     .help-block {
         color: color(text);
     }
