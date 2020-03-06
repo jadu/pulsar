@@ -13,6 +13,10 @@
         color: color(primary, alt);
         text-decoration: none;
     }
+
+    & > a:focus {
+        color: color(text);
+    }
 }
 
 .list--inline {
