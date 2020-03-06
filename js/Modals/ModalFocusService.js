@@ -1,6 +1,11 @@
 'use strict';
 
 class ModalFocusService {
+    /**
+     * Trap focus within modals
+     * @param {jQuery} $modal - jquery wrapper of the modal markup
+     * @param {jQuery} $container - jquery wrapper of the container, typically body
+     */
     trapFocus ($modal, $container) {
         let $modalFocusableElements = $modal.find('.modal__content')
                 .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
@@ -17,6 +22,11 @@ class ModalFocusService {
         $container.on('keydown', this.keydownListener.bind(this, $modalFocusableElements));
     }
 
+    /**
+     * Manage focus when tab / shift + tab are pressed
+     * @param {jQuery} $modalFocusableelements - jquery wrapper of elements that can gain focus
+     * @param {event} event
+     */
     keydownListener ($modalFocusableelements, event) {
         let keyCode = event.keyCode || event.which;
 
@@ -39,6 +49,10 @@ class ModalFocusService {
         }
     }
 
+    /**
+     * Release focus back to original triggering element
+     * @param {$triggeringElement} $triggeringElement - jquery wrapper of the element that triggered the modal
+     */
     releaseFocus ($triggeringElement) {
         if ($triggeringElement.closest('.dropdown__menu').length) {
             // If triggering link is in a button group / dropdown, return focus to the surrounding button
