@@ -155,7 +155,7 @@
 {% macro required(required) %}
 {% spaceless %}
     {% if required %}
-        &nbsp;<span class="required-indicator" data-tippy-content="required">*</span>
+        &nbsp;<span aria-hidden="true" class="required-indicator" data-tippy-content="required">*</span>
     {% endif  %}
 {% endspaceless %}
 {% endmacro %}
