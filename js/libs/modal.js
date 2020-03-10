@@ -35,7 +35,7 @@ var $ = require('jquery');
   }
 
   Modal.DEFAULTS = {
-      backdrop: true
+      backdrop: 'static'
     , keyboard: true
     , show: true
   }
@@ -255,5 +255,5 @@ var $ = require('jquery');
   $(document).on('shown.bs.modal', '.modal', function() {
     $(':input:not(input[type=button], input[type=submit], button):visible:first', $(this)).trigger('focus');
   });
-  
+
 module.exports = Modal;
