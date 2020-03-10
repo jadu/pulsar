@@ -118,7 +118,8 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
         pagingType: 'full_numbers',
         responsive: {
             details: {
-                type: 'column'
+                type: 'column',
+                target: '.table-child-toggle'
             }
         },
         select: select,
