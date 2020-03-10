@@ -630,9 +630,8 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                     'class': options.class|default ~ ' edit-button',
                     'data-action': 'edit',
                     'data-action-target': options.target|default,
-                    'data-placement': options.placement|default('right'),
-                    'data-title': options.tooltip|default('Edit this item'),
-                    'data-toggle': 'tooltips',
+                    'data-tippy-content': options.tooltip|default('Edit this item'),
+                    'data-tippy-placement': options.placement|default('right'),
                     'label': html.icon('pencil'),
                     'type': options.type|default('button'),
                 })
@@ -1374,9 +1373,8 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.tooltip is not defined or options.tooltip != false %}
     {%
         set options = options|default({})|merge({
-            'data-placement': options.placement|default('right'),
-            'data-toggle': 'tooltips',
-            'data-title': options.tooltip|default('Remove this item')
+            'data-tippy-content': options.tooltip|default('Remove this item'),
+            'data-tippy-placement': options.placement|default('right')
         })
     %}
     {% endif %}
@@ -1580,7 +1578,7 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                 {% for column in options.data.columns %}
                     {% if loop.first %}
                         <th class="table-selection" data-orderable="false">
-                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="select all rows" data-tippy-placement="right" />
                         </th>
                     {% endif %}
                     <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
