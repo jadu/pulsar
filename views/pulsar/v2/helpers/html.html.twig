@@ -630,9 +630,8 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                     'class': options.class|default ~ ' edit-button',
                     'data-action': 'edit',
                     'data-action-target': options.target|default,
-                    'data-placement': options.placement|default('right'),
-                    'data-title': options.tooltip|default('Edit this item'),
-                    'data-toggle': 'tooltips',
+                    'data-tippy-content': options.tooltip|default('Edit this item'),
+                    'data-tippy-placement': options.placement|default('right'),
                     'label': html.icon('pencil'),
                     'type': options.type|default('button'),
                 })
@@ -1374,9 +1373,8 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.tooltip is not defined or options.tooltip != false %}
     {%
         set options = options|default({})|merge({
-            'data-placement': options.placement|default('right'),
-            'data-toggle': 'tooltips',
-            'data-title': options.tooltip|default('Remove this item')
+            'data-tippy-content': options.tooltip|default('Remove this item'),
+            'data-tippy-placement': options.placement|default('right')
         })
     %}
     {% endif %}
@@ -1458,11 +1456,12 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         html.icon(iconGlyph|default('times-rectangle'), options
-            |exclude('state icon')
+            |exclude('state icon title data-placement')
             |merge({
                 'class': 'status--icon is-' ~ state|default('active'),
-                'data-placement': options['data-placement']|default('top'),
-                'data-toggle': 'tooltips',
+                'data-tippy-placement': options['data-placement']|default('top'),
+                'data-tippy-content': options['title'],
+                'label': options['title']
             })
         )
     }}
@@ -1471,16 +1470,18 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <span{{
         attributes(options
-            |exclude('state icon')
+            |exclude('state icon title data-placement')
             |merge({
-                'data-placement': options['data-placement']|default('top')
+                'data-tippy-placement': options['data-placement']|default('top')
             })
             |defaults({
                 'class': 'status is-' ~ state|default('active'),
-                'data-toggle': 'tooltips'
+                'data-tippy-content': options['title']
             })
         )
-    }}></span>
+    }}>
+        <span class="hide">{{ options['title'] }}
+    </span>
 
 {% endif %}
 
@@ -1575,12 +1576,13 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
         <thead>
             <tr>
                 {% if overflow == 'collapse' %}
-                    <td></td>
+                    <td><span class="hide">Table controls</span></td>
                 {% endif %}
                 {% for column in options.data.columns %}
                     {% if loop.first %}
                         <th class="table-selection" data-orderable="false">
-                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+                            <span class="hide">Row selection controls</span>
+                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="select all rows" data-tippy-placement="right" />
                         </th>
                     {% endif %}
                     <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
@@ -1592,7 +1594,9 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                 <tr>
                     {% if overflow == 'collapse' %}
                         <td class="table-responsive">
-                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                            <button class="table-child-toggle">
+                                {{ html.icon('plus-sign', { 'label': 'Toggle collapsed columns' }) }}
+                            </button>
                         </td>
                     {% endif %}
                     <td class="table-selection">
