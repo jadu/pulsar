@@ -35,7 +35,7 @@ var $ = require('jquery');
   }
 
   Modal.DEFAULTS = {
-      backdrop: true
+      backdrop: 'static'
     , keyboard: true
     , show: true
   }
