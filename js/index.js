@@ -45,7 +45,9 @@ var $                     = require('jquery'),
     RepeaterManagerComponent = require('./Repeater/RepeaterManagerComponent'),
     repeaterComponentFactory = require('./Repeater/repeaterComponentFactory'),
     FaviconEditor = require('./Notifications/FaviconEditor'),
-    tooltipFactory = require('./Tooltips/tooltipsFactory');
+    tooltipFactory = require('./Tooltips/tooltipsFactory'),
+    ModalFocusService = require('./Modals/ModalFocusService'),
+    ModalListener = require('./Modals/ModalListener');
 
 require('jstree');
 
@@ -70,5 +72,7 @@ module.exports = {
     RepeaterManagerComponent,
     repeaterComponentFactory,
     FaviconEditor,
-    tooltipFactory
+    tooltipFactory,
+    ModalFocusService,
+    ModalListener
 };

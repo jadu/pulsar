@@ -53,8 +53,6 @@
     {% block pageStyle %}{% endblock %}
 </head>
 <body class="language-html">
-    {% include '@pulsar/pulsar/components/flash.html.twig' %}
-
     <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
 
 {% block body %}
@@ -104,6 +102,8 @@
                 </form>
                 {% endblock %}
 
+                {% include '@pulsar/pulsar/components/flash.html.twig' %}
+
                 {{ nav.breadcrumbs(breadcrumbs|default) }}
 
                 {% set _ribbon = '' %}
@@ -120,9 +120,9 @@
                     {% if _ribbon is not empty %}
                         {% block ribbon_content %}
                             <div class="ribbon-wrapper">
-                                <aside class="ribbon" aria-label="content summary">
+                                <section class="ribbon" aria-label="content summary">
                                     {{ _ribbon|raw }}
-                                </aside>
+                                </section>
                             </div>
                         {% endblock %}
                     {% endif %}
@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="tab-help-container t-tab-help-container"><div class="tab-help"></div></div>
+            <aside aria-label="additional information" class="tab-help-container t-tab-help-container"><div class="tab-help"></div></aside>
         </div>
     </div>
 
