@@ -32,6 +32,8 @@
         pulsar.repeaterComponentFactory,
         $html
     );
+    pulsar.modalFocusService = new pulsar.ModalFocusService();
+    pulsar.modalListener = new pulsar.ModalListener(pulsar.modalFocusService);
 
     $(function () {
         pulsar.button.init();
@@ -55,6 +57,7 @@
         pulsar.repeaterManager.init();
         pulsar.tooltipListener = pulsar.tooltipFactory($html);
         pulsar.tooltipListener.init();
+        pulsar.modalListener.listen($html);
 
         // jsTree
         $('#container').jstree({
