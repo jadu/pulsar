@@ -111,8 +111,19 @@
 }
 
 .flash-container {
-    left: $nav-primary-width;
-    position: fixed;
-    right: 0;
+    clear: both;
+    margin: 0 -20px;
     z-index: $zindex-flash;
+
+    @include respond-min($screen-desktop) {
+        margin: 13px -20px 0;
+    }
+
+    > .flash:last-child {
+        margin-bottom: 15px;
+    }
+
+    &:empty {
+        display: none;
+    }
 }
