@@ -1,8 +1,19 @@
 .main-search {
     border: 1px solid $input-border;
     border-radius: 4px;
-    height: 34px;
+    clear: both;
+    display: block;
+    margin: 20px 0;
     position: relative;
+
+    @include respond-min($screen-tablet) {
+        display: table;
+    }
+
+    @include respond-min($screen-desktop) {
+        margin: 0;
+        clear: none;
+    }
 }
 
 // Set margin and position of loading spinner when directly adjacent to the search button
@@ -37,11 +48,17 @@ input.main-search__field {
     border: 0;
     box-sizing: border-box;
     color: #555;
+    display: block;
     height: 32px;
     padding: 8.5px;
     position: relative;
     width: 100%;
     z-index: 2;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+        width: 180px;
+    }
 
     &::-webkit-input-placeholder {
         color: #555;
@@ -60,11 +77,16 @@ input.main-search__field::-ms-clear {
     background: none;
     border: 0;
     color: #555;
-    height: 100%;
     padding: 1px 8px 0;
     position: absolute;
     right: 0;
+    top: 3px;
     z-index: 3;
+
+    @include respond-min($screen-tablet) {
+        left: 149px; // magic number to accommodate focus style
+        right: auto;
+    }
 
     &:focus {
         @include pulsar-link-focused;
