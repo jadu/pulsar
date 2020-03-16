@@ -1,0 +1,427 @@
+{% set cssPath  = base_path ~ 'css/' %}
+{% set imgPath  = base_path ~ 'images/' %}
+{% set jsPath   = base_path ~ 'js/' %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Environments - Jadu Deployer</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="TODO">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- TODO: favicons here -->
+
+        <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
+
+        <script src="{{ base_path ~ 'dist/js/bundle.js' }}" id="main-js"
+        ></script>
+        <script src="{{ base_path ~ 'js/main.js' }}" ></script>
+        <script src="{{ base_path ~ 'dist/js/lexicon-bundle.js' }}" ></script>
+
+        <script>
+            $(function() {
+                var $combineCheckbox = $('#combine-with-product');
+                var $versionSelectFormGroup = $('#select-version');
+
+                $combineCheckbox.on('change', function () {
+                    if ($combineCheckbox.is(':checked')) {
+                        $versionSelectFormGroup.removeClass('u-display-none');
+                    } else {
+                        $versionSelectFormGroup.addClass('u-display-none');
+                    }
+                });
+            });
+
+        </script>
+
+        <style type="text/css">
+
+            .ribbon__content {
+                margin-top: 20px;
+            }
+
+            @media screen and (min-width: 600px) {
+                .ribbon__content {
+                    display: flex;
+                }
+
+                .ribbon__list {
+                    display: flex;
+                    flex-flow: row;
+                    flex-wrap: wrap;
+                    overflow: visible;
+                }
+
+                .ribbon__list ~ .ribbon__list {
+                    margin-left: 20px;
+                }
+
+                .ribbon__list-key {
+                    flex: 0 0 50%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+
+                .ribbon__list-value {
+                    flex: 0 0 50%;
+                    margin-left: auto;
+                    overflow: hidden;
+                    text-align: left;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .timeline {
+                list-style: none;
+                margin-top: 10px;
+            }
+
+            @media screen and (min-width: 767px) {
+                .timeline::before {
+                    left: 15px;
+                }
+            }
+
+            .timeline p {
+                margin-bottom: 5px;
+            }
+
+            .timeline-content {
+                margin-bottom: 10px;
+            }
+
+            @media screen and (min-width: 767px) {
+                .timeline-content {
+                    margin-left: 35px;
+                    margin-top: 0;
+                }
+            }
+
+            .ribbon__list-value {
+                margin-left: 0;
+            }
+        </style>
+
+
+    </head>
+    <body>
+        <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
+
+        <div class="container" id="top">
+            <div class="inner-wrapper">
+                <nav role="navigation" class="nav-main" aria-label="primary" id="aria-main-nav">
+                    <div class="nav-primary t-nav-primary">
+                        <a tabindex="1" href="#" class="jadu-branding" aria-label="Home">
+                            <span class="jadu-logomark">
+                                <span class="hide">Return to Dashboard</span>
+                            </span>
+                            <span class="jadu-wordmark">Jadu</span>
+                        </a>
+                        <ul class="nav-items">
+                            <li class="nav-item t-nav-item">
+                                <a href="#" tabindex="1" class="nav-link t-nav-link">
+                                    <i aria-hidden="true" class="icon-dashboard icon-fw nav-link__icon t-nav-icon"></i>
+                                    <span class="nav-link__label">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item t-nav-item">
+                                <a href="#" tabindex="1" class="nav-link t-nav-link">
+                                    <i aria-hidden="true" class="icon-server icon-fw nav-link__icon t-nav-icon"></i>
+                                    <span class="nav-link__label">Environments</span>
+                                </a>
+                            </li>
+                            <li class="nav-item t-nav-item">
+                                <a href="#" tabindex="1" class="nav-link t-nav-link">
+                                    <i aria-hidden="true" class="icon-envelope-o icon-fw nav-link__icon t-nav-icon"></i>
+                                    <span class="nav-link__label">Alerts</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- removed nav-secondary etc as not needed -->
+                </nav>
+
+                <header class="toolbar">
+                    <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
+
+                    <!-- TODO - consider replacing with sign out naked button! do need for dropdown -->
+                    <div class="nav-user">
+                        <div class="btn__group dropdown user-menu btn--naked">
+                            <button tabindex="5" aria-haspopup="true" aria-expanded="false" aria-controls="guid-2038271773" data-toggle="dropdown" class="btn dropdown__toggle">James Jacobs&nbsp;<span class="caret"></span>
+                            </button>
+
+                            <ul id="guid-2038271773" class="dropdown__menu pull-left">
+                                <li>
+                                    <a href="#">
+                                        <i aria-hidden="true" class="icon-signout"></i> Sign out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- TODO - swap these dropdown links for buttons as they don't navigate anywhere -->
+                    <div class="nav-user">
+                        <div class="btn__group drop dropdown btn--naked">
+                            <button data-toggle="dropdown" class="btn dropdown__toggle">
+                                Project - Website&nbsp;<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown__menu pull-left">
+                                <li class="dropdown__header">Switch project</li>
+                                <li>
+                                    <button class="btn">
+                                        <i class="icon-ok-sign"></i> Website
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="">
+                                        <i class="icon-circle-blank muted"></i>DeployerLGAQ
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--
+                        flash-container needs to be in the DOM before the flash message is added, ideally on page load
+                        When empty, needs to be completely empty no white space
+                    -->
+                    {% spaceless %}
+                    <div class="flash-container js-flash-container" role="status">
+
+                        <!-- this should be added to the DOM after the flash-container parent in order for it to be annouced to SRs -->
+                        {# example flash markup
+                        <section class="flash flash--info" aria-labelledby="guid-1921523354">
+                            <i aria-hidden="true" class="icon-spinner icon-spin"></i><h2 id="guid-1921523354">This build is processing. This process can take up to 10 minutes.</h2>
+                            <button class="close" data-dismiss="flash">
+                                <i class="icon-remove"><span class="hide">Close</span></i>
+                            </button>
+                        </section>
+                        #}
+                    </div>
+                    {% endspaceless %}
+
+                    <h1 class="main-title" tabindex="-1">Environments</h1>
+                </header>
+
+                <div class="content-main">
+                    <div class="tabs__content">
+                        <div class="tab__pane is-active">
+                            <div class="tab__container">
+                                <section class="actionsbar" aria-label="page actions">
+                                    <div class="float--right">
+                                        <a class="btn btn--primary" href="#">New Environment</a>
+                                    </div>
+                                </section>
+                                <div class="tab__inner">
+                                    <main class="tab__content" id="skip-target">
+
+                                        <p>The following environments configured for use with Deployer.</p>
+
+
+                                        <table class="table table--full table--horizontal u-margin-bottom-none" data-table-detail-table>
+                                            <caption class="hide">Environments</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>URL</th>
+                                                    <th>Status</th>
+                                                    <th>Installed Versions</th>
+                                                    <th>Last connection</th>
+                                                    <th>Memory limit</th>
+                                                    <th>Enabled</th>
+                                                    <th class="shrink-to-fit">API Key</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr
+                                                data-table-detail-panel-custom-title="Deployment log"
+                                                data-table-detail-content="
+                                                    <dl class=&quot;metadata margin-bottom--large&quot;>
+                                                        <dt class=&quot;metadata__key&quot;>Environment</dt>
+                                                        <dd class=&quot;metadata__value&quot;>uat.jadu.net</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Started</dt>
+                                                        <dd class=&quot;metadata__value&quot;>1 hours ago (13:06)</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Finished</dt>
+                                                        <dd class=&quot;metadata__value&quot;>20 mins ago (13:46)</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Deployed by</dt>
+                                                        <dd class=&quot;metadata__value&quot;>Paul Bele</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Status</dt>
+                                                        <dd class=&quot;metadata__value&quot;>
+                                                            <span class=&quot;label label--success&quot;>Success</span>
+                                                        </dd>
+                                                    </dl>
+
+                                                    <ol class=&quot;timeline&quot;>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Package deployed successfully</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:30</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Storing current migration status in the backup</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:28</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Copying files into the install /var/www/jadu/</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:20</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Copying files from the install to the backup</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:18</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Creating backup in /var/www/jadu/backups/20201117130437</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:15</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Removing backup 2019-10-1720201017130437</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:13</time>
+                                                        </li>
+                                                    </ol>
+                                                ">
+                                                    <td>UAT</td>
+                                                    <td>uat.jadu.net</td>
+                                                    <td><span class="label label--success">Live</span></td>
+                                                    <td><span class="label label--primary">continuum #112</span> <span class="label">package 1.28.2</span></td>
+                                                    <td>2 mins ago</td>
+                                                    <td>64MB</td>
+                                                    <td>Yes {# use label or status? #}</td>
+                                                    <td>GddEtb0EdYWBgkJLuLnZEw==</td>
+                                                </tr>
+
+                                                <tr
+                                                data-table-detail-panel-custom-title="Deployment log"
+                                                data-table-detail-content="
+                                                    <dl class=&quot;metadata margin-bottom--large&quot;>
+                                                        <dt class=&quot;metadata__key&quot;>Environment</dt>
+                                                        <dd class=&quot;metadata__value&quot;>uat.jadu.net</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Started</dt>
+                                                        <dd class=&quot;metadata__value&quot;>1 hours ago (13:06)</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Finished</dt>
+                                                        <dd class=&quot;metadata__value&quot;>20 mins ago (13:46)</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Deployed by</dt>
+                                                        <dd class=&quot;metadata__value&quot;>Paul Bele</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Status</dt>
+                                                        <dd class=&quot;metadata__value&quot;>
+                                                            <span class=&quot;label label--success&quot;>Success</span>
+                                                        </dd>
+                                                    </dl>
+
+                                                    <ol class=&quot;timeline&quot;>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Package deployed successfully</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:30</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Storing current migration status in the backup</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:28</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Copying files into the install /var/www/jadu/</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:20</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Copying files from the install to the backup</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:18</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Creating backup in /var/www/jadu/backups/20201117130437</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:15</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Removing backup 2019-10-1720201017130437</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:13</time>
+                                                        </li>
+                                                    </ol>
+                                                ">
+                                                    <td>UAT</td>
+                                                    <td>uat.jadu.net</td>
+                                                    <td><span class="label label--success">Live</span></td>
+                                                    <td><span class="label label--primary">continuum #112</span> <span class="label">package 1.28.2</span></td>
+                                                    <td>2 mins ago</td>
+                                                    <td>64MB</td>
+                                                    <td>Yes {# use label or status? #}</td>
+                                                    <td>GddEtb0EdYWBgkJLuLnZEw==</td>
+                                                </tr>
+                                                <tr
+                                                data-table-detail-panel-custom-title="Deployment log"
+                                                data-table-detail-content="
+                                                    <dl class=&quot;metadata margin-bottom--large&quot;>
+                                                        <dt class=&quot;metadata__key&quot;>Environment</dt>
+                                                        <dd class=&quot;metadata__value&quot;>uat.jadu.net</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Started</dt>
+                                                        <dd class=&quot;metadata__value&quot;>1 hours ago (13:06)</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Finished</dt>
+                                                        <dd class=&quot;metadata__value&quot;>20 mins ago (13:46)</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Deployed by</dt>
+                                                        <dd class=&quot;metadata__value&quot;>Paul Bele</dd>
+
+                                                        <dt class=&quot;metadata__key&quot;>Status</dt>
+                                                        <dd class=&quot;metadata__value&quot;>
+                                                            <span class=&quot;label label--success&quot;>Success</span>
+                                                        </dd>
+                                                    </dl>
+
+                                                    <ol class=&quot;timeline&quot;>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Package deployed successfully</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:30</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Storing current migration status in the backup</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:28</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Copying files into the install /var/www/jadu/</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:20</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Copying files from the install to the backup</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:18</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Creating backup in /var/www/jadu/backups/20201117130437</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:15</time>
+                                                        </li>
+                                                        <li class=&quot;timeline-content&quot;>
+                                                            <p>Removing backup 2019-10-1720201017130437</p>
+                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:13</time>
+                                                        </li>
+                                                    </ol>
+                                                ">
+                                                    <td>UAT</td>
+                                                    <td>uat.jadu.net</td>
+                                                    <td><span class="label label--success">Live</span></td>
+                                                    <td><span class="label label--primary">continuum #112</span> <span class="label">package 1.28.2</span></td>
+                                                    <td>2 mins ago</td>
+                                                    <td>64MB</td>
+                                                    <td>Yes {# use label or status? #}</td>
+                                                    <td>GddEtb0EdYWBgkJLuLnZEw==</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

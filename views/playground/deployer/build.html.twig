@@ -1,0 +1,297 @@
+{% set cssPath  = base_path ~ 'css/' %}
+{% set imgPath  = base_path ~ 'images/' %}
+{% set jsPath   = base_path ~ 'js/' %}
+
+<!--
+    TODO:
+    1. check JS and any aria-toggling
+    2. favicons
+    3. test resposive
+    4. deployer colour and icon in nav / theme
+    5. check tab order
+    6. a11y tests
+    7. modal error state, for example, if options are left on please choose? Errors or perhaps just alpha order and default to first? Research...
+    8. need for new tooltips or tooltips at all?
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Build 88 - Jadu Deployer</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="TODO">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- TODO: favicons here -->
+
+        <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
+
+        <script src="{{ base_path ~ 'dist/js/bundle.js' }}" id="main-js"
+        ></script>
+        <script src="{{ base_path ~ 'js/main.js' }}" ></script>
+        <script src="{{ base_path ~ 'dist/js/lexicon-bundle.js' }}" ></script>
+
+        <script>
+            $(function() {
+                var $combineCheckbox = $('#combine-with-product');
+                var $versionSelectFormGroup = $('#select-version');
+
+                $combineCheckbox.on('change', function () {
+                    if ($combineCheckbox.is(':checked')) {
+                        $versionSelectFormGroup.removeClass('u-display-none');
+                    } else {
+                        $versionSelectFormGroup.addClass('u-display-none');
+                    }
+                });
+            });
+
+        </script>
+
+        <style type="text/css">
+
+            .ribbon__content {
+                margin-top: 20px;
+            }
+
+            @media screen and (min-width: 600px) {
+                .ribbon__content {
+                    display: flex;
+                }
+
+                .ribbon__list {
+                    display: flex;
+                    flex-flow: row;
+                    flex-wrap: wrap;
+                    overflow: visible;
+                }
+
+                .ribbon__list ~ .ribbon__list {
+                    margin-left: 20px;
+                }
+
+                .ribbon__list-key {
+                    flex: 0 0 50%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+
+                .ribbon__list-value {
+                    flex: 0 0 50%;
+                    margin-left: auto;
+                    overflow: hidden;
+                    text-align: left;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .timeline {
+                list-style: none;
+                margin-top: 10px;
+            }
+
+            @media screen and (min-width: 767px) {
+                .timeline::before {
+                    left: 15px;
+                }
+            }
+
+            .timeline p {
+                margin-bottom: 5px;
+            }
+
+            .timeline-content {
+                margin-bottom: 10px;
+            }
+
+            @media screen and (min-width: 767px) {
+                .timeline-content {
+                    margin-left: 35px;
+                    margin-top: 0;
+                }
+            }
+
+            .ribbon__list-value {
+                margin-left: 0;
+            }
+        </style>
+
+
+    </head>
+    <body>
+        <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
+
+        <div class="container" id="top">
+            <div class="inner-wrapper">
+                <nav role="navigation" class="nav-main" aria-label="primary" id="aria-main-nav">
+                    <div class="nav-primary t-nav-primary">
+                        <a tabindex="1" href="#" class="jadu-branding" aria-label="Home">
+                            <span class="jadu-logomark">
+                                <span class="hide">Return to Dashboard</span>
+                            </span>
+                            <span class="jadu-wordmark">Jadu</span>
+                        </a>
+                        <ul class="nav-items">
+                            <li class="nav-item t-nav-item">
+                                <a href="#" tabindex="1" class="nav-link t-nav-link">
+                                    <i aria-hidden="true" class="icon-dashboard icon-fw nav-link__icon t-nav-icon"></i>
+                                    <span class="nav-link__label">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item t-nav-item">
+                                <a href="#" tabindex="1" class="nav-link t-nav-link">
+                                    <i aria-hidden="true" class="icon-server icon-fw nav-link__icon t-nav-icon"></i>
+                                    <span class="nav-link__label">Environments</span>
+                                </a>
+                            </li>
+                            <li class="nav-item t-nav-item">
+                                <a href="#" tabindex="1" class="nav-link t-nav-link">
+                                    <i aria-hidden="true" class="icon-envelope-o icon-fw nav-link__icon t-nav-icon"></i>
+                                    <span class="nav-link__label">Alerts</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- removed nav-secondary etc as not needed -->
+                </nav>
+
+                <header class="toolbar">
+                    <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
+
+                    <!-- TODO - consider replacing with sign out naked button! do need for dropdown -->
+                    <div class="nav-user">
+                        <div class="btn__group dropdown user-menu btn--naked">
+                            <button tabindex="5" aria-haspopup="true" aria-expanded="false" aria-controls="guid-2038271773" data-toggle="dropdown" class="btn dropdown__toggle">James Jacobs&nbsp;<span class="caret"></span>
+                            </button>
+
+                            <ul id="guid-2038271773" class="dropdown__menu pull-left">
+                                <li>
+                                    <a href="#">
+                                        <i aria-hidden="true" class="icon-signout"></i> Sign out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- TODO - swap these dropdown links for buttons as they don't navigate anywhere -->
+                    <div class="nav-user">
+                        <div class="btn__group drop dropdown btn--naked">
+                            <button data-toggle="dropdown" class="btn dropdown__toggle">
+                                Project - Website&nbsp;<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown__menu pull-left">
+                                <li class="dropdown__header">Switch project</li>
+                                <li>
+                                    <button class="btn">
+                                        <i class="icon-ok-sign"></i> Website
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="">
+                                        <i class="icon-circle-blank muted"></i>DeployerLGAQ
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--
+                        flash-container needs to be in the DOM before the flash message is added, ideally on page load
+                        When empty, needs to be completely empty no white space
+                    -->
+                    {% spaceless %}
+                    <div class="flash-container js-flash-container" role="status">
+
+                        <!-- this should be added to the DOM after the flash-container parent in order for it to be annouced to SRs -->
+                        {# example flash markup
+                        <section class="flash flash--info" aria-labelledby="guid-1921523354">
+                            <i aria-hidden="true" class="icon-spinner icon-spin"></i><h2 id="guid-1921523354">This build is processing. This process can take up to 10 minutes.</h2>
+                            <button class="close" data-dismiss="flash">
+                                <i class="icon-remove"><span class="hide">Close</span></i>
+                            </button>
+                        </section>
+                        #}
+                    </div>
+                    {% endspaceless %}
+
+                    <h1 class="main-title" tabindex="-1">Build 88</h1>
+                </header>
+
+                <div class="content-main">
+                    <div class="tabs__content">
+
+                        <div class="ribbon-wrapper">
+                            <section class="ribbon" aria-label="content summary">
+                                <div class="ribbon__content">
+                                    <dl class="ribbon__list">
+                                        <dt class="ribbon__list-key">Created</dt>
+                                        <dd class="ribbon__list-value">1 hour ago (13:06)</dd>
+                                        <dt class="ribbon__list-key">Created by</dt>
+                                        <dd class="ribbon__list-value">Paul Bele</dd>
+                                        <dt class="ribbon__list-key">Dependancies</dt>
+                                        <dd class="ribbon__list-value"><span class="label">client packages only</span></dd>
+                                        <dt class="ribbon__list-key">Build Status</dt>
+                                        <dd class="ribbon__list-value"><span class="label label--success">success</span></dd>
+                                    </dl>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- TODO: review - do we need all this tab mark up when tabs aren't used? -->
+
+                        <div class="tab__pane is-active">
+                            <div class="tab__container">
+                                <section class="actionsbar" aria-label="page actions">
+                                    <div class="float--right">
+                                        <a class="btn btn--primary" href="#">View Package</a>
+
+                                        {# example when build is processing (swapped to button as links can't be disabled)
+                                        <button class="btn btn--primary is-disabled" disabled>Package Building <i aria-hidden="true" class="icon-spinner icon-spin"></i></button>
+                                        #}
+
+                                    </div>
+                                </section>
+                                <div class="tab__inner">
+                                    <main class="tab__content" id="skip-target">
+
+                                        <h2 class="u-margin-top">Build timeline</h2>
+
+                                        <ol class="timeline">
+                                            <li class="timeline-content">
+                                                <p>Package built successfully</p>
+                                                <time datetime="2020-01-20 08:30">20/01/2020 08:30</time>
+                                            </li>
+                                            <li class="timeline-content">
+                                                <p>Finished file upload</p>
+                                                <time datetime="2020-01-20 08:30">20/01/2020 08:30</time>
+                                            </li>
+                                            <li class="timeline-content">
+                                                <p>Starting file upload to environment server</p>
+                                                <time datetime="2020-01-20 08:30">20/01/2020 08:28</time>
+                                            </li>
+                                            <li class="timeline-content">
+                                                <p>Updated dependencies to repository REWORD</p>
+                                                <time datetime="2020-01-20 08:30">20/01/2020 08:20</time>
+                                            </li>
+                                            <li class="timeline-content">
+                                                <p>Bumped project to version 1.28.2</p>
+                                                <time datetime="2020-01-20 08:30">20/01/2020 08:18</time>
+                                            </li>
+                                            <li class="timeline-content">
+                                                <p>Build process started</p>
+                                                <time datetime="2020-01-20 08:30">20/01/2020 08:15</time>
+                                            </li>
+                                        </ol>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
