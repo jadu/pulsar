@@ -17,6 +17,7 @@ $ie-version: 12 !default;
 // Third party plugins
 // scss-lint:disable all
 @import '../node_modules/normalize.css/normalize';
+@import '../node_modules/tippy.js/dist/tippy';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)

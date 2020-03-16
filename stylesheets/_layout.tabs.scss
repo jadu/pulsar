@@ -10,7 +10,10 @@
     font-size: 1.75em;
     line-height: 24px;
     margin-bottom: 13px;
-    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        margin-top: 17px;
+    }
 }
 
 .sub-title {

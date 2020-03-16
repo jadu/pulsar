@@ -85,7 +85,7 @@
     "jquery-placeholder": "^2.3.1",
     "jquery-sticky": "^1.0.4",
     "jquery-ui": "^1.12.1",
-    "jstree": "^3.3.8",
+    "jstree": "^3.3.9",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
@@ -93,6 +93,7 @@
     "select2": "github:jadu/selectWoo#jadu-1.1.2",
     "spectrum-colorpicker": "^1.8.0",
     "timepicker": "^1.13.0",
+    "tippy.js": "^5.2.1",
     "vide": "^0.5.1"
   }
 }

@@ -2,43 +2,13 @@
 
 .toolbar {
     display: block;
-    padding: 12px 20px 6px;
+    float: left;
+    padding: 12px 20px 0;
     width: 100%;
 
     @include respond-min($screen-desktop) {
         background-color: color(white);
-    }
-
-    .main-search {
-        display: inline-block;
-        margin: 0;
-        vertical-align: top;
-        width: calc(100% - 84px);
-
-        @include respond-min($screen-tablet) {
-            max-width: 200px;
-            width: calc(100% - 100px);
-        }
-    }
-
-    .toolbar-search {
-        display: inline-block;
-        width: 100%;
-
-        @include respond-min($screen-tablet) {
-            width: 50%;
-        }
-    }
-
-    .toolbar-controls {
-        display: flex;
-        float: right;
-        justify-content: flex-end;
-        width: 100%;
-
-        @include respond-min($screen-tablet) {
-            width: 50%;
-        }
+        padding: 18px 20px 0;
     }
 
     .dropdown {
@@ -54,6 +24,7 @@
         left: $padding-small-horizontal;
         position: absolute;
         right: $padding-small-horizontal;
+        top: 60px;
 
         @include respond-min($screen-xsmall) {
             left: auto;
@@ -61,6 +32,7 @@
             top: 35px;
         }
     }
+
 }
 
 .user-menu > .btn {
@@ -72,14 +44,17 @@
 }
 
 .nav-user {
+    float: right;
     font-size: $font-size-base;
-    margin: 0 10px;
 
     .btn {
         font-size: $font-size-base;
     }
 
     .dropdown {
+        float: left;
+        margin-left: 20px;
+        min-width: 60px;
         z-index: $zindex-dropdown;
     }
 
@@ -113,6 +88,7 @@
 
 .toolbar-icon,
 %toolbar-icon {
+    float: right;
     font-size: 24px;
     line-height: 42px; // maintain alignment in toolbar
     margin-left: $gutter-width;
@@ -158,7 +134,11 @@
 }
 
 .toolbar-help {
-    display: block;
+    display: none;
+
+    @include respond-min($screen-tablet) {
+        display: block;
+    }
 
     .dropdown__menu {
         min-width: 180px;

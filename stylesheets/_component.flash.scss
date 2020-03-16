@@ -111,13 +111,19 @@
 }
 
 .flash-container {
-    left: 0;
-    position: fixed;
-    right: 0;
+    clear: both;
+    margin: 0 -20px;
     z-index: $zindex-flash;
 
-    // accommodate sidebar navigation
     @include respond-min($screen-desktop) {
-        left: $nav-primary-width;
+        margin: 13px -20px 0;
+    }
+
+    > .flash:last-child {
+        margin-bottom: 15px;
+    }
+
+    &:empty {
+        display: none;
     }
 }
