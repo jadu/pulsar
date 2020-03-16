@@ -9,12 +9,12 @@
     padding-left: 5px;
 
     &,
-    & > a {
+    > a {
         color: color(primary, alt);
         text-decoration: none;
     }
 
-    & > a:focus {
+    > a:focus {
         color: color(text);
     }
 }
