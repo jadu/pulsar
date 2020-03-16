@@ -53,8 +53,8 @@ NavMainComponent.prototype.init = function () {
         if ($self.text() === 'Menu') {
             $self.text('Close');
             $self.attr('aria-expanded', 'true');
-            component.$brandingLink.attr('tabindex', '0');
-            component.$primaryNavLinks.attr('tabindex', '0');
+            component.$brandingLink.attr('tabindex', '3');
+            component.$primaryNavLinks.attr('tabindex', '3');
         } else {
             $self.text('Menu');
             $self.attr('aria-expanded', 'false');
@@ -129,8 +129,8 @@ NavMainComponent.prototype.manageTabIndexes = function () {
         component.$brandingLink.attr('tabindex', '-1');
         component.$primaryNavLinks.attr('tabindex', '-1');
     } else {
-        component.$brandingLink.attr('tabindex', '0');
-        component.$primaryNavLinks.attr('tabindex', '0');
+        component.$brandingLink.attr('tabindex', '1');
+        component.$primaryNavLinks.attr('tabindex', '1');
     }
 };
 
