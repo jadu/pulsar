@@ -1,8 +1,8 @@
 .ribbon-wrapper {
-    margin: 22px -20px;
+    margin: 0 -20px 22px;
 
     @include respond-min($screen-desktop) {
-        margin: 0 -20px 22px;
+        margin: 10px -20px 22px;
     }
 
     .has-timeline & {
@@ -321,12 +321,6 @@
     color: #2455c3;
     font-size: .9em;
     text-decoration: none;
-}
-
-.flash-container.has-flash:not(:empty) ~ .content-main .ribbon-wrapper {
-    @include respond-min($screen-desktop) {
-        margin-top: -20px;
-    }
 }
 
 .ribbon {
