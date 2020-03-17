@@ -168,28 +168,24 @@
 {%- macro help(options) -%}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% if options.items is defined and options.items is iterable %}
-    <div class="toolbar-help toolbar-icon">
-        <div class="dropdown">
+    <div class="btn__group dropdown toolbar-action toolbar-action--icon">
+        {{
+            html.button({
+                'class': 'btn--outline btn--inverse',
+                'label': html.icon('book') ~ ' <span class="caret"></span>',
+                'data-toggle': 'dropdown'
+            })
+        }}
+        <div class="dropdown__menu">
+        {% for item in options.items %}
             {{
-                html.button({
-                    'class': 'toolbar-help-link btn--naked',
-                    'label': html.icon('question-sign') ~ ' user guides',
-                    'tabindex': options.tabindex|default('0'),
-                    'data-toggle': 'dropdown'
-                })
+                html.media(item|merge({
+                    'target': '_blank',
+                    'type': 'link',
+                    'image_alt': item.title ~ ' logo'
+                }))
             }}
-
-            <div class="dropdown__menu">
-            {% for item in options.items %}
-                {{
-                    html.media(item|merge({
-                        'target': '_blank',
-                        'type': 'link',
-                        'image_alt': item.title ~ ' logo'
-                    }))
-                }}
-            {% endfor %}
-            </div>
+        {% endfor %}
         </div>
     </div>
     {% endif %}

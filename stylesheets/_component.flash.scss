@@ -112,16 +112,9 @@
 
 .flash-container {
     clear: both;
-    margin: 0 -20px;
+    margin: 0 -20px 10px;
     z-index: $zindex-flash;
-
-    @include respond-min($screen-desktop) {
-        margin: 13px -20px 0;
-    }
-
-    > .flash:last-child {
-        margin-bottom: 15px;
-    }
+    width: calc(100% + 40px);
 
     &:empty {
         display: none;

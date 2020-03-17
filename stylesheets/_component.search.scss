@@ -1,18 +1,14 @@
 .main-search {
     border: 1px solid $input-border;
     border-radius: 4px;
-    clear: both;
     display: block;
-    margin: 20px 0;
+    flex-grow: 1;
+    margin-bottom: 10px;
+    margin-right: 5px;
     position: relative;
 
     @include respond-min($screen-tablet) {
-        display: table;
-    }
-
-    @include respond-min($screen-desktop) {
-        margin: 0;
-        clear: none;
+        flex-grow: 0;
     }
 }
 

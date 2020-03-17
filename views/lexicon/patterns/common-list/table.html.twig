@@ -81,6 +81,53 @@
     }}
 {%- endblock -%}
 
+
+{% block ribbon %}
+    <div class="ribbon__header">
+        <a href="#" class="ribbon__mobile-toggle"><i class="icon-angle-down"><span class="hide">Toggle details</span></i></a>
+        <h1 class="ribbon__heading">
+            {{ heading|default('MISSING HEADING') }}
+            {{
+                html.label({
+                    'label': 'Submitted',
+                    'class': 'label--success'
+                })
+            }}
+        </h1>
+    </div>
+
+    <div class="ribbon__content">
+        {{
+            html.metadata({
+                'items': {
+                    'Started': '04/07/2016 12:34pm',
+                    'Submitted': '04/07/2016 12:34pm'
+                },
+                'style': 'display: inline-block; width: 30%;'
+            })
+        }}
+
+        {{
+            html.metadata({
+                'items': {
+                    'CXM ref': 'AB12345678',
+                    'Payment ref': 'AB12345678'
+                },
+                'style': 'display: inline-block; width: 30%;'
+            })
+        }}
+
+        {{
+            html.metadata({
+                'items': {
+                    'Browser': 'Mobile (phone) / Safari'
+                },
+                'style': 'display: inline-block; width: 30%;'
+            })
+        }}
+    </div>
+{% endblock ribbon %}
+
 {% 
     set table_data = {
         'columns': [

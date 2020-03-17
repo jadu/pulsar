@@ -1,8 +1,8 @@
-    <div class="btn__group dropdown notifications">
+    <div class="btn__group dropdown toolbar-action toolbar-action--icon notifications">
         {{
             html.button({
-                'class': 'notifications-toggle btn--naked is-active',
-                'label': html.icon('bell-o', { 'label': 'Show notifications' }),
+                'class': 'btn--outline btn--inverse notifications-toggle is-active',
+                'label': html.icon('bell-o', { 'label': 'Show notifications' }) ~ ' <span class="caret"></span>',
                 'data-toggle': 'dropdown'
             })
         }}
