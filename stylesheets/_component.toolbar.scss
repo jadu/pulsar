@@ -93,7 +93,7 @@
     }
 
     // Last two actions
-    &:nth-child(n+3) {
+    &:nth-child(n+3) .dropdown__menu {
         left: auto;
         right: 0;
     }
