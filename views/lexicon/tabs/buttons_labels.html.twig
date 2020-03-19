@@ -13,35 +13,32 @@
 
 {% block tab_content %}
 
-{{
-    html.button_dropdown({
-        'label': 'Drop Down',
-        'items': [
-            html.button({
-                label: html.icon('print') ~ ' Print'
-            }),
-            html.link({
-                label: html.icon('lock') ~ ' Lock',
-                disabled: true
+    <h2 class="heading">Links & Lists</h2>
+    <p>
+        <a href="#">Normal</a> / <a href="#" class="is-disabled">Disabled</a>
+
+        {{
+            html.list({
+                items: [
+                    'Simple',
+                    'List'
+                ]
             })
-        ]
-    })
-}}
+        }}
 
-    <h2 class="heading">Links</h2>
-
-    <a href="#">Normal</a>
-    <a href="#" class="is-disabled">disabled</a>
-    {{
-        html.link({
-            'label': 'twig link',
-            'disabled': true
-        })
-    }}
+        {{
+            html.link_list({
+                items: {
+                    'Google': 'http://google.com',
+                    'Twitter': 'http://twitter.com'
+                }
+            })
+        }}
+    </p>
 
     <h2 class="heading">Button variations</h2>
 
-    <div>
+    <p>
 
         <!-- The normal type of button you should use -->
         {{ html.button({ label: 'Default' }) }}
@@ -114,11 +111,11 @@
                 class: 'btn--naked'
             })
         }}
-    </div>
+    </p>
 
     <h2 class="heading">Link buttons</h2>
 
-    <div>
+    <p>
         <!-- The normal type of button you should use -->
         {{
             html.button({
@@ -205,11 +202,11 @@
                 href: '#'
             })
         }}
-    </div>
+    </p>
 
     <h2 class="heading">Outline buttons</h2>
 
-    <div>
+    <p>
         <!-- The normal type of button you should use -->
         {{
             html.button({
@@ -288,11 +285,11 @@
                 class: 'btn--outline btn--naked'
             })
         }}
-    </div>
+    </p>
 
     <h2 class="heading">Disabled buttons</h2>
 
-    <div>
+    <p>
         <!-- The normal type of button you should use -->
         {{
             html.button({
@@ -362,10 +359,10 @@
                 disabled: true
             })
         }}
-    </div>
+    </p>
 
     <h2 class="heading">Button groups</h2>
-    <div>
+    <p>
         <div class="btn__toolbar">
         {{
             html.button_group({
@@ -422,10 +419,10 @@
             })
         }}
         </div>
-    </div>
+    </p>
 
     <h2 class="heading">Labels</h2>
-    <div>
+    <p>
         {{
             html.label({
                 label: 'default'
@@ -473,10 +470,10 @@
                 class: 'label--large'
             })
         }}
-    </div>
+    </p>
 
     <h2 class="heading">Removable labels</h2>
-    <div>
+    <p>
         {{
             html.label({
                 label: 'default',
@@ -532,10 +529,10 @@
                 removable: true
             })
         }}
-    </div>
+    </p>
 
     <h2 class="heading">Badges</h2>
-    <div>
+    <p>
         {{
             html.badge({
                 label: '1'
@@ -571,7 +568,7 @@
                 label: '7', class: 'badge--inverse'
             })
         }}
-    </div>
+    </p>
 
     <h2 class="heading">Status indicators</h2>
     <p>I am online {{ html.status('online') }}</p>
@@ -580,7 +577,7 @@
     <p>I am inactive {{ html.status('inactive') }}</p>
 
     <h2 class="heading">Dropdown/Dropup buttons</h2>
-    <div>
+    <p>
         <div class="btn__toolbar">
         {%
             set example_dropdown = [
@@ -649,11 +646,11 @@
             })
         }}
         </div>
-    </div>
+    </p>
 
 
     <h2 class="heading">Icons, Badges and Buttons (oh my!)</h2>
-    <div>
+    <p>
         <div class="btn__toolbar">
             {{
                 html.button({
@@ -702,38 +699,16 @@
             	})
 
             }}
-        </div>
+        </p>
 
     <h2 class="heading">All the things!</h2>
-    <div>
+    <p>
     {{
         html.button_dropdown({
             'label': html.icon('folder-close') ~ ' Busy Button ' ~ html.badge({ 'label': '99', 'class': 'badge--primary'}),
             'items': example_dropdown
         })
     }}
-    </div>
-
-
-
-    <p class="columns columns--2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo.</div>
-
-    {{
-        html.list({
-            items: [
-                'foo',
-                'bar'
-            ]
-        })
-    }}
-
-    {{
-        html.link_list({
-            items: {
-                'Google': 'http://google.com',
-                'Twitter': 'http://twitter.com'
-            }
-        })
-    }}
+    </p>
 
 {% endblock tab_content %}

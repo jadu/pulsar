@@ -112,7 +112,7 @@
 
 .flash-container {
     clear: both;
-    margin: 0 -20px 10px;
+    margin: 0 -20px ($line-height-base / 2) -19px;
     z-index: $zindex-flash;
     width: calc(100% + 40px);
 

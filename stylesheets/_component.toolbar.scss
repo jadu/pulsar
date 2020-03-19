@@ -29,8 +29,8 @@
     .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
         border: 1px solid $input-border;
         border-width: 1px;
-        padding-bottom: 6.5px;
-        padding-top: 6.5px;
+        padding-bottom: 6px;
+        padding-top: 6px;
         width: 100%;
 
         @include respond-min($screen-desktop) {
@@ -46,10 +46,11 @@
 
         i {
             font-size: 18px;
-            vertical-align: baseline;
+            vertical-align: middle;
 
             @include respond-min($screen-desktop) {
                 font-size: 14px;
+                vertical-align: baseline;
             }
         }
 
@@ -99,9 +100,10 @@
     }
 }
 
-.toolbar-action--icon .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
-    padding-bottom: 6.5px;
-    padding-top: 6.5px;
+.toolbar-actions .toolbar-action--icon .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
+    line-height: 16px;
+    padding-bottom: 6px;
+    padding-top: 6px;
 
     i {
         font-size: 18px;

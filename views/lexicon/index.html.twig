@@ -57,6 +57,17 @@
     {% include 'lexicon/tabs/tooltips_v2.html.twig' %}
 {% endset %}
 
+{% set flash_message = {
+    'message': 'this is a flash message',
+    'type': 'info',
+    'autohide': false
+}%}
+
+{% block ribbon %}
+<h1 class="u-margin-top">This is a ribbon</h1>
+<p>some ribbon data</p>
+{% endblock ribbon %}
+
 {%
     set tabs_content = [
         {
