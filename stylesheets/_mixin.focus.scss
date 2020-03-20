@@ -112,3 +112,8 @@
     outline: none;
     text-decoration: none;
 }
+
+@mixin pulsar-link-label-focused {
+    background-color: color(background, focus);
+    color: color(black);
+}

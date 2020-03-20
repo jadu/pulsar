@@ -770,7 +770,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             html.remove_button({
                 'tooltip': false,
                 'target': 'this',
-                'type': 'link'
+                'label': 'Remove ' ~ options.label|default|raw
             })
         }}
         {% endif %}
@@ -1363,6 +1363,7 @@ placement | string | Can be `top`, `left`, `bottom`, `right`
 target    | string | CSS Selector of the item to be removed, will be turned into the `data-action-target` attribute
 type      | string | Can be `button` (default), `link`, `input`, `submit`
 data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
+label     | string | SR friendly hidden label
 
 #}
 {% macro remove_button(options) %}
@@ -1387,7 +1388,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                 'type': options.type|default('button'),
                 'data-action': 'remove',
                 'data-action-target': options.target|default,
-                'label': html.icon('remove-sign', { 'label': 'Remove' })
+                'label': html.icon('remove-sign', { 'label': options.label|default('Remove')})
             })
         )
     }}
