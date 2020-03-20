@@ -114,6 +114,7 @@
 }
 
 @mixin pulsar-link-label-focused {
-    background-color: color(background, focus);
-    color: color(black);
+    background-color: color(background, focus) !important;
+    border-radius: 0;
+    color: color(black) !important;
 }
