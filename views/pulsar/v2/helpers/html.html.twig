@@ -770,7 +770,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             html.remove_button({
                 'tooltip': false,
                 'target': 'this',
-                'label': 'Remove ' ~ options.label|default|raw
+                'label': 'Remove ' ~ options.label|default
             })
         }}
         {% endif %}
@@ -1388,7 +1388,7 @@ label     | string | SR friendly hidden label
                 'type': options.type|default('button'),
                 'data-action': 'remove',
                 'data-action-target': options.target|default,
-                'label': html.icon('remove-sign', { 'label': options.label|default('Remove')})
+                'label': html.icon('remove-sign', { 'label': options.label|default('Remove') })
             })
         )
     }}
