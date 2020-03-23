@@ -5,8 +5,9 @@ namespace Jadu\Pulsar\Twig\Extension;
 class TabsExtensionTest extends \PHPUnit\Framework\TestCase
 {
 
-  public function setUp()
+  public function setUp(): void
   {
+    parent::setUp();
     $this->ext = new TabsExtension();
     $this->tabs = '
       [{
