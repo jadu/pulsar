@@ -40,7 +40,7 @@ DisableUiComponent.prototype.disable = function (target) {
             .addClass('js-disabled u-cursor-not-allowed');
 
         // Wrap with disabled wrapper to visually disable
-        $this.wrap('<div class="u-ui-disabled"></div>');
+        $this.wrap('<div class="u-ui-disabled" aria-disabled="true"></div>');
     });
 };
 
@@ -53,7 +53,7 @@ DisableUiComponent.prototype.enable = function (target) {
         var $this = $(this);
 
         // Remove attribute used to disable a UI on load
-        $this.removeAttr('data-disable-ui');
+        $this.removeAttr('data-disable-ui, aria-disabled');
 
         // Enable form elements
         $this.find(FORM_ELEMENTS)
@@ -67,7 +67,8 @@ DisableUiComponent.prototype.enable = function (target) {
         // Enable links
         $this.find(LINK_ELEMENTS)
             .off('click', preventDefaultAndStopPropagation)
-            .removeClass('js-disabled u-cursor-not-allowed');
+            .removeClass('js-disabled u-cursor-not-allowed')
+            .removeProp('aria-disabled');
 
         // Remove wrapper which provides visually disabled styling
         if ($this.parent().hasClass('u-ui-disabled')) {
