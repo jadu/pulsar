@@ -54,7 +54,7 @@ DisableUiComponent.prototype.enable = function (target) {
         var $this = $(this);
 
         // Remove attribute used to disable a UI on load
-        $this.removeAttr('data-disable-ui, aria-disabled');
+        $this.removeAttr('data-disable-ui aria-disabled');
 
         // Enable form elements
         $this.find(FORM_ELEMENTS)
