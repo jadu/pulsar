@@ -662,7 +662,7 @@ fieldset {
 // look visually disabled too (the main label for the entire choice still uses
 // normal text colour)
 .is-disabled + .form-choice__label {
-    color: color(text, disabled);
+    opacity: .4;
 }
 
 .form__indent {
