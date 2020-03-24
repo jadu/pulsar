@@ -36,7 +36,6 @@ PulsarUIComponent.prototype.initDisabledLinks = function() {
 
         $this
             .attr('aria-disabled', 'true')
-            .attr('tabindex', '-1')
             .attr('role', 'button')
             .attr('data-href', $this.attr('href'))
             .removeAttr('href')
@@ -119,7 +118,8 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
         pagingType: 'full_numbers',
         responsive: {
             details: {
-                type: 'column'
+                type: 'column',
+                target: '.table-child-toggle'
             }
         },
         select: select,

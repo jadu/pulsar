@@ -173,7 +173,7 @@ $palette-alias: (
     link: (
         base:     #2a7da7, // WCAG 4.58:1 AA compliant
         dark:     darken(#2a7da7, 5),
-        hover:    darken(#2a7da7, 5),
+        hover:    #000,
         focus:    darken(#2a7da7, 15), // WCAG 5.39:1 AA compliant when used on color(background, focus)
         inverse:  #fff,
         inverse-hover: darken(#fff, 10%),

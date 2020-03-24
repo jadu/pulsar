@@ -77,12 +77,6 @@ describe('Pulsar UI Component', function() {
             expect(this.$html.find('.is-disabled').attr('data-href')).to.equal('#foo');
         });
 
-        it('should remove the link from the tabindex', function() {
-            this.$isDisabled.trigger(this.clickEvent);
-
-            expect(this.$html.find('.is-disabled').attr('tabindex')).to.equal('-1');
-        });
-
         it('should add the button role', function() {
             this.$isDisabled.trigger(this.clickEvent);
 

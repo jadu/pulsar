@@ -41,6 +41,10 @@ describe('HelpTextComponent', function() {
             expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
 
+        it('should add aria-hidden tab-help-container', function () {
+            expect(this.$tabHelpContainer.attr('aria-hidden')).to.equal('true');
+        });
+
         it('should copy the active tabs sidebar contents to the tab-help container', function() {
             expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text');
         });
@@ -86,6 +90,12 @@ describe('HelpTextComponent', function() {
 
             expect(this.$mainTitle.find('.js-show-page-help').hasClass('is-open')).to.be.true;
         });
+
+        it('should remove the aria-hidden attribute from the tab-help-container', function () {
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
+
+            expect(this.$tabHelpContainer.attr('aria-hidden')).to.be.undefined;
+        });
     });
 
     describe('When the side help is open and the help button is pressed', function() {
@@ -117,11 +127,24 @@ describe('HelpTextComponent', function() {
             expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
 
+        it('should add aria-hidden attribute to the tab-help-container', function () {
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabHelpContainer.trigger('transitionend');
+            expect(this.$tabHelpContainer.attr('aria-hidden')).to.equal('true');
+        });
+
         it('should add the hide class to the tab-help-container if lt-ie10', function () {
             this.$html.addClass('lt-ie10');
             this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
+        });
+
+        it('should add aria-hidden attribute to the tab-help-container', function () {
+            this.$html.addClass('lt-ie10');
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
+
+            expect(this.$tabHelpContainer.attr('aria-hidden')).to.equal('true');
         });
     });
 
@@ -164,6 +187,10 @@ describe('HelpTextComponent', function() {
 
         it('should add the hide class from the tab-help-container', function () {
             expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
+        });
+
+        it('should add the aria-hidden attribute to the tab-help-container', function () {
+            expect(this.$tabHelpContainer.attr('aria-hidden')).to.equal('true');
         });
     });
 
