@@ -52,6 +52,10 @@ describe('DisableUi component', function() {
 			expect(this.$standardForm.parent().hasClass('u-ui-disabled')).to.be.false;
 		});
 
+		it('should not have the aria-disabled attribute on the parent container', function() {
+			expect(this.$standardForm.parent().attr('aria-disabled')).to.be.undefined;
+		});
+
 		it('should remove the u-cursor-not-allowed class from form labels', function() {
 			expect(this.$label.hasClass('u-cursor-not-allowed')).to.be.false;
 		});
@@ -71,6 +75,14 @@ describe('DisableUi component', function() {
 		it('should remove the disabled class from form inputs', function() {
 			expect(this.$textInput.hasClass('disabled')).to.be.false;
 		});
+
+		it('should remove the aria-disabled attribute from links', function () {
+			var clickEvent = $.Event('click');
+
+			this.$link.trigger(clickEvent);
+
+			expect(this.$link.attr('aria-disabled')).to.be.undefined;
+		});
 	});
 
 	describe('the ‘disable’ method', function() {
@@ -78,6 +90,14 @@ describe('DisableUi component', function() {
 		beforeEach(function() {
 			this.disableUi.init();
 			this.disableUi.disable(this.$target);
+		});
+
+		it('should wrap the container in a div with the .u-ui-disabled class', function() {
+			expect(this.$standardForm.parent().hasClass('u-ui-disabled')).to.be.true;
+		});
+
+		it('should add the aria-disabled attribute to the UI container being disabled', function() {
+			expect(this.$standardForm.parent().attr('aria-disabled')).to.equal('true');
 		});
 
 		it('should prevent default on links', function() {
@@ -104,6 +124,14 @@ describe('DisableUi component', function() {
 			expect(this.$link.hasClass('u-cursor-not-allowed')).to.be.true;
 		});
 
+		it('should add the aria-disabled attribute to the link', function () {
+			var clickEvent = $.Event('click');
+
+			this.$link.trigger(clickEvent);
+
+			expect(this.$link.prop('aria-disabled')).to.equal('true');
+		});
+
 		it('should add the u-cursor-not-allowed class to form labels', function () {
 			expect(this.$label.hasClass('u-cursor-not-allowed')).to.be.true;
 		});
@@ -122,10 +150,6 @@ describe('DisableUi component', function() {
 
 		it('should add the disabled class to form inputs', function() {
 			expect(this.$textInput.hasClass('disabled')).to.be.true;
-		});
-
-		it('should wrap the container in a div with the .u-ui-disabled class', function() {
-			expect(this.$standardForm.parent().hasClass('u-ui-disabled')).to.be.true;
 		});
 	});
 
