@@ -144,7 +144,7 @@ form          | string | Specific one or more forms this label belongs to
 id            | string | A unique identifier, will also be applied as the label's `for` attribute
 indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
 name          | string | The name of this control
-required      | bool   | Adds `required` and `aria-required="true"` attributes
+required      | bool   | Adds `required` attribute
 value         | string | Specifies the value of the input
 data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -222,7 +222,7 @@ indeterminate   | bool   | Shows the checkbox as [-], overrides the value of `ch
 input_placement | string | left (default)|right position of the input vs the label value
 label           | string | Text for the `<label>` companion element
 name            | string | The name of this control
-required        | bool   | Adds `required` and `aria-required="true"` attributes
+required        | bool   | Adds `required` attribute
 value           | string | Specifies the value of the input
 data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -323,7 +323,7 @@ Option   | Type   | Description
 form     | string | Specific one or more forms this label belongs to
 id       | string | A unique identifier, will also be used as the label's `for` attribute
 name     | string | The name of this control
-required | bool   | Adds `required` and `aria-required="true"` attributes
+required | bool   | Adds `required` attribute
 selected | bool   | Whether this radio button should be selected
 value    | string | Specifies the value of the input
 data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -599,7 +599,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -918,7 +918,7 @@ format      | string | Options for this can be `default`, `US` or `reverse`
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1169,7 +1169,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1584,7 +1584,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1637,7 +1637,7 @@ Option     | Type   | Description
 form       | string | Specific one or more forms this label belongs to
 id         | string | A unique identifier, will also be used as the label's `for` attribute
 name       | string | The name of this control
-required   | bool   | Adds `required` and `aria-required="true"` attributes
+required   | bool   | Adds `required` attribute
 selected   | bool   | Whether the input is checked
 value      | string | Specifies the value of the input
 data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -1712,7 +1712,7 @@ id              | string | A unique identifier, will also be used as the label's
 label           | string | Text for the `<label>` companion element
 input_placement | string | `left` (default), `right` position of the input vs the label value
 name            | string | The name of this control
-required        | bool   | Adds `required` and `aria-required="true"` attributes
+required        | bool   | Adds `required` attribute
 selected        | bool   | Whether this radio button should be selected
 value           | string | Specifies the value of the input
 data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -1815,7 +1815,7 @@ form     | string | Specific one or more forms this label belongs to
 help     | string | Additional guidance information to be displayed next to the input
 id       | string | A unique identifier, will also be used as the label's `for` attribute
 name     | string | The name of this control
-required | bool   | Adds `required` and `aria-required="true"` attributes
+required | bool   | Adds `required` attribute
 selected | bool   | Whether this radio button should be selected
 value    | string | Specifies the value of the input
 data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -1895,7 +1895,7 @@ disabled    | bool   | Stops the element from being interactive if true
 form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1958,7 +1958,7 @@ id          | string | A unique identifier, will also be used as the label's `fo
 multiple    | bool   | Whether multiple options can be selected
 name        | string | The name of this control
 options     | hash   | The `<option>` attributes formatted as `{ 'value': 'label' }`
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 selected    | string | The `id` of the item in `options` that should be initially selected
 size        | int    | The number of items to display when the list is shown
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -2035,7 +2035,7 @@ id          | string | A unique identifier, will also be used as the label's `fo
 multiple    | bool   | Whether multiple options can be selected
 name        | string | The name of this control
 options     | hash   | The `<option>` attributes formatted as `{ 'value': 'label' }`
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 selected    | string | The `id` of the item in `options` that should be initially selected
 size        | int    | The number of items to display when the list is shown
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -2158,7 +2158,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -2227,7 +2227,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 rows        | int    | The height, in rows (default 2)
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -2297,7 +2297,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -2357,7 +2357,7 @@ form          | string | Specify one or more forms this label belongs to
 id            | string | A unique identifier, will also be applied as the label's `for` attribute
 indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
 name          | string | The name of this control
-required      | bool   | Adds `required` and `aria-required="true"` attributes
+required      | bool   | Adds `required` attribute
 value         | string | Specifies the value of the input
 data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
