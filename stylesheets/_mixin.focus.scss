@@ -53,8 +53,11 @@
 
 @mixin pulsar-range-focused {
     border: 0;
-    box-shadow: none;
-    outline: none;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 2px color(black);
+    outline: 3px solid color(border, focus);
+    outline-offset: 0;
+    padding: 0 5px;
 
     &::-webkit-slider-thumb {
         box-shadow: 0 0 0 3px color(white), 0 0 0 6px color(black), 0 0 0 9px color(border, focus);
@@ -111,4 +114,10 @@
     color: color(black);
     outline: none;
     text-decoration: none;
+}
+
+@mixin pulsar-link-label-focused {
+    background-color: color(background, focus) !important;
+    border-radius: 0;
+    color: color(black) !important;
 }
