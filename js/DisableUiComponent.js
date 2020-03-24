@@ -37,7 +37,8 @@ DisableUiComponent.prototype.disable = function (target) {
         // Disable links (uses .js-disable as any existing disabled)
         $this.find(LINK_ELEMENTS)
             .on('click', preventDefaultAndStopPropagation)
-            .addClass('js-disabled u-cursor-not-allowed');
+            .addClass('js-disabled u-cursor-not-allowed')
+            .prop('aria-disabled', 'true');
 
         // Wrap with disabled wrapper to visually disable
         $this.wrap('<div class="u-ui-disabled" aria-disabled="true"></div>');

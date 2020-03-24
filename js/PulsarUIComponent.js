@@ -36,7 +36,6 @@ PulsarUIComponent.prototype.initDisabledLinks = function() {
 
         $this
             .attr('aria-disabled', 'true')
-            .attr('tabindex', '-1')
             .attr('role', 'button')
             .attr('data-href', $this.attr('href'))
             .removeAttr('href')
