@@ -1581,7 +1581,7 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                         {% if loop.first %}
                             {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
                                 <th class="table-selection" data-orderable="false">
-                                    <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+                                    <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="Select all rows" data-tippy-placement="right" />
                                 </th>
                             {% endif %}
                         {% endif %}
