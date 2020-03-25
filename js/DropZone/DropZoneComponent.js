@@ -32,9 +32,10 @@ class DropZoneComponent {
             maxSize: 3e+8, // 300mb
             idleTimerDuration: 1000,
             // helper html
-            idleHtml: 'your files here or <a class="dropzone__browse" id="#">Browse Files</a>',
+            idleHtml: 'your files here or <button class="dropzone__browse btn" aria-label="Browse files to upload">Browse Files</button>',
             windowEnterHtml: 'Drag your files here',
             dropZoneEnterHtml: 'Drop your files here',
+            fileRemoveLabel: 'Remove',
             // passive
             passive: false,
             // support
