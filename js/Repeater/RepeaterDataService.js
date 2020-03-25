@@ -41,6 +41,8 @@ class RepeaterDataService {
             clone.setAttribute('name', name);
             // Remove the new group attr
             clone.removeAttribute(this.queryService.getAttr('name'));
+            // Hide clone from SRs
+            clone.classList.add('u-display-none');
             // Add cloned input to entry
             savedData.appendChild(clone);
         });
