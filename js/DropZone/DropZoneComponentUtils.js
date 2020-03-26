@@ -81,14 +81,14 @@ class DropZoneComponentUtils {
         return `
             <div data-dropzone-file="${file.id}" class="${options.nodeClasses.file}">
                 <div class="${options.nodeClasses.inner}">
-                    <a class="${options.nodeClasses.close}" href="#"><i class="icon icon-times-circle"></i></a>
+                    <button class="btn btn--naked ${options.nodeClasses.close}" aria-label="${options.fileRemoveLabel} ${file.name ? file.name : ''}"><i class="icon icon-times-circle"></i></button>
                     ${thumb}
                     <div class="${options.nodeClasses.meta}">
                         ${options.fileNodeName ? name : ''}
                         ${options.fileNodeDesc ? desc : ''}
                         ${options.fileNodeSize ? size : ''}
                         ${options.fileNodeType ? type : ''}
-                    </div>                
+                    </div>
                 </div>
             </div>`.replace(/>\s+</g, '><');
     }
