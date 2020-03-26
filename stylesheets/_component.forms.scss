@@ -746,14 +746,23 @@ fieldset.form__group--compound {
     padding: 0;
 }
 
-.form__group--compound {
-    > .control__label {
+// undo fieldset styling when fieldset/legend used for form__group and control__label
+fieldset.form__group {
+    padding: 0;
+
+    > legend.control__label {
         border-bottom: 0;
         float: left; // as we can't use inline-block
         font-size: inherit;
         line-height: inherit;
     }
 
+    > .controls {
+        clear: left;
+    }
+}
+
+.form__group--compound {
     > .controls {
         // override regular stacked styling
         > .form__control,
