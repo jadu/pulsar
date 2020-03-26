@@ -100,7 +100,7 @@
             a:hover,
             a:active,
             a:visited {
-                color: $state-color-alt;
+                color: $state-color-alt !important;
             }
         }
     }

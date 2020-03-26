@@ -92,6 +92,11 @@ $dropzone-icon-rotation: 30deg;
     position: relative;
 }
 
+.dropzone__browse.btn {
+    margin: 10px 0;
+    position: static;
+}
+
 .dropzone__help {
     color: color(text);
     display: inline-block;
