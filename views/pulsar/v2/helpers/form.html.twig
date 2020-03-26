@@ -101,7 +101,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
         form.group({
             'parent': options
                 |only('bare class error error_ids guidance guidance-container has_error help help_id id label required show-label type')
-                |merge({'class': options.class|default ~ ' form__button-group', 'containerTag' : containerTag, 'labelTag': labelTag }),
+                |merge({'class': options.class|default ~ ' form__button-group', 'containerTag': containerTag, 'labelTag': labelTag }),
             'controls': {'class': 'btn__group'},
             'inputs': items
         })
