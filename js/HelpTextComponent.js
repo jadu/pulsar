@@ -14,7 +14,9 @@ HelpTextComponent.prototype.init = function () {
         $tabHelpContainer = component.$html.find('.tab-help-container');
 
     // Visually hide sidebar so you can't tab to it with keyboard/screenreaders
-    $tabHelpContainer.addClass('hide');
+    $tabHelpContainer
+        .addClass('hide')
+        .attr('aria-hidden', 'true');
 
     // Help toggle click bind
     component.$html
@@ -52,15 +54,22 @@ HelpTextComponent.prototype.toggleHelpSidebar = function () {
     if (component.$html.hasClass('open-help')) {
         component.$html.removeClass('open-help');
         if (component.$html.hasClass('lt-ie10')) {
-            $tabHelpContainer.addClass('hide');
+            $tabHelpContainer
+                .addClass('hide')
+                .attr('aria-hidden', 'true');
         } else {
             $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                $tabHelpContainer.addClass('hide');
                 component.$html.find('.js-show-page-help').trigger('focus');
+
+                $tabHelpContainer
+                    .addClass('hide')
+                    .attr('aria-hidden', 'true');
             });
         }
     } else {
-        $tabHelpContainer.removeClass('hide');
+        $tabHelpContainer
+            .removeClass('hide')
+            .removeAttr('aria-hidden');
         component.$html.addClass('open-help');
 
         // Jump focus to the help container

@@ -4,8 +4,9 @@ namespace Jadu\Pulsar\Twig\Extension;
 
 class ConfigExtensionTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
         $this->config = 'pulsar.json';
         $this->ext = new ConfigExtension($this->config);   
     }
@@ -23,7 +24,7 @@ class ConfigExtensionTest extends \PHPUnit\Framework\TestCase
     public function testConfigFileContainsNameProperty()
     {
         $file = file_get_contents('pulsar.json');
-        $this->assertContains('name', $file);
+        $this->assertStringContainsString('name', $file);
     }
 
     public function testGetConfigVarsMethodReturnsName()
@@ -40,7 +41,7 @@ class ConfigExtensionTest extends \PHPUnit\Framework\TestCase
     public function testConfigFileContainsVersionNumberProperty()
     {
         $file = file_get_contents('pulsar.json');
-        $this->assertContains('version', $file);
+        $this->assertStringContainsString('version', $file);
     }
 
     public function testConfigFileVersionNumberIsValid()
@@ -58,7 +59,7 @@ class ConfigExtensionTest extends \PHPUnit\Framework\TestCase
     public function testConfigFileContainsBasePathProperty()
     {
         $file = file_get_contents('pulsar.json');
-        $this->assertContains('base_path', $file);
+        $this->assertStringContainsString('base_path', $file);
     }
 
     public function testGetConfigVarsMethodReturnsBasePath()
@@ -76,7 +77,7 @@ class ConfigExtensionTest extends \PHPUnit\Framework\TestCase
         $brokenExt = new ConfigExtension('invalidfile.json');
         $config = $brokenExt->getConfigVars();
 
-        $this->assertInternalType('array', $config);
+        $this->assertIsArray($config);
         $this->assertArrayHasKey('name', $config);
         $this->assertArrayHasKey('version', $config);
         $this->assertStringMatchesFormat('%d.%d.%d', $config['version']);
