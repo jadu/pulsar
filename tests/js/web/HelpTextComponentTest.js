@@ -283,4 +283,20 @@ describe('HelpTextComponent', function() {
         });
 
     });
+
+    describe('The handleFocusOut method', function() {
+        beforeEach(function () {
+            this.helpTextComponent.init();
+            this.$html.addClass('open-help');
+            sinon.spy(this.helpTextComponent, 'toggleHelpSidebar');
+            this.helpTextComponent.handleFocusOut();
+        });
+
+        it('should call the update help sidebar method', function () {
+            this.$body.find(this.$tabHelpContainer).trigger('focusout');
+            setTimeout(() => {
+                expect(this.helpTextComponent.toggleHelpSidebar).to.have.been.called;
+            }, 1.2);
+        });
+    });
 });
