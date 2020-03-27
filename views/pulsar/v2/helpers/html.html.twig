@@ -1518,7 +1518,7 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
     {% import _self as html %}
     {% set files = options['data-dropzone-max-files'] is defined ? options['data-dropzone-max-files'] : '5' %}
     {% set state = options['data-dropzone-passive']|default('false') == 'true' ? 'passive' : 'idle' %}
-    {% set idle = options['data-dropzone-idle-html']|default('your files here or <a class="dropzone__browse" id="#">Browse Files</a>') %}
+    {% set idle = options['data-dropzone-idle-html']|default('your files here or <button class="dropzone__browse btn" aria-label="Browse files to upload">Browse Files</button>') %}
     {% spaceless %}
         <div{{ attributes(options|defaults(
             {

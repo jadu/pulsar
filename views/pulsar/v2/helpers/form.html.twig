@@ -73,6 +73,9 @@ items         | array  | An array of items to put in the dropdown list (usually 
         {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
     {% endif %}
 
+    {% set containerTag = 'fieldset' %}
+    {% set labelTag = 'legend' %}
+
     {# If error is preset add aria-invalid="true" and aria-describedby to all inputs #}
     {% set items = options.items %}
 
@@ -98,7 +101,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
         form.group({
             'parent': options
                 |only('bare class error error_ids guidance guidance-container has_error help help_id id label required show-label type')
-                |merge({'class': options.class|default ~ ' form__button-group'}),
+                |merge({'class': options.class|default ~ ' form__button-group', 'containerTag': containerTag, 'labelTag': labelTag }),
             'controls': {'class': 'btn__group'},
             'inputs': items
         })
@@ -1293,6 +1296,7 @@ controls.class    | string | A space separated list of class names
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
     {% set groupClass = 'form__group' %}
+    {% set containerTag = 'div' %}
     {% set labelTag = 'label' %}
 
     {% if options.parent.error is defined and options.parent.error is not empty %}
@@ -1308,6 +1312,10 @@ controls.class    | string | A space separated list of class names
         {% set showLabel = false %}
     {% endif %}
 
+    {% if options.parent.containerTag is defined and options.parent.containerTag is not empty %}
+        {% set containerTag = options.parent.containerTag %}
+    {% endif %}
+
     {% if options.parent.labelTag is defined and options.parent.labelTag is not empty %}
         {% set labelTag = options.parent.labelTag %}
     {% endif %}
@@ -1318,12 +1326,13 @@ controls.class    | string | A space separated list of class names
     {% endif %}
 
     {% if options.parent.bare is not defined or options.parent.bare != true %}
-    <div{{
+    <{{
         attributes(options.parent
                 |only('class aria-describedby')
                 |defaults({
                     'class': groupClass
-                })
+                }),
+                {'tag': containerTag}
             )
     -}}>
     {% endif %}
@@ -1450,7 +1459,7 @@ controls.class    | string | A space separated list of class names
         </label>
         {% endif %}
     {% if options.parent.bare is not defined or options.parent.bare != true %}
-    </div>
+    </{{ containerTag }}>
     {% endif %}
 
 {% endmacro %}
