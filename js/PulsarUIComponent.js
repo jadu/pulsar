@@ -193,7 +193,6 @@ PulsarUIComponent.prototype.initDataTables = function () {
         const horizontalOptions = $.extend({}, datatableOptions, {
             dom: dom,
             responsive: null,
-            scrollX: true,
             select: select,
         });
 
