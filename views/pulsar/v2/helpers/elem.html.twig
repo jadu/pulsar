@@ -60,11 +60,6 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
     {% endif %}
 
-    {# Set aria-invalid="true" for inputs with errors #}
-    {% if options.has_error is defined and options.has_error == true %}
-        {% set options = options|defaults({'aria-invalid': 'true'}) %}
-    {% endif %}
-
     <input{{ attributes(options|exclude('append bare has_error help_id input_placement prepend naked')) }} />
 
 {% endspaceless %}
@@ -227,11 +222,6 @@ value       | string | Specifies the value of the input
 
     {% if describedByIds|length %}
         {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
-    {% endif %}
-
-    {# Set aria-invalid="true" for inputs with errors #}
-    {% if options.has_error is defined and options.has_error == true %}
-        {% set options = options|defaults({'aria-invalid': 'true'}) %}
     {% endif %}
 
     <select{{
@@ -410,11 +400,6 @@ value       | string  | Specifies the value of the input
 
     {% if describedByIds|length %}
         {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
-    {% endif %}
-
-    {# Set aria-invalid="true" for inputs with errors #}
-    {% if options.has_error is defined and options.has_error == true %}
-        {% set options = options|defaults({'aria-invalid': 'true'}) %}
     {% endif %}
 
     <textarea{{
