@@ -61,3 +61,9 @@
         line-height: inherit;
     }
 }
+
+// Linked labels
+a:focus .label {
+    @include pulsar-link-label-focused;
+}
+
