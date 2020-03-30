@@ -111,39 +111,8 @@
 
         <div class="container" id="top">
             <div class="inner-wrapper">
-                <nav role="navigation" class="nav-main" aria-label="primary" id="aria-main-nav">
-                    <div class="nav-primary t-nav-primary">
-                        <a tabindex="1" href="#" class="jadu-branding" aria-label="Home">
-                            <span class="jadu-logomark">
-                                <span class="hide">Return to Dashboard</span>
-                            </span>
-                            <span class="jadu-wordmark">Jadu</span>
-                        </a>
-                        <ul class="nav-items">
-                            <li class="nav-item t-nav-item">
-                                <a href="#" tabindex="1" class="nav-link t-nav-link">
-                                    <i aria-hidden="true" class="icon-dashboard icon-fw nav-link__icon t-nav-icon"></i>
-                                    <span class="nav-link__label">Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="nav-item t-nav-item">
-                                <a href="#" tabindex="1" class="nav-link t-nav-link">
-                                    <i aria-hidden="true" class="icon-server icon-fw nav-link__icon t-nav-icon"></i>
-                                    <span class="nav-link__label">Environments</span>
-                                </a>
-                            </li>
-                            <li class="nav-item t-nav-item">
-                                <a href="#" tabindex="1" class="nav-link t-nav-link">
-                                    <i aria-hidden="true" class="icon-envelope-o icon-fw nav-link__icon t-nav-icon"></i>
-                                    <span class="nav-link__label">Alerts</span>
-                                </a>
-                            </li>
 
-                        </ul>
-                    </div>
-
-                    <!-- removed nav-secondary etc as not needed -->
-                </nav>
+                {% include '@pulsar/playground/deployer/partials/nav.html.twig' %}
 
                 <header class="toolbar">
                     <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
@@ -214,7 +183,7 @@
                             <div class="tab__container">
                                 <section class="actionsbar" aria-label="page actions">
                                     <div class="float--right">
-                                        <a class="btn btn--primary" href="#">New Environment</a>
+                                        <button class="btn btn--primary" data-toggle="modal" data-target="#newEnvironmentModal">New Environment</button>
                                     </div>
                                 </section>
                                 <div class="tab__inner">
@@ -222,192 +191,45 @@
 
                                         <p>The following environments configured for use with Deployer.</p>
 
-
                                         <table class="table table--full table--horizontal u-margin-bottom-none" data-table-detail-table>
                                             <caption class="hide">Environments</caption>
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
                                                     <th>URL</th>
                                                     <th>Status</th>
-                                                    <th>Installed Versions</th>
+                                                    <th>Installed Dependencies</th>
                                                     <th>Last connection</th>
                                                     <th>Memory limit</th>
                                                     <th>Enabled</th>
                                                     <th class="shrink-to-fit">API Key</th>
                                                 </tr>
                                             </thead>
+
+                                            {# need to allow for edit and delete here !#}
                                             <tbody>
-                                                <tr
-                                                data-table-detail-panel-custom-title="Deployment log"
-                                                data-table-detail-content="
-                                                    <dl class=&quot;metadata margin-bottom--large&quot;>
-                                                        <dt class=&quot;metadata__key&quot;>Environment</dt>
-                                                        <dd class=&quot;metadata__value&quot;>uat.jadu.net</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Started</dt>
-                                                        <dd class=&quot;metadata__value&quot;>1 hours ago (13:06)</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Finished</dt>
-                                                        <dd class=&quot;metadata__value&quot;>20 mins ago (13:46)</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Deployed by</dt>
-                                                        <dd class=&quot;metadata__value&quot;>Paul Bele</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Status</dt>
-                                                        <dd class=&quot;metadata__value&quot;>
-                                                            <span class=&quot;label label--success&quot;>Success</span>
-                                                        </dd>
-                                                    </dl>
-
-                                                    <ol class=&quot;timeline&quot;>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Package deployed successfully</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:30</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Storing current migration status in the backup</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:28</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Copying files into the install /var/www/jadu/</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:20</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Copying files from the install to the backup</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:18</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Creating backup in /var/www/jadu/backups/20201117130437</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:15</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Removing backup 2019-10-1720201017130437</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:13</time>
-                                                        </li>
-                                                    </ol>
-                                                ">
-                                                    <td>UAT</td>
-                                                    <td>uat.jadu.net</td>
-                                                    <td><span class="label label--success">Live</span></td>
+                                                <tr>
+                                                    <td><a href="#editEnvironmentModal" data-toggle="modal" >uat.jadu.net</a></td>
+                                                    <td><i class="status is-online"></i> Live</td>
                                                     <td><span class="label label--primary">continuum #112</span> <span class="label">package 1.28.2</span></td>
                                                     <td>2 mins ago</td>
                                                     <td>64MB</td>
                                                     <td>Yes {# use label or status? #}</td>
-                                                    <td>GddEtb0EdYWBgkJLuLnZEw==</td>
+                                                    <td>GddEtb0EdYWBgkJLuLnZEw==</td> {# not sure if we should show this in the table...#}
                                                 </tr>
 
-                                                <tr
-                                                data-table-detail-panel-custom-title="Deployment log"
-                                                data-table-detail-content="
-                                                    <dl class=&quot;metadata margin-bottom--large&quot;>
-                                                        <dt class=&quot;metadata__key&quot;>Environment</dt>
-                                                        <dd class=&quot;metadata__value&quot;>uat.jadu.net</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Started</dt>
-                                                        <dd class=&quot;metadata__value&quot;>1 hours ago (13:06)</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Finished</dt>
-                                                        <dd class=&quot;metadata__value&quot;>20 mins ago (13:46)</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Deployed by</dt>
-                                                        <dd class=&quot;metadata__value&quot;>Paul Bele</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Status</dt>
-                                                        <dd class=&quot;metadata__value&quot;>
-                                                            <span class=&quot;label label--success&quot;>Success</span>
-                                                        </dd>
-                                                    </dl>
-
-                                                    <ol class=&quot;timeline&quot;>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Package deployed successfully</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:30</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Storing current migration status in the backup</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:28</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Copying files into the install /var/www/jadu/</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:20</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Copying files from the install to the backup</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:18</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Creating backup in /var/www/jadu/backups/20201117130437</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:15</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Removing backup 2019-10-1720201017130437</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:13</time>
-                                                        </li>
-                                                    </ol>
-                                                ">
-                                                    <td>UAT</td>
-                                                    <td>uat.jadu.net</td>
-                                                    <td><span class="label label--success">Live</span></td>
-                                                    <td><span class="label label--primary">continuum #112</span> <span class="label">package 1.28.2</span></td>
-                                                    <td>2 mins ago</td>
+                                                <tr>
+                                                    <td><a href="#editEnvironmentModal" data-toggle="modal" >uat2.jadu.net</a></td>
+                                                    <td><i class="status is-offline"></i> Offline</td>
+                                                    <td><span class="label label--primary">continuum #112</span> <span class="label">package 1.28.1</span></td>
+                                                    <td>20 mins ago</td>
                                                     <td>64MB</td>
                                                     <td>Yes {# use label or status? #}</td>
                                                     <td>GddEtb0EdYWBgkJLuLnZEw==</td>
                                                 </tr>
-                                                <tr
-                                                data-table-detail-panel-custom-title="Deployment log"
-                                                data-table-detail-content="
-                                                    <dl class=&quot;metadata margin-bottom--large&quot;>
-                                                        <dt class=&quot;metadata__key&quot;>Environment</dt>
-                                                        <dd class=&quot;metadata__value&quot;>uat.jadu.net</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Started</dt>
-                                                        <dd class=&quot;metadata__value&quot;>1 hours ago (13:06)</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Finished</dt>
-                                                        <dd class=&quot;metadata__value&quot;>20 mins ago (13:46)</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Deployed by</dt>
-                                                        <dd class=&quot;metadata__value&quot;>Paul Bele</dd>
-
-                                                        <dt class=&quot;metadata__key&quot;>Status</dt>
-                                                        <dd class=&quot;metadata__value&quot;>
-                                                            <span class=&quot;label label--success&quot;>Success</span>
-                                                        </dd>
-                                                    </dl>
-
-                                                    <ol class=&quot;timeline&quot;>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Package deployed successfully</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:30</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Storing current migration status in the backup</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:28</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Copying files into the install /var/www/jadu/</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:20</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Copying files from the install to the backup</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:18</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Creating backup in /var/www/jadu/backups/20201117130437</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:15</time>
-                                                        </li>
-                                                        <li class=&quot;timeline-content&quot;>
-                                                            <p>Removing backup 2019-10-1720201017130437</p>
-                                                            <time datetime=&quot;2020-01-20 08:30&quot;>20/01/2020 08:13</time>
-                                                        </li>
-                                                    </ol>
-                                                ">
-                                                    <td>UAT</td>
-                                                    <td>uat.jadu.net</td>
-                                                    <td><span class="label label--success">Live</span></td>
-                                                    <td><span class="label label--primary">continuum #112</span> <span class="label">package 1.28.2</span></td>
+                                                <tr>
+                                                    <td><a href="#editEnvironmentModal" data-toggle="modal" >uat3.jadu.net</a></td>
+                                                    <td><i class="status is-online"></i> Live</td>
+                                                    <td><span class="label label--primary">continuum #112</span> <span class="label">package 1.26.2</span></td>
                                                     <td>2 mins ago</td>
                                                     <td>64MB</td>
                                                     <td>Yes {# use label or status? #}</td>
@@ -423,5 +245,76 @@
                 </div>
             </div>
         </div>
+        <div class="modal modal--large" id="editEnvironmentModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="editEnvironmentModal-title" aria-hidden="false">
+            <div class="modal__dialog">
+                <div class="modal__content">
+                    <form><!-- because inputs should be wrapped in a form... COULD WE MOVE INSIDE OF BODY AFTER P? SR TEST -->
+                        <div class="modal__header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                            <h1 class="modal__title" id="editEnvironmentModal-title">Edit Environment</h1>
+                        </div>
+                        <div class="modal__body">
+                            <div class="form__group form__group--full">
+                                <label for="guid-1754188012" class="control__label">URL&nbsp;<span aria-hidden="true" class="required-indicator" data-tippy-content="required">*</span></label>
+                                <div class="controls">
+                                    <input id="guid-1754188012" type="text" class="form__control" required value="uat.jadu.net">
+                                </div>
+                            </div>
+                            <div class="form__group  form__group--toggle">
+                                <label class="toggle-switch-wrapper-label" for="guid-1299616969">
+                                    <span class="control__label">Enable</span>
+                                    <span class="controls">
+                                        <input id="guid-1299616969" type="checkbox" class="form__control toggle-switch">
+                                        <span class="toggle-switch-label"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal__footer">
+                            <button type="button" class="btn btn--primary">Save</button>
+                            <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn--danger float--right" data-dismiss="modal">Delete</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal__content -->
+            </div><!-- /.modal__dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal modal--large" id="newEnvironmentModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="newEnvironmentModal-title" aria-describedby="newEnvironmentModal-description" aria-hidden="false">
+            <div class="modal__dialog">
+                <div class="modal__content">
+                    <form><!-- because inputs should be wrapped in a form... COULD WE MOVE INSIDE OF BODY AFTER P? SR TEST -->
+                        <div class="modal__header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                            <h1 class="modal__title" id="newEnvironmentModal-title">New Environment</h1>
+                        </div>
+                        <div class="modal__body">
+
+                            <p id="newEnvironmentModal-description">Add a new environment by adding the URL of your website. After you save the new environment, a new API key will be generated. You will need to add this key into your website <strong>Utilities &gt; Integrations &gt; Deployer </strong>.</p>
+
+                            <div class="form__group form__group--full">
+                                <label for="guid-1754188012" class="control__label">URL&nbsp;<span aria-hidden="true" class="required-indicator" data-tippy-content="required">*</span></label>
+                                <div class="controls">
+                                    <input id="guid-1754188012" type="text" class="form__control" required value="uat.jadu.net">
+                                </div>
+                            </div>
+                            <div class="form__group  form__group--toggle">
+                                <label class="toggle-switch-wrapper-label" for="guid-1299616969">
+                                    <span class="control__label">Enable</span>
+                                    <span class="controls">
+                                        <input id="guid-1299616969" type="checkbox" class="form__control toggle-switch">
+                                        <span class="toggle-switch-label"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal__footer">
+                            <button type="button" class="btn btn--primary">Save</button>
+                            <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal__content -->
+            </div><!-- /.modal__dialog -->
+        </div><!-- /.modal -->
     </body>
 </html>
