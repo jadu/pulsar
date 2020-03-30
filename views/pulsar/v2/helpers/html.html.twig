@@ -1575,15 +1575,17 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                 {% if overflow == 'collapse' %}
                     <td><span class="hide">Table controls</span></td>
                 {% endif %}
-                {% for column in options.data.columns %}
-                    {% if loop.first %}
-                        <th class="table-selection" data-orderable="false">
-                            <span class="hide">Row selection controls</span>
-                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="select all rows" data-tippy-placement="right" />
-                        </th>
-                    {% endif %}
-                    <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
-                {% endfor %}
+                    {% for column in options.data.columns %}
+                        {% if loop.first %}
+                            {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
+                                <th class="table-selection" data-orderable="false">
+                                    <span class="hide">Row selection controls</span>
+                                    <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="Select all rows" data-tippy-placement="right" />
+                                </th>
+                            {% endif %}
+                        {% endif %}
+                        <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
+                    {% endfor %}
             </tr>
         </thead>
         <tbody>
@@ -1596,9 +1598,11 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                             </button>
                         </td>
                     {% endif %}
-                    <td class="table-selection">
-                        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
-                    </td>
+                    {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
+                        <td class="table-selection">
+                            <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+                        </td>
+                    {% endif %}
                     {% for key, val in row %}
                         {% if val is same as(true) %}
                             <td data-order="{{ key }}" class="u-text-align-center">{{ html.status('online', { 'title': key, 'icon': true }) }}</td>
