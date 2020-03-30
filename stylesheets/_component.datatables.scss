@@ -27,13 +27,19 @@
     }
 }
 
-.dt-disable-selection .table-selection {
-    min-width: 0;
-    padding: 0;
-    width: 0;
+// Hide row selection checkboxes if the DT is using the data-select="false" attribute but the developer is not using
+// the html.datatable helper and has left the checkboxes in the markup
+.dt-disable-selection {
+    clear: both;
 
-    .table-row-select {
-        display: none;
+    .table-selection {
+        min-width: 0;
+        padding: 0;
+        width: 0;
+
+        .checkbox {
+            display: none;
+        }
     }
 }
 
