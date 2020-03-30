@@ -76,7 +76,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {% set containerTag = 'fieldset' %}
     {% set labelTag = 'legend' %}
 
-    {# If error is preset add aria-invalid="true" and aria-describedby to all inputs #}
+    {# If error is preset add aria-describedby to all inputs #}
     {% set items = options.items %}
 
     {% if options.error is defined and options.error is not empty or options.help is defined and options.help is not empty %}
