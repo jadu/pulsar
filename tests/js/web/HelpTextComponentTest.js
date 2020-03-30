@@ -65,6 +65,7 @@ describe('HelpTextComponent', function() {
             this.helpTextComponent.init();
             this.helpTextComponent.updateHelpSidebar();
             this.clickEvent = $.Event('click');
+            this.focusEvent = $.Event('focus');
         });
 
         it('should prevent the default behaviour', function () {
@@ -95,6 +96,14 @@ describe('HelpTextComponent', function() {
             this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$tabHelpContainer.attr('aria-hidden')).to.be.undefined;
+        });
+
+        it('move focus to the close button', function () {
+            sinon.spy(this.helpTextComponent, 'toggleHelpSidebar');
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabHelpContainer.trigger('transitionend');
+            
+            expect(this.helpTextComponent.toggleHelpSidebar).to.have.been.called;
         });
     });
 
