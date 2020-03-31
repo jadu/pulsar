@@ -96,8 +96,7 @@
 
 // Text input groups
 // -------------------------
-.input-group-addon,
-.input-group-guidance {
+.input-group-addon {
     padding: 0 $padding-base-horizontal;
     font-size: $font-size-base;
     font-weight: normal;
@@ -199,18 +198,6 @@
         line-height: 2em;
     }
 
-}
-
-.input-group-guidance {
-    background-color: color(white);
-    border: 0;
-    color: color(jadu-blue);
-    line-height: 24px;
-    vertical-align: baseline;
-
-    &:hover {
-        color: color(jadu-blue, dark);
-    }
 }
 
 // guidance popovers for various configurations
