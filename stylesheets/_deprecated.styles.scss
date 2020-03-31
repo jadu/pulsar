@@ -483,28 +483,24 @@ $rich-list-item-text-selected-color:  color(white) !default;
 // -----------------------------------------------------------------------------
 
 .input-group-guidance {
-    padding: 0 $padding-base-horizontal;
+    background-color: color(white);
+    border: 0;
+    color: color(jadu-blue);
     font-size: $font-size-base;
     font-weight: normal;
-    line-height: $input-height-base - 2;
+    line-height: 24px;
+    padding: 0 $padding-base-horizontal;
     text-align: center;
+    vertical-align: baseline;
+
+    &:hover {
+        color: color(jadu-blue, dark);
+    }
 
     // Nuke default margins from checkboxes and radios to vertically center within.
     input[type="radio"],
     input[type="checkbox"] {
         margin-top: 0;
-    }
-}
-
-.input-group-guidance {
-    background-color: color(white);
-    border: 0;
-    color: color(jadu-blue);
-    line-height: 24px;
-    vertical-align: baseline;
-
-    &:hover {
-        color: color(jadu-blue, dark);
     }
 }
 
