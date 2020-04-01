@@ -16,6 +16,7 @@ before_script:
   - npm install
   - mkdir -p dist/js
   - gem update --system && gem install scss_lint
+  - composer require --dev phpunit/phpunit ^7
 
 install:
   - composer self-update
