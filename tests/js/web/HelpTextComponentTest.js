@@ -65,6 +65,7 @@ describe('HelpTextComponent', function() {
             this.helpTextComponent.init();
             this.helpTextComponent.updateHelpSidebar();
             this.clickEvent = $.Event('click');
+            this.focusEvent = $.Event('focus');
         });
 
         it('should prevent the default behaviour', function () {
@@ -95,6 +96,14 @@ describe('HelpTextComponent', function() {
             this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$tabHelpContainer.attr('aria-hidden')).to.be.undefined;
+        });
+
+        it('move focus to the close button', function () {
+            sinon.spy(this.helpTextComponent, 'toggleHelpSidebar');
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabHelpContainer.trigger('transitionend');
+            
+            expect(this.helpTextComponent.toggleHelpSidebar).to.have.been.called;
         });
     });
 
@@ -282,5 +291,21 @@ describe('HelpTextComponent', function() {
             expect(this.$tabHelp.find('.js-close-page-help').length).to.equal(1);
         });
 
+    });
+
+    describe('The handleFocusOut method', function() {
+        beforeEach(function () {
+            this.helpTextComponent.init();
+            this.$html.addClass('open-help');
+            sinon.spy(this.helpTextComponent, 'toggleHelpSidebar');
+            this.helpTextComponent.handleFocusOut();
+        });
+
+        it('should call the update help sidebar method', function () {
+            this.$body.find(this.$tabHelpContainer).trigger('focusout');
+            setTimeout(() => {
+                expect(this.helpTextComponent.toggleHelpSidebar).to.have.been.called;
+            }, 1.2);
+        });
     });
 });
