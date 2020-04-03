@@ -112,7 +112,7 @@ name    | string | The name of this control
         {% set tag = 'legend' %}
     {% endif %}
 
-    {% if options.label is not empty or options.guidance is not empty %}
+    {% if options.label is not empty %}
         <{{ attributes(options
             |exclude('container guidance guidance-container label required required-indicator show-label tag ' ~ (tag == 'span' ? 'for'))
             |defaults({
@@ -123,7 +123,6 @@ name    | string | The name of this control
             {%- if options['required-indicator'] is not defined or options['required-indicator'] != false -%}
                 {{ util.required(options.required|default(false)) }}
             {%- endif -%}
-            {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}
         </{{ tag }}>
     {% endif %}
 
