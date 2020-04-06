@@ -39,6 +39,11 @@ class HelperOptionsModifierExtension extends \Twig_Extension
             return false;
         }
 
+        // If no ID has been provided, we need to create one
+        if (!array_key_exists('id', $options) || empty($options['id'])) {
+            $options['id'] = 'id-guid-' . rand();
+        }
+
         // Check if errors are present in options
         if (array_key_exists('error', $options) && !empty($options['error'])) {
             $errors = is_array($options['error']) ?  $options['error'] : [$options['error']];
@@ -51,7 +56,7 @@ class HelperOptionsModifierExtension extends \Twig_Extension
 
             // Build guids for errors
             for ($i = 0; $i < $numberOfErrors; $i++) {
-                $errorGuids[] = 'guid-' . rand();
+                $errorGuids[] = 'help-guid-' . rand();
             }
 
             $options['error_ids'] = $errorGuids;
@@ -59,7 +64,7 @@ class HelperOptionsModifierExtension extends \Twig_Extension
 
         // Check if errors are present in options
         if (array_key_exists('help', $options) and !empty($options['help']) ) {
-            $options['help_id'] = 'guid-' . rand();
+            $options['help_id'] = 'help-guid-' . rand();
         }
 
         return $options;

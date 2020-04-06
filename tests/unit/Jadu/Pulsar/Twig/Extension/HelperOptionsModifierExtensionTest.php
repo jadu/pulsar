@@ -25,7 +25,7 @@ class HelperOptionsModifierExtensionTest extends \PHPUnit\Framework\TestCase
         $dataIn = array('help' => 'example help');
         $result = $this->ext->modifyOptions($dataIn);
         self::assertSame('example help', $result['help']);
-        self::assertRegExp('/^guid-\d+$/', $result['help_id']);
+        self::assertRegExp('/guid-\d+$/', $result['help_id']);
     }
 
     public function testOptionsModifiedIfErrorSupplied()
@@ -34,7 +34,7 @@ class HelperOptionsModifierExtensionTest extends \PHPUnit\Framework\TestCase
         $result = $this->ext->modifyOptions($dataIn);
         self::assertSame('example error', $result['error']);
         self::assertSame(true, $result['has_error']);
-        self::assertRegExp('/^guid-\d+$/', $result['error_ids'][0]);
+        self::assertRegExp('/guid-\d+$/', $result['error_ids'][0]);
     }
 
     public function testOptionsModifiedIfHelpAndErrorSupplied()
@@ -42,9 +42,9 @@ class HelperOptionsModifierExtensionTest extends \PHPUnit\Framework\TestCase
         $dataIn = array('error' => 'example error', 'help' => 'example help');
         $result = $this->ext->modifyOptions($dataIn);
         self::assertSame('example help', $result['help']);
-        self::assertRegExp('/^guid-\d+$/', $result['help_id']);
+        self::assertRegExp('/guid-\d+$/', $result['help_id']);
         self::assertSame('example error', $result['error']);
         self::assertSame(true, $result['has_error']);
-        self::assertRegExp('/^guid-\d+$/', $result['error_ids'][0]);
+        self::assertRegExp('/guid-\d+$/', $result['error_ids'][0]);
     }
 }
