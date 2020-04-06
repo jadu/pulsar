@@ -36,7 +36,6 @@ PulsarUIComponent.prototype.initDisabledLinks = function() {
 
         $this
             .attr('aria-disabled', 'true')
-            .attr('tabindex', '-1')
             .attr('role', 'button')
             .attr('data-href', $this.attr('href'))
             .removeAttr('href')
@@ -55,7 +54,22 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
             className: 'dt-row-selected',
             style: 'multi',
             selector: 'td.table-selection'
-        };
+        },
+        columnDefs = [
+            {
+                className: 'control',
+                orderable: false,
+                targets: 0
+            },
+            {
+                searchable: false,
+                targets: [0]
+            },
+            {
+                orderable: false,
+                targets: [0, 1]
+            }
+        ];
 
     if ($table.length && $table.data('empty-table')) {
         langEmptyTable = $table.data('empty-table');
@@ -70,8 +84,8 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
     }
 
     if ($table.length && $table.data('select') === false) {
-        dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"pl>';
         select = false;
+        columnDefs = [];
     }
 
     const options = {
@@ -79,21 +93,7 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
         autoWidth: false,
         buttons: [],
         className: 'dt-row-selected',
-        columnDefs: [
-            {
-                className: 'control',
-                orderable: false,
-                targets: 0
-            },
-            {
-                searchable: false,
-                targets: [0]
-            },
-            {
-                orderable: false,
-                targets: [0, 1]
-            }
-        ],
+        columnDefs: columnDefs,
         initComplete: initComplete,
         drawCallback: drawCallback,
         dom: dom,
@@ -193,7 +193,6 @@ PulsarUIComponent.prototype.initDataTables = function () {
         const horizontalOptions = $.extend({}, datatableOptions, {
             dom: dom,
             responsive: null,
-            scrollX: true,
             select: select,
         });
 

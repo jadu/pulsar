@@ -4,8 +4,9 @@ namespace Jadu\Pulsar\Twig\Extension;
 
 class HelperOptionsModifierExtensionTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
         $this->ext = new HelperOptionsModifierExtension();
     }
 

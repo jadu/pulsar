@@ -368,6 +368,10 @@ p.success {
     @extend %u-cursor-not-allowed;
 
     opacity: .25 !important;
+
+    a.is-disabled {
+        color: color(link);
+    }
 }
 
 %u-no-hover:hover,
