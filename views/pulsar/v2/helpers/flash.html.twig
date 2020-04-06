@@ -12,7 +12,7 @@
         {% set icon = 'info-sign' %}
     {% endif %}
 
-    {% set flash_guid = 'guid-' ~ random() %}
+    {% set flash_guid = 'help-guid-' ~ random() %}
 
     <section class="flash flash--{{ options.type|default('default') }}" aria-labelledby="{{ flash_guid }}">
         {{ html.icon(icon) }}

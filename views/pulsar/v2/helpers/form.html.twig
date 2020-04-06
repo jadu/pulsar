@@ -234,8 +234,10 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% set options = modify_options(options|default({})) %}
+
     {% if options.help is defined and options.help is not empty %}
-        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+        {% set options = options|merge({ 'help_id': 'help-guid-' ~ random() }) %}
     {% endif %}
 
     {% set inputClass = 'checkbox' %}
@@ -516,6 +518,8 @@ show-label | bool   | Control visibility of the `<label>` element without affect
         {% endif %}
 
                 {% for input_options in options.options %}
+
+                    {% set input_options = modify_options(input_options|default({})) %}
 
                     {% set input_options = input_options|merge({
                         'bare': true,
@@ -1834,6 +1838,8 @@ required | bool   | Visually indicates that the field must be completed
 {% macro radio_simple(options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
+    {% set options = modify_options(options|default({})) %}
 
     {{
         elem.input(options
