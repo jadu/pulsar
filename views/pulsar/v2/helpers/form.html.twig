@@ -343,6 +343,8 @@ required | bool   | Visually indicates that the field must be completed
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% set options = modify_options(options|default({})) %}
+
     {{
         elem.input(options
             |exclude('class for guidance-container label show-label')
