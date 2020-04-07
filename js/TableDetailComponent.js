@@ -66,17 +66,27 @@ class TableDetailComponent {
         this.$tableDetailBackdrop = this.$html.find('.table-detail-backdrop');
 
         // Open click listener
-        this.$table.find('[data-table-detail-view-detail]').on('click', (event) => {
+        this.$html.on('click', '[data-table-detail-view-detail]', (event) => {
             event.preventDefault();
-            let detailContent = $(event.currentTarget).closest('tr').data('table-detail-content');
-            let customDetailPanelTitle = $(event.currentTarget).closest('tr').data('table-detail-panel-custom-title');
+            
+            let $parentRow = $(event.currentTarget).closest('tr');
+
+            // If the table is in DT collapse mode, and the detail trigger is in the child row
+            // then fetch the detail content from the appropriate parent row
+            if ($parentRow.hasClass('child')) {
+                $parentRow = $parentRow.prev();
+            }
+
+            let detailContent = $parentRow.data('table-detail-content');
+            let customDetailPanelTitle = $parentRow.data('table-detail-panel-custom-title');
+
             $triggeringElement = $(event.target);
 
             this.viewDetail(detailContent, customDetailPanelTitle);
         });
 
         // Close click listener
-        this.$detailPanel.find('[data-table-detail-close-panel]').on('click', (event) => {
+        this.$html.on('click', '[data-table-detail-close-panel]', (event) => {
             event.preventDefault();
             this.closeDetail();
             $triggeringElement.trigger('focus');
