@@ -66,9 +66,9 @@ class TableDetailComponent {
         this.$tableDetailBackdrop = this.$html.find('.table-detail-backdrop');
 
         // Open click listener
-        this.$html.on('click', '[data-table-detail-view-detail]', (event) => {
+        this.$table.on('click', '[data-table-detail-view-detail]', (event) => {
             event.preventDefault();
-            
+
             let $parentRow = $(event.currentTarget).closest('tr');
 
             // If the table is in DT collapse mode, and the detail trigger is in the child row
@@ -86,7 +86,7 @@ class TableDetailComponent {
         });
 
         // Close click listener
-        this.$html.on('click', '[data-table-detail-close-panel]', (event) => {
+        this.$detailPanel.find('[data-table-detail-close-panel]').on('click', (event) => {
             event.preventDefault();
             this.closeDetail();
             $triggeringElement.trigger('focus');
