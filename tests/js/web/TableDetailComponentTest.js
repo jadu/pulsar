@@ -21,7 +21,10 @@ describe('TableDetailComponent', () => {
 			'		<th>Actions</th>' +
 			'	</thead>' +
 			'	<tbody>' +
-			'		<tr data-table-detail-content="<p>content</p><form><button>button</button></form>" data-table-detail-panel-custom-title="custom panel title">' +
+			'		<tr class="parent" data-table-detail-content="<p>content</p><form><button>button</button></form>" data-table-detail-panel-custom-title="custom panel title">' +
+			'			<td><a href="#" data-table-detail-view-detail="true">Details</a></td>' +
+			'		</tr>' +
+			'		<tr class="child">' +
 			'			<td><a href="#" data-table-detail-view-detail="true">Details</a></td>' +
 			'		</tr>' +
 			'	</tbody>' +
@@ -200,6 +203,25 @@ describe('TableDetailComponent', () => {
 			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel-body] form button').is(':focus')).to.be.true;
+		});
+	});
+
+	describe('When the view panel link is clicked from the child row', () => {
+		it('should fetch the panel title from the parent row', () => {
+			tableDetailComponent.init($body);
+
+			$body.find('.child [data-table-detail-view-detail]').trigger(clickEvent);
+
+			expect($body.find('[data-table-detail-panel-title]').text()).to.equal('custom panel title');
+		});
+
+		it('should empty the panel body and replace the content', () => {
+			tableDetailComponent.init($body);
+			$body.find('[data-table-detail-panel-body]').append('some content to be removed');
+
+			$body.find('.child [data-table-detail-view-detail]').trigger(clickEvent);
+
+			expect($body.find('[data-table-detail-panel-body]').html()).to.equal('<p>content</p><form><button>button</button></form>');
 		});
 	});
 
