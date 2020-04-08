@@ -20,10 +20,10 @@ class TableDetailComponent {
         }
 
         let $panelHtml = $(
-            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true" aria-hidden="true">' +
+            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="table-detail-title">' +
             '   <div class="table-detail__header">' +
             '       <button type="button" class="close table-detail__header-close" data-table-detail-close-panel aria-label="Close" tabindex="-1"><span aria-hidden="true">&times;</span></button>' +
-            '       <h1 class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
+            '       <h1 id="table-detail-title" class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
             '   </div>' +
             '   <div class="table-detail__body" data-table-detail-panel-body></div>' +
             '</div>'
