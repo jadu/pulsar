@@ -99,7 +99,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {{
         form.group({
             'parent': options
-                |only('bare class error error_ids has_error help help_id id label required show-label type')
+                |only('bare class disabled error error_ids has_error help help_id id label required show-label type')
                 |merge({'class': options.class|default ~ ' form__button-group', 'containerTag': containerTag, 'labelTag': labelTag }),
             'controls': {'class': 'btn__group'},
             'inputs': items
@@ -1385,6 +1385,11 @@ controls.class    | string | A space separated list of class names
         {# input #}
         {% for input in options.inputs %}
             {% if input is iterable %}
+
+                {% if options.parent.disabled is defined and options.parent.disabled == true %}
+                    {% set input = input|merge({ 'disabled': true }) %}
+                {% endif %}
+
                 {% if options.parent.type is defined and options.parent.type is not empty %}
                     {% if options.parent.type == 'radio' %}
                         {{- form.radio_simple(input) -}}
