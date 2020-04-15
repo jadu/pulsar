@@ -469,3 +469,45 @@ $rich-list-item-text-selected-color:  color(white) !default;
 .bottomless {
     margin-bottom: 0 !important;
 }
+
+
+// -----------------------------------------------------------------------------
+//  30/03/20
+//
+// Form input guidance removed from:;
+//
+//  _component.input-groups.scss
+//  _layout.settings.scss
+//  _utility.sortable.scss
+//
+// -----------------------------------------------------------------------------
+
+.input-group-guidance {
+    background-color: color(white);
+    border: 0;
+    color: color(jadu-blue);
+    font-size: $font-size-base;
+    font-weight: normal;
+    line-height: 24px;
+    padding: 0 $padding-base-horizontal;
+    text-align: center;
+    vertical-align: baseline;
+
+    &:hover {
+        color: color(jadu-blue, dark);
+    }
+
+    // Nuke default margins from checkboxes and radios to vertically center within.
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-top: 0;
+    }
+}
+
+.tab__settings .input-group-guidance {
+    background-color: color(background);
+}
+
+div.is-sortable .input-group-guidance {
+    background-color: transparent;
+}

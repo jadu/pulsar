@@ -66,11 +66,14 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     border: 0;
     color: color(gray, dark);
     display: inline-block;
-    float: right;
+    font-size: 28px;
     line-height: normal;
+    margin-top: -45px;
     padding: 0;
+    position: absolute;
     text-decoration: none;
     transition: all 100ms ease-in;
+    right: 20px;
 
     @include respond-min($screen-desktop) {
         display: none;

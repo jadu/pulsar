@@ -75,25 +75,6 @@
 {% endmacro %}
 
 
-{% macro guidance(value, options) %}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% spaceless %}
-    {% if value is not empty %}
-    {{
-        html.icon('question-sign', {
-            'class': 'input-group-guidance',
-            'data-container': options['guidance-container']|default('body'),
-            'data-content': value,
-            'data-placement': 'top',
-            'data-toggle': 'popover',
-            'data-autoclose': 'true'
-        })
-    }}
-    {% endif %}
-{% endspaceless %}
-{% endmacro %}
-
-
 {% macro href(value) %}
 {% spaceless %}
     {% if value is null %}

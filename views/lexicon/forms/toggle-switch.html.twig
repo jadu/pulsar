@@ -29,23 +29,6 @@
         })
     }}
 
-    {{
-        form.toggle_switch({
-            'id': 'guid-' ~ random(),
-            'label': 'Toggle switch with guidance',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.toggle_switch({
-            'id': 'guid-' ~ random(),
-            'label': 'Required guidance',
-            'guidance': 'Help text to give more information about expected input',
-            'required': true
-        })
-    }}
-
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
@@ -60,7 +43,6 @@
         form.toggle_switch({
             'id': 'guid-' ~ random(),
             'label': 'Toggle switch with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
-            'guidance': 'Help text to give more information about expected input',
             'help': 'Example block-level help text here'
         })
     }}

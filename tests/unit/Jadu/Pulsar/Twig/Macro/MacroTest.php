@@ -21,8 +21,9 @@ class MacroTest extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
 
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
         $baseDir = __DIR__ . '/../../../../../../';
 
         $loader = new Twig_Loader_Filesystem($this->getFixturesPath());
