@@ -262,11 +262,15 @@ PulsarFormComponent.prototype.initToggleSwitches = function () {
     var component = this;
 
     component.$html.on('click', '.toggle-switch-wrapper-label', function(e) {
-        var $target = $(e.target);
+        var $target = $(e.target),
+            $toggle = $(this).find('.toggle-switch');
 
-        if (!$target.hasClass('toggle-switch-label') && 
-            !$target.hasClass('toggle-switch') && 
-            !$target.hasClass('control__label')) {
+        if ($target.hasClass('toggle-switch-label') || 
+            $target.hasClass('toggle-switch') || 
+            $target.hasClass('control__label')) 
+        {
+            $toggle.trigger('focus');
+        } else {
             e.preventDefault();
         }
     });

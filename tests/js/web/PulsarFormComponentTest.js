@@ -127,6 +127,7 @@ describe('PulsarFormComponent', function() {
         this.$modal = this.$html.find('#modal-foo');
         this.$timepicker = this.$html.find('[data-timepicker="true"]');
         this.$toggleControls = this.$html.find('.form__group--toggle .controls');
+        this.$toggleInput = this.$html.find('.form__group--toggle .toggle-switch');
         this.$toggleControlLabel = this.$html.find('.form__group--toggle .control__label');
         this.$toggleSwitchLabel = this.$html.find('.form__group--toggle .toggle-switch-label');
 
@@ -345,6 +346,14 @@ describe('PulsarFormComponent', function() {
             this.$toggleSwitchLabel.trigger(clickEvent)
 
             expect(clickEvent.isDefaultPrevented()).to.be.false;
+        });
+
+        it('should trigger focus on the hidden control', function() {
+            var clickEvent = $.Event('click');
+            
+            this.$toggleSwitchLabel.trigger(clickEvent)
+
+            expect(this.$toggleInput.is(':focus')).to.be.true;
         });
 
     });
