@@ -147,7 +147,6 @@
             {{- label|trans({}, translation_domain) -}}
         {%- endif -%}
         {{ util.required(required|default(false)) }}
-        {{ util.guidance(attr['data-guidance-text']|default, { 'guidance-container': attr['data-guidance-container']|default }) }}
         {%- if attr['data-toggle-switch'] is defined -%}
         </span>
         {%- else -%}

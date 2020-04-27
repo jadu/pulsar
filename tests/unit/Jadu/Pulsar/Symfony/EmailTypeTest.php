@@ -56,60 +56,6 @@ class EmailTypeTest extends Symfony_TestCase
     /**
      * @group email
      */
-    public function testEmailFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', EmailType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/email-guidance.html.twig');
-    }
-
-    /**
-     * @group email
-     */
-    public function testEmailFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', EmailType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/email-guidance-container.html.twig');
-    }
-
-    /**
-     * @group email
-     */
-    public function testEmailFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', EmailType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/email-required-guidance.html.twig');
-    }
-
-    /**
-     * @group email
-     */
     public function testEmailFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()

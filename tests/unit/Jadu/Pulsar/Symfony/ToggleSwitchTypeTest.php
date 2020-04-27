@@ -37,36 +37,4 @@ class ToggleSwitchTypeTest extends Symfony_TestCase
 
         $this->compareOutput($form, 'form/toggle_switch-help.html.twig');
     }
-
-    public function testCheckboxFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', ToggleSwitchType::class, array(
-                'label' => 'Toggle',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/toggle_switch-guidance.html.twig');
-    }
-
-    public function testToggleFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', ToggleSwitchType::class, array(
-                'label' => 'Toggle',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/toggle_switch-guidance-container.html.twig');
-    }
-
 }

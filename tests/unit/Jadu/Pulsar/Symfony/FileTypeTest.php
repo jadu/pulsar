@@ -8,7 +8,7 @@ class FileTypeTest extends Symfony_TestCase
 {
     /**
      * @group file
-     * 
+     *
      */
     public function testFileFieldBasic ()
     {
@@ -24,7 +24,7 @@ class FileTypeTest extends Symfony_TestCase
 
     /**
      * @group file
-     * 
+     *
      */
     public function testFileFieldRequired ()
     {
@@ -39,7 +39,7 @@ class FileTypeTest extends Symfony_TestCase
 
     /**
      * @group file
-     * 
+     *
      */
     public function testFileFieldHelp ()
     {
@@ -54,62 +54,5 @@ class FileTypeTest extends Symfony_TestCase
             ->getForm();
 
         $this->compareOutput($form, 'form/file-help.html.twig');
-    }
-
-    /**
-     * @group file
-     * 
-     */
-    public function testFileFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', FileType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/file-guidance.html.twig');
-    }
-
-    /**
-     * @group file
-     * 
-     */
-    public function testFileFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', FileType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/file-guidance-container.html.twig');
-    }
-
-    /**
-     * @group file
-     * 
-     */
-    public function testFileFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', FileType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/file-required-guidance.html.twig');
     }
 }

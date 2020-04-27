@@ -56,60 +56,6 @@ class PercentTypeTest extends Symfony_TestCase
     /**
      * @group percent
      */
-    public function testPercentFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', PercentType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/percent-guidance.html.twig');
-    }
-
-    /**
-     * @group percent
-     */
-    public function testPercentFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', PercentType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/percent-guidance-container.html.twig');
-    }
-
-    /**
-     * @group percent
-     */
-    public function testPercentFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', PercentType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/percent-required-guidance.html.twig');
-    }
-
-    /**
-     * @group percent
-     */
     public function testPercentFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()

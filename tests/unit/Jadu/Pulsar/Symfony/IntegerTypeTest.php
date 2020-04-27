@@ -56,60 +56,6 @@ class IntegerTypeTest extends Symfony_TestCase
     /**
      * @group integer
      */
-    public function testIntegerFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', IntegerType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/number-guidance.html.twig');
-    }
-
-    /**
-     * @group integer
-     */
-    public function testIntegerFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', IntegerType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/number-guidance-container.html.twig');
-    }
-
-    /**
-     * @group integer
-     */
-    public function testIntegerFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', IntegerType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/number-required-guidance.html.twig');
-    }
-
-    /**
-     * @group integer
-     */
     public function testIntegerFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()

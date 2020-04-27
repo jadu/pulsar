@@ -56,60 +56,6 @@ class SearchTypeTest extends Symfony_TestCase
     /**
      * @group search
      */
-    public function testSearchFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', SearchType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/search-guidance.html.twig');
-    }
-
-    /**
-     * @group search
-     */
-    public function testSearchFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', SearchType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/search-guidance-container.html.twig');
-    }
-
-    /**
-     * @group search
-     */
-    public function testSearchFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', SearchType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/search-required-guidance.html.twig');
-    }
-
-    /**
-     * @group search
-     */
     public function testSearchFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()

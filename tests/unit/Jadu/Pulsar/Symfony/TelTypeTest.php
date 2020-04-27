@@ -56,60 +56,6 @@ class TelTypeTest extends Symfony_TestCase
     /**
      * @group tel
      */
-    public function testTelFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TelType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/tel-guidance.html.twig');
-    }
-
-    /**
-     * @group tel
-     */
-    public function testTelFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TelType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/tel-guidance-container.html.twig');
-    }
-
-    /**
-     * @group tel
-     */
-    public function testTelFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', TelType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/tel-required-guidance.html.twig');
-    }
-
-    /**
-     * @group tel
-     */
     public function testTelFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()

@@ -56,60 +56,6 @@ class NumberTypeTest extends Symfony_TestCase
     /**
      * @group text
      */
-    public function testNumberFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', NumberType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/text-guidance.html.twig');
-    }
-
-    /**
-     * @group text
-     */
-    public function testNumberFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', NumberType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/text-guidance-container.html.twig');
-    }
-
-    /**
-     * @group text
-     */
-    public function testNumberFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', NumberType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/text-required-guidance.html.twig');
-    }
-
-    /**
-     * @group text
-     */
     public function testNumberFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()

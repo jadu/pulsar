@@ -56,60 +56,6 @@ class RangeTypeTest extends Symfony_TestCase
     /**
      * @group range
      */
-    public function testRangeFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', RangeType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/range-guidance.html.twig');
-    }
-
-    /**
-     * @group range
-     */
-    public function testRangeFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', RangeType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/range-guidance-container.html.twig');
-    }
-
-    /**
-     * @group range
-     */
-    public function testRangeFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', RangeType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/range-required-guidance.html.twig');
-    }
-
-    /**
-     * @group range
-     */
     public function testRangeFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()

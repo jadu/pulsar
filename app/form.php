@@ -262,19 +262,6 @@ $textForm = $formFactory->createBuilder()
             'data-help-html' => 'Help text to give <u>more information</u> about expected input',
         ]
     ))
-    ->add('guidanceText', TextType::class, array(
-        'label' => 'Text field with guidance',
-        'required' => false,
-        'attr' => [
-            'data-guidance-text' => 'Help text to give more information about expected input',
-        ]
-    ))
-    ->add('guidanceTextRequired', TextType::class, array(
-        'label' => 'Required with guidance',
-        'attr' => [
-            'data-guidance-text' => 'Help text to give more information about expected input',
-        ]
-    ))
     ->add('prependAppendText', TextType::class, array(
         'label' => 'Text field with prepended / appended text',
         'required' => false,
@@ -310,7 +297,6 @@ $textForm = $formFactory->createBuilder()
         'label' => 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
         'required' => false,
         'attr' => [
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -320,7 +306,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -330,7 +315,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -340,7 +324,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush form__group--mini',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -350,7 +333,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush form__group--mini',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -360,7 +342,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush form__group--small',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -370,7 +351,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush form__group--medium',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -380,7 +360,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -390,7 +369,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush form__group--large',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -400,7 +378,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush form__group--xlarge',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]
@@ -410,7 +387,6 @@ $textForm = $formFactory->createBuilder()
         'required' => false,
         'attr' => [
             'class' => 'form__group--top form__group--flush form__group--full',
-            'data-guidance-text' => 'Help text to give more information about expected input',
             'placeholder' => 'Placeholder',
             'data-help-text' => 'Example block-level help text here',
         ]

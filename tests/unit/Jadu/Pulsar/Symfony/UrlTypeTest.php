@@ -56,60 +56,6 @@ class UrlTypeTest extends Symfony_TestCase
     /**
      * @group url
      */
-    public function testUrlFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', UrlType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/url-guidance.html.twig');
-    }
-
-    /**
-     * @group url
-     */
-    public function testUrlFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', UrlType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/url-guidance-container.html.twig');
-    }
-
-    /**
-     * @group url
-     */
-    public function testUrlFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', UrlType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/url-required-guidance.html.twig');
-    }
-
-    /**
-     * @group url
-     */
     public function testUrlFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()

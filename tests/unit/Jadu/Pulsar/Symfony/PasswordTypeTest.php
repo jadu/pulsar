@@ -56,60 +56,6 @@ class PasswordTypeTest extends Symfony_TestCase
     /**
      * @group password
      */
-    public function testPasswordFieldGuidancepassword ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', PasswordType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/password-guidance.html.twig');
-    }
-
-    /**
-     * @group password
-     */
-    public function testPasswordFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', PasswordType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/password-guidance-container.html.twig');
-    }
-
-    /**
-     * @group password
-     */
-    public function testPasswordFieldRequiredGuidancepassword ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', PasswordType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/password-required-guidance.html.twig');
-    }
-
-    /**
-     * @group password
-     */
     public function testPasswordFieldPrependpassword ()
     {
         $form = $this->formFactory->createBuilder()

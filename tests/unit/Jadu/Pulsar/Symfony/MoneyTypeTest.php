@@ -56,60 +56,6 @@ class MoneyTypeTest extends Symfony_TestCase
     /**
      * @group money
      */
-    public function testMoneyFieldGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', MoneyType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/money-guidance.html.twig');
-    }
-
-    /**
-     * @group money
-     */
-    public function testMoneyFieldGuidanceContainer ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', MoneyType::class, array(
-                'label' => 'foo',
-                'required' => false,
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>',
-                    'data-guidance-container' => 'baz'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/money-guidance-container.html.twig');
-    }
-
-    /**
-     * @group money
-     */
-    public function testMoneyFieldRequiredGuidanceText ()
-    {
-        $form = $this->formFactory->createBuilder()
-            ->add('field', MoneyType::class, array(
-                'label' => 'foo',
-                'attr' => [
-                    'data-guidance-text' => 'foo <span class="bar">bar</span>'
-                ]
-            ))
-            ->getForm();
-
-        $this->compareOutput($form, 'form/money-required-guidance.html.twig');
-    }
-
-    /**
-     * @group money
-     */
     public function testMoneyFieldPrependText ()
     {
         $form = $this->formFactory->createBuilder()
