@@ -28,8 +28,17 @@
         ]
     })
 }}
-        
 
+    <h2 class="heading">Links</h2>
+
+    <a href="#">Normal</a>
+    <a href="#" class="is-disabled">disabled</a>
+    {{
+        html.link({
+            'label': 'twig link',
+            'disabled': true
+        })
+    }}
 
     <h2 class="heading">Button variations</h2>
 
@@ -115,7 +124,8 @@
         {{
             html.button({
                 label: 'Default',
-                type: 'link'
+                type: 'link',
+                href: '#'
             })
         }}
 
@@ -124,7 +134,8 @@
             html.button({
                 label: 'Primary',
                 class: 'btn--primary',
-                type: 'link'
+                type: 'link',
+                href: '#'
             })
         }}
 
@@ -133,7 +144,8 @@
             html.button({
                 label: 'Success',
                 class: 'btn--success',
-                type: 'link'
+                type: 'link',
+                href: '#'
             })
         }}
 
@@ -142,7 +154,8 @@
             html.button({
                 label: 'Danger',
                 class: 'btn--danger',
-                type: 'link'
+                type: 'link',
+                href: '#'
             })
         }}
 
@@ -151,7 +164,8 @@
             html.button({
                 label: 'Warning',
                 class: 'btn--warning',
-                type: 'link'
+                type: 'link',
+                href: '#'
             })
         }}
 
@@ -160,7 +174,8 @@
             html.button({
                 label: 'Info',
                 class: 'btn--info',
-                type: 'link'
+                type: 'link',
+                href: '#'
             })
         }}
 
@@ -169,7 +184,8 @@
             html.button({
                 label: 'Inverse',
                 class: 'btn--inverse',
-                type: 'link'
+                type: 'link',
+                href: '#'
             })
         }}
 
@@ -177,7 +193,8 @@
             html.button({
                 label: 'Disabled',
                 disabled: true,
-                type: 'link'
+                type: 'link',
+                href: '#'
             })
         }}
 
@@ -185,7 +202,8 @@
             html.button({
                 label: 'Naked',
                 type: 'link',
-                class: 'btn--naked'
+                class: 'btn--naked',
+                href: '#'
             })
         }}
     </div>
@@ -452,23 +470,6 @@
         }}
         {{
             html.label({
-                'label': 'label with tooltip',
-                'class': 'label--inverse',
-                'data-toggle': 'tooltips',
-                'data-title': 'Hello!'
-            })
-        }}
-        {{
-            html.label({
-                'label': 'label with right-aligned tooltip',
-                'class': 'label--inverse',
-                'data-toggle': 'tooltips',
-                'data-title': 'You look nice',
-                'data-placement': 'right'
-            })
-        }}
-        {{
-            html.label({
                 label: 'large label',
                 class: 'label--large'
             })
@@ -522,25 +523,6 @@
             html.label({
                 label: 'inverse',
                 class: 'label--inverse',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                'label': 'label with tooltip',
-                'class': 'label--inverse',
-                'data-toggle': 'tooltips',
-                'data-title': 'Hello!',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                'label': 'label with right-aligned tooltip',
-                'class': 'label--inverse',
-                'data-toggle': 'tooltips',
-                'data-title': 'You look nice',
-                'data-placement': 'right',
                 removable: true
             })
         }}
@@ -605,25 +587,25 @@
             set example_dropdown = [
                 html.link({
                     label: html.icon('save') ~ ' Save',
-                    href: '#save'
+                    href: '#'
                 }),
                 html.link({
                     label: html.icon('print') ~ ' Print',
-                    href: '#print'
+                    href: '#'
                 }),
                 html.link({
                     label: html.icon('lock') ~ ' Lock',
-                    href: '#lock',
+                    href: '#',
                     disabled: true
                 }),
                 html.link({
                     label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 }),
-                    href: '#collaborators'
+                    href: '#'
                 }),
                 html.divider(),
                 html.link({
                     label: html.icon('trash') ~ ' Delete',
-                    href: '#delete',
+                    href: '#',
                     class: 'link--danger'
                 })
             ]

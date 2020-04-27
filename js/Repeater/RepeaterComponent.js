@@ -16,6 +16,7 @@ class Repeater {
      * @param repeaterDataService {RepeaterDataService}
      * @param repeaterPlaceholderService {RepeaterPlaceholderService}
      * @param formFieldResetService {FormFieldResetService}
+     * @param focusManagementService {FocusManagementService}
      */
     constructor (
         repeater,
@@ -30,7 +31,8 @@ class Repeater {
         pseudoRadioInputService,
         repeaterDataService,
         repeaterPlaceholderService,
-        formFieldResetService
+        formFieldResetService,
+        focusManagementService
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
         this.queryService = queryService;
@@ -44,6 +46,7 @@ class Repeater {
         this.repeaterDataService = repeaterDataService;
         this.repeaterPlaceholderService = repeaterPlaceholderService;
         this.formFieldResetService = formFieldResetService;
+        this.focusManagementService = focusManagementService;
 
         this.repeater = repeater;
         this.repeaterEntries = 0;
@@ -53,16 +56,17 @@ class Repeater {
 
     /**
      * Initialise
+     * @param {array} initialState
      */
-    init () {
+    init (initialState = []) {
         // Preview UI HTML that is dynamically added to preview rows
-        this.previewUiHTML = `           
-            <a ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} href="#edit" class="remove__control alt-link margin-right">
-                <i class="icon-pencil"><span class="hide">Edit</span></i>
-            </a>
-            <a ${this.queryService.getAttr('delete-group')} ${this.queryService.getAttr('preview-ui')} href="#delete" class="remove__control alt-link">
-                <i class="icon-remove-sign"><span class="hide">Delete</span></i>
-            </a>
+        this.previewUiHTML = `
+            <button ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} class="btn btn--outline btn--inverse">
+                Edit
+            </button>
+            <button ${this.queryService.getAttr('delete-group')} ${this.queryService.getAttr('preview-ui')} class="btn btn--outline btn--inverse">
+                Delete
+            </button>
         `;
 
         const maxItemsAttr = this.repeater.getAttribute(this.queryService.getAttr('max-saved-groups'));
@@ -100,6 +104,20 @@ class Repeater {
                 'click',
                 this.handleCancelGroup.bind(this)
             );
+
+        if (initialState.length > 0) {
+            this.parseInitialState(initialState);
+        }
+    }
+
+    parseInitialState (initialState) {
+        initialState.forEach(state => {
+            state.forEach(({ name, value }) => {
+                $(this.repeater).find(`[data-repeater-name="${name}"]`).val(value);
+            });
+
+            this.handleSaveGroup();
+        });
     }
 
     /**
@@ -107,23 +125,38 @@ class Repeater {
      * @param event
      */
     handleAddGroup (event) {
+        const $addGroupForm = $(this.queryService.get('add-group-form'));
+
         event.preventDefault();
-        $(this.queryService.get('add-group-form')).show();
-        $(this.queryService.get('add-group-button')).addClass('disabled');
+        $addGroupForm.show();
+        $(this.queryService.get('add-group-button'))
+            .addClass('disabled')
+            .attr('disabled', true);
+
+        // Shift focus to the first focusable element in the form
+        this.focusManagementService.focusFirstFocusableElement($addGroupForm);
+
+        // Capture triggering element so we can return focus when closed
+        this.focusManagementService.storeElement($(event.target));
     }
 
     /**
      * Handle the save group action
      * @param event
+     * @param state
      */
-    handleSaveGroup (event) {
+    handleSaveGroup (event = null, state = null) {
         const colspan = parseInt(this.repeater.getAttribute(this.queryService.getAttr('preview-colspan')), 10);
         const previewUi = document.createElement('td');
 
-        event.preventDefault();
+        if (event !== null) {
+            event.preventDefault();
+        }
 
         // Create state object from the current form
-        this.state[this.repeaterEntries] = this.createState(this.queryService.get('add-group-form'));
+        this.state[this.repeaterEntries] = state !== null ?
+            state :
+            this.createState(this.queryService.get('add-group-form'));
 
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
@@ -163,11 +196,13 @@ class Repeater {
             )
         );
 
-        // Create saved data
-        this.repeaterDataService.create(this.queryService.get('add-group-form'), this.repeaterEntries);
+        // Create saved data if this is not the initial parse
+        if (state === null) {
+            this.saveData(this.queryService.get('add-group-form'));
+        }
 
         // Create the edit form
-        this.createEditEntryGroup(this.queryService.get('add-group-form'));
+        this.addGroupToRepeater(this.createEditEntryGroup());
 
         // Remove "empty" placeholder
         this.repeaterPlaceholderService.remove();
@@ -183,7 +218,9 @@ class Repeater {
         this.savedEntries++;
 
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
 
             // Update add new group text
             this.queryService.get('add-group-button')
@@ -195,6 +232,14 @@ class Repeater {
 
         // Hide new repeater group form
         $(this.queryService.get('add-group-form')).hide();
+    }
+
+    /**
+     * Save repeater state to the DOM
+     * @param group
+     */
+    saveData(group) {
+        this.repeaterDataService.create(group, this.repeaterEntries);
     }
 
     /**
@@ -229,18 +274,9 @@ class Repeater {
 
     /**
      * Create an inline edit form beneath each preview row
-     * @param group {HTMLElement}
      */
-    createEditEntryGroup (group) {
-        const preview = this.repeater.querySelector(
-            `[${this.queryService.getAttr('preview-id')}="${this.repeaterEntries}"]`
-        );
-        const clone = group.cloneNode(true);
-        const clonedControls = clone.querySelector(this.queryService.getQuery('add-group-controls'));
-        const inputsWithState = $(group)
-            .find(this.queryService.getQuery('name'))
-            .toArray()
-            .map(input => this.inputCloneService.clone(input));
+    createEditEntryGroup () {
+        const clone = this.queryService.get('add-group-form').cloneNode(true);
 
         // Add repeater ID to the group
         clone.setAttribute(this.queryService.getAttr('edit-id'), this.repeaterEntries);
@@ -251,8 +287,21 @@ class Repeater {
         // Remove group input name attrs
         this.removeGroupInputNames(clone);
 
+        return clone;
+    }
+
+    addGroupToRepeater (group) {
+        const clonedControls = group.querySelector(this.queryService.getQuery('add-group-controls'));
+        const preview = this.repeater.querySelector(
+            `[${this.queryService.getAttr('preview-id')}="${this.repeaterEntries}"]`
+        );
+        const inputsWithState = $(group)
+            .find(this.queryService.getQuery('name'))
+            .toArray()
+            .map(input => this.inputCloneService.clone(input));
+
         // Add cloned group after preview, this will act as the edit group
-        $(preview).after(clone);
+        $(preview).after(group);
 
         // Append our "deep" cloned inputs
         inputsWithState.forEach(input => {
@@ -264,8 +313,11 @@ class Repeater {
             );
         });
 
-        // create unique for/id
+        // Create unique for/id
         this.uniqueIdService.uniquifyFors(preview.nextElementSibling);
+
+        // Create unique IDs for selectWoo elements
+        this.uniqueIdService.uniquifySelectWoo(group);
 
         // Refresh radio state
         this.pseudoRadioInputService.refresh();
@@ -274,13 +326,13 @@ class Repeater {
         this.pulsarFormComponent.refresh();
 
         // Hide edit form
-        $(clone).hide();
+        $(group).hide();
 
         // Add events to the save / cancel UI within the group
-        clone.querySelector(this.queryService.getQuery('save-group-button'))
-            .addEventListener('click', this.handleUpdateGroup.bind(this, clone, this.repeaterEntries));
-        clone.querySelector(this.queryService.getQuery('cancel-save-group-button'))
-            .addEventListener('click', this.handleCancelGroupUpdate.bind(this, clone, this.repeaterEntries));
+        group.querySelector(this.queryService.getQuery('save-group-button'))
+            .addEventListener('click', this.handleUpdateGroup.bind(this, group, this.repeaterEntries));
+        group.querySelector(this.queryService.getQuery('cancel-save-group-button'))
+            .addEventListener('click', this.handleCancelGroupUpdate.bind(this, group, this.repeaterEntries));
     }
 
     /**
@@ -289,13 +341,20 @@ class Repeater {
      * @param event
      */
     handleEditGroup (repeaterId, event) {
-        const edit = this.queryService.get('preview-root')
-            .querySelector(`[${this.queryService.getAttr('edit-id')}="${repeaterId}"]`)
+        const $edit = $(this.queryService.get('preview-root').querySelector(`[${this.queryService.getAttr('edit-id')}="${repeaterId}"]`));
 
         event.preventDefault();
         this.repeaterPreviewService.toggleUi();
-        $(this.queryService.get('add-group-button')).addClass('disabled');
-        $(edit).show();
+        $(this.queryService.get('add-group-button'))
+            .addClass('disabled')
+            .attr('disabled', true);
+        $edit.show();
+
+        // Shift focus to the first focusable element in the form
+        this.focusManagementService.focusFirstFocusableElement($edit);
+
+        // Capture triggering element so we can return focus when closed
+        this.focusManagementService.storeElement($(event.target));
     }
 
     /**
@@ -319,16 +378,18 @@ class Repeater {
         event.preventDefault();
 
         // Remove DOM
-        preview.remove();
-        edit.remove();
-        saved.remove();
+        $(preview).remove();
+        $(edit).remove();
+        $(saved).remove();
 
         // Update state
         this.savedEntries--;
 
         // Enable "add group" button if we have not exceeded max saved entries
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
         }
 
         // Update "add group" button text and add placeholder if we have removed all entries
@@ -347,7 +408,12 @@ class Repeater {
      */
     handleCancelGroup (event) {
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
+
+            // Return focus to triggering element
+            this.focusManagementService.returnFocusToElement();
         }
 
         event.preventDefault();
@@ -390,8 +456,13 @@ class Repeater {
 
         // Enable "add group" button if we have not exceeded max saved entries
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
         }
+
+        // Return focus to triggering element
+        this.focusManagementService.returnFocusToElement();
 
         // Hide edit group form
         $(group).hide();
@@ -416,14 +487,16 @@ class Repeater {
         });
 
         // Revert radio inputs to pre-edited values
-        this.pseudoRadioInputService.setState(this.state[repeaterId])
+        this.pseudoRadioInputService.setState(this.state[repeaterId]);
 
         // Enable preview UI
         this.repeaterPreviewService.toggleUi();
 
         // Enable "add group" button if we have not exceeded max saved entries
         if (this.savedEntries < this.maxSavedGroups) {
-            $(this.queryService.get('add-group-button')).removeClass('disabled');
+            $(this.queryService.get('add-group-button'))
+                .removeClass('disabled')
+                .removeAttr('disabled');
         }
 
         // Update any colour pickers that might exist
@@ -431,6 +504,9 @@ class Repeater {
 
         // Hide edit group
         $(group).hide();
+
+        // Return focus to triggering element
+        this.focusManagementService.returnFocusToElement();
     }
 
     /**

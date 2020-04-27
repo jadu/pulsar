@@ -1,6 +1,6 @@
 {
   "name": "jadu-pulsar",
-  "version": "10.2.1",
+  "version": "10.3.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -19,6 +19,7 @@
     "aliasify": "^1.9.0",
     "babel-core": "^6.26.0",
     "babel-istanbul": "^0.12.2",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "babel-register": "^6.24.1",
@@ -30,14 +31,6 @@
     "chai": "^1.9.2",
     "chai-dom": "^1.6.0",
     "chai-hiff": "^1.0.0",
-    "datatables.net": "^1.10.11",
-    "datatables.net-buttons": "^1.1.2",
-    "datatables.net-buttons-dt": "^1.1.2",
-    "datatables.net-dt": "^1.10.10",
-    "datatables.net-responsive": "^2.0.2",
-    "datatables.net-responsive-dt": "^2.0.0",
-    "datatables.net-select": "^1.1.2",
-    "datatables.net-select-dt": "^1.1.2",
     "grunt": "^1.0.3",
     "grunt-asciify": "^0.2.2",
     "grunt-autoprefixer": "^3.0.4",
@@ -63,8 +56,6 @@
     "grunt-sass-replace": "^0.1.18",
     "grunt-scss-lint": "0.3.8",
     "grunt-text-replace": "^0.4.0",
-    "grunt-w3c-html-validation": "^0.1.8",
-    "jquery": "1.x",
     "jsdom": "^9.12.0",
     "jsdom-global": "^2.1.1",
     "matchdep": "^1.0.1",
@@ -72,41 +63,37 @@
     "mocha": "^2.4.5",
     "mochify": "^5.2.0",
     "mochify-istanbul": "^2.4.2",
-    "phpruntime": "^5.0.0",
-    "phptoast": "^3.17.0",
-    "phptojs": "^3.16.0",
     "require-globify": "^1.4.1",
     "sinon": "^2.4.1",
     "sinon-chai": "^2.8.0",
     "sinon-jquery": "^1.0.2",
-    "twig": "^0.9.4",
     "uglifyify": "^3.0.1"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "aliasify": {
-    "aliases": {
-      "jquery": "./libs/jquery/dist/jquery.min"
-    }
-  },
-  "browserify-shim": {
-    "./libs/svgeezy/svgeezy.min.js": {
-      "exports": "svgeezy"
-    },
-    "./libs/jquery.countdown/dist/jquery.countdown.min": {
-      "exports": "countdown"
-    },
-    "./libs/tinyicon/tinycon.min": {
-      "exports": "Tinycon"
-    }
-  },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "jstree": "^3.3.7",
-    "lodash": "^4.6.1",
-    "moment": "^2.15.2"
+    "chartist": "^0.11.4",
+    "datatables.net": "^1.10.20",
+    "datatables.net-buttons": "^1.6.1",
+    "datatables.net-buttons-dt": "^1.6.1",
+    "datatables.net-dt": "^1.10.20",
+    "datatables.net-responsive": "^2.0.2",
+    "datatables.net-responsive-dt": "^2.0.0",
+    "datatables.net-select": "^1.3.1",
+    "datatables.net-select-dt": "^1.3.1",
+    "font-awesome": "4.7.0",
+    "jquery": "^3.4.1",
+    "jquery-countdown": "^2.2.0",
+    "jquery-placeholder": "^2.3.1",
+    "jquery-sticky": "^1.0.4",
+    "jquery-ui": "^1.12.1",
+    "jstree": "^3.3.9",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "normalize.css": "^8.0.1",
+    "pikaday": "^1.8.0",
+    "select2": "github:jadu/selectWoo#jadu-1.1.2",
+    "spectrum-colorpicker": "^1.8.0",
+    "timepicker": "^1.13.2",
+    "tippy.js": "^5.2.1",
+    "vide": "^0.5.1"
   }
 }

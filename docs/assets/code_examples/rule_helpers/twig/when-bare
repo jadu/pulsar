@@ -1,5 +1,0 @@
-{{
-    rule.block_when({
-        // options
-    })
-}}

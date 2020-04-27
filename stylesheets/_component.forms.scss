@@ -113,7 +113,11 @@ fieldset {
     &.select {
         appearance: none;
         border: 1px solid $input-border;
-        padding: 0 20px 0 $padding-base-horizontal;
+        padding: 0 22px 0 $padding-base-horizontal;
+
+        @media screen and (-ms-high-contrast: active) {
+            padding-right: 0;
+        }
 
         @include ie-lte(8) {
             height: 24px;
@@ -126,8 +130,9 @@ fieldset {
         }
 
         &:not([multiple]) {
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
-            background-position: 97%;
+            background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, color(gray, off-white), color(gray, off-white));
+            background-position: calc(100% - 10px) calc(1em + 5px), calc(100% - 5px) calc(1em + 5px), 100% 0;
+            background-size: 5px 5px, 5px 5px, 22px 100%;
             background-repeat: no-repeat;
         }
 
@@ -142,12 +147,16 @@ fieldset {
         // by the `appearance` property
         &::-ms-expand {
             display: none;
+
+            @media screen and (-ms-high-contrast: active) {
+                display: block;
+            }
         }
     }
 
     &.file {
         background: none;
-        border: 0;
+        border: 1px solid transparent;
         height: auto;
         line-height: normal;
         padding: 0;
@@ -162,8 +171,9 @@ fieldset {
         }
 
         &:focus {
-            border: 0;
-            box-shadow: 0 0 0 2px color(primary);
+            @include pulsar-input-focused;
+
+            padding-left: 5px;
         }
 
         &.is-disabled {
@@ -251,10 +261,10 @@ fieldset {
     }
 
     &:focus {
-        border: 1px solid color(black);
-        box-shadow: 0 0 0 1px color(black);
-        outline: 3px solid color(border, focus);
-        outline-offset: 2px;
+        @include pulsar-input-focused;
+
+        position: relative;
+        z-index: 1;
     }
 }
 
@@ -297,7 +307,7 @@ fieldset {
     position: relative;
 
     @include respond-min($screen-tablet) {
-        @include push-padding(2.92); // magic number to align form actions with form grid
+        @include push-padding(2.87); // magic number to align form actions with form grid
     }
 }
 
@@ -328,6 +338,7 @@ fieldset {
 
 // default (mobile first) width should be 100%
 .form__control {
+    @include placeholder(color(text, placeholder));
     background-color: #fafafa;
     width: 100%;
 }
@@ -408,6 +419,7 @@ fieldset {
 .form__group.form__group .input-group .select2.select2,
 .form__group.form__group .input-group .form__control.form__control {
     flex: 1 1 auto;
+    overflow: hidden;
     width: 1%; // needed to stop overflow, when option has a long string on < desktop
 
     @include ie-lte(9) {
@@ -415,11 +427,16 @@ fieldset {
     }
 }
 
+// Allow focus outline to show when select2 focused
+.form__group.form__group .input-group .select2.select2-container.select2-container--focus {
+    overflow: visible;
+}
+
 // validation
 
 .form__group:not(.form__group--partial-state) {
   &.has-changed {
-    @include form__group-validation($state-info-text, color(info), $state-info-bg);
+    @include form__group-validation($state-info-text, color(info, dark), $state-info-bg);
   }
 
   &.has-warning {
@@ -437,7 +454,7 @@ fieldset {
 
 .form__group--partial-state {
     &.has-changed {
-        @include form__group-partial-validation($state-info-text, color(info));
+        @include form__group-partial-validation($state-info-text, color(info, dark));
     }
 
     &.has-warning {
@@ -455,7 +472,7 @@ fieldset {
 
 .form__control {
     &.has-changed {
-        @include form__control-validation($state-info-text, color(info), $state-info-bg);
+        @include form__control-validation($state-info-text, color(info, dark), $state-info-bg);
     }
 
     &.has-warning {
@@ -475,7 +492,7 @@ fieldset {
     clear: both;
     color: color(text, help);
     display: block;
-    font-size: $font-size-small;
+    font-size: $font-size-base;
 }
 
 // if a control label is in the help block (like a bare input) it doesn't need
@@ -520,8 +537,7 @@ fieldset {
     }
 
     .form__control:focus + .control__label {
-        box-shadow: 0 2px 0 0 color(primary), 0 0 0 2px white, 0 0 2px 5px highlight !important;
-        z-index: 1;
+        @include pulsar-button-focused;
     }
 
     .btn__group {
@@ -557,23 +573,25 @@ fieldset {
 .form__control.radio.radio {
     appearance: none;
     background-color: #fafafa;
-    border: 0;
-    box-shadow: inset 0 0 0 1px color(border);
-    height: 20px;
+    border: 1px solid color(border);
+    height: 22px;
     overflow: hidden;
     position: relative;
     vertical-align: text-bottom;
-    width: 20px;
+    width: 22px;
 
     .controls {
         padding: 12px 0 16px;
     }
 
-    &:focus {
-        border-color: color(black);
-        box-shadow: 0 0 0 2px color(black);
+    &[disabled],
+    &[readonly] {
+        cursor: not-allowed;
+        background-color: $input-bg-disabled;
     }
+}
 
+.form__control.checkbox {
     &::before {
         content: '';
         font-family: 'FontAwesome';
@@ -583,12 +601,10 @@ fieldset {
         top: -14px;
     }
 
-    &:focus:checked::before {
-        color: color(primary);
+    &:focus {
+        @include pulsar-checkbox-focused;
     }
-}
 
-.form__control.checkbox {
     &:checked::before {
         color: color(text);
         content: '\f00c';
@@ -596,12 +612,24 @@ fieldset {
 }
 
 .form__control.radio {
-    border-radius: 20px;
+    border-radius: $border-radius-large;
+
+    &::before {
+        content: '';
+        font-family: 'FontAwesome';
+        font-size: 11px;
+        height: 20px;
+        left: 5.5px;
+        position: absolute;
+        top: -13px;
+    }
+
+    &:focus {
+        @include pulsar-radio-focused;
+    }
 
     &:checked::before {
         content: '\f111';
-        font-size: 13.5px;
-        left: 3.9px;
     }
 }
 
@@ -645,7 +673,7 @@ fieldset {
 // look visually disabled too (the main label for the entire choice still uses
 // normal text colour)
 .is-disabled + .form-choice__label {
-    color: color(text, disabled);
+    opacity: .4;
 }
 
 .form__indent {
@@ -722,8 +750,11 @@ fieldset.form__group--compound {
     padding: 0;
 }
 
-.form__group--compound {
-    > .control__label {
+// undo fieldset styling when fieldset/legend used for form__group and control__label
+fieldset.form__group {
+    padding: 0;
+
+    > legend.control__label {
         border-bottom: 0;
         float: left; // as we can't use inline-block
         font-size: inherit;
@@ -731,6 +762,12 @@ fieldset.form__group--compound {
         margin: 0;
     }
 
+    > .controls {
+        clear: left;
+    }
+}
+
+.form__group--compound {
     > .controls {
         margin-bottom: -5px;
 
@@ -768,4 +805,12 @@ fieldset.form__group--compound {
             margin-left: 10px;
         }
     }
+}
+
+// Used in CXM mappings
+.icon--align-with-fields {
+    display: block;
+    font-size: $font-size-xlarge;
+    line-height: $line-height-large;
+    text-align: center;
 }

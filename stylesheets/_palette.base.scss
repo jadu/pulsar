@@ -9,6 +9,13 @@
 \* -------------------------------------------------------------------------- */
 
 $palette-branding: (
+    jadu-purple: (
+        darkest:    rgb(46, 54, 112),
+        dark:       rgb(52, 61, 128),
+        base:       rgb(61, 71, 150),
+        light:      rgb(86, 96, 173),
+        pale:       rgb(104, 113, 183)
+    ),
     jadu-red: (
         darkest:     rgb(115, 19, 19),
         dark:        rgb(154, 23, 23),
@@ -159,13 +166,14 @@ $palette-alias: (
     text: (
         base:     #000,
         help:     map-get(map-get($palette-monochromes, gray), dull),
-        light:    map-get(map-get($palette-monochromes, gray), lighter),
-        disabled: map-get(map-get($palette-monochromes, gray), lighter)
+        light:    map-get(map-get($palette-monochromes, gray), dull),
+        disabled: map-get(map-get($palette-monochromes, gray), lighter),
+        placeholder: #737373
     ),
     link: (
         base:     #2a7da7, // WCAG 4.58:1 AA compliant
         dark:     darken(#2a7da7, 5),
-        hover:    darken(#2a7da7, 5),
+        hover:    #000,
         focus:    darken(#2a7da7, 15), // WCAG 5.39:1 AA compliant when used on color(background, focus)
         inverse:  #fff,
         inverse-hover: darken(#fff, 10%),
@@ -173,14 +181,14 @@ $palette-alias: (
     ),
     border: (
         base:      map-get(map-get($palette-monochromes, gray), base),
-        focus:     #ffbf47
+        focus:     #fd0
     ),
     background: (
         base:      map-get(map-get($palette-monochromes, gray), off-white),
         dark:      map-get(map-get($palette-monochromes, gray), lightest),
         light:     lighten(map-get(map-get($palette-monochromes, gray), off-white), 2),
         selected:  map-get(map-get($palette-states, info), light),
-        focus:     #ffbf47
+        focus:     #fd0
     ),
 );
 

@@ -8,14 +8,14 @@
 
     {{
         form.toggle_switch({
-            'id': 'toggle-1',
+            'id': 'guid-' ~ random(),
             'label': 'Toggle switch'
         })
     }}
 
     {{
         form.toggle_switch({
-            'id': 'toggle-2',
+            'id': 'guid-' ~ random(),
             'label': 'Required',
             'required': true
         })
@@ -23,30 +23,12 @@
 
     {{
         form.toggle_switch({
-            'id': 'toggle-3',
+            'id': 'guid-' ~ random(),
             'label': 'Toggle switch with help',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
-    {{
-        form.toggle_switch({
-            'id': 'toggle-4',
-            'label': 'Toggle switch with guidance',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.toggle_switch({
-            'id': 'toggle-5',
-            'label': 'Required guidance',
-            'guidance': 'Help text to give more information about expected input',
-            'required': true
-        })
-    }}
-
-    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
@@ -59,18 +41,18 @@
 
     {{
         form.toggle_switch({
-            'id': 'toggle-6',
+            'id': 'guid-' ~ random(),
             'label': 'Toggle switch with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
-            'guidance': 'Help text to give more information about expected input',
             'help': 'Example block-level help text here'
         })
     }}
 
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
         form.toggle_switch({
-            'id': 'toggle-7',
+            'id': 'guid-' ~ random(),
             'label': 'Toggle switch with error',
             'error': 'Please complete this field'
         })
@@ -78,7 +60,7 @@
 
     {{
         form.toggle_switch({
-            'id': 'toggle-8',
+            'id': 'guid-' ~ random(),
             'label': 'Toggle switch with multiple errors',
             'error': ['Do this', 'Do this too']
         })
@@ -86,7 +68,7 @@
 
     {{
         form.toggle_switch({
-            'id': 'toggle-9',
+            'id': 'guid-' ~ random(),
             'label': 'Toggle switch with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
@@ -95,7 +77,7 @@
 
     {{
         form.toggle_switch({
-            'id': 'toggle-10',
+            'id': 'guid-' ~ random(),
             'class': 'has-error',
             'label': 'Toggle switch error with help only',
             'help': 'Help text to give more information about expected input'
@@ -107,7 +89,7 @@
 
     {{
         form.toggle_switch({
-            'id': 'toggle-11',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
@@ -115,7 +97,7 @@
     }}
     {{
         form.toggle_switch({
-            'id': 'toggle-12',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -124,7 +106,7 @@
 
     {{
         form.toggle_switch({
-            'id': 'toggle-13',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-warning"',
             'help': 'Something bad happened',
             'class': 'has-warning'
@@ -132,7 +114,7 @@
     }}
     {{
         form.toggle_switch({
-            'id': 'toggle-14',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-error"',
             'help': 'Automatically added if using <code>error</code> option',
             'class': 'has-error'
@@ -140,7 +122,7 @@
     }}
     {{
         form.toggle_switch({
-            'id': 'toggle-15',
+            'id': 'guid-' ~ random(),
             'label': '"disabled": true',
             'help': 'Stop! Can’t touch this',
             'disabled': true
@@ -150,7 +132,19 @@
     {{ form.fieldset_end() }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

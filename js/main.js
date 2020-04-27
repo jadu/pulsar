@@ -10,7 +10,9 @@
 
     $html.removeClass('no-js');
 
+    pulsar.errorSummary = new pulsar.ErrorSummaryComponent();
     pulsar.button = new pulsar.ButtonComponent($html);
+    pulsar.dropdownButton = new pulsar.DropdownButtonComponent($html);
     pulsar.disableUi = new pulsar.DisableUiComponent($html);
     pulsar.flash = new pulsar.FlashMessageComponent($html);
     pulsar.helpText = new pulsar.HelpTextComponent($html, window, document);
@@ -23,15 +25,20 @@
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
     pulsar.faviconEditor = new pulsar.FaviconEditor(document.head);
+    pulsar.stickySidebar = new pulsar.StickySidebarComponent($html, window);
     pulsar.tableDetail = new pulsar.TableDetailComponent($html);
     pulsar.repeaterManager = new pulsar.RepeaterManagerComponent(
         pulsar.pulsarForm,
         pulsar.repeaterComponentFactory,
         $html
     );
+    pulsar.modalFocusService = new pulsar.ModalFocusService();
+    pulsar.modalListener = new pulsar.ModalListener(pulsar.modalFocusService);
 
     $(function () {
         pulsar.button.init();
+        pulsar.dropdownButton.init();
+        pulsar.errorSummary.init($html);
         pulsar.flash.init();
         pulsar.helpText.init();
         pulsar.helpText.updateHelpSidebar();
@@ -44,12 +51,13 @@
         pulsar.navMain.init();
         pulsar.filterBar.init();
         pulsar.disableUi.init();
+        pulsar.stickySidebar.init();
         pulsar.tableDetail.init();
         pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
         pulsar.repeaterManager.init();
-
-        // Switch out .svg for .png for <img> elements in older browsers
-        pulsar.svgeezy.init('nocheck', 'png');
+        pulsar.tooltipListener = pulsar.tooltipFactory($html);
+        pulsar.tooltipListener.init();
+        pulsar.modalListener.listen($html);
 
         // jsTree
         $('#container').jstree({

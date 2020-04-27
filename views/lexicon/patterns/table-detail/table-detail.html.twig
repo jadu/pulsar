@@ -1,17 +1,19 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
 
-{% block tab_content %}
+{% block tab_sidebar %}
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Example help</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tellus dolor, condimentum efficitur arcu sed, feugiat pellentesque lacus. Pellentesque ac ipsum ac mauris cursus volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+{% endblock tab_sidebar %}
 
-<table class="table datatable table--full" data-table-detail-table>
+{% block tab_content %}
+<table class="table table--horizontal table--full" data-table-detail-table>
     <thead>
         <tr>
-            <td class="table-responsive"></td>
-            <td class="table-selection"></td>
-            <th><a href="#">Date</a></th>
-            <th><a href="#">Time</a></th>
-            <th><a href="#">User type</a></th>
-            <th><a href="#">Event</a></th>
-            <th><a href="#">Actions</a></th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>User type</th>
+            <th>Event</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -19,18 +21,12 @@
         <tr data-table-detail-content="<div class=&quot;padding&quot;><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet lobortis mi. Maecenas elit nulla, ullamcorper quis neque in, fermentum egestas ipsum. Vestibulum tincidunt molestie interdum. Nunc et risus id arcu tincidunt ullamcorper. Donec aliquet, magna vitae suscipit tristique, dolor lacus laoreet ipsum, a commodo felis ex eget tellus. Cras velit est, sagittis a cursus in, mollis et dolor. Phasellus pellentesque, risus vitae maximus dictum, felis magna consequat nisi, vel rutrum augue quam in quam. Duis sed arcu sit amet erat maximus luctus eget sit amet ex. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis ac sem ut nisi pharetra tincidunt sit amet eu ligula. Aliquam eget tellus risus. Pellentesque eleifend risus nec cursus iaculis.</p>
 
             <p>Sed eget erat vel felis fermentum mattis. Morbi vulputate vehicula velit, id cursus metus. Donec imperdiet neque sit amet elit finibus laoreet. In consequat vitae lorem et consequat. Curabitur non cursus neque. Phasellus interdum dignissim quam vel auctor. Morbi egestas ex id sem laoreet lobortis. Phasellus iaculis quam eget dui pellentesque, vel tempus erat laoreet. Aenean auctor, sem eu aliquet sagittis, est ligula interdum dolor, sed convallis erat diam nec purus. Aenean faucibus suscipit orci, eu aliquam nisi pulvinar eget. In hac habitasse platea dictumst. Morbi mi nibh, gravida nec ullamcorper sed, blandit sit amet nisl. Quisque facilisis luctus sapien quis ornare. Cras a gravida nisl. Maecenas hendrerit ut leo eget faucibus.</p>
-        
+
                 <p>Integer efficitur, nunc hendrerit dapibus maximus, justo leo semper lorem, ac pretium risus ligula et orci. Phasellus leo libero, ullamcorper sit amet efficitur quis, consectetur id nulla. Sed id sem tortor. Nullam hendrerit blandit elementum. Proin elementum orci nulla, eget pretium erat feugiat eget. Nulla eu pretium urna. Mauris scelerisque malesuada metus vitae vehicula.</p>
-        
+
                     <p>Nam tincidunt turpis eget augue feugiat, non facilisis mi pretium. Nunc in consequat lacus. Ut massa massa, vehicula egestas vehicula nec, egestas varius dolor. Ut tristique, nulla sed consectetur fermentum, augue libero vulputate augue, auctor elementum felis eros eget ante. Integer sapien tortor, vehicula ac scelerisque id, dapibus in dui. Cras blandit, dolor sed suscipit dictum, sapien elit semper sem, ut laoreet nisi libero vitae purus. Phasellus dui ante, tristique vitae pretium ut, eleifend quis leo. Etiam aliquet, est eu placerat lobortis, justo augue iaculis odio, nec auctor ex ex et nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean volutpat augue nec massa sagittis, at mollis tortor gravida.</p>
-        
+
                         <p>Phasellus at posuere leo, sit amet consectetur ligula. Donec ultrices odio ut diam efficitur, sit amet feugiat ligula convallis. Phasellus feugiat nunc mattis faucibus aliquam. Sed non elit eu purus vestibulum hendrerit varius a leo. Donec at fermentum nulla. Nam in libero varius, dignissim nulla non, ultrices sem. Integer in libero felis. Proin nec nulla ut augue dapibus aliquet id non odio. Integer sit amet mollis magna. Quisque iaculis neque ac lobortis tempor. Suspendisse potenti. Proin pellentesque arcu sed ante volutpat feugiat.</p></div>" data-table-detail-panel-custom-title="A custom title set on the clicked TR">
-            <td class="table-responsive">
-                {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
-            </td>
-            <td class="table-selection">
-                {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
-            </td>
 
             <td>{{ html.link({ 'label': '13/01/2017', 'class': 'table-action', 'data-table-detail-view-detail': true }) }}</td>
             <td>3:30pm</td>
@@ -44,7 +40,7 @@
             </td>
             <td>Case status changed</td>
             <td>
-                {{ html.link({ 'label': 'Details', 'class': 'table-action', 'data-table-detail-view-detail': true }) }}
+                {{ html.link({ 'label': 'Details', 'class': 'table-action', 'data-table-detail-view-detail': true, 'href': '#' }) }}
             </td>
         </tr>
         {% endfor %}

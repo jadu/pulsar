@@ -1,8 +1,0 @@
-{{
-    html.link({
-        'href': '#myLink',
-        'label': 'Hover over me',
-        'title': 'A wild tooltip appears!',
-        'data-toggle': 'tooltips'
-    })
-}}

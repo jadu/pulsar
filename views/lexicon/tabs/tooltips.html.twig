@@ -2,20 +2,364 @@
 
 {% block tab_content %}
 
-    <p class="centered">
-        <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="left" title="" data-original-title="Tooltip on left">Tooltip on left</button>
-    </p>
+    {{
+        flash.message({
+            'message': 'Deprecated due to not meeting WCAG 2.1. See Tooltips v2.',
+            'type': 'warning',
+            'dismissable': false
+        })
+    }}
 
-    <p class="centered">
-        <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="top" title="" data-original-title="Tooltip on top">Tooltip on top</button>
-    </p>
+    <div class="u-margin-top--large">
+        <p class="centered">
+            <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="left" title="" data-original-title="Tooltip on left">Tooltip on left</button>
+        </p>
 
-    <p class="centered">
-        <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="bottom" title="" data-original-title="Tooltip on bottom">Tooltip on bottom</button>
-    </p>
+        <p class="centered">
+            <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="top" title="" data-original-title="Tooltip on top">Tooltip on top</button>
+        </p>
 
-    <p class="centered">
-        <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="right" title="" data-original-title="Tooltip on right">Tooltip on right</button>
-    </p>
+        <p class="centered">
+            <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="bottom" title="" data-original-title="Tooltip on bottom">Tooltip on bottom</button>
+        </p>
+
+        <p class="centered">
+            <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="right" title="" data-original-title="Tooltip on right">Tooltip on right</button>
+        </p>
+    </div>
+
+    <div class="u-margin-bottom--large">
+        <h2 class="heading">Form elements with tooltips</h2>
+
+        {{
+            form.create()
+        }}
+
+        {{
+            form.text({
+                'id': 'guid-' ~ random(),
+                'label': 'Text',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.text({
+                'id': 'guid-' ~ random(),
+                'label': 'Text',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip',
+                'help': 'Some help text'
+            })
+        }}
+
+        {{
+            form.textarea({
+                'id': 'guid-' ~ random(),
+                'label': 'Textarea',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.password({
+                'id': 'guid-' ~ random(),
+                'label': 'Password',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.date({
+                'id': 'guid-' ~ random(),
+                'label': 'Date',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.time({
+                'id': 'guid-' ~ random(),
+                'label': 'Time',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.file({
+                'id': 'guid-' ~ random(),
+                'label': 'File',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.color({
+                'id': 'guid-' ~ random(),
+                'label': 'Color',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'Select',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ],
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.select2({
+                'label': 'Select2',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ],
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.compound({
+                'label': 'Compound',
+                'id': 'guid-' ~ random(),
+                'inputs': [
+                    {
+                        'class': 'form__control-col--1',
+                        'label': 'Value',
+                        'id': 'guid-' ~ random(),
+                        'maxlength': '3',
+                        'show-label': false,
+                        'type': 'text',
+                        'data-toggle': 'tooltips',
+                        'data-original-title': 'Hey, this is a tooltip'
+                    },
+                    {
+                        'class': 'u-width-auto',
+                        'label': 'Unit of time',
+                        'id': 'guid-' ~ random(),
+                        'show-label': false,
+                        'type': 'select',
+                        'options': [
+                            {
+                                'label': 'Seconds',
+                                'value': 'sec'
+                            },
+                            {
+                                'label': 'Minutes',
+                                'value': 'min'
+                            }
+                        ]
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'id': 'guid-' ~ random(),
+                'label': 'Toggle switch',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.range({
+                'id': 'guid-' ~ random(),
+                'label': 'Range',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{ form.fieldset_start({ 'legend': 'Checkboxes and radios' }) }}
+
+        {{
+            form.checkbox({
+                'id': 'guid-' ~ random(),
+                'label': 'Checkbox',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.radio({
+                'id': 'guid-' ~ random(),
+                'label': 'Radio',
+                'data-toggle': 'tooltips',
+                'data-original-title': 'Hey, this is a tooltip'
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice checkbox',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Checkbox One',
+                        'value': 'one',
+                        'name': 'one',
+                        'checked': true,
+                        'data-toggle': 'tooltips',
+                        'data-original-title': 'Hey, this is a tooltip'
+                    },
+                    {
+                        'label': 'Checkbox Two',
+                        'value': 'two',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Checkbox Three',
+                        'value': 'three',
+                        'name': 'one'
+                    }
+                ],
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice radio',
+                'multiple': true,
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Radio One',
+                        'value': 'one',
+                        'name': 'one',
+                        'data-toggle': 'tooltips',
+                        'data-original-title': 'Hey, this is a tooltip'
+                    },
+                    {
+                        'label': 'Radio Two',
+                        'value': 'two',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Radio Three',
+                        'value': 'three',
+                        'name': 'one'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice as select2',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Select2 One',
+                        'value': 'one',
+                        'name': 'three',
+                        'data-toggle': 'tooltips',
+                        'data-original-title': 'Hey, this is a tooltip'
+                    },
+                    {
+                        'label': 'Select2 Two',
+                        'value': 'two',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Three',
+                        'value': 'three',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Four',
+                        'value': 'four',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Five',
+                        'value': 'five',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Six',
+                        'value': 'six',
+                        'name': 'three'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'class': 'choice--block',
+                'label': 'Choice block radios',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': html.icon('bold') ~ ' Bold',
+                        'value': 'bold',
+                        'name': 'five',
+                        'checked': true,
+                        'data-toggle': 'tooltips',
+                        'data-original-title': 'Hey, this is a tooltip'
+                    },
+                    {
+                        'label': html.icon('italic') ~ ' Italic',
+                        'value': 'italic',
+                        'name': 'five'
+                    },
+                    {
+                        'label': html.icon('underline') ~ ' Underline',
+                        'value': 'underline',
+                        'name': 'five'
+                    },
+                ]
+            })
+        }}
+
+        {{ form.fieldset_end() }}
+
+        {{
+            form.end({
+                'actions': [
+                    html.button({
+                        'label': 'Save',
+                        'class': 'btn--primary',
+                        'type': 'submit'
+                    }),
+                    html.button({
+                        'label': 'Cancel',
+                        'class': 'btn--naked'
+                    })
+                ]
+            })
+        }}
+    </div>
 
 {% endblock tab_content %}

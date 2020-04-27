@@ -1,8 +1,0 @@
-{{
-    form.radio({
-        'label': 'Disabled radio',
-        'id': 'disabledRadio',
-        'name': 'disabledRadio',
-        'disabled': true
-    })
-}}

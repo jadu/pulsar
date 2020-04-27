@@ -1,6 +1,0 @@
-{{
-    html.badge({
-        'label': '123',
-        'class': 'badge--primary'
-    })
-}}

@@ -21,8 +21,9 @@ class RepeaterManagerComponent {
     init () {
         this.$html.find('[data-repeater]').each((index, element) => {
             const repeater = this.repeaterComponentFactory(this.pulsarFormComponent, element);
+            const initialData = element.getAttribute('data-repeater-initial-state');
 
-            repeater.init();
+            repeater.init(JSON.parse(initialData));
         });
     }
 }

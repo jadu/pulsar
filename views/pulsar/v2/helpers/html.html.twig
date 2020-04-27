@@ -88,9 +88,9 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         html.button_dropdown({
             'id': 'actions_menu',
-            'label': items.label|default('Actions') ~ 
+            'label': items.label|default('Actions') ~
                 html.badge({
-                    'label': '0', 
+                    'label': '0',
                     'aria-label': '0 rows selected',
                     'class': 'label--primary js-bulk-actions-badge',
                     'style': 'display: none;'
@@ -440,6 +440,8 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         {% set caret = 0 %}
     {% endif %}
 
+    {% set dropdown_guid = 'guid-' ~ random() %}
+
     <div{{
         attributes({
             'class': 'btn__group drop' ~ options.direction|default('down') ~ (options.parent_class is defined ? ' ' ~ options.parent_class : '')
@@ -449,6 +451,9 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
             html.button(options
                 |exclude('direction parent_class placement items')
                 |defaults({
+                    'aria-haspopup': 'true',
+                    'aria-expanded': 'false',
+                    'aria-controls': dropdown_guid,
                     'caret': caret,
                     'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                     'data-toggle': 'dropdown'
@@ -459,6 +464,7 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         {{
             html.list({
                 'class': 'dropdown__menu pull-' ~ options.placement|default('left'),
+                'id': dropdown_guid,
                 'items': options.items|default
             })
         }}
@@ -624,9 +630,8 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                     'class': options.class|default ~ ' edit-button',
                     'data-action': 'edit',
                     'data-action-target': options.target|default,
-                    'data-placement': options.placement|default('right'),
-                    'data-title': options.tooltip|default('Edit this item'),
-                    'data-toggle': 'tooltips',
+                    'data-tippy-content': options.tooltip|default('Edit this item'),
+                    'data-tippy-placement': options.placement|default('right'),
                     'label': html.icon('pencil'),
                     'type': options.type|default('button'),
                 })
@@ -765,7 +770,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             html.remove_button({
                 'tooltip': false,
                 'target': 'this',
-                'type': 'link'
+                'label': 'Remove ' ~ options.label|default
             })
         }}
         {% endif %}
@@ -1004,6 +1009,8 @@ Option | Type   | Description
 -----  | ------ | --------------------------------------------------------------
 class  | string | CSS classes, space separated
 id     | string | A unique identifier, if required
+message| string | Optional text string to be shown in block style loading elements
+type   | string | `block` or `inline` (default), block will be centered horizontally
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
@@ -1011,15 +1018,33 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <span{{
-        attributes(options
-            |defaults({
-                'class': 'loading'
-            })
-        )
-    }}>
-        <i>Loading...</i>
-    </span>
+    {% set type = 'inline' %}
+    {% if options.type is defined and options.type == 'block' %}
+        {% set type = 'block' %}
+    {% endif %}
+
+    {% if type == 'block' %}
+    <div class="loading-block">
+    {% endif %}
+
+        <span{{
+            attributes(options
+                |exclude('label')
+                |defaults({
+                    'class': 'loading'
+                })
+            )
+        }}>
+            <i>{{- options.label|default('Loading...') -}}</i>
+        </span>
+
+    {% if options.message is defined and options.message is not empty %}
+        <span class="loading-block__message">{{ options.message }}</span>
+    {% endif %}
+
+    {% if type == 'block' %}
+    </div>
+    {% endif %}
 
 {% endspaceless %}
 {% endmacro %}
@@ -1084,11 +1109,7 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.icon is defined and options.icon is not empty %}
         {{ html.icon(options.icon, { 'class': 'media__image', 'colour': options.icon_colour|default('#000') }) }}
     {% elseif options.image is defined and options.image is not empty %}
-        {% set alt = ' role="presentation"' %}
-        {% if options.image_alt is defined and options.image_alt is not empty %}
-            {% set alt = ' alt="' ~ options.image_alt ~ '"' %} 
-        {% endif %}
-        <img src="{{ options.image }}"{{ alt|default|raw }} class="media__image" />
+        <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="media__image" />
     {% endif %}
         <div class="media__body">
         {% if options.action is defined and options.action is not empty %}
@@ -1198,45 +1219,50 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set tag = 'section' %}
     {% set actions_placements = ['inline', 'left', 'center', 'right'] %}
+    {% set guid = 'guid-' ~ random() %}
 
-    <div{{
+    {% if options.title is not defined or options.title is empty %}
+        {% set tag = 'div' %}
+    {% endif %}
+
+    <{{ tag }}{{
         attributes(options
-            |exclude('actions actions_placement icon title body')
+            |exclude('actions actions_placement heading_level icon title body')
             |defaults({
                 'class': 'panel'
             })
         )
-    }}>
+    }}{% if tag == 'section' %} aria-labelledby="{{ guid }}"{% endif %}>
         {% if options.icon is defined and options.icon is not empty %}
             {{ html.icon(options.icon|default, { 'class': 'panel__icon' }) }}
         {% endif %}
 
         {% if options.title is defined and options.title is not empty %}
-        <div class="panel__title">
+        <{{ options.heading_level|default('h2') }} class="panel__title" id="{{ guid }}">
             {{ options.title|raw }}
-        </div>
+        </{{ options.heading_level|default('h2') }}>
         {% endif %}
-        <div class="panel__body">
+        <div class="panel__body"{% if 'panel--scroll' in options.class|default %} tabindex="0"{% endif %}>
             {{- options.body|raw -}}
-
-            {% if options.actions is defined %}
-                {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
-                    {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
-                {% endif %}
-
-                <div class="panel__actions{{ actions_class|default }}">
-                    {% for action in options.actions %}
-                        {% if action is iterable %}
-                            {{- html.button(action) -}}
-                        {% else %}
-                            {{- action|raw -}}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
         </div>
-    </div>
+        {% if options.actions is defined %}
+            {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
+                {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
+            {% endif %}
+
+            <div class="panel__actions{{ actions_class|default }}">
+                {% for action in options.actions %}
+                    {% if action is iterable %}
+                        {{- html.button(action) -}}
+                    {% else %}
+                        {{- action|raw -}}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </{{ tag }}>
 
 {% endspaceless %}
 {% endmacro %}
@@ -1333,6 +1359,7 @@ placement | string | Can be `top`, `left`, `bottom`, `right`
 target    | string | CSS Selector of the item to be removed, will be turned into the `data-action-target` attribute
 type      | string | Can be `button` (default), `link`, `input`, `submit`
 data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
+label     | string | SR friendly hidden label
 
 #}
 {% macro remove_button(options) %}
@@ -1343,9 +1370,8 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.tooltip is not defined or options.tooltip != false %}
     {%
         set options = options|default({})|merge({
-            'data-placement': options.placement|default('right'),
-            'data-toggle': 'tooltips',
-            'data-title': options.tooltip|default('Remove this item')
+            'data-tippy-content': options.tooltip|default('Remove this item'),
+            'data-tippy-placement': options.placement|default('right')
         })
     %}
     {% endif %}
@@ -1358,7 +1384,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                 'type': options.type|default('button'),
                 'data-action': 'remove',
                 'data-action-target': options.target|default,
-                'label': html.icon('remove-sign', { 'label': 'Remove' })
+                'label': html.icon('remove-sign', { 'label': options.label|default('Remove') })
             })
         )
     }}
@@ -1424,15 +1450,16 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             {% set iconGlyph = 'check-circle' %}
         {% endif %}
     {% endif %}
-    
-    {{ 
+
+    {{
         html.icon(iconGlyph|default('times-rectangle'), options
-            |exclude('state icon')
+            |exclude('state icon title data-placement')
             |merge({
                 'class': 'status--icon is-' ~ state|default('active'),
-                'data-placement': options['data-placement']|default('top'),
-                'data-toggle': 'tooltips',
-            }) 
+                'data-tippy-placement': options['data-placement']|default('top'),
+                'data-tippy-content': options['title'],
+                'label': options['title']
+            })
         )
     }}
 
@@ -1440,16 +1467,18 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <span{{
         attributes(options
-            |exclude('state icon')
+            |exclude('state icon title data-placement')
             |merge({
-                'data-placement': options['data-placement']|default('top')
+                'data-tippy-placement': options['data-placement']|default('top')
             })
             |defaults({
                 'class': 'status is-' ~ state|default('active'),
-                'data-toggle': 'tooltips'
+                'data-tippy-content': options['title']
             })
         )
-    }}></span>
+    }}>
+        <span class="hide">{{ options['title'] }}</span>
+    </span>
 
 {% endif %}
 
@@ -1489,7 +1518,7 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
     {% import _self as html %}
     {% set files = options['data-dropzone-max-files'] is defined ? options['data-dropzone-max-files'] : '5' %}
     {% set state = options['data-dropzone-passive']|default('false') == 'true' ? 'passive' : 'idle' %}
-    {% set idle = options['data-dropzone-idle-html']|default('your files here or <a class="dropzone__browse" id="#">Browse Files</a>') %}
+    {% set idle = options['data-dropzone-idle-html']|default('your files here or <button class="dropzone__browse btn" aria-label="Browse files to upload">Browse Files</button>') %}
     {% spaceless %}
         <div{{ attributes(options|defaults(
             {
@@ -1531,26 +1560,32 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
 
     {% if options.overflow is defined and options.overflow == 'collapse' %}
         {% set overflow = options.overflow %}
+        {% set options = options|merge({ 'data-overflow': overflow }) %}
     {% else %}
         {% set overflow = 'scroll' %}
-        {% set options = options|merge({ 'class': 'table--horizontal' }) %}
+        {% set options = options|merge({ 'class': 'table--horizontal', 'data-overflow': overflow }) %}
     {% endif %}
 
     {% if options.data is defined and options.data is not empty %}
-    <table{{ attributes(options|defaults({ 'class': 'table datatable table--full' })) }}>
+    <table{{ attributes(options
+                |exclude('overflow')
+                |defaults({ 'class': 'table datatable table--full' })) }} style="width: 100%">
         <thead>
             <tr>
                 {% if overflow == 'collapse' %}
-                    <td></td>
+                    <td><span class="hide">Table controls</span></td>
                 {% endif %}
-                {% for column in options.data.columns %}
-                    {% if loop.first %}
-                        <th class="table-selection" data-orderable="false">
-                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
-                        </th>
-                    {% endif %}
-                    <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
-                {% endfor %}
+                    {% for column in options.data.columns %}
+                        {% if loop.first %}
+                            {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
+                                <th class="table-selection" data-orderable="false">
+                                    <span class="hide">Row selection controls</span>
+                                    <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="Select all rows" data-tippy-placement="right" />
+                                </th>
+                            {% endif %}
+                        {% endif %}
+                        <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
+                    {% endfor %}
             </tr>
         </thead>
         <tbody>
@@ -1558,12 +1593,16 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                 <tr>
                     {% if overflow == 'collapse' %}
                         <td class="table-responsive">
-                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                            <button class="table-child-toggle">
+                                {{ html.icon('plus-sign', { 'label': 'Toggle collapsed columns' }) }}
+                            </button>
                         </td>
                     {% endif %}
-                    <td class="table-selection">
-                        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
-                    </td>
+                    {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
+                        <td class="table-selection">
+                            <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+                        </td>
+                    {% endif %}
                     {% for key, val in row %}
                         {% if val is same as(true) %}
                             <td data-order="{{ key }}" class="u-text-align-center">{{ html.status('online', { 'title': key, 'icon': true }) }}</td>

@@ -36,7 +36,6 @@ Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 class         | string | A space separated list of class names
 error         | string | Text to explain an error/validation condition. Also adds error state styling
-guidance      | string | Text to be displayed in a popover, adds a (?) icon after the input
 help          | string | Additional guidance information to be displayed next to the input
 label         | string | Text for the `<label>` companion element
 required      | bool   | Visually indicates that the field must be completed
@@ -73,7 +72,10 @@ items         | array  | An array of items to put in the dropdown list (usually 
         {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
     {% endif %}
 
-    {# If error is preset add aria-invalid="true" and aria-describedby to all inputs #}
+    {% set containerTag = 'fieldset' %}
+    {% set labelTag = 'legend' %}
+
+    {# If error is preset add aria-describedby to all inputs #}
     {% set items = options.items %}
 
     {% if options.error is defined and options.error is not empty or options.help is defined and options.help is not empty %}
@@ -97,8 +99,8 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {{
         form.group({
             'parent': options
-                |only('bare class error error_ids guidance guidance-container has_error help help_id id label required show-label type')
-                |merge({'class': options.class|default ~ ' form__button-group'}),
+                |only('bare class disabled error error_ids has_error help help_id id label required show-label type')
+                |merge({'class': options.class|default ~ ' form__button-group', 'containerTag': containerTag, 'labelTag': labelTag }),
             'controls': {'class': 'btn__group'},
             'inputs': items
         })
@@ -129,7 +131,6 @@ Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 class         | string | A space separated list of class names
 error         | string | Text to explain an error/validation condition. Also adds error state styling
-guidance      | string | Text to be displayed in a popover, adds a (?) icon after the input
 help          | string | Additional guidance information to be displayed next to the input
 label         | string | Text for the `<label>` companion element
 required      | bool   | Visually indicates that the field must be completed
@@ -144,7 +145,7 @@ form          | string | Specific one or more forms this label belongs to
 id            | string | A unique identifier, will also be applied as the label's `for` attribute
 indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
 name          | string | The name of this control
-required      | bool   | Adds `required` and `aria-required="true"` attributes
+required      | bool   | Adds `required` attribute
 value         | string | Specifies the value of the input
 data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -161,7 +162,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
+                |only('bare class error error_ids help help_id id label required show-label')
                 |defaults({
                     'class': 'form-checkbox'
                 }),
@@ -207,7 +208,6 @@ Option          | Type   | Description
 --------------- | ------ | -----------------------------------------------------
 class           | string | A space separated list of class names
 error           | string | Text to explain an error/validation condition. Also adds error state styling
-guidance        | string | Text to be displayed in a popover, adds a (?) icon after the input
 help            | string | Additional guidance information to be displayed next to the input
 required        | bool   | Visually indicates that the field must be completed
 
@@ -222,7 +222,7 @@ indeterminate   | bool   | Shows the checkbox as [-], overrides the value of `ch
 input_placement | string | left (default)|right position of the input vs the label value
 label           | string | Text for the `<label>` companion element
 name            | string | The name of this control
-required        | bool   | Adds `required` and `aria-required="true"` attributes
+required        | bool   | Adds `required` attribute
 value           | string | Specifies the value of the input
 data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -277,10 +277,9 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
             'inputs': [
                 elem.label({
                     'for': options.id|default,
-                    'guidance': options.guidance|default,
                     'label': label,
                     'required': options.required|default,
-                    'guidance-container': options['guidance-container']|default
+                    'required-indicator': options['required-indicator']|default
                 })
             ]
         })
@@ -322,7 +321,7 @@ Option   | Type   | Description
 form     | string | Specific one or more forms this label belongs to
 id       | string | A unique identifier, will also be used as the label's `for` attribute
 name     | string | The name of this control
-required | bool   | Adds `required` and `aria-required="true"` attributes
+required | bool   | Adds `required` attribute
 selected | bool   | Whether this radio button should be selected
 value    | string | Specifies the value of the input
 data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -353,7 +352,7 @@ required | bool   | Visually indicates that the field must be completed
     }}
     {{
         elem.label(options
-            |only('class label for guidance-container required show-label')
+            |only('class label for required show-label')
             |defaults({'for': options.id|default})
         )
     }}
@@ -400,7 +399,6 @@ Option     | Type   | Description
 ---------- | ------ | -------------------------------------------------------
 class      | string | A space separated list of class names
 error      | string | Text to explain an error/validation condition. Also adds error state styling
-guidance   | string | Text to be displayed in a popover, adds a (?) icon after the input
 help       | string | Additional guidance information to be displayed next to the input
 label      | string | Text for the main `<label>` companion element
 optimize   | string | `auto` use a select2 element if number of `options` is greater than 5 (default)
@@ -471,37 +469,90 @@ show-label | bool   | Control visibility of the `<label>` element without affect
             ])
         %}
 
+        {{
+            form.group({
+                'parent': options
+                    |only('bare class error error_ids help help_id id label required show-label')
+                    |exclude('multiple')
+                    |defaults({'class': 'form-choice'}),
+                'inputs': inputs
+            })
+        }}
+
     {% else %}
 
-        {% for input_options in options.options %}
-            {% set input_options = input_options|merge({
-            'bare': true,
-            'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
-            'aria-describedby': describedByIds|join(' ')
-            }) %}
+        {% set groupClass = 'form__group form-choice' %}
 
-            {% if options.error is defined and options.error is not empty %}
-                {% set input_options = input_options|merge({ 'has_error': true }) %}
-            {% endif %}
+        {% if options.error_ids is defined and options.error_ids is not empty %}
+            {% set groupClass = groupClass ~ ' has-error' %}
+        {% endif %}
 
-            {% if options.multiple %}
-                {% set inputs = inputs|merge([ form.checkbox_inline(input_options) ]) %}
-            {% else %}
-                {% set inputs = inputs|merge([ form.radio_inline(input_options) ]) %}
-            {% endif %}
-        {% endfor %}
+        {% set showLabel = true %}
+        {% if options['show-label'] is defined and options['show-label'] is not null and options['show-label'] == false %}
+            {% set showLabel = false %}
+        {% endif %}
+
+        {% if options.bare is not defined or options.bare != true %}
+        <fieldset{{
+            attributes(options
+                |only('class id')
+                |defaults({ 'class': groupClass })
+            )
+        -}}>
+
+            {{
+                elem.label({
+                    'label': options.label|default,
+                    'required': options.required|default,
+                    'tag': 'legend',
+                    'show-label': showLabel
+                })
+            }}
+
+            <div class="controls">
+        {% endif %}
+
+                {% for input_options in options.options %}
+
+                    {% set input_options = input_options|merge({
+                        'bare': true,
+                        'required-indicator': false,
+                        'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
+                        'aria-describedby': describedByIds|join(' ')
+                    }) %}
+
+                    {% if options.error is defined and options.error is not empty %}
+                        {% set input_options = input_options|merge({ 'has_error': true }) %}
+                    {% endif %}
+
+                    {% if options.required is defined and options.required == true %}
+                        {% set input_options = input_options|merge({ 'required': true }) %}
+                    {% endif %}
+
+                    {% if options.multiple %}
+                        {{ form.checkbox_inline(input_options) }}
+                    {% else %}
+                        {{ form.radio_inline(input_options) }}
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if options.error_ids is defined and options.error_ids is not empty %}
+                    {{ form.error({ 'value': options.error|default, 'error_ids':  options.error_ids }) }}
+                {% else %}
+                    {{ form.error({ 'value': options.error|default }) }}
+                {% endif %}
+
+                {% if options.help_id is defined and options.help_id is not empty %}
+                    {{ form.help({ 'value': options.help|default, 'id': options.help_id }) }}
+                {% endif %}
+
+        {% if options.bare is not defined or options.bare != true %}
+            </div>
+        </fieldset>
+        {% endif %}
 
     {% endif %}
-
-    {{
-        form.group({
-            'parent': options
-                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
-                |exclude('multiple')
-                |defaults({'class': 'form-choice'}),
-            'inputs': inputs
-        })
-    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -529,7 +580,6 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -545,7 +595,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -617,7 +667,7 @@ https://jadu.github.io/pulsar/form-helpers/compound
             )
     -}}>
 
-    <legend class="control__label" {{ util.id(options.id ~ '[label]') }}>{{ options.label|default }} {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}</legend>
+    <legend class="control__label" {{ util.id(options.id ~ '[label]') }}>{{ options.label|default }}</legend>
 
     <div class="controls">
         {% for input in options.inputs %}
@@ -632,10 +682,10 @@ https://jadu.github.io/pulsar/form-helpers/compound
                     </span>
                 {% endif %}
             {% endif %}
-            
+
             {{
                 elem.label(input
-                    |only('label guidance-container required show-label')
+                    |only('label required show-label')
                     |merge({
                         'for': input.id,
                         'id': input.id ~ '[label]'
@@ -646,10 +696,13 @@ https://jadu.github.io/pulsar/form-helpers/compound
             {% set inputOptions = input|exclude('error label guidance-container required show-label')|merge({'aria-describedby': describedByIds|join(' ')}) %}
 
             {% if input.type == 'select' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.select(inputOptions|merge({'class': inputOptions.class|default ~ ' select'})) }}
             {% elseif input.type == 'select2' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.select2(inputOptions) }}
             {% elseif input.type == 'textarea' %}
+                {% set inputOptions = inputOptions|exclude('type') %}
                 {{ elem.textarea(inputOptions) }}
             {% else %}
                 {{ elem.input(inputOptions) }}
@@ -716,9 +769,8 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
-label       | string | Text for the `<label>` companion element
+label       | string | Text for the label companion element, will be a `span` instead of a `label`
 raw         | bool   | Instead of wrapping the value in a `<p>`, just render the value/helper instead (default: false)
 show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
@@ -741,12 +793,14 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.raw is defined and options.raw == true %}
         {% set input = options.value %}
     {% else %}
-        {% set input = elem.paragraph(options|exclude('bare class error guidance guidance-container help label show-label')) %}
+        {% set input = elem.paragraph(options|exclude('bare class error guidance guidance-container help label show-label disabled')) %}
     {% endif %}
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance guidance-container help id label show-label'),
+            'parent': options
+                |only('bare class error help id label show-label')
+                |merge({'labelTag': 'span'}),
             'inputs': [input]
         })
     }}
@@ -871,7 +925,6 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -888,7 +941,7 @@ format      | string | Options for this can be `default`, `US` or `reverse`
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -900,11 +953,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
 
     {%
-        set options = options|default({})|merge({
-            'placeholder': options.placeholder|default('dd/mm/yyyy'),
-            'data-datepicker': options['data-datepicker']|default('true'),
-            'data-format': options.format|default('default')
-        })
+        set options = options|default({})
+            |merge({
+                'placeholder': options.placeholder|default('dd/mm/yyyy'),
+                'data-datepicker': options['data-datepicker']|default('true'),
+                'data-format': options.format|default('default')
+            })
+            |exclude('format')
     %}
 
     {% set options = modify_options(options|default({})) %}
@@ -1121,7 +1176,6 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string  | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1137,7 +1191,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1153,10 +1207,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error error_ids guidance guidance-container help help_id id label required show-label'),
+            'parent': options|only('bare class error error_ids help help_id id label required show-label'),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class guidance guidance-container error help label show-label')
+                    |exclude('bare class guidance guidance-container error help label show-label placeholder')
                     |defaults({'type': 'file'})
                     |merge({'class': 'file'})
                 )
@@ -1235,7 +1289,6 @@ Option            | Type   | Description
 parent.append     | string | Content to display after the input, usually short text or icons
 parent.class      | string | A space separated list of class names
 parent.error      | string | Text to explain an error/validation condition. Also adds error state styling
-parent.guidance   | string | Text to be displayed in a popover, adds a (?) icon after the input
 parent.id         | string | A unique identifier, will also be used as the label's `for` attribute
 parent.help       | string | Additional guidance information to be displayed next to the input
 parent.inputs     | array  | One or more form inputs to display
@@ -1261,6 +1314,8 @@ controls.class    | string | A space separated list of class names
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
     {% set groupClass = 'form__group' %}
+    {% set containerTag = 'div' %}
+    {% set labelTag = 'label' %}
 
     {% if options.parent.error is defined and options.parent.error is not empty %}
         {% set groupClass = groupClass ~ ' has-error' %}
@@ -1275,18 +1330,27 @@ controls.class    | string | A space separated list of class names
         {% set showLabel = false %}
     {% endif %}
 
+    {% if options.parent.containerTag is defined and options.parent.containerTag is not empty %}
+        {% set containerTag = options.parent.containerTag %}
+    {% endif %}
+
+    {% if options.parent.labelTag is defined and options.parent.labelTag is not empty %}
+        {% set labelTag = options.parent.labelTag %}
+    {% endif %}
+
     {% set isToggleSwitch = false %}
     {% if options.parent.class is defined and 'form__group--toggle' in options.parent.class %}
         {% set isToggleSwitch = true %}
     {% endif %}
 
     {% if options.parent.bare is not defined or options.parent.bare != true %}
-    <div{{
+    <{{
         attributes(options.parent
                 |only('class aria-describedby')
                 |defaults({
                     'class': groupClass
-                })
+                }),
+                {'tag': containerTag}
             )
     -}}>
     {% endif %}
@@ -1298,12 +1362,10 @@ controls.class    | string | A space separated list of class names
         {{
             elem.label({
                 'for': options.parent.id|default,
-                'guidance': options.parent.guidance|default,
                 'label': options.parent.label|default,
                 'show-label': showLabel,
                 'required': options.parent.required|default,
-                'guidance-container': options.parent['guidance-container']|default,
-                'tag': (isToggleSwitch) ? 'span' : 'label'
+                'tag': labelTag
             })
         }}
 
@@ -1348,6 +1410,11 @@ controls.class    | string | A space separated list of class names
         {# input #}
         {% for input in options.inputs %}
             {% if input is iterable %}
+
+                {% if options.parent.disabled is defined and options.parent.disabled == true %}
+                    {% set input = input|merge({ 'disabled': true }) %}
+                {% endif %}
+
                 {% if options.parent.type is defined and options.parent.type is not empty %}
                     {% if options.parent.type == 'radio' %}
                         {{- form.radio_simple(input) -}}
@@ -1413,7 +1480,7 @@ controls.class    | string | A space separated list of class names
         </label>
         {% endif %}
     {% if options.parent.bare is not defined or options.parent.bare != true %}
-    </div>
+    </{{ containerTag }}>
     {% endif %}
 
 {% endmacro %}
@@ -1530,7 +1597,6 @@ Option      | Type   | Description
 append      | string | Text or markup to include after the input element
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 prepend     | string | Text or markup to include before the input element
@@ -1547,7 +1613,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1587,7 +1653,6 @@ Option     | Type   | Description
 ---------- | ------ | ------------------------------------------------------------
 class      | string | A space separated list of class names
 error      | string | Text to explain an error/validation condition. Also adds error state styling
-guidance   | string | Text to be displayed in a popover, adds a (?) icon after the input
 help       | string | Additional guidance information to be displayed next to the input
 label      | string | Text for the `<label>` companion element
 required   | bool   | Visually indicates that the field must be completed
@@ -1600,7 +1665,7 @@ Option     | Type   | Description
 form       | string | Specific one or more forms this label belongs to
 id         | string | A unique identifier, will also be used as the label's `for` attribute
 name       | string | The name of this control
-required   | bool   | Adds `required` and `aria-required="true"` attributes
+required   | bool   | Adds `required` attribute
 selected   | bool   | Whether the input is checked
 value      | string | Specifies the value of the input
 data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -1618,7 +1683,7 @@ data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
+                |only('bare class error error_ids help help_id id label required show-label')
                 |defaults({
                     'class': 'form-radio'
                 }),
@@ -1662,7 +1727,6 @@ Option          | Type   | Description
 --------------- | ------ | -----------------------------------------------------
 class           | string | A space separated list of class names
 error           | string | Text to explain an error/validation condition. Also adds error state styling
-guidance        | string | Text to be displayed in a popover, adds a (?) icon after the input
 help            | string | Additional guidance information to be displayed next to the input
 required        | bool   | Visually indicates that the field must be completed
 
@@ -1675,7 +1739,7 @@ id              | string | A unique identifier, will also be used as the label's
 label           | string | Text for the `<label>` companion element
 input_placement | string | `left` (default), `right` position of the input vs the label value
 name            | string | The name of this control
-required        | bool   | Adds `required` and `aria-required="true"` attributes
+required        | bool   | Adds `required` attribute
 selected        | bool   | Whether this radio button should be selected
 value           | string | Specifies the value of the input
 data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -1723,7 +1787,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error error_ids guidance-container help help_id id')
+                |only('bare class error error_ids help help_id id')
                 |defaults({
                     'class': 'form-radio-inline'
                 }),
@@ -1732,8 +1796,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
                     'for': options.id|default,
                     'label': label,
                     'required': options.required|default,
-                    'guidance': options.guidance|default,
-                    'guidance-container': options['guidance-container']|default
+                    'required-indicator': options['required-indicator']|default
                 })
             ]
         })
@@ -1777,7 +1840,7 @@ form     | string | Specific one or more forms this label belongs to
 help     | string | Additional guidance information to be displayed next to the input
 id       | string | A unique identifier, will also be used as the label's `for` attribute
 name     | string | The name of this control
-required | bool   | Adds `required` and `aria-required="true"` attributes
+required | bool   | Adds `required` attribute
 selected | bool   | Whether this radio button should be selected
 value    | string | Specifies the value of the input
 data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -1808,7 +1871,7 @@ required | bool   | Visually indicates that the field must be completed
     }}
     {{
         elem.label(options
-            |only('class label for guidance-container required show-label')
+            |only('class label for required show-label')
             |defaults({'for': options.id|default})
         )
     }}
@@ -1841,7 +1904,6 @@ Option      | Type   | Description
 append      | string | Text or markup to include after the input element
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 prepend     | string | Text or markup to include before the input element
@@ -1866,11 +1928,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import _self as form %}
 
-    {{ 
+    {{
         form.text(options
-            |defaults({'type': 'range', 'class': 'form-range'})
+            |exclude('required placeholder')|defaults({'type': 'range', 'class': 'form-range'})
             |exclude('required')
-        ) 
+        )
     }}
 
 {% endspaceless %}
@@ -1905,7 +1967,6 @@ Option      | Type   | Description
 ----------- | ------ | --------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1920,7 +1981,7 @@ id          | string | A unique identifier, will also be used as the label's `fo
 multiple    | bool   | Whether multiple options can be selected
 name        | string | The name of this control
 options     | hash   | The `<option>` attributes formatted as `{ 'value': 'label' }`
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 selected    | string | The `id` of the item in `options` that should be initially selected
 size        | int    | The number of items to display when the list is shown
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -1937,11 +1998,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('append append_type bare class error error_ids guidance guidance-container help help_id id label prepend prepend_type required show-label'),
+            'parent': options|only('append append_type bare class error error_ids help help_id id label prepend prepend_type required show-label'),
             'inputs': [
                 elem.select(
                     options
-					|exclude('bare class error guidance guidance-container help label show-label')
+					|exclude('bare class error guidance guidance-container help label show-label prepend_type append_type')
 					|merge({'class': 'select'})
                 )
             ]
@@ -1980,7 +2041,6 @@ Option      | Type   | Description
 ----------- | ------ | --------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1997,7 +2057,7 @@ id          | string | A unique identifier, will also be used as the label's `fo
 multiple    | bool   | Whether multiple options can be selected
 name        | string | The name of this control
 options     | hash   | The `<option>` attributes formatted as `{ 'value': 'label' }`
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 selected    | string | The `id` of the item in `options` that should be initially selected
 size        | int    | The number of items to display when the list is shown
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -2014,10 +2074,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('append append_type bare class error error_ids guidance guidance-container help help_id id prepend prepend_type label required show-label'),
+            'parent': options|only('append append_type bare class error error_ids help help_id id prepend prepend_type label required show-label'),
             'inputs': [
                 elem.select2(options
-                    |exclude('bare class error guidance guidance-container help label show-label')
+                    |exclude('bare class error guidance guidance-container help show-label prepend_type append_type')
                 )
             ]
         })
@@ -2100,8 +2160,6 @@ append       | string | Text or markup to include after the input element
 append_type  | string | Use only when appending a button. `button` is the only valid value
 class        | string | A space separated list of class names
 error        | string | Text to explain an error/validation condition. Also adds error state styling
-guidance     | string | Text to be displayed in a popover, adds a (?) icon after the input
-guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
 help         | string | Additional guidance information to be displayed next to the input
 id           | string | Passed to the `<label>` element as a `for` attribute, and the `<input>` as the unique identifier
 label        | string | Text for the `<label>` companion element
@@ -2120,7 +2178,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -2138,7 +2196,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('append append_type bare class error error_ids guidance guidance-container help help_id id label prepend prepend_type required show-label'),
+            'parent': options|only('append append_type bare class error error_ids help help_id id label prepend prepend_type required show-label'),
             'inputs': [
                 elem.input(
                     options|exclude('append_type bare class error guidance guidance-container help label prepend_type show-label')
@@ -2174,7 +2232,6 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -2189,7 +2246,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 rows        | int    | The height, in rows (default 2)
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -2206,7 +2263,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error error_ids guidance guidance-container help help_id id label required show-label'),
+            'parent': options|only('bare class error error_ids help help_id id label required show-label'),
             'inputs': [
                 elem.textarea(options
                     |exclude('bare class error guidance guidance-container help label show-label')
@@ -2243,7 +2300,6 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -2259,7 +2315,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
+required    | bool   | Adds `required` attribute
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -2304,7 +2360,6 @@ Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 class         | string | A space separated list of class names
 error         | string | Text to explain an error/validation condition. Also adds error state styling
-guidance      | string | Text to be displayed in a popover, adds a (?) icon after the input
 help          | string | Additional guidance information to be displayed next to the input
 label         | string | Text for the `<label>` companion element
 required      | bool   | Visually indicates that the field must be completed
@@ -2319,7 +2374,7 @@ form          | string | Specify one or more forms this label belongs to
 id            | string | A unique identifier, will also be applied as the label's `for` attribute
 indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
 name          | string | The name of this control
-required      | bool   | Adds `required` and `aria-required="true"` attributes
+required      | bool   | Adds `required` attribute
 value         | string | Specifies the value of the input
 data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -2346,9 +2401,10 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
+                |only('bare class error error_ids help help_id id label required show-label')
                 |merge({
-                    'class': options.class|default ~ ' form__group--toggle'
+                    'class': options.class|default ~ ' form__group--toggle',
+                    'labelTag': 'span',
                 }),
             'inputs': [toggle]
         })
@@ -2401,6 +2457,7 @@ headings                | Array  | An array of heading config objects: { name: s
 max-entries             | int    | Maximum (inclusive) number of entries that can be added
 add-new-group-text      | string | The text content of the add new entry button
 add-another-group-text  | string | The text content of the add another new entry button
+actions-column-text     | string | The text content of the actions column header
 
 0#}
 {% macro repeater_start(options) %}
@@ -2408,6 +2465,7 @@ add-another-group-text  | string | The text content of the add another new entry
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import _self as form %}
 {% set headingLength = options.headings|length %}
+{% set values = options.values|default([]) %}
 {% spaceless %}
     <div
         class="repeater"
@@ -2416,23 +2474,26 @@ add-another-group-text  | string | The text content of the add another new entry
         data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
         data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
         data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
+        data-repeater-initial-state="{{ values|json_encode }}"
     >
         <div class="repeater__saved-data u-display-none" data-repeater-saved-entries-root></div>
         <div class="form__group">
             {{
                 elem.label({
                     'label': options.label,
-                    'required': options.required|default(false)
+                    'required': options.required|default(false),
+                    'tag': 'span'
                 })
             }}
             <div class="controls">
                 <table class="table table--full table--horizontal repeatable__table">
+                    <caption class="hide">{{ options.label|default }}</caption>
                     <thead class="repeater__preview-headings">
                         <tr>
                             {% for heading in options.headings %}
                                 <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
                             {% endfor %}
-                            <th rowspan="1" colspan="1"></th>
+                            <th rowspan="1" colspan="1" class="shrink-to-fit">{{ options['actions-column-text']|default('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="repeater__preview-data" data-repeater-preview-root>
@@ -2487,5 +2548,70 @@ add-another-group-text  | string | The text content of the add another new entry
             </div>
         </div>
     </div>
+{% endspaceless %}
+{% endmacro %}
+
+
+
+{# -----------------------------------------------------------------------------
+
+# Error summary
+
+Generate a error summary that contains a list of error messages relating to form inputs with errors. Each error message is a link to the respective invalid input.
+
+## Example usage
+
+```twig
+{{
+    form.error_summary({
+        'heading': 'There is a problem',
+        'errors': [
+            {
+                'label': 'Enter your first name',
+                'href': 'first-name'
+            },
+            {
+                'label': 'Enter your last name',
+                'href': 'last-name'
+            }
+        ]
+    })
+}}
+```
+
+## Options
+
+Option                  | Type   | Description
+-------------           | ------ | -------------------------------------------------------
+heading                 | string | The error summary heading, defaults to "There is a problem"
+errors                  | Array  | An array of error objects. Label should match input error text, href is the ID of the input
+
+#}
+{% macro error_summary(options) %}
+{% spaceless %}
+    {% if options.errors is defined and options.errors is not empty %}
+    <section{{
+        attributes(options
+            |exclude('aria-labelledby autofocus autocomplete disabled error form guidance heading help href label name placeholder required show-label tabindex value')
+            |defaults({
+                'class': 'error-summary',
+                'aria-labelledby': 'error-summary-title',
+                'data-error-summary': 'true',
+                'tabindex': '-1'
+            })
+        )
+    }}>
+        <h2 class="error-summary__title" id="error-summary-title">
+            {{- options.heading|default('There is a problem') -}}
+        </h2>
+        <ul class="error-summary__list">
+            {% for error in options.errors %}
+                <li class="error-summary__list-item">
+                    <a class="error-summary__list-link" href="#{{- error.href -}}">{{- error.label -}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
