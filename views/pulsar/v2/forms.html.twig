@@ -69,7 +69,18 @@
     <input type="checkbox" {{ block('widget_attributes') }} />
 {% endblock checkbox_widget %}
 
+{% block choice_label %}
+    {% if expanded %}
+        {% set element = 'legend' %}
+    {% endif %}
+    {{ block('form_label') }}
+{% endblock %}
+
 {% block choice_row %}
+    {% if expanded %}
+        {% set group_element = 'fieldset' %}
+    {% endif %}
+
     {% set group_attr = {'class': 'form-choice'} %}
     {{ block('form_row') }}
 {% endblock choice_row %}
