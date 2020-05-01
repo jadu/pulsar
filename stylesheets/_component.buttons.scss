@@ -40,7 +40,8 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
 $btn-white:                 'white';
 // scss-lint:enable StringQuotes
 
-.btn {
+.btn,
+::-webkit-file-upload-button {
     @include inline-block;
     -webkit-appearance: none; /* 1 */
     background: transparent;
@@ -175,7 +176,8 @@ $btn-white:                 'white';
  * UI states
  */
 
-.btn {
+.btn,
+::-webkit-file-upload-button {
     @include button-states('base');
     border-bottom-style: solid;
     text-decoration: none;
