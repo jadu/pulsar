@@ -18,12 +18,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~7.5",
-        "symfony/form": "^3.4",
-        "symfony/validator": "^3.4",
-        "symfony/config": "^3.4",
-        "symfony/translation": "^3.4",
-        "symfony/twig-bridge": "^3.4",
-        "symfony/security-csrf": "^3.4",
         "symfony/yaml": "^3.4"
     }
 }
