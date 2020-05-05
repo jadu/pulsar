@@ -59,6 +59,8 @@
         pulsar.tooltipListener.init();
         pulsar.modalListener.listen($html);
 
+        pulsar.datePicker.init($html);
+
         // jsTree
         $('#container').jstree({
             'plugins' : ['state']

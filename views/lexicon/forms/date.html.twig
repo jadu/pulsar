@@ -8,14 +8,16 @@
 
     {{
         form.date({
-            'data-datepicker': 'false',
+            'data-a11ydatepicker': 'true',
             'id': 'guid-' ~ random(),
-            'label': 'Date field without date picker'
+            'label': 'Date field without date picker',
+            'value': '19/04/2020'
         })
     }}
 
     {{
         form.date({
+            'data-a11ydatepicker': 'true',
             'id': 'guid-' ~ random(),
             'label': 'Date field'
         })
@@ -23,6 +25,7 @@
 
     {{
         form.date({
+            'data-a11ydatepicker': 'true',
             'format': 'US',
             'id': 'guid-' ~ random(),
             'label': 'Date US style',
@@ -32,13 +35,14 @@
 
     {{
         form.date({
+            'data-a11ydatepicker': 'true',
             'format': 'reverse',
             'id': 'guid-' ~ random(),
             'label': 'Date reverse style',
             'placeholder': 'yyyy/mm/dd'
         })
     }}
-
+    {#}
     {{
         form.date({
             'id': 'guid-' ~ random(),
@@ -347,6 +351,8 @@
     }}
 
     {{ form.fieldset_end() }}
+
+
     {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
 
     {{
@@ -465,7 +471,7 @@
         }}
     {% endfor %}
     {{ form.fieldset_end() }}
-
+#}
 
     {{
         form.end({

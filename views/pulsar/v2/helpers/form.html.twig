@@ -874,7 +874,7 @@ attribute on the `form` element will be set to `POST`.
 
 # Date
 
-Generates a text input field which will show a date picker when focused.
+Generates a text input field with an appended date picker trigger button.
 
 ## Example usage
 
@@ -920,13 +920,31 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% macro date(options) %}
 {% spaceless %}
     {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+    {% set isDisabled = false %}
+    {% if options.disabled is defined and options.disabled is not empty and options.disabled == true %}
+        {% set isDisabled = true %}
+    {% endif %}
+
+    {% set guidA11ydatepickertrigger = 'guid-a11ydatepickertrigger-' ~ random() %}
 
     {%
         set options = options|default({})
             |merge({
                 'placeholder': options.placeholder|default('dd/mm/yyyy'),
-                'data-datepicker': options['data-datepicker']|default('true'),
-                'data-format': options.format|default('default')
+                'data-format': options.format|default('default'),
+                'data-pulsardatepicker': options['data-pulsardatepicker']|default('true'),
+                'data-pulsardatepicker-trigger': guidA11ydatepickertrigger,
+                'append': html.button({
+                    'label': html.icon('calendar', { 'label': 'Show calendar' }),
+                    'data-datepicker-trigger': 'true',
+                    'type': 'button',
+                    'disabled': isDisabled ? 'disabled': '',
+                    'class': isDisabled ? 'is-disabled': '',
+                    'id': guidA11ydatepickertrigger
+                }),
+                'append_type': 'button'
             })
             |exclude('format')
     %}
