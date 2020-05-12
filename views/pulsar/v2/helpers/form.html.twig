@@ -928,7 +928,7 @@ data-pulsar-datepicker | bool   | If `'true'`, the more accessible pulsar-date-p
     {% if options['data-pulsar-datepicker'] is defined and options['data-pulsar-datepicker'] is not empty and options['data-pulsar-datepicker'] == true %}
 
         {# Generate guid to link input to trigger button, required for pulsar-date-picker #}
-        {% set guidDatePickerTriggerGuid = 'guid-' ~ random() %}
+        {% set datePickerTriggerGuid = 'guid-' ~ random() %}
 
         {# Disable button if input is disabled #}
         {% set isDisabled = false %}
@@ -940,13 +940,13 @@ data-pulsar-datepicker | bool   | If `'true'`, the more accessible pulsar-date-p
             'placeholder': options.placeholder|default('dd/mm/yyyy'),
             'data-pulsar-datepicker-format': options.format|default,
             'data-pulsar-datepicker': options['data-pulsar-datepicker']|default('true'),
-            'data-pulsar-datepicker-trigger': guidDatePickerTriggerGuid,
+            'data-pulsar-datepicker-trigger': datePickerTriggerGuid,
             'append': html.button({
                 'label': html.icon('calendar', { 'label': 'Show calendar' }),
                 'type': 'button',
                 'disabled': isDisabled ? 'disabled': '',
                 'class': isDisabled ? 'is-disabled': '',
-                'id': guidDatePickerTriggerGuid
+                'id': datePickerTriggerGuid
             }),
             'append_type': 'button'
         } %}
