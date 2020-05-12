@@ -48,7 +48,6 @@ var $                     = require('jquery'),
     tooltipFactory = require('./Tooltips/tooltipsFactory'),
     ModalFocusService = require('./Modals/ModalFocusService'),
     ModalListener = require('./Modals/ModalListener'),
-
     datePicker = require('pulsar-date-picker');
 
 require('jstree');
@@ -77,6 +76,5 @@ module.exports = {
     tooltipFactory,
     ModalFocusService,
     ModalListener,
-
     datePicker
 };
