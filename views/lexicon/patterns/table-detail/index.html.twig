@@ -6,12 +6,21 @@
     {% include '/lexicon/patterns/table-detail/table-detail.html.twig' %}
 {% endset %}
 
+{% set tab_two %}
+    {% include '/lexicon/patterns/table-detail/table-detail-collapsing.html.twig' %}
+{% endset %}
+
 {%
     set tabs_content = [
         {
             "id"    : "tabledetail",
-            "label" : "Table Detail",
-            "src"   : tab_one,
+            "label" : "Scrolling",
+            "src"   : tab_one
+        },
+        {
+            "id"    : "tabledetailcollapse",
+            "label" : "Collapsing",
+            "src"   : tab_two,
             "active": true
         }
     ]

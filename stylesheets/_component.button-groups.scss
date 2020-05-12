@@ -37,6 +37,15 @@
             border-right-color: darken(color($state), 10);
         }
     }
+
+    .is-disabled + .control__label {
+        opacity: .5;
+
+        &:hover {
+            cursor: not-allowed;
+            transform: none;
+        }
+    }
 }
 
 .btn__group > .btn + .btn,
