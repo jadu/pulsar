@@ -98,10 +98,10 @@ class AttributeParserExtension extends \Twig_Extension
     public function parseAttributes($attributes, array $args = array())
     {
         $html = array();
-        
+
         $disableableElements = array('button', 'fieldset', 'input', 'optgroup', 'option', 'select', 'textarea');
         $usingTag = false;
-        
+
         if (isset($args['tag'])) {
             $usingTag = true;
             $tag = $args['tag'];

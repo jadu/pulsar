@@ -725,7 +725,6 @@ https://jadu.github.io/pulsar/form-helpers/compound
 
         {% endfor %}
 
-
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {{ form.error({ 'value': options.error|default, 'error_ids':  options.error_ids }) }}
         {% else %}
@@ -1930,8 +1929,8 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.text(options
-            |exclude('required placeholder')|defaults({'type': 'range', 'class': 'form-range'})
-            |exclude('required')
+            |exclude('required placeholder')
+            |defaults({'type': 'range', 'class': 'form-range'}))
         )
     }}
 
