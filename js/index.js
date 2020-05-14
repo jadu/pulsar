@@ -47,7 +47,8 @@ var $                     = require('jquery'),
     FaviconEditor = require('./Notifications/FaviconEditor'),
     tooltipFactory = require('./Tooltips/tooltipsFactory'),
     ModalFocusService = require('./Modals/ModalFocusService'),
-    ModalListener = require('./Modals/ModalListener');
+    ModalListener = require('./Modals/ModalListener'),
+    datePicker = require('pulsar-date-picker');
 
 require('jstree');
 
@@ -74,5 +75,6 @@ module.exports = {
     FaviconEditor,
     tooltipFactory,
     ModalFocusService,
-    ModalListener
+    ModalListener,
+    datePicker
 };

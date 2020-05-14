@@ -2,8 +2,9 @@
 {% block body %}
 {{
     form.date({
-        'label': 'foo',
-        'guidance': 'bar'
+        'data-pulsar-datepicker': 'true',
+        'format': 'US',
+        'placeholder': 'mm/dd/yyyy'
     })
 }}
 {% endblock %}

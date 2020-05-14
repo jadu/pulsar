@@ -1,9 +1,10 @@
 {% extends '@cssTests/visual-regression-layout.html.twig' %}
 {% block body %}
 {{
-    form.checkbox({
-        'label': 'foo',
-        'guidance': 'bar'
+    html.media({
+        'image': 'foo.png',
+        'title': 'Bar',
+        'description': 'Baz'
     })
 }}
 {% endblock %}

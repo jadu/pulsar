@@ -57,6 +57,7 @@ describe('RepeaterDataService', () => {
             expect(data.children).to.have.length.of(1);
             expect(data.firstElementChild.getAttribute('data-saved-entry-id')).to.equal('666');
             expect(clonedInput.getAttribute('name')).to.equal('test_input');
+            expect(clonedInput.className).to.equal('u-display-none');
             expect(clonedInput.getAttribute('data-name')).to.be.null;
             expect(uniqueIdServiceStub.uniquifyIds).to.have.been.calledOnce;
         });
