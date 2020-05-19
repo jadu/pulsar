@@ -217,7 +217,9 @@ SignInComponent.prototype.reset = function () {
 		.removeClass('signin--error')
 		.find('.signin__hint').remove();
 
-	this.$html.find('input:not([name="username"])').trigger('blur');
+	if (this.$html.find('.signin-container input:not([name="username"])').length) {
+		this.$html.find('.signin-container input:not([name="username"])').trigger('blur');
+	}
 
 	$('.signin__input, .signin__submit, .signin__link', $('.signin-reset'))
 		.prop('tabindex', '-1');
