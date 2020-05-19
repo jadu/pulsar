@@ -3,11 +3,11 @@
 {% set jsPath   = base_path ~ 'js/' %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Alerts - Jadu Deployer</title>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="TODO">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,86 +15,13 @@
 
         <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
 
-        <script src="{{ base_path ~ 'dist/js/bundle.js' }}" id="main-js"
-        ></script>
+        <script src="{{ base_path ~ 'dist/js/bundle.js' }}" id="main-js"></script>
         <script src="{{ base_path ~ 'js/main.js' }}" ></script>
         <script src="{{ base_path ~ 'dist/js/lexicon-bundle.js' }}" ></script>
 
-        <script>
-            $(function() {
 
-            });
-
-        </script>
-
-        <style type="text/css">
-
-            .ribbon__content {
-                margin-top: 20px;
-            }
-
-            @media screen and (min-width: 600px) {
-                .ribbon__content {
-                    display: flex;
-                }
-
-                .ribbon__list {
-                    display: flex;
-                    flex-flow: row;
-                    flex-wrap: wrap;
-                    overflow: visible;
-                }
-
-                .ribbon__list ~ .ribbon__list {
-                    margin-left: 20px;
-                }
-
-                .ribbon__list-key {
-                    flex: 0 0 50%;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                }
-
-                .ribbon__list-value {
-                    flex: 0 0 50%;
-                    margin-left: auto;
-                    overflow: hidden;
-                    text-align: left;
-                    text-overflow: ellipsis;
-                }
-            }
-
-            .timeline {
-                list-style: none;
-                margin-top: 10px;
-            }
-
-            @media screen and (min-width: 767px) {
-                .timeline::before {
-                    left: 15px;
-                }
-            }
-
-            .timeline p {
-                margin-bottom: 5px;
-            }
-
-            .timeline-content {
-                margin-bottom: 10px;
-            }
-
-            @media screen and (min-width: 767px) {
-                .timeline-content {
-                    margin-left: 35px;
-                    margin-top: 0;
-                }
-            }
-
-            .ribbon__list-value {
-                margin-left: 0;
-            }
-        </style>
-
+        {# demo styles, will need putting in project specific sass file #}
+        {% include '@pulsar/playground/deployer/partials/style.html.twig' %}
 
     </head>
     <body>
@@ -106,57 +33,26 @@
                 {% include '@pulsar/playground/deployer/partials/nav.html.twig' %}
 
                 <header class="toolbar">
-                    <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
+                    {% include '@pulsar/playground/deployer/partials/toolbar-controls.html.twig' %}
 
-                    <!-- TODO - consider replacing with sign out naked button! do need for dropdown -->
-                    <div class="nav-user">
-                        <div class="btn__group dropdown user-menu btn--naked">
-                            <button tabindex="5" aria-haspopup="true" aria-expanded="false" aria-controls="guid-2038271773" data-toggle="dropdown" class="btn dropdown__toggle">James Jacobs&nbsp;<span class="caret"></span>
-                            </button>
-
-                            <ul id="guid-2038271773" class="dropdown__menu pull-left">
-                                <li>
-                                    <a href="#">
-                                        <i aria-hidden="true" class="icon-signout"></i> Sign out
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- TODO - swap these dropdown links for buttons as they don't navigate anywhere -->
-                    <div class="nav-user">
-                        <div class="btn__group drop dropdown btn--naked">
-                            <button data-toggle="dropdown" class="btn dropdown__toggle">
-                                Project - Website&nbsp;<span class="caret"></span>
-                            </button>
-                            <ul class="dropdown__menu pull-left">
-                                <li class="dropdown__header">Switch project</li>
-                                <li>
-                                    <button class="btn">
-                                        <i class="icon-ok-sign"></i> Website
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="">
-                                        <i class="icon-circle-blank muted"></i>DeployerLGAQ
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!--
+                    {#
                         flash-container needs to be in the DOM before the flash message is added, ideally on page load
                         When empty, needs to be completely empty no white space
-                    -->
+                    #}
                     {% spaceless %}
                     <div class="flash-container js-flash-container" role="status">
 
-                        <!-- this should be added to the DOM after the flash-container parent in order for it to be annouced to SRs -->
+                        {# This should be added to the DOM after the flash-container parent in order for it to be annouced to SRs -->
                         {# example flash markup
-                        <section class="flash flash--info" aria-labelledby="guid-1921523354">
-                            <i aria-hidden="true" class="icon-spinner icon-spin"></i><h2 id="guid-1921523354">This build is processing. This process can take up to 10 minutes.</h2>
+                        <section class="flash flash--success" aria-labelledby="guid-1921523354">
+                            <h2 id="guid-1921523354">Alert saved successfully</h2>
+                            <button class="close" data-dismiss="flash">
+                                <i class="icon-remove"><span class="hide">Close</span></i>
+                            </button>
+                        </section>
+
+                        <section class="flash flash--success" aria-labelledby="guid-1921523354">
+                            <h2 id="guid-1921523354">Alert deleted successfully</h2>
                             <button class="close" data-dismiss="flash">
                                 <i class="icon-remove"><span class="hide">Close</span></i>
                             </button>
@@ -165,7 +61,7 @@
                     </div>
                     {% endspaceless %}
 
-                    <h1 class="main-title" tabindex="-1">Alerts</h1>
+                    <h1 class="main-title main-title--standalone" tabindex="-1">Alerts</h1>
                 </header>
 
                 <div class="content-main">
@@ -174,7 +70,6 @@
                             <div class="tab__container">
                                 <section class="actionsbar" aria-label="page actions">
                                     <div class="float--right">
-                                        <!-- button not a link as it triggers a modal -->
                                         <button class="btn btn--primary" data-toggle="modal" data-target="#newAlertModal">New Alert</button>
                                     </div>
                                 </section>
@@ -232,7 +127,7 @@
             </div>
         </div>
 
-        <!--
+        {#
         Behaviour on show:
             1. change aria-hidden="false" to aria-hidden="true"
             2. add style="display: block"
@@ -242,11 +137,11 @@
             1. change aria-hidden="true" to aria-hidden="false"
             2. add style="display: none" or remove style attribute
             3. focus should be returned to triggering button
-        -->
+        #}
         <div class="modal modal--large" id="newAlertModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="newAlertModal-title" aria-describedby="newAlertModal-description" aria-hidden="false">
             <div class="modal__dialog">
                 <div class="modal__content">
-                    <form><!-- because iputs should be wrapped in a form... COULD WE MOVE INSIDE OF BODY AFTER P? SR TEST -->
+                    <form>
                         <div class="modal__header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
                             <h1 class="modal__title" id="newAlertModal-title">New Alert</h1>
@@ -256,11 +151,11 @@
                             <p id="newAlertModal-description">Send email alerts for selected events.</p>
 
                             <div class="form__group form__group--full">
-                                <label for="guid-1754188012" class="control__label">Email&nbsp;<span aria-hidden="true" class="required-indicator" data-tippy-content="required">*</span></label>
+                                <label for="guid-12536788" class="control__label">Email&nbsp;<span aria-hidden="true" class="required-indicator">*</span></label>
 
                                 <div class="controls">
-                                    <input id="guid-1754188012" type="text" aria-describedby="guid-984149025" class="form__control" required>
-                                    <span class="help-block" id="guid-984149025">The email address you want to send alerts to</span>
+                                    <input id="guid-12536788" type="text" aria-describedby="guid-456778624" class="form__control" required>
+                                    <span class="help-block" id="guid-456778624">The email address you want to send alerts to</span>
                                 </div>
                             </div>
 
@@ -268,60 +163,60 @@
                                 <legend class="control__label">Select event triggers</legend>
                                 <div class="controls">
                                     <label class="control__label" for="guid-11111111">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-11111111">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-11111111">
                                         <span class="form-choice__label">Package build started</span>
                                     </label>
 
                                     <label class="control__label" for="guid-22222222">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-22222222">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-22222222">
                                         <span class="form-choice__label">Package build finished</span>
                                     </label>
 
                                     <label class="control__label" for="guid-333333333">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-333333333">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-333333333">
                                         <span class="form-choice__label">Package build error</span>
                                     </label>
 
                                     <label class="control__label" for="guid-444444444">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-444444444">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-444444444">
                                         <span class="form-choice__label">Deployment started</span>
                                     </label>
 
                                     <label class="control__label" for="guid-555555555">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-555555555">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-555555555">
                                         <span class="form-choice__label">Deployment finished</span>
                                     </label>
 
                                     <label class="control__label" for="guid-666666666">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-666666666">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-666666666">
                                         <span class="form-choice__label">Deployment error</span>
                                     </label>
 
                                     <label class="control__label" for="guid-77777777">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-77777777">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-77777777">
                                         <span class="form-choice__label">Environment added</span>
                                     </label>
 
                                     <label class="control__label" for="guid-88888888">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-88888888">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-88888888">
                                         <span class="form-choice__label">Environment deleted</span>
                                     </label>
                                 </div>
                             </fieldset>
                         </div>
                         <div class="modal__footer">
-                            <button type="button" class="btn btn--primary">Save</button>
+                            <button type="submit" class="btn btn--primary">Save</button>
                             <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
-                </div><!-- /.modal__content -->
-            </div><!-- /.modal__dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
 
         <div class="modal modal--large" id="editAlertModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="editAlertModal-title" aria-describedby="editAlertModal-description" aria-hidden="false">
             <div class="modal__dialog">
                 <div class="modal__content">
-                    <form><!-- because inputs should be wrapped in a form... COULD WE MOVE INSIDE OF BODY AFTER P? SR TEST -->
+                    <form>
                         <div class="modal__header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
                             <h1 class="modal__title" id="editAlertModal-title">Edit Alert</h1>
@@ -331,7 +226,7 @@
                             <p id="editAlertModal-description">Send email alerts for selected events.</p>
 
                             <div class="form__group form__group--full">
-                                <label for="guid-1754188012" class="control__label">Email&nbsp;<span aria-hidden="true" class="required-indicator" data-tippy-content="required">*</span></label>
+                                <label for="guid-1754188012" class="control__label">Email&nbsp;<span aria-hidden="true" class="required-indicator">*</span></label>
 
                                 <div class="controls">
                                     <input id="guid-1754188012" type="text" aria-describedby="guid-984149025" class="form__control" required value="James Jacobs">
@@ -342,56 +237,56 @@
                             <fieldset class="form__group form-choice choice--block form__control-col--7">
                                 <legend class="control__label">Select event triggers</legend>
                                 <div class="controls">
-                                    <label class="control__label is-selected" for="guid-11111111">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-11111111" checked="checked">
+                                    <label class="control__label is-selected" for="guid-123123123123">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-123123123123" checked="checked">
                                         <span class="form-choice__label">Package build started</span>
                                     </label>
 
-                                    <label class="control__label" for="guid-22222222">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-22222222">
+                                    <label class="control__label" for="guid-234234234">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-234234234">
                                         <span class="form-choice__label">Package build finished</span>
                                     </label>
 
-                                    <label class="control__label" for="guid-333333333">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-333333333">
+                                    <label class="control__label" for="guid-345345345">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-345345345">
                                         <span class="form-choice__label">Package build error</span>
                                     </label>
 
-                                    <label class="control__label" for="guid-444444444">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-444444444">
+                                    <label class="control__label" for="guid-456456456">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-456456456">
                                         <span class="form-choice__label">Deployment started</span>
                                     </label>
 
-                                    <label class="control__label is-selected" for="guid-555555555">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-555555555" checked="checked">
+                                    <label class="control__label is-selected" for="guid-567567567">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-567567567" checked="checked">
                                         <span class="form-choice__label">Deployment finished</span>
                                     </label>
 
-                                    <label class="control__label" for="guid-666666666">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-666666666">
+                                    <label class="control__label" for="guid-678678678">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-678678678">
                                         <span class="form-choice__label">Deployment error</span>
                                     </label>
 
-                                    <label class="control__label" for="guid-77777777">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-77777777">
+                                    <label class="control__label" for="guid-789789789">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-789789789">
                                         <span class="form-choice__label">Environment added</span>
                                     </label>
 
-                                    <label class="control__label" for="guid-88888888">
-                                        <input value="" name="" type="checkbox" class="form__control checkbox" id="guid-88888888">
+                                    <label class="control__label" for="guid-890890890">
+                                        <input type="checkbox" class="form__control checkbox" id="guid-890890890">
                                         <span class="form-choice__label">Environment deleted</span>
                                     </label>
                                 </div>
                             </fieldset>
                         </div>
                         <div class="modal__footer">
-                            <button type="button" class="btn btn--primary">Save</button>
+                            <button type="submit" class="btn btn--primary">Save</button>
                             <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
                             <button type="button" class="btn btn--danger float--right" data-dismiss="modal">Delete</button>
                         </div>
                     </form>
-                </div><!-- /.modal__content -->
-            </div><!-- /.modal__dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
     </body>
 </html>

@@ -2,24 +2,12 @@
 {% set imgPath  = base_path ~ 'images/' %}
 {% set jsPath   = base_path ~ 'js/' %}
 
-<!--
-    TODO:
-    1. check JS and any aria-toggling
-    2. favicons
-    3. test resposive
-    4. deployer colour and icon in nav / theme
-    5. check tab order
-    6. a11y tests
-    7. modal error state, for example, if options are left on please choose? Errors or perhaps just alpha order and default to first? Research...
-    8. need for new tooltips or tooltips at all?
--->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Build 88 - Jadu Deployer</title>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="TODO">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,154 +15,29 @@
 
         <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
 
-        <script src="{{ base_path ~ 'dist/js/bundle.js' }}" id="main-js"
-        ></script>
+        <script src="{{ base_path ~ 'dist/js/bundle.js' }}" id="main-js"></script>
         <script src="{{ base_path ~ 'js/main.js' }}" ></script>
         <script src="{{ base_path ~ 'dist/js/lexicon-bundle.js' }}" ></script>
 
-        <script>
-            $(function() {
-                var $combineCheckbox = $('#combine-with-product');
-                var $versionSelectFormGroup = $('#select-version');
-
-                $combineCheckbox.on('change', function () {
-                    if ($combineCheckbox.is(':checked')) {
-                        $versionSelectFormGroup.removeClass('u-display-none');
-                    } else {
-                        $versionSelectFormGroup.addClass('u-display-none');
-                    }
-                });
-            });
-
-        </script>
-
-        <style type="text/css">
-
-            .ribbon__content {
-                margin-top: 20px;
-            }
-
-            @media screen and (min-width: 600px) {
-                .ribbon__content {
-                    display: flex;
-                }
-
-                .ribbon__list {
-                    display: flex;
-                    flex-flow: row;
-                    flex-wrap: wrap;
-                    overflow: visible;
-                }
-
-                .ribbon__list ~ .ribbon__list {
-                    margin-left: 20px;
-                }
-
-                .ribbon__list-key {
-                    flex: 0 0 50%;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                }
-
-                .ribbon__list-value {
-                    flex: 0 0 50%;
-                    margin-left: auto;
-                    overflow: hidden;
-                    text-align: left;
-                    text-overflow: ellipsis;
-                }
-            }
-
-            .timeline {
-                list-style: none;
-                margin-top: 10px;
-            }
-
-            @media screen and (min-width: 767px) {
-                .timeline::before {
-                    left: 15px;
-                }
-            }
-
-            .timeline p {
-                margin-bottom: 5px;
-            }
-
-            .timeline-content {
-                margin-bottom: 10px;
-            }
-
-            @media screen and (min-width: 767px) {
-                .timeline-content {
-                    margin-left: 35px;
-                    margin-top: 0;
-                }
-            }
-
-            .ribbon__list-value {
-                margin-left: 0;
-            }
-        </style>
-
+        {# demo styles, will need putting in project specific sass file #}
+        {% include '@pulsar/playground/deployer/partials/style.html.twig' %}
 
     </head>
     <body>
         <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
-
         <div class="container" id="top">
             <div class="inner-wrapper">
-
                 {% include '@pulsar/playground/deployer/partials/nav.html.twig' %}
-
                 <header class="toolbar">
-                    <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
-
-                    <!-- TODO - consider replacing with sign out naked button! do need for dropdown -->
-                    <div class="nav-user">
-                        <div class="btn__group dropdown user-menu btn--naked">
-                            <button tabindex="5" aria-haspopup="true" aria-expanded="false" aria-controls="guid-2038271773" data-toggle="dropdown" class="btn dropdown__toggle">James Jacobs&nbsp;<span class="caret"></span>
-                            </button>
-
-                            <ul id="guid-2038271773" class="dropdown__menu pull-left">
-                                <li>
-                                    <a href="#">
-                                        <i aria-hidden="true" class="icon-signout"></i> Sign out
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- TODO - swap these dropdown links for buttons as they don't navigate anywhere -->
-                    <div class="nav-user">
-                        <div class="btn__group drop dropdown btn--naked">
-                            <button data-toggle="dropdown" class="btn dropdown__toggle">
-                                Project - Website&nbsp;<span class="caret"></span>
-                            </button>
-                            <ul class="dropdown__menu pull-left">
-                                <li class="dropdown__header">Switch project</li>
-                                <li>
-                                    <button class="btn">
-                                        <i class="icon-ok-sign"></i> Website
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="">
-                                        <i class="icon-circle-blank muted"></i>DeployerLGAQ
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!--
-                        flash-container needs to be in the DOM before the flash message is added, ideally on page load
+                    {% include '@pulsar/playground/deployer/partials/toolbar-controls.html.twig' %}
+                    {#
+                        The flash-container needs to be in the DOM before the flash message is added, ideally on page load
                         When empty, needs to be completely empty no white space
-                    -->
+                    #}
                     {% spaceless %}
                     <div class="flash-container js-flash-container" role="status">
 
-                        <!-- this should be added to the DOM after the flash-container parent in order for it to be annouced to SRs -->
+                        {# this should be added to the DOM after the flash-container parent in order for it to be annouced to SRs #}
                         {# example flash markup
                         <section class="flash flash--info" aria-labelledby="guid-1921523354">
                             <i aria-hidden="true" class="icon-spinner icon-spin"></i><h2 id="guid-1921523354">This build is processing. This process can take up to 10 minutes.</h2>
@@ -185,13 +48,10 @@
                         #}
                     </div>
                     {% endspaceless %}
-
                     <h1 class="main-title" tabindex="-1">Build 88</h1>
                 </header>
-
                 <div class="content-main">
                     <div class="tabs__content">
-
                         <div class="ribbon-wrapper">
                             <section class="ribbon" aria-label="content summary">
                                 <div class="ribbon__content">
@@ -209,19 +69,18 @@
                             </section>
                         </div>
 
-                        <!-- TODO: review - do we need all this tab mark up when tabs aren't used? -->
-
                         <div class="tab__pane is-active">
                             <div class="tab__container">
                                 <section class="actionsbar" aria-label="page actions">
                                     <div class="float--right">
-                                        <!-- this is a link, because it navigates somewhere -->
-                                        <a class="btn btn--primary" href="#">View Package</a>
+                                        {# This is a link, because it navigates somewhere -->
+                                        <a class="btn btn--primary" href="http://localhost:3001/app/app.php/playground/deployer/package.html.twig">View Package</a> #}
 
                                         {# example when build is processing (swapped to button as links can't be disabled)
                                         <button class="btn btn--primary is-disabled" disabled>Package Building <i aria-hidden="true" class="icon-spinner icon-spin"></i></button>
-                                        #}
 
+                                        If simplier, the same result could be got from keeping the link and adding aria-role="button" aria-disabled="true" and using JS to prevent click.
+                                        #}
                                     </div>
                                 </section>
                                 <div class="tab__inner">

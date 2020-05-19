@@ -1,0 +1,99 @@
+<style type="text/css">
+    .timeline {
+        list-style: none;
+        margin-top: 10px;
+    }
+
+    @media screen and (min-width: 767px) {
+        .timeline::before {
+            left: 15px;
+        }
+    }
+
+    .timeline p {
+        margin-bottom: 5px;
+    }
+
+    .timeline-content {
+        margin-bottom: 10px;
+    }
+
+    @media screen and (min-width: 767px) {
+        .timeline-content {
+            margin-left: 35px;
+            margin-top: 0;
+        }
+    }
+
+    .toolbar__controls {
+        font-size: 16px;
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    @media screen and (min-width: 992px) {
+        .toolbar__controls {
+            margin-bottom: 0;
+        }
+    }
+
+    .toolbar__controls .nav-user {
+        float: none;
+    }
+
+    .toolbar__controls .nav-user .dropdown {
+        margin-left: 0;
+    }
+
+    .toolbar__controls .project-switcher {
+        margin-left: auto;
+    }
+
+    .ribbon__content {
+        margin-top: 20px;
+    }
+
+    .ribbon__list-value {
+        margin-left: 0;
+    }
+
+    @media screen and (min-width: 600px) {
+        .ribbon__content {
+            display: flex;
+        }
+
+        .ribbon__list {
+            display: flex;
+            flex-flow: row;
+            flex-wrap: wrap;
+            overflow: visible;
+        }
+
+        .ribbon__list ~ .ribbon__list {
+            margin-left: 20px;
+        }
+
+        .ribbon__list-key {
+            flex: 0 0 50%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .ribbon__list-value {
+            flex: 0 0 50%;
+            margin-left: auto;
+            overflow: hidden;
+            text-align: left;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .main-title--standalone {
+        border-bottom: 1px solid #7e7e7e;
+        padding-bottom: 10px;
+    }
+
+    .table .table-actions-td {
+        padding: 6px 10px;
+    }
+</style>

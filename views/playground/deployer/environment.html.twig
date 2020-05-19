@@ -1,0 +1,155 @@
+{% set cssPath  = base_path ~ 'css/' %}
+{% set imgPath  = base_path ~ 'images/' %}
+{% set jsPath   = base_path ~ 'js/' %}
+
+<!--
+    TODO:
+    - fix flash placement in develop
+    - fix outline button td padding in actions column via class
+    1. check JS and any aria-toggling
+    2. favicons
+    3. test resposive
+    4. deployer colour and icon in nav / theme
+    5. check tab order
+    6. a11y tests
+    7. modal error state, for example, if options are left on please choose? Errors or perhaps just alpha order and default to first? Research...
+    8. need for new tooltips or tooltips at all?
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Environment - Jadu Deployer</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="TODO">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- TODO: favicons here -->
+
+        <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
+
+        <script src="{{ base_path ~ 'dist/js/bundle.js' }}" id="main-js"></script>
+        <script src="{{ base_path ~ 'js/main.js' }}" ></script>
+        <script src="{{ base_path ~ 'dist/js/lexicon-bundle.js' }}" ></script>
+
+        {# demo styles, will need putting in project specific sass file #}
+        {% include '@pulsar/playground/deployer/partials/style.html.twig' %}
+
+    </head>
+    <body>
+        <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
+        <div class="container" id="top">
+            <div class="inner-wrapper">
+                {% include '@pulsar/playground/deployer/partials/nav.html.twig' %}
+                <header class="toolbar">
+                    {% include '@pulsar/playground/deployer/partials/toolbar-controls.html.twig' %}
+                    <h1 class="main-title" tabindex="-1">uat.jadu.net envirnoment</h1>
+                </header>
+                <div class="content-main">
+                    <div class="tabs__content">
+                        <div class="ribbon-wrapper">
+                            <section class="ribbon" aria-label="content summary">
+                                <div class="ribbon__content">
+                                    <dl class="ribbon__list">
+                                        <dt class="ribbon__list-key">Status</dt>
+                                        <dd class="ribbon__list-value"><i class="status is-online"></i> Live</dd>
+                                        <dt class="ribbon__list-key">Installed dependencies</dt>
+                                        <dd class="ribbon__list-value"><span class="label label--primary">continuum #112</span> <span class="label">package 1.28.2</span></dd>
+                                        <dt class="ribbon__list-key">Last connection</dt>
+                                        <dd class="ribbon__list-value">2 mins ago</dd>
+                                        <dt class="ribbon__list-key">API key</dt>
+                                        <dd class="ribbon__list-value">GddEtb03423EdYWBDfrgkJLuLnZEw=</dd>
+                                    </dl>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="tab__pane is-active">
+                            <div class="tab__container">
+
+                                <div class="tab__inner">
+                                    <main class="tab__content" id="skip-target">
+
+                                        <form class="form u-margin-top">
+                                            <fieldset>
+                                                <legend class="legend">Edit Environment</legend>
+
+                                                <div class="form__group">
+                                                    <label for="guid-1754188012" class="control__label">URL&nbsp;<span aria-hidden="true" class="required-indicator">*</span></label>
+                                                    <div class="controls">
+                                                        <input id="guid-1754188012" type="text" class="form__control" required value="uat.jadu.net">
+                                                    </div>
+                                                </div>
+                                                <div class="form__group">
+                                                    <label for="guid-54334545334" class="control__label">Memory limit (MB)&nbsp;<span aria-hidden="true" class="required-indicator">*</span></label>
+                                                    <div class="controls">
+                                                        <input id="guid-54334545334" aria-describedby="guid-1232323445" type="text" class="form__control" required value="64">
+                                                        <span class="help-block" id="guid-1232323445">The amount of memory available for a deployment</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form__group">
+                                                    <label for="guid-998877655" class="control__label">API key</label>
+                                                    <div class="controls">
+                                                        <input id="guid-998877655" aria-describedby="guid-1232323445" type="text" class="form__control" readonly value="GddEtb03423EdYWBDfrgkJLuLnZEw=" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form__group  form__group--toggle">
+                                                    <label class="toggle-switch-wrapper-label" for="guid-1299616969">
+                                                        <span class="control__label">Enable</span>
+                                                        <span class="controls">
+                                                            <input id="guid-1299616969" type="checkbox" class="form__control toggle-switch">
+                                                            <span class="toggle-switch-label"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+
+                                                <div class="form__actions">
+                                                    <button type="submit" class="btn btn--primary">Save</button>
+                                                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                                                    <button type="button" class="btn btn--danger float--right" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {#
+        Behaviour on show:
+            1. change aria-hidden="false" to aria-hidden="true"
+            2. add style="display: block"
+            3. focus should be managed, shift focus to the first focusable element in the modal form
+
+        Behaviour on hide:
+            1. change aria-hidden="true" to aria-hidden="false"
+            2. add style="display: none" or remove style attribute
+            3. focus should be returned to triggering button
+        #}
+        <div class="modal modal--danger" id="deleteModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="deleteModal-title" aria-describedby="deleteModal-description" aria-hidden="false">
+            <div class="modal__dialog">
+                <div class="modal__content">
+                    <form>
+                        <div class="modal__header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                            <h1 class="modal__title" id="deleteModal-title">Delete Environment</h1>
+                        </div>
+                        <div class="modal__body">
+                            <p id="deleteModal-description">You will no longer be able to deploy packages to this environment. You cannot undo this action.</p>
+                        </div>
+                        <div class="modal__footer">
+                            <button type="submit" class="btn btn--danger">Delete</button>
+                            <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

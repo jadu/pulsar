@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="no-js gte-ie10" lang="en">
+    <head>
+        <title>Jadu Deployment Manager</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Jadu Deployment Service">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="https://deployer--dev.ntn.jadu.net/">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/deployer/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/deployer/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/deployer/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/deployer/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/deployer/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/deployer/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/deployer/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/deployer/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/deployer/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/deployer/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/deployer/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="194x194" href="/images/favicons/deployer/favicon-194x194.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/deployer/favicon-16x16.png">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/images/favicons/deployer/mstile-310x310.png">
+        <meta name="theme-color" content="#3d4796">
+
+        <link rel="stylesheet" href="/css/app.css?id=968502187305d9311d99">
+
+        {#
+            Unsure why normal button focus style isn't working, potentially as I'm loading css from app.css (above) so adding these here
+            until for demo purposes
+        #}
+        <style>
+            .signin button:focus {
+                background-color: #fd0 !important;
+                border: 2px solid #fd0 !important;
+                box-shadow: 0 2px 0 #1e1e1e, 0 2px 0 #fd0 !important;
+                color: #1e1e1e !important;
+                outline: none !important;
+            }
+
+            .signin__link:focus {
+                background-color: #fd0;
+                box-shadow: 0 -2px #fd0, 0 4px #1e1e1e;
+                color: #1e1e1e;
+                outline: none;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <main class="full-container">
+                <div class="signin-backdrop"></div>
+                <div class="background-image">
+                    <img alt="Jadu Deployment Manager" src="/images/branding/logo-deployer-white.svg" class="signin-brand" style="z-index: 2147483646;">
+                    <div class="signin-container">
+                        <div class="signin">
+                            <div class="signin__inner">
+                                <form method="POST" class="signin__panel signin-form">
+                                    <h1 class="signin__info" style="font-size: 16px">Jadu Deployment Manager</h1>
+                                    <div class="signin__actions">
+                                        <button class="btn btn--outline btn--white">Sign in using Jadu Support</button>
+                                    </div>
+                                    <a href="https://www.jadu.net/deployer" class="signin__link">Don't have a Jadu Support account ?</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <noscript>It may sound funny, but Jadu Deployer requires JavaScript to work. Please enable it.</noscript>
+        <script>window.config = {"token":null};</script>
+        <script src="/js/app.js?id=80114c34d55f962ed870"></script>
+
+    </body>
+</html>
