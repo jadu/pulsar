@@ -880,7 +880,8 @@ attribute on the `form` element will be set to `POST`.
 
 # Date
 
-Generates a text input field which will show a date picker when focused.
+Generates a text input field which will show a date picker when focused. Defaults to using the pikaday date picker.
+Alternatively, the more accessible pulsar-date-picker can be used by adding the `'data-pulsardatepicker': 'true'` option.
 
 ## Example usage
 
@@ -907,18 +908,20 @@ show-label  | bool   | Control visibility of the `<label>` element without affec
 
 ## Options applied to input
 
-Option      | Type   | Description
------------ | ------ | ---------------------------------------------------------
-autofocus   | bool   | Whether the field should have input focus on page load
-disabled    | bool   | Stops the element from being interactive if true
-form        | string | Specific one or more forms this label belongs to
-format      | string | Options for this can be `default`, `US` or `reverse`
-id          | string | A unique identifier, will also be used as the label's `for` attribute
-name        | string | The name of this control
-placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` attribute
-value       | string | Specifies the value of the input
-data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+Option                 | Type   | Description
+---------------------- | ------ | ---------------------------------------------------------
+autofocus              | bool   | Whether the field should have input focus on page load
+disabled               | bool   | Stops the element from being interactive if true
+form                   | string | Specific one or more forms this label belongs to
+format                 | string | Options for this can be `default`, `US` or `reverse`
+id                     | string | A unique identifier, will also be used as the label's `for` attribute
+name                   | string | The name of this control
+placeholder            | string | A short hint that describes the expected value
+required               | bool   | Adds `required` attribute
+value                  | string | Specifies the value of the input
+data-*                 | string | Data attributes, eg: `'data-foo': 'bar'`
+data-pulsar-datepicker | bool   | If `'true'`, the more accessible pulsar-date-picker will be used instead of pikaday
+data-pulsar-datepicker-trigger-label | string | Label for the pulsar date picker trigger button
 
 *Any other options not listed here will be applied to the input.
 
@@ -926,14 +929,47 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% macro date(options) %}
 {% spaceless %}
     {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+    {# check for use of pulsar-date-picker #}
+    {% if options['data-pulsar-datepicker'] is defined and options['data-pulsar-datepicker'] is not empty and options['data-pulsar-datepicker'] == true %}
+
+        {# Generate guid to link input to trigger button, required for pulsar-date-picker #}
+        {% set datePickerTriggerGuid = 'guid-' ~ random() %}
+
+        {# Disable button if input is disabled #}
+        {% set isDisabled = false %}
+        {% if options.disabled is defined and options.disabled is not empty and options.disabled == true %}
+            {% set isDisabled = true %}
+        {% endif %}
+
+        {% set dateOptions = {
+            'placeholder': options.placeholder|default('dd/mm/yyyy'),
+            'data-pulsar-datepicker-format': options.format|default,
+            'data-pulsar-datepicker': options['data-pulsar-datepicker']|default('true'),
+            'data-pulsar-datepicker-trigger': datePickerTriggerGuid,
+            'append': html.button({
+                'label': html.icon('calendar', { 'label': options['data-pulsar-datepicker-trigger-label']|default('Show calendar') }),
+                'type': 'button',
+                'disabled': isDisabled ? 'disabled': '',
+                'class': isDisabled ? 'is-disabled': '',
+                'id': datePickerTriggerGuid
+            }),
+            'append_type': 'button'
+        } %}
+
+    {% else %}
+        {# Revert to existing pikaday date picker #}
+        {% set dateOptions = {
+            'placeholder': options.placeholder|default('dd/mm/yyyy'),
+            'data-datepicker': options['data-datepicker']|default('true'),
+            'data-format': options.format|default('default')
+        } %}
+    {% endif %}
 
     {%
         set options = options|default({})
-            |merge({
-                'placeholder': options.placeholder|default('dd/mm/yyyy'),
-                'data-datepicker': options['data-datepicker']|default('true'),
-                'data-format': options.format|default('default')
-            })
+            |merge(dateOptions)
             |exclude('format')
     %}
 
