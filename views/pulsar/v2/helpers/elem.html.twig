@@ -114,7 +114,7 @@ name    | string | The name of this control
 
     {% if options.label is not empty %}
         <{{ attributes(options
-            |exclude('container guidance guidance-container label required required-indicator show-label tag ' ~ (tag == 'span' ? 'for'))
+            |exclude('container guidance guidance-container label required required-indicator show-label tag ' ~ (tag != 'label' ? 'for'))
             |defaults({
                 'class': 'control__label' ~ labelVisibilityClass|default
             }), {'tag': (tag)}) }}>
