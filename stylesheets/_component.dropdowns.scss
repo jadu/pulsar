@@ -68,12 +68,12 @@
   // Links within the dropdown menu
   > li > a,
   > li > .btn {
-    background: none !important; // .btn styles are immutable
+    background: none;
     border: 0;
     box-shadow: none;
     border-radius: 0;
     clear: both;
-    color: $dropdown-link-color !important;
+    color: $dropdown-link-color;
     display: block;
     font-weight: normal;
     line-height: $line-height-base;
@@ -92,6 +92,9 @@
     }
   }
 
+  > li > .btn {
+    @extend .btn--white;
+  }
 }
 
 // Hover/Focus state
@@ -100,7 +103,7 @@
 .dropdown__menu > li > .btn:not(.is-disabled) {
   &:hover,
   &.active {
-    background-color: $dropdown-link-hover-bg !important;
+    background-color: $dropdown-link-hover-bg;
     box-shadow: 0;
     color: $dropdown-link-hover-color !important;
     text-decoration: none;
@@ -109,9 +112,8 @@
 
   &:focus {
     @include pulsar-dropdown-item-focused;
+    color: color(black) !important;
   }
-
-
 }
 
 // Active state
@@ -225,7 +227,7 @@
 
   &.link--primary {
     background-color: color(primary);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(primary), 5%);
@@ -233,6 +235,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -243,7 +246,7 @@
 
   &.link--success {
     background-color: color(success);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(success), 5%);
@@ -251,6 +254,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -261,7 +265,7 @@
 
   &.link--warning {
     background-color: color(warning);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(warning), 5%);
@@ -269,6 +273,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -279,7 +284,7 @@
 
   &.link--info {
     background-color: color(info);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(info), 5%);
@@ -287,6 +292,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -297,7 +303,7 @@
 
   &.link--danger {
     background-color: color(danger);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(danger), 5%);
@@ -305,6 +311,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -315,7 +322,7 @@
 
   &.link--inverse {
     background-color: color(inverse);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(inverse), 5%);
@@ -323,6 +330,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
