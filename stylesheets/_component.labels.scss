@@ -57,7 +57,7 @@
     .btn.remove-button {
         padding: .25em .45em;
         background-color: rgba(0, 0, 0, .15);
-        border-radius: 0 4px 4px 0;
+        border-radius: 0 $border-radius $border-radius 0;
         margin-left: 0 !important;
 
         [class^="icon-"] {
