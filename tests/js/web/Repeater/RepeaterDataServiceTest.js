@@ -38,7 +38,7 @@ describe('RepeaterDataService', () => {
                 <div id="root">
                     <div id="data"></div>
                     <form id="form">
-                        <input id="test_input" data-name="test_input" type="text" value="foo"/>
+                        <input id="test_input" data-label="example" data-name="test_input" type="text" value="foo"/>
                     </form>
                 </div>
             `);
@@ -59,6 +59,7 @@ describe('RepeaterDataService', () => {
             expect(clonedInput.getAttribute('name')).to.equal('test_input');
             expect(clonedInput.className).to.equal('u-display-none');
             expect(clonedInput.getAttribute('data-name')).to.be.null;
+            expect(clonedInput.getAttribute('aria-label')).to.equal('example');
             expect(uniqueIdServiceStub.uniquifyIds).to.have.been.calledOnce;
         });
     });

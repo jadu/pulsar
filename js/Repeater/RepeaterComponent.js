@@ -225,6 +225,14 @@ class Repeater {
             // Update add new group text
             this.queryService.get('add-group-button')
                 .innerText = this.repeater.getAttribute(this.queryService.getAttr('add-another-group-text'));
+
+            // Return focus to triggering element, if one exists
+            if (this.focusManagementService.hasStoredElement()) {
+                this.focusManagementService.returnFocusToElement();
+            }
+        } else {
+            // If at max entries, focus the edit button of the new row
+            $(preview.querySelector(this.queryService.getQuery('edit-group'))).focus();
         }
 
         // Re-initialise select2 instances in the "edit" and "new group" form
@@ -375,6 +383,10 @@ class Repeater {
         const saved = this.queryService.get('saved-entries-root')
             .querySelector(`[${this.queryService.getAttr('saved-entry-id')}="${repeaterId}"]`);
 
+        // previous row to focus
+        const $previousRow = $(this.queryService.get('preview-root')
+            .querySelector(`[${this.queryService.getAttr('preview-id')}="${repeaterId - 1}"]`));
+
         event.preventDefault();
 
         // Remove DOM
@@ -399,6 +411,13 @@ class Repeater {
 
             // Add "empty" placeholder
             this.repeaterPlaceholderService.add();
+        }
+
+        // Focus either previous row delete button of add button if no previous
+        if ($previousRow.length) {
+            $previousRow.find('[data-repeater-delete-group]').focus();
+        } else {
+            $(this.queryService.get('add-group-button')).focus();
         }
     }
 

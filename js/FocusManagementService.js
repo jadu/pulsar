@@ -23,6 +23,17 @@ class FocusManagementService {
     }
 
     /**
+     * Check if an element is stored
+     */
+    hasStoredElement () {
+        if (this.$element == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * Move focus to first focuable element in a collection
      * @param {jQuery} $collection - jQuery collection of elements
      */

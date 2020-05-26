@@ -37,12 +37,15 @@ class RepeaterDataService {
         $inputs.each((index, input) => {
             const name = input.getAttribute(this.queryService.getAttr('name'));
             const clone = this.inputCloneService.clone(input);
+            const label = input.getAttribute('data-label');
             // Add name attr to
             clone.setAttribute('name', name);
             // Remove the new group attr
             clone.removeAttribute(this.queryService.getAttr('name'));
             // Hide clone from SRs
             clone.classList.add('u-display-none');
+            // Add hidden label to cloned input to stop a11y tools complaining
+            clone.setAttribute('aria-label', label);
             // Add cloned input to entry
             savedData.appendChild(clone);
         });
