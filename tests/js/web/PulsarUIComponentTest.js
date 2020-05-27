@@ -126,10 +126,6 @@ describe('Pulsar UI Component', function() {
         it('should allow the empty table message to be overridden', function() {
             expect(this.$datatableWithCustomMessage.find('.dataTables_empty').text()).to.equal('foo');
         });
-
-        it('should wrap the table with the disable class when the data-select attribute is false', function() {
-            expect(this.$datatableDisableSelection.parent().hasClass('dt-disable-selection')).to.be.true;
-        });
     });
 
     describe('clicking a tab toggle', function() {
@@ -214,13 +210,13 @@ describe('Pulsar UI Component', function() {
             expect($.fn.DataTable.args[0][0].dom).to.equal('<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"pl>');
         });
 
-        it('should change the DOM option value when data-select is false', function() {
+        it('should change the columnDefs when data-select is false', function() {
             let $tableWithSelectFalseDataAttribute = $(' <table class="table datatable" data-select="false"></table>');
             $tableWithSelectFalseDataAttribute.appendTo(this.$body);
 
             this.pulsarUIComponent.init();
 
-            expect($.fn.DataTable.args[0][0].dom).to.equal('<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"pl>');
+            expect($.fn.DataTable.args[0][0].columnDefs).to.be.empty;
         });
     });
 });

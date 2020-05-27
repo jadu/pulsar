@@ -40,14 +40,6 @@
     {{
         form.radio({
             'id': 'guid-' ~ random(),
-            'label': 'Radio with guidance',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.radio({
-            'id': 'guid-' ~ random(),
             'label': 'Radio',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option'
@@ -68,7 +60,6 @@
             'id': 'guid-' ~ random(),
             'label': 'Radio inline plus extras',
             'help': 'Help text to give more information about expected input',
-            'guidance': 'Help text to give more information about expected input',
             'required': true
         })
     }}
@@ -87,7 +78,6 @@
             'label': 'Radio inline, indented plus extras',
             'class': 'form__group--indent form__group--full',
             'help': 'Help text to give more information about expected input',
-            'guidance': 'Help text to give more information about expected input',
             'required': true
         })
     }}

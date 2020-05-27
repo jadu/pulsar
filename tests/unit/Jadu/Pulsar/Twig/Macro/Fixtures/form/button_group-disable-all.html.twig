@@ -2,21 +2,20 @@
 {% block body %}
 {{
     form.button_group({
-        'label': 'foo',
-        'guidance': 'bar',
+        'disabled': true,
         'items': [
-            form.radio_simple({
+            {
                 'label': 'AM',
                 'name': 'bands'
-            }),
-            form.radio_simple({
+            },
+            {
                 'label': 'FM',
                 'name': 'bands'
-            }),
-            form.radio_simple({
+            },
+            {
                 'label': 'MW',
                 'name': 'bands'
-            })
+            }
         ]
     })
 }}
