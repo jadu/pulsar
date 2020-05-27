@@ -37,7 +37,7 @@ class RepeaterDataService {
             const labelText = $(group).find('.control__label:first-child').text();
 
             // Clone the input
-            const $input = $(group).find(this.queryService.getQuery('name'));
+            const $input = $(group).find('[data-repeater-name]');
             const name = $input.attr('data-repeater-name');
             const clone = this.inputCloneService.clone($input[0]);
 

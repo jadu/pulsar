@@ -242,7 +242,7 @@ class Repeater {
             $addGroupButton.text(
                 this.repeater.getAttribute('data-repeater-add-another-group-text')
             );
-            
+
             // Return focus to triggering element, if one exists
             if (this.focusManagementService.hasStoredElement()) {
                 this.focusManagementService.returnFocusToElement();
@@ -251,9 +251,9 @@ class Repeater {
             $addGroupButton
                 .addClass('disabled')
                 .attr('disabled', true);
-            
+
             // If at max entries, focus the edit button of the new row
-            $(preview.querySelector(this.queryService.getQuery('edit-group'))).focus();// TODO issue here with query service use
+            $(preview).find('[data-repeater-edit-group]').focus();
         }
 
         // Re-initialise select2 instances in the "edit" and "new group" form
@@ -400,10 +400,7 @@ class Repeater {
         const $preview = $previewRoot.find(`[data-repeater-preview-id="${repeaterId}"]`);
         const $edit = $repeater.find(`[data-repeater-edit-id="${repeaterId}"]`);
         const $saved = $repeater.find(`[data-repeater-saved-data-id="${repeaterId}"]`);
-
-        // previous row to focus
-        const $previousRow = $(this.queryService.get('preview-root')
-            .querySelector(`[${this.queryService.getAttr('preview-id')}="${repeaterId - 1}"]`));
+        const $previousRow = $previewRoot.find(`[data-repeater-preview-id="${repeaterId - 1}"]`);
 
         event.preventDefault();
 
@@ -438,7 +435,7 @@ class Repeater {
         if ($previousRow.length) {
             $previousRow.find('[data-repeater-delete-group]').focus();
         } else {
-            $(this.queryService.get('add-group-button')).focus();
+            $addGroupButton.focus();
         }
     }
 
