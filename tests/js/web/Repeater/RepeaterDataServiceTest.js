@@ -38,7 +38,10 @@ describe('RepeaterDataService', () => {
                 <div id="root">
                     <div id="data"></div>
                     <form id="form">
-                        <input id="test_input" data-label="example" data-name="test_input" type="text" value="foo"/>
+                        <div class="form__group">
+                            <label class="control__label" for="test_input">example</label>
+                            <input id="test_input" data-name="test_input" type="text" value="foo"/>
+                        </div>
                     </form>
                 </div>
             `);
