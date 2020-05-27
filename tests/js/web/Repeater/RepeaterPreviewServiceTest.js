@@ -153,7 +153,10 @@ describe('RepeaterPreviewService', () => {
 
             repeaterPreviewService.update(state, headings, root, 0);
 
-            expect($(root).find('[data-repeater-preview-update-id]')[0].innerText).to.equal('printed value');
+            // Trimming here because there is an odd issue where a tab character is being added to the innerText
+            // at some point _after_ we call `element.innerText = ...`, this is in headless chrome only as far as I
+            // can tell
+            expect($(root).find('[data-repeater-preview-update-id]')[0].innerText.trim()).to.equal('printed value');
             expect($(root).find('[data-repeater-preview-update-id]')[1].innerText).to.equal('empty');
         });
     });
