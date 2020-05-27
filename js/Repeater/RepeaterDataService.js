@@ -2,19 +2,18 @@ const $ = require('jquery');
 
 class RepeaterDataService {
     /**
-     *
-     * @param queryService {QueryService}
-     * @param inputCloneService {InputCloneService}
-     * @param inputValueService {InputValueService}
-     * @param uniqueIdService {UniqueIdService}
+     * @param {HTMLElement} root
+     * @param {InputCloneService} inputCloneService
+     * @param {InputValueService} inputValueService
+     * @param {UniqueIdService} uniqueIdService
      */
     constructor (
-        queryService,
+        root,
         inputCloneService,
         inputValueService,
         uniqueIdService
     ) {
-        this.queryService = queryService;
+        this.root = root;
         this.inputCloneService = inputCloneService;
         this.inputValueService = inputValueService;
         this.uniqueIdService = uniqueIdService;
@@ -27,11 +26,11 @@ class RepeaterDataService {
      */
     create (group, savedEntryId) {
         const $formGroups = $(group).find('.form__group');
-        const dataRoot = this.queryService.get('saved-entries-root');
+        const $dataRoot = $(this.root).find('[data-repeater-saved-entries-root]');
         const savedData = document.createElement('div');
 
         // Add an identifier to an entry in the saved data
-        savedData.setAttribute(this.queryService.getAttr('saved-entry-id'), savedEntryId);
+        savedData.setAttribute('data-repeater-saved-data-id', savedEntryId);
 
         $formGroups.each((index, group) => {
             // Get the label
@@ -39,14 +38,14 @@ class RepeaterDataService {
 
             // Clone the input
             const $input = $(group).find(this.queryService.getQuery('name'));
-            const name = $input[0].getAttribute(this.queryService.getAttr('name'));
+            const name = $input.attr('data-repeater-name');
             const clone = this.inputCloneService.clone($input[0]);
 
             // Add name attr to clone
             clone.setAttribute('name', name);
 
             // Remove the new group attr
-            clone.removeAttribute(this.queryService.getAttr('name'));
+            clone.removeAttribute('data-repeater-name');
 
             // Hide clone from SRs
             clone.classList.add('u-display-none');
@@ -61,18 +60,18 @@ class RepeaterDataService {
         this.uniqueIdService.uniquifyIds(savedData);
 
         // Append saved entry to the DOM
-        dataRoot.appendChild(savedData);
+        $dataRoot.append(savedData);
     }
 
     /**
      * Update repeater data group
      */
     update (state, savedEntryId) {
-        const dataRoot = this.queryService.get('saved-entries-root');
-        const savedData = dataRoot.querySelector(`[${this.queryService.getAttr('saved-entry-id')}="${savedEntryId}"]`);
+        const $dataRoot = $(this.root).find('[data-repeater-saved-entries-root]');
+        const $savedData = $dataRoot.find(`[data-repeater-saved-data-id="${savedEntryId}"]`);
 
         // Iterate each input in the saved data
-        $(savedData).find('[name]').each((index, element) => {
+        $savedData.find('[name]').each((index, element) => {
             state[element.getAttribute('name')].value
                 .forEach(input => {
                     // Update the value for selected inputs
