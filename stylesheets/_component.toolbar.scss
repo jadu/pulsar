@@ -44,9 +44,14 @@
             transform: none;
         }
 
+        &:focus {
+            @include pulsar-outline-button-focused;
+            border-width: 1px;
+        }
+
         i {
             font-size: 18px;
-            vertical-align: text-bottom;
+            vertical-align: middle;
 
             @include respond-min($screen-desktop) {
                 font-size: 14px;
