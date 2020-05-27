@@ -81,9 +81,9 @@ describe('InputReplacementService', () => {
 
            inputReplacementService.replace(select, {});
 
-           expect(select[0].children[0].selected).to.be.false;
+           expect(select[0].children[0].selected).to.be.true;
            expect(select[0].children[1].selected).to.be.false;
-           expect(select[0].children[2].selected).to.be.true;
+           expect(select[0].children[2].selected).to.be.false;
            expect(pulsarFormComponentStub.initSelect2).to.have.been.calledOnce;
        });
 

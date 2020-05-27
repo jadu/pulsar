@@ -92,7 +92,7 @@ describe('InputCloneService', () => {
                 expect($.fn.select2).to.have.been.calledTwice;
                 expect($.fn.select2).to.have.been.calledWith('data');
                 expect($.fn.select2).to.have.been.calledWith('destroy');
-                expect($select[0].getAttribute('data-select2-data')).to.equal(JSON.stringify(data));
+                expect($select[0].getAttribute('data-repeater-select2-data')).to.equal(JSON.stringify(data));
             });
         });
     });
