@@ -1,49 +1,48 @@
 const RepeaterPreviewService = require('../../../../js/Repeater/RepeaterPreviewService');
-const QueryService = require('../../../../js/utilities/QueryService');
 const ActiveFunctionService = require('../../../../js/utilities/ActiveFunctionService');
 const InputValueService = require('../../../../js/Repeater/InputValueService');
 const $ = require('jquery');
 
 describe('RepeaterPreviewService', () => {
     let repeaterPreviewService;
-    let queryServiceStub;
     let activeFunctionServiceStub;
     let inputValueServiceStub;
+    let $html;
 
     beforeEach(() => {
-        queryServiceStub = sinon.createStubInstance(QueryService);
+        $html = $('<div id="html">');
         activeFunctionServiceStub = sinon.createStubInstance(ActiveFunctionService);
         inputValueServiceStub = sinon.createStubInstance(InputValueService);
         repeaterPreviewService = new RepeaterPreviewService(
-            queryServiceStub,
-            activeFunctionServiceStub,
+            $html[0],
             inputValueServiceStub
         );
 
-        queryServiceStub.getAttr.withArgs('preview-heading').returns('data-repeater-for-name');
-        queryServiceStub.getAttr.withArgs('preview-update-id').returns('data-repeater-update-id');
         inputValueServiceStub.printValue.returns('printed value');
+
+        $('body').append($html);
+    });
+
+    afterEach(() => {
+        $html.remove();
     });
 
     describe('create', () => {
-        let $html;
         let headings;
         let root;
 
         beforeEach(() => {
-            $html = $(`
-                <div id="html">
-                    <table>
-                        <thead class="repeater__preview-headings">
-                            <tr>
-                                <th data-repeater-for-name="input-foo">input foo</th>
-                                <th data-repeater-for-name="input-bar">input bar</th>
-                            </tr>
-                        </thead>
-                        <tbody class="repeater__preview-data">
-                        </tbody>
-                    </table>
-                </div>
+            $html.append(`
+                <table>
+                    <thead class="repeater__preview-headings">
+                        <tr>
+                            <th data-repeater-for-name="input-foo">input foo</th>
+                            <th data-repeater-for-name="input-bar">input bar</th>
+                        </tr>
+                    </thead>
+                    <tbody data-repeater-preview-root class="repeater__preview-data">
+                    </tbody>
+                </table>
             `);
             headings = $html.find('[data-repeater-for-name]').toArray();
             root = $html.find('.repeater__preview-data')[0];
@@ -62,10 +61,10 @@ describe('RepeaterPreviewService', () => {
             };
             const row = repeaterPreviewService.create(state, headings, 666);
 
-            expect($(row).find('[data-repeater-update-id]')).to.have.length.of(Object.keys(state).length);
+            expect($(row).find('[data-repeater-preview-update-id]')).to.have.length.of(Object.keys(state).length);
 
             // Expect each preview to contain the corresponding value property from the state
-            $(row).find('[data-repeater-update-id]').each((index, element) => {
+            $(row).find('[data-repeater-preview-update-id]').each((index, element) => {
                 expect(element.innerText).to.equal('printed value');
             });
         });
@@ -77,10 +76,10 @@ describe('RepeaterPreviewService', () => {
             };
             const row = repeaterPreviewService.create(state, headings, root);
 
-            expect($(row).find('[data-repeater-update-id]')).to.have.length.of(Object.keys(state).length);
+            expect($(row).find('[data-repeater-preview-update-id]')).to.have.length.of(Object.keys(state).length);
 
             // Expect each preview to contain the empty placeholder
-            $(row).find('[data-repeater-update-id]').each((index, element) => {
+            $(row).find('[data-repeater-preview-update-id]').each((index, element) => {
                 expect(element.innerText).to.equal('empty');
             });
         });
@@ -104,40 +103,37 @@ describe('RepeaterPreviewService', () => {
             };
             const row = repeaterPreviewService.create(state, headings, root);
 
-            expect($(row).find('[data-repeater-update-id]')[0].innerText).to.equal('printed value');
-            expect($(row).find('[data-repeater-update-id]')[1].innerText).to.equal('printed value, printed value');
+            expect($(row).find('[data-repeater-preview-update-id]')[0].innerText).to.equal('printed value');
+            expect($(row).find('[data-repeater-preview-update-id]')[1].innerText).to.equal('printed value, printed value');
         });
     });
 
 
     describe('update', () => {
-        let $html;
         let headings;
         let root;
 
         beforeEach(() => {
-            $html = $(`
-                <div id="html">
-                    <table>
-                        <thead class="repeater__preview-headings">
-                            <tr>
-                                <th data-repeater-for-name="input-foo">input foo</th>
-                                <th data-repeater-for-name="input-bar">input bar</th>
-                            </tr>
-                        </thead>
-                        <tbody class="repeater__preview-data">
-                            <tr>
-                                <td data-repeater-update-id="input-foo_0">foo</td>
-                                <td data-repeater-update-id="input-bar_0">bar</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            $html.append(`
+                <table>
+                    <thead class="repeater__preview-headings">
+                        <tr>
+                            <th data-repeater-for-name="input-foo">input foo</th>
+                            <th data-repeater-for-name="input-bar">input bar</th>
+                        </tr>
+                    </thead>
+                    <tbody class="repeater__preview-data">
+                        <tr>
+                            <td data-repeater-preview-update-id="input-foo_0">foo</td>
+                            <td data-repeater-preview-update-id="input-bar_0">bar</td>
+                        </tr>
+                    </tbody>
+                </table>
             `);
 
             headings = $html.find('[data-repeater-for-name]').toArray();
             root = $html.find('.repeater__preview-data')[0];
-        })
+        });
 
         it('should update preview elements with new state', () => {
             const state = {
@@ -157,28 +153,28 @@ describe('RepeaterPreviewService', () => {
 
             repeaterPreviewService.update(state, headings, root, 0);
 
-            expect($(root).find('[data-repeater-update-id]')[0].innerText).to.equal('printed value');
-            expect($(root).find('[data-repeater-update-id]')[1].innerText).to.equal('empty');
+            // Trimming here because there is an odd issue where a tab character is being added to the innerText
+            // at some point _after_ we call `element.innerText = ...`, this is in headless chrome only as far as I
+            // can tell
+            expect($(root).find('[data-repeater-preview-update-id]')[0].innerText.trim()).to.equal('printed value');
+            expect($(root).find('[data-repeater-preview-update-id]')[1].innerText).to.equal('empty');
         });
     });
 
     describe('toggleUi', () => {
-        let $html;
         let root;
 
         beforeEach(() => {
-            $html = $(`
-                <div id="html">
-                    <div id="ui">
-                        <div>
-                            <button data-preview-id="0" data-preview-ui class="disabled">button</button>
-                        </div>
-                        <div>
-                            <button data-preview-id="1" data-preview-ui class="">button</button>
-                        </div>
-                        <div>
-                            <button data-preview-id="2" data-preview-ui class="">button</button>
-                        </div>
+            $html.append(`
+                <div id="ui">
+                    <div data-repeater-preview-id="0">
+                        <button data-repeater-preview-ui class="disabled" disabled>button 1</button>
+                    </div>
+                    <div data-repeater-preview-id="1">
+                        <button data-repeater-preview-ui class="">button 2</button>
+                    </div>
+                    <div data-repeater-preview-id="2">
+                        <button data-repeater-preview-ui class="">button 3</button>
                     </div>
                 </div>
             `);
@@ -186,38 +182,18 @@ describe('RepeaterPreviewService', () => {
             root = $html.find('#ui')[0];
         });
 
-        it('should toggle all preview IDs if no ID is provided', () => {
-            queryServiceStub.getAttr.withArgs('preview-id').returns('data-preview-id');
-            queryServiceStub.getQuery.withArgs('preview-ui').returns('[data-preview-ui]');
-            queryServiceStub.get.returns([].slice.call(root.children));
+        it('should toggle all preview uis', () => {
+            repeaterPreviewService.toggleUi();
+
+            expect($(root).find('[data-repeater-preview-ui]').eq(0).attr('class')).to.equal('');
+            expect($(root).find('[data-repeater-preview-ui]').eq(1).attr('class')).to.equal('disabled');
+            expect($(root).find('[data-repeater-preview-ui]').eq(2).attr('class')).to.equal('disabled');
 
             repeaterPreviewService.toggleUi();
 
-            expect(root.children[0].firstElementChild.className).to.equal('');
-            expect(root.children[1].firstElementChild.className).to.equal('disabled');
-            expect(root.children[2].firstElementChild.className).to.equal('disabled');
-
-            repeaterPreviewService.toggleUi();
-
-            expect(root.children[0].firstElementChild.className).to.equal('disabled');
-            expect(root.children[1].firstElementChild.className).to.equal('');
-            expect(root.children[2].firstElementChild.className).to.equal('');
-        });
-
-        it('should disable a specific preview UI element by ID', () => {
-            queryServiceStub.getAttr.withArgs('preview-id').returns('data-preview-id');
-            queryServiceStub.getQuery.withArgs('preview-ui').returns('[data-preview-ui]');
-            queryServiceStub.get.returns([].slice.call(root.children));
-
-            repeaterPreviewService.toggleUi(1);
-
-            expect(root.children[1].firstElementChild.className).to.equal('disabled');
-            expect(root.children[1].firstElementChild.disabled).to.be.true;
-
-            repeaterPreviewService.toggleUi(1);
-
-            expect(root.children[1].firstElementChild.className).to.equal('');
-            expect(root.children[1].firstElementChild.disabled).to.be.false;
+            expect($(root).find('[data-repeater-preview-ui]').eq(0).attr('class')).to.equal('disabled');
+            expect($(root).find('[data-repeater-preview-ui]').eq(1).attr('class')).to.equal('');
+            expect($(root).find('[data-repeater-preview-ui]').eq(2).attr('class')).to.equal('');
         });
     });
 
