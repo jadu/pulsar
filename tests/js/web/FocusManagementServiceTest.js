@@ -45,6 +45,18 @@ describe('FocusManagementService', () => {
         });
     });
 
+    describe('hasStoredElement()', () => {
+        it('should return true if an element is stored', () => {
+            focusManagementService.storeElement($link);
+
+            expect(focusManagementService.hasStoredElement()).to.be.true;
+        })
+
+        it('should return false if an element is not stored', () => {
+            expect(focusManagementService.hasStoredElement()).to.be.false;
+        });
+    });
+
     describe('focusFirstFocusableElement()', () => {
         it('should focus the first focusable element, if the element is a link ', () => {
             focusManagementService.focusFirstFocusableElement($body);
