@@ -26,11 +26,7 @@ class FocusManagementService {
      * Check if an element is stored
      */
     hasStoredElement () {
-        if (this.$element == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return this.$element !== null;
     }
 
     /**
