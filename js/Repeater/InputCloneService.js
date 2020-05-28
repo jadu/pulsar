@@ -1,17 +1,6 @@
-class InputCloneService {
-    /**
-     * Input clone service
-     * @param pulsarFormComponent
-     * @param queryService {QueryService}
-     */
-    constructor (
-        pulsarFormComponent,
-        queryService
-    ) {
-        this.queryService = queryService;
-        this.pulsarFormComponent = pulsarFormComponent;
-    }
+const $ = require("jquery");
 
+class InputCloneService {
     /**
      * Dispatch input clone methods
      * returns a clone node (deep) by default
@@ -46,7 +35,7 @@ class InputCloneService {
                 title: state.title
             })));
 
-            select.setAttribute(this.queryService.getAttr('select2-data'), dataAttr);
+            select.setAttribute('data-repeater-select2-data', dataAttr);
             $select.select2('destroy');
         }
 
