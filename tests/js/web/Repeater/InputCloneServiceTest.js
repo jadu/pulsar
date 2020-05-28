@@ -1,23 +1,18 @@
 const InputCloneService = require('../../../../js/Repeater/InputCloneService');
 const PulsarFormComponent = require('../../../../js/PulsarFormComponent');
-const QueryService = require('../../../../js/utilities/QueryService');
 const $ = require('jquery');
 
 describe('InputCloneService', () => {
     let inputCloneService;
     let pulsarFormComponentStub;
-    let queryServiceStub;
 
     beforeEach(() => {
         pulsarFormComponentStub = sinon.createStubInstance(PulsarFormComponent);
-        queryServiceStub = sinon.createStubInstance(QueryService);
         inputCloneService = new InputCloneService(
             pulsarFormComponentStub,
-            queryServiceStub
         );
 
         $.fn.select2 = sinon.stub();
-        queryServiceStub.getAttr.withArgs('select2-data').returns('data-select2-data');
     });
 
     afterEach(() => {
@@ -97,7 +92,7 @@ describe('InputCloneService', () => {
                 expect($.fn.select2).to.have.been.calledTwice;
                 expect($.fn.select2).to.have.been.calledWith('data');
                 expect($.fn.select2).to.have.been.calledWith('destroy');
-                expect($select[0].getAttribute('data-select2-data')).to.equal(JSON.stringify(data));
+                expect($select[0].getAttribute('data-repeater-select2-data')).to.equal(JSON.stringify(data));
             });
         });
     });
