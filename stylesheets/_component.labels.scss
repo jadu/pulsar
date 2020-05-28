@@ -45,12 +45,48 @@
     }
 }
 
+// Newer removable label styles
+.label--removable {
+    padding: 0;
+
+    .label__text {
+        padding: .25em .6em;
+        display: inline-block;
+    }
+
+    .btn.remove-button {
+        padding: .25em .45em;
+        background-color: rgba(0, 0, 0, .15);
+        border-radius: 0 $border-radius $border-radius 0;
+        margin-left: 0 !important;
+
+        [class^="icon-"] {
+            margin-left: 0 !important;
+        }
+
+        &:focus {
+            @include pulsar-label-remove-button-focused;
+        }
+
+        &:focus:active {
+            @include pulsar-label-remove-button-focused;
+        }
+
+        &:active {
+            background-color: rgba(0, 0, 0, .2) !important;
+        }
+    }
+}
+
 // Colors
 // Contextual variations (linked labels get darker on :hover)
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .label--#{$state},
-    %label--#{$state} {
-        @include label-variant($state-color, $state-color-alt, true);
+
+    // Ignore the base state
+    @if $state != 'base' {
+        .label--#{$state} {
+            @include label-variant($state-color, $state-color-alt, true);
+        }
     }
 }
 

@@ -1,6 +1,5 @@
 const RepeaterComponent = require('../../../../js/Repeater/RepeaterComponent');
 const PulsarFormComponent = require('../../../../js/PulsarFormComponent');
-const QueryService = require('../../../../js/utilities/QueryService');
 const ActiveFunctionService = require('../../../../js/utilities/ActiveFunctionService');
 const InputCloneService = require('../../../../js/Repeater/InputCloneService');
 const InputValueService = require('../../../../js/Repeater/InputValueService');
@@ -11,34 +10,8 @@ const PseudoRadioInputService = require('../../../../js/Repeater/PseudoRadioInpu
 const RepeaterDataService = require('../../../../js/Repeater/RepeaterDataService');
 const RepeaterPlaceholderService = require('../../../../js/Repeater/RepeaterPlaceholderService');
 const FormFieldResetService = require('../../../../js/utilities/FormFieldResetService');
-const FocusManagementService = require('../../../../js/FocusManagementService')
+const FocusManagementService = require('../../../../js/FocusManagementService');
 const $ = require('jquery');
-const config = {
-    'name': 'data-repeater-name',
-    'add-new-group-text': 'data-repeater-add-new-group-text',
-    'add-another-group-text': 'data-repeater-add-another-group-text',
-    'add-group-form': 'data-repeater-new-group',
-    'add-group-button': 'data-repeater-add-group',
-    'add-group-controls': 'data-repeater-new-group-controls',
-    'edit-group': 'data-repeater-edit-group',
-    'delete-group': 'data-repeater-delete-group',
-    'edit-id': 'data-repeater-edit-id',
-    'save-group-button': 'data-repeater-save-group',
-    'cancel-save-group-button': 'data-repeater-cancel-save',
-    'max-saved-groups': 'data-repeater-max-entries',
-    'preview-colspan': 'data-repeater-preview-colspan',
-    'preview-element': 'data-repeater-preview-id',
-    'preview-id': 'data-repeater-preview-id',
-    'preview-root': 'data-repeater-preview-root',
-    'preview-ui': 'data-repeater-preview-ui',
-    'preview-heading': 'data-repeater-for-name',
-    'preview-placeholder': 'data-repeater-preview-placeholder',
-    'preview-update-id': 'data-repeater-preview-update-id',
-    'pseudo-radio-id': 'data-pseudo-radio-id',
-    'select2-data': 'data-repeater-select2-data',
-    'saved-entry-id': 'data-repeater-saved-data-id',
-    'saved-entries-root': 'data-repeater-saved-entries-root'
-};
 
 describe('RepeaterComponent', () => {
     let repeaterComponent;
@@ -54,47 +27,43 @@ describe('RepeaterComponent', () => {
     let repeaterPlaceholderService;
     let $html;
     let $repeater;
-    let queryService;
     let formFieldResetServiceStub;
     let focusManagementServiceStub;
 
     beforeEach(() => {
         $html = $('<div id="html"></div>');
-        queryService = new QueryService($html[0], config);
         $html.append(`
             <div
                 class="repeater"
-                ${queryService.getAttr('preview-colspan')}="2"
-                ${queryService.getAttr('add-new-group-text')}="test_add"
-                ${queryService.getAttr('add-another-group-text')}="test_add_another"
-                ${queryService.getAttr('max-saved-groups')}="2"
+                data-repeater-preview-colspan="2"
+                data-repeater-add-new-group-text="test_add"
+                data-repeater-add-another-group-text="test_add_another"
+                data-repeater-max-entries="2"
             >
-                <div class="repeater__saved-data" ${queryService.getAttr('saved-entries-root')}>
-
-                </div>
+                <div class="repeater__saved-data" data-repeater-saved-entries-root></div>
                 <table class="table table--full repeatable__table">
                     <thead class="repeater__preview-headings">
                         <tr>
-                            <th ${queryService.getAttr('preview-heading')}="input-text">input text</th>
+                            <th data-repeater-for-name="input-text">input text</th>
                         </tr>
                     </thead>
-                    <tbody class="repeater__preview-data" ${queryService.getAttr('preview-root')}>
-                        <tr class="repeater__empty-placeholder" ${queryService.getAttr('preview-placeholder')}>
+                    <tbody class="repeater__preview-data" data-repeater-preview-root>
+                        <tr class="repeater__empty-placeholder" data-repeater-preview-placeholder>
                             <td colspan="2" class="muted">Empty</td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="repeater__group" ${queryService.getAttr('add-group-form')}>
-                    <div ${queryService.getAttr('add-group-controls')}>
+                <div class="repeater__group" data-repeater-new-group>
+                    <div data-repeater-new-group-controls>
                         <input id="input-text" type="text" name="input-text" value="foo!"/>
                     </div>
                     <div>
-                        <button class="repeater__update-group" ${queryService.getAttr('save-group-button')}>save</button>
-                        <button class="repeater__save-group" ${queryService.getAttr('cancel-save-group-button')}>cancel</button>
+                        <button class="repeater__update-group" data-repeater-save-group>save</button>
+                        <button class="repeater__save-group" data-repeater-cancel-save>cancel</button>
                     </div>
                 </div>
                 <div class="repeater__group-actions">
-                    <button href="#" class="repeater__add-group" ${queryService.getAttr('add-group-button')}>Add</button>
+                    <button href="#" class="repeater__add-group" data-repeater-add-group>Add</button>
                 </div>
             </div>
         `);
@@ -115,9 +84,6 @@ describe('RepeaterComponent', () => {
         repeaterComponent = new RepeaterComponent(
             $repeater[0],
             pulsarFormComponentStub,
-            // Too much stubbing required for this service, we'll pass
-            // in a real instance at our own peril
-            queryService,
             activeFunctionServiceStub,
             inputCloneServiceStub,
             inputValueServiceStub,
@@ -130,6 +96,12 @@ describe('RepeaterComponent', () => {
             formFieldResetServiceStub,
             focusManagementServiceStub
         );
+
+        $('html').append($html);
+    });
+
+    afterEach(() => {
+        $html.remove();
     });
 
     describe('init', () => {
@@ -189,7 +161,7 @@ describe('RepeaterComponent', () => {
         beforeEach(() => {
             repeaterComponent.init();
             event = {preventDefault: sinon.spy()};
-            $repeaterGroup = $repeater.find(queryService.getQuery('add-group-form'));
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
         });
 
         it('should prevent the default behaviour of the add button', () => {
@@ -207,13 +179,13 @@ describe('RepeaterComponent', () => {
         it('should add the disabled class to the add new group button', () => {
             repeaterComponent.handleAddGroup(event);
 
-            expect($repeater.find(queryService.getQuery('add-group-button')).hasClass('disabled')).to.be.true;
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
         });
 
         it('should add the disabled attribute to the add new group button', () => {
             repeaterComponent.handleAddGroup(event);
 
-            expect($repeater.find(queryService.getQuery('add-group-button')).attr('disabled')).to.equal('disabled');
+            expect($repeater.find('[data-repeater-add-group]').attr('disabled')).to.equal('disabled');
         });
 
         it('should shift focus to the first focuable element in the new group form', () => {
@@ -238,7 +210,7 @@ describe('RepeaterComponent', () => {
             $preview = $('<div id="preview"></div>');
             event = {preventDefault: sinon.spy()};
             repeaterComponent.init();
-            $repeaterGroup = $repeater.find(queryService.getQuery('add-group-form'));
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
             inputValueServiceStub.getValue.returns({value: 'test-value', ref: $repeaterGroup.find('#input-text')[0]});
             inputCloneServiceStub.clone.returns($repeaterGroup.find('#input-text')[0].cloneNode());
             repeaterPreviewServiceStub.create.returns($preview[0]);
@@ -259,7 +231,7 @@ describe('RepeaterComponent', () => {
         it('should set the colspan and preview ID on the preview element', () => {
             repeaterComponent.handleSaveGroup(event);
 
-            expect($html.find('#preview').attr(queryService.getAttr('preview-id'))).to.equal('0');
+            expect($html.find('#preview').attr('data-repeater-preview-id')).to.equal('0');
         });
 
         it('should append the preview element to the preview root', () => {
@@ -271,7 +243,7 @@ describe('RepeaterComponent', () => {
         it('should append the preview UI to the preview element', () => {
             repeaterComponent.handleSaveGroup(event);
 
-            expect($html.find('#preview').find(queryService.getQuery('preview-ui'))).to.have.length.of(2);
+            expect($html.find('#preview').find('[data-repeater-preview-ui]')).to.have.length.of(2);
         });
 
         it('should create the saved representation of the "new group"', () => {
@@ -283,7 +255,7 @@ describe('RepeaterComponent', () => {
         it('should create an "edit group" form', () => {
             repeaterComponent.handleSaveGroup(event);
 
-            expect($html.find(queryService.getQuery('edit-id'))).to.have.length.of(1);
+            expect($html.find('[data-repeater-edit-id]')).to.have.length.of(1);
         });
 
         it('should remove the empty placeholder', () => {
@@ -312,7 +284,7 @@ describe('RepeaterComponent', () => {
         });
 
         it('should disable the "add group" button if the max groups has been met', () => {
-            const $button = $html.find(queryService.getQuery('add-group-button'));
+            const $button = $html.find('[data-repeater-add-group]');
 
             // Need to invoke 'handleAddGroup' here to disable the add group button
             repeaterComponent.handleAddGroup(event);
@@ -331,7 +303,7 @@ describe('RepeaterComponent', () => {
         it('should update the "add group" button text with the "add another" text', () => {
             repeaterComponent.handleSaveGroup(event);
 
-            expect($html.find(queryService.getQuery('add-group-button')).text()).equal('test_add_another');
+            expect($html.find('[data-repeater-add-group]').text()).equal('test_add_another');
         });
 
         it('should re-init select2s in the "add group" form', () => {
@@ -343,7 +315,7 @@ describe('RepeaterComponent', () => {
         it('should hide the "add group" form', () => {
             repeaterComponent.handleSaveGroup(event);
 
-            expect($html.find(queryService.getQuery('add-group-form')).css('display')).to.equal('none');
+            expect($html.find('[data-repeater-new-group]').css('display')).to.equal('none');
         });
     });
 
@@ -353,9 +325,9 @@ describe('RepeaterComponent', () => {
         beforeEach(() => {
             $fields = $(`
                 <div>
-                    <input type="text" value="foo" ${queryService.getAttr('name')}="text"/>
-                    <input type="radio" value="bar" ${queryService.getAttr('name')}="radio"/>
-                    <input type="checkbox" value="baz" ${queryService.getAttr('name')}="checkbox"/>
+                    <input type="text" value="foo" data-repeater-name="text"/>
+                    <input type="radio" value="bar" data-repeater-name="radio"/>
+                    <input type="checkbox" value="baz" data-repeater-name="checkbox"/>
                 </div>
             `);
             inputValueServiceStub.getValue.callsFake((el) => ({
@@ -370,7 +342,7 @@ describe('RepeaterComponent', () => {
                 text: {
                     value: [
                         {
-                            ref: $fields.find(queryService.getQuery('name'))[0],
+                            ref: $fields.find('[data-repeater-name]')[0],
                             value: 'test_value',
                             selected: true
                         }
@@ -379,7 +351,7 @@ describe('RepeaterComponent', () => {
                 radio: {
                     value: [
                         {
-                            ref: $fields.find(queryService.getQuery('name'))[1],
+                            ref: $fields.find('[data-repeater-name]')[1],
                             value: 'test_value',
                             selected: true
                         }
@@ -388,7 +360,7 @@ describe('RepeaterComponent', () => {
                 checkbox: {
                     value: [
                         {
-                            ref: $fields.find(queryService.getQuery('name'))[2],
+                            ref: $fields.find('[data-repeater-name]')[2],
                             value: 'test_value',
                             selected: true
                         }
@@ -408,7 +380,7 @@ describe('RepeaterComponent', () => {
                 text: {
                     value: [
                         {
-                            ref: $fields.find(queryService.getQuery('name'))[0],
+                            ref: $fields.find('[data-repeater-name]')[0],
                             value: 'test_value',
                             selected: true
                         }
@@ -417,7 +389,7 @@ describe('RepeaterComponent', () => {
                 radio: {
                     value: [
                         {
-                            ref: $fields.find(queryService.getQuery('name'))[1],
+                            ref: $fields.find('[data-repeater-name]')[1],
                             value: 'test_value',
                             selected: true
                         }
@@ -426,7 +398,7 @@ describe('RepeaterComponent', () => {
                 checkbox: {
                     value: [
                         {
-                            ref: $fields.find(queryService.getQuery('name'))[2],
+                            ref: $fields.find('[data-repeater-name]')[2],
                             value: 'test_value',
                             selected: true
                         }
@@ -441,23 +413,23 @@ describe('RepeaterComponent', () => {
         let $preview;
 
         beforeEach(() => {
-            $repeater.append(`<div ${queryService.getAttr('preview-id')}="0"></div>`);
+            $repeater.append(`<div data-repeater-preview-id="0"></div>`);
             $group = $(`
-                <div class="repeater__group" ${queryService.getAttr('add-group-form')}>
-                    <div ${queryService.getAttr('add-group-controls')}>
-                        <input id="input-text" type="text" ${queryService.getAttr('name')}="input-text"/>
-                        <input id="input-radio" type="radio" ${queryService.getAttr('name')}="input-text"/>
+                <div class="repeater__group" data-repeater-new-group>
+                    <div data-repeater-new-group-controls>
+                        <input id="input-text" type="text" data-repeater-name="input-text"/>
+                        <input id="input-radio" type="radio" data-repeater-name="input-text"/>
                     </div>
                     <div>
-                        <button class="repeater__update-group" ${queryService.getAttr('save-group-button')}>save</button>
-                        <button class="repeater__save-group" ${queryService.getAttr('cancel-save-group-button')}>cancel</button>
+                        <button class="repeater__update-group" data-repeater-save-group>save</button>
+                        <button class="repeater__save-group" data-repeater-cancel-save>cancel</button>
                     </div>
                 </div>
             `);
 
             $group = $(repeaterComponent.createEditEntryGroup());
             inputCloneServiceStub.clone.callsFake((el) => el.cloneNode(true));
-            $preview = $repeater.find(queryService.getQuery('preview-id'));
+            $preview = $repeater.find('[data-repeater-preview-id]');
         });
 
         it('should invoke the input clone service for each input', () => {
@@ -469,13 +441,13 @@ describe('RepeaterComponent', () => {
         it('should remove the "add group" attribute from the cloned group', () => {
             repeaterComponent.addGroupToRepeater($group[0]);
 
-            expect($preview.find(queryService.getQuery('add-group-form'))).to.have.length.of(0);
+            expect($preview.find('[data-repeater-new-group]')).to.have.length.of(0);
         });
 
         it('should add the edit group after the corresponding preview', () => {
             repeaterComponent.addGroupToRepeater($group[0]);
 
-            expect($repeater.find(queryService.getQuery('preview-id')).next().attr(queryService.getAttr('edit-id')))
+            expect($repeater.find('[data-repeater-preview-id]').next().attr('data-repeater-edit-id'))
                 .to.equal('0');
         });
 
@@ -512,7 +484,7 @@ describe('RepeaterComponent', () => {
         it('should hide the edit form', () => {
             repeaterComponent.addGroupToRepeater($group[0]);
 
-            expect($repeater.find(queryService.getQuery('edit-id')).css('display')).to.equal('none');
+            expect($repeater.find('[data-repeater-edit-id]').css('display')).to.equal('none');
         });
     });
 
@@ -520,16 +492,16 @@ describe('RepeaterComponent', () => {
         let $group;
 
         beforeEach(() => {
-            $repeater.append(`<div ${queryService.getAttr('preview-id')}="0"></div>`);
+            $repeater.append(`<div data-repeater-preview-id="0"></div>`);
             $group = $(`
-                <div class="repeater__group" ${queryService.getAttr('add-group-form')}>
-                    <div ${queryService.getAttr('add-group-controls')}>
-                        <input id="input-text" type="text" ${queryService.getAttr('name')}="input-text"/>
-                        <input id="input-radio" type="radio" ${queryService.getAttr('name')}="input-text"/>
+                <div class="repeater__group" data-repeater-new-group>
+                    <div data-repeater-new-group-controls>
+                        <input id="input-text" type="text" data-repeater-name="input-text"/>
+                        <input id="input-radio" type="radio" data-repeater-name="input-text"/>
                     </div>
                     <div>
-                        <button class="repeater__update-group" ${queryService.getAttr('save-group-button')}>save</button>
-                        <button class="repeater__save-group" ${queryService.getAttr('cancel-save-group-button')}>cancel</button>
+                        <button class="repeater__update-group" data-repeater-save-group>save</button>
+                        <button class="repeater__save-group" data-repeater-cancel-save>cancel</button>
                     </div>
                 </div>
             `);
@@ -538,14 +510,14 @@ describe('RepeaterComponent', () => {
         it('should add an ID to the edit group', () => {
             const $editGroup = $(repeaterComponent.createEditEntryGroup());
 
-            expect($editGroup.attr(queryService.getAttr('edit-id'))).to.equal('0');
+            expect($editGroup.attr('data-repeater-edit-id')).to.equal('0');
         });
 
         it('should remove name attributes from fields', () => {
             const $editGroup = $(repeaterComponent.createEditEntryGroup());
 
             expect($editGroup.find('input').length).to.equal(1);
-            expect($editGroup.find(`[${queryService.getAttr('edit-id')}="0"]`).find('[name]')).to.have.length.of(0);
+            expect($editGroup.find(`[data-repeater-edit-id="0"]`).find('[name]')).to.have.length.of(0);
         });
     });
 
@@ -554,8 +526,8 @@ describe('RepeaterComponent', () => {
 
         beforeEach(() => {
             event = {preventDefault: sinon.spy()};
-            $html.find(queryService.getQuery('preview-root')).append(`
-                <div ${queryService.getAttr('edit-id')}="666" style="display: none"></div>
+            $html.find('[data-repeater-preview-root]').append(`
+                <div data-repeater-edit-id="666" style="display: none"></div>
             `);
         });
 
@@ -574,14 +546,14 @@ describe('RepeaterComponent', () => {
         it('should disable the "add group" button', () => {
             repeaterComponent.handleEditGroup(666, event);
 
-            expect($repeater.find(queryService.getQuery('add-group-button')).hasClass('disabled')).to.be.true;
-            expect($repeater.find(queryService.getQuery('add-group-button')).attr('disabled')).to.equal('disabled');
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
+            expect($repeater.find('[data-repeater-add-group]').attr('disabled')).to.equal('disabled');
         });
 
         it('should show the edit form', () => {
             repeaterComponent.handleEditGroup(666, event);
 
-            expect($repeater.find(queryService.getQuery('edit-id')).css('display')).to.not.equal('none');
+            expect($repeater.find('[data-repeater-edit-id]').css('display')).to.not.equal('none');
         });
 
         it('should shift focus to the first focuable element in the edit group form', () => {
@@ -602,12 +574,12 @@ describe('RepeaterComponent', () => {
 
         beforeEach(() => {
             event = {preventDefault: sinon.spy()};
-            $html.find(queryService.getQuery('saved-entries-root')).append(`
-                <div ${queryService.getAttr('saved-entry-id')}="666"></div>
+            $html.find('[data-repeater-saved-entries-root]').append(`
+                <div data-repeater-saved-data-id="666"></div>
             `);
-            $html.find(queryService.getQuery('preview-root')).append(`
-                <div ${queryService.getAttr('preview-id')}="666"></div>
-                <div ${queryService.getAttr('edit-id')}="666" style="display: none"></div>
+            $html.find('[data-repeater-preview-root]').append(`
+                <div data-repeater-preview-id="666"></div>
+                <div data-repeater-edit-id="666" style="display: none"></div>
             `);
             // Need to init the service to parse max saved groups
             repeaterComponent.init();
@@ -622,19 +594,19 @@ describe('RepeaterComponent', () => {
         it('should remove the preview element', () => {
             repeaterComponent.handleDeleteGroup(666, event);
 
-            expect($repeater.find(`[${queryService.getAttr('preview-id')}="666"]`).length).to.equal(0);
+            expect($repeater.find(`[${'data-repeater-preview-id'}="666"]`).length).to.equal(0);
         });
 
         it('should remove the edit group', () => {
             repeaterComponent.handleDeleteGroup(666, event);
 
-            expect($repeater.find(`[${queryService.getAttr('edit-id')}="666"]`).length).to.equal(0);
+            expect($repeater.find(`[data-repeater-edit-id="666"]`).length).to.equal(0);
         });
 
         it('should remove the saved entry', () => {
             repeaterComponent.handleDeleteGroup(666, event);
 
-            expect($repeater.find(`[${queryService.getAttr('saved-entry-id')}="666"]`).length).to.equal(0);
+            expect($repeater.find(`[data-repeater-saved-data-id="666"]`).length).to.equal(0);
         });
 
         it('should update the saved entries count', () => {
@@ -646,7 +618,7 @@ describe('RepeaterComponent', () => {
         });
 
         it('should enable the "add group" button if max entries is not exceeded', () => {
-            const $button = $repeater.find(queryService.getQuery('add-group-button'));
+            const $button = $repeater.find('[data-repeater-add-group]');
 
             $button
                 .addClass('disabled')
@@ -661,7 +633,7 @@ describe('RepeaterComponent', () => {
         });
 
         it('should update the "add group" text if there are not saved groups', () => {
-            const $button = $repeater.find(queryService.getQuery('add-group-button'));
+            const $button = $repeater.find('[data-repeater-add-group]');
 
             $button.text('the incorrect text');
 
@@ -700,11 +672,11 @@ describe('RepeaterComponent', () => {
         it('should hide the "new group" form', () => {
             repeaterComponent.handleCancelGroup(event);
 
-            expect($repeater.find(queryService.getQuery('add-group-form')).css('display')).to.equal('none');
+            expect($repeater.find('[data-repeater-new-group]').css('display')).to.equal('none');
         });
 
         it('should enable the "add group" button if we are not at capacity', () => {
-            const $button = $repeater.find(queryService.getQuery('add-group-button'));
+            const $button = $repeater.find('[data-repeater-add-group]');
 
             $button
                 .addClass('disabled')
@@ -734,10 +706,10 @@ describe('RepeaterComponent', () => {
         beforeEach(() => {
             event = {preventDefault: sinon.spy()};
             $group = $(`
-                <div class="repeater__group" ${queryService.getAttr('add-group-form')}>
-                    <div ${queryService.getAttr('add-group-controls')}>
-                        <input id="input-text" type="text" ${queryService.getAttr('name')}="input-text"/>
-                        <input id="input-radio" type="radio" ${queryService.getAttr('name')}="input-text"/>
+                <div class="repeater__group" data-repeater-new-group>
+                    <div data-repeater-new-group-controls>
+                        <input id="input-text" type="text" data-repeater-name="input-text"/>
+                        <input id="input-radio" type="radio" data-repeater-name="input-text"/>
                     </div>
                 </div>
             `);
@@ -773,7 +745,7 @@ describe('RepeaterComponent', () => {
         });
 
         it('should enable the "add group" button if we are not at capacity', () => {
-            const $button = $repeater.find(queryService.getQuery('add-group-button'));
+            const $button = $repeater.find('[data-repeater-add-group]');
 
             repeaterComponent.init();
             $button
@@ -806,13 +778,14 @@ describe('RepeaterComponent', () => {
         beforeEach(() => {
             event = {preventDefault: sinon.spy()};
             $group = $(`
-                <div class="repeater__group" ${queryService.getAttr('add-group-form')}>
-                    <div ${queryService.getAttr('add-group-controls')}>
-                        <input id="input-text" type="text" ${queryService.getAttr('name')}="input-text"/>
-                        <input id="input-radio" type="radio" ${queryService.getAttr('name')}="input-radio"/>
+                <div class="repeater__group" data-repeater-new-group>
+                    <div data-repeater-new-group-controls>
+                        <input id="input-text" type="text" data-repeater-name="input-text"/>
+                        <input id="input-radio" type="radio" data-repeater-name="input-radio"/>
                     </div>
                 </div>
             `);
+            $('body').append($group);
 
             repeaterComponent.state = [
                 {
@@ -828,6 +801,10 @@ describe('RepeaterComponent', () => {
                     }
                 }
             ];
+        });
+
+        afterEach(() => {
+           $group.remove();
         });
 
         it('should prevent the default behaviour', () => {
@@ -855,7 +832,7 @@ describe('RepeaterComponent', () => {
         });
 
         it('should enable the "add group" button if we are not at capacity', () => {
-            const $button = $repeater.find(queryService.getQuery('add-group-button'));
+            const $button = $repeater.find('[data-repeater-add-group]');
 
             repeaterComponent.init();
             $button
@@ -905,7 +882,7 @@ describe('RepeaterComponent', () => {
 
             $group.children().each((index, element) => {
                 expect(element.getAttribute('name')).to.be.null;
-                expect(element.getAttribute(queryService.getAttr('name'))).to.equal('foo');
+                expect(element.getAttribute('data-repeater-name')).to.equal('foo');
             });
         });
     });
