@@ -1,36 +1,39 @@
+const $ = require("jquery");
+
 class RepeaterPlaceholderService {
     /**
-     * Repater placeholder service
-     * @param queryService {QueryService}
+     * Repeater placeholder service
+     * @param {HTMLElement} root
      */
     constructor (
-        queryService
+        root
     ) {
-        this.queryService = queryService;
+        this.$root = $(root);
+        this.$placeholder = this.$root.find('[data-repeater-preview-placeholder]');
     }
 
     /**
      * Prepend the preview empty placeholder
      */
     add () {
-        this.queryService.get('preview-root').insertBefore(
-            this.queryService.get('preview-placeholder'),
-            this.queryService.get('preview-root').firstChild
-        );
+        this.$root.find('[data-repeater-preview-root]')
+            .prepend(this.$placeholder);
     }
 
     /**
      * Remove preview placeholder and update reference
      */
     remove () {
-        // remove placeholder
-        const placeholder = this.queryService.get('preview-placeholder');
+        const $placeholder = this.$root
+            .find('[data-repeater-preview-placeholder]');
 
-        // add a manual cached reference
-        this.queryService.updateRef('preview-placeholder', placeholder.cloneNode(true));
+        // If there is no placeholder, move along
+        if ($placeholder.length === 0) {
+            return;
+        }
 
-        // remove the placeholder from the DOM
-        $(placeholder).remove();
+        this.$placeholder = $placeholder.clone();
+        $placeholder.remove();
     }
 }
 

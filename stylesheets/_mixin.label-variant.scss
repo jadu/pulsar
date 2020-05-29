@@ -12,7 +12,7 @@
     color: unquote($text-color + $important);
     text-transform: lowercase;
 
-    // Removable labels
+    // Removable labels (older style, kept for BC)
     .btn.remove-button,
     .btn.remove-button [class^="icon-"],
     .btn.remove-button [class*=" icon-"] {

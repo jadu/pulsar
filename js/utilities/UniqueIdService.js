@@ -46,15 +46,20 @@ class UniqueIdService {
      * @param group {HTMLElement}
      */
     uniquifySelectWoo (group) {
-        const orginalSelect = group.querySelector('select.js-select2');
-        const orginalSelectId = orginalSelect.getAttribute('id');
+        const originalSelect = group.querySelector('select.js-select2');
+
+        if (originalSelect === null) {
+            return;
+        }
+
+        const originalSelectId = originalSelect.getAttribute('id');
 
         [].slice.call(group.querySelectorAll('.select2-container'))
             .forEach(select2Container => {
                 if (select2Container.querySelector('.select2-selection--multiple') !== null) {
                     const selectWooSummary = select2Container.querySelector('.select2-selections');
                     const selectWooSearch = select2Container.querySelector('.select2-search__field');
-                    const newSelectWooSummaryId = 'select2-' + orginalSelectId + '-summary';
+                    const newSelectWooSummaryId = 'select2-' + originalSelectId + '-summary';
 
                     selectWooSummary.setAttribute('id', newSelectWooSummaryId);
                     selectWooSearch.setAttribute('aria-describedby', newSelectWooSummaryId);
@@ -63,7 +68,7 @@ class UniqueIdService {
                 if (select2Container.querySelector('.select2-selection--single') !== null) {
                     const selectWooSingleSelection = select2Container.querySelector('.select2-selection--single');
                     const selectWooSingleSelectionRendered = select2Container.querySelector('.select2-selection__rendered');
-                    const newSelectWooSingleSelectionRenderedId = 'select2-' + orginalSelectId + '-container';
+                    const newSelectWooSingleSelectionRenderedId = 'select2-' + originalSelectId + '-container';
 
                     selectWooSingleSelectionRendered.setAttribute('id', newSelectWooSingleSelectionRenderedId);
                     selectWooSingleSelection.setAttribute('aria-controls', newSelectWooSingleSelectionRenderedId)
