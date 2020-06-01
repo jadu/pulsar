@@ -655,7 +655,6 @@ fieldset {
     &.form__group--indent .controls {
         @include respond-min($screen-tablet) {
             @include shrink($form-label-cols);
-            border: 1px solid red;
         }
     }
 
