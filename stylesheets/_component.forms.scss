@@ -363,6 +363,17 @@ fieldset {
         @include col-span-width(4, 9);
     }
 
+    // When used inside a modal, default to full width
+    .modal,
+    .table__form {
+        .control__label + .controls > .form__control:not(.checkbox):not(.radio) {
+            &,
+            & + .select2 {
+                @include col-span-width(9, 9);
+            }
+        }
+    }
+
     // column variations
     @for $i from 1 through 9 {
         .control__label + .controls > .form__control:not(.checkbox):not(.radio).form__control-col--#{$i},
