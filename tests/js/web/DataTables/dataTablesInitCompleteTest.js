@@ -44,7 +44,7 @@ describe('dataTablesInitComplete', () => {
         });
     });
 
-    describe('When the datatable has less one or fewer pages', () => {
+    describe('When the datatable has one or fewer pages', () => {
         beforeEach (() => {
             const infoStub = sinon.stub().returns({
                 pages: 0
