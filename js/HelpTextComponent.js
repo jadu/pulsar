@@ -176,7 +176,7 @@ HelpTextComponent.prototype.toggleChildElementInteractivity = function ($contain
     if (interactive === true) {
         $container.find(focusableElements).removeAttr('tabindex');
     } else {
-        $container.find(focusableElements).attr('tabindex', "-1");
+        $container.find(focusableElements).attr('tabindex', '-1');
     }
 }
 
