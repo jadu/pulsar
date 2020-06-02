@@ -1,6 +1,6 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
-{% 
+{%
     set data = {
         'columns': [
             { 'title': 'Title' },
@@ -26,24 +26,25 @@
 %}
 
 {% block tab_content %}
-    {{ 
+    {{
         html.datatable({
             'data-empty-table': 'There are currently no Arnie films to display',
             'data-order': '[[ 3, "desc" ]]',
-            'data': data
-        }) 
+            'data': data,
+            'caption': 'A list of films featuring Arnold Schwarzenegger'
+        })
     }}
 {% endblock tab_content %}
 
 {% block tab_sidebar %}
     <h2>Empty DataTable</h2>
     <p>The 'no results' message is automatically shown, and can be customised with the `data-empty-table` attribute.</p>
-    <pre><code class="hljs">&#123;&#123; 
+    <pre><code tabindex="0" class="hljs">&#123;&#123;
     html.datatable(&#123;
         'class': 'table--full table--horizontal',
         'data-empty-table': 'There are currently no Arnie films to display',
         'data-order': '[[ 3, "desc" ]]',
         'data': data
-    &#125;) 
+    &#125;)
 &#125;&#125;</code></pre>
 {% endblock tab_sidebar %}
