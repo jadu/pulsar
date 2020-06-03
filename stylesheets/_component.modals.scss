@@ -344,8 +344,8 @@
 }
 
 // Force form inputs to be full width inside modals
-.modal__dialog {
-    @include respond-min($screen-tablet) {
+@include respond-min($screen-tablet) {
+    .modal__dialog {
         .form-choice > .controls > .control__label,
         .control__label + .controls > .form__control:not(.checkbox):not(.radio),
         .control__label + .controls > .form__control:not(.checkbox):not(.radio) + .select2,
