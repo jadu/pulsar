@@ -242,7 +242,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
         $(window).on('load resize', function () {
             component.styleTableOverflows($table);
-            
+
             // reset column widths so headers match the body
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
         });
@@ -262,7 +262,7 @@ PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
         tableVisibleWidth = $container.width();
 
     // Toggle right hand shadow, if overflowing to the right
-    if (tableFullWidth === tableVisibleWidth) {
+    if (Math.floor(tableFullWidth) === Math.floor(tableVisibleWidth)) {
         $container
             .removeClass('table--overflow-right');
     }
