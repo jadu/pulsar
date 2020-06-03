@@ -5,6 +5,9 @@ module.exports.drawCallback = function () {
     // Only show pagination when needed
     pagination.toggle(this.api().page.info().pages > 1);
 
+    // Make pagination links appear as buttons to AT
+    pagination.find('.paginate_button').attr('role', 'button');
+
     // Add aria-current to current page number
     pagination.find('.paginate_button.current').attr('aria-current', 'true');
 

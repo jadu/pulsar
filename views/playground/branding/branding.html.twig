@@ -173,17 +173,17 @@
 
         <div class="content-actions">
             <div class="content-actions__pages">
-                Page
-                    {{
-                        form.select({
-                            'id': 'pageSelection',
-                            'options': {
-                                'page1': '1',
-                                'page2': '2',
-                                'page3': '3'
-                            }
-                        })
-                    }}
+                {{
+                    form.select({
+                        'id': 'pageSelection',
+                        'label': 'Page',
+                        'options': {
+                            'page1': '1',
+                            'page2': '2',
+                            'page3': '3'
+                        }
+                    })
+                }}
                 of 3
             </div>
             <nav class="content-actions__buttons">
