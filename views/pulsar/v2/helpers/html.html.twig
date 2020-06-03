@@ -1579,8 +1579,11 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
 
     {% if options.data is defined and options.data is not empty %}
     <table{{ attributes(options
-                |exclude('overflow')
+                |exclude('overflow caption')
                 |defaults({ 'class': 'table datatable table--full' })) }} style="width: 100%">
+        {% if options.caption is defined and options.caption is not empty %}
+        <caption class="hide">{{ options.caption }}</caption>
+        {% endif %}
         <thead>
             <tr>
                 {% if overflow == 'collapse' %}
@@ -1605,7 +1608,7 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                     {% if overflow == 'collapse' %}
                         <td class="table-responsive">
                             <button class="table-child-toggle">
-                                {{ html.icon('plus-sign', { 'label': 'Toggle collapsed columns' }) }}
+                                {{ html.icon('plus-sign', { 'label': 'Toggle this rows collapsed columns' }) }}
                             </button>
                         </td>
                     {% endif %}

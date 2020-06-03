@@ -641,6 +641,12 @@ fieldset {
         width: 100%;
     }
 
+    &.form__group--indent .controls {
+        @include respond-min($screen-tablet) {
+            @include shrink($form-label-cols);
+        }
+    }
+
     > .controls > .control__label {
         display: inline-block;
         width: 100%;

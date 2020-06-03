@@ -1,6 +1,6 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
-{% 
+{%
     set data = {
         'columns': [
             { 'title': 'Title' },
@@ -27,14 +27,14 @@
                 'Owner': 'James Cameron',
                 'Modified': '1991-07-01 12:34',
                 'Live': true,
-                'Visible': false 
+                'Visible': false
             },
             {
                 'Title': 'Conan the Barbarian',
                 'Owner': 'John Millius',
                 'Modified': '1982-04-02 12:34',
                 'Live': false,
-                'Visible': true 
+                'Visible': true
             },
             {
                 'Title': 'Predator',
@@ -209,12 +209,13 @@
 %}
 
 {% block tab_content %}
-    {{ 
+    {{
         html.datatable({
             'data-order': '[[ 3, "desc" ]]',
             'overflow': 'collapse',
-            'data': data
-        }) 
+            'data': data,
+            'caption': 'A list of films featuring Arnold Schwarzenegger'
+        })
     }}
 {% endblock tab_content %}
 
@@ -225,11 +226,11 @@
         <li>Table overflow collapses rows</li>
         <li>Automatic pagination</li>
     </ul>
-    <pre><code class="hljs">&#123;&#123; 
+    <pre><code tabindex="0" class="hljs">&#123;&#123;
     html.datatable(&#123;
         'data-order': '[[ 3, "desc" ]]',
         'data': data,
         'overflow': 'collapse'
-    &#125;) 
+    &#125;)
 &#125;&#125;</code></pre>
 {% endblock tab_sidebar %}
