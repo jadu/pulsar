@@ -342,3 +342,16 @@
     border-bottom: 1px solid color(border);
     padding: $line-height-base 20px;
 }
+
+// Force form inputs to be full width inside modals
+.modal__dialog {
+    @include respond-min($screen-tablet) {
+        .form-choice > .controls > .control__label,
+        .control__label + .controls > .form__control:not(.checkbox):not(.radio),
+        .control__label + .controls > .form__control:not(.checkbox):not(.radio) + .select2,
+        .colorpicker .input-group,
+        .colorpicker .input-group:not(.has-btn-prepended):not(.has-btn-appended) .form__control:not(:first-child):not(:last-child) {
+            @include col-span-width(9, 9);
+        }
+    }
+}

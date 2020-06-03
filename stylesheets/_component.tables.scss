@@ -238,6 +238,19 @@ td.table__form,
     background-color: color(background);
 }
 
+// Force form inputs to be full width inside table forms
+@include respond-min($screen-tablet) {
+    .table__form {
+        .form-choice > .controls > .control__label,
+        .control__label + .controls > .form__control:not(.checkbox):not(.radio),
+        .control__label + .controls > .form__control:not(.checkbox):not(.radio) + .select2,
+        .colorpicker .input-group,
+        .colorpicker .input-group:not(.has-btn-prepended):not(.has-btn-appended) .form__control:not(:first-child):not(:last-child) {
+            @include col-span-width(9, 9);
+        }
+    }
+}
+
 .table-container + .pagination {
     margin-top: -24px; // negate default bottom border of .table
 }

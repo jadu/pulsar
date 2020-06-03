@@ -16,293 +16,259 @@
                 <p id="modalOne-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
                 <p>The modal body might have instructions, a form, or other stuff.</p>
                 {{
-        form.text({
-            'id': 'guid-' ~ random(),
-            'label': 'Text',
-        })
-    }}
+                    form.text({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Text',
+                    })
+                }}
 
-    {{
-        form.textarea({
-            'id': 'guid-' ~ random(),
-            'label': 'Textarea'
-        })
-    }}
+                {{
+                    form.textarea({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Textarea'
+                    })
+                }}
 
-    {{
-        form.password({
-            'id': 'guid-' ~ random(),
-            'label': 'Password',
-        })
-    }}
+                {{
+                    form.password({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Password',
+                    })
+                }}
 
-    {{
-        form.date({
-            'id': 'guid-' ~ random(),
-            'label': 'Date',
-        })
-    }}
+                {{
+                    form.date({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Date',
+                    })
+                }}
 
-    {{
-        form.time({
-            'id': 'guid-' ~ random(),
-            'label': 'Time'
-        })
-    }}
+                {{
+                    form.time({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Time'
+                    })
+                }}
 
-    {{
-        form.file({
-            'id': 'guid-' ~ random(),
-            'label': 'File'
-        })
-    }}
+                {{
+                    form.file({
+                        'id': 'guid-' ~ random(),
+                        'label': 'File'
+                    })
+                }}
 
-    {{
-        form.color({
-            'id': 'guid-' ~ random(),
-            'label': 'Color'
-        })
-    }}
+                {{
+                    form.color({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Color'
+                    })
+                }}
 
-    {{
-        form.select({
-            'label': 'Select',
-            'id': 'guid-' ~ random(),
-            'options': [
-                {
-                    'label': 'Value one',
-                    'value': 'value1'
-                },
-                {
-                    'label': 'Value two',
-                    'value': 'value2'
-                }
-            ]
-        })
-    }}
+                {{
+                    form.select({
+                        'label': 'Select',
+                        'id': 'guid-' ~ random(),
+                        'options': [
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
 
-    {{
-        form.select2({
-            'label': 'Select2',
-            'id': 'guid-' ~ random(),
-            'options': [
-                {
-                    'label': 'Value one',
-                    'value': 'value1'
-                },
-                {
-                    'label': 'Value two',
-                    'value': 'value2'
-                }
-            ]
-        })
-    }}
+                {{
+                    form.select2({
+                        'label': 'Select2',
+                        'id': 'guid-' ~ random(),
+                        'options': [
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
 
-    {{
-        form.compound({
-            'label': 'Compound',
-            'id': 'guid-' ~ random(),
-            'inputs': [
-                {
-                    'class': 'form__control-col--1',
-                    'label': 'Value',
-                    'id': 'value-0',
-                    'maxlength': '3',
-                    'show-label': false,
-                    'type': 'text'
-                },
-                {
-                    'class': 'u-width-auto',
-                    'label': 'Unit of time',
-                    'id': 'unit-0',
-                    'show-label': false,
-                    'type': 'select',
-                    'options': [
-                        {
-                            'label': 'Seconds',
-                            'value': 'sec'
-                        },
-                        {
-                            'label': 'Minutes',
-                            'value': 'min'
-                        }
-                    ]
-                }
-            ]
-        })
-    }}
+                {{
+                    form.toggle_switch({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Toggle switch'
+                    })
+                }}
 
-    {{
-        form.toggle_switch({
-            'id': 'guid-' ~ random(),
-            'label': 'Toggle switch'
-        })
-    }}
+                {{
+                    form.range({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Range'
+                    })
+                }}
+                {{
+                    form.checkbox({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Checkbox'
+                    })
+                }}
 
-    {{
-        form.range({
-            'id': 'guid-' ~ random(),
-            'label': 'Range'
-        })
-    }}
-    {{
-        form.checkbox({
-            'id': 'guid-' ~ random(),
-            'label': 'Checkbox'
-        })
-    }}
+                {{
+                    form.radio({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Radio'
+                    })
+                }}
 
-    {{
-        form.radio({
-            'id': 'guid-' ~ random(),
-            'label': 'Radio'
-        })
-    }}
+                {{
+                    form.checkbox_inline({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Checkbox inline'
+                    })
+                }}
 
-    {{
-        form.checkbox_inline({
-            'id': 'guid-' ~ random(),
-            'label': 'Checkbox inline'
-        })
-    }}
+                {{
+                    form.radio_inline({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Radio inline'
+                    })
+                }}
 
-    {{
-        form.radio_inline({
-            'id': 'guid-' ~ random(),
-            'label': 'Radio inline'
-        })
-    }}
+                {{
+                    form.checkbox_inline({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Checkbox inline indented',
+                        'class': 'form__group--indent'
+                    })
+                }}
 
-    {{
-        form.checkbox_inline({
-            'id': 'guid-' ~ random(),
-            'label': 'Checkbox inline indented',
-            'class': 'form__group--indent'
-        })
-    }}
+                {{
+                    form.radio_inline({
+                        'id': 'guid-' ~ random(),
+                        'label': 'Radio inline indented',
+                        'class': 'form__group--indent'
+                    })
+                }}
 
-    {{
-        form.radio_inline({
-            'id': 'guid-' ~ random(),
-            'label': 'Radio inline indented',
-            'class': 'form__group--indent'
-        })
-    }}
+                {{
+                    form.choice({
+                        'label': 'Choice checkbox',
+                        'id': 'guid-' ~ random(),
+                        'options': [
+                            {
+                                'label': 'Checkbox One',
+                                'value': 'one',
+                                'name': 'one',
+                                'checked': true
+                            },
+                            {
+                                'label': 'Checkbox Two',
+                                'value': 'two',
+                                'name': 'one'
+                            },
+                            {
+                                'label': 'Checkbox Three',
+                                'value': 'three',
+                                'name': 'one'
+                            }
+                        ]
+                    })
+                }}
 
-    {{
-        form.choice({
-            'label': 'Choice checkbox',
-            'id': 'guid-' ~ random(),
-            'options': [
-                {
-                    'label': 'Checkbox One',
-                    'value': 'one',
-                    'name': 'one',
-                    'checked': true
-                },
-                {
-                    'label': 'Checkbox Two',
-                    'value': 'two',
-                    'name': 'one'
-                },
-                {
-                    'label': 'Checkbox Three',
-                    'value': 'three',
-                    'name': 'one'
-                }
-            ]
-        })
-    }}
+                {{
+                    form.choice({
+                        'label': 'Choice radio',
+                        'multiple': true,
+                        'id': 'guid-' ~ random(),
+                        'options': [
+                            {
+                                'label': 'Radio One',
+                                'value': 'one',
+                                'name': 'one'
+                            },
+                            {
+                                'label': 'Radio Two',
+                                'value': 'two',
+                                'name': 'one'
+                            },
+                            {
+                                'label': 'Radio Three',
+                                'value': 'three',
+                                'name': 'one'
+                            }
+                        ]
+                    })
+                }}
 
-    {{
-        form.choice({
-            'label': 'Choice radio',
-            'multiple': true,
-            'id': 'guid-' ~ random(),
-            'options': [
-                {
-                    'label': 'Radio One',
-                    'value': 'one',
-                    'name': 'one'
-                },
-                {
-                    'label': 'Radio Two',
-                    'value': 'two',
-                    'name': 'one'
-                },
-                {
-                    'label': 'Radio Three',
-                    'value': 'three',
-                    'name': 'one'
-                }
-            ]
-        })
-    }}
+                {{
+                    form.choice({
+                        'label': 'Choice as select2',
+                        'id': 'guid-' ~ random(),
+                        'options': [
+                            {
+                                'label': 'Select2 One',
+                                'value': 'one',
+                                'name': 'three'
+                            },
+                            {
+                                'label': 'Select2 Two',
+                                'value': 'two',
+                                'name': 'three'
+                            },
+                            {
+                                'label': 'Select2 Three',
+                                'value': 'three',
+                                'name': 'three'
+                            },
+                            {
+                                'label': 'Select2 Four',
+                                'value': 'four',
+                                'name': 'three'
+                            },
+                            {
+                                'label': 'Select2 Five',
+                                'value': 'five',
+                                'name': 'three'
+                            },
+                            {
+                                'label': 'Select2 Six',
+                                'value': 'six',
+                                'name': 'three'
+                            }
+                        ]
+                    })
+                }}
 
-    {{
-        form.choice({
-            'label': 'Choice as select2',
-            'id': 'guid-' ~ random(),
-            'options': [
-                {
-                    'label': 'Select2 One',
-                    'value': 'one',
-                    'name': 'three'
-                },
-                {
-                    'label': 'Select2 Two',
-                    'value': 'two',
-                    'name': 'three'
-                },
-                {
-                    'label': 'Select2 Three',
-                    'value': 'three',
-                    'name': 'three'
-                },
-                {
-                    'label': 'Select2 Four',
-                    'value': 'four',
-                    'name': 'three'
-                },
-                {
-                    'label': 'Select2 Five',
-                    'value': 'five',
-                    'name': 'three'
-                },
-                {
-                    'label': 'Select2 Six',
-                    'value': 'six',
-                    'name': 'three'
-                }
-            ]
-        })
-    }}
-
-    {{
-        form.choice({
-            'class': 'choice--block',
-            'label': 'Choice block radios',
-            'id': 'guid-' ~ random(),
-            'options': [
-                {
-                    'label': html.icon('bold') ~ ' Bold',
-                    'value': 'bold',
-                    'name': 'five'
-                },
-                {
-                    'label': html.icon('italic') ~ ' Italic',
-                    'value': 'italic',
-                    'name': 'five',
-                    'checked': true
-                },
-                {
-                    'label': html.icon('underline') ~ ' Underline',
-                    'value': 'underline',
-                    'name': 'five'
-                },
-            ]
-        })
-    }}
+                {{
+                    form.choice({
+                        'class': 'choice--block',
+                        'label': 'Choice block radios',
+                        'id': 'guid-' ~ random(),
+                        'options': [
+                            {
+                                'label': html.icon('bold') ~ ' Bold',
+                                'value': 'bold',
+                                'name': 'five'
+                            },
+                            {
+                                'label': html.icon('italic') ~ ' Italic',
+                                'value': 'italic',
+                                'name': 'five',
+                                'checked': true
+                            },
+                            {
+                                'label': html.icon('underline') ~ ' Underline',
+                                'value': 'underline',
+                                'name': 'five'
+                            },
+                        ]
+                    })
+                }}
             </div>
             <div class="modal__footer">
                 <button type="button" class="btn btn--primary">Save Changes</button>
