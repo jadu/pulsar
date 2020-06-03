@@ -3,7 +3,6 @@
 'use strict'
 
 var $ = require('jquery'),
-    history = require('../../../libs/history.js/scripts/bundled/html5/jquery.history'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
 
@@ -15,7 +14,7 @@ describe('Pulsar UI Component', function() {
         this.$html = $('<html></html>');
         this.$body = $('<body></body>').appendTo(this.$html);
         this.$code = $('\
-            <a href="#foo" disabled class="is-disabled">\
+            <a href="#foo" class="is-disabled">test</a>\
             <table class="table qa-table"></table>\
             <table class="table--datagrid qa-datagrid"></table>\
             <table class="table datatable qa-datatable"></table>\
@@ -30,7 +29,7 @@ describe('Pulsar UI Component', function() {
 
         this.$tabLink = this.$html.find('a[href="#tab"]');
         this.$pushStateTabLink = this.$html.find('a[href="#tab-foo"]');
-        this.$isDisabled = this.$html.find('a[disabled]');
+        this.$isDisabled = this.$html.find('a.is-disabled');
         this.$basicTable = this.$html.find('.qa-table');
         this.$datagridTable = this.$html.find('.qa-datagrid');
         this.$datatableTable = this.$html.find('.qa-datatable');
@@ -44,6 +43,7 @@ describe('Pulsar UI Component', function() {
         };
 
         this.pulsarUIComponent = new PulsarUIComponent(this.$html, this.history);
+        this.clickEvent = $.Event('click');
 
     });
 
@@ -62,13 +62,37 @@ describe('Pulsar UI Component', function() {
     describe('disabled links', function() {
 
         beforeEach(function() {
-            this.pulsarUIComponent.init();
+            this.pulsarUIComponent.initDisabledLinks();
+        });
+        
+        it('should remove the href attribute', function() {
+            this.$isDisabled.trigger(this.clickEvent);
+
+            expect(this.$html.find('.is-disabled').attr('href')).to.be.undefined;
+        });
+
+        it('should move the href value to data-href', function() {
+            this.$isDisabled.trigger(this.clickEvent);
+
+            expect(this.$html.find('.is-disabled').attr('data-href')).to.equal('#foo');
+        });
+
+        it('should add the button role', function() {
+            this.$isDisabled.trigger(this.clickEvent);
+
+            expect(this.$html.find('.is-disabled').attr('role')).to.equal('button');
+        });
+
+        it('should add aria-disabled', function() {
+            this.$isDisabled.trigger(this.clickEvent);
+
+            expect(this.$html.find('.is-disabled').attr('aria-disabled')).to.equal('true');
         });
 
         it('should preventDefault', function() {
-            var clickEvent = $.Event('click');
-            this.$isDisabled.trigger(clickEvent);
-            expect(clickEvent.isDefaultPrevented()).to.be.true;
+            this.$isDisabled.trigger(this.clickEvent);
+
+            expect(this.clickEvent.isDefaultPrevented()).to.be.true;
         });
 
     });
@@ -101,32 +125,6 @@ describe('Pulsar UI Component', function() {
 
         it('should allow the empty table message to be overridden', function() {
             expect(this.$datatableWithCustomMessage.find('.dataTables_empty').text()).to.equal('foo');
-        });
-
-        it('should wrap the table with the disable class when the data-select attribute is false', function() {
-            expect(this.$datatableDisableSelection.parent().hasClass('dt-disable-selection')).to.be.true;
-        });
-    });
-
-    describe('Clicking a tab toggle with the data-href attribute', function() {
-
-        beforeEach(function() {
-            this.pulsarUIComponent.init();
-        });
-
-        it('should call the history plugin', function() {
-            this.$pushStateTabLink.click();
-            expect(this.history.pushState).to.have.been.calledOnce;
-        });
-
-        it('should push the correct state object onto the history stack', function () {
-            this.$pushStateTabLink.click();
-            expect(this.history.pushState).to.have.been.calledWith({state: 1});
-        });
-
-        it('should push the correct href onto the history stack', function () {
-            this.$pushStateTabLink.click();
-            expect(this.history.pushState).to.have.been.calledWith(sinon.match.any, '?tab=foo', '?tab=foo');
         });
     });
 
@@ -164,6 +162,61 @@ describe('Pulsar UI Component', function() {
         it('should recalculate the table', function() {
             expect(this.recalc).to.have.been.calledOnce;
         });
+    });
 
+    describe('initialising DataTables', function() {
+
+        beforeEach(function() {
+            $.fn.DataTable = sinon.stub();
+        });
+
+        afterEach(function () {
+            delete $.fn.DataTable;
+        });
+
+        it('should not show the length change select by default', function() {
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].lengthChange).to.equal(false);
+        });
+
+        it('should show the length change select if the data-length-change attribute is true', function () {
+            let $tableWithLengthChangeDataAttribute = $('<table class="table datatable qa-datatable-length-change" data-length-change="true"></table>');
+            $tableWithLengthChangeDataAttribute.appendTo(this.$body);
+
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].lengthChange).to.equal(true);
+        })
+
+        it('should default to 25 rows pageLength', function() {
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].pageLength).to.equal(25);
+        });
+
+        it('should change the page length to the value provided by data-page-length', function() {
+            let $tableWithPageLengthDataAttribute = $(' <table class="table datatable" data-page-length="20"></table>');
+            $tableWithPageLengthDataAttribute.appendTo(this.$body);
+
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].pageLength).to.equal(20);
+        });
+
+        it('should initialise datatables with the default DOM option value', function() {
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].dom).to.equal('<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"pl>');
+        });
+
+        it('should change the columnDefs when data-select is false', function() {
+            let $tableWithSelectFalseDataAttribute = $(' <table class="table datatable" data-select="false"></table>');
+            $tableWithSelectFalseDataAttribute.appendTo(this.$body);
+
+            this.pulsarUIComponent.init();
+
+            expect($.fn.DataTable.args[0][0].columnDefs).to.be.empty;
+        });
     });
 });

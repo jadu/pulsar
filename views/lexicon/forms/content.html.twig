@@ -23,14 +23,6 @@
 
     {{
         form.content({
-            'label': 'Content with guidance',
-            'value': 'My value',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.content({
             'label': 'Content with hidden label',
             'value': 'My value',
             'show-label': false,
@@ -126,7 +118,8 @@
             'actions': [
                 html.button({
                     'label': 'Save',
-                    'class': 'btn--primary'
+                    'class': 'btn--primary',
+                    'type': 'submit'
                 }),
                 html.button({
                     'label': 'Cancel',

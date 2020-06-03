@@ -1,7 +1,7 @@
 class HashService {
     /**
      * Hash Service
-     * @param date {Date}
+     * @param date {DateConstructor}
      */
     constructor (date) {
         this.hashCache = [];

@@ -70,8 +70,8 @@ NavMainComponent.prototype.init = function () {
         component.moreIconClickHandler($self)
     });
 
-    // Re-adjust nav items on window resize to calc if more button is needed
-    component.$window.resize(function () {
+    // Re-adjust nav items on window resize to calc if more button is needed 
+    component.$window.on('resize', function () {
         component.adjustNavItems();
         //component.manageTabIndexes();
     });

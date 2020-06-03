@@ -10,10 +10,69 @@
     {% include '/playground/xfp-received/log.html.twig' %}
 {% endset %}
 
+{% set flash_message = {
+    'message': 'this is a flash',
+    'type': 'success'
+}%}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Edit form',
+                        'href': '/edit',
+                        'icon': 'pencil'
+                    }
+                ],
+                [
+                    {
+                        'label': 'View CXM case',
+                        'href': '/cxm',
+                        'icon': 'arrow-right'
+                    },
+                    {
+                        'label': 'View payments',
+                        'href': '/paybridge',
+                        'icon': 'credit-card'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Download PDF',
+                        'href': '/download-pdf',
+                        'icon': 'file-pdf-o'
+                    },
+                    {
+                        'label': 'Export archive',
+                        'href': '/download-archive',
+                        'icon': 'file-archive-o'
+                    },
+                    {
+                        'label': 'Print',
+                        'href': '/print',
+                        'icon': 'print'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'View CXM Case',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
 {% block ribbon %}
     <div class="ribbon__header">
         <a href="#" class="ribbon__mobile-toggle"><i class="icon-angle-down"><span class="hide">Toggle details</span></i></a>
-        <h2 class="ribbon__heading">
+        <h1 class="ribbon__heading">
             {{ heading|default('MISSING HEADING') }}
             {{
                 html.label({
@@ -21,7 +80,7 @@
                     'class': 'label--success'
                 })
             }}
-        </h2>
+        </h1>
     </div>
 
     <div class="ribbon__content">

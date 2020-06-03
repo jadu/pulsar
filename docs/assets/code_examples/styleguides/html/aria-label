@@ -1,5 +1,0 @@
-<div class="form__group">
-    <div class="controls">
-        <input id="foo" type="text" class="form__control" aria-label="My awesome checkbox">
-    </div>
-</div>

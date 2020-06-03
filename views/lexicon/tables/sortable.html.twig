@@ -2,6 +2,7 @@
 
 {% block tab_content %}
     <table class="table is-sortable table--full">
+        <caption class="hide">A sortable list of files</caption>
         <thead>
             <tr>
                 <th>File title</th>
@@ -245,6 +246,7 @@
 
     <br/>
     <table class="table is-sortable table--full">
+        <caption class="hide">Another sortable list of files</caption>
         <thead>
             <tr>
                 <th>File title</th>
@@ -269,7 +271,7 @@
                     document.docx
                 </td>
                 <td class="centered">
-                    {{ form.checkbox({'bare': 'true'}) }}
+                    {{ form.checkbox({'bare': 'true', 'aria-label': 'document.docx'}) }}
                 </td>
             </tr>
 
@@ -287,7 +289,7 @@
                     anna_kournikova.exe
                 </td>
                 <td class="centered">
-                    {{ form.checkbox({'bare': 'true'}) }}
+                    {{ form.checkbox({'bare': 'true', 'aria-label': 'Delete anna_kournikova.exe'}) }}
                 </td>
             </tr>
 
@@ -305,7 +307,7 @@
                     sdfghjkhjifldshjkfdshajkl.pdf
                 </td>
                 <td class="centered">
-                    {{ form.checkbox({'bare': 'true'}) }}
+                    {{ form.checkbox({'bare': 'true', 'aria-label': 'Delete sdfghjkhjifldshjkfdshajkl.pdf'}) }}
                 </td>
             </tr>
         </tbody>

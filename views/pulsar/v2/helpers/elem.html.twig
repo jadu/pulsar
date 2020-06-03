@@ -60,11 +60,6 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
     {% endif %}
 
-    {# Set aria-invalid="true" for inputs with errors #}
-    {% if options.has_error is defined and options.has_error == true %}
-        {% set options = options|defaults({'aria-invalid': 'true'}) %}
-    {% endif %}
-
     <input{{ attributes(options|exclude('append bare has_error help_id input_placement prepend naked')) }} />
 
 {% endspaceless %}
@@ -113,17 +108,21 @@ name    | string | The name of this control
     {% if options.tag is defined and options.tag == 'span' %}
         {% set tag = 'span' %}
     {% endif %}
+    {% if options.tag is defined and options.tag == 'legend' %}
+        {% set tag = 'legend' %}
+    {% endif %}
 
-    {% if options.label is not empty or options.guidance is not empty %}
+    {% if options.label is not empty %}
         <{{ attributes(options
-            |exclude('container guidance guidance-container label required show-label tag ' ~ (tag == 'span' ? 'for'))
+            |exclude('container guidance guidance-container label required required-indicator show-label tag ' ~ (tag == 'span' ? 'for'))
             |defaults({
                 'class': 'control__label' ~ labelVisibilityClass|default
             }), {'tag': (tag)}) }}>
 
             {{- options.label|raw -}}
-            {{ util.required(options.required|default(false)) }}
-            {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}
+            {%- if options['required-indicator'] is not defined or options['required-indicator'] != false -%}
+                {{ util.required(options.required|default(false)) }}
+            {%- endif -%}
         </{{ tag }}>
     {% endif %}
 
@@ -222,11 +221,6 @@ value       | string | Specifies the value of the input
 
     {% if describedByIds|length %}
         {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
-    {% endif %}
-
-    {# Set aria-invalid="true" for inputs with errors #}
-    {% if options.has_error is defined and options.has_error == true %}
-        {% set options = options|defaults({'aria-invalid': 'true'}) %}
     {% endif %}
 
     <select{{
@@ -346,6 +340,10 @@ value       | string | Specifies the value of the input
 {% spaceless %}
     {% import _self as elem %}
 
+    {% if options.label is defined and options.label is not empty %}
+        {% set options = options|merge({'data-label': options.label}) %}
+    {% endif %}
+
     {{ elem.select(options|merge({'class': 'select js-select2'})) }}
 
 {% endspaceless %}
@@ -401,11 +399,6 @@ value       | string  | Specifies the value of the input
 
     {% if describedByIds|length %}
         {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
-    {% endif %}
-
-    {# Set aria-invalid="true" for inputs with errors #}
-    {% if options.has_error is defined and options.has_error == true %}
-        {% set options = options|defaults({'aria-invalid': 'true'}) %}
     {% endif %}
 
     <textarea{{

@@ -1,7 +1,0 @@
-<div class="form__group has-error">
-    <label for="inputTextError" class="control__label">First name</label>
-    <div class="controls">
-        <input id="inputTextError" name="inputTextError" type="text" class="form__control">
-        <span class="help-block is-error"><i class="icon-warning-sign"></i> Please enter a name</span>
-    </div>
-</div>

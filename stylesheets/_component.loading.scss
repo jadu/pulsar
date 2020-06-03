@@ -69,6 +69,11 @@
     position: relative;
     width: 20px;
 
+    @include prefers-reduced-motion() {
+        height: auto;
+        width: auto;
+    }
+
     &.centered {
         display: block;
         margin: 0 auto;
@@ -97,6 +102,17 @@
         text-indent: 0;
     }
 
+    @include prefers-reduced-motion() {
+        animation: none;
+        border: 0;
+        border-radius: 0;
+        float: none;
+        height: auto;
+        position: static;
+        text-indent: 0;
+        width: auto;
+    }
+
     .lt-ie10 & {
         margin: 0 0 -2px;
         background: url('../images/loading.gif') center center no-repeat;
@@ -104,6 +120,19 @@
     }
 }
 
+.loading-block {
+    text-align: center;
+
+    .loading {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .loading-block__message {
+        display: block;
+        margin-top: $line-height-base / 2;
+    }
+}
 
 .form__group.is-loading {
 

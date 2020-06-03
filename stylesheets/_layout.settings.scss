@@ -15,6 +15,7 @@
 
     @include respond-min($screen-medium) {
         margin-right: 1%;
+        max-width: 370px;
         min-width: 370px;
         width: 25%;
     }
@@ -348,15 +349,6 @@
 
 
 /**
- * Guidance popover icon background colour should match settings column background colour
- */
-
-.tab__settings .input-group-guidance {
-    background-color: color(background);
-}
-
-
-/**
  * Content area
  */
 
@@ -455,9 +447,23 @@
     table-layout: auto;
 }
 
+.content-actions__pages .control__label {
+    display: inline;
+    padding: 0;
+    vertical-align: unset;
+    width: auto;
+}
+
+// Match height of inputs to the expected height of buttons
 .content-actions__pages .form__control {
-    height: $input-height-small;
-    line-height: $input-height-small;
+    height: 35px;
+    line-height: 35px;
+}
+
+// Adjust position of caret to match new height and set enough padding so page numbers look nicer
+.content-actions__pages .form__control.select {
+    background-position: calc(100% - 10px) calc(10px + 5px), calc(100% - 5px) calc(10px + 5px), 100% 0;
+    padding-right: 32px;
 }
 
 .content-actions__buttons {
@@ -466,4 +472,129 @@
 
 .content-actions__buttons .btn {
     vertical-align: top;
+}
+
+/**
+ * Stacked inputs
+ */
+ .tab__settings .settings-section--stacked {
+
+    .form__group {
+        clear: both;
+    }
+
+    // Force labels to be stacked with the inputs below, except for checkbox/radio
+    .form__group:not(.form__group--flush):not(.form__group--toggle):not(.form-checkbox):not(.form-radio) {
+        margin-bottom: 12px;
+
+        @include ie(9) {
+            &.colorpicker .form__control {
+                width: calc(100% - 48px);
+            }
+        }
+
+        > .control__label {
+            padding-top: 0;
+        }
+
+        > .control__label,
+        .controls,
+        .form__control:not(.checkbox):not(.radio),
+        .form__control + .select2,
+        .input-group {
+            width: 100%;
+        }
+
+        .help-block {
+            margin: 0;
+        }
+    }
+
+    // Because the settings sidebar and the toggle switch controls are a fixed width, we're safe to use a fixed width here
+    .form__group--toggle {
+        .controls {
+            float: left;
+
+            @include respond-min($screen-medium) {
+                float: right;
+            }
+        }
+
+        .control__label {
+            margin-left: 10px;
+            width: 80%;
+
+            @include respond-min($screen-smaller) {
+                width: 125px;
+            }
+
+            @include respond-min($screen-medium) {
+                margin-left: 0;
+                width: 250px;
+            }
+        }
+    }
+
+    // Instead of stacking, keep checkbox on left edge
+    .form__group.form-checkbox,
+    .form__group.form-radio {
+        position: relative;
+
+        > .control__label {
+            min-width: 300px;
+            padding-left: 30px;
+            width: 300px;
+        }
+
+        .controls {
+            left: 0;
+            min-width: 20px;
+            position: absolute;
+            top: 1px;
+            width: 20px;
+        }
+    }
+
+    .form-checkbox,
+    .form-radio {
+        margin-bottom: 12px;
+
+        > .control__label {
+            padding-top: 0;
+        }
+
+        .checkbox,
+        .radio {
+            top: 0;
+        }
+    }
+
+    .form-choice > .controls {
+        margin-top: 0;
+    }
+
+    .form-choice > .controls > .control__label {
+        width: 100%;
+    }
+}
+
+/**
+ * Sticky sidebar
+ */
+
+@media screen and (min-width: 992px) {
+    .tab__inner.is-sticky .tab__content {
+        left: calc(370px + 1%);
+        max-width: calc(100% - 370px);
+        position: relative;
+    }
+
+    .tab__inner.is-sticky .tab__settings {
+        -webkit-overflow-scrolling: touch;
+        max-width: 370px;
+        max-height: 100%;
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+    }
 }

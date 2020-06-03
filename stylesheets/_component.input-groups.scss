@@ -57,12 +57,25 @@
     border: 1px solid $input-group-addon-border-color;
     border-radius: $border-radius;
     display: flex;
+    font-size: $font-size-base;
+    font-weight: normal;
+    line-height: $input-height-base - 2;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 $padding-base-horizontal;
+    text-align: center;
     white-space: nowrap;
 
     @include ie-lte(9) {
         display: table-cell;
         vertical-align: middle;
         width: 1%;
+    }
+
+    // Nuke default margins from checkboxes and radios to vertically center within.
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-top: 0;
     }
 }
 
@@ -94,21 +107,6 @@
 
 // Text input groups
 // -------------------------
-.input-group-addon,
-.input-group-guidance {
-    padding: 0 $padding-base-horizontal;
-    font-size: $font-size-base;
-    font-weight: normal;
-    line-height: $input-height-base - 2;
-    text-align: center;
-
-    // Nuke default margins from checkboxes and radios to vertically center within.
-    input[type="radio"],
-    input[type="checkbox"] {
-        margin-top: 0;
-    }
-}
-
 .input-group-btn .btn {
     font-size: $font-size-base;
     line-height: $input-height-base - 2;
@@ -197,18 +195,6 @@
         line-height: 2em;
     }
 
-}
-
-.input-group-guidance {
-    background-color: color(white);
-    border: 0;
-    color: color(jadu-blue);
-    line-height: 24px;
-    vertical-align: baseline;
-
-    &:hover {
-        color: color(jadu-blue, dark);
-    }
 }
 
 // guidance popovers for various configurations

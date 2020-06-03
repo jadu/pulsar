@@ -7,8 +7,9 @@ use Twig_Loader_Array;
 
 class GetConstantExtensionTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
         $this->ext = new GetConstantExtension();
 
         defined('STRING') or define('STRING', 'foo');

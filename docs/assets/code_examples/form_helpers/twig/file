@@ -1,7 +1,0 @@
-{{
-    form.file({
-        'label': 'File input',
-        'id': 'foo',
-        'name': 'bar'
-    })
-}}

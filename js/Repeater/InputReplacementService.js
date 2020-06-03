@@ -1,16 +1,14 @@
 const _ = require('lodash');
+const $ = require('jquery');
 
 class InputReplacementService {
     /**
      * Input replacement service
-     * @param pulsarFormComponent
-     * @param queryService
+     * @param {PulsarFormComponent} pulsarFormComponent
      */
     constructor (
         pulsarFormComponent,
-        queryService
     ) {
-        this.queryService = queryService;
         this.pulsarFormComponent = pulsarFormComponent;
     }
 
@@ -43,8 +41,8 @@ class InputReplacementService {
      * @param replacement
      */
     replaceRadioInput (radio, replacement) {
-        const originalId = radio.getAttribute(this.queryService.getAttr('pseudo-radio-id'));
-        const replacementId = replacement.getAttribute(this.queryService.getAttr('pseudo-radio-id'));
+        const originalId = radio.getAttribute('data-pseudo-radio-id');
+        const replacementId = replacement.getAttribute('data-pseudo-radio-id');
 
         if (originalId === replacementId) {
             $(radio).replaceWith(replacement);
@@ -62,7 +60,7 @@ class InputReplacementService {
 
         if ($select.hasClass('js-select2')) {
             // Parse our dumped select2 data
-            const select2Data = JSON.parse(select.getAttribute(this.queryService.getAttr('select2-data')));
+            const select2Data = JSON.parse(select.getAttribute('data-repeater-select2-data'));
 
             if (select2Data) {
                 // Set each options's selected value based on the parsed select2 data

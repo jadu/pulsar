@@ -1,7 +1,6 @@
 .content-main {
     position: relative;
     display: table;
-    height: 100%;
     padding: 0 $gutter-width;
     table-layout: fixed;
     width: 100%;
@@ -11,6 +10,10 @@
     font-size: 1.75em;
     line-height: 24px;
     margin-bottom: 13px;
+
+    @include respond-min($screen-desktop) {
+        margin-top: 17px;
+    }
 }
 
 .sub-title {
@@ -60,6 +63,11 @@
         width: 100%;
     }
 
+    @include prefers-reduced-motion() {
+        left: $nav-primary-width;
+        transform: none;
+    }
+
     .lt-ie10 & {
         left: $nav-primary-width;
     }
@@ -77,6 +85,12 @@
         transform: none;
         transition: transform 500ms ease;
         width: 100%;
+    }
+
+    @include prefers-reduced-motion() {
+        left: -300px;
+        transform: none;
+        transition: none;
     }
 }
 

@@ -16,8 +16,9 @@ $ie-version: 12 !default;
 
 // Third party plugins
 // scss-lint:disable all
-@import '../libs/normalize-css/normalize';
-@import '../libs/susy/sass/susy';
+@import '../node_modules/normalize.css/normalize';
+@import '../node_modules/tippy.js/dist/tippy';
+@import '../node_modules/pulsar-date-picker/src/scss/pulsar-date-picker';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
@@ -25,10 +26,10 @@ $font-path: '../fonts/';
 @import '../fonts/config.fonts';
 
 // Font awesome
-$fa-font-path: '../libs/font-awesome/fonts';
+$fa-font-path: '../node_modules/font-awesome/fonts';
 $fa-css-prefix: 'icon';
 @import 'deprecated.icons';
-@import '../libs/font-awesome/scss/font-awesome';
+@import '../node_modules/font-awesome/scss/font-awesome';
 
 // Mixins
 @import 'mixin.border-radius';
@@ -42,6 +43,7 @@ $fa-css-prefix: 'icon';
 @import 'mixin.mixins-to-organise';
 @import 'mixin.responsive-utilities';
 @import 'mixin.word-wrap';
+@import 'mixin.focus';
 
 // Config
 @import 'config.variables';
@@ -105,6 +107,7 @@ $fa-css-prefix: 'icon';
 @import 'component.daterange';
 @import 'component.dropdowns';
 @import 'component.editor';
+@import 'component.error-summary';
 @import 'component.filterbar';
 @import 'component.flash';
 @import 'component.footer';
@@ -173,5 +176,5 @@ $fa-css-prefix: 'icon';
 @import 'utility.grid';
 
 // Overrides and fixes
-@import 'override.shame';
+@import 'override.scratch';
 
