@@ -230,10 +230,6 @@
 
 .tab__settings .form__group--toggle span.control__label {
     width: calc(100% - 4em);
-
-    @include respond-min($screen-small) {
-        // padding-right: calc(4em + #{$padding-small-horizontal * 2});
-    }
 }
 
 .tab__settings .form__group--toggle {
