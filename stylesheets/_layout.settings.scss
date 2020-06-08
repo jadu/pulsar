@@ -448,9 +448,23 @@
     table-layout: auto;
 }
 
+.content-actions__pages .control__label {
+    display: inline;
+    padding: 0;
+    vertical-align: unset;
+    width: auto;
+}
+
+// Match height of inputs to the expected height of buttons
 .content-actions__pages .form__control {
-    height: $input-height-small;
-    line-height: $input-height-small;
+    height: 35px;
+    line-height: 35px;
+}
+
+// Adjust position of caret to match new height and set enough padding so page numbers look nicer
+.content-actions__pages .form__control.select {
+    background-position: calc(100% - 10px) calc(10px + 5px), calc(100% - 5px) calc(10px + 5px), 100% 0;
+    padding-right: 32px;
 }
 
 .content-actions__buttons {

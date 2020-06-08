@@ -378,6 +378,8 @@
 
         &:focus {
             @include pulsar-link-focused;
+            position: relative;
+            z-index: $zindex-nav-secondary + 1;
         }
 
         &:active {

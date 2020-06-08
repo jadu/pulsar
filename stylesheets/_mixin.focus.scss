@@ -121,3 +121,17 @@
     border-radius: 0;
     color: color(black) !important;
 }
+
+@mixin pulsar-label-remove-button-focused {
+    background-color: color(background, focus) !important;
+    color: color(black) !important;
+    outline: none;
+
+    [class^="icon-"] {
+        color: color(black) !important;
+    }
+
+    [class^="icon-"]:hover {
+        color: color(black) !important;
+    }
+}

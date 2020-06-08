@@ -6,71 +6,152 @@
         form.create()
     }}
 
-    {{
-        form.date({
-            'data-datepicker': 'false',
-            'id': 'guid-' ~ random(),
-            'label': 'Date field without date picker'
-        })
-    }}
+    {{ form.fieldset_start({ 'legend': 'Default date picker pikaday (not fully WCAG compliant)' }) }}
 
-    {{
-        form.date({
-            'id': 'guid-' ~ random(),
-            'label': 'Date field'
-        })
-    }}
+        {{
+            form.date({
+                'data-datepicker': 'false',
+                'id': 'guid-' ~ random(),
+                'label': 'Date field without date picker',
+                'value': '19/04/2020'
+            })
+        }}
 
-    {{
-        form.date({
-            'format': 'US',
-            'id': 'guid-' ~ random(),
-            'label': 'Date US style',
-            'placeholder': 'mm/dd/yyyy'
-        })
-    }}
+        {{
+            form.date({
+                'id': 'guid-' ~ random(),
+                'label': 'Date field'
+            })
+        }}
 
-    {{
-        form.date({
-            'format': 'reverse',
-            'id': 'guid-' ~ random(),
-            'label': 'Date reverse style',
-            'placeholder': 'yyyy/mm/dd'
-        })
-    }}
+        {{
+            form.date({
+                'format': 'US',
+                'id': 'guid-' ~ random(),
+                'label': 'Date US style',
+                'placeholder': 'mm/dd/yyyy'
+            })
+        }}
 
-    {{
-        form.date({
-            'id': 'guid-' ~ random(),
-            'label': 'Date field with value',
-            'value': '04/07/1981'
-        })
-    }}
+        {{
+            form.date({
+                'format': 'reverse',
+                'id': 'guid-' ~ random(),
+                'label': 'Date reverse style',
+                'placeholder': 'yyyy/mm/dd'
+            })
+        }}
 
-    {{
-        form.date({
-            'id': 'guid-' ~ random(),
-            'label': 'Required',
-            'required': true
-        })
-    }}
+        {{
+            form.date({
+                'id': 'guid-' ~ random(),
+                'label': 'Date field with value',
+                'value': '04/07/1981'
+            })
+        }}
 
-    {{
-        form.date({
-            'id': 'guid-' ~ random(),
-            'label': 'Placeholder',
-            'placeholder': 'Oh, hello'
-        })
-    }}
+        {{
+            form.date({
+                'id': 'guid-' ~ random(),
+                'label': 'Required',
+                'required': true
+            })
+        }}
 
-    {{
-        form.date({
-            'id': 'guid-' ~ random(),
-            'label': 'Date field with help',
-            'help': 'Help text to give more information about expected input'
-        })
-    }}
+        {{
+            form.date({
+                'id': 'guid-' ~ random(),
+                'label': 'Placeholder',
+                'placeholder': 'Oh, hello'
+            })
+        }}
 
+        {{
+            form.date({
+                'id': 'guid-' ~ random(),
+                'label': 'Date field with help',
+                'help': 'Help text to give more information about expected input'
+            })
+        }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Pulsar date picker (WCAG compliant)' }) }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': 'Date field'
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'format': 'US',
+                'id': 'guid-' ~ random(),
+                'label': 'Date US style',
+                'placeholder': 'mm/dd/yyyy'
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'format': 'reverse',
+                'id': 'guid-' ~ random(),
+                'label': 'Date reverse style',
+                'placeholder': 'yyyy/mm/dd'
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': 'Date field with value',
+                'value': '04/07/1981'
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': 'Required',
+                'required': true
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': 'Placeholder',
+                'placeholder': 'Oh, hello'
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': 'Date field with help',
+                'help': 'Help text to give more information about expected input'
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': '"disabled": true',
+                'disabled': true,
+                'help': 'Stop! Can’t touch this'
+            })
+        }}
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{

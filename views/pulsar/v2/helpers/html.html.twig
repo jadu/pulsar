@@ -756,26 +756,37 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set isRemovable = false %}
+    {% if options.removable is defined and options.removable == true %}
+        {% set isRemovable = true %}
+    {% endif %}
+
     <span{{
         attributes(options
             |exclude('label removable remove_target')
             |defaults({
-                'class': 'label'
+                'class': isRemovable ? 'label label--removable' : 'label'
             })
         )
     }}>
-        {{- options.label|default|raw -}}
-        {% if options.removable is defined and options.removable == true %}
-        {{
-            html.remove_button({
-                'tooltip': false,
-                'target': 'this',
-                'label': 'Remove ' ~ options.label|default
-            })
-        }}
+        {% if isRemovable %}
+            <span class="label__text">
+                {{- options.label|default|raw -}}
+            </span>
+        {% else %}
+            {{- options.label|default|raw -}}
+        {% endif %}
+
+        {% if isRemovable %}
+            {{
+                html.remove_button({
+                    'tooltip': false,
+                    'target': 'this',
+                    'label': 'Remove ' ~ options.label|default
+                })
+            }}
         {% endif %}
     </span>
-
 {% endspaceless %}
 {% endmacro %}
 
@@ -1568,8 +1579,11 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
 
     {% if options.data is defined and options.data is not empty %}
     <table{{ attributes(options
-                |exclude('overflow')
+                |exclude('overflow caption')
                 |defaults({ 'class': 'table datatable table--full' })) }} style="width: 100%">
+        {% if options.caption is defined and options.caption is not empty %}
+        <caption class="hide">{{ options.caption }}</caption>
+        {% endif %}
         <thead>
             <tr>
                 {% if overflow == 'collapse' %}
@@ -1594,7 +1608,7 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                     {% if overflow == 'collapse' %}
                         <td class="table-responsive">
                             <button class="table-child-toggle">
-                                {{ html.icon('plus-sign', { 'label': 'Toggle collapsed columns' }) }}
+                                {{ html.icon('plus-sign', { 'label': 'Toggle this rows collapsed columns' }) }}
                             </button>
                         </td>
                     {% endif %}

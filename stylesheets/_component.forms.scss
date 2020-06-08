@@ -253,7 +253,6 @@ fieldset {
     &:focus {
         @include pulsar-input-focused;
 
-        position: relative;
         z-index: 1;
     }
 }
@@ -647,6 +646,12 @@ fieldset {
     > .controls {
         margin-left: 0; // remove gutter
         width: 100%;
+    }
+
+    &.form__group--indent .controls {
+        @include respond-min($screen-tablet) {
+            @include shrink($form-label-cols);
+        }
     }
 
     > .controls > .control__label {
