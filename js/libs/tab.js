@@ -171,7 +171,7 @@ var $ = require('jquery');
 		
 		$('.nav-inline [data-toggle="tab"]').on('show.bs.tab', function (e) {
 			var showTab = $(e.target).attr('href'),
-					hideTab = $(e.relatedTarget).attr('href');
+				hideTab = $(e.relatedTarget).attr('href');
 
 			// Switch active tab to use <main> element
 			$(showTab).find('.tab__content').replaceWith(function () {
