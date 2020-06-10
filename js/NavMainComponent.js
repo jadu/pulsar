@@ -308,8 +308,7 @@ NavMainComponent.prototype.closeQuaternaryNav = function () {
  * Toggle mobile navigation
  */
 NavMainComponent.prototype.showMobileNav = function (show) {
-    var component = this,
-        $toolbar = component.$body.find('.toolbar');
+    var component = this;
 
     if (show === false) {
         component.$body.removeClass('open-nav');
