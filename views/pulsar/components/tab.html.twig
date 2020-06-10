@@ -59,18 +59,18 @@
     {% endif %}
 
     <div class="tab__inner">
-        {% if _hasSidebar == true %}
-        <aside class="tab__sidebar" aria-label="additional information">
-            {{ _sidebar|raw }}
-        </aside>
-        {% endif %}
         {% if _hasSettings == true %}
         <section class="tab__settings" aria-label="settings">
             {{ _settings|raw }}
         </section>
         {% endif %}
-        <main class="tab__content" id="skip-target">
+        <div class="tab__content">
             {% block tab_content %}{% endblock %}
-        </main>
+        </div>
+        {% if _hasSidebar == true %}
+        <aside class="tab__sidebar" aria-label="additional information">
+            {{ _sidebar|raw }}
+        </aside>
+        {% endif %}
     </div>
 </div>
