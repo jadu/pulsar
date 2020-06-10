@@ -10,6 +10,8 @@ describe('FocusManagementService', () => {
     let $textarea;
     let $button;
     let focusManagementService;
+    let keyDownEvent;
+    let $focusTrapContainer;
 
     beforeEach(() => {
         $html = $('html');
@@ -19,6 +21,12 @@ describe('FocusManagementService', () => {
         $select = $('<select><option value="one">One</option></select>');
         $textarea = $('<textarea>text</textarea>');
         $button = $('<button>Button</button>');
+        $focusTrapContainer = $(`
+            <div class="trap">
+                <a href="#" class="trap-link-first">Link</a>
+                <a href="#" class="trap-link-last">Link</a>
+            </div>
+        `);
 
         focusManagementService = new FocusManagementService();
     });
@@ -126,6 +134,34 @@ describe('FocusManagementService', () => {
             focusManagementService.focusFirstFocusableElement($body);
 
             expect($link.is(':focus')).to.be.true;
+        });
+    });
+
+    describe('trapFocus()', () => {
+        beforeEach(() => {
+            keyDownEvent = $.Event('keydown');
+            keyDownEvent.keyCode = 9;
+            $focusTrapContainer.appendTo($body);
+            focusManagementService.trapFocus($body.find('.trap'));
+        });
+
+        it('should focus the first interactive element in the trap, when tab is pressed on the last element', () => {
+            const $trapLastLink = $focusTrapContainer.find('.trap-link-last');
+
+            $trapLastLink.trigger('focus');
+            $trapLastLink.trigger(keyDownEvent);
+
+            expect($focusTrapContainer.find('.trap-link-first').is(':focus')).to.be.true;
+        });
+
+        it('should focus the last interactive element in the trap, when shift + tab is pressed on the first element', () => {
+            const $trapFirstLink = $focusTrapContainer.find('.trap-link-first');
+
+            keyDownEvent.shiftKey = true;
+            $trapFirstLink.trigger('focus');
+            $trapFirstLink.trigger(keyDownEvent);
+
+            expect($focusTrapContainer.find('.trap-link-last').is(':focus')).to.be.true;
         });
     });
 });
