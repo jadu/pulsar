@@ -45,7 +45,7 @@
         }
 
         i {
-            font-size: 18px;
+            font-size: $font-size-large;
             vertical-align: middle;
 
             @include respond-min($screen-desktop) {
@@ -102,11 +102,11 @@
 
 .toolbar-actions .toolbar-action--icon .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
     line-height: 16px;
-    padding-bottom: 6px;
-    padding-top: 6px;
+    padding-bottom: $padding-base-vertical;
+    padding-top: $padding-base-vertical;
 
     i {
-        font-size: 18px;
+        font-size: $font-size-large;
         vertical-align: middle;
     }
 }
