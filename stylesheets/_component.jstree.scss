@@ -12,23 +12,23 @@
 .jstree-default {
     background-color: color(gray, off-white);
     max-height: 450px;
-    overflow: hidden;
-    padding: 20px 20px 15px;
+    overflow: auto;
+    padding: 20px 20px 0;
     width: auto;
 
-    &:hover {
-        overflow: scroll;
-        padding: 20px 20px 0;
+    &::-webkit-scrollbar {
+        height: 7px;
+        width: 7px;
+    }
 
-        &::-webkit-scrollbar {
-            width: 7px;
-        }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, .5);
+        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    }
 
-        &::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: rgba(0, 0, 0, .5);
-            -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
-        }
+    &::-webkit-scrollbar-corner {
+        display: none;
     }
 }
 
