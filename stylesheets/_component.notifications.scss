@@ -17,6 +17,12 @@
         }
     }
 
+    // double chained to override specificity of default remove button
+    .remove-button.remove-button {
+        padding: $btn-padding-top $btn-padding-x $btn-padding-bottom;
+        position: absolute;
+        right: $btn-padding-x; // shift away from edge of notifications container
+    }
 }
 
 .notifications-container {

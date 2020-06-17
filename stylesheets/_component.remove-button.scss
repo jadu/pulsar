@@ -9,18 +9,14 @@
 
     [class^="icon-"],
     [class*=" icon-"] {
-        color: color(gray, light);
+        color: color(black);
         font-size: 1.2em;
         vertical-align: middle;
     }
 
     &:hover {
+        @include pulsar-button-focused;
         transform: none;
-
-        [class^="icon-"],
-        [class*=" icon-"] {
-            color: color(black);
-        }
     }
 }
 
