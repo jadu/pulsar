@@ -22,7 +22,8 @@
     pulsar.signIn = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
-    pulsar.navMain = new pulsar.NavMainComponent($html, window);
+    pulsar.focusManagementService = new pulsar.FocusManagementService();
+    pulsar.navMain = new pulsar.NavMainComponent($html, window, pulsar.focusManagementService);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
     pulsar.faviconEditor = new pulsar.FaviconEditor(document.head);
     pulsar.stickySidebar = new pulsar.StickySidebarComponent($html, window);

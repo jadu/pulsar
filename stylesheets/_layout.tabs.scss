@@ -41,6 +41,7 @@
     transform: none;
     transition: transform 500ms ease;
     width: 100%;
+    will-change: transform;
 
     @include respond-min($screen-desktop) {
         display: table-row;
