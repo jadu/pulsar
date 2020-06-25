@@ -83,6 +83,10 @@ describe('DisableUi component', function() {
 
 			expect(this.$link.attr('aria-disabled')).to.be.undefined;
 		});
+
+		it('should remove tabindex="-1" from links', function () {
+			expect(this.$link.attr('tabindex')).to.be.undefined;
+		});
 	});
 
 	describe('the ‘disable’ method', function() {
@@ -129,7 +133,11 @@ describe('DisableUi component', function() {
 
 			this.$link.trigger(clickEvent);
 
-			expect(this.$link.prop('aria-disabled')).to.equal('true');
+			expect(this.$link.attr('aria-disabled')).to.equal('true');
+		});
+
+		it('should add tabindex="-1" to the link', function () {
+			expect(this.$link.attr('tabindex')).to.equal('-1');
 		});
 
 		it('should add the u-cursor-not-allowed class to form labels', function () {
