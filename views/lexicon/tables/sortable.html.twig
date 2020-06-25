@@ -9,7 +9,7 @@
                 <th>Type</th>
                 <th>Size</th>
                 <th>Filename / URL</th>
-                <th class="shrink-to-fit"></th>
+                <th class="shrink-to-fit"><span class="hide">Actions</span></th>
             </tr>
         </thead>
         <tbody>
@@ -45,12 +45,7 @@
                             'tabindex': '0'
                         })
                     }}
-                    {{
-                        html.link({
-                            'label': html.icon('times-circle'),
-                            'tabindex': '0'
-                        })
-                    }}
+                    {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>
 
@@ -86,12 +81,7 @@
                             'tabindex': '0'
                         })
                     }}
-                    {{
-                        html.link({
-                            'label': html.icon('times-circle'),
-                            'tabindex': '0'
-                        })
-                    }}
+                    {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>
 
@@ -127,12 +117,7 @@
                             'tabindex': '0'
                         })
                     }}
-                    {{
-                        html.link({
-                            'label': html.icon('times-circle'),
-                            'tabindex': '0'
-                        })
-                    }}
+                    {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>
         </tbody>
