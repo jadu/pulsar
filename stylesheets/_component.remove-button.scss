@@ -15,7 +15,11 @@
     }
 
     &:hover {
-        @include pulsar-button-focused;
+        transform: none;
+    }
+
+    &:focus {
+        @include pulsar-icon-button-focused;
         transform: none;
     }
 }
