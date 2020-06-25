@@ -296,11 +296,9 @@
         -webkit-transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
         -webkit-transition-delay: ease, 0s;
         -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-        opacity: .7;
         transform-origin: 50% 0%;
         transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
-        transition: opacity 300ms 100ms ease, transform 500ms ease;
+        transition: transform 500ms ease;
 
         @include prefers-reduced-motion() {
             transition: none;
@@ -308,8 +306,6 @@
         }
 
         @include respond-min($screen-desktop) {
-            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-            opacity: 1;
             -webkit-transform: none;
             transform: none;
             transition: all 0s ease 0s;
@@ -318,8 +314,6 @@
 
         .open-nav & {
             -webkit-transform: translate3d(0, 0, 0);
-            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-            opacity: 1;
             transform: translate3d(0, 0, 0);
         }
     }
@@ -491,18 +485,26 @@
     top: 3px;
 }
 
-.nav-close,
-.nav-close-ltr {
+.nav-controls {
+    display: flex;
+}
+
+.nav-controls__close,
+.nav-controls__close-ltr {
+    appearance: none;
     background: none;
     border: 0;
+    border-bottom-left-radius: $border-radius;
     color: color(white);
     display: none;
-    margin-bottom: 23px;
-    margin-top: 24px;
-    padding: 0 20px;
+    margin-left: auto;
+    padding: 20px;
     text-align: right;
     text-decoration: none;
-    width: 100%;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .2);
+    }
 
     &:hover i::before,
     &:focus i::before {
@@ -510,7 +512,7 @@
     }
 
     &:focus {
-        @include pulsar-button-focused;
+        @include pulsar-link-focused;
     }
 
     .nav-secondary.is-open &,
@@ -518,13 +520,12 @@
     .nav-quaternary.is-open & {
         display: block;
     }
-
 }
 
-.nav-close-ltr {
-    &:hover i::before {
+.nav-controls__close-ltr {
+    &:hover i::before,
+    &:focus i::before {
         content: '';
-        color: color(white);
     }
 }
 

@@ -175,7 +175,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
     datatablesHorizontal.each(function () {
         var $this = $(this),
-            dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+            dom = '<"dataTables_top"Birf><"dataTables_actions"T><"table-container"t><"dataTables_bottom"lp>',
             select = {
                 className: 'dt-row-selected',
                 style:     'multi',
