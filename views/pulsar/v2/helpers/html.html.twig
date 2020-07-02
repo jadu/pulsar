@@ -1130,7 +1130,7 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
         {% endif %}
             <p>{{ options.title|raw }}</p>
         {% if options.description is defined and options.description is not empty %}
-            <span class="small-type muted">{{ options.description|raw }}</span>
+            <span class="small-type">{{ options.description|raw }}</span>
         {% endif %}
         </div>
     </{{ type }}>
