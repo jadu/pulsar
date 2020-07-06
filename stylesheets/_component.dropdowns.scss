@@ -303,7 +303,7 @@
   }
 
   &.link--danger {
-    background-color: color(danger);
+    background-color: color(danger) !important;
     color: color(white) !important;
 
     &:hover {
