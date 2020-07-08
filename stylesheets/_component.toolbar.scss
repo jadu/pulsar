@@ -44,6 +44,11 @@
             transform: none;
         }
 
+        &:focus {
+            @include pulsar-outline-button-focused;
+            border-width: 1px;
+        }
+
         i {
             font-size: 18px;
             vertical-align: middle;
@@ -54,18 +59,18 @@
             }
         }
 
-        > .toolbar-action__text {
-            display: none;
-            margin-left: 0;
-
-            @include respond-min($screen-desktop) {
-                display: inline;
-                margin-left: 5px;
-            }
-        }
-
         > .caret {
             border-top-color: color(text);
+        }
+    }
+
+    .toolbar-action__text {
+        display: none;
+        margin-left: 0;
+
+        @include respond-min($screen-desktop) {
+            display: inline;
+            margin-left: 5px;
         }
     }
 

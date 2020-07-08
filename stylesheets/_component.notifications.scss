@@ -40,6 +40,11 @@
 .notifications-toggle {
     @extend %toolbar-icon;
 
+    // Fix an issue in CMS where legacy dropdowns create a duplicate caret in :before
+    &::before {
+        display: none;
+    }
+
     // the red dot indicator
     &.has-new::before {
         background-color: color(danger);
@@ -83,7 +88,7 @@
 }
 
 .notifications-dismiss {
-    color: color(text, light);
+    color: color(text);
     display: inline-block;
     float: right;
     line-height: 1.75em;
