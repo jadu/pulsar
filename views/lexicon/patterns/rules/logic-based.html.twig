@@ -1,0 +1,594 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import "@pulsar/pulsar/v2/helpers/rules.html.twig" as rule %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Edit form',
+                        'href': '/edit',
+                        'icon': 'pencil'
+                    }
+                ],
+                [
+                    {
+                        'label': 'View CXM case',
+                        'href': '/cxm',
+                        'icon': 'arrow-right'
+                    },
+                    {
+                        'label': 'View payments',
+                        'href': '/paybridge',
+                        'icon': 'credit-card'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Download PDF',
+                        'href': '/download-pdf',
+                        'icon': 'file-pdf-o'
+                    },
+                    {
+                        'label': 'Export archive',
+                        'href': '/download-archive',
+                        'icon': 'file-archive-o'
+                    },
+                    {
+                        'label': 'Print',
+                        'href': '/print',
+                        'icon': 'print'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Create Rule',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+
+<div id="rule-form-container" class="rules-container rules-container--v2">
+
+    <fieldset class="rule-block rule-block--if">
+        <legend class="hide">If rule condition</legend>
+        <div class="rule-block__header">
+            <h2 class="rule-block__heading">if</h2>
+        </div>
+        <div class="rule-block__controls">
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose condition',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose condition',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+            <div class="rule-block__control">
+                {{
+                    form.select({
+                        'class': 'form__group--small',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose logic',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'is',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'is not',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose value',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose value',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="rule-block--indent">
+
+        <fieldset class="rule-block rule-block--or">
+            <legend class="hide">Or rule condition</legend>
+            <div class="rule-block__header">
+                <h2 class="rule-block__heading">or</h2>
+            </div>
+            <div class="rule-block__controls">
+                <div class="rule-block__control">
+                    {{
+                        form.select2({
+                            'class': 'form__group--medium',
+                            'id': 'guid-' ~ random(),
+                            'label': 'Choose condition',
+                            'show-label': false,
+                            'options': [
+                                {
+                                    'label': 'Choose condition',
+                                    'value': ''
+                                },
+                                {
+                                    'label': 'Value one',
+                                    'value': 'value1'
+                                },
+                                {
+                                    'label': 'Value two',
+                                    'value': 'value2'
+                                }
+                            ]
+                        })
+                    }}
+                </div>
+                <div class="rule-block__control">
+                    {{
+                        form.select({
+                            'class': 'form__group--small',
+                            'id': 'guid-' ~ random(),
+                            'label': 'Choose logic',
+                            'show-label': false,
+                            'options': [
+                                {
+                                    'label': 'is',
+                                    'value': 'value1'
+                                },
+                                {
+                                    'label': 'is not',
+                                    'value': 'value2'
+                                }
+                            ]
+                        })
+                    }}
+                </div>
+                <div class="rule-block__control">
+                    {{
+                        form.select2({
+                            'class': 'form__group--medium',
+                            'id': 'guid-' ~ random(),
+                            'label': 'Choose value',
+                            'show-label': false,
+                            'options': [
+                                {
+                                    'label': 'Choose value',
+                                    'value': ''
+                                },
+                                {
+                                    'label': 'Value one',
+                                    'value': 'value1'
+                                },
+                                {
+                                    'label': 'Value two',
+                                    'value': 'value2'
+                                }
+                            ]
+                        })
+                    }}
+                </div>
+            </div>
+            <button data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="btn remove-button js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+        </fieldset>
+
+        <fieldset class="rule-block rule-block--or">
+            <legend class="hide">Or rule condition</legend>
+            <div class="rule-block__header">
+                <h2 class="rule-block__heading">or</h2>
+            </div>
+            <div class="rule-block__controls">
+                <div class="rule-block__control">
+                    {{
+                        form.select2({
+                            'class': 'form__group--medium',
+                            'id': 'guid-' ~ random(),
+                            'label': 'Choose condition',
+                            'show-label': false,
+                            'options': [
+                                {
+                                    'label': 'Choose condition',
+                                    'value': ''
+                                },
+                                {
+                                    'label': 'Value one',
+                                    'value': 'value1'
+                                },
+                                {
+                                    'label': 'Value two',
+                                    'value': 'value2'
+                                }
+                            ]
+                        })
+                    }}
+                </div>
+                <div class="rule-block__control">
+                    {{
+                        form.select({
+                            'class': 'form__group--small',
+                            'id': 'guid-' ~ random(),
+                            'label': 'Choose logic',
+                            'show-label': false,
+                            'options': [
+                                {
+                                    'label': 'is',
+                                    'value': 'value1'
+                                },
+                                {
+                                    'label': 'is not',
+                                    'value': 'value2'
+                                }
+                            ]
+                        })
+                    }}
+                </div>
+                <div class="rule-block__control">
+                    {{
+                        form.select2({
+                            'class': 'form__group--medium',
+                            'id': 'guid-' ~ random(),
+                            'label': 'Choose value',
+                            'show-label': false,
+                            'options': [
+                                {
+                                    'label': 'Choose value',
+                                    'value': ''
+                                },
+                                {
+                                    'label': 'Value one',
+                                    'value': 'value1'
+                                },
+                                {
+                                    'label': 'Value two',
+                                    'value': 'value2'
+                                }
+                            ]
+                        })
+                    }}
+                </div>
+            </div>
+            <button data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="btn remove-button js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+        </fieldset>
+
+        <div class="rule-links">
+            <div class="rule-link rule-link--or">
+                <button class="btn" aria-label="Add a new OR condition">or</button>
+            </div>
+        </div>
+    </div>
+
+    <fieldset class="rule-block rule-block--and">
+        <legend class="hide">And rule condition</legend>
+        <div class="rule-block__header">
+            <h2 class="rule-block__heading">and</h2>
+        </div>
+        <div class="rule-block__controls">
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose condition',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose condition',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+            <div class="rule-block__control">
+                {{
+                    form.select({
+                        'class': 'form__group--small',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose logic',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'is',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'is not',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose value',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose value',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+        </div>
+        <button data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="btn remove-button js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+    </fieldset>
+
+    <div class="rule-links">
+        <div class="rule-link rule-link--or">
+            <button class="btn" aria-label="Add a new OR condition">or</button>
+        </div>
+        <div class="rule-link rule-link--and">
+            <button class="btn" aria-label="Add a new AND condition">and</button>
+        </div>
+    </div>
+
+    <fieldset class="rule-block rule-block--return">
+        <legend class="hide">return</legend>
+        <div class="rule-block__header">
+            <h2 class="rule-block__heading">return</h2>
+        </div>
+        <div class="rule-block__controls">
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose return value',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose return value',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="rule-links">
+        <div class="rule-link rule-link--else-if">
+            <button class="btn">else if</button>
+        </div>
+    </div>
+
+    <fieldset class="rule-block rule-block--else-if">
+        <legend class="hide">Else if rule condition</legend>
+        <div class="rule-block__header">
+            <h2 class="rule-block__heading">else if</h2>
+        </div>
+        <div class="rule-block__controls">
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose condition',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose condition',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+            <div class="rule-block__control">
+                {{
+                    form.select({
+                        'class': 'form__group--small',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose logic',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'is',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'is not',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose value',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose value',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+        </div>
+        <button data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="btn remove-button js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+    </fieldset>
+
+    <div class="rule-links">
+        <div class="rule-link rule-link--or">
+            <button class="btn" aria-label="Add a new OR condition">or</button>
+        </div>
+        <div class="rule-link rule-link--and">
+            <button class="btn" aria-label="Add a new AND condition">and</button>
+        </div>
+    </div>
+
+    <fieldset class="rule-block rule-block--return">
+        <legend class="hide">return</legend>
+        <div class="rule-block__header">
+            <h2 class="rule-block__heading">return</h2>
+        </div>
+        <div class="rule-block__controls">
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose return value',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose return value',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="rule-links">
+        <div class="rule-link rule-link--else-if">
+            <button class="btn">else if</button>
+        </div>
+    </div>
+
+    <fieldset class="rule-block rule-block--else-return">
+        <legend class="hide">If rule condition</legend>
+        <div class="rule-block__header">
+            <h2 class="rule-block__heading">else return</h2>
+        </div>
+        <div class="rule-block__controls">
+            <div class="rule-block__control">
+                {{
+                    form.select2({
+                        'class': 'form__group--medium',
+                        'id': 'guid-' ~ random(),
+                        'label': 'Choose return value',
+                        'show-label': false,
+                        'options': [
+                            {
+                                'label': 'Choose return value',
+                                'value': ''
+                            },
+                            {
+                                'label': 'Value one',
+                                'value': 'value1'
+                            },
+                            {
+                                'label': 'Value two',
+                                'value': 'value2'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+        </div>
+    </fieldset>
+</div>
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Create powerful logic-based rules</h2>
+    <p>Create formulae to calculate numeric and textual values</p>
+{% endblock tab_sidebar %}
