@@ -1,19 +1,20 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
 
 {% block tab_content %}
-<p><a data-toggle="modal" href="#myModal" class="btn">Launch Standard Modal</a></p>
-<p><button class="btn" data-toggle="modal" data-target="#myModal" class="btn">Launch Standard Modal via a button</button></p>
+<p><button class="btn" data-toggle="modal" data-target="#modalExample">Launch Standard Modal via a button</button></p>
+<p><button class="btn" data-toggle="modal" data-target="#modalTwo">Launch Danger Modal via a button</button></p>
+<p><button class="btn" data-toggle="modal" data-target="#modalThree">Launch Long Modal via a button</button></p>
 <p><a data-toggle="modal" href="#myFullScreenModal" class="btn">Launch Full Screen Modal</a></p>
 
-<div class="modal modal__example show" id="modalOne" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalOne-title" aria-describedby="modalOne-description">
+<div class="modal modal__example" id="modalExample" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalExample-title" aria-describedby="modalExample-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h1 class="modal__title" id="modalOne-title">A simple example</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal__title" id="modalExample-title">A simple example</h1>
             </div>
             <div class="modal__body">
-                <p id="modalOne-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                <p id="modalExample-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
                 <p>The modal body might have instructions, a form, or other stuff.</p>
                 {{
                     form.text({
@@ -278,11 +279,11 @@
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
 
-<div class="modal modal--danger modal__example show" id="modalTwo" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalTwo-title" aria-describedby="modalTwo-description">
+<div class="modal modal--danger modal__example" id="modalTwo" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalTwo-title" aria-describedby="modalTwo-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
                 <h1 class="modal__title" id="modalTwo-title"><i class="icon-warning-sign"></i> You're about to do something really, really bad</h1>
             </div>
             <div class="modal__body">
@@ -298,12 +299,12 @@
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="modalThree" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalThree-title" aria-describedby="modalThree-description">
+<div class="modal" id="modalThree" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalThree-title" aria-describedby="modalThree-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <form>
                 <div class="modal__header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
                     <h1 class="modal__title" id="modalThree-title">Standard modal</h1>
                 </div>
                 <div class="modal__body">
@@ -336,7 +337,7 @@
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
 
-<div class="modal modal--full-screen fade" id="myFullScreenModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="fullModal-title" aria-describedby="fullModal-description">
+<div class="modal modal--full-screen fade" id="myFullScreenModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="fullModal-title" aria-describedby="fullModal-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
@@ -348,10 +349,9 @@
 
                 <div class="modal__controls">
                     {{
-                        html.link({
-                            'href': '#',
+                        html.button({
                             'label': html.icon('times', {
-                                'label': 'Close'
+                                'label': 'Close modal dialog'
                             }),
                             'class': 'close',
                             'data-dismiss': 'modal',
@@ -378,7 +378,7 @@
                 <div class="modal__image">
                     <p id="fullModal-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
                     <figure class="scaled">
-                        <img class="scaled__image" src="../../../images/youtube.jpg" alt="Pexample image" />
+                        <img class="scaled__image" src="../../../images/youtube.jpg" alt="Example image" />
                     </figure>
                 </div>
             </div>

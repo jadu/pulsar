@@ -1,0 +1,171 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block tab_content %}
+
+<div class="piano-wrapper">
+    <div class="piano">
+        <ul class="piano__items">
+            <li class="piano__item">
+                <a href="./index.html.twig">
+                    <div class="piano__item-header">
+                        {{
+                            html.media({
+                                'image': '/images/services/address_finder.png',
+                                'title': 'Address Finder',
+                                'description': 'Address lookups via your custom-built address finder service',
+                                'action': html.status('active', {
+                                    'title': 'integration enabled'
+                                })
+                            })
+                        }}
+                    </div>
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./aws.html.twig">
+                    <div class="piano__item-header">
+                        {{
+                            html.media({
+                                'image': '/images/services/aws_lex.png',
+                                'title': 'AWS Simple Email Service',
+                                'description': 'Send emails with the AWS Simple Email Service',
+                                'action': html.status('inactive', {
+                                    'title': 'integration disabled'
+                                })
+                            })
+                        }}
+                    </div>
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./deployer.html.twig">
+                    <div class="piano__item-header">
+                        {{
+                            html.media({
+                                'image': '/images/services/cxm.png',
+                                'title': 'Jadu Deployer',
+                                'description': 'OAuth Client',
+                                'action': html.status('inactive', {
+                                    'title': 'integration disabled'
+                                })
+                            })
+                        }}
+                    </div>
+                </a>
+            </li>
+            <li class="piano__item is-selected">
+                <a href="./mailgun.html.twig">
+                    <div class="piano__item-header">
+                        {{
+                            html.media({
+                                'image': '/images/services/mailgun.png',
+                                'title': 'Mailgun',
+                                'description': 'Send emails via Mailgun',
+                                'action': html.status('inactive', {
+                                    'title': 'integration disabled'
+                                })
+                            })
+                        }}
+                    </div>
+                </a>
+                <section class="piano__item-content" aria-labelledby="example-piano-heading">
+
+                    <header class="piano__item-content-header">
+                        <h2 id="example-piano-heading" class="u-margin-bottom-none">Mailgun</h2>
+                    </header>
+
+                    <div class="masterswitch">
+                        {{
+                            form.create()
+                        }}
+
+                            {{
+                                form.toggle_switch({
+                                    'class': 'masterswitch-control',
+                                    'label': 'Enable integration',
+                                    'id': 'toggletest'
+                                })
+                            }}
+
+                            <hr/>
+
+                            <div class="masterswitch-content is-disabled">
+
+                                <p>Example help text.</p>
+
+
+                                {{
+                                    form.text({
+                                        'label': 'Domain',
+                                        'class': 'form__group--full',
+                                        'id': 'mailgunDomain',
+                                        'name': 'mailgunDomain',
+                                        'required': true,
+                                        'help': 'Example help text'
+                                    })
+                                }}
+
+                                {{
+                                    form.text({
+                                        'label': 'From name',
+                                        'class': 'form__group--full',
+                                        'id': 'mailgunFromName',
+                                        'name': 'mailgunFromName',
+                                        'required': true,
+                                        'help': 'Example help text'
+                                    })
+                                }}
+
+                                {{
+                                    form.text({
+                                        'label': 'From email',
+                                        'class': 'form__group--full',
+                                        'id': 'mailgunFromEmail',
+                                        'name': 'mailgunFromEmail',
+                                        'required': true,
+                                        'help': 'Example help text'
+                                    })
+                                }}
+                            </div>
+                        {{
+                            form.end({
+                                'actions': [
+                                    html.button({
+                                        'label': 'Save',
+                                        'class': 'btn--primary'
+                                    }),
+                                    html.button({
+                                        'label': 'Cancel',
+                                        'class': 'btn--naked'
+                                    })
+                                ]
+                            })
+                        }}
+                    </div>
+                </section>
+            </li>
+
+            <li class="piano__item">
+                <a href="./singlepoint.html.twig">
+                    <div class="piano__item-header">
+                        {{
+                            html.media({
+                                'image': '/images/services/singlepoint.png',
+                                'title': 'SinglePoint',
+                                'description': 'Allow address lookup by postcode in forms',
+                                'action': html.status('inactive', {
+                                    'title': 'integration disabled'
+                                })
+                            })
+                        }}
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock tab_content %}
