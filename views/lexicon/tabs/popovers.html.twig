@@ -5,11 +5,19 @@
 
 {% block tab_content %}
 
-      <p><button class="btn" data-toggle="popover" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">Toggle Demo Popover</button></p>
+    {{
+        flash.message({
+            'message': 'Deprecated due to lack of use and accessibility issues. Content should be displayed in a tooltip, modal or another alternative found.',
+            'type': 'warning',
+            'dismissable': false
+        })
+    }}
 
-      <p><button class="btn" data-toggle="popover" data-autoclose="true" title="Foo" data-content="Bar">Autoclose Popover</button></p>
+    <p class="u-margin-top--large"><button class="btn" data-toggle="popover" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">Toggle Demo Popover</button></p>
 
-      <p><button class="btn" rel="clickover" title="Foo" data-content="Bar">Legacy Clickover</button></p>
+    <p><button class="btn" data-toggle="popover" data-autoclose="true" title="Foo" data-content="Bar">Autoclose Popover</button></p>
+
+    <p><button class="btn" rel="clickover" title="Foo" data-content="Bar">Legacy Clickover</button></p>
 
 
 {% endblock tab_content %}
