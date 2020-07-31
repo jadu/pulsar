@@ -168,27 +168,33 @@ var $ = require('jquery');
 				id: 'skip-target'
 			});
 		});
-		
+
+		// Make the current tabs .tab__content <main> and the previous tabs .tab__content <div>
+		// to avoid multiple <main>'s in the DOM at one time
 		$('.nav-inline [data-toggle="tab"]').on('show.bs.tab', function (e) {
-			var showTab = $(e.target).attr('href'),
-				hideTab = $(e.relatedTarget).attr('href');
+			// New tab
+			// Get the contents of tab and move to newly created main.tab__content
+			// Then remove new tabs div.tab__content
+			var $newTab = $($(e.target).attr('href')),
+				$newTabInner = $newTab.find('.tab__inner'),
+				$newTabChildrenOfMain = $newTab.find('.tab__content').contents(),
+				$newTabNewMain = $('<main class="tab__content"></main>').append($newTabChildrenOfMain),
+				$newTabOldMain = $newTab.find('.tab__content');
 
-			// Switch active tab to use <main> element
-			$(showTab).find('.tab__content').replaceWith(function () {
-				return $('<main />', {
-					html: $(this).html(),
-					class: 'tab__content',
-					id: 'skip-target'
-				});
-			});
+			$newTabOldMain.remove();
+			$newTabNewMain.prependTo($newTabInner);
 
-			// Switch tab being hidden to use <div>
-			$(hideTab).find('.tab__content').replaceWith(function () {
-				return $('<div />', {
-					html: $(this).html(),
-					class: 'tab__content'
-				});
-			});
+			// Previous tab
+			// Get contents of the tab and move to newly created div.tab__content
+			// then remove previous tabs main.tab__content
+			var $previousTab = $($(e.relatedTarget).attr('href')),
+				$previousTabInner = $previousTab.find('.tab__inner'),
+				$previousTabChildrenOfMain = $previousTab.find('.tab__content').contents(),
+				$previousTabNewMain = $('<div class="tab__content"></div>').append($previousTabChildrenOfMain),
+				$previousTabOldMain = $previousTab.find('.tab__content');
+
+			$previousTabOldMain.remove();
+			$previousTabNewMain.prependTo($previousTabInner);
 		});
 	});
 
