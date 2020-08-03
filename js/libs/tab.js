@@ -156,46 +156,4 @@ var $ = require('jquery');
 		}
 	});
 
-	$(document).ready(function() {
-		// Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
-		$('.tabs > .tabs__content > .tab__pane').css('min-height', $('.tabs__list').height());
-
-		// Switch the first active tab to use <main> with the skip target
-		$('.tab__pane.is-active').find('.tab__content').replaceWith(function () {
-			return $('<main />', {
-				html: $(this).html(),
-				class: 'tab__content',
-				id: 'skip-target'
-			});
-		});
-
-		// Make the current tabs .tab__content <main> and the previous tabs .tab__content <div>
-		// to avoid multiple <main>'s in the DOM at one time
-		$('.nav-inline [data-toggle="tab"]').on('show.bs.tab', function (e) {
-			// New tab
-			// Get the contents of tab and move to newly created main.tab__content
-			// Then remove new tabs div.tab__content
-			var $newTab = $($(e.target).attr('href')),
-				$newTabInner = $newTab.find('.tab__inner'),
-				$newTabChildrenOfMain = $newTab.find('.tab__content').contents(),
-				$newTabNewMain = $('<main class="tab__content"></main>').append($newTabChildrenOfMain),
-				$newTabOldMain = $newTab.find('.tab__content');
-
-			$newTabOldMain.remove();
-			$newTabNewMain.prependTo($newTabInner);
-
-			// Previous tab
-			// Get contents of the tab and move to newly created div.tab__content
-			// then remove previous tabs main.tab__content
-			var $previousTab = $($(e.relatedTarget).attr('href')),
-				$previousTabInner = $previousTab.find('.tab__inner'),
-				$previousTabChildrenOfMain = $previousTab.find('.tab__content').contents(),
-				$previousTabNewMain = $('<div class="tab__content"></div>').append($previousTabChildrenOfMain),
-				$previousTabOldMain = $previousTab.find('.tab__content');
-
-			$previousTabOldMain.remove();
-			$previousTabNewMain.prependTo($previousTabInner);
-		});
-	});
-
 module.exports = Tab;
