@@ -159,7 +159,37 @@ var $ = require('jquery');
 	$(document).ready(function() {
 		// Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
 		$('.tabs > .tabs__content > .tab__pane').css('min-height', $('.tabs__list').height());
+
+		// Switch the first active tab to use <main> with the skip target
+		$('.tab__pane.is-active').find('.tab__content').replaceWith(function () {
+			return $('<main />', {
+				html: $(this).html(),
+				class: 'tab__content',
+				id: 'skip-target'
+			});
+		});
+		
+		$('.nav-inline [data-toggle="tab"]').on('show.bs.tab', function (e) {
+			var showTab = $(e.target).attr('href'),
+				hideTab = $(e.relatedTarget).attr('href');
+
+			// Switch active tab to use <main> element
+			$(showTab).find('.tab__content').replaceWith(function () {
+				return $('<main />', {
+					html: $(this).html(),
+					class: 'tab__content',
+					id: 'skip-target'
+				});
+			});
+
+			// Switch tab being hidden to use <div>
+			$(hideTab).find('.tab__content').replaceWith(function () {
+				return $('<div />', {
+					html: $(this).html(),
+					class: 'tab__content'
+				});
+			});
+		});
 	});
 
 module.exports = Tab;
-
