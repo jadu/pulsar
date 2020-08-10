@@ -28,15 +28,29 @@
 
 {% block tab_content %}
 
-    <div class="filter-bar display--none">
+    <div class="filter-bar u-display-none">
         {{ form.create() }}
             {{ form.fieldset_start({'legend': 'Filter by'}) }}
 
                 {{
                     form.select2({
-                        'label': 'Colour',
-                        'id': 'colour-4',
+                        'label': 'Colour (single + ph)',
+                        'id': 'colour-' ~ random(),
+                        'data-placeholder': 'Select One',
+                        'options': {
+                            '': 'Select one',
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour 3 (multi + ph)',
+                        'id': 'colour-' ~ random(),
                         'multiple': true,
+                        'data-placeholder': 'Select one or more',
                         'options': {
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
@@ -46,13 +60,12 @@
 
                 {{
                     form.select2({
-                        'label': 'Size',
-                        'id': 'size-4',
+                        'label': 'Colour 4 (multi no ph)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
                         'options': {
-                            '': '',
-                            'small': 'Small',
-                            'medium': 'Medium',
-                            'large': 'Large'
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
                         }
                     })
                 }}
@@ -60,28 +73,31 @@
                 {{
                     form.text({
                         'label': 'Text field example',
-                        'id': 'foo-4'
+                        'id': 'foo-' ~ random(),
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.date({
                         'label': 'Added from',
-                        'id': 'addedFrom-4',
+                        'id': 'addedFrom-' ~ random(),
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.date({
                         'label': 'Added to',
-                        'id': 'addedTo-4'
+                        'id': 'addedTo-' ~ random(),
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.checkbox({
                         'label': 'In stock',
-                        'id': 'inStock-4'
+                        'id': 'inStock-' ~ random(),
                     })
                 }}
 
