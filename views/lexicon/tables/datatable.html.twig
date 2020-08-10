@@ -229,9 +229,11 @@
     </ul>
     <pre><code tabindex="0" class="hljs">&#123;&#123;
     html.datatable(&#123;
-        'class': 'table--full',
         'data-order': '[[ 3, "desc" ]]',
-        'data': data
+        'data': data,
+        'data-select': 'false',
+        'data-length-change': 'true',
+        'caption': 'A list of films featuring Arnold Schwarzenegger'
     &#125;)
 &#125;&#125;</code></pre>
 {% endblock tab_sidebar %}
