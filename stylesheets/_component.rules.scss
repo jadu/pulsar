@@ -3,7 +3,7 @@
     position: relative;
 
     &::before {
-        background: #dedede;
+        background: color(gray, lightest);
         content: '';
         height: 85%;
         left: 55px;
@@ -185,10 +185,10 @@
     }
 
     &::after {
-        color: #dedede;
+        color: color(gray, lightest);
         content: '\f061';
         font-family: 'FontAwesome';
-        font-size: 19px;
+        font-size: $font-size-large;
         left: 0;
         position: absolute;
         top: 7px;
@@ -210,7 +210,7 @@
     }
 
     &::before {
-        background: #dedede;
+        background: color(gray, lightest);
         content: '';
         height: 30px;
         left: 0;
@@ -225,7 +225,7 @@
     }
 
     &::after {
-        color: #dedede;
+        color: color(gray, lightest);
         content: '\f061';
         font-family: 'FontAwesome';
         font-size: 19px;
@@ -240,7 +240,7 @@
     font-size: 1.2em;
 
     i {
-        color: #dedede;
+        color: color(gray, lightest);
         display: inline-block;
         margin-right: 5px;
         text-decoration: none;
@@ -381,7 +381,7 @@ td.table__form .rules + .form__group:last-of-type {
         padding-bottom: 10px;
 
         &::after {
-            color: #dedede;
+            color: color(gray, lightest);
             content: '\f061';
             font-family: 'FontAwesome';
             font-size: 19px;
