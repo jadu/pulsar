@@ -35,6 +35,7 @@
     );
     pulsar.modalFocusService = new pulsar.ModalFocusService();
     pulsar.modalListener = new pulsar.ModalListener(pulsar.modalFocusService);
+    pulsar.tabEnhancements = new pulsar.TabEnhancements(document);
 
     $(function () {
         pulsar.button.init();
@@ -74,6 +75,9 @@
 
         // Favicon editor
         pulsar.faviconEditor.init();
+
+        // Tab Enhacements
+        pulsar.tabEnhancements.init($html);
     });
 
 }(jQuery));
