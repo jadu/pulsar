@@ -139,10 +139,6 @@
     }
 }
 
-.controls > .textarea {
-    max-width: 99%; // take into account any textarea border which might look like it’s overlapping at 100% width
-}
-
 // at narrow viewports, forms collapse into a single column view
 @include respond-max($screen-smaller) {
     .form__group {

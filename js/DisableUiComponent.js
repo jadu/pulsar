@@ -38,7 +38,8 @@ DisableUiComponent.prototype.disable = function (target) {
         $this.find(LINK_ELEMENTS)
             .on('click', preventDefaultAndStopPropagation)
             .addClass('js-disabled u-cursor-not-allowed')
-            .prop('aria-disabled', 'true');
+            .attr('aria-disabled', 'true')
+            .attr('tabindex', '-1');
 
         // Wrap with disabled wrapper to visually disable
         $this.wrap('<div class="u-ui-disabled" aria-disabled="true"></div>');
@@ -69,7 +70,8 @@ DisableUiComponent.prototype.enable = function (target) {
         $this.find(LINK_ELEMENTS)
             .off('click', preventDefaultAndStopPropagation)
             .removeClass('js-disabled u-cursor-not-allowed')
-            .removeProp('aria-disabled');
+            .removeAttr('aria-disabled')
+            .removeAttr('tabindex');
 
         // Remove wrapper which provides visually disabled styling
         if ($this.parent().hasClass('u-ui-disabled')) {

@@ -1,40 +1,72 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
 
 {% block tab_content %}
-<p><a data-toggle="modal" href="#myModal" class="btn">Launch Standard Modal</a></p>
-<p><button class="btn" data-toggle="modal" data-target="#myModal" class="btn">Launch Standard Modal via a button</button></p>
-<p><a data-toggle="modal" href="#myFullScreenModal" class="btn">Launch Full Screen Modal</a></p>
+<h2>Modal focus management examples</h2>
+<p>
+    Launch a modal that contains a form but no inputs - close X should be focussed <br/>
+    <button class="btn" data-toggle="modal" data-target="#modalExample">Launch Modal 1</button>
+</p>
 
-<div class="modal modal__example show" id="modalOne" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalOne-title" aria-describedby="modalOne-description">
+<p>
+    Launch a modal that contains an input but no form - input should be focussed <br />
+    <button class="btn" data-toggle="modal" data-target="#modalTwo">Launch Modal 2</button>
+</p>
+
+<p>
+    Launch a modal that doesn't contant a form, or inputs, or close X button - cancel button should be focussed <br/>
+    <button class="btn" data-toggle="modal" data-target="#modalThree">Launch Modal 3</button>
+</p>
+
+<h2>Modal variation examples</h2>
+<p>
+    Launch a modal with a lot of content <br/>
+    <button class="btn" data-toggle="modal" data-target="#modalFour">Launch Long Modal</button>
+</p>
+
+<p>
+    Launch a full page modal, from a link <br/>
+    <a data-toggle="modal" href="#myFullScreenModal" class="btn">Launch Full Screen Modal</a>
+</p>
+
+<div class="modal modal__example" id="modalExample" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalExample-title" aria-describedby="modalExample-description">
     <div class="modal__dialog">
         <div class="modal__content">
-            <div class="modal__header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h1 class="modal__title" id="modalOne-title">A simple example</h1>
-            </div>
-            <div class="modal__body">
-                <p id="modalOne-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
-                <p>The modal body might have instructions, a form, or other stuff.</p>
-            </div>
-            <div class="modal__footer">
-                <button type="button" class="btn btn--primary">Save Changes</button>
-                <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
-            </div>
+            <form>
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal__title" id="modalExample-title">A simple example</h1>
+                </div>
+                <div class="modal__body">
+                    <p id="modalExample-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                    <p>The modal body might have instructions, a form, or other stuff.</p>
+                </div>
+                <div class="modal__footer">
+                    <button type="button" class="btn btn--primary">Save Changes</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div><!-- /.modal__content -->
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
 
-<div class="modal modal--danger modal__example show" id="modalTwo" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalTwo-title" aria-describedby="modalTwo-description">
+<div class="modal modal--danger modal__example" id="modalTwo" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalTwo-title" aria-describedby="modalTwo-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
                 <h1 class="modal__title" id="modalTwo-title"><i class="icon-warning-sign"></i> You're about to do something really, really bad</h1>
             </div>
             <div class="modal__body">
                 <p id="modalTwo-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
                 <p>We mainly use modals to get you to stop and confirm that you really want to delete something, and remind you that this action cannot be reversed.</p>
                 <p>A modal's action buttons should be written so that if a user only reads the buttons, they should get an idea of the action they're about to perform instead of blindly clicking 'OK' or 'Confirm'.</p>
+
+                {{
+                    form.checkbox_inline({
+                        'id': 'guid-' ~ random(),
+                        'label': 'I understand something bad might happen'
+                    })
+                }}
             </div>
             <div class="modal__footer">
                 <button type="button" class="btn btn--danger">Delete Everything</button>
@@ -44,13 +76,34 @@
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="modalThree" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalThree-title" aria-describedby="modalThree-description">
+<div class="modal modal__example" id="modalThree" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalThree-title" aria-describedby="modalThree-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <form>
                 <div class="modal__header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">&times;</button>
-                    <h1 class="modal__title" id="modalThree-title">Standard modal</h1>
+                    <h1 class="modal__title" id="modalThree-title">A simple example</h1>
+                </div>
+                <div class="modal__body">
+                    <p id="modalThree-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                    <p>The modal body might have instructions, a form, or other stuff.</p>
+                </div>
+                <div class="modal__footer">
+                    <button type="button" class="btn btn--primary">Save Changes</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" id="modalFour" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalFour-title" aria-describedby="modalFour-description">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <form>
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal__title" id="modalFour-title">Standard modal</h1>
                 </div>
                 <div class="modal__body">
 
@@ -61,7 +114,7 @@
                         })
                     }}
 
-                    <p id="modalThree-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                    <p id="modalFour-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra dui ac congue fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc sit amet feugiat diam. Proin eu condimentum elit. Donec facilisis urna sed tortor semper tincidunt. Maecenas tortor justo, rhoncus a luctus eget, consectetur suscipit est. In molestie posuere lectus. Vestibulum sit amet ligula odio. Nulla lobortis neque ac porta accumsan.</p>
 
@@ -82,7 +135,7 @@
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
 
-<div class="modal modal--full-screen fade" id="myFullScreenModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="fullModal-title" aria-describedby="fullModal-description">
+<div class="modal modal--full-screen fade" id="myFullScreenModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="fullModal-title" aria-describedby="fullModal-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
@@ -94,10 +147,9 @@
 
                 <div class="modal__controls">
                     {{
-                        html.link({
-                            'href': '#',
+                        html.button({
                             'label': html.icon('times', {
-                                'label': 'Close'
+                                'label': 'Close modal dialog'
                             }),
                             'class': 'close',
                             'data-dismiss': 'modal',
@@ -124,7 +176,7 @@
                 <div class="modal__image">
                     <p id="fullModal-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
                     <figure class="scaled">
-                        <img class="scaled__image" src="../../../images/youtube.jpg" alt="Pexample image" />
+                        <img class="scaled__image" src="../../../images/youtube.jpg" alt="Example image" />
                     </figure>
                 </div>
             </div>

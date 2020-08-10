@@ -9,7 +9,8 @@
     {{
         form.radio({
             'id': 'guid-' ~ random(),
-            'label': 'Radio'
+            'label': 'Radio',
+            'name': 'radio-example-1'
         })
     }}
 
@@ -17,7 +18,8 @@
         form.radio({
             'id': 'guid-' ~ random(),
             'label': 'Radio selected',
-            'checked': true
+            'checked': true,
+            'name': 'radio-example-2'
         })
     }}
 
@@ -25,7 +27,8 @@
         form.radio({
             'id': 'guid-' ~ random(),
             'label': 'Required',
-            'required': true
+            'required': true,
+            'name': 'radio-example-3'
         })
     }}
 
@@ -33,7 +36,8 @@
         form.radio({
             'id': 'guid-' ~ random(),
             'label': 'Radio with help',
-            'help': 'Help text to give more information about expected input'
+            'help': 'Help text to give more information about expected input',
+            'name': 'radio-example-4'
         })
     }}
 
@@ -42,7 +46,8 @@
             'id': 'guid-' ~ random(),
             'label': 'Radio',
             'show-label': false,
-            'help': 'This example hides the label with the <code>show-label</code> option'
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'name': 'radio-example-5'
         })
     }}
 

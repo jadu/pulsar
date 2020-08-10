@@ -174,36 +174,6 @@ describe('PulsarFormComponent', function() {
 
     });
 
-    describe('Changing to a tab that contains select2 elements', function() {
-
-        beforeEach(function() {
-            this.pulsarForm.init();
-            this.pulsarForm.initSelect2 = sinon.stub();
-            this.$tabToggle.trigger('shown.bs.tab');
-        });
-
-        it('Should trigger the select2 init method', function() {
-            expect(this.pulsarForm.initSelect2).to.have.been.called;
-        });
-    });
-
-    describe('Opening a modal that contains select2 elements', function() {
-
-        beforeEach(function() {
-            this.pulsarForm.init();
-            this.pulsarForm.initSelect2 = sinon.stub();
-            this.$modalToggle.click();
-            this.$modal.trigger('shown.bs.modal');
-        });
-
-        it('Should trigger the select2 init method', function(done) {
-            setTimeout(() => {
-                expect(this.pulsarForm.initSelect2).to.have.been.called;
-                done();
-            }, 500);
-        });
-    });
-
     describe('Clicking a choice block radio input', function() {
 
         beforeEach(function() {

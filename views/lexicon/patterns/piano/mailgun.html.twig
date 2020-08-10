@@ -1,4 +1,4 @@
-{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+{% extends '@pulsar/lexicon/base.html.twig' %}
 
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
@@ -7,19 +7,30 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'Integrations' %}
+{% set heading = 'Piano' %}
 
-{% set tab_singlepoint_one %}
-    {% include 'playground/integrations/singlepoint_one.html.twig' %}
+{% set tab_one %}
+    {% include '/lexicon/patterns/piano/tab_mailgun.html.twig' %}
+{% endset %}
+
+{% set tab_two %}
+    {% include '/lexicon/patterns/piano/tab_messages.html.twig' %}
 {% endset %}
 
 {%
     set tabs_content = [
         {
+          "class" : "ui-report",
           "id"    : "integrations",
           "label" : "Integrations",
-          "src"   : tab_singlepoint_one,
+          "src"   : tab_one,
           "active": true
+        },
+        {
+          "class" : "ui-report",
+          "id"    : "messages",
+          "label" : "Messages",
+          "src"   : tab_two
         }
     ]
 %}

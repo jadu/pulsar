@@ -9,7 +9,8 @@
     {{
         form.checkbox({
             'id': 'guid-' ~ random(),
-            'label': 'Checkbox'
+            'label': 'Checkbox',
+            'name': 'checkbox-example-1'
         })
     }}
 
@@ -17,7 +18,8 @@
         form.checkbox({
             'id': 'guid-' ~ random(),
             'label': 'Checkbox checked',
-            'checked': true
+            'checked': true,
+            'name': 'checkbox-example-2'
         })
     }}
 
@@ -25,7 +27,8 @@
         form.checkbox({
             'id': 'guid-' ~ random(),
             'label': 'Required',
-            'required': true
+            'required': true,
+            'name': 'checkbox-example-3'
         })
     }}
 
@@ -33,7 +36,8 @@
         form.checkbox({
             'id': 'guid-' ~ random(),
             'label': 'Checkbox with help',
-            'help': 'Help text to give more information about expected input'
+            'help': 'Help text to give more information about expected input',
+            'name': 'checkbox-example-4'
         })
     }}
 
@@ -42,7 +46,8 @@
             'id': 'guid-' ~ random(),
             'label': 'Checkbox with hidden label',
             'show-label': false,
-            'help': 'This example hides the label with the <code>show-label</code> option'
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'name': 'checkbox-example-5'
         })
     }}
 

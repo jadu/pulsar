@@ -24,7 +24,7 @@ describe('HelpTextComponent', function() {
         this.$tabContainer = $('<div class="tab__container"></div>').appendTo(this.$tabPane)
         this.$tabContent = $('<div class="tab__content"></div>').appendTo(this.$tabContainer);
         this.$tabContentLink = $('<a href="#">link outside of sidebar</a>').appendTo(this.$tabContent);
-        this.$tabSidebar = $('<div class="tab__sidebar">Some help text</div>').appendTo(this.$tabContainer);
+        this.$tabSidebar = $('<div class="tab__sidebar">Some help text <a href="#">link</a></div>').appendTo(this.$tabContainer);
 
         this.helpTextComponent = new HelpTextComponent(this.$html, this.window, this.$document[0]);
     });
@@ -46,7 +46,7 @@ describe('HelpTextComponent', function() {
         });
 
         it('should copy the active tabs sidebar contents to the tab-help container', function() {
-            expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text');
+            expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help" tabindex="-1"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text <a href="#" tabindex="-1">link</a>');
         });
 
         it('should add the help-close button to the tab-help container', function() {
@@ -55,6 +55,10 @@ describe('HelpTextComponent', function() {
 
         it('should add the help toggle button to the toolbar', function() {
             expect(this.$toolbar.find('.js-show-page-help').length).to.equal(1);
+        });
+
+        it('should add tabindex="-1" to all links and buttons', function () {
+            expect(this.$tabHelp.find('a').attr('tabindex')).to.equal('-1')
         });
     });
 
@@ -102,8 +106,14 @@ describe('HelpTextComponent', function() {
             sinon.spy(this.helpTextComponent, 'toggleHelpSidebar');
             this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
             this.$tabHelpContainer.trigger('transitionend');
-            
+
             expect(this.helpTextComponent.toggleHelpSidebar).to.have.been.called;
+        });
+
+        it('should remove tabindex="-1" from all links and buttons', function () {
+            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+
+            expect(this.$tabHelp.find('a').attr('tabindex')).to.be.undefined;
         });
     });
 
@@ -154,6 +164,10 @@ describe('HelpTextComponent', function() {
             this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$tabHelpContainer.attr('aria-hidden')).to.equal('true');
+        });
+
+        it('should add tabindex="-1" to all links and buttons', function () {
+            expect(this.$tabHelp.find('a').attr('tabindex')).to.equal('-1')
         });
     });
 
@@ -284,7 +298,7 @@ describe('HelpTextComponent', function() {
         });
 
         it('should copy the active tabs sidebar contents to the tab-help container', function() {
-            expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text');
+            expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help" tabindex="-1"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text <a href="#" tabindex="-1">link</a>');
         });
 
         it('should add the help-close button to the tab-help container', function() {

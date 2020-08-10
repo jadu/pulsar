@@ -7,16 +7,18 @@
 
     [class^="icon-"],
     [class*=" icon-"] {
-        color: color(gray, light);
+        color: color(black);
         font-size: 1.2em;
         vertical-align: middle;
     }
 
     &:hover {
-        [class^="icon-"],
-        [class*=" icon-"] {
-            color: color(black);
-        }
+        transform: none;
+    }
+
+    &:focus {
+        @include pulsar-icon-button-focused;
+        transform: none;
     }
 }
 

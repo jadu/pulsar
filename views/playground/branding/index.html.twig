@@ -13,6 +13,10 @@
     {% include 'playground/branding/tab_branding.html.twig' %}
 {% endset %}
 
+{% set tab_branding_two %}
+    {% include 'playground/branding/branding.html.twig' %}
+{% endset %}
+
 {%
     set tabs_content = [
         {
@@ -29,12 +33,12 @@
         {
           "id"    : "webhooks",
           "label" : "Webhooks",
-          "src"   : tab_branding
+          "src"   : tab_branding_two
         },
         {
           "id"    : "integrations",
           "label" : "Integrations",
-          "src"   : tab_branding
+          "src"   : tab_branding_two
         }
     ]
 %}
