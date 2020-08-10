@@ -21,7 +21,6 @@ class TabEnhancements {
         // Switch the first active tab to use <main> with the skip target
         this.changeActiveTabElementToMain(this.$html.find('.tab__pane.is-active'));
 
-
         // Make the current tabs .tab__content <main> and the previous tabs .tab__content <div>
         // to avoid multiple <main>'s in the DOM at one time
         this.$html.find('.nav-inline [data-toggle="tab"]').on('show.bs.tab', (event) => {
