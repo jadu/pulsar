@@ -9,7 +9,8 @@
     {{
         form.toggle_switch({
             'id': 'guid-' ~ random(),
-            'label': 'Toggle switch'
+            'label': 'Toggle switch',
+            'name': 'toggle-example-1'
         })
     }}
 
@@ -17,7 +18,8 @@
         form.toggle_switch({
             'id': 'guid-' ~ random(),
             'label': 'Required',
-            'required': true
+            'required': true,
+            'name': 'toggle-example-2'
         })
     }}
 
@@ -25,24 +27,8 @@
         form.toggle_switch({
             'id': 'guid-' ~ random(),
             'label': 'Toggle switch with help',
-            'help': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.toggle_switch({
-            'id': 'guid-' ~ random(),
-            'label': 'Toggle switch with guidance',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.toggle_switch({
-            'id': 'guid-' ~ random(),
-            'label': 'Required guidance',
-            'guidance': 'Help text to give more information about expected input',
-            'required': true
+            'help': 'Help text to give more information about expected input',
+            'name': 'toggle-example-3'
         })
     }}
 
@@ -60,7 +46,6 @@
         form.toggle_switch({
             'id': 'guid-' ~ random(),
             'label': 'Toggle switch with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
-            'guidance': 'Help text to give more information about expected input',
             'help': 'Example block-level help text here'
         })
     }}

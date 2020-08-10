@@ -1,4 +1,4 @@
-{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+{% extends '@pulsar/lexicon/base.html.twig' %}
 
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
@@ -7,19 +7,43 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
+<<<<<<< HEAD:views/playground/workflow-designer/index.html.twig
 {% set heading = 'My Awesome Advanced Workflow' %}
 
 {% set tab_designer %}
     {% include 'playground/workflow-designer/designer.html.twig' %}
+=======
+{% set heading = 'Piano' %}
+
+{% set tab_one %}
+    {% include '/lexicon/patterns/piano/tab_deployer.html.twig' %}
+{% endset %}
+
+{% set tab_two %}
+    {% include '/lexicon/patterns/piano/tab_messages.html.twig' %}
+>>>>>>> filterbar-and-tab-fixes:views/lexicon/patterns/piano/deployer.html.twig
 {% endset %}
 
 {%
     set tabs_content = [
         {
+<<<<<<< HEAD:views/playground/workflow-designer/index.html.twig
           "id"    : "designer",
           "label" : "Workflow Designer",
           "src"   : tab_designer,
+=======
+          "class" : "ui-report",
+          "id"    : "integrations",
+          "label" : "Integrations",
+          "src"   : tab_one,
+>>>>>>> filterbar-and-tab-fixes:views/lexicon/patterns/piano/deployer.html.twig
           "active": true
+        },
+        {
+          "class" : "ui-report",
+          "id"    : "messages",
+          "label" : "Messages",
+          "src"   : tab_two
         }
     ]
 %}

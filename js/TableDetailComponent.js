@@ -20,10 +20,10 @@ class TableDetailComponent {
         }
 
         let $panelHtml = $(
-            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true" aria-hidden="true">' +
+            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="table-detail-title">' +
             '   <div class="table-detail__header">' +
             '       <button type="button" class="close table-detail__header-close" data-table-detail-close-panel aria-label="Close" tabindex="-1"><span aria-hidden="true">&times;</span></button>' +
-            '       <h1 class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
+            '       <h1 id="table-detail-title" class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
             '   </div>' +
             '   <div class="table-detail__body" data-table-detail-panel-body></div>' +
             '</div>'
@@ -66,10 +66,20 @@ class TableDetailComponent {
         this.$tableDetailBackdrop = this.$html.find('.table-detail-backdrop');
 
         // Open click listener
-        this.$table.find('[data-table-detail-view-detail]').on('click', (event) => {
+        this.$table.on('click', '[data-table-detail-view-detail]', (event) => {
             event.preventDefault();
-            let detailContent = $(event.currentTarget).closest('tr').data('table-detail-content');
-            let customDetailPanelTitle = $(event.currentTarget).closest('tr').data('table-detail-panel-custom-title');
+
+            let $parentRow = $(event.currentTarget).closest('tr');
+
+            // If the table is in DT collapse mode, and the detail trigger is in the child row
+            // then fetch the detail content from the appropriate parent row
+            if ($parentRow.hasClass('child')) {
+                $parentRow = $parentRow.prev();
+            }
+
+            let detailContent = $parentRow.data('table-detail-content');
+            let customDetailPanelTitle = $parentRow.data('table-detail-panel-custom-title');
+
             $triggeringElement = $(event.target);
 
             this.viewDetail(detailContent, customDetailPanelTitle);

@@ -97,6 +97,11 @@
     padding-bottom: 0 !important;
 }
 
+%u-margin-right-small,
+.u-margin-right-small {
+    margin-right: $margin-base / 2 !important;
+}
+
 /**
  * -----------------------------------------------------------------------------
  * Visibility
@@ -368,6 +373,10 @@ p.success {
     @extend %u-cursor-not-allowed;
 
     opacity: .25 !important;
+
+    a.is-disabled {
+        color: color(link);
+    }
 }
 
 %u-no-hover:hover,

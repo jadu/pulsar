@@ -22,7 +22,8 @@
     pulsar.signIn = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
-    pulsar.navMain = new pulsar.NavMainComponent($html, window);
+    pulsar.focusManagementService = new pulsar.FocusManagementService();
+    pulsar.navMain = new pulsar.NavMainComponent($html, window, pulsar.focusManagementService);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
     pulsar.faviconEditor = new pulsar.FaviconEditor(document.head);
     pulsar.stickySidebar = new pulsar.StickySidebarComponent($html, window);
@@ -34,6 +35,7 @@
     );
     pulsar.modalFocusService = new pulsar.ModalFocusService();
     pulsar.modalListener = new pulsar.ModalListener(pulsar.modalFocusService);
+    pulsar.tabEnhancements = new pulsar.TabEnhancements(document);
 
     $(function () {
         pulsar.button.init();
@@ -58,6 +60,7 @@
         pulsar.tooltipListener = pulsar.tooltipFactory($html);
         pulsar.tooltipListener.init();
         pulsar.modalListener.listen($html);
+        pulsar.datePicker.init($html);
 
         // jsTree
         $('#container').jstree({
@@ -72,6 +75,9 @@
 
         // Favicon editor
         pulsar.faviconEditor.init();
+
+        // Tab Enhacements
+        pulsar.tabEnhancements.init($html);
     });
 
 }(jQuery));

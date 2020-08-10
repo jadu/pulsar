@@ -60,7 +60,7 @@ function createFilterListButton ($filterbar) {
     });
 
     // Build up list and mark up for Add filter button
-    $addFilterButton = $('<button class="btn filter-bar__add" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content="" aria-haspopup="true"><i class="icon-plus"><span class="hide">Add</span></i></button>');
+    $addFilterButton = $('<button class="btn filter-bar__add" type="button" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content="" aria-haspopup="true"><i class="icon-plus"><span class="hide">Add</span></i></button>');
     $addFilterButton.attr('data-content', $filterList[0].outerHTML);
 
     // Append button and label wrapper
@@ -116,7 +116,7 @@ function showAddFilterPopover ($filterbar) {
         updateFilterList($addFilterButton, filterId, 'hide');
 
         // Add new filter label
-        $filterLabel = $('<span class="label label--primary label--large" data-filter-id="'+ filterId +'">' + filterTitle + ' <span class="chosen-filter"></span></span>');
+        $filterLabel = $('<span class="label label--primary label--large label--removable" data-filter-id="'+ filterId +'"><span class="label__text">' + filterTitle + ' <span class="chosen-filter"></span></span></span>');
         $filterLabel.insertBefore($addFilterButton);
 
         // If checkbox, check it but no need to display it or move to popover
@@ -130,7 +130,7 @@ function showAddFilterPopover ($filterbar) {
 
             // Add the remove button to the label
             filterId = $filterLabel.attr('data-filter-id');
-            $filterLabel.append('<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a>');
+            $filterLabel.append('<button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></button>');
 
             // Add the label
             $filterLabel
@@ -160,12 +160,12 @@ function showAddFilterPopover ($filterbar) {
                     .addClass('hide');
 
             // Add popover controls
-            $popoverControls = $('<div class="form__actions form__actions--flush"><button type="submit" class="btn btn--primary is-disabled" data-ui="add-filter" disabled="disabled">Add</button><a type="link" data-ui="filter-cancel" data-filter-id="' + filterId + '" href="#" class="btn btn--naked">Cancel</a></div>');
+            $popoverControls = $('<div class="form__actions form__actions--flush"><button type="submit" class="btn btn--primary is-disabled" data-ui="add-filter" disabled="disabled">Add</button><button type="button" data-ui="filter-cancel" data-filter-id="' + filterId + '" class="btn btn--naked">Cancel</button></div>');
             $popoverControls.insertAfter($formGroup);
 
             // Refresh the select2
             $select2 = $popoverContent.find('.js-select2:not([data-init="false"])');
-            select2Placeholder = $select2.attr('placeholder');
+            select2Placeholder = $select2.attr('data-placeholder');
             $select2.select2({placeholder: select2Placeholder});
 
             // Trigger popover with form field on added label
@@ -263,7 +263,7 @@ function addFilter ($filterbar) {
 
         // Add the remove button to the label
         filterId = $label.attr('data-filter-id');
-        $label.append('<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a>');
+        $label.append('<button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></button>');
 
         // Swap classes
         $label
@@ -441,7 +441,11 @@ function populateFilterList ($filterbar) {
             filterValue = $filterField.val();
 
         if ($filterField.hasClass('select')) {
-            filterValue = $(':selected', $filterField).text();
+            if ($filterField.prop('multiple')) {
+                filterValue = $filterField.find('option:selected').toArray().map(item => item.text).join(', ');
+            } else if ($filterField.find('option:selected').val()) {
+                filterValue = $filterField.find('option:selected').text();
+            }
         }
 
         if ($filterField[0].type === 'checkbox') {
@@ -454,8 +458,8 @@ function populateFilterList ($filterbar) {
             filterLabel = filterLabel + ': ';
         }
 
-        if (filterValue !== '' && filterValue !== null) {
-            $labelContainer.prepend('<span class="label label--large label--inverse" data-filter-id="' + filterId + '">' + filterLabel + filterValue + '<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a></span>');
+        if (filterValue !== '' && filterValue !== null && filterValue.length !== 0) {
+            $labelContainer.prepend('<span class="label label--large label--inverse label--removable" data-filter-id="' + filterId + '"><span class="label__text">' + filterLabel + filterValue + '</span><button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></button></span>');
 
             // Keep track of how many filters have already been applied
             hiddenFormGroups++;

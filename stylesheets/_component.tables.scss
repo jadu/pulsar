@@ -241,6 +241,10 @@ td.table__form {
 td.table__form,
 .table__form td {
     background-color: color(background);
+
+    .help-block {
+        color: color(text);
+    }
 }
 
 .table-container + .pagination {

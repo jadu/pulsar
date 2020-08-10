@@ -16,7 +16,7 @@ describe('FilterBarComponent', function () {
 			'			<div class="form__group">' +
 			'				<label for="colour" class="control__label">Colour</label>' +
 			'				<div class="controls">' +
-			'					<select id="colour" multiple="" placeholder="Choose one or more" class="form__control select js-select2">' +
+			'					<select id="colour" multiple="" data-placeholder="Choose one or more" class="form__control select js-select2">' +
 			'						<option value="colour_red">Red</option>' +
 			'						<option value="colour_blue">Blue</option>' +
 			'					</select>' +
@@ -25,8 +25,8 @@ describe('FilterBarComponent', function () {
 			'			<div class="form__group">' +
 			'				<label for="size" class="control__label">Size</label>' +
 			'				<div class="controls">' +
-			'					<select id="size" placeholder="Choose one" class="form__control select js-select2">' +
-			'						<option value=""></option>' +
+			'					<select id="size" data-placeholder="Choose one" class="form__control select js-select2">' +
+			'						<option value="">Choose one</option>' +
 			'						<option value="small">Small</option>' +
 			'						<option value="medium">Medium</option>' +
 			'						<option value="large">Large</option>' +
@@ -242,7 +242,7 @@ describe('FilterBarComponent', function () {
 			});
 
 			it('should add the remove button to the label', function () {
-				expect(this.$container.find('span[data-filter-id="inStock"] a[data-ui="filter-cancel"]')).to.have.length(1);
+				expect(this.$container.find('span[data-filter-id="inStock"] button[data-ui="filter-cancel"]')).to.have.length(1);
 			});
 		});
 
@@ -303,11 +303,11 @@ describe('FilterBarComponent', function () {
 			this.$showFilterListButton = this.$container.find('[data-ui="show-filter-list"]');
 			this.$filterBarLabelsWrapper = this.$container.find('.filter-bar__labels');
 			this.$exampleAddedLabel = $(
-				'<span class="label label--large label--inverse" data-filter-id="foo" data-original-title="" title="">Text field example' +
-				'	<span class="chosen-filter">: something</span>'+
-				'	<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="foo">' +
+				'<span class="label label--large label--inverse label--removable" data-filter-id="foo" data-original-title="" title="">' +
+				'	<span class="label__text">Text field example <span class="chosen-filter">: something</span></span>'+
+				'	<button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="foo">' +
 				'		<i class="icon-remove-sign"></i>' +
-				'	</a>' +
+				'	</button>' +
 				'</span>'
 			).appendTo(this.$filterBarLabelsWrapper);
 
@@ -361,11 +361,11 @@ describe('FilterBarComponent', function () {
 
 			it('should display the form actions if other labels exist', function () {
 				this.$exampleAddedLabel2 = $(
-					'<span class="label label--large label--inverse" data-filter-id="colour" data-original-title="" title="">Colour' +
-					'	<span class="chosen-filter">: something</span>'+
-					'	<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="colour">' +
+					'<span class="label label--large label--inverse label--removable" data-filter-id="colour" data-original-title="" title="">' +
+					'	<span class="label__text"> Colour <span class="chosen-filter">: something</span></span>'+
+					'	<button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="colour">' +
 					'		<i class="icon-remove-sign"></i>' +
-					'	</a>' +
+					'	</button>' +
 					'</span>'
 				).appendTo(this.$filterBarLabelsWrapper);
 				this.$removeFilterButton2 = this.$exampleAddedLabel2.find('[data-ui="filter-cancel"]');
@@ -422,11 +422,11 @@ describe('FilterBarComponent', function () {
 		describe('when the filter field is a checkbox', function() {
 			beforeEach(function() {
 				this.$exampleAddedLabelForCheckboxFilter = $(
-					'<span class="label label--large label--inverse" data-filter-id="inStock">In stock' +
-					'	<span class="chosen-filter"></span>'+
-					'	<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="inStock">' +
+					'<span class="label label--large label--inverse label--removable" data-filter-id="inStock">'+
+					'	<span class="label__text">In stock <span class="chosen-filter"></span></span>'+
+					'	<button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="inStock">' +
 					'		<i class="icon-remove-sign"></i>' +
-					'	</a>' +
+					'	</button>' +
 					'</span>'
 				).appendTo(this.$filterBarLabelsWrapper);
 
@@ -458,11 +458,11 @@ describe('FilterBarComponent', function () {
 
 			this.$filterBarLabelsWrapper = this.$container.find('.filter-bar__labels');
 			this.$exampleAddedLabel = $(
-				'<span class="label label--large label--inverse" data-filter-id="foo" data-original-title="" title="">Text field example' +
-				'	<span class="chosen-filter">: something</span>'+
-				'	<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="foo">' +
+				'<span class="label label--large label--inverse label--removable" data-filter-id="foo" data-original-title="" title="">' +
+				'	<span class="label__text">Text field example <span class="chosen-filter">: something</span></span>'+
+				'	<button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="foo">' +
 				'		<i class="icon-remove-sign"></i>' +
-				'	</a>' +
+				'	</button>' +
 				'</span>'
 			).appendTo(this.$filterBarLabelsWrapper);
 
@@ -492,29 +492,41 @@ describe('FilterBarComponent', function () {
 			this.$container.find('#foo').val('some value');
 			this.$container.find('#inStock').prop('checked', 'checked');
 			this.$container.find('#size').val('medium');
-			this.$container.find('#colour').val('colour_red');
-
-			this.filterBar.init();
-
 		});
 
 		it('should add a label to the filterbar for text inputs', function () {
+			this.filterBar.init();
+
 			expect(this.$container.find('span[data-filter-id="foo"]')).to.have.length(1);
 		});
 
 		it('should add a label to the filterbar for checkbox inputs', function () {
+			this.filterBar.init();
+
 			expect(this.$container.find('span[data-filter-id="inStock"]')).to.have.length(1);
 		});
 
 		it('should add a label to the filterbar for select inputs', function () {
+			this.filterBar.init();
+
 			expect(this.$container.find('span[data-filter-id="size"]')).to.have.length(1);
+			expect(this.$container.find('span[data-filter-id="size"]').text()).to.be.equal('Size: Medium');
 		});
 
-		it('should add a label to the filterbar for colour inputs', function () {
+		it('should add a comma separated label to the filterbar for select inputs with the multiple attribute', function () {
+			this.$container.find('#colour').val(['colour_red', 'colour_blue']);
+
+			this.filterBar.init();
+
 			expect(this.$container.find('span[data-filter-id="colour"]')).to.have.length(1);
+			expect(this.$container.find('span[data-filter-id="colour"]').text()).to.be.equal('Colour: Red, Blue');
 		});
 
 		it('should hide the add filter button if all filters have been used', function () {
+			this.$container.find('#colour').val(['colour_red', 'colour_blue']);
+
+			this.filterBar.init();
+
 			expect(this.$container.find('[data-ui="show-filter-list"]').hasClass('u-display-none')).to.be.true;
 		});
 	});

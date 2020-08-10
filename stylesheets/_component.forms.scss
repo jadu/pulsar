@@ -253,7 +253,6 @@ fieldset {
     &:focus {
         @include pulsar-input-focused;
 
-        position: relative;
         z-index: 1;
     }
 }
@@ -649,6 +648,12 @@ fieldset {
         width: 100%;
     }
 
+    &.form__group--indent .controls {
+        @include respond-min($screen-tablet) {
+            @include shrink($form-label-cols);
+        }
+    }
+
     > .controls > .control__label {
         display: inline-block;
         width: 100%;
@@ -669,7 +674,7 @@ fieldset {
 // look visually disabled too (the main label for the entire choice still uses
 // normal text colour)
 .is-disabled + .form-choice__label {
-    color: color(text, disabled);
+    opacity: .4;
 }
 
 .form__indent {

@@ -17,6 +17,10 @@
         }
     }
 
+    // double chained to override specificity of default remove button
+    .remove-button.remove-button {
+        padding: 3px 5px;
+    }
 }
 
 .notifications-container {
@@ -66,6 +70,8 @@
 
 .notifications-list {
     float: left;
+    list-style: none;
+    margin-bottom: 0;
     max-height: 300px;
     max-height: 75vh;
     overflow-x: hidden;
@@ -101,10 +107,6 @@
     padding: 10px;
     width: 100%;
 
-    &:last-of-type {
-        border-bottom: 0;
-    }
-
     &:hover {
         background-color: color(background, light);
     }
@@ -125,6 +127,34 @@
     // prevent large images from cropping outside the container
     img {
         max-width: 100% !important;
+    }
+}
+
+.notification--last {
+    border-bottom: 0;
+}
+
+.notification__header {
+    align-items: start;
+    border-bottom: 1px solid color(gray, light);
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+
+    .notification__heading {
+        font-size: $font-size-medium;
+        flex-basis: 80%;
+        line-height: $line-height-base;
+        margin-bottom: 0;
+    }
+
+    .notification__dismiss {
+        margin-left: auto;
+    }
+
+    .notification__time {
+        flex-basis: 100%;
     }
 }
 

@@ -7,18 +7,32 @@ class ModalFocusService {
      * @param {jQuery} $container - jquery wrapper of the container, typically body
      */
     trapFocus ($modal, $container) {
-        let $modalFocusableElements = $modal.find('.modal__content')
+        const $modalFocusableElements = $modal.find('.modal__content')
                 .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
-                .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]'),
-            $modalHasForm = $modal.find('.modal__content form').length > 0;
+                .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]');
+        const $modalBodyFocusableElements = $modal.find('.modal__body')
+                .find('a[href], area[href], input, select, textarea, button, iframe, object, embed, [tabindex], *[contenteditable]')
+                .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]');
+        const $modalCloseButton = $modal.find('.close[data-dismiss="modal"]').first();
+        const $modalFooterCancelButton = $modal.find('.modal__footer [data-dismiss="modal"]').first();
 
-        // If modal contains a form, we should focus the first field, otherwise focus the close button
-        if ($modalHasForm) {
-            $modal.find('.modal__content form :input:not(input[type=button]):not(button):not([disabled]):not([aria-hidden]):visible:first').trigger('focus');
+        /**
+         * Manage focus
+         * If modal has focusable elements in body, focus the first
+         * if not, focus the X close button
+         * if for some reason it doesn't have that, focus the cancel button in footer
+         */
+        if ($modalBodyFocusableElements.length) {
+            $modalBodyFocusableElements.first().trigger('focus');
+        } else if ($modalCloseButton.length) {
+            $modalCloseButton.trigger('focus');
         } else {
-            $modal.find('.modal__header .close').trigger('focus');
+            $modalFooterCancelButton.trigger('focus');
         }
 
+        /**
+         * Trap focus within modal
+         */
         $container.on('keydown', this.keydownListener.bind(this, $modalFocusableElements));
     }
 

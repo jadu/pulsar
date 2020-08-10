@@ -11,7 +11,7 @@
     {{
         form.select2({
             'id': 'guid-' ~ random(),
-            'label': 'Select field',
+            'label': 'Select (single select)',
             'options': [
                 {
                     'label': 'Value one',
@@ -45,13 +45,64 @@
     {{
         form.select2({
             'id': 'guid-' ~ random(),
-            'label': 'Select multiple',
+            'label': 'Select (single + placeholder)',
+            'required': true,
+            'placeholder': 'Please choose',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'guid-' ~ random(),
+            'label': 'Select (multiple)',
             'multiple': true,
             'options': [
                 {
-                    'label': 'Choose',
-                    'value': ''
+                    'label': 'Value one',
+                    'value': 'value1'
                 },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                },
+                {
+                    'label': 'Value three',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value four',
+                    'value': 'value2'
+                },
+                {
+                    'label': 'Value five',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value six',
+                    'value': 'value2'
+                }
+            ]
+
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'guid-' ~ random(),
+            'label': 'Select (multiple + placeholder)',
+            'multiple': true,
+            'placeholder': 'Please choose',
+            'options': [
                 {
                     'label': 'Value one',
                     'value': 'value1'
@@ -88,10 +139,6 @@
             'required': true,
             'options': [
                 {
-                    'label': 'Choose',
-                    'value': ''
-                },
-                {
                     'label': 'Value one',
                     'value': 'value1'
                 },
@@ -109,47 +156,6 @@
             'label': 'Select field with help',
             'help': 'Help text to give more information about expected input',
             'options': [
-                {
-                    'label': 'Value one',
-                    'value': 'value1'
-                },
-                {
-                    'label': 'Value two',
-                    'value': 'value2'
-                }
-            ]
-        })
-    }}
-
-    {{
-        form.select2({
-            'id': 'guid-' ~ random(),
-            'label': 'Select field with guidance',
-            'guidance': 'Help text to give more information about expected input',
-            'options': [
-                {
-                    'label': 'Value one',
-                    'value': 'value1'
-                },
-                {
-                    'label': 'Value two',
-                    'value': 'value2'
-                }
-            ]
-        })
-    }}
-
-    {{
-        form.select2({
-            'id': 'guid-' ~ random(),
-            'label': 'Required with guidance',
-            'guidance': 'Help text to give more information about expected input',
-            'required': true,
-            'options': [
-                {
-                    'label': 'Choose',
-                    'value': ''
-                },
                 {
                     'label': 'Value one',
                     'value': 'value1'
@@ -225,7 +231,6 @@
             'label': 'Select input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputSelectLong',
             'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input',
             'options': [
                 {
                     'label': 'Value one',
@@ -246,7 +251,6 @@
             'class': 'form__group--top',
             'name': 'inputSelectLong',
             'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input',
             'options': [
                 {
                     'label': 'Value one',
@@ -267,7 +271,6 @@
             'class': 'form__group--top form__group--flush',
             'name': 'inputSelectLong',
             'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input',
             'options': [
                 {
                     'label': 'Value one',
@@ -806,25 +809,6 @@
             'id': 'guid-' ~ random(),
             'label': 'Appended',
             'append': '.00',
-            'options': [
-                {
-                    'label': 'Value one',
-                    'value': 'value1'
-                },
-                {
-                    'label': 'Value two',
-                    'value': 'value2'
-                }
-            ]
-        })
-    }}
-
-    {{
-        form.select2({
-            'id': 'guid-' ~ random(),
-            'label': 'Appended with guidance',
-            'append': '.00',
-            'guidance': 'Help text to give more information about expected input',
             'options': [
                 {
                     'label': 'Value one',

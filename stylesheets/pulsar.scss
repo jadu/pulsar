@@ -18,6 +18,7 @@ $ie-version: 12 !default;
 // scss-lint:disable all
 @import '../node_modules/normalize.css/normalize';
 @import '../node_modules/tippy.js/dist/tippy';
+@import '../node_modules/pulsar-date-picker/src/scss/pulsar-date-picker';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
@@ -156,6 +157,7 @@ $fa-css-prefix: 'icon';
 @import 'component.jstree';
 @import 'component.dropzone';
 @import 'component.repeater';
+@import 'component.edit-button';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
