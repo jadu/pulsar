@@ -41,6 +41,11 @@
     }
 }
 
+.input-group:not(.has-btn-prepended):not(.has-btn-appended) .control__label:first-child + .form__control {
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+}
+
 .input-group:not(.has-btn-prepended):not(.has-btn-appended) .input-group-addon ~ .select2-container--default .select2-selection {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

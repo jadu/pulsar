@@ -111,6 +111,9 @@ class AttributeParserExtension extends \Twig_Extension
             return '';
         }
 
+        // Alphabetically sort attrbutes, this makes it somewhat easier to compare v2 helper output against Symfony
+        ksort($attributes);
+
         // As classes can be supplied as a string, we'll' switch them to an
         // array to allow us to add new classes based on other attributes
         $classes = isset($attributes['class']) ? explode(' ', $attributes['class']) : array();

@@ -1,0 +1,12 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.text({
+        'label': 'foo',
+        'name': 'form[field]',
+        'id': 'form_field',
+        'prepend': 'bar',
+        'append': '%'
+    })
+}}
+{% endblock %}

@@ -7,6 +7,41 @@
     }}
 
     {{
+        form.compound({
+            'id': 'comp-1',
+            'class': 'form__control-col--2',
+            'help': 'For example: 25 12 1980',
+            'label': 'Date of birth',
+            'inputs': [
+                {
+                    'label': 'Day',
+                    'id': 'dd-1',
+                    'placeholder': 'DD',
+                    'append': 'Days',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'label': 'Month',
+                    'id': 'mm-1',
+                    'prepend': 'Month',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'label': 'Year',
+                    'id': 'yyyy-1',
+                    'append': 'Years',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
         form.text({
             'id': 'guid-' ~ random(),
             'label': 'Text',

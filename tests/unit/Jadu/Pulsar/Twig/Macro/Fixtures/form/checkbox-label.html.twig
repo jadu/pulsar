@@ -2,7 +2,10 @@
 {% block body %}
 {{
     form.checkbox({
-        'label': 'foo'
+        'label': 'foo',
+        'name': 'form[field]',
+        'id': 'form_field',
+        'value': '1'
     })
 }}
 {% endblock %}

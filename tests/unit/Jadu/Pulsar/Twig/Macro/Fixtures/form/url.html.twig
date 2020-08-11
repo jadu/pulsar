@@ -2,7 +2,11 @@
 {% block body %}
 {{
     form.text({
-        'type': 'url'
+        'label': 'foo',
+        'name': 'form[field]',
+        'id': 'form_field',
+        'inputmode': 'url',
+        'type': 'text'
     })
 }}
 {% endblock %}

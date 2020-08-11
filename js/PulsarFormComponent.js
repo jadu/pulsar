@@ -103,7 +103,7 @@ PulsarFormComponent.prototype.initDatePickers = function () {
  */
 PulsarFormComponent.prototype.initColourpickers = function () {
     var component = this,
-        pickers = component.$html.find('.js-colorpicker');
+        pickers = component.$html.find('.js-colorpicker, [data-colour-picker]');
 
     pickers.each(function() {
 
@@ -112,7 +112,8 @@ PulsarFormComponent.prototype.initColourpickers = function () {
             $pickerInput = $('<input type="hidden" data-colour-picker-input>'),
             disabledAttr = $input.attr('disabled'),
             isDisabled = false,
-            existingPicker = $input.next('[data-colour-picker-input]');
+            existingPicker = $input.next('[data-colour-picker-input]'),
+            includePrefix = $this.attr('data-colour-picker-include-prefix') === 'true';
 
         if (typeof disabledAttr !== typeof undefined && disabledAttr !== false) {
             isDisabled = true;
@@ -131,14 +132,18 @@ PulsarFormComponent.prototype.initColourpickers = function () {
 
         // changing the picker should update the input
         $pickerInput.spectrum({
-            color: '#' + $input.val(),
+            color: (includePrefix ? '' : '#') + $input.val(),
             disabled: isDisabled,
             showInput: false,
             preferredFormat: 'hex',
             replacerClassName: 'btn',
             change: function (color) {
                 if (!$input.attr('disabled')) {
-                    $input.val(('' + color).substring(1));
+                    if (!includePrefix) {
+                        color = ('' + color).substring(1);
+                    }
+
+                    $input.val(color);
                     $input.trigger('change');
                 }
             }
@@ -150,7 +155,7 @@ PulsarFormComponent.prototype.initColourpickers = function () {
 
         // changing the input should update the picker
         $input.on('change', function () {
-            $pickerInput.spectrum('set', '#' + $input.val());
+            $pickerInput.spectrum('set', (includePrefix ? '' : '#') + $input.val());
         });
     });
 }
@@ -160,13 +165,15 @@ PulsarFormComponent.prototype.initColourpickers = function () {
  * @param $root
  */
 PulsarFormComponent.prototype.updateColourPicker = function ($root) {
-    const $input = $root.find('.js-colorpicker .form__control');
+    const $group = $root.find('.js-colorpicker, [data-colour-picker]');
+    const $input = $group.find('.form__control');
+    const includePrefix = $group.attr('data-colour-picker-include-prefix') === 'true';
 
     $input.each((index, element) => {
         const $input = $(element);
         const $picker = $input.next();
 
-        $picker.spectrum('set', `#${$input.val()}`);
+        $picker.spectrum('set', (includePrefix ? '' : '#') +$input.val());
     });
 }
 

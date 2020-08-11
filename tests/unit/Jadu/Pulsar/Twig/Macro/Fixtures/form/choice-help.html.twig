@@ -2,21 +2,26 @@
 {% block body %}
 {{
     form.choice({
+        'label': 'foo',
         'options': [
             {
                 'label': 'Foo',
-                'name': 'choice',
-                'value': 'foo'
+                'id': 'form_field_0',
+                'name': 'form[field]',
+                'value': '0',
+                'checked': 'checked'
             },
             {
                 'label': 'Bar',
-                'name': 'choice',
-                'value': 'bar'
+                'id': 'form_field_1',
+                'name': 'form[field]',
+                'value': '1'
             },
             {
                 'label': 'Baz',
-                'name': 'choice',
-                'value': 'baz'
+                'id': 'form_field_2',
+                'name': 'form[field]',
+                'value': '2'
             }
         ],
         'help': 'my help text'

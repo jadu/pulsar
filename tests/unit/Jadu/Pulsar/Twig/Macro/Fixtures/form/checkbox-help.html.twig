@@ -2,7 +2,11 @@
 {% block body %}
 {{
     form.checkbox({
-        'help': 'my help text'
+        'label': 'foo',
+        'help': 'my help text',
+        'name': 'form[field]',
+        'id': 'form_field',
+        'value': '1',
     })
 }}
 {% endblock %}

@@ -2,7 +2,9 @@
 {% block body %}
 {{
     form.textarea({
-        'label': 'foo'
+        'label': 'foo',
+        'name': 'form[field]',
+        'id': 'form_field'
     })
 }}
 {% endblock %}

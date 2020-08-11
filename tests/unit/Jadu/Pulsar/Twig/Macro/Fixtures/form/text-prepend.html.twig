@@ -2,7 +2,10 @@
 {% block body %}
 {{
     form.text({
-        'prepend': 'foo'
+        'label': 'foo',
+        'name': 'form[field]',
+        'id': 'form_field',
+        'prepend': 'bar'
     })
 }}
 {% endblock %}

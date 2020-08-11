@@ -1,6 +1,10 @@
 {% extends '@cssTests/visual-regression-layout.html.twig' %}
 {% block body %}
 {{
-    form.range()
+    form.range({
+        'label': 'foo',
+        'name': 'form[field]',
+        'id': 'form_field'
+    })
 }}
 {% endblock %}

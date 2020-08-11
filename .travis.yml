@@ -3,6 +3,7 @@ language: php
 cache:
   directories:
     - vendor
+    - node_modules
     - $HOME/.composer/cache
 
 php:
@@ -22,7 +23,7 @@ install:
   - composer install --prefer-dist --no-interaction
 
 script:
-  - phpunit
+  - ./vendor/bin/phpunit
   - grunt build
   - npm test
   - npm run coverage
