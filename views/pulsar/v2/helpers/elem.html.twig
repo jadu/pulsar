@@ -344,7 +344,17 @@ value       | string | Specifies the value of the input
         {% set options = options|merge({'data-label': options.label}) %}
     {% endif %}
 
-    {{ elem.select(options|merge({'class': 'select js-select2'})) }}
+    {% if options.placeholder is defined and options.placeholder is not empty %}
+        {% set options = options|merge({'data-placeholder': options.placeholder}) %}
+
+        {# Add empty option with label matching placeholder (required for select2 placeholders on single selects #}
+        {% if options.multiple is not defined or options.multiple == false %}
+            {% set placeholderOption = [{'label': options.placeholder, 'value': ''}] %}
+            {% set options = options|merge({ options: placeholderOption|merge(options.options) })%}
+        {% endif %}
+    {% endif %}
+
+    {{ elem.select(options|merge({'class': 'select js-select2'})|exclude('placeholder') ) }}
 
 {% endspaceless %}
 {% endmacro %}

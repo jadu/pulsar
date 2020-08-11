@@ -49,7 +49,8 @@ var $                     = require('jquery'),
     ModalFocusService = require('./Modals/ModalFocusService'),
     ModalListener = require('./Modals/ModalListener'),
     datePicker = require('pulsar-date-picker'),
-    FocusManagementService = require('./FocusManagementService');
+    FocusManagementService = require('./FocusManagementService'),
+    TabEnhancements = require('./TabEnhancements/TabEnhancements');
 
 require('jstree');
 
@@ -78,5 +79,6 @@ module.exports = {
     ModalFocusService,
     ModalListener,
     datePicker,
-    FocusManagementService
+    FocusManagementService,
+    TabEnhancements
 };
