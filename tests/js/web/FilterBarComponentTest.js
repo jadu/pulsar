@@ -16,7 +16,7 @@ describe('FilterBarComponent', function () {
 			'			<div class="form__group">' +
 			'				<label for="colour" class="control__label">Colour</label>' +
 			'				<div class="controls">' +
-			'					<select id="colour" multiple="" placeholder="Choose one or more" class="form__control select js-select2">' +
+			'					<select id="colour" multiple="" data-placeholder="Choose one or more" class="form__control select js-select2">' +
 			'						<option value="colour_red">Red</option>' +
 			'						<option value="colour_blue">Blue</option>' +
 			'					</select>' +
@@ -25,8 +25,8 @@ describe('FilterBarComponent', function () {
 			'			<div class="form__group">' +
 			'				<label for="size" class="control__label">Size</label>' +
 			'				<div class="controls">' +
-			'					<select id="size" placeholder="Choose one" class="form__control select js-select2">' +
-			'						<option value=""></option>' +
+			'					<select id="size" data-placeholder="Choose one" class="form__control select js-select2">' +
+			'						<option value="">Choose one</option>' +
 			'						<option value="small">Small</option>' +
 			'						<option value="medium">Medium</option>' +
 			'						<option value="large">Large</option>' +
@@ -492,29 +492,41 @@ describe('FilterBarComponent', function () {
 			this.$container.find('#foo').val('some value');
 			this.$container.find('#inStock').prop('checked', 'checked');
 			this.$container.find('#size').val('medium');
-			this.$container.find('#colour').val('colour_red');
-
-			this.filterBar.init();
-
 		});
 
 		it('should add a label to the filterbar for text inputs', function () {
+			this.filterBar.init();
+
 			expect(this.$container.find('span[data-filter-id="foo"]')).to.have.length(1);
 		});
 
 		it('should add a label to the filterbar for checkbox inputs', function () {
+			this.filterBar.init();
+
 			expect(this.$container.find('span[data-filter-id="inStock"]')).to.have.length(1);
 		});
 
 		it('should add a label to the filterbar for select inputs', function () {
+			this.filterBar.init();
+
 			expect(this.$container.find('span[data-filter-id="size"]')).to.have.length(1);
+			expect(this.$container.find('span[data-filter-id="size"]').text()).to.be.equal('Size: Medium');
 		});
 
-		it('should add a label to the filterbar for colour inputs', function () {
+		it('should add a comma separated label to the filterbar for select inputs with the multiple attribute', function () {
+			this.$container.find('#colour').val(['colour_red', 'colour_blue']);
+
+			this.filterBar.init();
+
 			expect(this.$container.find('span[data-filter-id="colour"]')).to.have.length(1);
+			expect(this.$container.find('span[data-filter-id="colour"]').text()).to.be.equal('Colour: Red, Blue');
 		});
 
 		it('should hide the add filter button if all filters have been used', function () {
+			this.$container.find('#colour').val(['colour_red', 'colour_blue']);
+
+			this.filterBar.init();
+
 			expect(this.$container.find('[data-ui="show-filter-list"]').hasClass('u-display-none')).to.be.true;
 		});
 	});

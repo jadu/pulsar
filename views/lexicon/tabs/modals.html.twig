@@ -1,280 +1,55 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
 
 {% block tab_content %}
-<p><button class="btn" data-toggle="modal" data-target="#modalExample">Launch Standard Modal via a button</button></p>
-<p><button class="btn" data-toggle="modal" data-target="#modalTwo">Launch Danger Modal via a button</button></p>
-<p><button class="btn" data-toggle="modal" data-target="#modalThree">Launch Long Modal via a button</button></p>
-<p><a data-toggle="modal" href="#myFullScreenModal" class="btn">Launch Full Screen Modal</a></p>
+<h2>Modal focus management examples</h2>
+<p>
+    Launch a modal that contains a form but no inputs - close X should be focussed <br/>
+    <button class="btn" data-toggle="modal" data-target="#modalExample">Launch Modal 1</button>
+</p>
+
+<p>
+    Launch a modal that contains an input but no form - input should be focussed <br />
+    <button class="btn" data-toggle="modal" data-target="#modalTwo">Launch Modal 2</button>
+</p>
+
+<p>
+    Launch a modal that doesn't contant a form, or inputs, or close X button - cancel button should be focussed <br/>
+    <button class="btn" data-toggle="modal" data-target="#modalThree">Launch Modal 3</button>
+</p>
+
+<p>
+    Launch a modal with error summary<br/>
+    <button class="btn" data-toggle="modal" data-target="#modalErrorSummary">Launch Modal</button>
+</p>
+
+<h2>Modal variation examples</h2>
+<p>
+    Launch a modal with a lot of content <br/>
+    <button class="btn" data-toggle="modal" data-target="#modalFour">Launch Long Modal</button>
+</p>
+
+<p>
+    Launch a full page modal, from a link <br/>
+    <a data-toggle="modal" href="#myFullScreenModal" class="btn">Launch Full Screen Modal</a>
+</p>
 
 <div class="modal modal__example" id="modalExample" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalExample-title" aria-describedby="modalExample-description">
     <div class="modal__dialog">
         <div class="modal__content">
-            <div class="modal__header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
-                <h1 class="modal__title" id="modalExample-title">A simple example</h1>
-            </div>
-            <div class="modal__body">
-                <p id="modalExample-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
-                <p>The modal body might have instructions, a form, or other stuff.</p>
-                {{
-                    form.text({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Text',
-                    })
-                }}
-
-                {{
-                    form.textarea({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Textarea'
-                    })
-                }}
-
-                {{
-                    form.password({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Password',
-                    })
-                }}
-
-                {{
-                    form.date({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Date',
-                    })
-                }}
-
-                {{
-                    form.time({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Time'
-                    })
-                }}
-
-                {{
-                    form.file({
-                        'id': 'guid-' ~ random(),
-                        'label': 'File'
-                    })
-                }}
-
-                {{
-                    form.color({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Color'
-                    })
-                }}
-
-                {{
-                    form.select({
-                        'label': 'Select',
-                        'id': 'guid-' ~ random(),
-                        'options': [
-                            {
-                                'label': 'Value one',
-                                'value': 'value1'
-                            },
-                            {
-                                'label': 'Value two',
-                                'value': 'value2'
-                            }
-                        ]
-                    })
-                }}
-
-                {{
-                    form.select2({
-                        'label': 'Select2',
-                        'id': 'guid-' ~ random(),
-                        'options': [
-                            {
-                                'label': 'Value one',
-                                'value': 'value1'
-                            },
-                            {
-                                'label': 'Value two',
-                                'value': 'value2'
-                            }
-                        ]
-                    })
-                }}
-
-                {{
-                    form.toggle_switch({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Toggle switch'
-                    })
-                }}
-
-                {{
-                    form.range({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Range'
-                    })
-                }}
-                {{
-                    form.checkbox({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Checkbox'
-                    })
-                }}
-
-                {{
-                    form.radio({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Radio'
-                    })
-                }}
-
-                {{
-                    form.checkbox_inline({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Checkbox inline'
-                    })
-                }}
-
-                {{
-                    form.radio_inline({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Radio inline'
-                    })
-                }}
-
-                {{
-                    form.checkbox_inline({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Checkbox inline indented',
-                        'class': 'form__group--indent'
-                    })
-                }}
-
-                {{
-                    form.radio_inline({
-                        'id': 'guid-' ~ random(),
-                        'label': 'Radio inline indented',
-                        'class': 'form__group--indent'
-                    })
-                }}
-
-                {{
-                    form.choice({
-                        'label': 'Choice checkbox',
-                        'id': 'guid-' ~ random(),
-                        'options': [
-                            {
-                                'label': 'Checkbox One',
-                                'value': 'one',
-                                'name': 'one',
-                                'checked': true
-                            },
-                            {
-                                'label': 'Checkbox Two',
-                                'value': 'two',
-                                'name': 'one'
-                            },
-                            {
-                                'label': 'Checkbox Three',
-                                'value': 'three',
-                                'name': 'one'
-                            }
-                        ]
-                    })
-                }}
-
-                {{
-                    form.choice({
-                        'label': 'Choice radio',
-                        'multiple': true,
-                        'id': 'guid-' ~ random(),
-                        'options': [
-                            {
-                                'label': 'Radio One',
-                                'value': 'one',
-                                'name': 'one'
-                            },
-                            {
-                                'label': 'Radio Two',
-                                'value': 'two',
-                                'name': 'one'
-                            },
-                            {
-                                'label': 'Radio Three',
-                                'value': 'three',
-                                'name': 'one'
-                            }
-                        ]
-                    })
-                }}
-
-                {{
-                    form.choice({
-                        'label': 'Choice as select2',
-                        'id': 'guid-' ~ random(),
-                        'options': [
-                            {
-                                'label': 'Select2 One',
-                                'value': 'one',
-                                'name': 'three'
-                            },
-                            {
-                                'label': 'Select2 Two',
-                                'value': 'two',
-                                'name': 'three'
-                            },
-                            {
-                                'label': 'Select2 Three',
-                                'value': 'three',
-                                'name': 'three'
-                            },
-                            {
-                                'label': 'Select2 Four',
-                                'value': 'four',
-                                'name': 'three'
-                            },
-                            {
-                                'label': 'Select2 Five',
-                                'value': 'five',
-                                'name': 'three'
-                            },
-                            {
-                                'label': 'Select2 Six',
-                                'value': 'six',
-                                'name': 'three'
-                            }
-                        ]
-                    })
-                }}
-
-                {{
-                    form.choice({
-                        'class': 'choice--block',
-                        'label': 'Choice block radios',
-                        'id': 'guid-' ~ random(),
-                        'options': [
-                            {
-                                'label': html.icon('bold') ~ ' Bold',
-                                'value': 'bold',
-                                'name': 'five'
-                            },
-                            {
-                                'label': html.icon('italic') ~ ' Italic',
-                                'value': 'italic',
-                                'name': 'five',
-                                'checked': true
-                            },
-                            {
-                                'label': html.icon('underline') ~ ' Underline',
-                                'value': 'underline',
-                                'name': 'five'
-                            },
-                        ]
-                    })
-                }}
-            </div>
-            <div class="modal__footer">
-                <button type="button" class="btn btn--primary">Save Changes</button>
-                <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
-            </div>
+            <form>
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal__title" id="modalExample-title">A simple example</h1>
+                </div>
+                <div class="modal__body">
+                    <p id="modalExample-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                    <p>The modal body might have instructions, a form, or other stuff.</p>
+                </div>
+                <div class="modal__footer">
+                    <button type="submit" class="btn btn--primary">Save Changes</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div><!-- /.modal__content -->
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
@@ -290,22 +65,50 @@
                 <p id="modalTwo-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
                 <p>We mainly use modals to get you to stop and confirm that you really want to delete something, and remind you that this action cannot be reversed.</p>
                 <p>A modal's action buttons should be written so that if a user only reads the buttons, they should get an idea of the action they're about to perform instead of blindly clicking 'OK' or 'Confirm'.</p>
+
+                {{
+                    form.checkbox_inline({
+                        'id': 'guid-' ~ random(),
+                        'label': 'I understand something bad might happen'
+                    })
+                }}
             </div>
             <div class="modal__footer">
-                <button type="button" class="btn btn--danger">Delete Everything</button>
+                <button type="submit" class="btn btn--danger">Delete Everything</button>
                 <button type="button" class="btn btn--naked" data-dismiss="modal">Don't Do Anything</button>
             </div>
         </div><!-- /.modal__content -->
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
 
-<div class="modal" id="modalThree" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalThree-title" aria-describedby="modalThree-description">
+<div class="modal modal__example" id="modalThree" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalThree-title" aria-describedby="modalThree-description">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <form>
+                <div class="modal__header">
+                    <h1 class="modal__title" id="modalThree-title">A simple example</h1>
+                </div>
+                <div class="modal__body">
+                    <p id="modalThree-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                    <p>The modal body might have instructions, a form, or other stuff.</p>
+                </div>
+                <div class="modal__footer">
+                    <button type="submit" class="btn btn--primary">Save Changes</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" id="modalFour" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalFour-title" aria-describedby="modalFour-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <form>
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
-                    <h1 class="modal__title" id="modalThree-title">Standard modal</h1>
+                    <h1 class="modal__title" id="modalFour-title">Standard modal</h1>
                 </div>
                 <div class="modal__body">
 
@@ -316,7 +119,7 @@
                         })
                     }}
 
-                    <p id="modalThree-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                    <p id="modalFour-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra dui ac congue fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc sit amet feugiat diam. Proin eu condimentum elit. Donec facilisis urna sed tortor semper tincidunt. Maecenas tortor justo, rhoncus a luctus eget, consectetur suscipit est. In molestie posuere lectus. Vestibulum sit amet ligula odio. Nulla lobortis neque ac porta accumsan.</p>
 
@@ -329,13 +132,123 @@
                     <p>Donec urna ex, tincidunt eget diam eu, pulvinar iaculis augue. Phasellus sapien eros, aliquet id egestas nec, ultricies feugiat dui. Vestibulum in massa malesuada, ullamcorper magna non, auctor justo. Sed nisl mi, mollis ut magna in, molestie aliquam est. Mauris ac suscipit risus, sit amet mattis sapien. Nam tincidunt, nisl sit amet tempor auctor, massa lorem maximus metus, vitae aliquam elit sem quis arcu. Suspendisse dolor mauris, facilisis sit amet leo a, molestie aliquet enim. Proin molestie convallis enim non scelerisque. Vivamus finibus ornare nunc ac laoreet. Aliquam dignissim odio purus, convallis facilisis elit imperdiet sed.</p>
                 </div>
                 <div class="modal__footer">
-                    <button type="button" class="btn btn--primary">Save Changes</button>
+                    <button type="submit" class="btn btn--primary">Save Changes</button>
                     <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div><!-- /.modal__content -->
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
+
+
+<div class="modal modal__example" id="modalErrorSummary" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalErrorSummary-title" aria-describedby="modalErrorSummary-description">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <form>
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal__title" id="modalErrorSummary-title">A simple example with error summary</h1>
+                </div>
+                <div class="modal__body">
+                    <p id="modalErrorSummary-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                    <p>The modal body might have instructions, a form, or other stuff.</p>
+
+                    {{
+                        form.error_summary({
+                            'heading': 'There is a problem',
+                            'errors': [
+                                {
+                                    'label': 'Enter your first name',
+                                    'href': 'first-name'
+                                },
+                                {
+                                    'label': 'Enter your last name',
+                                    'href': 'last-name'
+                                }
+                            ]
+                        })
+                    }}
+
+                    {{ form.fieldset_start({'legend': 'Example form with errors'}) }}
+
+                        {{
+                            form.text({
+                                'label': 'First name',
+                                'id': 'first-name',
+                                'required': true,
+                                'error': 'Enter your first name'
+                            })
+                        }}
+
+                        {{
+                            form.text({
+                                'label': 'Last name',
+                                'id': 'last-name',
+                                'required': true,
+                                'error': 'Enter your last name'
+                            })
+                        }}
+
+                        {{
+                            form.checkbox({
+                                'label': 'Are you human?',
+                                'id': 'are-you-human'
+                            })
+                        }}
+
+                        {{
+                            form.select2({
+                                'label': 'Favourite colours',
+                                'id': 'select',
+                                'multiple': true,
+                                'options': {
+                                    'colour_red': 'Red',
+                                    'colour_blue': 'Blue'
+                                }
+                            })
+                        }}
+
+                        {{
+                            form.choice({
+                                'label': 'Assign blame to',
+                                'multiple': true,
+                                'options': [
+                                    {
+                                        'label': 'Sunshine',
+                                        'name': 'choice-a2',
+                                        'value': 'sun'
+                                    },
+                                    {
+                                        'label': 'Moonlight',
+                                        'name': 'choice-a2',
+                                        'value': 'moon'
+                                    },
+                                    {
+                                        'label': 'Good times',
+                                        'name': 'choice-a2',
+                                        'value': 'good'
+                                    },
+                                    {
+                                        'label': 'Boogie',
+                                        'name': 'choice-a2',
+                                        'value': 'boogie'
+                                    }
+                                ]
+                            })
+                        }}
+                    {{ form.fieldset_end() }}
+
+                </div>
+                <div class="modal__footer">
+                    <button type="submit" class="btn btn--primary">Save Changes</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
 
 <div class="modal modal--full-screen fade" id="myFullScreenModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="fullModal-title" aria-describedby="fullModal-description">
     <div class="modal__dialog">
