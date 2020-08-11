@@ -57,17 +57,9 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
         },
         columnDefs = [
             {
-                className: 'control',
+                searchable: false,
                 orderable: false,
                 targets: 0
-            },
-            {
-                searchable: false,
-                targets: [0]
-            },
-            {
-                orderable: false,
-                targets: [0, 1]
             }
         ];
 
@@ -86,6 +78,31 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
     if ($table.length && $table.data('select') === false) {
         select = false;
         columnDefs = [];
+    }
+
+    if ($table.length && $table.data('overflow') === 'collapse') {
+        columnDefs = [
+            {
+                className: 'control',
+                orderable: false,
+                searchable: false,
+                targets: 0
+            }
+        ];
+    }
+
+    if ($table.length && $table.data('overflow') === 'collapse' && $table.data('select') === true) {
+        columnDefs = [
+            {
+                className: 'control',
+                targets: 0
+            },
+            {
+                orderable: false,
+                searchable: false,
+                targets: [0, 1]
+            }
+        ];
     }
 
     const options = {
