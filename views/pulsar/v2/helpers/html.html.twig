@@ -87,7 +87,6 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         html.button_dropdown({
-            'id': 'actions_menu',
             'label': items.label|default('Actions') ~
                 html.badge({
                     'label': '0',
@@ -1130,7 +1129,7 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
         {% endif %}
             <p>{{ options.title|raw }}</p>
         {% if options.description is defined and options.description is not empty %}
-            <span class="small-type muted">{{ options.description|raw }}</span>
+            <span class="small-type">{{ options.description|raw }}</span>
         {% endif %}
         </div>
     </{{ type }}>
@@ -1507,10 +1506,8 @@ All DropZone options should be prefixed with `data-dropzone-`, for example `data
 
 Option                              | Type      | Description
 ----------------------------------- | --------- | ----------------------------------------------------
-data-helper-label                   | string    | The label for the default helper text popup
-data-helper-title                   | string    | The heading for the default helper text popup
-data-helper-content                 | string    | The content for the default helper text popup
-data-helper-container               | string    | The selector for the container of the helper text popup
+data-helper-title                   | string    | The heading for the default helper text
+data-helper-content                 | string    | The content for the default helper text
 data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
 data-dropzone-max-size              | string    | The combined file size limit of a group of files
 data-dropzone-idle-timer-duration   | string    | The duration
@@ -1545,17 +1542,9 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
             </div>
             <p class="dropzone__label">Drag &amp; Drop</p>
             <p class="dropzone__info">{{ idle|raw }}</p>
-
-            <p class="dropzone__help"
-               data-toggle="popover"
-               data-autoclose="true"
-               data-title="{{ options['data-helper-title']|default('Helper title')|raw }}"
-               data-content="{{ options['data-helper-content']|default('Helper content')|raw }}"
-               data-html="true"
-               data-placement="bottom"
-               data-container="{{ options['data-helper-container']|default('#' ~ options.id) }}"
-            >
-                {{ html.icon('question-sign') }} {{ options['data-helper-label']|default('Only certain file types are allowed') }}
+            <p class="dropzone__help">
+                {{ options['data-helper-title']|default('Helper title')|raw }}:
+                {{ options['data-helper-content']|default('Helper content')|raw }}
             </p>
         </div>
     {% endspaceless %}
