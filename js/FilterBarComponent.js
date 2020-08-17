@@ -255,7 +255,7 @@ function addFilter ($filterbar) {
             values,
             valueForLabel = null,
             filterId,
-            initalLabelText = $label.text();;
+            initalLabelText = $label.text();
 
         e.preventDefault();
 
