@@ -592,5 +592,39 @@ describe('FilterBarComponent', function () {
 
 			expect(this.$container.find('[data-ui="show-filter-list"]').hasClass('u-display-none')).to.be.true;
 		});
+
+		it('should show the clear button', function () {
+			this.filterBar.init();
+
+			expect(this.$container.find('.form__actions').hasClass('u-display-none')).to.be.false;
+		});
+
+		it('should hide the save button', function () {
+			this.filterBar.init();
+
+			expect(this.$container.find('.form__actions .btn--primary').hasClass('u-display-none')).to.be.true;
+		});
+
+		it('should show the form actions when a change has been made', function () {
+			this.clickEvent = $.Event('click');
+
+			this.filterBar.init();
+			this.$container.find('span[data-filter-id="inStock"] .remove-button').trigger(this.clickEvent);
+
+			expect(this.$container.find('.form__actions').hasClass('u-display-none')).to.be.false;
+			expect(this.$container.find('.form__actions .btn--primary').hasClass('u-display-none')).to.be.false;
+		});
+
+		it('should show the save button when all filters have been removed', function () {
+			this.clickEvent = $.Event('click');
+
+			this.filterBar.init();
+			this.$container.find('span[data-filter-id="foo"] .remove-button').trigger(this.clickEvent);
+			this.$container.find('span[data-filter-id="inStock"] .remove-button').trigger(this.clickEvent);
+			this.$container.find('span[data-filter-id="size"] .remove-button').trigger(this.clickEvent);
+
+			expect(this.$container.find('.form__actions').hasClass('u-display-none')).to.be.false;
+			expect(this.$container.find('.form__actions .btn--primary').hasClass('u-display-none')).to.be.false;
+		});
 	});
 });

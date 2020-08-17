@@ -399,6 +399,14 @@ function filterListButtonVisibility ($filterbar) {
 function formActionsVisibility ($filterbar) {
     var $formActions = $filterbar.find('.form__actions');
 
+    // Ensure form actions are visible after all filters remove when filters present on load
+    if ($filterbar.data('had-filters-on-load') === true) {
+        $formActions.removeClass('u-display-none');
+        $formActions.find('.btn--primary').removeClass('u-display-none');
+
+        return;
+    }
+
     if ($filterbar.find('.label').length) {
         $formActions.removeClass('u-display-none');
     } else {
@@ -500,6 +508,13 @@ function populateFilterList ($filterbar) {
 
             // Show the filterbar
             $filterbar.removeClass('u-display-none');
+
+            // Track if there were filters on load for form action visibility
+            $filterbar.data('had-filters-on-load', true);
+
+            // Show the clear button
+            $filterbar.find('.form__actions').removeClass('u-display-none');
+            $filterbar.find('.form__actions .btn--primary').addClass('u-display-none');
         }
 
         // Don't show add filter button if all filters have been loaded
