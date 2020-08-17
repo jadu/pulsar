@@ -181,6 +181,19 @@ describe('FilterBarComponent', function () {
 
 			expect($.fn.popover).to.have.been.called;
 		});
+
+		it('should set aria-expanded to true', function () {
+			this.$showFilterListButton.trigger(this.clickEvent);
+
+			expect(this.$showFilterListButton.attr('aria-expanded')).to.be.equal('true');
+		});
+
+		it('should set aria-expanded to false if clicked twice', function () {
+			this.$showFilterListButton.trigger(this.clickEvent);
+			this.$showFilterListButton.trigger(this.clickEvent);
+
+			expect(this.$showFilterListButton.attr('aria-expanded')).to.be.equal('false');
+		});
 	});
 
 	describe('When an item from the filter list is clicked', function() {
