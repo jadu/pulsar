@@ -38,7 +38,7 @@ describe('TabEnhancements', () => {
                 <div class="tab__pane is-active" id="tab1">
                     <div class="tab__container">
                         <div class="tab__inner">
-                            <main class="tab__content">
+                            <main class="tab__content id="skip-target">
                                 <p>tab 1 content</p>
                             </main>
                         </div>
@@ -47,7 +47,7 @@ describe('TabEnhancements', () => {
                 <div class="tab__pane" id="tab2">
                     <div class="tab__container">
                         <div class="tab__inner">
-                            <main class="tab__content">
+                            <main class="tab__content" id="skip-target">
                                 <p>tab 2 content</p>
                             </main>
                         </div>
@@ -87,6 +87,10 @@ describe('TabEnhancements', () => {
     describe('When the page loads', () => {
         beforeEach(() => {
             tabEnhancements.init($html);
+        });
+
+        it('should remove any id="skip-target" set in original markup', () => {
+            expect($body.find('#currentTabs #tab2 .tab__content').attr('id')).to.be.undefined;
         });
 
         it('should add id="skip-target" to the active tabs <main>', () => {

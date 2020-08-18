@@ -18,6 +18,9 @@ class TabEnhancements {
         // Make sure tab panes are at least as high as the tab list (cms legacy tabs list)
         this.$html.find('.tabs > .tabs__content > .tab__pane').css('min-height', this.$html.find('.tabs__list').height());
 
+        // Remove skip target IDs set in markup
+        this.$html.find('main.tab__content').removeAttr('id');
+
         // Add the skip-target ID to the active main
         this.$html.find('.tab__pane.is-active main.tab__content').attr('id', 'skip-target');
 
