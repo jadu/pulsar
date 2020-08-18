@@ -38,18 +38,18 @@ describe('TabEnhancements', () => {
                 <div class="tab__pane is-active" id="tab1">
                     <div class="tab__container">
                         <div class="tab__inner">
-                            <main class="tab__content id="skip-target">
+                            <div role="main" class="tab__content id="skip-target">
                                 <p>tab 1 content</p>
-                            </main>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="tab__pane" id="tab2">
                     <div class="tab__container">
                         <div class="tab__inner">
-                            <main class="tab__content" id="skip-target">
+                            <div role="main" class="tab__content" id="skip-target">
                                 <p>tab 2 content</p>
-                            </main>
+                            </div>
                         </div>
                     </div>
                 </div>
