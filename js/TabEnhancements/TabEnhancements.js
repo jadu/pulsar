@@ -19,20 +19,20 @@ class TabEnhancements {
         this.$html.find('.tabs > .tabs__content > .tab__pane').css('min-height', this.$html.find('.tabs__list').height());
 
         // Remove skip target IDs set in markup
-        this.$html.find('main.tab__content').removeAttr('id');
+        this.$html.find('div.tab__content').removeAttr('id');
 
         // Add the skip-target ID to the active main
-        this.$html.find('.tab__pane.is-active main.tab__content').attr('id', 'skip-target');
+        this.$html.find('.tab__pane.is-active div.tab__content').attr('id', 'skip-target');
 
         // On tab change
         this.$html.find('.nav-inline [data-toggle="tab"]').on('show.bs.tab', (event) => {
             const $activeTab = this.$html.find($(event.target).attr('href'));
 
             // Remove previously set skip target IDs on other tabs
-            this.$html.find('main.tab__content').removeAttr('id');
+            this.$html.find('div.tab__content').removeAttr('id');
 
             // Add skip target ID to new active tab main
-            $activeTab.find('main.tab__content').attr('id', 'skip-target');
+            $activeTab.find('div.tab__content').attr('id', 'skip-target');
         });
     }
 }
