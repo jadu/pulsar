@@ -5,7 +5,7 @@
 .tab__settings {
     @include clear-fix(true);
 
-    background-color: color(background);
+    background-color: color(background, light);
     margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
