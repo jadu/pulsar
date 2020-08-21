@@ -64,13 +64,15 @@
             form.text({
                 'id': 'guid-' ~ random(),
                 'label': 'Text',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.textarea({
                 'id': 'guid-' ~ random(),
-                'label': 'Textarea'
+                'label': 'Textarea',
+                'error': 'Please complete this field'
             })
         }}
 
@@ -78,6 +80,7 @@
             form.password({
                 'id': 'guid-' ~ random(),
                 'label': 'Password',
+                'error': 'Please complete this field'
             })
         }}
 
@@ -86,27 +89,31 @@
                 'data-pulsar-datepicker': 'true',
                 'id': 'guid-' ~ random(),
                 'label': 'Date',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.time({
                 'id': 'guid-' ~ random(),
-                'label': 'Time'
+                'label': 'Time',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.file({
                 'id': 'guid-' ~ random(),
-                'label': 'File'
+                'label': 'File',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.color({
                 'id': 'guid-' ~ random(),
-                'label': 'Color'
+                'label': 'Color',
+                'error': 'Please complete this field'
             })
         }}
 
@@ -114,6 +121,7 @@
             form.select({
                 'label': 'Select',
                 'id': 'guid-' ~ random(),
+                'error': 'Please complete this field',
                 'options': [
                     {
                         'label': 'Value one',
@@ -131,6 +139,7 @@
             form.select2({
                 'label': 'Select2',
                 'id': 'guid-' ~ random(),
+                'error': 'Please complete this field',
                 'options': [
                     {
                         'label': 'Value one',
@@ -150,7 +159,7 @@
                 'id': 'guid-' ~ random(),
                 'inputs': [
                     {
-                        
+
                         'label': 'Value',
                         'id': 'guid-' ~ random(),
                         'maxlength': '3',
@@ -292,7 +301,7 @@
                 'id': 'guid-' ~ random(),
                 'inputs': [
                     {
-                        
+
                         'label': 'Value',
                         'id': 'guid-' ~ random(),
                         'maxlength': '3',
@@ -494,6 +503,6 @@
                     })
                 ]
             })
-        }} 
+        }}
 
 {% endblock tab_content %}
