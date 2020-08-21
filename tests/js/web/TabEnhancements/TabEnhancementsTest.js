@@ -38,7 +38,7 @@ describe('TabEnhancements', () => {
                 <div class="tab__pane is-active" id="tab1">
                     <div class="tab__container">
                         <div class="tab__inner">
-                            <div class="tab__content">
+                            <div role="main" class="tab__content id="skip-target">
                                 <p>tab 1 content</p>
                             </div>
                         </div>
@@ -47,7 +47,7 @@ describe('TabEnhancements', () => {
                 <div class="tab__pane" id="tab2">
                     <div class="tab__container">
                         <div class="tab__inner">
-                            <div class="tab__content">
+                            <div role="main" class="tab__content" id="skip-target">
                                 <p>tab 2 content</p>
                             </div>
                         </div>
@@ -89,8 +89,8 @@ describe('TabEnhancements', () => {
             tabEnhancements.init($html);
         });
 
-        it('should change the active tabs main element to <main>', () => {
-            expect($body.find('#currentTabs #tab1 .tab__content').is('main')).to.be.true;
+        it('should remove any id="skip-target" set in original markup', () => {
+            expect($body.find('#currentTabs #tab2 .tab__content').attr('id')).to.be.undefined;
         });
 
         it('should add id="skip-target" to the active tabs <main>', () => {
@@ -100,46 +100,17 @@ describe('TabEnhancements', () => {
 
     describe('When a new tab is shown', () => {
         beforeEach(() => {
-            sinon.spy(tabEnhancements, 'changePreviousTabElementToDiv');
-
             tabEnhancements.init($html);
 
             $body.find('#tabLink2').trigger('show.bs.tab');
-        });
-
-        it('should change the active tabs main element to <main>', () => {
-            expect($body.find('#currentTabs #tab2 .tab__content').is('main')).to.be.true;
         });
 
         it('should add id="skip-target" to the active tabs <main>', () => {
             expect($body.find('#currentTabs #tab2 .tab__content').attr('id')).to.equal('skip-target');
         });
 
-        it('should copy the contents active tabs main element over to the the new <main>', () => {
-            expect($body.find('#currentTabs #tab2 .tab__content').html().trim()).to.equal('<p>tab 2 content</p>');
-        });
-
-        // Test event is missing event.relatedTarget so testing the method is called and behaviour separately
-        it('should reset the previous tab by calling changePreviousTabElementToDiv()', () => {
-            expect(tabEnhancements.changePreviousTabElementToDiv).to.have.been.calledOnce;
-        });
-
-        describe('changePreviousTabElementToDiv()', () => {
-            beforeEach(() => {
-                tabEnhancements.changePreviousTabElementToDiv($body.find('#tab1'));
-            });
-
-            it('should replace the previous tabs <main class="tab__content"> element with <div class="tab__content">', () => {
-                expect($body.find('#currentTabs #tab1 .tab__content').is('div')).to.be.true;
-            });
-
-            it('should remove the id="skip-target"', () => {
-                expect($body.find('#currentTabs #tab1 .tab__content').attr('id')).to.be.undefined;
-            });
-
-            it('should copy the content from the old <main> to the new <div>', () => {
-                expect($body.find('#currentTabs #tab1 .tab__content').html().trim()).to.equal('<p>tab 1 content</p>');
-            });
+        it('should remove the id="skip-target" from the previous tabs main', () => {
+            expect($body.find('#currentTabs #tab1 .tab__content').attr('id')).to.be.undefined;
         });
     });
 });

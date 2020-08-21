@@ -64,7 +64,7 @@
             {{ _settings|raw }}
         </section>
         {% endif %}
-        <div class="tab__content">
+        <div class="tab__content" id="skip-target" role="main">
             {% block tab_content %}{% endblock %}
         </div>
         {% if _hasSidebar == true %}
