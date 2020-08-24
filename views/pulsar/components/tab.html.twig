@@ -5,8 +5,16 @@
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/v2/helpers/datagrid.html.twig' as datagrid %}
 
+{% set _hasHeader = false %}
 {% set _hasSettings = false %}
 {% set _hasSidebar = false %}
+
+{% if block('tab_header') is defined %}
+    {% set _header = block('tab_header') %}
+    {% if _header is not empty %}
+        {% set _hasHeader = true %}
+    {% endif %}
+{% endif %}
 
 {% if block('tab_settings') is defined %}
     {% set _settings = block('tab_settings') %}
@@ -59,6 +67,11 @@
     {% endif %}
 
     <div class="tab__inner">
+        {% if _hasHeader == true %}
+        <div class="tab__header">
+            {{ _header|raw }}
+        </div>
+        {% endif %}
         {% if _hasSettings == true %}
         <section class="tab__settings" aria-label="settings">
             {{ _settings|raw }}

@@ -232,3 +232,8 @@
         @include col-span-width(9);
     }
 }
+
+.tab__header {
+    flex-basis: 100%;
+    width: 100%;
+}
