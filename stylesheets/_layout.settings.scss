@@ -388,6 +388,7 @@
         align-items: flex-start;
         display: table;
         display: flex;
+        flex-wrap: wrap; // to cater for presence of .tab__header
     }
 }
 
