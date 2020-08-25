@@ -29,7 +29,7 @@
         {% if options.data is iterable %}
             {% for options in options.data %}
                 {% if options.items is defined and options.items is iterable %}
-                    <div class="nav-list" data-nav="{{ options.href }}" id="{{ options.label|lower }}" aria-labelledby="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
+                    <div class="nav-list" data-nav="{{ options.href }}" aria-labelledby="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
                         <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
 
                         <ul class="nav-items">
