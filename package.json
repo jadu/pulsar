@@ -86,7 +86,7 @@
     "jquery-sticky": "^1.0.4",
     "jquery-ui": "^1.12.1",
     "jstree": "^3.3.9",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "pikaday": "^1.8.0",
