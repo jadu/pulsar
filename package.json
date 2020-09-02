@@ -5,6 +5,9 @@
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
   },
+  "publishConfig": { 
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "start": "docker-compose up -d && grunt",
     "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
@@ -87,7 +90,7 @@
     "jquery-ui": "^1.12.1",
     "jstree": "^3.3.9",
     "lodash": "^4.17.20",
-    "moment": "^2.24.0",
+    "moment": "^2.25.3",
     "normalize.css": "^8.0.1",
     "pikaday": "^1.8.0",
     "pulsar-date-picker": "^1.0.0",
