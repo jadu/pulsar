@@ -5,6 +5,7 @@
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
   },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "scripts": {
     "start": "docker-compose up -d && grunt",
     "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
