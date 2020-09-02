@@ -6,7 +6,7 @@
     "url": "https://github.com/jadu/pulsar.git"
   },
   "publishConfig": { 
-    "registry": "https://github.com/jadu/pulsar.git"
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "start": "docker-compose up -d && grunt",
