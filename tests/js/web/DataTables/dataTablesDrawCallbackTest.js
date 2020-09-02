@@ -1,7 +1,7 @@
 const { drawCallback } = require('../../../../js/DataTables/dataTablesDrawCallback'),
     $ = require('jquery');
 
-describe('datatablesDrawCallback', () => {
+describe('dataTablesDrawCallback', () => {
     const infoStub = sinon.stub().returns({
         pages: 666
     });
@@ -51,6 +51,14 @@ describe('datatablesDrawCallback', () => {
 
         expect($datatablePagination.find('.paginate_button.disabled').hasClass('u-display-none')).to.be.true;
     });
+
+    it('should add role="button" to pagination links', () => {
+        drawCallbackWithContext = drawCallback.bind($datatable);
+        drawCallbackWithContext();
+
+        expect($datatablePagination.find('.paginate_button.current').attr('role')).to.equal('button');
+        expect($datatablePagination.find('.paginate_button:contains("2")').attr('role')).to.equal('button');
+    })
 
     it('should add aria-labels to the numbered links', () => {
         drawCallbackWithContext = drawCallback.bind($datatable);

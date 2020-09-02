@@ -3,7 +3,7 @@
     position: relative;
 
     &::before {
-        background: #dedede;
+        background: color(gray, lightest);
         content: '';
         height: 85%;
         left: 55px;
@@ -17,13 +17,15 @@
         }
     }
 
-    .remove__control {
-        border: 0;
-        color: #999 !important;
+    .remove-button {
         position: absolute;
-        text-decoration: none;
-        top: 10px;
-        right: 10px;
+        right: 5px;
+        top: 5px;
+
+        @include respond-min($screen-tablet) {
+            top: 10px;
+            right: 10px;
+        }
     }
 
     [href].conditional-block__link--when {
@@ -37,6 +39,10 @@
 
     [href].conditional-block__link--then {
         color: color(success, dark);
+    }
+
+    .rule-block__control {
+        vertical-align: top;
     }
 }
 
@@ -172,29 +178,60 @@
 
 .conditional-block--flush {
     margin: 24px 0 0 58px;
+    position: relative;
 
     @include respond-min($screen-tablet) {
         margin: 24px 0 0 68px;
     }
+
+    &::after {
+        color: color(gray, lightest);
+        content: '\f061';
+        font-family: 'FontAwesome';
+        font-size: $font-size-large;
+        left: 0;
+        position: absolute;
+        top: 7px;
+    }
+
+    .btn {
+        margin-left: 25px;
+    }
+
 }
 
 .conditional-block--indented {
     margin: 0 0 24px 75px;
     padding-top: 14px;
+    position: relative;
 
     @include respond-min($screen-tablet) {
         margin: 0 0 14px 80px;
     }
 
     &::before {
-        background: #dedede;
+        background: color(gray, lightest);
         content: '';
-        height: 26px;
+        height: 30px;
         left: 0;
         position: absolute;
         top: 0;
         width: 4px;
         z-index: 1;
+    }
+
+    .btn {
+        margin-left: 25px;
+    }
+
+    &::after {
+        color: color(gray, lightest);
+        content: '\f061';
+        font-family: 'FontAwesome';
+        font-size: 19px;
+        left: 0;
+        position: absolute;
+        top: 17px;
     }
 }
 
@@ -203,7 +240,7 @@
     font-size: 1.2em;
 
     i {
-        color: #dedede;
+        color: color(gray, lightest);
         display: inline-block;
         margin-right: 5px;
         text-decoration: none;
@@ -249,7 +286,8 @@ td.table__form .rules + .form__group:last-of-type {
     }
 }
 
-.rules__step.has-error {
+.rules__step.has-error,
+.rule-block-wrapper.has-error {
     .rule-block__header {
         background-color: $state-danger-bg;
         box-shadow: inset 4px 0 0 0 color(danger);
@@ -257,14 +295,6 @@ td.table__form .rules + .form__group:last-of-type {
 
     .rule-block__heading {
         color: color(danger, dark);
-    }
-
-    .help-block {
-        margin: 0 0 0 1em;
-    }
-
-    .help-block:last-of-type {
-        margin-bottom: .6em;
     }
 
     .is-error {
@@ -351,7 +381,7 @@ td.table__form .rules + .form__group:last-of-type {
         padding-bottom: 10px;
 
         &::after {
-            color: #dedede;
+            color: color(gray, lightest);
             content: '\f061';
             font-family: 'FontAwesome';
             font-size: 19px;
@@ -393,6 +423,10 @@ td.table__form .rules + .form__group:last-of-type {
 
         .btn {
             background-color: lighten($rule-color-or, 25);
+
+            &:focus {
+                background-color: color(background, focus);
+            }
         }
     }
 
@@ -422,6 +456,10 @@ td.table__form .rules + .form__group:last-of-type {
 
         .btn {
             background-color: lighten($rule-color-and, 20);
+
+            &:focus {
+                background-color: color(background, focus);
+            }
         }
     }
 
@@ -448,6 +486,10 @@ td.table__form .rules + .form__group:last-of-type {
             background-color: lighten($rule-color-if, 40);
             margin-left: 30px;
             min-width: 76px;
+
+            &:focus {
+                background-color: color(background, focus);
+            }
         }
     }
 
@@ -493,12 +535,13 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block__heading {
+        font-weight: bold;
         padding: 0;
     }
 
     .rule-block--if,
     .rule-block--else-if {
-        background-color: lighten($rule-color-if, 40);
+        background-color: lighten($rule-color-if, 41);
         border-color: $rule-color-if;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
@@ -537,6 +580,14 @@ td.table__form .rules + .form__group:last-of-type {
         .rule-block__header {
             border-top: 0;
         }
+
+        .remove-button i {
+            color: color(white) !important;
+
+            @include respond-min($screen-tablet) {
+                color: color(text) !important;
+            }
+        }
     }
 
     .rule-block--and {
@@ -548,18 +599,22 @@ td.table__form .rules + .form__group:last-of-type {
             background-color: $rule-color-and;
             color: color(black);
         }
-
-        .remove__control {
-            color: color(text);
-        }
     }
 
     .rule-block--or {
-        background-color: lighten($rule-color-or, 25);
+        background-color: lighten($rule-color-or, 26);
         border-color: $rule-color-or;
 
         .rule-block__header {
             background-color: $rule-color-or;
+        }
+
+        .remove-button i {
+            color: color(white) !important;
+
+            @include respond-min($screen-tablet) {
+                color: color(text) !important;
+            }
         }
     }
 
@@ -582,7 +637,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block--return {
-        background-color: lighten($rule-color-return, 30);
+        background-color: lighten($rule-color-return, 40);
         border-color: $rule-color-return;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
@@ -597,7 +652,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block--else-return {
-        background-color: color(gray, lightest);
+        background-color: color(gray, off-white);
         border-color: color(gray, dark);
         border-radius: 15px;
 
@@ -618,6 +673,11 @@ td.table__form .rules + .form__group:last-of-type {
 
     .rule-block__controls {
         margin-top: .5em;
+
+        @include respond-min($screen-tablet) {
+            display: table-cell;
+            padding-top: .5em;
+        }
     }
 
     // Fix alignment when help-blocks are present
@@ -629,18 +689,14 @@ td.table__form .rules + .form__group:last-of-type {
         color: $rule-color-help;
     }
 
-    .remove__control {
-        background: none;
-        border: 0;
-        color: color(white);
-        font-size: $font-size-large;
-        padding: 2px 6px;
+    .remove-button {
         position: absolute;
-        right: 2px;
+        right: 5px;
         top: 5px;
 
         @include respond-min($screen-tablet) {
-            color: color(text);
+            top: 10px;
+            right: 10px;
         }
     }
 }
