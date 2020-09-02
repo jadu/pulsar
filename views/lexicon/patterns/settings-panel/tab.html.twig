@@ -58,19 +58,21 @@
 
     <div class="settings-section settings-section--stacked">
 
-        <h2>Section heading</h2>
+        {{ form.fieldset_start({ 'legend': 'Section heading' }) }}
 
         {{
             form.text({
                 'id': 'guid-' ~ random(),
                 'label': 'Text',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.textarea({
                 'id': 'guid-' ~ random(),
-                'label': 'Textarea'
+                'label': 'Textarea',
+                'error': 'Please complete this field'
             })
         }}
 
@@ -78,34 +80,40 @@
             form.password({
                 'id': 'guid-' ~ random(),
                 'label': 'Password',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.date({
+                'data-pulsar-datepicker': 'true',
                 'id': 'guid-' ~ random(),
                 'label': 'Date',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.time({
                 'id': 'guid-' ~ random(),
-                'label': 'Time'
+                'label': 'Time',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.file({
                 'id': 'guid-' ~ random(),
-                'label': 'File'
+                'label': 'File',
+                'error': 'Please complete this field'
             })
         }}
 
         {{
             form.color({
                 'id': 'guid-' ~ random(),
-                'label': 'Color'
+                'label': 'Color',
+                'error': 'Please complete this field'
             })
         }}
 
@@ -113,6 +121,7 @@
             form.select({
                 'label': 'Select',
                 'id': 'guid-' ~ random(),
+                'error': 'Please complete this field',
                 'options': [
                     {
                         'label': 'Value one',
@@ -130,6 +139,7 @@
             form.select2({
                 'label': 'Select2',
                 'id': 'guid-' ~ random(),
+                'error': 'Please complete this field',
                 'options': [
                     {
                         'label': 'Value one',
@@ -149,16 +159,16 @@
                 'id': 'guid-' ~ random(),
                 'inputs': [
                     {
-                        
+
                         'label': 'Value',
-                        'id': 'value-0',
+                        'id': 'guid-' ~ random(),
                         'maxlength': '3',
                         'show-label': false,
                         'type': 'text'
                     },
                     {
                         'label': 'Unit of time',
-                        'id': 'unit-0',
+                        'id': 'guid-' ~ random(),
                         'show-label': false,
                         'type': 'select',
                         'options': [
@@ -224,6 +234,7 @@
 
         {{
             form.date({
+                'data-pulsar-datepicker': 'true',
                 'id': 'guid-' ~ random(),
                 'label': 'Date',
             })
@@ -290,16 +301,16 @@
                 'id': 'guid-' ~ random(),
                 'inputs': [
                     {
-                        
+
                         'label': 'Value',
-                        'id': 'value-0',
+                        'id': 'guid-' ~ random(),
                         'maxlength': '3',
                         'show-label': false,
                         'type': 'text'
                     },
                     {
                         'label': 'Unit of time',
-                        'id': 'unit-0',
+                        'id': 'guid-' ~ random(),
                         'show-label': false,
                         'type': 'select',
                         'options': [
@@ -492,6 +503,6 @@
                     })
                 ]
             })
-        }} 
+        }}
 
 {% endblock tab_content %}
