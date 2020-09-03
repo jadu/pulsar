@@ -58,7 +58,7 @@
 
     <div class="settings-section settings-section--stacked">
 
-        {{ form.fieldset_start({ 'legend': 'Section heading' }) }}
+        <h2>Section heading</h2>
 
         {{
             form.text({
@@ -86,7 +86,6 @@
 
         {{
             form.date({
-                'data-pulsar-datepicker': 'true',
                 'id': 'guid-' ~ random(),
                 'label': 'Date',
                 'error': 'Please complete this field'
@@ -161,14 +160,14 @@
                     {
 
                         'label': 'Value',
-                        'id': 'guid-' ~ random(),
+                        'id': 'value-0',
                         'maxlength': '3',
                         'show-label': false,
                         'type': 'text'
                     },
                     {
                         'label': 'Unit of time',
-                        'id': 'guid-' ~ random(),
+                        'id': 'unit-0',
                         'show-label': false,
                         'type': 'select',
                         'options': [
@@ -234,7 +233,6 @@
 
         {{
             form.date({
-                'data-pulsar-datepicker': 'true',
                 'id': 'guid-' ~ random(),
                 'label': 'Date',
             })
@@ -303,14 +301,14 @@
                     {
 
                         'label': 'Value',
-                        'id': 'guid-' ~ random(),
+                        'id': 'value-0',
                         'maxlength': '3',
                         'show-label': false,
                         'type': 'text'
                     },
                     {
                         'label': 'Unit of time',
-                        'id': 'guid-' ~ random(),
+                        'id': 'unit-0',
                         'show-label': false,
                         'type': 'select',
                         'options': [

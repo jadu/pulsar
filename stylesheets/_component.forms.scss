@@ -298,10 +298,6 @@ fieldset {
     @include respond-min($screen-tablet) {
         @include push-padding(2.87); // magic number to align form actions with form grid
     }
-
-    .btn {
-        margin-right: 4px;
-    }
 }
 
 .form__actions--flush {

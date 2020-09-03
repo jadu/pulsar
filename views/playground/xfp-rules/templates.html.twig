@@ -1,0 +1,597 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block actions_left %}
+     {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'New template',
+                        'href': '/new',
+                        'icon': 'plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Edit template',
+                        'href': '/cxm',
+                        'icon': 'pencil',
+                        'disabled': true
+                    },
+                    {
+                        'label': 'Delete template',
+                        'href': '/delete',
+                        'icon': 'times',
+                        'disabled': true
+                    },
+                ]
+            ]
+        })
+    }}
+{% endblock %}
+
+{% block actions_right %}
+    {{
+        html.button({
+            'class': 'btn--primary',
+            'label': 'New Template'
+        })
+    }}
+{% endblock %}
+
+{% block tab_content %}
+    <table class="table datatable table--full" data-select="false">
+        <thead>
+            <tr>
+                <td class="table-responsive"></td>
+                <th><a href="#">Template name</a></th>
+                <th><a href="#">System</a></th>
+                <th><a href="#">In use</a></th>
+                <th class="align-right"><a href="#">Actions</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="table-responsive">
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
+                </td>
+                <td><a data-toggle="modal" href="#edit-template">New green waste case</a></td>
+                <td>Paybridge</td>
+                <td><a href="#">1 rule</a></td>
+                <td class="align-right">
+                    {{
+                        html.link({
+                            'label': html.icon('pencil'),
+                            'class': 'table-action',
+                            'data-toggle': 'modal',
+                            'href': '#edit-template'
+                        })
+                    }}
+                    {{ html.link({ 'label': html.icon('remove-sign'), 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
+                </td>
+                <td><a data-toggle="modal" href="#edit-template">New green waste case</a></td>
+                <td>Paybridge</td>
+                <td><a href="#">1 rule</a></td>
+                <td class="align-right">
+                    {{
+                        html.link({
+                            'label': html.icon('pencil'),
+                            'class': 'table-action',
+                            'data-toggle': 'modal',
+                            'href': '#edit-template'
+                        })
+                    }}
+                    {{ html.link({ 'label': html.icon('remove-sign'), 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
+                </td>
+                <td><a data-toggle="modal" href="#edit-template">New green waste case</a></td>
+                <td>Paybridge</td>
+                <td><a href="#">1 rule</a></td>
+                <td class="align-right">
+                    {{
+                        html.link({
+                            'label': html.icon('pencil'),
+                            'class': 'table-action',
+                            'data-toggle': 'modal',
+                            'href': '#edit-template'
+                        })
+                    }}
+                    {{ html.link({ 'label': html.icon('remove-sign'), 'class': 'table-action' }) }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="edit-template" class="modal modal--large">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                    <h1 class="modal__title">Edit ‘New green waste case’ template</h1>
+                </div>
+                <div class="modal__body">
+                    {{
+                        html.panel({
+                            'class': 'panel--warning',
+                            'body': 'This template is being used by 3 rules, any changes here will update all the rules using this template',
+                            'icon': 'warning-sign'
+                        })
+                    }}
+                    {{
+                        form.create()
+                    }}
+                    {{
+                        form.text({
+                            'class': 'form__group--full',
+                            'label': 'Template name',
+                            'value': 'New green waste case'
+                        })
+                    }}
+                    {{
+                        form.text({
+                            'class': 'form__group--full',
+                            'label': 'Case type',
+                            'value': 'green-waste'
+                        })
+                    }}
+                    {{
+                        form.text({
+                            'class': 'form__group--full',
+                            'label': 'Form type',
+                            'value': 'create'
+                        })
+                    }}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>CXM case field</th>
+                                <th>Populate with xForm response</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{
+                                        form.text({
+                                            'value': 'First name'
+                                        })
+                                    }}
+                                </td>
+                                <td>
+                                    {{
+                                        form.select2({
+                                            'options': {
+                                                'foo': 'Q1 - first-name'
+                                            }
+                                        })
+                                    }}
+                                    {{
+                                        form.checkbox_inline({
+                                            'label': 'Use a value from a previous CXM action'
+                                        })
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{
+                                        form.text({
+                                            'value': 'Last name'
+                                        })
+                                    }}
+                                </td>
+                                <td>
+                                    {{
+                                        form.select2({
+                                            'options': {
+                                                'foo': 'Q2 - last-name'
+                                            }
+                                        })
+                                    }}
+                                    {{
+                                        form.checkbox_inline({
+                                            'label': 'Use a value from a previous CXM action'
+                                        })
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{
+                                        form.text({
+                                            'value': 'Postcode'
+                                        })
+                                    }}
+                                </td>
+                                <td>
+                                    {{
+                                        form.select2({
+                                            'options': {
+                                                'foo': 'Q4 - postcode'
+                                            }
+                                        })
+                                    }}
+                                    {{
+                                        form.checkbox_inline({
+                                            'label': 'Use a value from a previous CXM action'
+                                        })
+                                    }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'class': 'btn--primary',
+                            'label': 'Save'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal',
+                            'href': '#',
+                            'label': 'Cancel',
+                            'type': 'button'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'class': 'btn--danger pull-right',
+                            'data-dismiss': 'modal',
+                            'href': '#',
+                            'label': 'Delete',
+                            'type': 'button'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div id="new-template-1" class="modal modal--large show">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                    <h1 class="modal__title">New template</h1>
+                </div>
+                <div class="modal__body">
+                    {{
+                        form.create()
+                    }}
+                    <div class="progress-list">
+
+                        <a href="#" class="progress-list__item progress-list__item--current">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 1</span>
+                                Details
+                            </span>
+                            <span class="progress-list__arrow">&gt;</span>
+                        </a>
+
+                        <a href="#" class="progress-list__item">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 2</span>
+                                Form type
+                            </span>
+                            <span class="progress-list__arrow">&gt;</span>
+                        </a>
+
+                        <a href="#" class="progress-list__item">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 3</span>
+                                Field mappings
+                            </span>
+                        </a>
+
+                    </div>
+                    {{
+                        form.text({
+                            'class': 'form__group--full',
+                            'label': 'Template name',
+                            'value': 'New green waste case'
+                        })
+                    }}
+                    {{
+                        form.choice({
+                            'class': 'form__group--full',
+                            'label': 'Case type',
+                            'options': [
+                                {
+                                    'label': 'Brown waste',
+                                    'value': 'sun'
+                                },
+                                {
+                                    'label': 'Bulky item collection',
+                                    'value': 'boogie'
+                                },
+                                {
+                                    'label': 'Green waste',
+                                    'value': 'moon'
+                                },
+                                {
+                                    'label': 'Purple waste',
+                                    'value': 'good'
+                                },
+                                {
+                                    'label': 'Another item to push this to >5 items',
+                                    'value': 'good'
+                                },
+                                {
+                                    'label': 'Yet another item to push this to >5 items',
+                                    'value': 'goody'
+                                }
+                            ]
+                        })
+                    }}
+                    {{
+                        form.end()
+                    }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'class': 'btn--primary',
+                            'label': 'Save'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal',
+                            'href': '#',
+                            'label': 'Cancel',
+                            'type': 'button'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div id="new-template-2" class="modal modal--large show">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                    <h1 class="modal__title">New template</h1>
+                </div>
+                <div class="modal__body">
+                    {{
+                        form.create()
+                    }}
+                    <div class="progress-list">
+
+                        <a href="#" class="progress-list__item progress-list__item--complete">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 1</span>
+                                Details
+                            </span>
+                            <span class="progress-list__arrow">&gt;</span>
+                        </a>
+
+                        <a href="#" class="progress-list__item progress-list__item--current">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 2</span>
+                                Form type
+                            </span>
+                            <span class="progress-list__arrow">&gt;</span>
+                        </a>
+
+                        <a href="#" class="progress-list__item">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 3</span>
+                                Field mappings
+                            </span>
+                        </a>
+
+                    </div>
+                    {{
+                        form.choice({
+                            'class': 'form__group--full',
+                            'label': 'Form type',
+                            'options': [
+                                {
+                                    'label': 'Create',
+                                    'value': 'create'
+                                },
+                                {
+                                    'label': 'Update',
+                                    'value': 'update'
+                                },
+                                {
+                                    'label': 'Delete',
+                                    'value': 'delete'
+                                }
+                            ]
+                        })
+                    }}
+                    {{
+                        form.end()
+                    }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'class': 'btn--primary',
+                            'label': 'Save'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal',
+                            'href': '#',
+                            'label': 'Cancel',
+                            'type': 'button'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div id="new-template-2" class="modal modal--large show">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                    <h1 class="modal__title">Create ‘New green waste case’ template</h1>
+                </div>
+                <div class="modal__body">
+                    {{
+                        form.create()
+                    }}
+                    <div class="progress-list">
+
+                        <a href="#" class="progress-list__item progress-list__item--complete">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 1</span>
+                                Details
+                            </span>
+                            <span class="progress-list__arrow">&gt;</span>
+                        </a>
+
+                        <a href="#" class="progress-list__item progress-list__item--complete">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 2</span>
+                                Form type
+                            </span>
+                            <span class="progress-list__arrow">&gt;</span>
+                        </a>
+
+                        <a href="#" class="progress-list__item progress-list__item--current">
+                            <span class="progress-list__label">
+                                <span class="badge badge--round badge--outline">Step 3</span>
+                                Field mappings
+                            </span>
+                        </a>
+                    </div>
+                    <p>Choose which form fields or variables will be used to populate the fields for this case type.</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>CXM case field</th>
+                                <th>Populate with xForm response</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{
+                                        form.text({
+                                            'value': 'First name'
+                                        })
+                                    }}
+                                </td>
+                                <td>
+                                    {{
+                                        form.select2({
+                                            'options': {
+                                                'foo': 'Q1 - first-name'
+                                            }
+                                        })
+                                    }}
+                                    {{
+                                        form.checkbox_inline({
+                                            'label': 'Use a value from a previous CXM action'
+                                        })
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{
+                                        form.text({
+                                            'value': 'Last name'
+                                        })
+                                    }}
+                                </td>
+                                <td>
+                                    {{
+                                        form.select2({
+                                            'options': {
+                                                'foo': 'Q2 - last-name'
+                                            }
+                                        })
+                                    }}
+                                    {{
+                                        form.checkbox_inline({
+                                            'label': 'Use a value from a previous CXM action'
+                                        })
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{
+                                        form.text({
+                                            'value': 'Postcode'
+                                        })
+                                    }}
+                                </td>
+                                <td>
+                                    {{
+                                        form.select2({
+                                            'options': {
+                                                'foo': 'Q4 - postcode'
+                                            }
+                                        })
+                                    }}
+                                    {{
+                                        form.checkbox_inline({
+                                            'label': 'Use a value from a previous CXM action'
+                                        })
+                                    }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {{
+                        form.end()
+                    }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'class': 'btn--primary',
+                            'label': 'Save'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal',
+                            'href': '#',
+                            'label': 'Cancel',
+                            'type': 'button'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+{% endblock tab_content %}
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Link form responses to third-party systems</h2>
+    <p>Templates are used by Rules to perform actions on integrated systems and map specific form responses to fields in a third-party system.</p>
+{% endblock tab_sidebar %}
+
+{% block modals %}
+
+{% endblock %}

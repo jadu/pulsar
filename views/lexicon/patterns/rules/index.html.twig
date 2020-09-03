@@ -3,25 +3,16 @@
 {% set heading = 'Rules' %}
 
 {% set tab_one %}
-    {% include '/lexicon/patterns/rules/event-based.html.twig' %}
-{% endset %}
-
-{% set tab_two %}
-    {% include '/lexicon/patterns/rules/logic-based.html.twig' %}
+    {% include '/lexicon/patterns/rules/one.html.twig' %}
 {% endset %}
 
 {%
     set tabs_content = [
         {
-            "id"    : "event",
-            "label" : "Event based",
+            "id"    : "one",
+            "label" : "Rules",
             "src"   : tab_one,
             "active": true
-        },
-        {
-            "id"    : "logic",
-            "label" : "Logic based",
-            "src"   : tab_two
         }
     ]
 %}

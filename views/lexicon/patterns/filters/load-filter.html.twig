@@ -36,8 +36,9 @@
                     form.select2({
                         'label': 'Colour (single + ph)',
                         'id': 'colour-' ~ random(),
-                        'placeholder': 'Select One',
+                        'data-placeholder': 'Select One',
                         'options': {
+                            '': 'Select One',
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
                         }
@@ -48,9 +49,10 @@
                     form.select2({
                         'label': 'Colour (single + ph + preselected)',
                         'id': 'colour-' ~ random(),
-                        'placeholder': 'Select One',
+                        'data-placeholder': 'Select One',
                         'selected': 'colour_blue',
                         'options': {
+                            '': 'Select One',
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
                         }
@@ -62,7 +64,7 @@
                         'label': 'Colour 3 (multi + ph)',
                         'id': 'colour-' ~ random(),
                         'multiple': true,
-                        'placeholder': 'Select one or more',
+                        'data-placeholder': 'Select one or more',
                         'options': {
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
@@ -100,26 +102,21 @@
                     form.text({
                         'label': 'Text field example',
                         'id': 'foo-' ~ random(),
-                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.date({
-                        'data-pulsar-datepicker': 'true',
                         'label': 'Added from',
                         'id': 'addedFrom-' ~ random(),
-                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.date({
-                        'data-pulsar-datepicker': 'true',
                         'label': 'Added to',
                         'id': 'addedTo-' ~ random(),
-                        'value': '04/07/2017',
-                        'class': 'form__group--full'
+                        'value': '04/07/2017'
                     })
                 }}
 
@@ -136,7 +133,7 @@
             form.end({
                 'actions': [
                     form.submit({
-                        'label': 'Apply Filter',
+                        'label': 'Save',
                         'class': 'btn--primary'
                     }),
                     html.link({

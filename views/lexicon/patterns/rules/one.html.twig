@@ -58,47 +58,39 @@
 {% block tab_content %}
 
     {{
-        form.error_summary({
-            'heading': 'There is a problem',
-            'errors': [
-                {
-                    'label': 'Please choose a user type',
-                    'href': 'select2-select2-with-error'
-                }
-            ]
+        html.panel({
+            'class': 'panel--danger',
+            'icon': 'warning-sign',
+            'title': 'Your rule cannot be saved',
+            'body': 'Please correct the highlighted errors in your rule, and try saving again.'
         })
     }}
 
-    <table class="table datatable table--full" data-select="false" data-overflow="collapse">
-        <caption class="hide">Rules</caption>
+    <table class="table datatable table--full" data-select="false">
         <thead>
             <tr>
-                <td><span class="hide">Table controls</span></td>
-                <th data-orderable="false" class="shrink-to-fit centered">Active</th>
-                <th data-orderable="false">Name</th>
-                <th data-orderable="false">Last triggered</th>
+                <td class="table-responsive"></td>
+                <th class="shrink-to-fit centered"><a href="#">Active</a></th>
+                <th><a href="#">Name</a></th>
+                <th><a href="#">Last triggered</a></th>
             </tr>
         </thead>
         <tbody>
             {% for i in 0..1 %}
             <tr>
                 <td class="table-responsive">
-                    <button class="table-child-toggle">
-                        {{ html.icon('plus-sign', { 'label': 'Toggle this rows collapsed columns' }) }}
-                    </button>
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
-                <td class="shrink-to-fit centered">{{ html.status('active') }}</td>
+                <td class="centered">{{ html.status('active') }}</td>
                 <td><a href="#">Create green waste case</a></td>
                 <td>01/02/03 12:34pm</td>
             </tr>
 
             <tr>
                 <td class="table-responsive">
-                    <button class="table-child-toggle">
-                        {{ html.icon('plus-sign', { 'label': 'Toggle this rows collapsed columns' }) }}
-                    </button>
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
-                <td class="shrink-to-fit centered">{{ html.status('inactive') }}</td>
+                <td class="centered">{{ html.status('inactive') }}</td>
                 <td><a href="#">Create brown waste case</a></td>
                 <td>01/02/03 12:34pm</td>
             </tr>
@@ -107,7 +99,7 @@
         <tfoot>
             <tr>
                 <td class="table__form" colspan="4">
-                    <div id="rule-form-container-event" class="rules-container">
+                    <div id="rule-form-container" class="rules-container">
                         {{
                             form.create()
                         }}
@@ -137,8 +129,6 @@
                             {{
                                 rule.block_when({
                                     'removeable': false,
-                                    'show_and': false,
-                                    'show_or': false,
                                     'inputs': [
                                         form.select2({
                                             'id': 'select2-' ~ random(),
@@ -183,7 +173,7 @@
                                         form.select({
                                             'id': 'select-' ~ random(),
                                             'class': 'form__group--small',
-                                            'label': 'Choose logic',
+                                            'label': 'Choose',
                                             'show-label': false,
                                             'options':
                                             [
@@ -200,7 +190,7 @@
                                         form.select2({
                                             'id': 'select2-' ~ random(),
                                             'class': 'form__group--medium',
-                                            'label': 'Choose value',
+                                            'label': 'Choose user type',
                                             'show-label': false,
                                             'options':
                                             [
@@ -221,11 +211,12 @@
                                     ]
                                 })
                             }}
-
                             {{
                                 rule.block_or({
                                     'class': 'rule--indented',
-                                    'error': true,
+                                    'error': [
+                                        'Please choose a user type'
+                                    ],
                                     'inputs': [
                                         form.select2({
                                             'id': 'select2-' ~ random(),
@@ -243,7 +234,7 @@
                                         form.select({
                                             'id': 'select-' ~ random(),
                                             'class': 'form__group--small',
-                                            'label': 'Choose logic',
+                                            'label': 'Choose',
                                             'show-label': false,
                                             'options':
                                             [
@@ -258,11 +249,10 @@
                                             ]
                                         }),
                                         form.select2({
-                                            'id': 'select2-select2-with-error',
+                                            'id': 'select2-' ~ random(),
                                             'class': 'form__group--medium has-error',
-                                            'label': 'Choose value',
+                                            'label': 'Choose user type',
                                             'show-label': false,
-                                            'error': 'Please choose a user type',
                                             'options':
                                             [
                                                 {
