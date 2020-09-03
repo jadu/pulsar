@@ -30,6 +30,7 @@
 }
 
 .card__body {
+    display: block; // allow spans as well as divs
     padding: .75em;
 
     li:last-child {
