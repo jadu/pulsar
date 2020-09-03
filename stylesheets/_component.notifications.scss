@@ -1,7 +1,6 @@
 @import 'component.toolbar';
 
 .notifications {
-    // float: right;
     position: static; // override default dropdown behaviour for small screens
     z-index: $zindex-dropdown;
 
