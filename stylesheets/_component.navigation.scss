@@ -179,9 +179,11 @@
     border-radius: 4px;
     color: $nav-color-dark;
     display: inline-block;
+    height: 32px;
     line-height: normal;
-    margin-top: 5px;
-    padding: 8px 14px 6px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    padding: 6px 14px;
     text-decoration: none;
 
     @include respond-min($screen-desktop) {
@@ -196,6 +198,7 @@
 
     &:focus {
         @include pulsar-outline-button-focused;
+        border-width: 1px;
     }
 }
 

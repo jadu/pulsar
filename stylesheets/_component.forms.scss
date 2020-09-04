@@ -246,6 +246,7 @@ fieldset {
     &[readonly],
     fieldset[disabled] & {
         cursor: not-allowed;
+        color: color(text); // Required for cross-browser consistency
         background-color: $input-bg-disabled;
     }
 
@@ -600,6 +601,12 @@ fieldset {
     &:checked::before {
         color: color(text);
         content: '\f00c';
+    }
+
+    &:indeterminate::before {
+        color: color(text);
+        content: '\f068';
+        left: 3.5px;
     }
 }
 
