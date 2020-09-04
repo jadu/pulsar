@@ -246,13 +246,13 @@ fieldset {
     &[readonly],
     fieldset[disabled] & {
         cursor: not-allowed;
+        color: color(text); // Required for cross-browser consistency
         background-color: $input-bg-disabled;
     }
 
     &:focus {
         @include pulsar-input-focused;
 
-        position: relative;
         z-index: 1;
     }
 }
@@ -297,6 +297,10 @@ fieldset {
 
     @include respond-min($screen-tablet) {
         @include push-padding(2.87); // magic number to align form actions with form grid
+    }
+
+    .btn {
+        margin-right: 4px;
     }
 }
 
@@ -598,6 +602,12 @@ fieldset {
         color: color(text);
         content: '\f00c';
     }
+
+    &:indeterminate::before {
+        color: color(text);
+        content: '\f068';
+        left: 3.5px;
+    }
 }
 
 .form__control.radio {
@@ -640,6 +650,12 @@ fieldset {
     > .controls {
         margin-left: 0; // remove gutter
         width: 100%;
+    }
+
+    &.form__group--indent .controls {
+        @include respond-min($screen-tablet) {
+            @include shrink($form-label-cols);
+        }
     }
 
     > .controls > .control__label {

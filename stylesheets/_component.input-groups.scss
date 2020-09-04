@@ -148,8 +148,8 @@
     border-left: 0;
 }
 
-.input-group-btn:last-child > .btn,
-.input-group-btn:last-child > .btn__group {
+.input-group-btn > .btn,
+.input-group-btn > .btn__group {
     margin-left: $margin-base-horizontal / 2;
 }
 

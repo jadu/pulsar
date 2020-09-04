@@ -24,6 +24,11 @@
 
     tbody > tr:hover {
         background-color: color(background, light);
+
+        [href],
+        .continuum-cms & [href]:link {
+            color: color(link, dark);
+        }
     }
 
     tr {
@@ -236,6 +241,10 @@ td.table__form {
 td.table__form,
 .table__form td {
     background-color: color(background);
+
+    .help-block {
+        color: color(text);
+    }
 }
 
 .table-container + .pagination {

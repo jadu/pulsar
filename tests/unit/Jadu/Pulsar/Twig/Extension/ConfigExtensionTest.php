@@ -44,13 +44,6 @@ class ConfigExtensionTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('version', $file);
     }
 
-    public function testConfigFileVersionNumberIsValid()
-    {
-        $file = file_get_contents('pulsar.json');
-        $json = json_decode($file, true);
-        $this->assertStringMatchesFormat('%d.%d.%d', $json['version']);
-    }
-
     public function testGetConfigVarsMethodReturnsVersionNumber()
     {
         $this->assertArrayHasKey('version', $this->ext->getConfigVars($this->config));
@@ -80,7 +73,6 @@ class ConfigExtensionTest extends \PHPUnit\Framework\TestCase
         $this->assertIsArray($config);
         $this->assertArrayHasKey('name', $config);
         $this->assertArrayHasKey('version', $config);
-        $this->assertStringMatchesFormat('%d.%d.%d', $config['version']);
         $this->assertArrayHasKey('base_path', $config);
     }
     

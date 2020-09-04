@@ -156,10 +156,4 @@ var $ = require('jquery');
 		}
 	});
 
-	$(document).ready(function() {
-		// Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
-		$('.tabs > .tabs__content > .tab__pane').css('min-height', $('.tabs__list').height());
-	});
-
 module.exports = Tab;
-

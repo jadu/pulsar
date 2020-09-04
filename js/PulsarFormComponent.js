@@ -30,28 +30,6 @@ PulsarFormComponent.prototype.init = function () {
 
     // Time picker
     component.initTimePickers();
-
-    // reinitialise select2 items in a tab when the tab is focused to fix widths
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var $target = $($(e.target).attr('href')),
-            $select2 = $target.find('.js-select2:not([data-init="false"])');
-
-        $.each($select2, function() {
-            component.initSelect2($(this));
-        });
-    });
-
-    // reinitialise select2 items when opening a modal to fix widths
-    $('[data-toggle="modal"]').on('click', function (e) {
-        var $target = $($(e.target).attr('href')),
-            $select2 = $target.find('.js-select2:not([data-init="false"])');
-
-        $target.on('shown.bs.modal', function() {
-            $.each($select2, function() {
-                component.initSelect2($(this));
-            });
-        });
-    });
 }
 
 /**
