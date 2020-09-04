@@ -18,9 +18,6 @@
 {% set tab_datatable_empty %}
     {% include 'lexicon/tables/datatable-empty.html.twig' %}
 {% endset %}
-{% set tab_formtable %}
-    {% include 'lexicon/tables/form-tables.html.twig' %}
-{% endset %}
 {% set tab_sortable %}
     {% include 'lexicon/tables/sortable.html.twig' %}
 {% endset %}
@@ -53,11 +50,6 @@
           "id"    : "datatable-empty",
           "label" : "DataTable (empty)",
           "src"   : tab_datatable_empty
-        },
-        {
-          "id"    : "formtables",
-          "label" : "Form Tables",
-          "src"   : tab_formtable
         },
         {
           "id"    : "sortable",
