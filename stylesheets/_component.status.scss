@@ -12,22 +12,26 @@
     &.is-online {
         background-color: color(success);
         border-radius: 6px;
+        color: color(success, alt);
     }
 
     &.is-offline {
         background-color: color(danger);
         border-radius: 2px;
+        color: color(danger, alt);
     }
 
     &.is-warning {
         background-color: color(warning);
         border-radius: 6px;
+        color: color(warning, alt);
     }
 
     &.is-inactive {
         background-color: color(white);
         border: 2px solid color(border);
         border-radius: 6px;
+        color: color(black);
     }
 }
 

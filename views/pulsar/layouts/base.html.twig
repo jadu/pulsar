@@ -62,45 +62,58 @@
 
             <header class="toolbar">
 
-                <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
-
-                {% block notifications %}{% endblock %}
-
-                <div class="nav-user">
-                {% block user_menu %}
-                {{
-                    html.button_dropdown({
-                        'parent_class': 'dropdown user-menu btn--naked',
-                        'label': 'Paul Stanton',
-                        'tabindex': '5',
-                        'items': [
-                            html.link({
-                                "label": html.icon('user') ~ " My details",
-                                "href": "#"
-                            }),
-                            html.link({
-                                "label": html.icon('key') ~ " Change password",
-                                "href": "#"
-                            }),
-                            html.divider(),
-                            html.link({
-                                "label": html.icon('power-off') ~ " Sign out",
-                                "href": "#"
-                            })
-                        ]
-                    })
-                }}
-                {% endblock %}
-                </div>
-
-                {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
+                <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
 
                 {% block search %}
                 <form action="/search" class="main-search" data-ui="search-box" role="search">
-                    <input type="search" tabindex="3" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
-                    <button id="search-submit" tabindex="3" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
+                    <input type="search" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
+                    <button id="search-submit" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
                 </form>
                 {% endblock %}
+
+                <div class="toolbar-actions">
+                    {% block user_menu %}
+                    {{
+                        html.button_dropdown({
+                            'class': 'btn--outline btn--inverse',
+                            'label': html.icon('building-o') ~ ' <span class="toolbar-action__text">Pulsar City Council</span>',
+                            'items': [
+                                html.link({
+                                    "label": html.icon('random') ~ " Stellar City Council",
+                                    "href": "#"
+                                }),
+                                html.link({
+                                    "label": html.icon('random') ~ " Comets City Council",
+                                    "href": "#"
+                                })
+                            ]
+                        })
+                    }}
+                    {{
+                        html.button_dropdown({
+                            'class': 'btn--outline btn--inverse',
+                            'label': html.icon('user-o') ~ ' <span class="toolbar-action__text">Paul Stanton</span> (23)',
+                            'items': [
+                                html.link({
+                                    "label": html.icon('user') ~ " My details",
+                                    "href": "#"
+                                }),
+                                html.link({
+                                    "label": html.icon('key') ~ " Change password",
+                                    "href": "#"
+                                }),
+                                html.divider(),
+                                html.link({
+                                    "label": html.icon('power-off') ~ " Sign out",
+                                    "href": "#"
+                                })
+                            ]
+                        })
+                    }}
+                    {% endblock %}
+                    {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
+                    {% block notifications %}{% endblock %}
+                </div>
 
                 {% include '@pulsar/pulsar/components/flash.html.twig' %}
 

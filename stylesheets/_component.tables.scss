@@ -24,6 +24,11 @@
 
     tbody > tr:hover {
         background-color: color(background, light);
+
+        [href],
+        .continuum-cms & [href]:link {
+            color: color(link, dark);
+        }
     }
 
     tr {
