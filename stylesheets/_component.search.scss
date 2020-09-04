@@ -1,18 +1,17 @@
 .main-search {
     border: 1px solid $input-border;
     border-radius: 4px;
-    clear: both;
     display: block;
-    margin: 20px 0;
+    flex: 1 1 100%;
+    flex-grow: 1;
+    height: 32px;
+    margin-bottom: 10px;
+    margin-right: 5px;
     position: relative;
 
     @include respond-min($screen-tablet) {
-        display: table;
-    }
-
-    @include respond-min($screen-desktop) {
-        margin: 0;
-        clear: none;
+        flex-grow: 0;
+        max-width: 180px;
     }
 }
 
@@ -80,7 +79,7 @@ input.main-search__field::-ms-clear {
     padding: 1px 8px 0;
     position: absolute;
     right: 0;
-    top: 3px;
+    top: 5px;
     z-index: 3;
 
     @include respond-min($screen-tablet) {

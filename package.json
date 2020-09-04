@@ -1,9 +1,12 @@
 {
   "name": "jadu-pulsar",
-  "version": "10.3.1",
+  "version": "11.0.0-beta.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
+  },
+  "publishConfig": { 
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "start": "docker-compose up -d && grunt",
@@ -87,7 +90,7 @@
     "jquery-ui": "^1.12.1",
     "jstree": "^3.3.9",
     "lodash": "^4.17.20",
-    "moment": "^2.24.0",
+    "moment": "^2.27.0",
     "normalize.css": "^8.0.1",
     "pikaday": "^1.8.0",
     "pulsar-date-picker": "^1.0.0",

@@ -1,0 +1,164 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+{%- endblock -%}
+
+{%- block actions_right -%}
+{%- endblock -%}
+
+{% block tab_settings %}
+
+        <h2>Workflow settings</h2>
+        <p class="u-margin-bottom-small">Choose which admin groups are available for selection in workflow steps <span class="required-indicator" data-toggle="tooltips" title="required">*</span></p>
+        <p><button class="btn u-width-full">Manage Admin Groups</button></p>
+
+        <div class="form__group form__group--toggle">
+            <label class="toggle-switch-wrapper-label" for="toggle">
+                <span class="control__label">Prevent editing of content progressing through workflow</span>
+                <span class="controls">
+                    <input id="toggle" name="toggle" type="checkbox" class="form__control toggle-switch" />
+                    <span class="toggle-switch-label"></span>
+                </span>
+            </label>
+        </div>
+
+        <div class="form__group form__group--full form__group--top form__group--flush form-choice">
+            <label class="control__label">Use this workflow on these content types</label>
+            <div class="controls">
+                <label class="control__label">
+                    <input name="choice-a2" value="boogie" type="checkbox" class="form__control checkbox" />
+                    <span class="form-choice__label">A-Z Services</span>
+                </label>
+                <label class="control__label">
+                    <input name="choice-a2" value="sun" type="checkbox" class="form__control checkbox" />
+                    <span class="form-choice__label">Document pages</span>
+                </label>
+                <label class="control__label">
+                    <input name="choice-a2" value="moon" type="checkbox" class="form__control checkbox" />
+                    <span class="form-choice__label">Events</span>
+                </label>
+                <label class="control__label">
+                    <input name="choice-a2" value="moon" type="checkbox" class="form__control checkbox" />
+                    <span class="form-choice__label">FAQs</span>
+                </label>
+                <label class="control__label">
+                    <input name="choice-a2" value="moon" type="checkbox" class="form__control checkbox" />
+                    <span class="form-choice__label">Galleries</span>
+                </label>
+                <label class="control__label">
+                    <input name="choice-a2" value="good" type="checkbox" class="form__control checkbox" />
+                    <span class="form-choice__label">Homepages</span>
+                </label>
+                <label class="control__label">
+                    <input name="choice-a2" value="moon" type="checkbox" class="form__control checkbox" />
+                    <span class="form-choice__label">News</span>
+                </label>
+                <label class="control__label">
+                    <input name="choice-a2" value="moon" type="checkbox" class="form__control checkbox" />
+                    <span class="form-choice__label">Press releases</span>
+                </label>
+            </div>
+        </div>
+
+{% endblock tab_settings %}
+
+{% block tab_content %}
+
+<form method="POST" enctype="application/x-www-form-urlencoded" class="form">
+
+    <div class="u-margin-bottom--large">
+        <label for="text-1"  class="control__label hide">Workflow title</label>
+        <input id="text-1" name="text-1" type="text" class="form__control" value="My Awesome Advanced Workflow" />
+    </div>
+
+    <div id="rule-form-container" class="rules-container rules-container--v2 rules-container--spaced rules-container--linear">
+
+        <div class="rule-block rule-block--if">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">Step 1</span>
+            </div>
+            <div class="rule-block__controls">
+                <h2 class="u-margin-bottom">Admin group: Administrators</h2>
+                <p class="u-margin-bottom-small">This workflow will be used when content created by these admins is sent for approval</p>
+
+                <div class="u-margin-bottom--large">
+                    <span class="label label--primary label--large">Sarah Backhouse <button class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button></span>
+                    <span class="label label--primary label--large">Paul Stanton <button class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button></span>
+                    <span class="label label--primary label--large">James Jacobs <button class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button></span>
+                </div>
+                
+                <div class="form__group form__group--large u-margin-bottom-none">
+                    <label for="select-1" class="control__label hide">Choose Administrator</label>
+                    <div class="controls">
+                        <div class="input-group has-btn-appended">
+                            <select id="select-1" class="form__control select js-select2">
+                                <option value="">Choose admin</option>
+                                <option value="colour_red">Red</option>
+                                <option value="colour_blue">Blue</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <button class="btn u-margin-bottom">Add Admin</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rule-block rule-block--and">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">Step 2</span>
+            </div>
+            <div class="rule-block__controls">
+                <h2 class="u-margin-bottom">Request approval from: Webmasters</h2>
+                <p class="u-margin-bottom-small">These admins will be asked to review and approve the content</p>
+
+                <div class="u-margin-bottom--large">
+                    <span class="label label--primary label--large">Suraj Kika <button class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button></span>
+                </div>
+                
+                <div class="form__group form__group--large u-margin-bottom-none">
+                    <label for="select-1" class="control__label hide">Choose Administrator</label>
+                    <div class="controls">
+                        <div class="input-group has-btn-appended">
+                            <select id="select-1" class="form__control select js-select2">
+                                <option value="">Choose admin</option>
+                                <option value="colour_red">Red</option>
+                                <option value="colour_blue">Blue</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <button class="btn u-margin-bottom">Add Admin</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button data-action="remove" data-placement="left" data-toggle="tooltips" class="remove__control" title="Remove this item"><i class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+        </div>
+
+        <div class="rule-links">
+            <div class="rule-link rule-link--and">
+                <button class="btn" aria-label="Add a new step">add step</button>
+            </div>
+        </div>
+
+        <div class="rule-block rule-block--return">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">End</span>
+            </div>
+            <div class="rule-block__controls">
+                <p class="u-margin-top-large u-margin-bottom--large">If approved, content can then be published. Any further changes will require re-approval.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form__actions form__actions--flush u-margin-top-large">
+        <button type="submit" class="btn btn--primary">Save</button>
+        <a href="/home" class="btn btn--naked">Cancel</a>
+    </div>
+</form>
+
+{% endblock tab_content %}

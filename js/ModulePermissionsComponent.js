@@ -113,11 +113,6 @@ ModulePermissionsComponent.prototype.toggleModuleRowState = function (target) {
         component.setDisabled($cud);
     }
 
-    component.toggleModulePageCrud($('[data-toggle="page"][data-crud="view"]', $this.closest('.module-page')));
-    component.toggleModulePageCrud($('[data-toggle="page"][data-crud="create"]', $this.closest('.module-page')));
-    component.toggleModulePageCrud($('[data-toggle="page"][data-crud="update"]', $this.closest('.module-page')));
-    component.toggleModulePageCrud($('[data-toggle="page"][data-crud="delete"]', $this.closest('.module-page')));
-
     component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="view"]', $this.closest('.module')));
     component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="create"]', $this.closest('.module')));
     component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="update"]', $this.closest('.module')));
