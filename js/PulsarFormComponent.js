@@ -30,6 +30,9 @@ PulsarFormComponent.prototype.init = function () {
 
     // Time picker
     component.initTimePickers();
+
+    // Toggle switches
+    component.initToggleSwitches();
 }
 
 /**
@@ -225,6 +228,29 @@ PulsarFormComponent.prototype.initSelect2 = function (target) {
 
         $this.select2(config);
         $this.parent().find('.select2-container').removeAttr('style');
+    });
+}
+
+/**
+ * Initiate Toggle Switches
+ * 
+ * This only allows click events on the main label, or the actual toggle control
+ */
+PulsarFormComponent.prototype.initToggleSwitches = function () {
+    var component = this;
+
+    component.$html.on('click', '.toggle-switch-wrapper-label', function(e) {
+        var $target = $(e.target),
+            $toggle = $(this).find('.toggle-switch');
+
+        if ($target.hasClass('toggle-switch-label') || 
+            $target.hasClass('toggle-switch') || 
+            $target.hasClass('control__label')) 
+        {
+            $toggle.trigger('focus');
+        } else {
+            e.preventDefault();
+        }
     });
 }
 
