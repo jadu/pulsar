@@ -87,6 +87,16 @@
     margin-bottom: 0 !important;
 }
 
+%u-padding-top-none,
+.u-padding-top-none {
+    padding-top: 0 !important;
+}
+
+%u-padding-bottom-none,
+.u-padding-bottom-none {
+    padding-bottom: 0 !important;
+}
+
 %u-margin-right-small,
 .u-margin-right-small {
     margin-right: $margin-base / 2 !important;

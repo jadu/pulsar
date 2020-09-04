@@ -7,23 +7,18 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'Piano' %}
+{% set heading = 'My Awesome Advanced Workflow' %}
 
-{% set tab_one %}
-    {% include '/lexicon/patterns/piano/tab_deployer.html.twig' %}
-{% endset %}
-
-{% set tab_two %}
-    {% include '/lexicon/patterns/piano/tab_messages.html.twig' %}
+{% set tab_designer %}
+    {% include 'playground/workflow-designer/designer.html.twig' %}
 {% endset %}
 
 {%
     set tabs_content = [
         {
-          "class" : "ui-report",
-          "id"    : "integrations",
-          "label" : "Integrations",
-          "src"   : tab_one,
+          "id"    : "designer",
+          "label" : "Workflow Designer",
+          "src"   : tab_designer,
           "active": true
         },
         {

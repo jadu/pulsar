@@ -36,11 +36,12 @@
     }
 
     // Ensure AA colour contrast
-    [href] {
+    a {
         color: color(link, dark);
     }
 
     // Ensure AA colour contrast
+    a:focus,
     .help-block {
         color: color(text);
     }
@@ -227,12 +228,8 @@
  * Form toggle switches
  */
 
-.tab__settings .form__group--toggle > .control__label {
-    width: 100%;
-
-    @include respond-min($screen-small) {
-        padding-right: calc(4em + #{$padding-small-horizontal * 2});
-    }
+.tab__settings .form__group--toggle span.control__label {
+    width: calc(100% - 4em);
 }
 
 .tab__settings .form__group--toggle {

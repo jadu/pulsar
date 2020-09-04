@@ -5,7 +5,7 @@
 
 <nav role="navigation" class="nav-main" aria-label="primary" id="aria-main-nav">
     <div class="nav-primary t-nav-primary">
-        <a tabindex="1" href="{{ options.brand_link|default('#') }}" class="jadu-branding" aria-label="Home">
+        <a href="{{ options.brand_link|default('#') }}" class="jadu-branding" aria-label="Home">
             <span class="jadu-logomark"><span class="hide">Return to home</span></span>
             <span class="jadu-wordmark">Jadu</span>
         </a>
@@ -29,7 +29,7 @@
         {% if options.data is iterable %}
             {% for options in options.data %}
                 {% if options.items is defined and options.items is iterable %}
-                    <div class="nav-list" data-nav="{{ options.href }}" id="{{ options.label|lower }}" aria-labelledby="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
+                    <div class="nav-list" data-nav="{{ options.href }}" aria-labelledby="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
                         <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
 
                         <ul class="nav-items">
@@ -131,11 +131,11 @@
             )
         }}
     >
-        <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }}
-            tabindex="1"
-            class="nav-link t-nav-link"
-            {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %}
-            {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false"
+        <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }} 
+            
+            class="nav-link t-nav-link" 
+            {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} 
+            {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false" 
                 {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}
             {% endif %}
         >
@@ -174,28 +174,24 @@
 {%- macro help(options) -%}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% if options.items is defined and options.items is iterable %}
-    <div class="toolbar-help toolbar-icon">
-        <div class="dropdown">
+    <div class="btn__group dropdown toolbar-action--icon">
+        {{
+            html.button({
+                'class': 'dropdown-toggle btn--outline btn--inverse',
+                'label': html.icon('book', { 'label': options.label|default('help') }) ~ ' <span class="caret"></span>',
+                'data-toggle': 'dropdown'
+            })
+        }}
+        <div class="dropdown__menu">
+        {% for item in options.items %}
             {{
-                html.button({
-                    'class': 'toolbar-help-link btn--naked',
-                    'label': html.icon('question-sign') ~ ' user guides',
-                    'tabindex': options.tabindex|default('0'),
-                    'data-toggle': 'dropdown'
-                })
+                html.media(item|merge({
+                    'target': '_blank',
+                    'type': 'link',
+                    'image_alt': item.title ~ ' logo'
+                }))
             }}
-
-            <div class="dropdown__menu">
-            {% for item in options.items %}
-                {{
-                    html.media(item|merge({
-                        'target': '_blank',
-                        'type': 'link',
-                        'image_alt': item.title ~ ' logo'
-                    }))
-                }}
-            {% endfor %}
-            </div>
+        {% endfor %}
         </div>
     </div>
     {% endif %}
