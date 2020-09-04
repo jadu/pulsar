@@ -1011,7 +1011,8 @@ class   | string | A space separated list of class names
 #}
 {% macro end(options) %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
-
+    {% spaceless %}
+    
     {% if options.actions is defined %}
         <div{{
             attributes(options
@@ -1027,6 +1028,7 @@ class   | string | A space separated list of class names
         </div>
     {% endif %}
     </form>
+    {% endspaceless %}
 {% endmacro %}
 
 
@@ -2503,7 +2505,7 @@ actions-column-text     | string | The text content of the actions column header
                     </thead>
                     <tbody class="repeater__preview-data" data-repeater-preview-root>
                         <tr class="repeater__empty-placeholder" data-repeater-preview-placeholder>
-                            <td colspan="{{ headingLength }}" class="muted">{{ options.empty }}</td>
+                            <td colspan="{{ headingLength }}">{{ options.empty }}</td>
                             <td class="table__td--align-right table-row__actions"></td>
                         </tr>
                     </tbody>

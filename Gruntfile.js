@@ -475,7 +475,7 @@ module.exports = function(grunt) {
                 'views/**/*'
             ],
             options: {
-                proxy: 'http://localhost:3000/app/app.php/lexicon',
+                proxy: 'http://localhost:9000/app/app.php/lexicon',
                 reloadOnRestart: true,
                 watchTask: true
             }

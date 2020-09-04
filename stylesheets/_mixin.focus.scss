@@ -22,6 +22,14 @@
     outline: none;
 }
 
+@mixin pulsar-icon-button-focused {
+    background-color: color(background, focus);
+    border-radius: 0;
+    box-shadow: 0 2px 0 color(black);
+    color: color(black) !important;
+    outline: none;
+}
+
 @mixin pulsar-input-focused {
     border-color: color(black);
     border-radius: 0;
@@ -120,4 +128,18 @@
     background-color: color(background, focus) !important;
     border-radius: 0;
     color: color(black) !important;
+}
+
+@mixin pulsar-label-remove-button-focused {
+    background-color: color(background, focus) !important;
+    color: color(black) !important;
+    outline: none;
+
+    [class^="icon-"] {
+        color: color(black) !important;
+    }
+
+    [class^="icon-"]:hover {
+        color: color(black) !important;
+    }
 }

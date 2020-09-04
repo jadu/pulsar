@@ -23,6 +23,13 @@ class FocusManagementService {
     }
 
     /**
+     * Check if an element is stored
+     */
+    hasStoredElement () {
+        return this.$element !== null;
+    }
+
+    /**
      * Move focus to first focuable element in a collection
      * @param {jQuery} $collection - jQuery collection of elements
      */
@@ -33,6 +40,45 @@ class FocusManagementService {
 
         if ($focusableElements.length) {
             $focusableElements.first().focus();
+        }
+    }
+
+    /**
+     * Trap focus within a container
+     * @param {jQuery} $container
+     */
+    trapFocus ($container) {
+        const $focusableElements = $container
+            .find(this.focusableElementList)
+            .not('[tabindex=-1], [disabled], :hidden, [aria-hidden]');
+
+        $container.on('keydown', this.trapFocusKeydownListener.bind(this, $focusableElements));
+    }
+
+    /**
+     * Manage focus on keydown
+     * @param {jQuery} $container
+     * @param {Event} event
+     */
+    trapFocusKeydownListener ($focusableElements, event) {
+        let keyCode = event.keyCode || event.which;
+
+        // If tab key is pressed
+        if (keyCode === 9) {
+            // Check for shift tab
+            if (event.shiftKey) {
+                // Focus previous, check if first element is is currently in focus, if so focus last element
+                if ($focusableElements.first().is(':focus')) {
+                    event.preventDefault();
+                    $focusableElements.last().trigger('focus');
+                }
+            } else {
+                // Focus next, check if last element is is currently in focus, if so focus first element
+                if ($focusableElements.last().is(':focus')) {
+                    event.preventDefault();
+                    $focusableElements.first().trigger('focus');
+                }
+            }
         }
     }
 }

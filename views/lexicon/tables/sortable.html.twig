@@ -2,13 +2,14 @@
 
 {% block tab_content %}
     <table class="table is-sortable table--full">
+        <caption class="hide">A sortable list of files</caption>
         <thead>
             <tr>
                 <th>File title</th>
                 <th>Type</th>
                 <th>Size</th>
                 <th>Filename / URL</th>
-                <th class="shrink-to-fit"></th>
+                <th class="shrink-to-fit"><span class="hide">Actions</span></th>
             </tr>
         </thead>
         <tbody>
@@ -44,12 +45,7 @@
                             'tabindex': '0'
                         })
                     }}
-                    {{
-                        html.link({
-                            'label': html.icon('times-circle'),
-                            'tabindex': '0'
-                        })
-                    }}
+                    {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>
 
@@ -85,12 +81,7 @@
                             'tabindex': '0'
                         })
                     }}
-                    {{
-                        html.link({
-                            'label': html.icon('times-circle'),
-                            'tabindex': '0'
-                        })
-                    }}
+                    {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>
 
@@ -126,12 +117,7 @@
                             'tabindex': '0'
                         })
                     }}
-                    {{
-                        html.link({
-                            'label': html.icon('times-circle'),
-                            'tabindex': '0'
-                        })
-                    }}
+                    {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>
         </tbody>
@@ -167,84 +153,10 @@
             })
         }}
         <br />
-        <div class="filter-bar display--none">
-            {{ form.create() }}
-                {{ form.fieldset_start({'legend': 'Filter by'}) }}
-
-                    {{
-                        form.select2({
-                            'label': 'Colour',
-                            'id': 'colour',
-                            'multiple': true,
-                            'options': {
-                                'colour_red': 'Red',
-                                'colour_blue': 'Blue'
-                            }
-                        })
-                    }}
-
-                    {{
-                        form.select2({
-                            'label': 'Size',
-                            'id': 'size',
-                            'options': {
-                                '': '',
-                                'small': 'Small',
-                                'medium': 'Medium',
-                                'large': 'Large'
-                            }
-                        })
-                    }}
-
-                    {{
-                        form.text({
-                            'label': 'Text field example',
-                            'id': 'foo2'
-                        })
-                    }}
-
-                    {{
-                        form.date({
-                            'label': 'Added from',
-                            'id': 'addedFrom2',
-                        })
-                    }}
-
-                    {{
-                        form.date({
-                            'label': 'Added to',
-                            'id': 'addedTo2'
-                        })
-                    }}
-
-                    {{
-                        form.checkbox({
-                            'label': 'In stock',
-                            'id': 'inStock2'
-                        })
-                    }}
-
-                {{ form.fieldset_end() }}
-            {{
-                form.end({
-                    'actions': [
-                        form.submit({
-                            'label': 'Save',
-                            'class': 'btn--primary'
-                        }),
-                        html.link({
-                            'label': 'Clear',
-                            'class': 'btn btn--naked',
-                            'href': '#',
-                            'data-ui': 'clear-all-filters'
-                        })
-                    ]
-                })
-            }}
-        </div>
 
     <br/>
     <table class="table is-sortable table--full">
+        <caption class="hide">Another sortable list of files</caption>
         <thead>
             <tr>
                 <th>File title</th>

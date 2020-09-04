@@ -11,7 +11,7 @@
     {{
         form.select2({
             'id': 'guid-' ~ random(),
-            'label': 'Select field',
+            'label': 'Select (single select)',
             'options': [
                 {
                     'label': 'Value one',
@@ -45,13 +45,64 @@
     {{
         form.select2({
             'id': 'guid-' ~ random(),
-            'label': 'Select multiple',
+            'label': 'Select (single + placeholder)',
+            'required': true,
+            'placeholder': 'Please choose',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'guid-' ~ random(),
+            'label': 'Select (multiple)',
             'multiple': true,
             'options': [
                 {
-                    'label': 'Choose',
-                    'value': ''
+                    'label': 'Value one',
+                    'value': 'value1'
                 },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                },
+                {
+                    'label': 'Value three',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value four',
+                    'value': 'value2'
+                },
+                {
+                    'label': 'Value five',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value six',
+                    'value': 'value2'
+                }
+            ]
+
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'guid-' ~ random(),
+            'label': 'Select (multiple + placeholder)',
+            'multiple': true,
+            'placeholder': 'Please choose',
+            'options': [
                 {
                     'label': 'Value one',
                     'value': 'value1'
@@ -87,10 +138,6 @@
             'label': 'Required',
             'required': true,
             'options': [
-                {
-                    'label': 'Choose',
-                    'value': ''
-                },
                 {
                     'label': 'Value one',
                     'value': 'value1'
@@ -322,6 +369,7 @@
             'id': 'guid-' ~ random(),
             'label': '"class": "has-changed"',
             'class': 'has-changed',
+            'placeholder': 'Please choose',
             'help': 'Highlight whether an action elsewhere affects an input',
             'options': [
                 {
@@ -340,6 +388,7 @@
             'id': 'guid-' ~ random(),
             'label': '"class": "has-success"',
             'class': 'has-success',
+            'placeholder': 'Please choose',
             'help': 'Something good happened',
             'options': [
                 {
@@ -359,6 +408,7 @@
             'id': 'guid-' ~ random(),
             'label': '"class": "has-warning"',
             'class': 'has-warning',
+            'placeholder': 'Please choose',
             'help': 'Something bad happened',
             'options': [
                 {
@@ -377,6 +427,7 @@
             'id': 'guid-' ~ random(),
             'label': '"class": "has-error"',
             'class': 'has-error',
+            'placeholder': 'Please choose',
             'help': 'Automatically added if using <code>error</code> option',
             'options': [
                 {
@@ -395,6 +446,7 @@
             'id': 'guid-' ~ random(),
             'label': '"disabled": true',
             'disabled': true,
+            'placeholder': 'Please choose',
             'help': 'Stop! Can’t touch this',
             'options': [
                 {
@@ -413,6 +465,7 @@
         form.select2({
             'id': 'guid-' ~ random(),
             'label': 'Disabled option',
+            'placeholder': 'Please choose',
             'options': [
                 {
                     'label': 'Value one',

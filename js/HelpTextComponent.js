@@ -1,6 +1,5 @@
 'use strict';
 
-require('./libs/tab');
 var $ = require('jquery');
 
 function HelpTextComponent(html, window, document) {
@@ -34,6 +33,9 @@ HelpTextComponent.prototype.init = function () {
         component.toggleHelpSidebar();
     });
 
+    // Make mobile help container child element non-interactive
+    component.toggleChildElementInteractivity($tabHelpContainer, false);
+
     // Bind to tab.js event to update help text in sidebar on tab change
     component.$html.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         component.updateHelpSidebar();
@@ -47,8 +49,10 @@ HelpTextComponent.prototype.toggleHelpSidebar = function () {
 
     if ($mobileToggleHelpButton.hasClass('is-open')) {
         $mobileToggleHelpButton.removeClass('is-open');
+        component.toggleChildElementInteractivity($tabHelpContainer, false);
     } else {
         $mobileToggleHelpButton.addClass('is-open');
+        component.toggleChildElementInteractivity($tabHelpContainer, true);
     }
 
     if (component.$html.hasClass('open-help')) {
@@ -122,6 +126,9 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
 
             // Add mobile help close button
             $(mobileCloseHelpButton).prependTo($tabHelp);
+
+            // Hide mobile sidebar interactive elements from a11y tree while closed
+            component.toggleChildElementInteractivity($tabHelp, false);
         }
 
         // Watch for window resizes
@@ -132,6 +139,9 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
 
                 // Add mobile help close button
                 $(mobileCloseHelpButton).prependTo($tabHelp);
+
+                // Hide mobile sidebar interactive elements from a11y tree while closed
+                component.toggleChildElementInteractivity($tabHelp, false);
             }
         });
     } else {
@@ -144,7 +154,7 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
  */
 HelpTextComponent.prototype.handleFocusOut = function (e) {
     var component = this;
-    
+
     if (component.$html.hasClass('open-help')) {
         // Using timeout due to :focus return body when an element loses focus before new element gains focus
         setTimeout(() => {
@@ -153,6 +163,19 @@ HelpTextComponent.prototype.handleFocusOut = function (e) {
                 component.toggleHelpSidebar();
             }
         }, 1);
+    }
+}
+
+/**
+ * Toggle focusability of elements
+ */
+HelpTextComponent.prototype.toggleChildElementInteractivity = function ($container, interactive) {
+    var focusableElements = 'a[href], button';
+
+    if (interactive === true) {
+        $container.find(focusableElements).removeAttr('tabindex');
+    } else {
+        $container.find(focusableElements).attr('tabindex', '-1');
     }
 }
 

@@ -8,12 +8,12 @@
                 [
                     {
                         'label': 'Create thing',
-                        'href': '#creatething',
+                        'href': '#',
                         'icon': 'plus'
                     },
                     {
                         'label': 'New filter',
-                        'href': '#newfilter',
+                        'href': '#',
                         'icon': 'filter',
                         'data-ui': 'show-filter-bar'
                     }
@@ -21,13 +21,13 @@
                 [
                     {
                         'label': 'Make a copy',
-                        'href': '#makecopy',
+                        'href': '#',
                         'icon': 'copy',
                         'data-bulk-action': true
                     },
                     {
                         'label': 'Change owner',
-                        'href': '#Changeowner',
+                        'href': '#',
                         'icon': 'user',
                         'data-bulk-action': true
                     }
@@ -35,25 +35,25 @@
                 [
                     {
                         'label': 'Make live',
-                        'href': '#makelive',
+                        'href': '#',
                         'icon': 'check-circle',
                         'data-bulk-action': true
                     },
                     {
                         'label': 'Take offline',
-                        'href': '#takeoffline',
+                        'href': '#',
                         'icon': 'times-rectangle',
                         'data-bulk-action': true
                     },
                     {
                         'label': 'Make visible',
-                        'href': '#makevisible',
+                        'href': '#',
                         'icon': 'eye-open',
                         'data-bulk-action': true
                     },
                     {
                         'label': 'Make invisible',
-                        'href': '#makeinvisible',
+                        'href': '#',
                         'icon': 'eye-slash',
                         'data-bulk-action': true
                     }
@@ -61,7 +61,7 @@
                 [
                     {
                         'label': 'Delete',
-                        'href': '#delete',
+                        'href': '#',
                         'icon': 'times',
                         'class': 'link--danger',
                         'data-bulk-action': true
@@ -81,7 +81,7 @@
     }}
 {%- endblock -%}
 
-{% 
+{%
     set table_data = {
         'columns': [
             { 'title': 'Title' },
@@ -108,14 +108,14 @@
                 'Owner': 'James Cameron',
                 'Modified': '1991-07-01 12:34',
                 'Live': true,
-                'Visible': false 
+                'Visible': false
             },
             {
                 'Title': 'Conan the Barbarian',
                 'Owner': 'John Millius',
                 'Modified': '1982-04-02 12:34',
                 'Live': false,
-                'Visible': true 
+                'Visible': true
             },
             {
                 'Title': 'Predator',
@@ -290,11 +290,11 @@
 %}
 
 {% block tab_content %}
-    {{ 
+    {{
         html.datatable({
-            'class': 'table--full table--horizontal',
             'data-order': '[[ 3, "desc" ]]',
-            'data': table_data|default
-        }) 
+            'data': table_data|default,
+            'caption': 'A list of films featuring Arnold Schwarzenegger'
+        })
     }}
 {% endblock tab_content %}
