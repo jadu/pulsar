@@ -64,9 +64,9 @@
             {{ _settings|raw }}
         </section>
         {% endif %}
-        <main class="tab__content" id="skip-target">
+        <div class="tab__content" id="skip-target" role="main">
             {% block tab_content %}{% endblock %}
-        </main>
+        </div>
         {% if _hasSidebar == true %}
         <aside class="tab__sidebar" aria-label="additional information">
             {{ _sidebar|raw }}

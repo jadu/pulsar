@@ -29,11 +29,11 @@
     </div>
 
     <div class="u-margin-bottom--large">
-        <h2 class="heading">Form elements with tooltips</h2>
-
         {{
             form.create()
         }}
+
+        {{ form.fieldset_start({ 'legend': 'Form elements with tooltips' }) }}
 
         {{
             form.text({
@@ -74,6 +74,7 @@
 
         {{
             form.date({
+                'data-pulsar-datepicker': 'true',
                 'id': 'guid-' ~ random(),
                 'label': 'Date',
                 'data-toggle': 'tooltips',
@@ -200,6 +201,7 @@
             })
         }}
 
+        {{ form.fieldset_end() }}
         {{ form.fieldset_start({ 'legend': 'Checkboxes and radios' }) }}
 
         {{

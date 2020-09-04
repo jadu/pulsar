@@ -82,6 +82,16 @@ describe('PulsarFormComponent', function() {
                             <input value="foo" name="foo" type="text" data-datepicker="true" data-format="reverse" class="form__control qa-foo" />
                         </div>
                     </div>
+
+                    <div class="form__group form__group--toggle">
+                        <label class="toggle-switch-wrapper-label">
+                            <span class="control__label">Toggle switch test</span>
+                            <span class="controls">
+                                <input type="checkbox" class="form__control toggle-switch">
+                                <span class="toggle-switch-label"></span>
+                            </span>
+                        </label>
+                    </div>
                 </form>
             </div>
             <a href="#tab-foo" data-toggle="tab">tab</a>
@@ -116,6 +126,10 @@ describe('PulsarFormComponent', function() {
         this.$modalToggle = this.$html.find('[data-toggle="modal"]');
         this.$modal = this.$html.find('#modal-foo');
         this.$timepicker = this.$html.find('[data-timepicker="true"]');
+        this.$toggleControls = this.$html.find('.form__group--toggle .controls');
+        this.$toggleInput = this.$html.find('.form__group--toggle .toggle-switch');
+        this.$toggleControlLabel = this.$html.find('.form__group--toggle .control__label');
+        this.$toggleSwitchLabel = this.$html.find('.form__group--toggle .toggle-switch-label');
 
         this.pulsarForm = new PulsarFormComponent(this.$html);
 
@@ -158,36 +172,6 @@ describe('PulsarFormComponent', function() {
             expect(this.pulsarForm.initSelect2).to.have.been.called;
         });
 
-    });
-
-    describe('Changing to a tab that contains select2 elements', function() {
-
-        beforeEach(function() {
-            this.pulsarForm.init();
-            this.pulsarForm.initSelect2 = sinon.stub();
-            this.$tabToggle.trigger('shown.bs.tab');
-        });
-
-        it('Should trigger the select2 init method', function() {
-            expect(this.pulsarForm.initSelect2).to.have.been.called;
-        });
-    });
-
-    describe('Opening a modal that contains select2 elements', function() {
-
-        beforeEach(function() {
-            this.pulsarForm.init();
-            this.pulsarForm.initSelect2 = sinon.stub();
-            this.$modalToggle.click();
-            this.$modal.trigger('shown.bs.modal');
-        });
-
-        it('Should trigger the select2 init method', function(done) {
-            setTimeout(() => {
-                expect(this.pulsarForm.initSelect2).to.have.been.called;
-                done();
-            }, 500);
-        });
     });
 
     describe('Clicking a choice block radio input', function() {
@@ -300,6 +284,46 @@ describe('PulsarFormComponent', function() {
 
         it('should call the timePickerComponents init method', function() {
             expect(this.pulsarForm.timePickerComponent.init).to.have.been.called;
+        });
+
+    });
+
+    describe('Toggle switches', function() {
+
+        beforeEach(function() {
+            this.pulsarForm.init();
+        });
+
+        it('should prevent default if the controls element is clicked', function() {
+            var clickEvent = $.Event('click');
+            
+            this.$toggleControls.trigger(clickEvent)
+
+            expect(clickEvent.isDefaultPrevented()).to.be.true;
+        });
+
+        it('should not prevent default if the control label is clicked', function() {
+            var clickEvent = $.Event('click');
+            
+            this.$toggleControlLabel.trigger(clickEvent)
+
+            expect(clickEvent.isDefaultPrevented()).to.be.false;
+        });
+
+        it('should not prevent default if the toggle is clicked', function() {
+            var clickEvent = $.Event('click');
+            
+            this.$toggleSwitchLabel.trigger(clickEvent)
+
+            expect(clickEvent.isDefaultPrevented()).to.be.false;
+        });
+
+        it('should trigger focus on the hidden control', function() {
+            var clickEvent = $.Event('click');
+            
+            this.$toggleSwitchLabel.trigger(clickEvent)
+
+            expect(this.$toggleInput.is(':focus')).to.be.true;
         });
 
     });

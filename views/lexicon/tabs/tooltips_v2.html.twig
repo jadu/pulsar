@@ -16,7 +16,7 @@
         <h2 class="heading">Link with tooltip</h2>
 
         <a
-            href="#0"
+            href="#"
             class="btn"
             data-tippy-content="Hey, before you go"
         >Go somewhere</a>
@@ -83,11 +83,12 @@
     </div>
 
     <div class="u-margin-bottom--large">
-        <h2 class="heading">Form elements with tooltips</h2>
 
         {{
             form.create()
         }}
+
+        {{ form.fieldset_start({ 'legend': 'Form elements with tooltips' }) }}
 
         {{
             form.text({
@@ -124,6 +125,7 @@
 
         {{
             form.date({
+                'data-pulsar-datepicker': 'true',
                 'id': 'guid-' ~ random(),
                 'label': 'Date',
                 'data-tippy-content': 'Hey, this is a tooltip on a date'
@@ -241,6 +243,7 @@
             })
         }}
 
+        {{ form.fieldset_end() }}
         {{ form.fieldset_start({ 'legend': 'Checkboxes and radios' }) }}
 
         {{

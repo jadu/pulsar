@@ -124,10 +124,10 @@ $palette-states: (
         dark:  map-get(map-get($palette-monochromes, gray), off-white)
     ),
     new: (
-        base:  #e5ecf2,
+        base:  #f0f5fd,
         alt:   #000,
-        light: lighten(#e5ecf2, 5),
-        dark:  darken(#e5ecf2, 5)
+        light: lighten(#f0f5fd, 5),
+        dark:  darken(#f0f5fd, 5)
     ),
     sorting: (
         base: #ffffec,
@@ -171,10 +171,10 @@ $palette-alias: (
         placeholder: #737373
     ),
     link: (
-        base:     #2a7da7, // WCAG 4.58:1 AA compliant
-        dark:     darken(#2a7da7, 5),
+        base:     #22759f, // WCAG 5.1 AA compliant
+        dark:     darken(#22759f, 5),
         hover:    #000,
-        focus:    darken(#2a7da7, 15), // WCAG 5.39:1 AA compliant when used on color(background, focus)
+        focus:    darken(#22759f, 15),
         inverse:  #fff,
         inverse-hover: darken(#fff, 10%),
         disabled:  map-get(map-get($palette-monochromes, gray), lighter)
@@ -186,7 +186,7 @@ $palette-alias: (
     background: (
         base:      map-get(map-get($palette-monochromes, gray), off-white),
         dark:      map-get(map-get($palette-monochromes, gray), lightest),
-        light:     lighten(map-get(map-get($palette-monochromes, gray), off-white), 2),
+        light:     lighten(map-get(map-get($palette-monochromes, gray), off-white), 2.1),
         selected:  map-get(map-get($palette-states, info), light),
         focus:     #fd0
     ),

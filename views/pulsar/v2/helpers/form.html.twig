@@ -1017,7 +1017,8 @@ class   | string | A space separated list of class names
 #}
 {% macro end(options) %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
-
+    {% spaceless %}
+    
     {% if options.actions is defined %}
         <div{{
             attributes(options
@@ -1033,6 +1034,7 @@ class   | string | A space separated list of class names
         </div>
     {% endif %}
     </form>
+    {% endspaceless %}
 {% endmacro %}
 
 

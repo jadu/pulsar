@@ -1,10 +1,6 @@
 .ribbon-wrapper {
     margin: 0 -20px 22px;
 
-    @include respond-min($screen-desktop) {
-        margin: 10px -20px 22px;
-    }
-
     .has-timeline & {
         padding: 0 20px;
 

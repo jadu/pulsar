@@ -9,7 +9,8 @@
     {{
         form.toggle_switch({
             'id': 'guid-' ~ random(),
-            'label': 'Toggle switch'
+            'label': 'Toggle switch',
+            'name': 'toggle-example-1'
         })
     }}
 
@@ -17,7 +18,8 @@
         form.toggle_switch({
             'id': 'guid-' ~ random(),
             'label': 'Required',
-            'required': true
+            'required': true,
+            'name': 'toggle-example-2'
         })
     }}
 
@@ -25,7 +27,8 @@
         form.toggle_switch({
             'id': 'guid-' ~ random(),
             'label': 'Toggle switch with help',
-            'help': 'Help text to give more information about expected input'
+            'help': 'Help text to give more information about expected input',
+            'name': 'toggle-example-3'
         })
     }}
 
