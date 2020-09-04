@@ -33,12 +33,7 @@ build:
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling scss-lint...${HR}\n"
-	@ sudo gem install scss_lint -v ${SASSLINTVER} --no-ri --no-rdoc --no-user-install
-	@ echo "\n${CHECK} Done"
-
-	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"
-	@ -brew install node
-	@ npm install -g npm
+	@ sudo gem install scss_lint -v ${SASSLINTVER} --no-user-install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Grunt and its libraries...${HR}\n"

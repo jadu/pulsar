@@ -147,7 +147,7 @@ PulsarFormComponent.prototype.initColourpickers = function () {
             }
         });
 
-        // Remove the text input inside the picker, which we don't use and
+        // Remove the text input inside the picker, which we don't use and 
         // causes a11y issues if left in the markup
         component.$html.find('.sp-input-container').remove();
 

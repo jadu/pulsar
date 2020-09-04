@@ -8,12 +8,9 @@
 
 .main-title {
     font-size: 1.75em;
-    line-height: 24px;
+    line-height: 32px;
     margin-bottom: 13px;
-
-    @include respond-min($screen-desktop) {
-        margin-top: 17px;
-    }
+    width: 100%;
 }
 
 .sub-title {
