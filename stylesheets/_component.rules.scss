@@ -375,6 +375,27 @@ td.table__form .rules + .form__group:last-of-type {
         bottom: 0;
     }
 
+    &.rules-container--linear {
+        border-left: 0;
+        padding-left: 0;
+
+        &::before {
+            background-color: color(gray, lightest);
+            height: calc(100% - 10px);
+            left: 45px;
+            top: 5px;
+            width: 4px;
+        }
+
+        &::after {
+            display: none;
+        }
+
+        .rule-link--and {
+            margin-left: 45px;
+        }
+    }
+
     .rule-link {
         position: relative;
         padding-top: 10px;
@@ -396,7 +417,7 @@ td.table__form .rules + .form__group:last-of-type {
             display: inline-block;
             margin-left: 25px;
             min-width: 50px;
-            padding: 8px 0;
+            padding: 8px;
             text-align: center;
 
             &:hover {
@@ -697,6 +718,34 @@ td.table__form .rules + .form__group:last-of-type {
         @include respond-min($screen-tablet) {
             top: 10px;
             right: 10px;
+        }
+    }
+
+    // Make multiple select2 fit same height as single select2
+    .select2-container {
+        vertical-align: top;
+
+        .select2-search__field {
+            min-height: auto;
+            height: 33px;
+        }
+
+        .select2-selection--multiple {
+            min-height: 48px;
+        }
+    }
+}
+
+.rules-container--spaced {
+    .rule-block__controls {
+        margin-left: $padding-base;
+    }
+
+    .rule-block + .rule-block {
+        margin-top: $line-height-base;
+
+        .rule-block__header {
+            border-top: 0;
         }
     }
 }

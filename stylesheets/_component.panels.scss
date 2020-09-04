@@ -102,6 +102,10 @@
             a:visited {
                 color: $state-color-alt !important;
             }
+
+            a:focus {
+                color: color(black) !important;
+            }
         }
     }
 }
