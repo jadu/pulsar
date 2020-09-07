@@ -10,6 +10,8 @@ function NavMainComponent ($html, rootWindow, focusManagementService) {
 };
 
 NavMainComponent.MISSING_ATTR_ERROR = 'A nav link must have a href or data-target attribute';
+NavMainComponent.CLOSE_WITH_ESCAPE = "CLOSE_WITH_ESCAPE";
+NavMainComponent.CLOSE_WITH_CLICK = "CLOSE_WITH_CLICK";
 
 /**
  * Initialise
@@ -27,7 +29,6 @@ NavMainComponent.prototype.init = function () {
 
     component.$body = this.$html.find('body');
     component.$navMain = this.$html.find('.nav-main');
-    component.$contentMain = this.$html.find('.content-main');
     component.$brandingLink = this.$html.find('.jadu-branding');
     component.$navPrimary = this.$html.find('.nav-primary');
     component.$navSecondary = this.$html.find('.nav-secondary');
@@ -82,9 +83,11 @@ NavMainComponent.prototype.init = function () {
         }
     });
 
-    // Close navs on main content click
-    component.$contentMain.on('click', function () {
-        component.closeNavs($(this));
+    // Close navs when element outside of nav is clicked
+    component.$body.find('.toolbar, .content-main, .footer').on('click', function () {
+        if (component.isNavOpen()) {
+            component.closeNavs($(this));
+        }
     });
 
     // Open secondary nav on primary nav item click
@@ -126,16 +129,37 @@ NavMainComponent.prototype.init = function () {
     this.$html.on('keydown', function (event) {
         if (event.keyCode === 27) {
             if (component.$navQuaternary.hasClass('is-open')) {
-                component.closeQuaternaryNav();
+                component.closeQuaternaryNav({ type: NavMainComponent.CLOSE_WITH_ESCAPE });
             } else if (component.$navTertiary.hasClass('is-open')) {
                 component.closeTertiaryNav();
             } else if (component.$navSecondary.hasClass('is-open')) {
-                component.closeSecondaryNav();
+                component.closeSecondaryNav({ type: NavMainComponent.CLOSE_WITH_ESCAPE });
             } else if (isMobile && component.$body.hasClass('open-nav')) {
                 component.showMobileNav(false)
             }
         }
     });
+}
+
+/**
+ * Check if any navs are open
+ * @returns {boolean}
+ */
+NavMainComponent.prototype.isNavOpen = function () {
+    var component = this,
+        isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
+
+    if (component.$navQuaternary.hasClass('is-open')) {
+        return true;
+    } else if (component.$navTertiary.hasClass('is-open')) {
+        return true;
+    } else if (component.$navSecondary.hasClass('is-open')) {
+        return true;
+    } else if (isMobile && component.$body.hasClass('open-nav')) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -157,7 +181,7 @@ NavMainComponent.prototype.manageTabIndexes = function () {
 
 /**
  * Open secondary navigation, close all other navs and highlight primary nav item parent
- * @param {jQuery} $linkClicked - the element clicked to open secondary nav
+ * @param {jQuery} $triggeringElement - the element clicked to open secondary nav
  * @param {Event} event - click event for the primary nav link
  */
 NavMainComponent.prototype.openSecondaryNav = function ($triggeringElement, event) {
@@ -235,7 +259,7 @@ NavMainComponent.prototype.closeNavs = function ($linkClicked) {
         $linkParent = $linkClicked.closest('.nav-flyout');
 
     if ($linkParent.hasClass('nav-secondary')) {
-        component.closeSecondaryNav();
+        component.closeSecondaryNav({ type: NavMainComponent.CLOSE_WITH_CLICK, trigger: $linkClicked });
     }
 
     else if ($linkParent.hasClass('nav-tertiary')) {
@@ -243,20 +267,22 @@ NavMainComponent.prototype.closeNavs = function ($linkClicked) {
     }
 
     else if ($linkParent.hasClass('nav-quaternary')) {
-        component.closeQuaternaryNav();
+        component.closeQuaternaryNav({ type: NavMainComponent.CLOSE_WITH_CLICK, trigger: $linkClicked });
     }
 
+    // like a body click or something outside of navs
     else {
-        component.closeSecondaryNav();
+        component.closeSecondaryNav({ type: NavMainComponent.CLOSE_WITH_CLICK, trigger: $linkClicked });
         component.closeTertiaryNav();
-        component.closeQuaternaryNav();
+        component.closeQuaternaryNav({ type: NavMainComponent.CLOSE_WITH_CLICK, trigger: $linkClicked });
     }
 }
 
 /**
  * Close secondary navigation
+ * @param {Object} [action]
  */
-NavMainComponent.prototype.closeSecondaryNav = function () {
+NavMainComponent.prototype.closeSecondaryNav = function (action) {
     var component = this;
 
     component.$navMain.removeClass('is-open');
@@ -266,8 +292,23 @@ NavMainComponent.prototype.closeSecondaryNav = function () {
     component.$navMain.find('.nav-item.is-active').removeClass('is-active');
     component.$navSecondary.find('.nav-list').removeClass('is-active');
 
-    if (component.focusManagementService.hasStoredElement()) {
-        component.focusManagementService.returnFocusToElement();
+    if (action === undefined) {
+        return;
+    }
+
+    switch (action.type) {
+        case NavMainComponent.CLOSE_WITH_ESCAPE:
+            if (component.focusManagementService.hasStoredElement()) {
+                component.focusManagementService.returnFocusToElement();
+            }
+            break;
+        case NavMainComponent.CLOSE_WITH_CLICK:
+            if (action.trigger.parents('.nav-secondary').length > 0) {
+                if (component.focusManagementService.hasStoredElement()) {
+                    component.focusManagementService.returnFocusToElement();
+                }
+            }
+            break;
     }
 }
 
@@ -288,21 +329,34 @@ NavMainComponent.prototype.closeTertiaryNav = function () {
 
 /**
  * Close quaternary navigation
+ * @param {Object} [action]
  */
-NavMainComponent.prototype.closeQuaternaryNav = function () {
+NavMainComponent.prototype.closeQuaternaryNav = function (action) {
     var component = this;
 
     component.$navQuaternary.removeClass('is-open');
     component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
+    component.$navTertiary.find('[aria-expanded=true]').attr('aria-expanded', 'false');
 
-    if (component.focusManagementService.hasStoredElement()) {
-        component.focusManagementService.returnFocusToElement();
+    if (action === undefined) {
+        return;
     }
 
-    // Reset aria-expanded on tertiary link
-    component.$navTertiary.find('[aria-expanded=true]').attr('aria-expanded', 'false');
+    switch (action.type) {
+        case NavMainComponent.CLOSE_WITH_ESCAPE:
+            if (component.focusManagementService.hasStoredElement()) {
+                component.focusManagementService.returnFocusToElement();
+            }
+            break;
+        case NavMainComponent.CLOSE_WITH_CLICK:
+            if (action.trigger.parents('.nav-quaternary').length > 0) {
+                if (component.focusManagementService.hasStoredElement()) {
+                    component.focusManagementService.returnFocusToElement();
+                }
+            }
+            break;
+    }
 }
-
 
 /**
  * Toggle mobile navigation
