@@ -131,11 +131,11 @@
             )
         }}
     >
-        <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }} 
-            
-            class="nav-link t-nav-link" 
-            {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} 
-            {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false" 
+        <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }}
+
+            class="nav-link t-nav-link"
+            {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %}
+            {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false"
                 {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}
             {% endif %}
         >
