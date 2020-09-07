@@ -1,6 +1,9 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block tab_content %}
 
 <h2 class="heading">Text</h2>
 
@@ -46,3 +49,5 @@
         <div class="message__body">rah rah rah</div>
     </div>
 </div>
+
+{% endblock %}

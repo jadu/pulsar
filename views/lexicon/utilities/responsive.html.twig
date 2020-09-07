@@ -51,7 +51,7 @@
 {% block tab_sidebar %}
     <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Responsive utilities</h2>
     <p>Resize browser window to see which elements are hidden and shown at different breakpoints.</p>
-    <table class="table table--full">
+    <table class="table table--full" tabindex="0">
         <thead>
             <tr>
                 <th>Device</th>
@@ -87,5 +87,5 @@
             </tr>
         </tbody>
     </table>
-    <p>{{ html.link({'label': html.icon('book') ~' Read more', 'href': 'https://jadu.gitbooks.io/pulsar/content/responsive-utilities.html'}) }}</p>
+    <p>{{ html.link({'label': html.icon('book') ~' Responsive utilities documentation', 'href': 'https://jadu.gitbooks.io/pulsar/content/responsive-utilities.html'}) }}</p>
 {% endblock tab_sidebar %}
