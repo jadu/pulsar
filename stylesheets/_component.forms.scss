@@ -441,6 +441,16 @@ fieldset {
   }
 }
 
+.table__form .form__group:not(.form__group--partial-state) {
+    &.has-warning {
+      @include form__group-validation(darken($state-warning-text, 5), color(warning), $state-warning-bg);
+    }
+
+    &.has-error {
+      @include form__group-validation(darken($state-danger-text, 5), color(danger), $state-danger-bg);
+    }
+  }
+
 .form__group--partial-state {
     &.has-changed {
         @include form__group-partial-validation($state-info-text, color(info, dark));
