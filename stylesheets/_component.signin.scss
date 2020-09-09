@@ -118,6 +118,12 @@ body {
 			top: 0;
 		}
 
+		&:focus {
+			background-color: color(background, focus);
+			border-color: color(black);
+			box-shadow: none;
+		}
+
 		&:active {
 			top: 1px;
 		}
