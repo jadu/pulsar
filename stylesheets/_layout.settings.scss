@@ -383,8 +383,13 @@
 .tab__container.has-settings .tab__inner {
     @include respond-min($screen-desktop) {
         align-items: flex-start;
-        display: table;
         display: flex;
+        flex-wrap: wrap; // to cater for presence of .tab__header
+    }
+
+    .tab__header {
+        flex-basis: 100%;
+        width: 100%;
     }
 }
 
