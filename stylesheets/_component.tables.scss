@@ -240,7 +240,7 @@ td.table__form {
 
 td.table__form,
 .table__form td {
-    background-color: color(background);
+    background-color: color(background, light);
 
     .help-block {
         color: color(text);
