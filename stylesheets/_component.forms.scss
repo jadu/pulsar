@@ -492,6 +492,7 @@ fieldset {
     color: color(text, help);
     display: block;
     font-size: $font-size-base;
+    white-space: normal;
 }
 
 // if a control label is in the help block (like a bare input) it doesn't need
