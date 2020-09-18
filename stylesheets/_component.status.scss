@@ -44,4 +44,8 @@
     &.is-offline {
         color: color(danger);
     }
+
+    span {
+        color: color(text);
+    }
 }
