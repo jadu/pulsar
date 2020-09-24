@@ -313,6 +313,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
+      background-color: color(background, focus) !important;
       color: color(black) !important;
     }
 
