@@ -49,7 +49,7 @@ var $ = require('jquery');
 
 		if (e.isDefaultPrevented()) return
 
-		var $target = $(selector)
+		var $target = $.find(selector)
 
 		// If we have sub-tabs, selecting the parent should activate and highlight the first one
 		if (!$target.length)  {
