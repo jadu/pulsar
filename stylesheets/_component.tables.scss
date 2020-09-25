@@ -283,8 +283,8 @@ td.row__actions {
     td {
         white-space: nowrap;
 
-        // Maintain expected behaviour of flush inputs
-        .form__group--flush {
+        // Maintain expected behaviour of form groups
+        .form__group {
             white-space: normal;
         }
     }
