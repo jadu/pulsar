@@ -2,7 +2,7 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [develop, 7.0.9-hotfix, CMS/flatcap-july, CMS/flatcap, master, poc-symfony-upgrade, release/9.0.3-symfony, release/9.0.3, release/9.0.4, release/10.3.1]
+    branches: [develop, 7.0.9-hotfix, CMS/flatcap-july, CMS/flatcap, master, poc-symfony-upgrade, release/9.0.3-symfony, release/9.0.3, release/9.0.4, release/10.3.1, dom-text]
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [develop]
