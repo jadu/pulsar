@@ -154,7 +154,7 @@ PulsarSortableComponent.prototype.addOrder = function() {
 
     component.$html.find('.table.is-sortable tr > td:first-of-type').each(function(i) {
         var $this = $(this),
-            label = $this.text(),
+            label = $.find($this.text()),
             count = i + 1;
 
         $this.html('<span class="sortable__count js-sortable-count">' + (count) + '</span> ' + label);
