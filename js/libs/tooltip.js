@@ -352,7 +352,7 @@ var $ = require('jquery');
     title = $e.attr('data-original-title')
       || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
 
-    return title
+    return $.find(title)
   }
 
   Tooltips.prototype.tip = function () {
