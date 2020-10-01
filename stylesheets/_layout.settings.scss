@@ -589,11 +589,11 @@
     .tab__inner.is-sticky {
         min-height: 100vh;
         padding-bottom: 0;
-        margin-bottom: -37px;
+        margin-bottom: (-$footer-height);
 
         .tab__content {
             min-height: 100vh;
-            padding-bottom: 37px;
+            padding-bottom: $footer-height;
             left: calc(370px + 1%);
             position: relative;
         }
@@ -601,7 +601,7 @@
         .tab__settings {
             -webkit-overflow-scrolling: touch;
             max-width: 370px;
-            max-height: calc(100% - 37px);
+            max-height: calc(100% - #{$footer-height});
             overflow-y: auto;
             position: fixed;
             top: 0;
