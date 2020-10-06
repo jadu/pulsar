@@ -388,7 +388,7 @@ function filterListButtonVisibility ($filterbar) {
         $addFilterList;
 
     addFilterList = $addFilterButton.attr('data-content');
-    $addFilterList = $(_.escape(addFilterList));
+    $addFilterList = $(_.unescape(addFilterList));
 
     if ($addFilterList.find('li:not(.u-display-none)').length) {
         $addFilterButton.removeClass('u-display-none');
@@ -441,7 +441,7 @@ function clearAllFilters ($filterbar) {
 
 function updateFilterList ($addFilterButton, filterId, visibility) {
     var addFilterList = $addFilterButton.attr('data-content'),
-        $addFilterList = $(_.escape(addFilterList)),
+        $addFilterList = $(_.unescape(addFilterList)),
         $filterItem,
         $filterItemParent;
 
