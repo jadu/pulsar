@@ -119,8 +119,8 @@ function showAddFilterPopover ($filterbar) {
     $filterbar.on('click', '[data-ui="filter-item"]', function(e) {
         e.preventDefault();
 
-        filterTitle = $(this).attr('data-filter-title');
-        filterId = $(this).attr('data-filter-id');
+        filterTitle = _.escape($(this).attr('data-filter-title'));
+        filterId = _.escape($(this).attr('data-filter-id'));
         $field = $filterbar.find('#' + filterId);
 
         $addFilterButton.attr('aria-expanded', 'false');
@@ -256,7 +256,7 @@ function addFilter ($filterbar) {
             values,
             valueForLabel = null,
             filterId,
-            initalLabelText = $label.text();
+            initalLabelText = _.escape($label.text());
 
         e.preventDefault();
 
