@@ -119,8 +119,8 @@ function showAddFilterPopover ($filterbar) {
     $filterbar.on('click', '[data-ui="filter-item"]', function(e) {
         e.preventDefault();
 
-        filterTitle = _.escape($(this).attr('data-filter-title'));
-        filterId = _.escape($(this).attr('data-filter-id'));
+        filterTitle = $(this).attr('data-filter-title');
+        filterId = $(this).attr('data-filter-id');
         $field = $filterbar.find('#' + filterId);
 
         $addFilterButton.attr('aria-expanded', 'false');
@@ -129,7 +129,7 @@ function showAddFilterPopover ($filterbar) {
         updateFilterList($addFilterButton, filterId, 'hide');
 
         // Add new filter label
-        $filterLabel = $('<span class="label label--primary label--large label--removable" data-filter-id="'+ filterId +'"><span class="label__text">' + filterTitle + ' <span class="chosen-filter"></span></span></span>');
+        $filterLabel = $('<span class="label label--primary label--large label--removable" data-filter-id="'+ _.escape(filterId) +'"><span class="label__text">' + _.escape(filterTitle) + ' <span class="chosen-filter"></span></span></span>');
         $filterLabel.insertBefore($addFilterButton);
 
         // If checkbox, check it but no need to display it or move to popover
