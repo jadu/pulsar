@@ -2,7 +2,8 @@
 
 /* jshint: global e, ui */
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('lodash');
 
 $.ui = require('jquery-ui/ui/widget.js');
 
@@ -154,7 +155,7 @@ PulsarSortableComponent.prototype.addOrder = function() {
 
     component.$html.find('.table.is-sortable tr > td:first-of-type').each(function(i) {
         var $this = $(this),
-            label = $.find($this.text()),
+            label = _.escape($this.text()),
             count = i + 1;
 
         $this.html('<span class="sortable__count js-sortable-count">' + (count) + '</span> ' + label);
