@@ -1,6 +1,7 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('lodash');
 
 function FilterBarComponent(html) {
     this.$html = html;
@@ -59,7 +60,7 @@ function createFilterListButton ($filterbar) {
 
     // Loop through form groups
     $formGroups.each(function() {
-        $filterList.append('<li><a href="#" role="button" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ $(this).find('.control__label').text() +'">'+ $(this).find('.control__label').text() +'</a></li>');
+        $filterList.append('<li><a href="#" role="button" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ _.escape($(this).find('.control__label').text()) +'">'+ _.escape($(this).find('.control__label').text()) +'</a></li>');
     });
 
     // Build up list and mark up for Add filter button
