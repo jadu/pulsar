@@ -23,7 +23,7 @@ class DropZoneValidationUtils {
                     } else if (mime.indexOf('*') >= 0) {
                         // if the user has specified a wildcard mime e.g. 'image/*'
                         // we will create a wildcard expression and test against it
-                        const re = new RegExp(mime.replace('/*/g', '.*'));
+                        const re = new RegExp(mime.replace('/*/g', '[\\W\\w]*'));
 
                         valid = !!(re.exec(type));
                     } else {
