@@ -2009,8 +2009,8 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'inputs': [
                 elem.select(
                     options
-					|exclude('bare class error guidance guidance-container help label show-label prepend_type append_type')
-					|merge({'class': 'select'})
+                    |exclude('appended bare class error guidance guidance-container help label show-label prepended prepend_type append_type')
+                    |merge({'class': 'select'})
                 )
             ]
         })

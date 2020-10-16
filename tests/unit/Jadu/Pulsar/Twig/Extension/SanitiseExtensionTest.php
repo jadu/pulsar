@@ -12,7 +12,7 @@ class SanitiseExtensionTest extends \PHPUnit\Framework\TestCase
 
     public function testGetName()
     {
-        $this->assertEquals('sanitise', $this->ext->getName());
+        $this->assertEquals('sanitise_extension', $this->ext->getName());
     }
 
 }

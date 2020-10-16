@@ -9,7 +9,7 @@
     },
     "require": {
         "twig/twig": "^1.21",
-        "vanilla/htmlawed": "^1.1"
+        "vanilla/htmlawed": "^2.2.5"
     },
     "require-dev": {
         "symfony/yaml": "*",

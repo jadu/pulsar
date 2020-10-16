@@ -15,7 +15,8 @@
 
     {{ html.button({ 
         label: html.icon('ok') ~ "<script>alert('There’s some holes in this house')</script>",
-        type: 'submit'
+        type: 'submit',
+        'aria-label': 'test'
     }) }}
 
     {{ html.button({ 

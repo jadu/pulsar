@@ -19,12 +19,13 @@ class SanitiseExtension extends \Twig_Extension
         );
     }
 
-    public function sanitise($data)
+    public function sanitise ($data)
     {
         $config = array(
             'comments' => 0,
             'cdata' => 0,
             'deny_attribute' => 'on*',
+            'unique_ids' => 0,
             'elements' => '* -applet -audio -canvas -embed -iframe -object -script -video',
             'schemes' => 'href: aim, feed, file, ftp, gopher, http, https, irc, mailto, news, nntp, sftp, ssh, tel, telnet; style: !; *:file, http, https'
         );
