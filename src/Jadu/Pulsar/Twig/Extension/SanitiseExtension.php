@@ -19,7 +19,7 @@ class SanitiseExtension extends \Twig_Extension
         );
     }
 
-    public function sanitise ($data)
+    public function sanitise($data)
     {
         $config = array(
             'comments' => 0,

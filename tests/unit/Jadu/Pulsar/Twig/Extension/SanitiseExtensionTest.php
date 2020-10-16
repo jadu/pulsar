@@ -15,4 +15,10 @@ class SanitiseExtensionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('sanitise_extension', $this->ext->getName());
     }
 
+    public function testSanitise() {
+        $dataIn = '<button onclick="1" class="safe">safe <script>unsafe</script></button>';
+        $dataOut = '<button class="safe">safe unsafe</button>';
+        $this->assertEquals($dataOut, $this->ext->sanitise($dataIn));
+    }
+
 }
