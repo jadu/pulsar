@@ -16,7 +16,7 @@
 
     <section class="flash flash--{{ options.type|default('default') }}" aria-labelledby="{{ flash_guid }}">
         {{ html.icon(icon) }}
-        <h2 id="{{ flash_guid }}">{{ options.message|raw }}</h2>
+        <h2 id="{{ flash_guid }}">{{ options.message|sanitise|raw }}</h2>
         {% if options.dismissable is not defined or options.dismissable == true %}
             <button class="close" data-dismiss="flash">
                 {{ html.icon('remove', { 'label': 'Close' }) }}

@@ -109,7 +109,7 @@
                         {% if options.inputs is defined and options.inputs is not empty %}
                             {% for input in options.inputs %}
                                 <div class="rule-block__control">
-                                    {{- input|raw -}}
+                                    {{- input|sanitise|raw -}}
                                 </div>
                             {% endfor %}
                         {% endif %}

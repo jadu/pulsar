@@ -20,7 +20,7 @@
   {% block actionsbar %}{% endblock %}
 </div>
 
-<h2 class="heading">{{ heading|raw }}</h2>
+<h2 class="heading">{{ heading|sanitise|raw }}</h2>
 
 <div class="dashboard">
   {% block widgets %}{% endblock %}

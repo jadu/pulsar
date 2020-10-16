@@ -191,7 +191,7 @@
                 {% if attr.help_text is defined and attr.help_text is not null %}
                     <p class="help-block" id="{{ helpId }}">{{ attr.help_text }}</p>
                 {% elseif attr.help_html is defined and attr.help_html is not null %}
-                    <p class="help-block" id="{{ helpId }}">{{ attr.help_html|raw }}</p>
+                    <p class="help-block" id="{{ helpId }}">{{ attr.help_html|sanitise|raw }}</p>
                 {% endif %}
             </div>
         </div>

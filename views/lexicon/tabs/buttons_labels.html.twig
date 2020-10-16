@@ -13,6 +13,16 @@
 
 {% block tab_content %}
 
+    {{ html.button({ 
+        label: html.icon('ok') ~ "<script>alert('There’s some holes in this house')</script>",
+        type: 'submit'
+    }) }}
+
+    {{ html.button({ 
+        label: html.icon('ok') ~ "<strong onclick='alert(2)'>foo</strong>",
+        type: 'submit'
+    }) }}
+
     <h2 class="heading">Links & Lists</h2>
     <p>
         <a href="#">Normal</a> / <a href="#" class="is-disabled">Disabled</a>

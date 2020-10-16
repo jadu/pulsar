@@ -8,7 +8,8 @@
         }
     },
     "require": {
-        "twig/twig": "^1.21"
+        "twig/twig": "^1.21",
+        "vanilla/htmlawed": "^1.1"
     },
     "require-dev": {
         "symfony/yaml": "*",

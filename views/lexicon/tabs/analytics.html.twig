@@ -2,7 +2,7 @@
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/datagrid.html.twig' as datagrid %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
+<h2 class="heading">{{ heading|sanitise|raw }}</h2>
 
 <div class="tab__inner tab--unpadded">
     <table class="table--datagrid" id="lexicon_analytics">

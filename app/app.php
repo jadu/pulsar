@@ -12,6 +12,7 @@ use Jadu\Pulsar\Twig\Extension\ConstantDefinedExtension;
 use Jadu\Pulsar\Twig\Extension\GetConstantExtension;
 use Jadu\Pulsar\Twig\Extension\HelperOptionsModifierExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
+use Jadu\Pulsar\Twig\Extension\SanitiseExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
 
@@ -33,6 +34,7 @@ $twig->addExtension(new HelperOptionsModifierExtension());
 $twig->addExtension(new GetConstantExtension());
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
+$twig->addExtension(new SanitiseExtension());
 $twig->addExtension(new TabsExtension());
 $twig->addExtension(new Twig_Extension_Debug());
 

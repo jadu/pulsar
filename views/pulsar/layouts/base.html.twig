@@ -134,7 +134,7 @@
                         {% block ribbon_content %}
                             <div class="ribbon-wrapper">
                                 <section class="ribbon" aria-label="content summary">
-                                    {{ _ribbon|raw }}
+                                    {{ _ribbon|sanitise|raw }}
                                 </section>
                             </div>
                         {% endblock %}

@@ -1023,7 +1023,7 @@ class   | string | A space separated list of class names
             )
         }}>
             {% for action in options.actions %}
-                {{ action|raw }}
+                {{ action|sanitise|raw }}
             {% endfor %}
         </div>
     {% endif %}
@@ -1080,13 +1080,13 @@ value  | string, array  | The string, or array of strings to render inside the e
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {% for error in errors %}
                 <span class="help-block is-error" id="{{ attribute(options.error_ids, loop.index0) }}">
-                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                    {{ html.icon('warning-sign') }} {{ error|sanitise|raw -}}
                 </span>
             {% endfor %}
         {% else %}
             {% for error in errors %}
                 <span class="help-block is-error">
-                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                    {{ html.icon('warning-sign') }} {{ error|sanitise|raw -}}
                 </span>
             {% endfor %}
         {% endif %}
@@ -1132,7 +1132,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         if options.legend is defined
         and options.legend is not empty
     %}
-        <legend class="legend">{{ options.legend|raw }}</legend>
+        <legend class="legend">{{ options.legend|sanitise|raw }}</legend>
     {% endif %}
 
 {% endspaceless %}
@@ -1434,7 +1434,7 @@ controls.class    | string | A space separated list of class names
                     {{- form.radio_simple(input) -}}
                 {% endif %}
             {% else %}
-                {{- input|raw -}}
+                {{- input|sanitise|raw -}}
             {% endif %}
         {% endfor %}
 
@@ -1523,7 +1523,7 @@ value  | string | The string or html markup to render inside the help block
 
     {% if options.value is defined and options.value is not empty %}
         <span class="help-block"{% if options.id is defined and options.id is not empty %} id="{{- options.id -}}"{% endif %}>
-            {{- options.value|raw -}}
+            {{- options.value|sanitise|raw -}}
         </span>
     {% endif %}
 
