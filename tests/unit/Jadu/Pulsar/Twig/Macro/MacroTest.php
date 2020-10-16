@@ -8,6 +8,7 @@ use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\ConstantDefinedExtension;
 use Jadu\Pulsar\Twig\Extension\HelperOptionsModifierExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
+use Jadu\Pulsar\Twig\Extension\SanitiseExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
 use Twig_Environment;
@@ -42,6 +43,7 @@ class MacroTest extends \PHPUnit\Framework\TestCase
         $this->twig->addExtension(new ConstantDefinedExtension());
         $this->twig->addExtension(new HelperOptionsModifierExtension());
         $this->twig->addExtension(new RelativeTimeExtension());
+        $this->twig->addExtension(new SanitiseExtension());
         $this->twig->addExtension(new UrlParamsExtension(array()));
         $this->twig->addExtension(new TabsExtension());
     }
