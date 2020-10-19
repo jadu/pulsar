@@ -23,14 +23,12 @@
     {% endif %}
 {% endif %}
 
-
 {% if block('tab_sidebar') is defined %}
     {% set _sidebar = block('tab_sidebar') %}
     {% if _sidebar is not empty %}
         {% set _hasSidebar = true %}
     {% endif %}
 {% endif %}
-
 
 {% if block('tab_js') is defined %}
     {% set _tab_javascript = block('tab_js') %}
@@ -53,14 +51,14 @@
 
     {% if _actions_left is not empty or _actions_right is not empty %}
     <section class="actionsbar" aria-label="page actions">
-        {% if _actions_left is not empty %}
+        {% if block('actions_left') is defined %}
         <div class="float--left">
-            {{ _actions_left|raw }}
+            {{ block('actions_left') }}
         </div>
         {% endif %}
-        {% if _actions_right is not empty %}
+        {% if block('actions_left') is defined %}
         <div class="float--right">
-            {{ _actions_right|raw }}
+            {{ block('actions_right') }}
         </div>
         {% endif %}
     </section>
@@ -69,12 +67,12 @@
     <div class="tab__inner">
         {% if _hasHeader == true %}
         <div class="tab__header">
-            {{ _header|sanitise|raw }}
+            {{ block('tab_header') }}
         </div>
         {% endif %}
         {% if _hasSettings == true %}
         <section class="tab__settings" aria-label="settings">
-            {{ _settings|raw }}
+            {{ block('tab_settings') }}
         </section>
         {% endif %}
         <div class="tab__content" id="skip-target" role="main">
@@ -82,7 +80,7 @@
         </div>
         {% if _hasSidebar == true %}
         <aside class="tab__sidebar" aria-label="additional information">
-            {{ _sidebar|raw }}
+            {{ block('tab_sidebar') }}
         </aside>
         {% endif %}
     </div>
