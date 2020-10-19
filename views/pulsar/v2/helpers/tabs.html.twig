@@ -114,8 +114,8 @@
             and tab.src|json_encode|slice(1, 1) != '#'
             and tab.src|json_encode|slice(1, 4) != 'http'
         -%}
-            <div class="tab__pane{% if tab_active is defined and tab_active == tab.id %} is-active{% endif %}{% if (tab.class is defined and tab.class is not null) %} {{ tab.class }}{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
-                {{ tab.src|raw }}
+            <div class="tab__pane{% if tab_active is defined and tab_active == tab.id %} is-active{% endif %}{% if (tab.class is defined and tab.class is not null) %} {{ tab.class }}{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|sanitise|raw }}{% endif %}>
+                {{ tab.src }}
             </div>
         {%- endif -%}
     {%- endfor -%}
