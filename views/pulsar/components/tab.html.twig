@@ -55,12 +55,12 @@
     <section class="actionsbar" aria-label="page actions">
         {% if _actions_left is not empty %}
         <div class="float--left">
-            {{ _actions_left|sanitise|raw }}
+            {{ _actions_left|raw }}
         </div>
         {% endif %}
         {% if _actions_right is not empty %}
         <div class="float--right">
-            {{ _actions_right|sanitise|raw }}
+            {{ _actions_right|raw }}
         </div>
         {% endif %}
     </section>
@@ -74,7 +74,7 @@
         {% endif %}
         {% if _hasSettings == true %}
         <section class="tab__settings" aria-label="settings">
-            {{ _settings|sanitise|raw }}
+            {{ _settings|raw }}
         </section>
         {% endif %}
         <div class="tab__content" id="skip-target" role="main">
@@ -82,7 +82,7 @@
         </div>
         {% if _hasSidebar == true %}
         <aside class="tab__sidebar" aria-label="additional information">
-            {{ _sidebar|sanitise|raw }}
+            {{ _sidebar|raw }}
         </aside>
         {% endif %}
     </div>
