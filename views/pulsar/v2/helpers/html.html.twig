@@ -323,7 +323,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
                 })
             )
         }}>
-            {{- options.label|default|striptags('<abbr><b><br><cite><code><dfn><em><i><img><kbd><q><small><span><strong><sub><sup>')|raw -}}
+            {{- options.label|default|raw -}}
             {{- util.caret(options.caret|default) -}}
         </button>
 
