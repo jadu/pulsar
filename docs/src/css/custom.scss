@@ -1,0 +1,140 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+* Any CSS included here will be global. The classic template
+* bundles Infima by default. Infima is a CSS framework designed to
+* work well for content-centric websites.
+*/
+
+$ie-version: 12 !default;
+$image-path: '../../../images/' !default;
+
+$margin-bottom: 1.125 * 1rem;
+
+:root{
+    --jadu-purple: #3e4994;
+    
+    --ifm-background-surface-color: var(--jadu-purple);
+    --ifm-navbar-link-color: #fff;
+    --ifm-navbar-link-hover-color: #fff;
+    
+    --ifm-menu-color-active: var(--jadu-purple);
+    
+    --ifm-container-width: 1200px;
+}
+
+.markdown > {
+    h1, 
+    h2, 
+    h3, 
+    h4, 
+    h5, 
+    h6 {
+        color: var(--jadu-purple);
+    }
+}
+
+.d-example {
+    border: 1px solid #ccc;
+    margin-bottom: $margin-bottom;
+    padding: 1em;
+}
+
+.d-guidelines {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 24px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.d-guidelines__block {
+    width: 49%;
+}
+
+.d-guidelines-preview {
+    // background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    margin-bottom: .75em;
+    padding: 1em;
+}
+
+.d-guidelines-label {
+    
+}
+
+.d-guidelines-label__title {
+    font-style: normal;
+}
+
+.d-guidelines__block--do {
+    .d-guidelines-label {
+        border-top: 5px solid #81bd44;
+    }
+    
+    .d-guidelines-label__title {
+        color: #81bd44;
+    }
+}
+
+.d-guidelines__block--not {
+    .d-guidelines-label {
+        border-top: 5px solid #bd4444;
+    }
+    
+    .d-guidelines-label__title {
+        color: #bd4444;
+    }
+}
+
+// Font awesome
+$fa-font-path: '/static/font-awesome/fonts';
+$fa-css-prefix: 'icon';
+@import '/static/font-awesome/scss/font-awesome';
+
+.d-example,
+.d-guidelines {
+    @import '../../../stylesheets/deprecated.icons';
+    
+    // Mixins
+    @import '../../../stylesheets/mixin.border-radius';
+    @import '../../../stylesheets/mixin.clear-fix';
+    @import '../../../stylesheets/mixin.content-box';
+    @import '../../../stylesheets/mixin.css-arrow';
+    @import '../../../stylesheets/mixin.hide-text';
+    @import '../../../stylesheets/mixin.inline-block';
+    @import '../../../stylesheets/mixin.label-variant';
+    @import '../../../stylesheets/mixin.media-queries';
+    @import '../../../stylesheets/mixin.mixins-to-organise';
+    @import '../../../stylesheets/mixin.responsive-utilities';
+    @import '../../../stylesheets/mixin.word-wrap';
+    @import '../../../stylesheets/mixin.focus';
+    
+    // Config
+    @import '../../../stylesheets/config.variables';
+    @import '../../../stylesheets/config.branding';
+    
+    // Functions
+    @import '../../../stylesheets/function.math';
+    @import '../../../stylesheets/function.color-luminance';
+    @import '../../../stylesheets/function.pick-best-color';
+    @import '../../../stylesheets/function.color';
+    
+    // Base colour palette
+    @import '../../../stylesheets/palette.base';
+    
+    // Apply palette to components
+    @import '../../../stylesheets/config.theme';
+    
+    // Structure
+    @import '../../../stylesheets/structure.grid';
+    @import '../../../stylesheets/structure.columns';
+    @import '../../../stylesheets/structure.forms';
+    
+    @import '../../../stylesheets/component.buttons';
+    @import '../../../stylesheets/component.error-summary';
+    @import '../../../stylesheets/component.forms';
+    @import '../../../stylesheets/component.range-slider';
+    
+    // Utilities
+    @import '../../../stylesheets/utility.utilities';
+}

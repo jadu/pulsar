@@ -1,0 +1,106 @@
+---
+id: browsers
+title: Browsers and devices
+sidebar_label: Browser support
+---
+
+We automatically gather browser information from Continuum platform users to inform which browsers we design and test for.
+
+## Supported browsers
+
+These are the browsers we recommend testing on when developing the Continuum platform based upon a combination of analytics data and our contractual obligations to customers.
+
+Browsers not listed may still work well, and it should be noted that this is not a list that intends to suggest that these are the only browsers the service will work on – this is simply a benchmark for testing against to ensure that the Continuum platform will likely work for as many users as possible alongside appropriate cost-effectiveness and development overhead.
+
+<table className="table table--full">
+    <thead>
+        <tr>
+            <th scope="col">Operating system</th>
+            <th scope="col">Browser</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td rowspan="5">Windows</td>
+    </tr>
+    <tr>
+        <td>Internet Explorer 11</td>
+    </tr>
+    <tr>
+        <td>Edge (latest versions)</td>
+    </tr>
+    <tr>
+        <td>Google Chrome (latest versions)</td>
+    </tr>
+    <tr>
+        <td>Mozilla Firefox (latest versions)</td>
+    </tr>
+    <tr>
+        <td rowspan="3">MacOS</td>
+        <td>Safari 12+</td>
+    </tr>
+    <tr>
+        <td>Google Chrome (latest versions)</td>
+    </tr>
+    <tr>
+        <td>Mozilla Firefox (latest versions)</td>
+    </tr>
+    <tr>
+        <td rowspan="2">iOS</td>
+        <td>Mobile Safari (latest versions)</td>
+    </tr>
+    <tr>
+        <td>Google Chrome (latest versions)</td>
+    </tr>
+    <tr>
+        <td rowspan="2">Android</td>
+        <td>Google Chrome (latest versions)</td>
+    </tr>
+    <tr>
+        <td>Samsung Internet (latest versions)</td>
+    </tr>
+    </tbody>
+    <caption>Last updated 23/10/2020</caption>
+</table>
+
+## Testing with assistive technologies
+
+User interfaces and components should be tested with a selection of assistive device to check they are appropriately interactive. When using screen reader software you should use the keyboard as the primary input method.
+
+<table className="table table--full">
+    <thead>
+    <tr>
+        <th scope="col">Software</th>
+        <th scope="col">Version</th>
+        <th scope="col">Type</th>
+        <th scope="col">Browser</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Dragon NaturallySpeaking</td>
+        <td>15 or later</td>
+        <td>Speech recognition</td>
+        <td>Internet Explorer 11</td>
+    </tr>
+    <tr>
+        <td>NVDA</td>
+        <td>latest</td>
+        <td>Screen reader</td>
+        <td>Mozilla Firefox (latest versions</td>
+    </tr>
+    <tr>
+        <td>VoiceOver</td>
+        <td>latest</td>
+        <td>Screen reader</td>
+        <td>Safari on OSX and iOS 10</td>
+    </tr>
+    <tr>
+        <td>JAWS</td>
+        <td>2018 or later</td>
+        <td>Screen reader</td>
+        <td>Internet Explorer 11</td>
+    </tr>
+    </tbody>
+    <caption>Last updated 23/10/2020</caption>
+</table>
