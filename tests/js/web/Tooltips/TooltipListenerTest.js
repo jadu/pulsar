@@ -26,13 +26,16 @@ describe('TooltipListener', () => {
     });
 
     describe('init()', () => {
-
         beforeEach(() => {
             tooltipListener.init();
         });
 
         it('should initialise tippy', () => {
             expect(tippyStub).to.have.been.called;
+        });
+
+        it('should call tippy on an elements with data-tippy-content using the listener config', () => {
+            expect(tippyStub).to.have.been.calledWith('[data-tippy-content]', tooltipListener.tippyConfig);
         });
 
         describe('When the ESC key is pressed', () => {
@@ -45,6 +48,54 @@ describe('TooltipListener', () => {
                 expect(hideAllStub).to.have.been.called;
             });
         });
+    });
+
+    describe('listen()', () => {
+        it('should create a new tippy, if element was not already a tippy instance', () => {
+            tippyStub.returns([]);
+            tooltipListener.init();
+
+            tippyStub.returns('tippy');
+            tooltipListener.listen($html);
+
+            expect(tooltipListener.tippys[0]).to.equal('tippy');
+
+            expect(tippyStub).to.have.been.calledWith('[data-tippy-content]', tooltipListener.tippyConfig);
+        });
+
+        it('should not push a new tippy instance, if element is already a tippy instance', () => {
+            const existingTippyElement = $button[0];
+            const existingTippyElementObject = { reference: existingTippyElement };
+
+            tippyStub.returns([existingTippyElementObject]);
+            tooltipListener.init();
+            tooltipListener.listen($html);
+
+            expect(tooltipListener.tippys).to.have.length(1);
+        });
+    });
+
+    describe('getInstance()', () => {
+        it('should return the tippy instance for an element, if one exists', () => {
+            const existingTippyElement = $button[0];
+            const existingTippyElementObject = { reference: existingTippyElement };
+
+            tippyStub.returns([existingTippyElementObject]);
+            tooltipListener.init();
+
+            expect(tooltipListener.getInstance($button[0])).to.equal(existingTippyElementObject)
+        });
+
+        it('should return null, if no tippy instance for an element exists', () => {
+            const existingTippyElement = $button[0];
+            const existingTippyElementObject = { reference: existingTippyElement };
+
+            tippyStub.returns([existingTippyElementObject]);
+            tooltipListener.init();
+
+            expect(tooltipListener.getInstance('something')).to.be.null;
+        });
+
     });
 
     describe('onCreate()', () => {

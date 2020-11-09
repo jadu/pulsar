@@ -8,7 +8,7 @@ class TooltipListener {
     /**
      * Tooltip listener
      * @constructor
-     * @param {jQuery} $html - jQuery wrapper of the html node
+     * @param {jQuery} $html - jQuery wrapper of the container node
      * @param {tippy} TippyJS lib
      * @param {hideAll} Tippy hideAll method
      */
@@ -16,14 +16,8 @@ class TooltipListener {
         this.$html = $html;
         this.tippy = tippy;
         this.hideAll = hideAll
-    }
-
-    /**
-     * Initialise
-     */
-    init () {
-        this.tippy('[data-tippy-content]', {
-
+        this.tippys = [];
+        this.tippyConfig = {
             // Default to not allowing html inside of tooltip
             allowHTML: false,
 
@@ -47,7 +41,14 @@ class TooltipListener {
             onMount: this.onMount,
             onHide: this.onHide,
             onHidden: this.onHidden
-        });
+        };
+    }
+
+    /**
+     * Initialise
+     */
+    init () {
+        this.tippys = this.tippy('[data-tippy-content]', this.tippyConfig);
 
         // Close ESC button
         this.$html.on('keydown', (event) => {
@@ -55,6 +56,49 @@ class TooltipListener {
                 this.hideAll();
             }
         });
+    }
+
+    /**
+     * Listen for new elements with tippys, ignore if already instantiated, create tooltip if not
+     * @param {jQuery} $html - jQuery wrapper of the container node
+     */
+    listen ($html) {
+        // Only create new tippys
+        $html.find('[data-tippy-content]').each((index, element) => {
+            if (this.isInstantiated(element)) {
+                return;
+            }
+
+            this.tippys.push(this.tippy(element, this.tippyConfig));
+        });
+    }
+
+    /**
+     * Check if element is instantiated
+     * @param {Element} element - element to check for tippy instance
+     */
+    isInstantiated(element) {
+        for (const tippy of this.tippys) {
+            if (tippy.reference === element) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Get tippy instance of element
+     * @returns {(object|null)} tippy object relating to an element or null
+     */
+    getInstance(element) {
+        for (const tippy of this.tippys) {
+            if (tippy.reference === element) {
+                return tippy;
+            }
+        }
+
+        return null;
     }
 
     onCreate (instance) {
