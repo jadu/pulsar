@@ -10,10 +10,13 @@ As a Jadu designer or developer, you’re probably working on one or more of the
 
 There are two dedicated Pulsar team members, Paul and James.
 
+<<<<<<< Updated upstream
 <div className="github-card" data-user="stanton"></div>
 <div className="github-card" data-user="jamesjacobs"></div>
 <script src="https://lab.lepture.com/github-cards/widget.js"></script>
 
+=======
+>>>>>>> Stashed changes
 There are [many more people](https://github.com/jadu/pulsar/graphs/contributors) at Jadu who contribute (or have contributed) to Pulsar. The Pulsar design system is open-source under the MIT license.
 
 ## Slack channel

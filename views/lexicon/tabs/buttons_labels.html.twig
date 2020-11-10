@@ -5,650 +5,668 @@
 
 {% block tab_sidebar %}
 
-    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Some button help</h2>
+<h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Some button help</h2>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tellus dolor, condimentum efficitur arcu sed, feugiat pellentesque lacus. Pellentesque ac ipsum ac mauris cursus volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tellus dolor, condimentum efficitur arcu sed, feugiat pellentesque lacus. Pellentesque ac ipsum ac mauris cursus volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
 {% endblock tab_sidebar %}
 
 
 {% block tab_content %}
 
-    <h2 class="heading">Links & Lists</h2>
-    <p>
-        <a href="#">Normal</a> / <a href="#" class="is-disabled">Disabled</a>
+<h2 class="heading">Links & Lists</h2>
+<p>
+    <a href="#">Normal</a> / <a href="#" class="is-disabled">Disabled</a>
+    
+    {{ html.button({ 
+        label: html.icon('ok') ~ "<script>alert('There’s some holes in this house')</script>"|escape('html'),
+        type: 'submit'
+    }) }}
+    
+    {{ html.button({ 
+        label: html.icon('ok') ~ "<strong onclick='alert(2)'>foo</strong>",
+        type: 'submit'
+    }) }}
+    
+    
+    {% set userEmail = 'user@email.com<script>alert(\'script\')</script>' %}
+    
+    {{ form.content({ 
+        label: 'email',
+        value: '<a href=”mailto:' ~ userEmail ~ '">' ~ userEmail ~ '</a>'
+    }) }}
+    
+    {{
+        html.list({
+            items: [
+            'Simple',
+            'List'
+            ]
+        })
+    }}
+    
+    {{
+        html.link_list({
+            items: {
+                'Google': 'http://google.com',
+                'Twitter': 'http://twitter.com'
+            }
+        })
+    }}
+</p>
 
-        {{
-            html.list({
-                items: [
-                    'Simple',
-                    'List'
-                ]
-            })
-        }}
+<h2 class="heading">Button variations</h2>
 
-        {{
-            html.link_list({
-                items: {
-                    'Google': 'http://google.com',
-                    'Twitter': 'http://twitter.com'
-                }
-            })
-        }}
-    </p>
+<p>
+    
+    <!-- The normal type of button you should use -->
+    {{ html.button({ label: 'Default' }) }}
+    
+    <!-- In the context of a full UI, this is the main thing we want the user to do next -->
+    {{
+        html.button({
+            label: 'Primary',
+            class: 'btn--primary'
+        })
+    }}
+    
+    <!-- Indicates a successful or positive action -->
+    {{
+        html.button({
+            label: 'Success',
+            class: 'btn--success'
+        })
+    }}
+    
+    <!-- Indicates a dangerous or destructive action -->
+    {{
+        html.button({
+            label: 'Danger',
+            class: 'btn--danger'
+        })
+    }}
+    
+    <!-- Indicates caution should be taken here -->
+    {{
+        html.button({
+            label: 'Warning',
+            class: 'btn--warning'
+        })
+    }}
+    
+    <!-- Contextual button for informational alert messages -->
+    {{
+        html.button({
+            label: 'Info',
+            class: 'btn--info'
+        })
+    }}
+    
+    <!-- Rarely used, a good example is a 'locked content' button -->
+    {{
+        html.button({
+            label: 'Inverse',
+            class: 'btn--inverse'
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Disabled',
+            disabled: true
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Active',
+            class: 'active'
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Naked',
+            class: 'btn--naked'
+        })
+    }}
+</p>
 
-    <h2 class="heading">Button variations</h2>
+<h2 class="heading">Link buttons</h2>
 
-    <p>
+<p>
+    <!-- The normal type of button you should use -->
+    {{
+        html.button({
+            label: 'Default',
+            type: 'link',
+            href: '#'
+        })
+    }}
+    
+    <!-- In the context of a full UI, this is the main thing we want the user to do next -->
+    {{
+        html.button({
+            label: 'Primary',
+            class: 'btn--primary',
+            type: 'link',
+            href: '#'
+        })
+    }}
+    
+    <!-- Indicates a successful or positive action -->
+    {{
+        html.button({
+            label: 'Success',
+            class: 'btn--success',
+            type: 'link',
+            href: '#'
+        })
+    }}
+    
+    <!-- Indicates a dangerous or destructive action -->
+    {{
+        html.button({
+            label: 'Danger',
+            class: 'btn--danger',
+            type: 'link',
+            href: '#'
+        })
+    }}
+    
+    <!-- Indicates caution should be taken here -->
+    {{
+        html.button({
+            label: 'Warning',
+            class: 'btn--warning',
+            type: 'link',
+            href: '#'
+        })
+    }}
+    
+    <!-- Contextual button for informational alert messages -->
+    {{
+        html.button({
+            label: 'Info',
+            class: 'btn--info',
+            type: 'link',
+            href: '#'
+        })
+    }}
+    
+    <!-- Rarely used, a good example is a 'locked content' button -->
+    {{
+        html.button({
+            label: 'Inverse',
+            class: 'btn--inverse',
+            type: 'link',
+            href: '#'
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Disabled',
+            disabled: true,
+            type: 'link',
+            href: '#'
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Naked',
+            type: 'link',
+            class: 'btn--naked',
+            href: '#'
+        })
+    }}
+</p>
 
-        <!-- The normal type of button you should use -->
-        {{ html.button({ label: 'Default' }) }}
+<h2 class="heading">Outline buttons</h2>
 
-        <!-- In the context of a full UI, this is the main thing we want the user to do next -->
-        {{
-            html.button({
-                label: 'Primary',
-                class: 'btn--primary'
-            })
-        }}
+<p>
+    <!-- The normal type of button you should use -->
+    {{
+        html.button({
+            label: 'Default',
+            class: 'btn--outline'
+        })
+    }}
+    
+    <!-- In the context of a full UI, this is the main thing we want the user to do next -->
+    {{
+        html.button({
+            label: 'Primary',
+            class: 'btn--outline btn--primary'
+        })
+    }}
+    
+    <!-- Indicates a successful or positive action -->
+    {{
+        html.button({
+            label: 'Success',
+            class: 'btn--outline btn--success'
+        })
+    }}
+    
+    <!-- Indicates a dangerous or destructive action -->
+    {{
+        html.button({
+            label: 'Danger',
+            class: 'btn--outline btn--danger',
+            type: 'link'
+        })
+    }}
+    
+    <!-- Indicates caution should be taken here -->
+    {{
+        html.button({
+            label: 'Warning',
+            class: 'btn--outline btn--warning'
+        })
+    }}
+    
+    <!-- Contextual button for informational alert messages -->
+    {{
+        html.button({
+            label: 'Info',
+            class: 'btn--outline btn--info'
+        })
+    }}
+    
+    <!-- Rarely used, a good example is a 'locked content' button -->
+    {{
+        html.button({
+            label: 'Inverse',
+            class: 'btn--outline btn--inverse'
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Disabled',
+            class: 'btn--outline',
+            disabled: true
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Active',
+            class: 'btn--outline active'
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Naked',
+            class: 'btn--outline btn--naked'
+        })
+    }}
+</p>
 
-        <!-- Indicates a successful or positive action -->
-        {{
-            html.button({
-                label: 'Success',
-                class: 'btn--success'
-            })
-        }}
+<h2 class="heading">Disabled buttons</h2>
 
-        <!-- Indicates a dangerous or destructive action -->
-        {{
-            html.button({
-                label: 'Danger',
-                class: 'btn--danger'
-            })
-        }}
+<p>
+    <!-- The normal type of button you should use -->
+    {{
+        html.button({
+            label: 'Default',
+            disabled: true
+        })
+    }}
+    
+    <!-- In the context of a full UI, this is the main thing we want the user to do next -->
+    {{
+        html.button({
+            label: 'Primary',
+            class: 'btn--primary',
+            disabled: true
+        })
+    }}
+    
+    <!-- Indicates a successful or positive action -->
+    {{
+        html.button({
+            label: 'Success',
+            class: 'btn--success',
+            disabled: true
+        })
+    }}
+    
+    <!-- Indicates a dangerous or destructive action -->
+    {{
+        html.button({
+            label: 'Danger',
+            class: 'btn--danger',
+            disabled: true
+        })
+    }}
+    
+    <!-- Indicates caution should be taken here -->
+    {{
+        html.button({
+            label: 'Warning',
+            class: 'btn--warning',
+            disabled: true
+        })
+    }}
+    
+    <!-- Contextual button for informational alert messages -->
+    {{
+        html.button({
+            label: 'Info',
+            class: 'btn--info',
+            disabled: true
+        })
+    }}
+    
+    <!-- Rarely used, a good example is a 'locked content' button -->
+    {{
+        html.button({
+            label: 'Inverse',
+            class: 'btn--inverse',
+            disabled: true
+        })
+    }}
+    
+    {{
+        html.button({
+            label: 'Naked',
+            class: 'btn--naked',
+            disabled: true
+        })
+    }}
+</p>
 
-        <!-- Indicates caution should be taken here -->
-        {{
-            html.button({
-                label: 'Warning',
-                class: 'btn--warning'
-            })
-        }}
-
-        <!-- Contextual button for informational alert messages -->
-        {{
-            html.button({
-                label: 'Info',
-                class: 'btn--info'
-            })
-        }}
-
-        <!-- Rarely used, a good example is a 'locked content' button -->
-        {{
-            html.button({
-                label: 'Inverse',
-                class: 'btn--inverse'
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Disabled',
-                disabled: true
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Active',
-                class: 'active'
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Naked',
-                class: 'btn--naked'
-            })
-        }}
-    </p>
-
-    <h2 class="heading">Link buttons</h2>
-
-    <p>
-        <!-- The normal type of button you should use -->
-        {{
-            html.button({
-                label: 'Default',
-                type: 'link',
-                href: '#'
-            })
-        }}
-
-        <!-- In the context of a full UI, this is the main thing we want the user to do next -->
-        {{
-            html.button({
-                label: 'Primary',
-                class: 'btn--primary',
-                type: 'link',
-                href: '#'
-            })
-        }}
-
-        <!-- Indicates a successful or positive action -->
-        {{
-            html.button({
-                label: 'Success',
-                class: 'btn--success',
-                type: 'link',
-                href: '#'
-            })
-        }}
-
-        <!-- Indicates a dangerous or destructive action -->
-        {{
-            html.button({
-                label: 'Danger',
-                class: 'btn--danger',
-                type: 'link',
-                href: '#'
-            })
-        }}
-
-        <!-- Indicates caution should be taken here -->
-        {{
-            html.button({
-                label: 'Warning',
-                class: 'btn--warning',
-                type: 'link',
-                href: '#'
-            })
-        }}
-
-        <!-- Contextual button for informational alert messages -->
-        {{
-            html.button({
-                label: 'Info',
-                class: 'btn--info',
-                type: 'link',
-                href: '#'
-            })
-        }}
-
-        <!-- Rarely used, a good example is a 'locked content' button -->
-        {{
-            html.button({
-                label: 'Inverse',
-                class: 'btn--inverse',
-                type: 'link',
-                href: '#'
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Disabled',
-                disabled: true,
-                type: 'link',
-                href: '#'
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Naked',
-                type: 'link',
-                class: 'btn--naked',
-                href: '#'
-            })
-        }}
-    </p>
-
-    <h2 class="heading">Outline buttons</h2>
-
-    <p>
-        <!-- The normal type of button you should use -->
-        {{
-            html.button({
-                label: 'Default',
-                class: 'btn--outline'
-            })
-        }}
-
-        <!-- In the context of a full UI, this is the main thing we want the user to do next -->
-        {{
-            html.button({
-                label: 'Primary',
-                class: 'btn--outline btn--primary'
-            })
-        }}
-
-        <!-- Indicates a successful or positive action -->
-        {{
-            html.button({
-                label: 'Success',
-                class: 'btn--outline btn--success'
-            })
-        }}
-
-        <!-- Indicates a dangerous or destructive action -->
-        {{
-            html.button({
-                label: 'Danger',
-                class: 'btn--outline btn--danger',
-                type: 'link'
-            })
-        }}
-
-        <!-- Indicates caution should be taken here -->
-        {{
-            html.button({
-                label: 'Warning',
-                class: 'btn--outline btn--warning'
-            })
-        }}
-
-        <!-- Contextual button for informational alert messages -->
-        {{
-            html.button({
-                label: 'Info',
-                class: 'btn--outline btn--info'
-            })
-        }}
-
-        <!-- Rarely used, a good example is a 'locked content' button -->
-        {{
-            html.button({
-                label: 'Inverse',
-                class: 'btn--outline btn--inverse'
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Disabled',
-                class: 'btn--outline',
-                disabled: true
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Active',
-                class: 'btn--outline active'
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Naked',
-                class: 'btn--outline btn--naked'
-            })
-        }}
-    </p>
-
-    <h2 class="heading">Disabled buttons</h2>
-
-    <p>
-        <!-- The normal type of button you should use -->
-        {{
-            html.button({
-                label: 'Default',
-                disabled: true
-            })
-        }}
-
-        <!-- In the context of a full UI, this is the main thing we want the user to do next -->
-        {{
-            html.button({
-                label: 'Primary',
-                class: 'btn--primary',
-                disabled: true
-            })
-        }}
-
-        <!-- Indicates a successful or positive action -->
-        {{
-            html.button({
-                label: 'Success',
-                class: 'btn--success',
-                disabled: true
-            })
-        }}
-
-        <!-- Indicates a dangerous or destructive action -->
-        {{
-            html.button({
-                label: 'Danger',
-                class: 'btn--danger',
-                disabled: true
-            })
-        }}
-
-        <!-- Indicates caution should be taken here -->
-        {{
-            html.button({
-                label: 'Warning',
-                class: 'btn--warning',
-                disabled: true
-            })
-        }}
-
-        <!-- Contextual button for informational alert messages -->
-        {{
-            html.button({
-                label: 'Info',
-                class: 'btn--info',
-                disabled: true
-            })
-        }}
-
-        <!-- Rarely used, a good example is a 'locked content' button -->
-        {{
-            html.button({
-                label: 'Inverse',
-                class: 'btn--inverse',
-                disabled: true
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Naked',
-                class: 'btn--naked',
-                disabled: true
-            })
-        }}
-    </p>
-
-    <h2 class="heading">Button groups</h2>
-    <p>
-        <div class="btn__toolbar">
+<h2 class="heading">Button groups</h2>
+<p>
+    <div class="btn__toolbar">
         {{
             html.button_group({
                 buttons: [
-                    html.button({ label: 'Left' }),
-                    html.button({ label: 'Middle' }),
-                    html.button({ label: 'Right' })
-                ]
-            })
-        }}
-        {{
-            html.button_group({
-                buttons: [
-                    html.button({
-                        label: html.icon('align-left', {
-                            'label': 'Align left'
-                        })
-                    }),
-                    html.button({
-                        label: html.icon('align-center', {
-                            'label': 'Align center'
-                        })
-                    }),
-                    html.button({
-                        label: html.icon('align-right', {
-                            'label': 'Align right'
-                        })
-                    }),
-                    html.button({
-                        label: html.icon('align-justify', {
-                            'label': 'Align justify'
-                        })
-                     })
+                html.button({ label: 'Left' }),
+                html.button({ label: 'Middle' }),
+                html.button({ label: 'Right' })
                 ]
             })
         }}
         {{
             html.button_group({
                 buttons: [
-                    html.button({ label: 'Left', 'class': 'btn--primary' }),
-                    html.button({ label: 'Middle', 'class': 'btn--primary' }),
-                    html.button({ label: 'Right', 'class': 'btn--primary' })
+                html.button({
+                    label: html.icon('align-left', {
+                        'label': 'Align left'
+                    })
+                }),
+                html.button({
+                    label: html.icon('align-center', {
+                        'label': 'Align center'
+                    })
+                }),
+                html.button({
+                    label: html.icon('align-right', {
+                        'label': 'Align right'
+                    })
+                }),
+                html.button({
+                    label: html.icon('align-justify', {
+                        'label': 'Align justify'
+                    })
+                })
                 ]
             })
         }}
-
         {{
             html.button_group({
                 buttons: [
-                    html.button({ label: 'Left', 'class': 'btn--danger' }),
-                    html.button({ label: 'Middle', 'class': 'btn--danger' }),
-                    html.button({ label: 'Right', 'class': 'btn--danger' })
+                html.button({ label: 'Left', 'class': 'btn--primary' }),
+                html.button({ label: 'Middle', 'class': 'btn--primary' }),
+                html.button({ label: 'Right', 'class': 'btn--primary' })
                 ]
             })
         }}
-        </div>
-    </p>
+        
+        {{
+            html.button_group({
+                buttons: [
+                html.button({ label: 'Left', 'class': 'btn--danger' }),
+                html.button({ label: 'Middle', 'class': 'btn--danger' }),
+                html.button({ label: 'Right', 'class': 'btn--danger' })
+                ]
+            })
+        }}
+    </div>
+</p>
 
-    <h2 class="heading">Labels</h2>
-    <p>
-        {{
-            html.label({
-                label: 'default'
-            })
-        }}
-        {{
-            html.label({
-                label: 'primary',
-                class: 'label--primary'
-            })
-        }}
-        {{
-            html.label({
-                label: 'success',
-                class: 'label--success'
-            })
-        }}
-        {{
-            html.label({
-                label: 'warning',
-                class: 'label--warning'
-            })
-        }}
-        {{
-            html.label({
-                label: 'danger',
-                class: 'label--danger'
-            })
-        }}
-        {{
-            html.label({
-                label: 'info',
-                class: 'label--info'
-            })
-        }}
-        {{
-            html.label({
-                label: 'inverse',
-                class: 'label--inverse'
-            })
-        }}
-        {{
-            html.label({
-                label: 'large label',
-                class: 'label--large'
-            })
-        }}
-    </p>
+<h2 class="heading">Labels</h2>
+<p>
+    {{
+        html.label({
+            label: 'default'
+        })
+    }}
+    {{
+        html.label({
+            label: 'primary',
+            class: 'label--primary'
+        })
+    }}
+    {{
+        html.label({
+            label: 'success',
+            class: 'label--success'
+        })
+    }}
+    {{
+        html.label({
+            label: 'warning',
+            class: 'label--warning'
+        })
+    }}
+    {{
+        html.label({
+            label: 'danger',
+            class: 'label--danger'
+        })
+    }}
+    {{
+        html.label({
+            label: 'info',
+            class: 'label--info'
+        })
+    }}
+    {{
+        html.label({
+            label: 'inverse',
+            class: 'label--inverse'
+        })
+    }}
+    {{
+        html.label({
+            label: 'large label',
+            class: 'label--large'
+        })
+    }}
+</p>
 
-    <h2 class="heading">Removable labels</h2>
-    <p>
-        {{
-            html.label({
-                label: 'default',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                label: 'primary',
-                class: 'label--primary',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                label: 'success',
-                class: 'label--success',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                label: 'warning',
-                class: 'label--warning',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                label: 'danger',
-                class: 'label--danger',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                label: 'info',
-                class: 'label--info',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                label: 'inverse',
-                class: 'label--inverse',
-                removable: true
-            })
-        }}
-        {{
-            html.label({
-                class: 'label--large',
-                label: 'label large',
-                removable: true
-            })
-        }}
-    </p>
+<h2 class="heading">Removable labels</h2>
+<p>
+    {{
+        html.label({
+            label: 'default',
+            removable: true
+        })
+    }}
+    {{
+        html.label({
+            label: 'primary',
+            class: 'label--primary',
+            removable: true
+        })
+    }}
+    {{
+        html.label({
+            label: 'success',
+            class: 'label--success',
+            removable: true
+        })
+    }}
+    {{
+        html.label({
+            label: 'warning',
+            class: 'label--warning',
+            removable: true
+        })
+    }}
+    {{
+        html.label({
+            label: 'danger',
+            class: 'label--danger',
+            removable: true
+        })
+    }}
+    {{
+        html.label({
+            label: 'info',
+            class: 'label--info',
+            removable: true
+        })
+    }}
+    {{
+        html.label({
+            label: 'inverse',
+            class: 'label--inverse',
+            removable: true
+        })
+    }}
+    {{
+        html.label({
+            class: 'label--large',
+            label: 'label large',
+            removable: true
+        })
+    }}
+</p>
 
-    <h2 class="heading">Badges</h2>
-    <p>
-        {{
-            html.badge({
-                label: '1'
-            })
-        }}
-        {{
-            html.badge({
-                label: '2', class: 'badge--primary'
-            })
-        }}
-        {{
-            html.badge({
-                label: '3', class: 'badge--success'
-            })
-        }}
-        {{
-            html.badge({
-                label: '4', class: 'badge--warning'
-            })
-        }}
-        {{
-            html.badge({
-                label: '5', class: 'badge--danger'
-            })
-        }}
-        {{
-            html.badge({
-                label: '6', class: 'badge--info'
-            })
-        }}
-        {{
-            html.badge({
-                label: '7', class: 'badge--inverse'
-            })
-        }}
-    </p>
+<h2 class="heading">Badges</h2>
+<p>
+    {{
+        html.badge({
+            label: '1'
+        })
+    }}
+    {{
+        html.badge({
+            label: '2', class: 'badge--primary'
+        })
+    }}
+    {{
+        html.badge({
+            label: '3', class: 'badge--success'
+        })
+    }}
+    {{
+        html.badge({
+            label: '4', class: 'badge--warning'
+        })
+    }}
+    {{
+        html.badge({
+            label: '5', class: 'badge--danger'
+        })
+    }}
+    {{
+        html.badge({
+            label: '6', class: 'badge--info'
+        })
+    }}
+    {{
+        html.badge({
+            label: '7', class: 'badge--inverse'
+        })
+    }}
+</p>
 
-    <h2 class="heading">Status indicators</h2>
-    <p>I am online {{ html.status('online') }}</p>
-    <p>I am offline {{ html.status('offline') }}</p>
-    <p>I am active {{ html.status('active') }}</p>
-    <p>I am inactive {{ html.status('inactive') }}</p>
+<h2 class="heading">Status indicators</h2>
+<p>I am online {{ html.status('online') }}</p>
+<p>I am offline {{ html.status('offline') }}</p>
+<p>I am active {{ html.status('active') }}</p>
+<p>I am inactive {{ html.status('inactive') }}</p>
 
-    <h2 class="heading">Dropdown/Dropup buttons</h2>
-    <p>
-        <div class="btn__toolbar">
+<h2 class="heading">Dropdown/Dropup buttons</h2>
+<p>
+    <div class="btn__toolbar">
         {%
             set example_dropdown = [
-                html.link({
-                    label: html.icon('save') ~ ' Save',
-                    href: '#'
-                }),
-                html.link({
-                    label: html.icon('print') ~ ' Print',
-                    href: '#'
-                }),
-                html.link({
-                    label: html.icon('lock') ~ ' Lock',
-                    href: '#',
-                    disabled: true
-                }),
-                html.link({
-                    label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 }),
-                    href: '#'
-                }),
-                html.divider(),
-                html.link({
-                    label: html.icon('trash') ~ ' Delete',
-                    href: '#',
-                    class: 'link--danger'
-                })
+            html.link({
+                label: html.icon('save') ~ ' Save',
+                href: '#'
+            }),
+            html.link({
+                label: html.icon('print') ~ ' Print',
+                href: '#'
+            }),
+            html.link({
+                label: html.icon('lock') ~ ' Lock',
+                href: '#',
+                disabled: true
+            }),
+            html.link({
+                label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 }),
+                href: '#'
+            }),
+            html.divider(),
+            html.link({
+                label: html.icon('trash') ~ ' Delete',
+                href: '#',
+                class: 'link--danger'
+            })
             ]
-        %}
-        {{
-            html.button_dropdown({
-                'items': example_dropdown,
-                'label': 'Drop Down'
-            })
-        }}
-        {{
-            html.button_dropdown({
-                'direction': 'up',
-                'items': example_dropdown,
-                'label': 'Drop Up'
-            })
-        }}
-        {{
-            html.button_dropdown({
-                'direction': 'down',
-                'items': example_dropdown,
-                'label': 'Drop Down Right Menu',
-                'placement': 'right'
-            })
-        }}
-        {{
-            html.button_dropdown({
-                'direction': 'down',
-                'items': example_dropdown,
-                'label': 'Primary Action Drop Down',
-                'class': 'btn--primary'
-            })
-        }}
-        {{
-            html.button_dropdown({
-                'class': 'example-button-class',
-                'direction': 'down',
-                'items': example_dropdown,
-                'label': 'Drop Down With Parent Class',
-                'parent_class': 'example-parent-class',
-                'data-test': 'test'
-            })
-        }}
+            %}
+            {{
+                html.button_dropdown({
+                    'items': example_dropdown,
+                    'label': 'Drop Down'
+                })
+            }}
+            {{
+                html.button_dropdown({
+                    'direction': 'up',
+                    'items': example_dropdown,
+                    'label': 'Drop Up'
+                })
+            }}
+            {{
+                html.button_dropdown({
+                    'direction': 'down',
+                    'items': example_dropdown,
+                    'label': 'Drop Down Right Menu',
+                    'placement': 'right'
+                })
+            }}
+            {{
+                html.button_dropdown({
+                    'direction': 'down',
+                    'items': example_dropdown,
+                    'label': 'Primary Action Drop Down',
+                    'class': 'btn--primary'
+                })
+            }}
+            {{
+                html.button_dropdown({
+                    'class': 'example-button-class',
+                    'direction': 'down',
+                    'items': example_dropdown,
+                    'label': 'Drop Down With Parent Class',
+                    'parent_class': 'example-parent-class',
+                    'data-test': 'test'
+                })
+            }}
         </div>
     </p>
-
-
+    
+    
     <h2 class="heading">Icons, Badges and Buttons (oh my!)</h2>
     <p>
         <div class="btn__toolbar">
@@ -658,57 +676,58 @@
                 })
             }}
             {{
-            	html.button({
-            		label: html.icon('inbox') ~ ' Primary ' ~ html.badge({ 'label': '99' }),
-            		class: 'btn--primary'
-            	})
-
+                html.button({
+                    label: html.icon('inbox') ~ ' Primary ' ~ html.badge({ 'label': '99' }),
+                    class: 'btn--primary'
+                })
+                
             }}
             {{
-            	html.button({
-            		label: html.icon('ok') ~ ' Success ' ~ html.badge({ 'label': '99' }),
-            		class: 'btn--success'
-            	})
-
+                html.button({
+                    label: html.icon('ok') ~ ' Success ' ~ html.badge({ 'label': '99' }),
+                    class: 'btn--success'
+                })
+                
             }}
             {{
-            	html.button({
-            		label: html.icon('warning-sign') ~ ' Warning ' ~ html.badge({ 'label': '99' }),
-            		class: 'btn--warning'
-            	})
-
+                html.button({
+                    label: html.icon('warning-sign') ~ ' Warning ' ~ html.badge({ 'label': '99' }),
+                    class: 'btn--warning'
+                })
+                
             }}
             {{
-            	html.button({
-            		label: html.icon('trash') ~ ' Danger ' ~ html.badge({ 'label': '99' }),
-            		class: 'btn--danger'
-            	})
-
+                html.button({
+                    label: html.icon('trash') ~ ' Danger ' ~ html.badge({ 'label': '99' }),
+                    class: 'btn--danger'
+                })
+                
             }}
             {{
-            	html.button({
-            		label: html.icon('info-sign') ~ ' Info ' ~ html.badge({ 'label': '99' }),
-            		class: 'btn--info'
-            	})
-
+                html.button({
+                    label: html.icon('info-sign') ~ ' Info ' ~ html.badge({ 'label': '99' }),
+                    class: 'btn--info'
+                })
+                
             }}
             {{
-            	html.button({
-            		label: html.icon('lock') ~ ' Inverse ' ~ html.badge({ 'label': '99' }),
-            		class: 'btn--inverse'
-            	})
-
+                html.button({
+                    label: html.icon('lock') ~ ' Inverse ' ~ html.badge({ 'label': '99' }),
+                    class: 'btn--inverse'
+                })
+                
             }}
         </p>
-
-    <h2 class="heading">All the things!</h2>
-    <p>
-    {{
-        html.button_dropdown({
-            'label': html.icon('folder-close') ~ ' Busy Button ' ~ html.badge({ 'label': '99', 'class': 'badge--primary'}),
-            'items': example_dropdown
-        })
-    }}
-    </p>
-
-{% endblock tab_content %}
+        
+        <h2 class="heading">All the things!</h2>
+        <p>
+            {{
+                html.button_dropdown({
+                    'label': html.icon('folder-close') ~ ' Busy Button ' ~ html.badge({ 'label': '99', 'class': 'badge--primary'}),
+                    'items': example_dropdown
+                })
+            }}
+        </p>
+        
+        {% endblock tab_content %}
+        

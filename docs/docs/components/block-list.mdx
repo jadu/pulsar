@@ -1,0 +1,544 @@
+---
+id: block-list
+title: Block List
+sidebar_label: Block List
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+A block list is a simple way to present lists of information and supports different markup schemes depending on what is most appropriate for the data. Markup can be based around `ul`, `ol`, `div` or `link` elements.
+
+<div className="d-example">
+  <ul className="block-list">
+    <li className="block-list__item">One</li>
+    <li className="block-list__item">Two</li>
+    <li className="block-list__item">Three</li>
+  </ul>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'items': [
+      {'value': 'One'},
+      {'value': 'Two'},
+      {'value': 'Three'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul class="block-list">
+  <li class="block-list__item">One</li>
+  <li class="block-list__item">Two</li>
+  <li class="block-list__item">Three</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| `footer` | string | String/markup to display in the footer row |
+| `header` | string | String/markup to display in the header row |
+| `items` | array | An options hash which will be added as attributes to the block list item, the markup of which is determined by the `type` |
+| `type` | string | Markup scheme to use: `ul` (default), `ol`, `div` or `link` |
+
+## Markup types
+
+Choose the most appropriate markup scheme depending on the data you need to display.
+
+### Link
+
+<div className="d-example">
+  <div class="block-list">
+    <a href="#foo" className="block-list__item">Foo</a>
+    <a href="#bar" className="block-list__item">Bar</a>
+    <a href="#baz" className="block-list__item">Baz</a>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'type': 'link',
+    'items': [
+      {'label': 'Foo', 'href': '#foo'},
+      {'label': 'Bar', 'href': '#bar'},
+      {'label': 'Baz', 'href': '#baz'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="block-list">
+  <a href="#foo" class="block-list__item">Foo</a>
+  <a href="#bar" class="block-list__item">Bar</a>
+  <a href="#baz" class="block-list__item">Baz</a>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+### Div
+
+<div className="d-example">
+  <div class="block-list">
+    <div className="block-list__item">Foo</div>
+    <div className="block-list__item">Bar</div>
+    <div className="block-list__item">Baz</div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'type': 'div',
+    'items': [
+      {'label': 'Foo', 'href': '#foo'},
+      {'label': 'Bar', 'href': '#bar'},
+      {'label': 'Baz', 'href': '#baz'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="block-list">
+  <div class="block-list__item">Foo</div>
+  <div class="block-list__item">Bar</div>
+  <div class="block-list__item">Baz</div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+### Ordered list
+
+<div className="d-example">
+  <ol class="block-list">
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+  </ol>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'type': 'ol',
+    'items': [
+      {'label': 'Foo', 'href': '#foo'},
+      {'label': 'Bar', 'href': '#bar'},
+      {'label': 'Baz', 'href': '#baz'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ol class="block-list">
+  <li class="block-list__item">Foo</li>
+  <li class="block-list__item">Bar</li>
+  <li class="block-list__item">Baz</li>
+</ol>
+```
+
+</TabItem>
+</Tabs>
+
+### Unordered list
+
+<div className="d-example">
+  <ul class="block-list">
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+  </ul>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'type': 'ul',
+    'items': [
+      {'label': 'Foo', 'href': '#foo'},
+      {'label': 'Bar', 'href': '#bar'},
+      {'label': 'Baz', 'href': '#baz'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul class="block-list">
+  <li class="block-list__item">Foo</li>
+  <li class="block-list__item">Bar</li>
+  <li class="block-list__item">Baz</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>
+
+## Headers and footers
+
+Add an optional header and/or footer to a block list.
+
+<div className="d-example">
+  <ul class="block-list">
+    <li className="block-list__header">This is the header</li>
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+    <li className="block-list__footer">This is the footer</li>
+  </ul>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'header': 'This is the header',
+    'footer': 'This is the footer',
+    'items': [
+      {'value': 'One'},
+      {'value': 'Two'},
+      {'value': 'Three'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul class="block-list">
+  <li class="block-list__header">This is the header</li>
+  <li class="block-list__item">Foo</li>
+  <li class="block-list__item">Bar</li>
+  <li class="block-list__item">Baz</li>
+  <li class="block-list__footer">This is the footer</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>
+
+## Style variations
+
+There are a number of different styels available depending on the needs of your UI.
+
+### Underlined
+
+<div className="d-example">
+  <ul className="block-list block-list--underlined">
+    <li className="block-list__header">This is the header</li>
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+    <li className="block-list__footer">This is the footer</li>
+  </ul>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'class': 'block-list--underlined',
+    'header': 'This is the header',
+    'footer': 'This is the footer',
+    'items': [
+      {'value': 'One'},
+      {'value': 'Two'},
+      {'value': 'Three'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul class="block-list block-list--underlined">
+  <li class="block-list__header">This is the header</li>
+  <li class="block-list__item">Foo</li>
+  <li class="block-list__item">Bar</li>
+  <li class="block-list__item">Baz</li>
+  <li class="block-list__footer">This is the footer</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>
+
+### Bordered
+
+<div className="d-example">
+  <ul className="block-list block-list--bordered">
+    <li className="block-list__header">This is the header</li>
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+    <li className="block-list__footer">This is the footer</li>
+  </ul>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'class': 'block-list--bordered',
+    'header': 'This is the header',
+    'footer': 'This is the footer',
+    'items': [
+      {'value': 'One'},
+      {'value': 'Two'},
+      {'value': 'Three'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul class="block-list block-list--bordered">
+  <li class="block-list__header">This is the header</li>
+  <li class="block-list__item">Foo</li>
+  <li class="block-list__item">Bar</li>
+  <li class="block-list__item">Baz</li>
+  <li class="block-list__footer">This is the footer</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>
+
+### Full width
+
+Can be used in conjunction with underlined or bordered variations.
+
+<div className="d-example">
+  <ul className="block-list block-list--full">
+    <li className="block-list__header">This is the header</li>
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+    <li className="block-list__footer">This is the footer</li>
+  </ul>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'class': 'block-list--full',
+    'header': 'This is the header',
+    'footer': 'This is the footer',
+    'items': [
+      {'value': 'One'},
+      {'value': 'Two'},
+      {'value': 'Three'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul class="block-list block-list--full">
+  <li class="block-list__header">This is the header</li>
+  <li class="block-list__item">Foo</li>
+  <li class="block-list__item">Bar</li>
+  <li class="block-list__item">Baz</li>
+  <li class="block-list__footer">This is the footer</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>
+
+### Horizontal
+
+:::caution
+Don't use a header or footer with a horizontal block list
+:::
+
+<div className="d-example">
+  <p>Horizontal</p>
+  <ul className="block-list block-list--horizontal">
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+  </ul>
+
+  <p>Horizontal and underlined</p>
+  <ul className="block-list block-list--horizontal block-list--underlined">
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+  </ul>
+
+  <p>Horizontal and bordered</p>
+  <ul className="block-list block-list--bordered">
+    <li className="block-list__item">Foo</li>
+    <li className="block-list__item">Bar</li>
+    <li className="block-list__item">Baz</li>
+  </ul>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.block_list({
+    'class': 'block-list--horizontal',
+    'items': [
+      {'value': 'One'},
+      {'value': 'Two'},
+      {'value': 'Three'}
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul class="block-list block-list--horizontal">
+  <li class="block-list__item">Foo</li>
+  <li class="block-list__item">Bar</li>
+  <li class="block-list__item">Baz</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>

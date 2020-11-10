@@ -1,0 +1,161 @@
+---
+id: helpers
+title: Helpers
+sidebar_label: Helpers
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Pulsar helpers are a quick way to include and configure components into your user interface, there are Twig and React variants available, depending on your UI environment.
+
+:::caution
+The React helpers are still in development and may not offer the same 1:1 functionality as the Twig helpers, please [raise a ticket](https://github.com/jadu/pulsar-react/issues) for any missing functionality you need
+:::
+
+The Pulsar team often make improments to components, either by fixing bugs or improving accessiblity by changing the underlying markup. You should use helpers as much as possible to take advantage of these improments without having to go back and make changes to your hardcoded HTML.
+
+Pulsar helpers also have accessibility support baked in where possible, certain attributes and aria roles may be added automatically depending on the options you supply and it’s very easy to miss these out if you're using hardcoded HTML. Your first instinct should always be to use the helpers where possible.
+
+## How to use
+
+The options are usually passed as the first argument to the helper, however for some simple helpers (like icon) it may be the second. Each component may have specialised options and, unless otherwise stated, they should all accept the common helper options.
+
+```twig title="Twig example"
+{{
+  html.button({
+    'label': 'My Action',
+    'class': 'btn--primary btn--small',
+    'id': 'foo',
+    'disabled': true,
+    'data-toggle': 'an-action'
+  })
+}}
+```
+
+```jsx title="React example"
+<Button
+  disabled
+  className="btn--primary btn--small"
+  id="foo"
+  data-toggle="an-action"
+  >My Action</Button>
+```
+
+## Common options
+
+The majority of Pulsar helpers accept the common options, unless otherwise stated in the component's documentation.
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="u-no-wrap">Option</th>
+            <th class="u-no-wrap">Type <small>(default)</small></th>
+            <th class="u-no-wrap">Applies to</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="u-no-wrap"><code>autofocus</code></td>
+            <td>boolean <small>(false)</small></td>
+            <td>button, input, select, select2, textarea</td>
+            <td>Automatically focuses the element after the page has finished loading</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>autocomplete</code></td>
+            <td>boolean <small>(false)</small></td>
+            <td>text, textarea</td>
+            <td>Indicates whether controls in this form can by default have their values automatically completed by the browser</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>class</code></td>
+            <td>string</td>
+            <td>All</td>
+            <td>A space-separated list of additional class names, these will be added to whatever classes the component requires for its own styling</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>data-*</code></td>
+            <td>string</td>
+            <td>All</td>
+            <td>Data attributes can be added as required, eg: <code>'data-foo': 'bar'</code></td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>disabled</code></td>
+            <td>boolean <small>(false)</small></td>
+            <td>All</td>
+            <td>Indicates whether the component is disabled or not. The strategy used to disable a component may vary but in general they won't respond to user actions, cannot be focused and will be visually styled to represent the disabled state (usually greyed out). In the case of form elements the values will not be submitted with the parent form</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>error</code></td>
+            <td>string</td>
+            <td>Form helpers</td>
+            <td>Descriptive help text to explain an error or validation failure. Will also add the required error state styling to the component</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>form</code></td>
+            <td>string</td>
+            <td class="u-no-wrap">Form helpers</td> 
+            <td>The form element that the input element is associated with (its form owner). The value of the attribute must be an id of a <code>&lt;form&gt;</code> element in the same document. If this attribute isn't used, the <code>&lt;input&gt;</code> element is associated with its nearest ancestor <code>&lt;form&gt;</code> element, if any. This attribute lets you to place <code>&lt;input&gt;</code> elements anywhere within a document, not just as descendants of form elements. An input can be associated with at most one form</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>help</code></td>
+            <td>string</td>
+            <td class="u-no-wrap">Form helpers</td>
+            <td>Additional guidance information to be displayed next to a form component, used to help the user understand what information they’re expected to provide and in what format</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>href</code></td>
+            <td>string</td>
+            <td>link, <a href="/components/button#example-link-type">button*</a></td>
+            <td>a URL or a URL fragment that the hyperlink points to
+            <br /><br />
+            <small><em>* Only available for button <code>link</code> type</em></small>
+            </td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>id</code></td>
+            <td>string</td>
+            <td>All</td>
+            <td>A unique identifier which must be unique in the whole document. A helper may also use this ID to create other attributes (such as linking the <code>for</code> attribute of an form labels to the <code>id</code> of the related <code>input</code>)</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>label</code></td>
+            <td>string</td>
+            <td class="u-no-wrap">Form helpers</td>
+            <td>The human-readable text label for an element, the position of this will vary depending on the helper and will not be added as a HTML attribute</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>name</code></td>
+            <td>string</td>
+            <td class="u-no-wrap">Form helpers</td>
+            <td>The machine-readable name for an element, used by the server to identify fields in form submissions</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>placeholder</code></td>
+            <td>string</td>
+            <td class="u-no-wrap">input, select2, textarea</td>
+            <td>Provides a hint to the user of what can be entered in the field, help text is preferred over placeholders for accessibility reasons</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>required</code></td>
+            <td>boolean <small>(false)</small></td>
+            <td class="u-no-wrap">Form helpers *</td>
+            <td>Specifies that the user must fill in a value before submitting a form and adds a visual indicator to the label.
+            <br /><br />
+            <small><em>* Cannot be used when the <strong>type</strong> option is <code>hidden</code>, <code>image</code> or a button type (<code>submit</code>, <code>reset</code>, or <code>button</code>)</em></small></td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>show-label</code></td>
+            <td>boolean <small>(true)</small></td>
+            <td class="u-no-wrap">Form helpers</td>
+            <td>If <code>false</code>, hides the <code>label</code> element of a form component without affecting the position of the input</td>
+        </tr>
+        <tr>
+            <td class="u-no-wrap"><code>value</code></td>
+            <td>string</td>
+            <td class="u-no-wrap">Form helpers</td>
+            <td>Defines a default value which will be displayed in the element on page load</td>
+        </tr>
+    </tbody>
+</table>

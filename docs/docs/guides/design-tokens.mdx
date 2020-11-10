@@ -1,0 +1,282 @@
+---
+id: design-tokens
+title: Design tokens
+sidebar_label: Design tokens
+---
+
+Design tokens store static values for a variety of design attributes. Use them in place of hardcoded values to ensure consistency in your user interface.
+
+## Colour
+
+See the [colour and state](guides/colour-and-state.mdx) for information on the colour design tokens.
+
+## Fonts
+
+<table class="table table--full">
+    <thead>
+        <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Default Value / Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+            <td><code>$font-family-base</code></td>
+            <td>Alias, points to <code>$font-family-light</code></td>
+        </tr>
+        <tr>
+            <td><code>$font-family-light</code></td>
+            <td>The typeface used for the majority of body text</td>
+        </tr>
+        <tr>
+            <td><code>$font-family-regular</code></td>
+            <td>Used for &lt;strong&gt; type</td>
+        </tr>
+        <tr>
+            <td><code>$font-family-fallback</code> (deprecated)</td>
+            <td>A simpler typeface used for legacy browsers (Internet Explorer 8)</td>
+        </tr>
+        <tr>
+            <td><code>$font-family-monospace</code></td>
+            <td>Used for &lt;code&gt; and &lt;kbd&gt; examples</td>
+        </tr>
+        <tr>
+            <td><code>$font-size-base</code></td>
+            <td>16px</td>
+        </tr>
+        <tr>
+            <td><code>$font-size-small</code></td>
+            <td>1.5</td>
+        </tr>
+        <tr>
+            <td><code>$font-size-medium</code></td>
+            <td><code>$font-size-base</code> &times; 0.75</td>
+        </tr>
+        <tr>
+            <td><code>$font-size-large</code></td>
+            <td><code>$font-size-base</code> &times; 1.25</td>
+        </tr>
+        <tr>
+            <td><code>$font-size-xlarge</code></td>
+            <td><code>$font-size-base</code> &times; 1.5</td>
+        </tr>
+        <tr>
+            <td><code>$font-size-xxlarge</code></td>
+            <td><code>$font-size-base</code> &times; 2</td>
+        </tr>
+    </tbody>
+</table>
+
+## Spacing
+
+<table class="table table--full">
+    <thead>
+        <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Default Value / Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>$gutter-width</code></td>
+            <td>20px - Used to separate elements, either through margins or padding as required</td>
+        </tr>
+    </tbody>
+</table>
+
+## Margins
+
+<table class="table table--full">
+    <thead>
+        <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Default Value / Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>$margin-base</code></td>
+            <td>10px</td>
+        </tr>
+        <tr>
+            <td><code>$margin-base-horizontal</code></td>
+            <td>12px</td>
+        </tr>
+        <tr>
+            <td><code>$margin-small-horizontal</code></td>
+            <td>10px</td>
+        </tr>
+        <tr>
+            <td><code>$margin-large-horizontal</code></td>
+            <td>16px</td>
+        </tr>
+        <tr>
+            <td><code>$margin-base-vertical</code></td>
+            <td>6px</td>
+        </tr>
+        <tr>
+            <td><code>$margin-small-vertical</code></td>
+            <td>5px</td>
+        </tr>
+        <tr>
+            <td><code>$margin-large-vertical</code></td>
+            <td>10px</td>
+        </tr>
+    </tbody>
+</table>
+
+## Padding
+
+<table class="table table--full">
+    <thead>
+        <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Default Value / Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>$padding-base</code></td>
+            <td>10px</td>
+        </tr>
+        <tr>
+            <td><code>$padding-base-horizontal</code></td>
+            <td>12px</td>
+        </tr>
+        <tr>
+            <td><code>$padding-small-horizontal</code></td>
+            <td>10px</td>
+        </tr>
+        <tr>
+            <td><code>$padding-large-horizontal</code></td>
+            <td>16px</td>
+        </tr>
+        <tr>
+            <td><code>$padding-base-vertical</code></td>
+            <td>6px</td>
+        </tr>
+        <tr>
+            <td><code>$padding-small-vertical</code></td>
+            <td>5px</td>
+        </tr>
+        <tr>
+            <td><code>$padding-large-vertical</code></td>
+            <td>10px</td>
+        </tr>
+    </tbody>
+</table>
+
+## Responsive breakpoints
+
+<table class="table table--full">
+    <thead>
+        <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Default Value / Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>$screen-xsmall</code> <code>$screen-phone</code></td>
+            <td>480px</td>
+        </tr>
+        <tr>
+            <td><code>$screen-smaller</code> <code>$screen-phablet</code></td>
+            <td>600px</td>
+        </tr>
+        <tr>
+            <td><code>$screen-small</code> <code>$screen-tablet</code></td>
+            <td>767px</td>
+        </tr>
+        <tr>
+            <td><code>$screen-small-max</code> <code>$screen-tablet-max</code></td>
+            <td><code>$screen-medium</code> &minus; 1</td>
+        </tr>
+        <tr>
+            <td><code>$screen-medium</code> <code>$screen-desktop</code></td>
+            <td>992px</td>
+        </tr>
+        <tr>
+            <td><code>$screen-large</code> <code>$screen-large-desktop</code></td>
+            <td>1200px</td>
+        </tr>
+        <tr>
+            <td><code>$screen-xsmall</code> <code>$screen-phone</code></td>
+            <td>480px</td>
+        </tr>
+    </tbody>
+</table>
+
+## Borders
+
+<table class="table table--full">
+    <thead>
+        <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Default Value / Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>$border-radius</code></td>
+            <td>4px</td>
+        </tr>
+        <tr>
+            <td><code>$border-radius-large</code></td>
+            <td>20px</td>
+        </tr>
+    </tbody>
+</table>
+
+## Z-index
+
+<table class="table table--full">
+    <thead>
+        <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Default Value / Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>$zindex-tour</code></td>
+            <td>1000</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-footer</code></td>
+            <td>1020</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-flash</code></td>
+            <td>1050</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-tooltip</code></td>
+            <td>1055</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-sticky</code></td>
+            <td>1060</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-dropdown</code></td>
+            <td>1060</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-nav-secondary</code></td>
+            <td>1070</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-nav</code></td>
+            <td>1080</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-popover</code></td>
+            <td>1090</td>
+        </tr>
+        <tr>
+            <td><code>$zindex-modal</code></td>
+            <td>3000</td>
+        </tr>
+    </tbody>
+</table>

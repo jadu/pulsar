@@ -11,6 +11,11 @@ $image-path: '../../../images/' !default;
 $margin-bottom: 1.125 * 1rem;
 
 :root{
+<<<<<<< Updated upstream
+=======
+    --ifm-global-shadow-lw: none;
+
+>>>>>>> Stashed changes
     --jadu-purple: #3e4994;
     
     --ifm-background-surface-color: var(--jadu-purple);
@@ -19,7 +24,16 @@ $margin-bottom: 1.125 * 1rem;
     
     --ifm-menu-color-active: var(--jadu-purple);
     
+<<<<<<< Updated upstream
     --ifm-container-width: 1200px;
+=======
+    --ifm-card-background-color: #fff;
+    --ifm-container-width: 1300px;
+
+    --ifm-table-border-width: 0;
+
+    --ifm-alert-color: #000;
+>>>>>>> Stashed changes
 }
 
 .markdown > {
@@ -31,12 +45,28 @@ $margin-bottom: 1.125 * 1rem;
     h6 {
         color: var(--jadu-purple);
     }
+<<<<<<< Updated upstream
+=======
+
+    
+>>>>>>> Stashed changes
 }
 
 .d-example {
     border: 1px solid #ccc;
     margin-bottom: $margin-bottom;
     padding: 1em;
+<<<<<<< Updated upstream
+=======
+
+    ul, ol {
+        padding-left: 0;
+    }
+
+    li + li {
+        margin-top: 0;
+    }
+>>>>>>> Stashed changes
 }
 
 .d-guidelines {
@@ -92,6 +122,10 @@ $fa-css-prefix: 'icon';
 @import '/static/font-awesome/scss/font-awesome';
 
 .d-example,
+<<<<<<< Updated upstream
+=======
+.d-example-inline,
+>>>>>>> Stashed changes
 .d-guidelines {
     @import '../../../stylesheets/deprecated.icons';
     
@@ -108,11 +142,21 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/mixin.responsive-utilities';
     @import '../../../stylesheets/mixin.word-wrap';
     @import '../../../stylesheets/mixin.focus';
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     // Config
     @import '../../../stylesheets/config.variables';
     @import '../../../stylesheets/config.branding';
     
+<<<<<<< Updated upstream
+=======
+    @import '../../../stylesheets/structure.grid';
+    @import '../../../stylesheets/structure.columns';
+
+>>>>>>> Stashed changes
     // Functions
     @import '../../../stylesheets/function.math';
     @import '../../../stylesheets/function.color-luminance';
@@ -130,6 +174,7 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/structure.columns';
     @import '../../../stylesheets/structure.forms';
     
+<<<<<<< Updated upstream
     @import '../../../stylesheets/component.buttons';
     @import '../../../stylesheets/component.error-summary';
     @import '../../../stylesheets/component.forms';
@@ -137,4 +182,43 @@ $fa-css-prefix: 'icon';
     
     // Utilities
     @import '../../../stylesheets/utility.utilities';
+=======
+    @import '../../../stylesheets/component.badges';
+    @import '../../../stylesheets/component.block-list';
+    @import '../../../stylesheets/component.buttons';
+    @import '../../../stylesheets/component.button-groups';
+    @import '../../../stylesheets/component.breadcrumb';
+    @import '../../../stylesheets/component.cards';
+    @import '../../../stylesheets/component.datatables';
+    @import '../../../stylesheets/component.dropdowns';
+    @import '../../../stylesheets/component.dropzone';
+    @import '../../../stylesheets/component.error-summary';
+    @import '../../../stylesheets/component.forms';
+    @import '../../../stylesheets/component.icons';
+    @import '../../../stylesheets/component.labels';
+    @import '../../../stylesheets/component.lists';
+    @import '../../../stylesheets/component.progress-bars';
+    @import '../../../stylesheets/component.range-slider';
+    @import '../../../stylesheets/component.status';
+    @import '../../../stylesheets/component.tables';
+    
+    // Utilities
+    @import '../../../stylesheets/utility.utilities';
+    @import '../../../stylesheets/utility.grid';
+}
+
+.d-example {
+    width: 100%;
+}
+
+.u-float-left {
+    float: left;
+}
+
+.docusaurus-highlight-code-line {
+background-color: rgb(72, 77, 91);
+display: block;
+margin: 0 calc(-1 * var(--ifm-pre-padding));
+padding: 0 var(--ifm-pre-padding);
+>>>>>>> Stashed changes
 }
