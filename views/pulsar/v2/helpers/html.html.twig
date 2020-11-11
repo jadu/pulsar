@@ -94,7 +94,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
                 }),
             'class': options.class|default(''),
             'items': actions,
-            'raw': options.raw|default(false)
+            'raw': options.raw|default(true)
         })
     }}
 
@@ -477,7 +477,8 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
             html.list({
                 'class': 'dropdown__menu pull-' ~ options.placement|default('left'),
                 'id': dropdown_guid,
-                'items': options.items|default
+                'items': options.items|default,
+                'raw': options.raw|default(false)
             })
         }}
     </div>

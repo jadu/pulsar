@@ -3,6 +3,7 @@
 {%- block actions_left -%}
     {{
         html.actions_menu({
+            'raw': true,
             'items': [
                 [
                     {
@@ -53,6 +54,7 @@
     }}
     {{
         html.button_dropdown({
+            'raw': true,
             'label': html.icon('time') ~ ' 0',
             'class': 'dropdown--medium hide',
             'items': ['
@@ -79,6 +81,7 @@
     }}
     {{
         html.button_dropdown({
+            'raw': true,
             'label': html.icon('time') ~ ' 2',
             'class': 'dropdown--medium',
             'items': ['
@@ -187,6 +190,7 @@
         <p><strong>You can leave this page</strong>, your report will keep building and is in your <a href="#">My Reports</a> tab.</p>
         {{
             html.button({
+                'raw': true,
                 'label': html.icon('envelope') ~ ' Email Me When it’s Ready',
                 'class': 'btn--primary'
             })
