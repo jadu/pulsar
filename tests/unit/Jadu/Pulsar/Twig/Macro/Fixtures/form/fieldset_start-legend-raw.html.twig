@@ -1,0 +1,15 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.fieldset_start({
+        'legend': 'foo <script>BAR</script>'
+    })
+}}
+
+{{
+  form.fieldset_start({
+      'legend': 'foo <script>BAR</script>',
+      'raw': true
+  })
+}}
+{% endblock %}

@@ -153,6 +153,7 @@ Option  | Type   | Description
 class   | string | A space separated list of class names
 data    | hash   | Data attributes by key/value
 id      | string | A unique identifier, if required
+raw     | bool   | If true, the value will be displayed unescaped
 value   | string | Specifies the value of the paragraph
 
 #}
@@ -161,8 +162,12 @@ value   | string | Specifies the value of the paragraph
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.value is not empty %}
-        <p{{ attributes(options|exclude('value')) }}>
-            {{- options.value|raw -}}
+        <p{{ attributes(options|exclude('raw value')) }}>
+            {{-
+                options.raw|default(false)
+                    ? options.value|raw
+                    : options.value
+            -}}
         </p>
     {% endif %}
 

@@ -1,13 +1,13 @@
 {% extends '@cssTests/visual-regression-layout.html.twig' %}
 {% block body %}
 {{
-    form.content({
+    form.error({
         'value': 'foo <script>BAR</script>'
     })
 }}
 
 {{
-  form.content({
+  form.error({
       'value': 'foo <script>BAR</script>',
       'raw': true
   })

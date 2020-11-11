@@ -1,14 +1,14 @@
 {% extends '@cssTests/visual-regression-layout.html.twig' %}
 {% block body %}
 {{
-    form.content({
-        'value': 'foo <script>BAR</script>'
+    elem.paragraph({
+        'value': 'hello <script>FOO</script>'
     })
 }}
 
 {{
-  form.content({
-      'value': 'foo <script>BAR</script>',
+  elem.paragraph({
+      'value': 'hello <script>FOO</script>',
       'raw': true
   })
 }}

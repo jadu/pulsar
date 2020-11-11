@@ -740,7 +740,7 @@ class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the label companion element, will be a `span` instead of a `label`
-raw         | bool   | Instead of wrapping the value in a `<p>`, just render the value/helper instead (default: false)
+unwrapped   | bool   | Instead of wrapping the value in a `<p>`, just render the value/helper instead (default: false)
 show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to paragraph
@@ -748,6 +748,7 @@ show-label  | bool   | Control visibility of the `<label>` element without affec
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 id          | string | A unique identifier, will also be used as the label's `for` attribute
+raw         | bool   | If true, the value will be displayed unescaped
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -759,10 +760,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% if options.raw is defined and options.raw == true %}
+    {% if options.unwrapped is defined and options.unwrapped == true %}
         {% set input = options.value %}
     {% else %}
-        {% set input = elem.paragraph(options|exclude('bare class error guidance guidance-container help label show-label disabled')) %}
+        {% set input = elem.paragraph(options|exclude('bare class disabled error guidance guidance-container help label show-label unwrapped')) %}
     {% endif %}
 
     {{
@@ -1064,6 +1065,7 @@ or
 
 Option | Type           | Description
 ------ | -------------- | ------------------------------------------------------
+raw    | bool           | If true, the error will be displayed unescaped
 value  | string, array  | The string, or array of strings to render inside the error block
 
 #}
@@ -1080,13 +1082,21 @@ value  | string, array  | The string, or array of strings to render inside the e
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {% for error in errors %}
                 <span class="help-block is-error" id="{{ attribute(options.error_ids, loop.index0) }}">
-                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                    {{ html.icon('warning-sign') }} {{
+                        options.raw|default(false)
+                            ? error|raw
+                            : error
+                        -}}
                 </span>
             {% endfor %}
         {% else %}
             {% for error in errors %}
                 <span class="help-block is-error">
-                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                    {{ html.icon('warning-sign') }} {{
+                        options.raw|default(false)
+                            ? error|raw
+                            : error
+                        -}}
                 </span>
             {% endfor %}
         {% endif %}
@@ -1127,12 +1137,16 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <fieldset{{ attributes(options|exclude('legend')) }}>
+    <fieldset{{ attributes(options|exclude('legend raw')) }}>
     {%
         if options.legend is defined
         and options.legend is not empty
     %}
-        <legend class="legend">{{ options.legend|raw }}</legend>
+        <legend class="legend">{{-
+            options.raw|default(false)
+                ? options.legend|raw
+                : options.legend
+        -}}</legend>
     {% endif %}
 
 {% endspaceless %}
@@ -1515,6 +1529,7 @@ view.
 
 Option | Type   | Description
 ------ | ------ | ---------------------------------------------------------
+raw    | bool   | If true, the value will be displayed unescaped
 value  | string | The string or html markup to render inside the help block
 
 #}
@@ -1523,7 +1538,11 @@ value  | string | The string or html markup to render inside the help block
 
     {% if options.value is defined and options.value is not empty %}
         <span class="help-block"{% if options.id is defined and options.id is not empty %} id="{{- options.id -}}"{% endif %}>
-            {{- options.value|raw -}}
+            {{-
+                options.raw|default(false)
+                    ? options.value|raw
+                    : options.value
+            -}}
         </span>
     {% endif %}
 
