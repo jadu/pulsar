@@ -1,0 +1,17 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.link({
+        'href': '#foo',
+        'label': 'foo <script>bar</script>'
+    })
+}}
+
+{{
+  html.link({
+      'href': '#foo',
+      'label': 'foo <script>bar</script>',
+      'raw': true
+  })
+}}
+{% endblock %}

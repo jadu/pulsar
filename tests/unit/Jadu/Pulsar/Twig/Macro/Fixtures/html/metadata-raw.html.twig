@@ -1,0 +1,21 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.metadata({
+        'items': {
+            'foo': 'bar <script>BAR</script>',
+            'bar': 'baz <script>BAZ</script>'
+        }
+    })
+}}
+
+{{
+  html.metadata({
+      'raw': true,
+      'items': {
+          'foo': 'bar <script>BAR</script>',
+          'bar': 'baz <script>BAZ</script>'
+      }
+  })
+}}
+{% endblock %}

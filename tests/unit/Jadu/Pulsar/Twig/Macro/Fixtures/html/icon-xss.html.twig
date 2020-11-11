@@ -1,8 +1,8 @@
 {% extends '@cssTests/visual-regression-layout.html.twig' %}
 {% block body %}
 {{
-    html.button({
-        'label': '<i>icon</i> foo <script>alert(1);</script>'
+    html.icon('ok', {
+      'label': 'foo <script>bar</script>'
     })
 }}
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.media({
+        'image': 'foo.png',
+        'image_alt': 'foo alt',
+        'title': 'Bar <script>BAR</script>',
+        'description': 'Baz <script>BAZ</script>',
+        'action': '<script>ACTION</script>'
+    })
+}}
+
+{{
+  html.media({
+      'image': 'foo.png',
+      'image_alt': 'foo alt',
+      'title': 'Bar <script>BAR</script>',
+      'description': 'Baz <script>BAZ</script>',
+      'action': '<script>ACTION</script>',
+      'raw': true
+  })
+}}
+{% endblock %}

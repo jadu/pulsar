@@ -1,0 +1,20 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.list({
+        'items': [
+            'foo <script>bar</script>',
+            'bar <script>baz</script>'
+        ]
+    })
+}}
+{{
+  html.list({
+      'raw': true,
+      'items': [
+          'foo <script>bar</script>',
+          'bar <script>baz</script>'
+      ]
+  })
+}}
+{% endblock %}

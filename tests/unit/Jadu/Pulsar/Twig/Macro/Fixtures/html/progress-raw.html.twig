@@ -1,0 +1,17 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.progress({
+        'value': 25,
+        'label': 'foo <script>BAR</script>'
+    })
+}}
+
+{{
+  html.progress({
+      'value': 25,
+      'label': 'foo <script>BAR</script>',
+      'raw': true
+  })
+}}
+{% endblock %}

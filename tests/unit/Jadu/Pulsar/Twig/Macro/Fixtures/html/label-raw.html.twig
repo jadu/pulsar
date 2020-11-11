@@ -1,0 +1,14 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.label({
+        'label': 'foo <script>bar</script>'
+    })
+}}
+{{
+  html.label({
+      'label': 'foo <script>bar</script>',
+      'raw': true
+  })
+}}
+{% endblock %}

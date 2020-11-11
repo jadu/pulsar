@@ -46,56 +46,55 @@ label  | string | The link text label
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro actions_menu(items) %}
+{% macro actions_menu(options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
     {% set actions = [] %}
 
-    {% if items is iterable %}
-        {% for item_groups in items %}
-            {% for item_group in item_groups %}
-                {% for item in item_group %}
+    {% if options.items is defined and options.items is iterable %}
+        {% for item_group in options.items %}
+            {% for item in item_group %}
 
-                    {% if item.type is defined and item.type == 'title' %}
-                        {%
-                            set actions = actions|merge([
-                                '<span class="dropdown__title">' ~ item.label ~ '</span>'
-                            ])
-                        %}
-                    {% else %}
-                        {%
-                            set actions = actions|merge([
-                                html.link(item)
-                            ])
-                        %}
-                    {% endif %}
-
-                {% endfor %}
-
-                {% if not loop.last %}
+                {% if item.type is defined and item.type == 'title' %}
                     {%
                         set actions = actions|merge([
-                            html.divider()
+                            '<span class="dropdown__title">' ~ item.label ~ '</span>'
+                        ])
+                    %}
+                {% else %}
+                    {%
+                        set actions = actions|merge([
+                            html.link(item)
                         ])
                     %}
                 {% endif %}
 
             {% endfor %}
+
+            {% if not loop.last %}
+                {%
+                    set actions = actions|merge([
+                        html.divider()
+                    ])
+                %}
+            {% endif %}
+
         {% endfor %}
     {% endif %}
 
     {{
         html.button_dropdown({
-            'label': items.label|default('Actions') ~
+            'label': options.label|default('Actions') ~
                 html.badge({
                     'label': '0',
                     'aria-label': '0 rows selected',
                     'class': 'label--primary js-bulk-actions-badge',
                     'style': 'display: none;'
                 }),
-            'class': items.class|default(''),
-            'items': actions
+            'class': options.class|default(''),
+            'items': actions,
+            'raw': options.raw|default(false)
         })
     }}
 
@@ -124,6 +123,7 @@ Option | Type   | Description
 class  | string | CSS classes, space separated
 id     | string | A unique identifier, if required
 label  | string | The value to display, usually an integer
+raw    | bool   | If true, the label will be displayed unescaped
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
@@ -139,7 +139,11 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             })
         )
     }}>
-        {{- options.label|default|raw -}}
+        {{-
+            options.raw|default(false)
+                ? options.label|default|raw
+                : options.label|default
+        -}}
     </span>
 
 {% endspaceless %}
@@ -270,6 +274,7 @@ form    | string | Specifies one or more forms this label belongs to
 href    | string | URL to use for link button types
 id      | string | A unique identifier, if required
 label   | string | The button label
+raw     | bool   | If true, the label will be displayed unescaped
 type    | string | Can be `button` (default), `link`, `input`, `submit`
 data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -304,26 +309,34 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
         <button{{
             attributes(options
-                |exclude('label')
+                |exclude('label raw')
                 |defaults({
                     'class': 'btn'
                 })
             )
         }}>
-            {{- options.label|default|raw -}}
+            {{-
+                options.raw|default(false)
+                    ? options.label|default|raw
+                    : options.label|default
+            -}}
         </button>
 
     {% else %}
 
         <button{{
             attributes(options
-                |exclude('caret label')
+                |exclude('caret label raw')
                 |defaults({
                     'class': 'btn'
                 })
             )
         }}>
-            {{- options.label|default|striptags('<abbr><b><br><cite><code><dfn><em><i><img><kbd><q><small><span><strong><sub><sup>')|raw -}}
+            {{-
+                options.raw|default(false)
+                    ? options.label|default|raw
+                    : options.label|default
+            -}}
             {{- util.caret(options.caret|default) -}}
         </button>
 
@@ -552,6 +565,7 @@ Option | Type   | Description
 ------ | ------ | --------------------------------------------------------------
 class  | string | CSS classes, space separated
 id     | string | A unique identifier, if required
+raw    | bool   | If true, the label will be displayed unescaped
 value  | string | The value to display
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -560,7 +574,11 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
 
     <div{{ attributes(options|exclude('value')) }}>
-        {{- options.value|raw -}}
+        {{-
+            options.raw|default(false)
+                ? options.value|default|raw
+                : options.value|default
+          -}}
     </div>
 
 {% endspaceless %}
@@ -705,7 +723,7 @@ class  | string | CSS classes, space separated
     {% if options is defined and options.label is not defined and options is iterable %}
         {% set options = options|merge({ 'aria-hidden': 'true' }) %}
     {% elseif options is defined and options.label is defined and options.label is not empty %}
-        {% set label = '<span class="hide">' ~ options.label ~ '</span>' %}
+        {% set label = '<span class="hide">' ~ options.label|e ~ '</span>' %}
     {% else %}
         {% set options = { 'aria-hidden': 'true' } %}
     {% endif %}
@@ -770,10 +788,18 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     }}>
         {% if isRemovable %}
             <span class="label__text">
-                {{- options.label|default|raw -}}
+                {{-
+                    options.raw|default(false)
+                        ? options.label|default|raw
+                        : options.label|default
+                -}}
             </span>
         {% else %}
-            {{- options.label|default|raw -}}
+            {{-
+                options.raw|default(false)
+                    ? options.label|default|raw
+                    : options.label|default
+            -}}
         {% endif %}
 
         {% if isRemovable %}
@@ -821,13 +847,17 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <{{ attributes(options|exclude('icon label type value'), {'tag': ('a')}) }}>
+    <{{ attributes(options|exclude('icon label raw type value'), {'tag': ('a')}) }}>
 
         {%- if options.icon is defined and options.icon is not empty -%}
             {{- html.icon(options.icon) -}}&nbsp;
         {%- endif -%}
 
-        {{- options.label|default|raw -}}
+        {{-
+            options.raw|default(false)
+                ? options.label|default|raw
+                : options.label|default
+        -}}
     </a>
 {% endmacro %}
 
@@ -860,6 +890,7 @@ active_item | int    | The index of the active item, will have the `.is-active` 
 class       | string | CSS classes, space separated
 id          | string | A unique identifier, if required
 items       | array  | An array of items to be rendered as a list
+raw         | bool   | If true, the list values will be displayed unescaped
 type        | string | `ul` (default), `ol`
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -870,7 +901,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% set list_type = options.type|default('ul') %}
 
-    <{{ list_type }}{{ attributes(options|exclude('active_item items type')) }}>
+    <{{ list_type }}{{ attributes(options|exclude('active_item items raw type')) }}>
 
     {% for list_item in options.items %}
 
@@ -883,7 +914,8 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         {{
             html.li({
                 'class': item_class,
-                'value': list_item
+                'value': list_item,
+                'raw': options.raw|default(false)
             })
         }}
 
@@ -923,6 +955,7 @@ active_item | int    | The index of the active item, will have the `.is-active` 
 class       | string | CSS classes, space separated
 id          | string | A unique identifier, if required
 items       | hash   | A hash of links formatted by { label: href }
+raw         | bool   | If true, the list values will be displayed unescaped
 type        | string | ul (default) | ol
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -938,7 +971,8 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             set items = items|merge([
                 html.link({
                     'label': label,
-                    'href': href
+                    'href': href,
+                    'raw': options.raw|default(false)
                 })
             ])
         %}
@@ -951,6 +985,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'data': options.data|default,
             'id': options.id|default,
             'items': items|default,
+            'raw': options.raw|default(false),
             'type': options.type|default
         })
     }}
@@ -981,6 +1016,7 @@ Option | Type   | Description
 ------ | ------ | --------------------------------------------------------------
 class  | string | CSS classes, space separated
 id     | string | A unique identifier, if required
+raw    | bool   | If true, the value will be displayed unescaped
 value  | string | The value to display
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -989,8 +1025,12 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <li{{ attributes(options|exclude('value')) }}>
-        {{- options.value|raw -}}
+    <li{{ attributes(options|exclude('raw value')) }}>
+        {{-
+            options.raw|default(false)
+                ? options.value|default|raw
+                : options.value|default
+        -}}
     </li>
 
 {% endspaceless %}
@@ -1095,6 +1135,7 @@ id          | string    | A unique identifier, if required
 image       | string    | URL for the image to display on the left hand side
 image_alt   | string    | Alt attribute for the `image`
 title       | string    | The main title for this object
+raw         | bool      | If true, the title, description and action will be displayed unescaped
 type        | string    | Markup scheme to use, can be either `div` (default) or `link`
 data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1110,7 +1151,7 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
 
     <{{ type }}{{
         attributes(options
-            |exclude('action description icon icon_colour image image_alt title type value')
+            |exclude('action description icon icon_colour image image_alt raw title type value')
             |defaults({
                 'class': 'media'
             })
@@ -1124,12 +1165,24 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
         <div class="media__body">
         {% if options.action is defined and options.action is not empty %}
             <span class="pull-right">
-                {{ options.action|raw }}
+                {{-
+                    options.raw|default(false)
+                        ? options.action|raw
+                        : options.action
+                -}}
             </span>
         {% endif %}
-            <p>{{ options.title|raw }}</p>
+            <p>{{-
+                options.raw|default(false)
+                    ? options.title|raw
+                    : options.title
+            -}}</p>
         {% if options.description is defined and options.description is not empty %}
-            <span class="small-type">{{ options.description|raw }}</span>
+            <span class="small-type">{{-
+                options.raw|default(false)
+                    ? options.description|raw
+                    : options.description
+            -}}</span>
         {% endif %}
         </div>
     </{{ type }}>
@@ -1166,6 +1219,7 @@ Option | Type   | Description
 class  | string | CSS classes, space separated
 id     | string | A unique identifier, if required
 items  | hash   | A hash of data where key: value = title: description
+raw    | bool   | If true, the value will be displayed unescaped
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
@@ -1175,7 +1229,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <dl{{
         attributes(options
-            |exclude('items')
+            |exclude('items raw')
             |defaults({
                 'class': 'metadata'
             })
@@ -1183,8 +1237,12 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     }}>
     {% for key, value in options.items %}
 
-           <dt class="metadata__key">{{ key }}</dt><!--
-        --><dd class="metadata__value">{{ value|raw }}</dd>
+        <dt class="metadata__key">{{ key }}</dt><!--
+     --><dd class="metadata__value">{{-
+            options.raw|default(false)
+                ? value|raw
+                : value
+        -}}</dd>
 
     {% endfor %}
     </dl>
@@ -1220,6 +1278,7 @@ body    | string | The main content of the panel
 class   | string | CSS classes, space separated
 icon    | string | Icon to display next to the panel title
 id      | string | A unique identifier, if required
+raw     | bool   | If true, the title, body and actions will be displayed unescaped
 title   | string | The title of the panel
 data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1239,7 +1298,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <{{ tag }}{{
         attributes(options
-            |exclude('actions actions_placement heading_level icon title body')
+            |exclude('actions actions_placement heading_level icon raw title body')
             |defaults({
                 'class': 'panel'
             })
@@ -1251,11 +1310,19 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
         {% if options.title is defined and options.title is not empty %}
         <{{ options.heading_level|default('h2') }} class="panel__title" id="{{ guid }}">
-            {{ options.title|raw }}
+            {{-
+                options.raw|default(false)
+                    ? options.title|raw
+                    : options.title
+            -}}
         </{{ options.heading_level|default('h2') }}>
         {% endif %}
         <div class="panel__body"{% if 'panel--scroll' in options.class|default %} tabindex="0"{% endif %}>
-            {{- options.body|raw -}}
+            {{-
+                options.raw|default(false)
+                    ? options.body|raw
+                    : options.body
+            -}}
         </div>
         {% if options.actions is defined %}
             {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
@@ -1267,7 +1334,11 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
                     {% if action is iterable %}
                         {{- html.button(action) -}}
                     {% else %}
-                        {{- action|raw -}}
+                        {{-
+                            options.raw|default(false)
+                                ? action|raw
+                                : action
+                        -}}
                     {% endif %}
                 {% endfor %}
             </div>
@@ -1302,6 +1373,7 @@ Option        | Type   | Description
 class         | string | CSS classes, space separated
 id            | string | A unique identifier, if required
 label         | string | Text to display inside the progress bar
+raw           | bool   | If true, the label will be displayed unescaped
 value         | int    | The percentage value of the progress bar
 value_visible | bool   | Whether to visually display the value inside the bar (default false)
 data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -1314,7 +1386,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     <div class="progress">
         <div{{
             attributes(options
-                |exclude('label value value_visible')
+                |exclude('label raw value value_visible')
                 |defaults({
                     'class': 'progress-bar',
                     'role': 'progressbar',
@@ -1334,7 +1406,11 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                 </span>
             {% endif %}
 
-            {{- options.label|default|raw -}}
+            {{-
+                options.raw|default(false)
+                    ? options.label|default|raw
+                    : options.label|default
+            -}}
         </div>
     </div>
 
@@ -1520,6 +1596,7 @@ data-dropzone-file-node-desc        | boolean   | Show file description in file 
 data-dropzone-file-node-name        | boolean   | Show file name in file html | default true
 data-dropzone-file-node-size        | boolean   | Show file size in file html | default true
 data-dropzone-file-node-type        | boolean   | Show file type in file html | default true
+raw                                 | boolean   | If true, the data-helper-title and data-helper-content will be displayed unescaped
 
 #}
 {% macro dropzone(options) %}
@@ -1543,12 +1620,17 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
             <p class="dropzone__label">Drag &amp; Drop</p>
             <p class="dropzone__info">{{ idle|raw }}</p>
             <p class="dropzone__help">
-                {{ options['data-helper-title']|default('Helper title')|raw }}:
-                {{ options['data-helper-content']|default('Helper content')|raw }}
+                {{ options.raw|default(false)
+                    ? options['data-helper-title']|default('Helper title')|raw
+                    : options['data-helper-title']|default('Helper title') }}
+                {{ options.raw|default(false)
+                    ? options['data-helper-content']|default('Helper content')|raw
+                    : options['data-helper-content']|default('Helper content') }}
             </p>
         </div>
     {% endspaceless %}
 {% endmacro %}
+
 
 {# -----------------------------------------------------------------------------
 
