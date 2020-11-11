@@ -29,11 +29,11 @@
         {% if options.data is iterable %}
             {% for options in options.data %}
                 {% if options.items is defined and options.items is iterable %}
-                    <div class="nav-list" data-nav="{{ options.href }}" aria-labelledby="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
-                        <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
+                    <div class="nav-list" data-nav="{{ options.href }}" aria-labelledby="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'}) }}">
+                        <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'}) }}">{{ options.label }}</h2>
 
                         <ul class="nav-items">
-                            {% set heading_id = 'aria-secondary-nav-heading-' ~ options.label|raw %}
+                            {% set heading_id = 'aria-secondary-nav-heading-' ~ options.label %}
                             {% for menu_blocks in options.items %}
                                 {% for item_options in menu_blocks %}
                                     {{ nav.nav_item(item_options, heading_id) }}
@@ -84,9 +84,9 @@
                {% for options in options.data %}
                    {% if options.items is defined and options.items is iterable %}
 
-                        {% set heading_id = 'aria-quaternary-nav-heading-' ~ options.label|raw %}
-                        <div class="nav-list" data-nav="{{ options.href }}" aria-labelledby="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
-                           <h2 class="nav-item nav-item--header t-nav-header" id="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
+                        {% set heading_id = 'aria-quaternary-nav-heading-' ~ options.label|e %}
+                        <div class="nav-list" data-nav="{{ options.href }}" aria-labelledby="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|e }}">
+                           <h2 class="nav-item nav-item--header t-nav-header" id="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|e }}">{{ options.label }}</h2>
 
                            <ul class="nav-items">
                                {% for menu_blocks in options.items %}
@@ -144,7 +144,7 @@
             {% elseif options.image is defined and options.image is not empty %}
                 <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="nav-link__image" />
             {% endif %}
-            <span class="nav-link__label">{{ options.label|raw }}</span>
+            <span class="nav-link__label">{{ options.label }}</span>
         </{{ tag }}>
     </li>
 
