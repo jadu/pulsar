@@ -25,7 +25,6 @@ PulsarUIComponent.prototype.init = function () {
     this.initDisabledLinks();
     this.initTables();
     this.initDataTables();
-    this.initCountdown();
 };
 
 PulsarUIComponent.prototype.initDisabledLinks = function() {
@@ -299,24 +298,6 @@ PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
     if (-Math.abs((tableFullWidth - tableVisibleWidth - $table.offsetParent().offset().left)) >= $table.offset().left) {
         $container.removeClass('table--overflow-right');
     }
-};
-
-PulsarUIComponent.prototype.initCountdown = function () {
-
-    // Initial basic implementation of https://github.com/hilios/jQuery.countdown
-    this.$html.find('.js-countdown').each(function () {
-
-        var $this = $(this),
-            format = '%ww %dd %Hh %Mm %S';
-
-        if (typeof $this.data('format') !== 'undefined') {
-            format = $this.data('format');
-        }
-
-        $this.countdown($this.data('final-date'), function(event) {
-            $this.html(event.strftime(format));
-        });
-    });
 };
 
 PulsarUIComponent.prototype.toggleBulkActions = function(table) {
