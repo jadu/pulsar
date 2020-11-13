@@ -86,7 +86,6 @@ class TooltipListener {
         return false;
     }
 
-
     /**
      * Get tippy instance of element
      * @returns {(object|null)} tippy object relating to an element or null
