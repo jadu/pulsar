@@ -87,11 +87,11 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
     var component = this,
         $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container'),
         activeTabSideBarContentHtml = component.$html.find('.tab__pane.is-active .tab__sidebar').html(),
-        $mobileToggleHelpButton = $('<button class="show-page-help js-show-page-help"><i class="icon-question-sign" aria-hidden="true"></i><span class="hide">Show on-page help</span></button>'),
-        $mobileToggleContainer = component.$html.find('.toolbar'),
+        $mobileToggleHelpButton = $('<button type="button" class="btn show-page-help js-show-page-help">Show Page Help</button>'),
+        $mobileToggleContainer = component.$html.find('.tab__pane.is-active .tab__content'),
         $tabHelp = component.$html.find('.tab-help'),
         isMobile,
-        mobileCloseHelpButton = '<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>';
+        mobileCloseHelpButton = '<button type="button" class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>';
 
     // Check if active tab has help text
     if (activeTabSideBarContentHtml && activeTabSideBarContentHtml.length > 0) {
@@ -111,7 +111,7 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
 
         // If mobile help button doesn't already exist add it if help text exists
         if (!$mobileToggleContainer.find('.js-show-page-help').length) {
-            $mobileToggleHelpButton.appendTo($mobileToggleContainer);
+            $mobileToggleHelpButton.prependTo($mobileToggleContainer);
         }
 
         // Add class used for setting desktop column widths
