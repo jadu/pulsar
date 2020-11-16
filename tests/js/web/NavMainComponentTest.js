@@ -871,4 +871,46 @@ describe('NavMainComponent', function () {
             expect(this.$body.hasClass('open-nav')).to.be.false;
         });
     });
+
+    describe('isNavOpen()', function () {
+        it('should return true if quaternary nav is open', function () {
+            this.navMainComponent.init();
+
+            this.$html.find('.nav-quaternary').addClass('is-open');
+
+            expect(this.navMainComponent.isNavOpen()).to.be.true;
+        });
+
+        it('should return true if tertiary nav is open', function () {
+            this.navMainComponent.init();
+
+            this.$html.find('.nav-tertiary').addClass('is-open');
+
+            expect(this.navMainComponent.isNavOpen()).to.be.true;
+        });
+
+        it('should return true if secondary nav is open', function () {
+            this.navMainComponent.init();
+
+            this.$html.find('.nav-secondary').addClass('is-open');
+
+            expect(this.navMainComponent.isNavOpen()).to.be.true;
+        });
+
+        it('should return true if mobile nav is open', function () {
+            this.window.matchMedia.returns({matches: false});
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+
+            this.$mobileMenuButton.trigger(this.clickEvent);
+
+            expect(this.navMainComponent.isNavOpen()).to.be.true;
+        });
+
+        it('should return false if all navs are closed', function () {
+            this.navMainComponent.init();
+
+            expect(this.navMainComponent.isNavOpen()).to.be.false;
+        });
+    });
 });

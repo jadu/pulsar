@@ -53,7 +53,9 @@
     {% block pageStyle %}{% endblock %}
 </head>
 <body class="language-html">
-    <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
+    <div role="complementary" aria-label="skip to main content">
+        <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
+    </div>
 
 {% block body %}
     <div class="container" id="top">
