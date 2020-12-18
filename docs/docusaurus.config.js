@@ -10,6 +10,9 @@ module.exports = {
   projectName: 'docusaurus', // Usually your repo name.
   plugins: ['docusaurus-plugin-sass'],
   themeConfig: {
+    prism: {
+      additionalLanguages: ['twig']
+    },
     navbar: {
       title: 'My Site',
       logo: {

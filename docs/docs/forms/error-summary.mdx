@@ -56,17 +56,17 @@ This component requires the `ErrorSummaryComponent` to be included in your Pulsa
 var ErrorSummaryComponent = require('/path/to/ErrorSummary/ErrorSummaryComponent');
 
 module.exports = {
-    ErrorSummaryComponent
+  ErrorSummaryComponent
 };
 ```
 
 ```jsx title="main.js"
 (function ($) {
-    pulsar.errorSummary = new pulsar.ErrorSummaryComponent();
+  pulsar.errorSummary = new pulsar.ErrorSummaryComponent();
 
-    $(function () {
-        pulsar.errorSummary.init($html);
-    });
+  $(function () {
+    pulsar.errorSummary.init($html);
+  });
 }(jQuery));
 ```
 
@@ -93,56 +93,56 @@ Finally, make sure the styles are being included into the Sass bundle.
 {{ form.create() }}
 
 {{
-    form.error_summary({
-        'heading': 'There is a problem',
-        'errors': [
-            {
-                'label': 'Enter your first name',
-                'href': 'first-name'
-            },
-            {
-                'label': 'Enter your last name',
-                'href': 'last-name'
-            }
-        ]
-    })
+  form.error_summary({
+    'heading': 'There is a problem',
+    'errors': [
+      {
+        'label': 'Enter your first name',
+        'href': 'first-name'
+      },
+      {
+        'label': 'Enter your last name',
+        'href': 'last-name'
+      }
+    ]
+  })
 }}
 
 {{ form.fieldset_start({'legend': 'Example form with errors'}) }}
 
-    {{
-        form.text({
-            'label': 'First name',
-            'id': 'first-name',
-            'required': true,
-            'error': 'Enter your first name'
-        })
-    }}
+  {{
+    form.text({
+      'label': 'First name',
+      'id': 'first-name',
+      'required': true,
+      'error': 'Enter your first name'
+    })
+  }}
 
-    {{
-        form.text({
-            'label': 'Last name',
-            'id': 'last-name',
-            'required': true,
-            'error': 'Enter your last name'
-        })
-    }}
+  {{
+    form.text({
+      'label': 'Last name',
+      'id': 'last-name',
+      'required': true,
+      'error': 'Enter your last name'
+    })
+  }}
 
 {{ form.fieldset_end() }}
 
 {{
-    form.end({
-        'actions': [
-            html.button({
-                'label': 'Save',
-                'class': 'btn--primary'
-            }),
-            html.button({
-                'label': 'Cancel',
-                'class': 'btn--naked'
-            })
-        ]
-    })
+  form.end({
+    'actions': [
+      html.button({
+        'label': 'Save',
+        'class': 'btn--primary'
+      }),
+      html.button({
+        'label': 'Cancel',
+        'class': 'btn--naked'
+      })
+    ]
+  })
 }}
 ```
 
@@ -151,11 +151,11 @@ Finally, make sure the styles are being included into the Sass bundle.
 
 ```jsx
 <Form>
-    ...
-    <FormActions>
-        <Button type="submit" className="btn--primary">Primary Action</Button>
-        <Button type="link" href="/path/to/cancel" className="btn--naked">Cancel</Button>
-    </FormActions>
+  ...
+  <FormActions>
+    <Button type="submit" className="btn--primary">Primary Action</Button>
+    <Button type="link" href="/path/to/cancel" className="btn--naked">Cancel</Button>
+  </FormActions>
 </Form>
 ```
 
@@ -164,11 +164,11 @@ Finally, make sure the styles are being included into the Sass bundle.
 
 ```html
 <form method="POST" enctype="application/x-www-form-urlencoded" class="form">
-    ...
-    <div class="form__actions">
-        <button type="submit" class="btn btn--primary">Primary Action</button>
-        <a href="/home" class="btn btn--naked">Cancel</a>
-    </div>
+  ...
+  <div class="form__actions">
+    <button type="submit" class="btn btn--primary">Primary Action</button>
+    <a href="/home" class="btn btn--naked">Cancel</a>
+  </div>
 </form>
 ```
 

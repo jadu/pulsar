@@ -50,18 +50,18 @@ Add the `'disabled': true` option to most helpers to disable the element, the re
 
 ```twig
 {{
-    html.button({ 
-        'label': 'Button',
-        'disabled': true
-    })
+  html.button({ 
+    'label': 'Button',
+    'disabled': true
+  })
 }}
 
 {{
-    html.link({
-        'href': 'http://www.jadu.net',
-        'label': 'Jadu',
-        'disabled': true
-    })
+  html.link({
+    'href': 'http://www.jadu.net',
+    'label': 'Jadu',
+    'disabled': true
+  })
 }}
 ```
 
@@ -97,13 +97,13 @@ If you’re writing javascript to disable/enable an element you must toggle both
 
 ```jsx
 if ($elementSupportsDisable) {
-    $('#elementToDisable')
-      .prop('disabled', true)
-      .addClass('.is-disabled');
+  $('#elementToDisable')
+    .prop('disabled', true)
+    .addClass('.is-disabled');
 } else {
-    $('#elementToDisable')
-      .attr('aria-disabled', 'true')
-      .addClass('.is-disabled');
+  $('#elementToDisable')
+    .attr('aria-disabled', 'true')
+    .addClass('.is-disabled');
 }
 ```
 
