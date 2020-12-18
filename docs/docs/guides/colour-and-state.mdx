@@ -10,11 +10,11 @@ Pulsar uses a standardised colour palette which incorporates the colours defined
 Some colours may deviate from the Jadu Brand Guidelines where necessary to meet WCAG 2.1 AA colour contrast requirements
 :::
 
-# Colour
+## Colour
 
 When designing your user interface you must ensure that the colour of any text against it’s background must meet the minimum contrast ratio of 4.5:1 as defined by the [Web Content Accessibility Guidelines](https://www.w3.org/TR/WCAG21/#contrast-minimum) 2.1 at AA level. This is especially important given that our main typeface (Proxima Nova) is rather thin.
 
-## Fetching palette colours
+### Fetching palette colours
 
 Colour variables are defined in the `_palette.base.scss` file and can be used anywhere. You should aim to use the sass variables rather than hardcoded values where possible.
 
@@ -34,7 +34,7 @@ Use the optional ‘tone’ argument to fetch a variation of a colour if availab
 }
 ```
 
-## Picking the best text colour
+### Picking the best text colour
 
 To make your life easier, you can use the `pick_best_colour()` sass function which accepts two options, a background colour, and an array of two possible text colours, usually black and white. The function measures both text colours against the background and will pick the one with the highest measured contrast.
 
@@ -54,9 +54,9 @@ pick_best_color(background, (foreground_1, foreground_2))
 }
 ```
 
-## Colour palettes
+### Colour palettes
 
-### State colours
+#### State colours
 
 | Name | Base | Light | Dark |
 | ------ | ---- | ----- | ---- |
@@ -77,7 +77,7 @@ State colours have an `alt` variation that provides an accessible text colour wh
 }
 ```
 
-### Monochromes
+#### Monochromes
 
 | Name | Base |
 | ---- | ---- |
@@ -92,7 +92,7 @@ State colours have an `alt` variation that provides an accessible text colour wh
 | Off white | `color(off-white)` |
 | White | `color(white)` |
 
-### Text and links
+#### Text and links
 
 | Name | Base |
 | ---- | ---- |
@@ -109,7 +109,7 @@ State colours have an `alt` variation that provides an accessible text colour wh
 | Inverse hover link | `color(link, inverse-hover)` |
 | Disabled link | `color(link, disabled)` |
 
-### Borders and backgrounds
+#### Borders and backgrounds
 
 | Name | Base |
 | ---- | ---- |
@@ -121,7 +121,7 @@ State colours have an `alt` variation that provides an accessible text colour wh
 | Selected background | `color(background, selected)` |
 | Focus background | `color(background, focus)` |
 
-# State
+## State
 
 Use the correct colour and language combinations to properly communicate the state of a component to the user.
 
@@ -129,7 +129,7 @@ Use the correct colour and language combinations to properly communicate the sta
 Never rely on colour alone, the language you use is more important than the colour when communicating state
 :::
 
-## Colour
+### Colour
 
 Colour should be used where possible to visually reinforce the action or state that you are presenting to the user.
 
@@ -139,7 +139,7 @@ Colour should be used where possible to visually reinforce the action or state t
 * <span className="d-example-inline"><span className="label label--danger">red</span></span> indicates negative or destructive actions/states
 * <span className="d-example-inline"><span className="label label--inverse">black</span></span> indicates blocking or restrictive actions/states
 
-## language
+### language
 
 The state of a ‘thing’ can be indicated by textual labels, and modified by interactive controls. You should carefully chose appropriate terms that make the most sense to non-technical people, providing clear information in as few words as possible.
 
@@ -165,7 +165,7 @@ Labels which _indicate_ the current state should use past-participles or adjecti
 
 Note the careful choice of terms in the examples above for the ‘unpublish’ action, ‘offline’ is a better label adjective to use than ‘unpublished’.
 
-## Icons
+### Icons
 
 When using iconography there may be the opportunity to use different icons to reflect the state and action and they may often appear together in the same interface.
 
@@ -175,7 +175,7 @@ When using iconography there may be the opportunity to use different icons to re
   Action: <button className="btn"><i className="icon-unlock"></i> Unlock</button>
 </div>
 
-## State classes
+### State classes
 
 Pulsar has a collection of common state classes that you can use in your markup, many components (link buttons, labels, badges, etc) cater for these states, eg: `.btn--primary` `.label--success` etc.
 
@@ -188,7 +188,7 @@ Pulsar has a collection of common state classes that you can use in your markup,
 
 The actual presentation of these state classes will differ depending on the component it is applied to so a danger button bay differ to a danger text input field. You should refer to the individual component documentaiton for state examples.
 
-## Switching state
+### Switching state
 
 When your styles need to switch based on state there are common `.is-*` or `.has-*` namespaced classes. When writing your own components you should stick to this convention to modify or communicate state.
 
@@ -219,7 +219,7 @@ Regular text can also use the main state classes, using the colours defined in t
 * `.text--white`
 * `.text--new`
 
-## State variable Sass map
+### State variable Sass map
 
 There is a sass map defined in `_palette.base.scss` which contains the state colours along with their text colour alternatives. You can use this in your own Sass components to loop over the state colouts to output repetitive rulesets to cover all states.
 

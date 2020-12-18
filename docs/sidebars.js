@@ -25,7 +25,6 @@ module.exports = {
     Forms: [
       'forms/creating-a-form',
       'forms/error-summary'
-    ],
-    Features: ['mdx'],
+    ]
   },
 };

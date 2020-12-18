@@ -1,34 +1,34 @@
 module.exports = {
-  title: 'Pulsar',
-  tagline: 'The design system for Jadu',
-  url: 'https://pulsar.docs.jadu.net',
+  title: 'My Site',
+  tagline: 'The tagline of my site',
+  url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'jadu', // Usually your GitHub org/user name.
-  projectName: 'pulsar', // Usually your repo name.
+  organizationName: 'facebook', // Usually your GitHub org/user name.
+  projectName: 'docusaurus', // Usually your repo name.
   plugins: ['docusaurus-plugin-sass'],
-  scripts: [
-    '/static/bundle.js'
-  ],
   themeConfig: {
-    prism: {
-      additionalLanguages: ['twig'],
-      theme: require('prism-react-renderer/themes/palenight')
-    },
     navbar: {
-      title: 'Pulsar',
+      title: 'My Site',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/pulsar-brand.svg',
+        src: 'img/logo.svg',
       },
       items: [
         {
-          to: 'docs/guides/getting-started',
+          to: 'docs/',
           activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
-        }
+        },
+        {to: 'blog', label: 'Blog', position: 'left'},
+        {
+          href: 'https://github.com/facebook/docusaurus',
+          label: 'GitHub',
+          position: 'right',
+        },
       ],
     },
     footer: {
@@ -78,7 +78,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Jadu.`,
+      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -89,13 +89,13 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/jadu/pulsar/edit/master/website/',
+            'https://github.com/facebook/docusaurus/edit/master/website/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/jadu/pulsar/edit/master/website/blog/',
+            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.scss'),

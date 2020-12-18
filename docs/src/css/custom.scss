@@ -188,3 +188,17 @@ $fa-css-prefix: 'icon';
     margin: 0 calc(-1 * var(--ifm-pre-padding));
     padding: 0 var(--ifm-pre-padding);
 }
+
+table {
+  display: table;
+
+  th {
+    background-color: var(--jadu-purple);
+    border: 1px solid var(--jadu-purple);
+    color: #fff;
+  }
+
+  td {
+    border: 1px solid #ccc;
+  }
+}
