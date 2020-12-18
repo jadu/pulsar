@@ -2,12 +2,6 @@ module.exports = {
   someSidebar: {
     Docusaurus: ['doc1', 'doc2', 'doc3'],
     Guides: [
-<<<<<<< Updated upstream
-      'guides/getting-started'
-    ],
-    Components: [
-      'components/button'
-=======
       'guides/getting-started',
       'guides/accessibility',
       'guides/browsers',
@@ -27,7 +21,6 @@ module.exports = {
       'components/datatable',
       'components/dropdown-button',
       'components/dropzone'
->>>>>>> Stashed changes
     ],
     Forms: [
       'forms/creating-a-form',

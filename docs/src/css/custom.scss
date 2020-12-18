@@ -11,11 +11,8 @@ $image-path: '../../../images/' !default;
 $margin-bottom: 1.125 * 1rem;
 
 :root{
-<<<<<<< Updated upstream
-=======
     --ifm-global-shadow-lw: none;
 
->>>>>>> Stashed changes
     --jadu-purple: #3e4994;
     
     --ifm-background-surface-color: var(--jadu-purple);
@@ -24,16 +21,12 @@ $margin-bottom: 1.125 * 1rem;
     
     --ifm-menu-color-active: var(--jadu-purple);
     
-<<<<<<< Updated upstream
-    --ifm-container-width: 1200px;
-=======
     --ifm-card-background-color: #fff;
     --ifm-container-width: 1300px;
 
     --ifm-table-border-width: 0;
 
     --ifm-alert-color: #000;
->>>>>>> Stashed changes
 }
 
 .markdown > {
@@ -45,19 +38,12 @@ $margin-bottom: 1.125 * 1rem;
     h6 {
         color: var(--jadu-purple);
     }
-<<<<<<< Updated upstream
-=======
-
-    
->>>>>>> Stashed changes
 }
 
 .d-example {
     border: 1px solid #ccc;
     margin-bottom: $margin-bottom;
     padding: 1em;
-<<<<<<< Updated upstream
-=======
 
     ul, ol {
         padding-left: 0;
@@ -66,7 +52,6 @@ $margin-bottom: 1.125 * 1rem;
     li + li {
         margin-top: 0;
     }
->>>>>>> Stashed changes
 }
 
 .d-guidelines {
@@ -122,13 +107,10 @@ $fa-css-prefix: 'icon';
 @import '/static/font-awesome/scss/font-awesome';
 
 .d-example,
-<<<<<<< Updated upstream
-=======
 .d-example-inline,
->>>>>>> Stashed changes
 .d-guidelines {
     @import '../../../stylesheets/deprecated.icons';
-    
+
     // Mixins
     @import '../../../stylesheets/mixin.border-radius';
     @import '../../../stylesheets/mixin.clear-fix';
@@ -142,47 +124,32 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/mixin.responsive-utilities';
     @import '../../../stylesheets/mixin.word-wrap';
     @import '../../../stylesheets/mixin.focus';
-<<<<<<< Updated upstream
-    
-=======
 
->>>>>>> Stashed changes
     // Config
     @import '../../../stylesheets/config.variables';
     @import '../../../stylesheets/config.branding';
-    
-<<<<<<< Updated upstream
-=======
+
     @import '../../../stylesheets/structure.grid';
     @import '../../../stylesheets/structure.columns';
 
->>>>>>> Stashed changes
+
     // Functions
     @import '../../../stylesheets/function.math';
     @import '../../../stylesheets/function.color-luminance';
     @import '../../../stylesheets/function.pick-best-color';
     @import '../../../stylesheets/function.color';
-    
+
     // Base colour palette
     @import '../../../stylesheets/palette.base';
-    
+
     // Apply palette to components
     @import '../../../stylesheets/config.theme';
-    
+
     // Structure
     @import '../../../stylesheets/structure.grid';
     @import '../../../stylesheets/structure.columns';
     @import '../../../stylesheets/structure.forms';
-    
-<<<<<<< Updated upstream
-    @import '../../../stylesheets/component.buttons';
-    @import '../../../stylesheets/component.error-summary';
-    @import '../../../stylesheets/component.forms';
-    @import '../../../stylesheets/component.range-slider';
-    
-    // Utilities
-    @import '../../../stylesheets/utility.utilities';
-=======
+
     @import '../../../stylesheets/component.badges';
     @import '../../../stylesheets/component.block-list';
     @import '../../../stylesheets/component.buttons';
@@ -216,9 +183,8 @@ $fa-css-prefix: 'icon';
 }
 
 .docusaurus-highlight-code-line {
-background-color: rgb(72, 77, 91);
-display: block;
-margin: 0 calc(-1 * var(--ifm-pre-padding));
-padding: 0 var(--ifm-pre-padding);
->>>>>>> Stashed changes
+    background-color: rgb(72, 77, 91);
+    display: block;
+    margin: 0 calc(-1 * var(--ifm-pre-padding));
+    padding: 0 var(--ifm-pre-padding);
 }
