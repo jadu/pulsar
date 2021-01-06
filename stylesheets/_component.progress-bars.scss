@@ -30,6 +30,7 @@
 
 .progress-bar--warning {
     background-color: color(warning);
+    color: color(warning, alt);
 }
 
 .progress-bar--danger {

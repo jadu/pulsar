@@ -62,34 +62,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 }
 
 .show-page-help {
-    background-color: transparent;
-    border: 0;
-    color: color(gray, dark);
-    display: inline-block;
-    font-size: 28px;
-    line-height: normal;
-    margin-top: -45px;
-    padding: 0;
-    position: absolute;
-    text-decoration: none;
-    transition: all 100ms ease-in;
-    right: 20px;
+    margin-bottom: $margin-large-vertical;
 
     @include respond-min($screen-desktop) {
         display: none;
-    }
-
-    &:hover,
-    &.is-open {
-        color: $nav-color-dark;
-    }
-
-    &:active {
-        color: darken($nav-color-dark, 10%);
-    }
-
-    &:focus {
-        @include pulsar-button-focused;
     }
 }
 
