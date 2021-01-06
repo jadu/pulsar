@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add CHANGELOG.md file [#1352](https://github.com/jadu/pulsar/pull/1352)
 
+### Fixed
+- Progress bar with warning state and a visible value failed colour contrast [#1350](https://github.com/jadu/pulsar/pull/1350)
+
 ### Security
 - Upgrade datatables.net-responsive-dt from 2.2.3 to 2.2.6 [#1336](https://github.com/jadu/pulsar/pull/1336)
 - Upgrade datatables from 1.10.22 to 1.10.23 [#1346](https://github.com/jadu/pulsar/pull/1346)
