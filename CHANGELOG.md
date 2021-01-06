@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased](https://github.com/jadu/pulsar/issues?q=is%3Aclosed+milestone%3AUnreleased)
 ### Added
 - Add CHANGELOG.md file [#1352](https://github.com/jadu/pulsar/pull/1352)
 
