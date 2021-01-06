@@ -14,7 +14,6 @@ describe('HelpTextComponent', function() {
         this.$document = $('<div></div>').appendTo(this.$window);
         this.$html = $('<html></html>').appendTo(this.$document);
         this.$body = $('<body></body>').appendTo(this.$html);
-        this.$toolbar = $('<div class="toolbar"></div>').appendTo(this.$body);
         this.$tabHelpContainer = $('<div class="tab-help-container"></div>').appendTo(this.$body);
         this.$tabHelp = $('<div class="tab-help"></div>').appendTo(this.$tabHelpContainer);
         this.$contentMain = $('<div class="content-main"></div>').appendTo(this.$body);
@@ -46,15 +45,15 @@ describe('HelpTextComponent', function() {
         });
 
         it('should copy the active tabs sidebar contents to the tab-help container', function() {
-            expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help" tabindex="-1"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text <a href="#" tabindex="-1">link</a>');
+            expect(this.$tabHelp.html()).to.equal('<button type="button" class="close-page-help js-close-page-help" tabindex="-1"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text <a href="#" tabindex="-1">link</a>');
         });
 
         it('should add the help-close button to the tab-help container', function() {
             expect(this.$tabHelp.find('.js-close-page-help').length).to.equal(1);
         });
 
-        it('should add the help toggle button to the toolbar', function() {
-            expect(this.$toolbar.find('.js-show-page-help').length).to.equal(1);
+        it('should add the help toggle button to .tab__content', function() {
+            expect(this.$tabContent.find('.js-show-page-help').length).to.equal(1);
         });
 
         it('should add tabindex="-1" to all links and buttons', function () {
@@ -73,45 +72,45 @@ describe('HelpTextComponent', function() {
         });
 
         it('should prevent the default behaviour', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.clickEvent.isDefaultPrevented()).to.be.true;
         });
 
         it('should stop propagation of the click event', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.clickEvent.isPropagationStopped()).to.be.true;
         });
 
         it('should open the side menu', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$html.hasClass('open-help')).to.be.true;
         });
 
         it('should add the is-open class to the button ', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
-            expect(this.$toolbar.find('.js-show-page-help').hasClass('is-open')).to.be.true;
+            expect(this.$tabContent.find('.js-show-page-help').hasClass('is-open')).to.be.true;
         });
 
         it('should remove the aria-hidden attribute from the tab-help-container', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$tabHelpContainer.attr('aria-hidden')).to.be.undefined;
         });
 
         it('move focus to the close button', function () {
             sinon.spy(this.helpTextComponent, 'toggleHelpSidebar');
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
             this.$tabHelpContainer.trigger('transitionend');
 
             expect(this.helpTextComponent.toggleHelpSidebar).to.have.been.called;
         });
 
         it('should remove tabindex="-1" from all links and buttons', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$tabHelp.find('a').attr('tabindex')).to.be.undefined;
         });
@@ -125,43 +124,43 @@ describe('HelpTextComponent', function() {
             this.helpTextComponent.updateHelpSidebar();
             this.clickEvent = $.Event('click');
             this.$html.addClass('open-help');
-            this.$toolbar.find('.js-show-page-help').addClass('is-open');
+            this.$tabContent.find('.js-show-page-help').addClass('is-open');
         });
 
         it('should close the side menu', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$html.hasClass('open-help')).to.be.false;
         });
 
         it('should remove the is-open class from the help button', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
-            expect(this.$toolbar.find('.js-show-page-help').hasClass('is-open')).to.be.false;
+            expect(this.$tabContent.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
         it('should add the hide class to the tab-help-container', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
             this.$tabHelpContainer.trigger('transitionend');
             expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
 
         it('should add aria-hidden attribute to the tab-help-container', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
             this.$tabHelpContainer.trigger('transitionend');
             expect(this.$tabHelpContainer.attr('aria-hidden')).to.equal('true');
         });
 
         it('should add the hide class to the tab-help-container if lt-ie10', function () {
             this.$html.addClass('lt-ie10');
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
 
         it('should add aria-hidden attribute to the tab-help-container', function () {
             this.$html.addClass('lt-ie10');
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$tabHelpContainer.attr('aria-hidden')).to.equal('true');
         });
@@ -187,7 +186,7 @@ describe('HelpTextComponent', function() {
         });
 
         it('should stop propagation of the click event', function () {
-            this.$toolbar.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$tabContent.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.clickEvent.isPropagationStopped()).to.be.true;
         });
@@ -201,11 +200,11 @@ describe('HelpTextComponent', function() {
         });
 
         it('should remove the is-open class from the help button', function () {
-            this.$toolbar.find('.js-show-page-help').addClass('is-open');
+            this.$tabContent.find('.js-show-page-help').addClass('is-open');
 
             this.$tabHelp.find('.js-close-page-help').trigger(this.clickEvent);
 
-            expect(this.$toolbar.find('.js-show-page-help').hasClass('is-open')).to.be.false;
+            expect(this.$tabContent.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
         it('should add the hide class from the tab-help-container', function () {
@@ -253,7 +252,7 @@ describe('HelpTextComponent', function() {
             this.helpTextComponent.updateHelpSidebar();
             this.clickEvent = $.Event('click');
             this.$html.addClass('open-help');
-            this.$toolbar.find('.js-show-page-help').addClass('is-open');
+            this.$tabContent.find('.js-show-page-help').addClass('is-open');
         });
 
         it('should close the help side bar', function () {
@@ -265,7 +264,7 @@ describe('HelpTextComponent', function() {
         it('should remove the is-open class from the mobile help button', function () {
             this.$tabContentLink.trigger(this.clickEvent);
 
-            expect(this.$toolbar.find('.js-show-page-help').hasClass('is-open')).to.be.false;
+            expect(this.$tabContent.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
         it('should add the hide class from the tab-help-container', function () {
@@ -298,7 +297,7 @@ describe('HelpTextComponent', function() {
         });
 
         it('should copy the active tabs sidebar contents to the tab-help container', function() {
-            expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help" tabindex="-1"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text <a href="#" tabindex="-1">link</a>');
+            expect(this.$tabHelp.html()).to.equal('<button type="button" class="close-page-help js-close-page-help" tabindex="-1"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text <a href="#" tabindex="-1">link</a>');
         });
 
         it('should add the help-close button to the tab-help container', function() {
