@@ -11,6 +11,7 @@ describe('ModalFocusService', () => {
     let $closeButton;
     let $inputButton;
     let $cancelButton;
+    let $submitButton;
     let keyDownEvent;
     let service;
 
@@ -61,6 +62,7 @@ describe('ModalFocusService', () => {
 
         $closeButton = $modal.find('.close');
         $inputButton = $modal.find('.input4');
+        $submitButton = $modal.find('.input7');
         $cancelButton = $modal.find('.input8');
         keyDownEvent = $.Event('keydown');
 
@@ -99,6 +101,18 @@ describe('ModalFocusService', () => {
                 service.trapFocus($modal, $body);
 
                 expect($cancelButton.is(':focus')).to.be.true;
+            });
+        });
+
+        describe('When there are no focusable elements, no close X button and no footer button with data-dismiss="modal"', () => {
+            it('should focus the first interactive element in the modal', () => {
+                $body.find('.modal__body').empty();
+                $body.find('.modal__header .close').remove();
+                $body.find('.modal__footer [data-dismiss="modal"]').remove();
+
+                service.trapFocus($modal, $body);
+
+                expect($submitButton.is(':focus')).to.be.true;
             });
         });
 
