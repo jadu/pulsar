@@ -53,12 +53,13 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
+    background-color: $dropdown-divider-bg;
     display: block;
     height: 1px;
     margin: ($line-height-base / 4) 0;
     min-width: 160px;
     overflow: hidden;
-    background-color: $dropdown-divider-bg;
+    padding: 0;
   }
 
   > li {
@@ -312,6 +313,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
+      background-color: color(background, focus) !important;
       color: color(black) !important;
     }
 
