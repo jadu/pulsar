@@ -85,6 +85,7 @@ module.exports = function(grunt) {
         sass: {
             dev: {
                 options: {
+                    implementation: 'dart-sass',
                     outputStyle: 'nested',
                     sourceMap: true
                 },
@@ -99,6 +100,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
+                    implementation: 'dart-sass',
                     outputStyle: 'compressed'
                 },
                 files: [{
@@ -113,6 +115,7 @@ module.exports = function(grunt) {
             },
             lexicon: {
                 options: {
+                    implementation: 'dart-sass',
                     outputStyle: 'nested',
                     sourceMap: true
                 },
