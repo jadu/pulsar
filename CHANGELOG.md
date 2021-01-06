@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add CHANGELOG.md file [#1352](https://github.com/jadu/pulsar/pull/1352)
 
+## Changed
+- Update Travis to use a PHP 7.4 build, which is what Jadu products are now using [#1329](https://github.com/jadu/pulsar/pull/1329)
+
 ### Fixed
 - Progress bar with warning state and a visible value failed colour contrast [#1350](https://github.com/jadu/pulsar/pull/1350)
 
