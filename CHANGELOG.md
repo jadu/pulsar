@@ -7,12 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- #1352 Add CHANGELOG.md file
+- Add CHANGELOG.md file [#1352](https://github.com/jadu/pulsar/pull/1352)
 
 ### Security
-- #1336 Upgrade datatables.net-responsive-dt from 2.2.3 to 2.2.6
-- #1346 Upgrade datatables from 1.10.22 to 1.10.23
-- #1344 Bump ini from 1.3.5 to 1.3.7
-- #1342 Bump bl from 1.2.2 to 1.2.3
+- Upgrade datatables.net-responsive-dt from 2.2.3 to 2.2.6 [#1336](https://github.com/jadu/pulsar/pull/1336)
+- Upgrade datatables from 1.10.22 to 1.10.23 [#1346](https://github.com/jadu/pulsar/pull/1346)
+- Bump ini from 1.3.5 to 1.3.7 [#1344](https://github.com/jadu/pulsar/pull/1344)
+- Bump bl from 1.2.2 to 1.2.3 [#1342](https://github.com/jadu/pulsar/pull/1342)
 
 Versions released in 2020 or earlier are detailed in GH release notes https://github.com/jadu/pulsar/releases
