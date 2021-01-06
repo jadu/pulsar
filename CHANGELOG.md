@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [Added] #1352 Add CHANGELOG.md file
 - [Security] #1336 Upgrade datatables.net-responsive-dt from 2.2.3 to 2.2.6
 - [Security] #1346 Upgrade datatables from 1.10.22 to 1.10.23
 - [Security] #1344 Bump ini from 1.3.5 to 1.3.7
