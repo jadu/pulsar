@@ -139,25 +139,6 @@ $piano-bg: #fafafa;
         list-style: none;
     }
 
-    .history {
-        background-color: color(new);
-        border-bottom: 1px solid color(border);
-        border-top: 1px solid color(border);
-        color: #989699;
-        cursor: pointer;
-        display: block;
-        margin: 1em 0;
-        position: relative;
-        text-align: center;
-
-        span {
-            background-color: color(new);
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-    }
-
     h4 {
         font-size: $font-size-base;
 
@@ -221,55 +202,9 @@ $piano-bg: #fafafa;
     display: block;
 }
 
-.message-old.message--open {
-    border-bottom: 3px double $gray;
-}
-
 .message {
     overflow: hidden;
     padding: 1em $gutter-width 0;
-
-    &.message--open {
-        .message-body {
-            height: auto;
-        }
-    }
-
-    &.message--closed {
-        color: lighten($text-color, 2%);
-        padding: 10px;
-
-        .message-body {
-            border-top: 1px dashed color(border);
-            margin-top: .5em;
-        }
-
-        .message-body {
-            > * {
-                display: none;
-            }
-        }
-
-        &:hover {
-            cursor: pointer;
-        }
-
-        &:nth-of-type(odd) {
-            background-color: lighten($gray, 17%);
-
-            &:hover {
-                background-color: lighten($gray, 16%);
-            }
-        }
-
-        &:nth-of-type(even) {
-            background-color: lighten($gray, 15%);
-
-            &:hover {
-                background-color: lighten($gray, 14%);
-            }
-        }
-    }
 
     .preview > p {
         display: inline;
@@ -328,16 +263,4 @@ $piano-bg: #fafafa;
 
 .setting__actions {
     padding: 10px;
-}
-
-.piano-wrapper {
-
-    .tab__content {
-        display: table;
-    }
-
-    .tabs__content {
-        display: table;
-        width: 100%;
-    }
 }
