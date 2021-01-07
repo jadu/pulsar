@@ -19,7 +19,8 @@
 
 "use strict";
 
-var $ = require('jquery');
+var $ = require('jquery'),
+	_ = require('lodash');
 
 	// TAB CLASS DEFINITION
 	// ====================
@@ -49,7 +50,7 @@ var $ = require('jquery');
 
 		if (e.isDefaultPrevented()) return
 
-		var $target = $(selector)
+		var $target = $(_.escape(selector))
 
 		// If we have sub-tabs, selecting the parent should activate and highlight the first one
 		if (!$target.length)  {
