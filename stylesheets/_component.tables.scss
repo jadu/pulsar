@@ -2,6 +2,11 @@
     border-collapse: collapse;
     margin-bottom: 24px;
 
+    caption {
+        display: table-caption;
+        text-align: left;
+    }
+
     [href],
     .continuum-cms & [href]:link {
         border-bottom: 1px dotted color(grey, light);
