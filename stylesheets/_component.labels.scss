@@ -84,7 +84,7 @@
 
     // Ignore the base state
     @if $state != 'base' {
-        .label--#{$state} {
+        .label--#{"" + $state} {
             @include label-variant($state-color, $state-color-alt, true);
         }
     }

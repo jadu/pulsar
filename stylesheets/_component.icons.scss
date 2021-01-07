@@ -1,6 +1,6 @@
 // State variations
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .icon--#{$state}::before {
+    .icon--#{"" + $state}::before {
         color: $state-color;
     }
 }
@@ -30,7 +30,7 @@
 
     // State variations
     @each $state, $state-color, $state-color-alt in $state-colors {
-        &--#{$state} {
+        &--#{"" + $state} {
             background: $state-color;
 
             .icon-standout__icon::before {

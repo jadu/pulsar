@@ -94,7 +94,7 @@
     position: relative;
 
     @each $state, $state-color, $state-color-alt in $state-colors {
-        &.btn--#{$state}:not(.btn--naked) {
+        &.btn--#{"" + $state}:not(.btn--naked) {
             border-color: darken($state-color, 10);
 
             &:hover {
