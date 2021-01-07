@@ -7,11 +7,12 @@
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
     background-color: color(white);
-    border-top: 1px solid color(gray, lightest);
+    border-top: $border-width solid color(gray, lightest);
     bottom: 0;
     font-size: $font-size-small;
+    height: $footer-height;
     left: 0;
-    padding: 6px $gutter-width;
+    padding: $footer-padding-vertical $gutter-width;
     position: static;
     right: 0;
     transform: none;

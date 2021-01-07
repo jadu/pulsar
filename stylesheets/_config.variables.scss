@@ -53,7 +53,6 @@ $tab-column-width-mobile:             250px !default;
 $sidebar-column-width:                200px !default;
 $sidebar-column-width-tablet:         133px !default;
 
-
 // -----------------------------------------------------------------------------
 //  Breakpoints
 // -----------------------------------------------------------------------------
@@ -86,6 +85,7 @@ $screen-large-desktop:                $screen-large !default;
 //  Borders
 // -----------------------------------------------------------------------------
 
+$border-width:                        1px !default;
 $border-radius:                       4px !default;
 $border-radius-large:                 20px !default;
 
@@ -114,6 +114,13 @@ $padding-large-vertical:              10px !default;
 $padding-large-horizontal:            16px !default;
 $padding-small-vertical:              5px !default;
 $padding-small-horizontal:            10px !default;
+
+// -----------------------------------------------------------------------------
+//  Layout
+// -----------------------------------------------------------------------------
+
+$footer-padding-vertical:             $padding-base-vertical;
+$footer-height:                       $line-height-base + ($footer-padding-vertical * 2) + $border-width;
 
 // -----------------------------------------------------------------------------
 //  Navigation
