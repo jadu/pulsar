@@ -34,6 +34,7 @@
     "chai": "^1.9.2",
     "chai-dom": "^1.6.0",
     "chai-hiff": "^1.0.0",
+    "dart-sass": "^1.25.0",
     "fibers": "^5.0.0",
     "grunt": "^1.0.3",
     "grunt-asciify": "^0.2.2",
