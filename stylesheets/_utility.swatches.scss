@@ -35,7 +35,7 @@
     @each $name, $palette in $colors {
         @each $variant, $value in $palette {
             @if $variant != 'alt' {
-                &--#{"" + $name}-#{$variant} .swatch__colour {
+                &--#{'' + $name}-#{$variant} .swatch__colour {
                     background-color: color($name, $variant);
                     color: color($name, 'alt');
                 }

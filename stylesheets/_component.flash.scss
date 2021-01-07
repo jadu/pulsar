@@ -56,7 +56,7 @@
 @each $state, $state-color, $state-color-alt in $state-colors {
     // Exclude unneeded states
     @if $state != base and $state != new and $state != white {
-        .flash--#{"" + $state} {
+        .flash--#{'' + $state} {
             background-color: $state-color;
             color: $state-color-alt;
 

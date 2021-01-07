@@ -65,7 +65,7 @@
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
-        tr.has-#{"" + $state} {
+        tr.has-#{'' + $state} {
             background-color: color($state, light) !important;
 
             &:hover {

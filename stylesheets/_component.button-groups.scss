@@ -32,7 +32,7 @@
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
-        > .btn--#{"" + $state}:not(:first-of-type):not(.btn--naked):not(.edit-button):not(.remove-button) {
+        > .btn--#{'' + $state}:not(:first-of-type):not(.btn--naked):not(.edit-button):not(.remove-button) {
             border-left-color: darken(color($state), 10);
             border-right-color: darken(color($state), 10);
         }
