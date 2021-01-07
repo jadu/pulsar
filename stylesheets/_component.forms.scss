@@ -486,6 +486,7 @@ fieldset {
     color: color(text, help);
     display: block;
     font-size: $font-size-base;
+    white-space: normal;
 }
 
 // if a control label is in the help block (like a bare input) it doesn't need
@@ -662,23 +663,6 @@ fieldset {
         display: inline-block;
         width: 100%;
     }
-}
-
-.form-choice {
-    > .controls {
-        margin-top: 11px; // magic number to align with main label
-
-        > .control__label {
-            line-height: $line-height-large;
-        }
-    }
-}
-
-// disabled checkbox/radio inputs within a choice helper should have their label
-// look visually disabled too (the main label for the entire choice still uses
-// normal text colour)
-.is-disabled + .form-choice__label {
-    opacity: .4;
 }
 
 .form__indent {

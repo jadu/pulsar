@@ -8,28 +8,36 @@
     <h2 class="heading">Variations</h2>
     {{
         html.progress({
-            value: 50
+            'value': 50,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            class: 'progress-bar--success',
-            value: 60,
+            'class': 'progress-bar--success',
+            'value': 60,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            class: 'progress-bar--warning',
-            value: 70,
+            'class': 'progress-bar--warning',
+            'value': 70,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            class: 'progress-bar--danger',
-            value: 80,
+            'class': 'progress-bar--danger',
+            'value': 80,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
@@ -37,15 +45,17 @@
 
     {{
         html.progress({
-            value: 5,
-            value_visible: true
+            'value': 5,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            value: 10,
-            value_visible: true
+            'value': 10,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
@@ -53,17 +63,19 @@
     <h2 class="heading">Custom labels</h2>
     {{
         html.progress({
-            label:  'uploaded',
-            value: 80,
-            value_visible:  true
+            'label':  'uploaded',
+            'value': 80,
+            'value_visible':  true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            class: 'progress-bar--success',
-            label: 'done ' ~ html.icon('ok'),
-            value: 100
+            'class': 'progress-bar--success',
+            'label': 'done ' ~ html.icon('ok'),
+            'value': 100,
+            'aria-label': 'Upload progress'
         })
     }}
 

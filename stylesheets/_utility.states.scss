@@ -10,23 +10,31 @@ $danger-to-text-color: black;
 
 .warning:not(.form__group) {
     background: rgba(255, 137, 9, .8) !important;
-
-    @include ie-lte(8) {
-        background: rgb(255, 137, 9) !important;
-    }
 }
 
 .has-success:not(.form__group) {
     background-color: lighten(color(success), 50) !important;
+
+    a {
+        color: color(link, dark);
+    }
 }
 
 .has-warning:not(.form__group) {
     background-color: lighten(color(warning), 20) !important;
+
+    a {
+        color: color(link, dark);
+    }
 }
 
 .has-error:not(.form__group),
 .has-danger:not(.form__group) {
     background-color: color(danger, light) !important;
+
+    a {
+        color: color(link, dark);
+    }
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
