@@ -19,15 +19,18 @@ class ModalFocusService {
         /**
          * Manage focus
          * If modal has focusable elements in body, focus the first
-         * if not, focus the X close button
-         * if for some reason it doesn't have that, focus the cancel button in footer
+         * If not, focus the X close button
+         * If for some reason it doesn't have that, focus the cancel button in footer
+         * As a last resort, search for anything to focus
          */
         if ($modalBodyFocusableElements.length) {
             $modalBodyFocusableElements.first().trigger('focus');
         } else if ($modalCloseButton.length) {
             $modalCloseButton.trigger('focus');
-        } else {
+        } else if ($modalFooterCancelButton.length) {
             $modalFooterCancelButton.trigger('focus');
+        } else {
+            $modalFocusableElements.first().trigger('focus');
         }
 
         /**

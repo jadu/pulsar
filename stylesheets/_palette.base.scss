@@ -100,10 +100,10 @@ $palette-states: (
         dark:  darken(#eaa96a, 35)
     ),
     danger: (
-        base:  #c84d40,
-        alt:   pick_best_color(#c84d40, (#fff, #000)),
-        light: lighten(#c84d40, 40),
-        dark:  darken(#c84d40, 5)
+        base:  #b64135,
+        alt:   pick_best_color(#b64135, (#fff, #000)),
+        light: lighten(#b64135, 40),
+        dark:  darken(#b64135, 5)
     ),
     info: (
         base:  map-get(map-get($palette-branding, jadu-blue), pale),

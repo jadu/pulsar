@@ -240,7 +240,7 @@ td.table__form {
 
 td.table__form,
 .table__form td {
-    background-color: color(background);
+    background-color: color(background, light);
 
     .help-block {
         color: color(text);
@@ -282,6 +282,11 @@ td.row__actions {
     th,
     td {
         white-space: nowrap;
+
+        // Maintain expected behaviour of flush inputs
+        .form__group--flush {
+            white-space: normal;
+        }
     }
 }
 
@@ -341,7 +346,7 @@ td.row__actions {
     z-index: $zindex-sticky;
 
     @include respond-min($screen-tablet) {
-        bottom: 37px;
+        bottom: $footer-height;
     }
 }
 
