@@ -28,7 +28,7 @@ body {
   width: 100%;
 
   @include respond-min($screen-small) {
-    padding: 0 0 37px;
+    padding: 0 0 $footer-height;
   }
 
   @include ie-lte(8) {
