@@ -12,7 +12,8 @@
 
 "use strict";
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('lodash');
 
   // TOOLTIPS PUBLIC CLASS DEFINITION
   // ===============================
@@ -352,7 +353,7 @@ var $ = require('jquery');
     title = $e.attr('data-original-title')
       || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
 
-    return title
+    return _.escape(title)
   }
 
   Tooltips.prototype.tip = function () {
