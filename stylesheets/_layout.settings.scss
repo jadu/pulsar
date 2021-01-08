@@ -383,6 +383,7 @@
 .tab__container.has-settings .tab__inner {
     @include respond-min($screen-desktop) {
         align-items: flex-start;
+        align-content: flex-start;
         display: flex;
         flex-wrap: wrap; // to cater for presence of .tab__header
     }
@@ -584,19 +585,26 @@
  * Sticky sidebar
  */
 
-@media screen and (min-width: 992px) {
-    .tab__inner.is-sticky .tab__content {
-        left: calc(370px + 1%);
-        max-width: calc(100% - 370px);
-        position: relative;
-    }
+@include respond-min($screen-medium) {
+    .tab__inner.is-sticky {
+        min-height: 100vh;
+        padding-bottom: 0;
+        margin-bottom: (-$footer-height);
 
-    .tab__inner.is-sticky .tab__settings {
-        -webkit-overflow-scrolling: touch;
-        max-width: 370px;
-        max-height: 100%;
-        overflow-y: auto;
-        position: fixed;
-        top: 0;
+        .tab__content {
+            min-height: 100vh;
+            padding-bottom: $footer-height;
+            left: calc(370px + 1%);
+            position: relative;
+        }
+
+        .tab__settings {
+            -webkit-overflow-scrolling: touch;
+            max-width: 370px;
+            max-height: calc(100% - #{$footer-height});
+            overflow-y: auto;
+            position: fixed;
+            top: 0;
+        }
     }
 }

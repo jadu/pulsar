@@ -361,7 +361,7 @@ td.row__actions {
     z-index: $zindex-sticky;
 
     @include respond-min($screen-tablet) {
-        bottom: 37px;
+        bottom: $footer-height;
     }
 }
 

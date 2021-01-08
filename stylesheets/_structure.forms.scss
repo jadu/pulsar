@@ -93,7 +93,8 @@
 // }
 
 .form__group--top {
-    > .control__label {
+    > .control__label,
+    > span.control__label {
         @include col-span(12);
     }
 
