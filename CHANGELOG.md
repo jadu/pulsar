@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add CHANGELOG.md file [#1352](https://github.com/jadu/pulsar/pull/1352)
 - Add ability for textareas to use common appended/prepended options [#1314](https://github.com/jadu/pulsar/pull/1314)
+- Add `.form__group--tight` modifier to reduce vertical spacing between form groups [#1360](https://github.com/jadu/pulsar/pull/1360)
 
 ### Changed
 - Sticky sidebar behaviour (used by XFP) is now more consistent and visually stable regardless of main content height [#1326](https://github.com/jadu/pulsar/pull/1326)
