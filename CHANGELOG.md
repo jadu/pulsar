@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Form labels for choice block components are now properly aligned vertically with the inputs [#1332](https://github.com/jadu/pulsar/pull/1332)
 
 ### Security
+- Stop (old) tooltip.js from directly interpreting selectors passed through options [#1359](https://github.com/jadu/pulsar/pull/1359)
 - Add escaping on values which are extracted from DOM notes then output in the view [#1331](https://github.com/jadu/pulsar/pull/1331)
 - Upgrade datatables.net-responsive-dt from 2.2.3 to 2.2.6 [#1336](https://github.com/jadu/pulsar/pull/1336)
 - Upgrade datatables from 1.10.22 to 1.10.23 [#1346](https://github.com/jadu/pulsar/pull/1346)

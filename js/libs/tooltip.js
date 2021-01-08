@@ -50,7 +50,7 @@ var $ = require('jquery'),
     this.type      = type
     this.$element  = $(element)
     this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $(this.options.viewport.selector || this.options.viewport)
+    this.$viewport = this.options.viewport && $.find(this.options.viewport.selector || this.options.viewport)
 
     var triggers = this.options.trigger.split(' ')
 
@@ -159,7 +159,7 @@ var $ = require('jquery'),
         .css({ top: 0, left: 0, display: 'block' })
         .addClass(placement)
 
-      this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+      this.options.container ? $tip.appendTo($.find(this.options.container)) : $tip.insertAfter(this.$element)
 
       var pos          = this.getPosition()
       var actualWidth  = $tip[0].offsetWidth
