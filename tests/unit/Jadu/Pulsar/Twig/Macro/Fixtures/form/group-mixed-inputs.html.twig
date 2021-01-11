@@ -3,11 +3,13 @@
 {{
     form.group({
         'parent': {
-            'label': 'foo'
+            'label': 'foo',
+            'id': 'mixed-label'
         },
         'inputs': [
             form.select({
                 'bare': true,
+                'id': 'mixed-label',
                 'options': {
                     'foo': 'bar'
                 }
