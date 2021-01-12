@@ -1012,7 +1012,7 @@ class   | string | A space separated list of class names
 {% macro end(options) %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% spaceless %}
-    
+
     {% if options.actions is defined %}
         <div{{
             attributes(options
@@ -1080,13 +1080,13 @@ value  | string, array  | The string, or array of strings to render inside the e
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {% for error in errors %}
                 <span class="help-block is-error" id="{{ attribute(options.error_ids, loop.index0) }}">
-                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                    {{ html.icon('warning-sign') }} <span class="hide">Error:</span> {{ error|raw -}}
                 </span>
             {% endfor %}
         {% else %}
             {% for error in errors %}
                 <span class="help-block is-error">
-                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                    {{ html.icon('warning-sign') }} <span class="hide">Error:</span> {{ error|raw -}}
                 </span>
             {% endfor %}
         {% endif %}
