@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade browser-sync from 2.17.3 to 2.26.13 [#1354](https://github.com/jadu/pulsar/pull/1354/)
 - Upgrade grunt-real-favicon from 0.2.2 to 0.2.4 [#1354](https://github.com/jadu/pulsar/pull/1354/)
 - Upgrade jstree from 3.3.9 to 3.3.11 [#1369](https://github.com/jadu/pulsar/pull/1369)
+- Upgrade pikaday from 1.8.0 to 1.8.2 [#1368](https://github.com/jadu/pulsar/pull/1368)
 - Bump ini from 1.3.5 to 1.3.7 [#1344](https://github.com/jadu/pulsar/pull/1344)
 - Bump bl from 1.2.2 to 1.2.3 [#1342](https://github.com/jadu/pulsar/pull/1342)
 
