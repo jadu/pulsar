@@ -796,3 +796,12 @@ fieldset.form__group {
     line-height: $line-height-large;
     text-align: center;
 }
+
+// CK editor focus styles. Plugin used in all products. Chained for specificity bump.
+// scss-lint:disable SelectorFormat
+.cke_focus.cke_focus {
+    border: 3px solid color(black);
+    border-radius: 0;
+    outline: 3px solid color(border, focus);
+    outline-offset: 0;
+}
