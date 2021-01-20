@@ -756,7 +756,7 @@ fieldset.form__group {
 }
 
 .form__group--compound {
-    > legend.control__label {
+    > .control__label {
         @include respond-max($screen-small) {
             margin-bottom: 0;
         }
