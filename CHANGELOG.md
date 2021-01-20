@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add ability for textareas to use common appended/prepended options [#1314](https://github.com/jadu/pulsar/pull/1314)
 - Add table caption styles [#1361](https://github.com/jadu/pulsar/pull/1361)
 - Add `.form__group--tight` modifier to reduce vertical spacing between form groups [#1360](https://github.com/jadu/pulsar/pull/1360)
+- Add CK Editor focus styles (previously scratched in product) [#1370](https://github.com/jadu/pulsar/pull/1370)
 
 ### Changed
 - Sticky sidebar behaviour (used by XFP) is now more consistent and visually stable regardless of main content height [#1326](https://github.com/jadu/pulsar/pull/1326)
