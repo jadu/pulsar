@@ -756,6 +756,12 @@ fieldset.form__group {
 }
 
 .form__group--compound {
+    > .control__label {
+        @include respond-max($screen-small) {
+            margin-bottom: 0;
+        }
+    }
+
     > .controls {
         // override regular stacked styling
         > .form__control,
@@ -767,10 +773,7 @@ fieldset.form__group {
             vertical-align: top;
         }
 
-        // make sure inputs are suitably spaced when they stack with 100% width
-        // at small screen widths
-        .form__control:not(:last-child) {
-            margin-right: 1%; // needs to be grid gutter var
+        .form__control {
             margin-top: 5px;
 
             @include respond-min($screen-small) {
