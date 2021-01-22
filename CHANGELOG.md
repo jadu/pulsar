@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Sticky sidebar behaviour (used by XFP) is now more consistent and visually stable regardless of main content height [#1326](https://github.com/jadu/pulsar/pull/1326)
+- Update homebrew installation script path in makefile [#1362](https://github.com/jadu/pulsar/pull/1362)
 - Form helper outputted error text is now prepended with a visually hidden `Error:` to improve SR experience [#1364](https://github.com/jadu/pulsar/pull/1364)
   - ⚠️ Products which use non-helper form components will need to implement this change in their markup
 - Grunt sass now uses dart-sass insteasd of the deprecated libsass. [#1351](https://github.com/jadu/pulsar/pull/1351)
