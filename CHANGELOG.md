@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+⚠️ denotes a breaking change that may require changes to be made within Jadu products.
+
 ## [Unreleased](https://github.com/jadu/pulsar/issues?q=is%3Aclosed+milestone%3AUnreleased)
 ### Added
 - Add CHANGELOG.md file [#1352](https://github.com/jadu/pulsar/pull/1352)
@@ -17,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sticky sidebar behaviour (used by XFP) is now more consistent and visually stable regardless of main content height [#1326](https://github.com/jadu/pulsar/pull/1326)
 - Update homebrew installation script path in makefile [#1362](https://github.com/jadu/pulsar/pull/1362)
 - Form helper outputted error text is now prepended with a visually hidden `Error:` to improve SR experience [#1364](https://github.com/jadu/pulsar/pull/1364)
+  - ⚠️ Products which use non-helper form components will need to implement this change in their markup
+- Grunt sass now uses dart-sass insteasd of the deprecated libsass. [#1351](https://github.com/jadu/pulsar/pull/1351)
+  - ⚠️ There is a change to how colour values are interpreted which may need a change within product sass files
 
 ### Fixed
 - Progress bar with warning state and a visible value failed colour contrast [#1350](https://github.com/jadu/pulsar/pull/1350)

@@ -38,8 +38,8 @@ $danger-to-text-color: black;
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
-    %text--#{$state},
-    .text--#{$state} {
+    %text--#{'' + $state},
+    .text--#{'' + $state} {
         color: $state-color;
     }
 }
