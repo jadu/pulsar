@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - ⚠️ Products which use non-helper form components will need to implement this change in their markup
 - Grunt sass now uses dart-sass insteasd of the deprecated libsass. [#1351](https://github.com/jadu/pulsar/pull/1351)
   - ⚠️ There is a change to how colour values are interpreted which may need a change within product sass files
+- `html.datatable` and `form.repeater` helpers now correctly add `scope="col"` to TH elements
 
 ### Fixed
 - Progress bar with warning state and a visible value failed colour contrast [#1350](https://github.com/jadu/pulsar/pull/1350)
