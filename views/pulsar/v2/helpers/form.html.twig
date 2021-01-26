@@ -2502,9 +2502,9 @@ actions-column-text     | string | The text content of the actions column header
                     <thead class="repeater__preview-headings">
                         <tr>
                             {% for heading in options.headings %}
-                                <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
+                                <th scope="col" data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
                             {% endfor %}
-                            <th rowspan="1" colspan="1" class="shrink-to-fit">{{ options['actions-column-text']|default('Actions') }}</th>
+                            <th scope="col" rowspan="1" colspan="1" class="shrink-to-fit">{{ options['actions-column-text']|default('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="repeater__preview-data" data-repeater-preview-root>
