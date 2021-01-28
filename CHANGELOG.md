@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add escaping on values which are extracted from DOM notes then output in the view [#1331](https://github.com/jadu/pulsar/pull/1331)
 - Upgrade datatables.net-responsive-dt from 2.2.3 to 2.2.6 [#1336](https://github.com/jadu/pulsar/pull/1336)
 - Upgrade datatables.net-responsive from 2.2.3 to 2.2.6 [#1367](https://github.com/jadu/pulsar/pull/1367)
+= Upgrade datatables.net-responsive from 2.2.6 to 2.2.7 [#1372](https://github.com/jadu/pulsar/pull/1372)
 - Upgrade datatables from 1.10.22 to 1.10.23 [#1346](https://github.com/jadu/pulsar/pull/1346)
 - Upgrade datatables.net-buttons-dt from 1.6.1 to 1.6.5 [#1356](https://github.com/jadu/pulsar/pull/1356)
 - Upgrade moment from 2.27.0 to 2.29.1 [#1357](https://github.com/jadu/pulsar/pull/1357)
