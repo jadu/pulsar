@@ -11,7 +11,6 @@
         "twig/twig": "^1.21"
     },
     "require-dev": {
-        "symfony/yaml": "*",
-        "phpunit/phpunit": "^9"
+        "symfony/yaml": "*"
     }
 }

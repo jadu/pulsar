@@ -20,7 +20,6 @@ before_script:
   - npm install
   - mkdir -p dist/js
   - gem update --system && gem install scss_lint
-  - composer install
 
 install:
   - composer self-update
