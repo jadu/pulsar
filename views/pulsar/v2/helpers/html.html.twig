@@ -1581,13 +1581,13 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                     {% for column in options.data.columns %}
                         {% if loop.first %}
                             {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
-                                <th class="table-selection" data-orderable="false">
+                                <th scope="col" class="table-selection" data-orderable="false">
                                     <span class="hide">Row selection controls</span>
                                     <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="Select all rows" data-tippy-placement="right" />
                                 </th>
                             {% endif %}
                         {% endif %}
-                        <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
+                        <th{{ attributes(column.attrs|default) }} scope="col">{{ column.title }}</th>
                     {% endfor %}
             </tr>
         </thead>

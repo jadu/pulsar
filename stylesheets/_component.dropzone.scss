@@ -233,17 +233,17 @@ $dropzone-icon-rotation: 30deg;
  */
 
 @mixin dropzone-flash ($state) {
-    @keyframes #{$state}-flash {
+    @keyframes #{'' + $state}-flash {
         0% {
-            background-color: rgba(color(#{$state}, light), 1);
+            background-color: rgba(color(#{'' + $state}, light), 1);
         }
 
         15% {
-            background-color: rgba(color(#{$state}, light), 1);
+            background-color: rgba(color(#{'' + $state}, light), 1);
         }
 
         100% {
-            background-color: rgba(color(#{$state}, light), 0);
+            background-color: rgba(color(#{'' + $state}, light), 0);
         }
     }
 }

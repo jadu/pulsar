@@ -665,23 +665,6 @@ fieldset {
     }
 }
 
-.form-choice {
-    > .controls {
-        margin-top: 11px; // magic number to align with main label
-
-        > .control__label {
-            line-height: $line-height-large;
-        }
-    }
-}
-
-// disabled checkbox/radio inputs within a choice helper should have their label
-// look visually disabled too (the main label for the entire choice still uses
-// normal text colour)
-.is-disabled + .form-choice__label {
-    opacity: .4;
-}
-
 .form__indent {
     @include respond-min($screen-tablet) {
         margin-left: 25%;
@@ -773,6 +756,12 @@ fieldset.form__group {
 }
 
 .form__group--compound {
+    > .control__label {
+        @include respond-max($screen-small) {
+            margin-bottom: 0;
+        }
+    }
+
     > .controls {
         // override regular stacked styling
         > .form__control,
@@ -784,10 +773,7 @@ fieldset.form__group {
             vertical-align: top;
         }
 
-        // make sure inputs are suitably spaced when they stack with 100% width
-        // at small screen widths
-        .form__control:not(:last-child) {
-            margin-right: 1%; // needs to be grid gutter var
+        .form__control {
             margin-top: 5px;
 
             @include respond-min($screen-small) {
@@ -809,4 +795,13 @@ fieldset.form__group {
     font-size: $font-size-xlarge;
     line-height: $line-height-large;
     text-align: center;
+}
+
+// CK editor focus styles. Plugin used in all products. Chained for specificity bump.
+// scss-lint:disable SelectorFormat
+.cke_focus.cke_focus {
+    border: 3px solid color(black);
+    border-radius: 0;
+    outline: 3px solid color(border, focus);
+    outline-offset: 0;
 }
