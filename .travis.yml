@@ -27,7 +27,7 @@ install:
   - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text
 
 script:
-  - phpunit
+  - ./vendor/bin/phpunit
   - grunt build
   - npm test
   - npm run coverage
