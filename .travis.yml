@@ -8,7 +8,9 @@ cache:
     - $HOME/.composer/cache
 
 php:
+  - 7.2
   - 7.3
+  - 7.4
 
 before_install:
   - npm install -g npm@5.5.1
@@ -22,6 +24,7 @@ before_script:
 install:
   - composer self-update
   - composer install --prefer-dist --no-interaction
+  - composer require phpunit/phpunit
   - if [[ $TRAVIS_PHP_VERSION > '7.1' ]]; then wget -O ~/.phpenv/versions/$(phpenv version-name)/bin/phpunit https://phar.phpunit.de/phpunit-7.phar; fi
   - if [[ $TRAVIS_PHP_VERSION > '7.1' ]]; then chmod 755 ~/.phpenv/versions/$(phpenv version-name)/bin/phpunit; fi
   - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text
