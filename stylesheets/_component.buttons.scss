@@ -67,7 +67,7 @@ $btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
 }
 
 // Outline button styles
-.btn--outline {
+.btn.btn--outline {
     background: none;
     border: 1px solid color(base);
     color: color(base, alt);
