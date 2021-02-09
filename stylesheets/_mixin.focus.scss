@@ -8,17 +8,8 @@
 
 @mixin pulsar-button-focused {
     background-color: color(background, focus);
-    box-shadow: 0 2px 0 color(black);
     color: color(black) !important;
-    outline: none;
-}
-
-@mixin pulsar-outline-button-focused {
-    background-color: color(background, focus) !important;
-    border: 2px solid color(background, focus);
-    border-bottom: 0;
-    box-shadow: 0 2px 0 color(black), 0 2px 0 color(background, focus);
-    color: color(black) !important;
+    box-shadow: 0 0 0 2px color(black);
     outline: none;
 }
 

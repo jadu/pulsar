@@ -17,33 +17,33 @@
         }
     }
 
-    [href],
-    .continuum-cms & [href]:link {
-        border-bottom: 1px dotted color(grey, light);
-        color: color(link);
-        text-decoration: none;
+    // [href],
+    // .continuum-cms & [href]:link {
+    //     border-bottom: 1px dotted color(grey, light);
+    //     color: color(link);
+    //     text-decoration: none;
 
-        &:not(.btn):focus {
-            @include pulsar-link-focused;
-        }
+    //     &:not(.btn):focus {
+    //         @include pulsar-link-focused;
+    //     }
 
-        &:focus {
-            border: 0;
-            color: color(black);
-        }
-    }
+    //     &:focus {
+    //         border: 0;
+    //         color: color(black);
+    //     }
+    // }
 
-    [href].btn {
-        border-bottom: 0;
-    }
+    // [href].btn {
+    //     border-bottom: 0;
+    // }
 
     tbody > tr:hover {
         background-color: color(background, light);
 
-        [href],
-        .continuum-cms & [href]:link {
-            color: color(link, dark);
-        }
+        // [href],
+        // .continuum-cms & [href]:link {
+        //     color: color(link, dark);
+        // }
     }
 
     tr {
@@ -54,11 +54,11 @@
     tr.is-selected td {
         background-color: color(background, selected);
 
-        [href],
-        .continuum-cms & [href]:link {
-            border-bottom: 1px dotted color(link, dark);
-            color: color(link, dark);
-        }
+        // [href],
+        // .continuum-cms & [href]:link {
+        //     border-bottom: 1px dotted color(link, dark);
+        //     color: color(link, dark);
+        // }
     }
 
     tr.is-disabled td:not(.table-row__actions) {
