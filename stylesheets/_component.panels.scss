@@ -100,11 +100,11 @@
             a:hover,
             a:active,
             a:visited {
-                color: $state-color-alt !important;
+                color: $state-color-alt;
             }
 
             a:focus {
-                color: color(black) !important;
+                color: color(black);
             }
         }
     }
