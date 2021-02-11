@@ -1,4 +1,6 @@
 // Variables
+$btn-border-radius: 0; // Just experimenting with 0 border for a while...
+
 $btn-padding-x: 10px;
 $btn-padding-top: 10px;
 $btn-padding-bottom: 9px;
@@ -25,10 +27,8 @@ $btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
 }
 
 // Button Constructor
-.btn {
+%btn {
     @include button-variant('base');
-    border: 0;
-    border-radius: $border-radius;
     cursor: pointer;
     display: inline-block;
     font-family: $font-family-base;
@@ -40,14 +40,16 @@ $btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
     user-select: none;
     vertical-align: middle;
     white-space: nowrap;
+}
 
-    .icon,
-    [class*=icon-] {
-        font-size: 14px;
-    }
+// Base buttons
+.btn {
+    @extend %btn;
+    border: 0;
+    border-radius: $btn-border-radius;
 
     &:focus,
-    &:hover:focus {
+    &:focus:hover {
         @include pulsar-button-focused;
     }
 
@@ -57,36 +59,46 @@ $btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
         opacity: .5;
         pointer-events: none;
     }
+
+    .icon,
+    [class*=icon-] {
+        font-size: 14px;
+    }
 }
 
 // State variations
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .btn--#{'' + $state} {
-        @include button-variant($state);
+    @if $state != 'base' {
+        .btn--#{'' + $state} {
+            @include button-variant($state);
+        }
     }
 }
 
 // Outline button styles
 .btn.btn--outline {
     background: none;
-    border: 1px solid color(base);
+    border: 1px solid color(base, alt);
     color: color(base, alt);
 
     // Double chain focus states to stop outline state variation overriding background colour
     &.btn--outline:focus,
     &.btn--outline:hover:focus {
         @include pulsar-button-focused;
-        border: 0;
+        border-color: color(black);
+        box-shadow: 0 0 0 1px color(black);
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
-        &.btn--#{'' + $state} {
-            border-color: $state-color;
-            color: color($state, dark);
+        @if $state != 'base' {
+            &.btn--#{'' + $state} {
+                border-color: $state-color;
+                color: color($state, dark);
 
-            &:hover {
-                background-color: $state-color;
-                color: $state-color-alt;
+                &:hover {
+                    background-color: $state-color;
+                    color: $state-color-alt;
+                }
             }
         }
     }
