@@ -1,105 +1,72 @@
-.label,
-%label {
-    @include inline-block;
-    @include content-box;
-    @include label-variant(color(base), color(base, alt), false);
-    border-radius: $border-radius;
-    font-size: 75%;
-    font-weight: 500;
-    line-height: 1;
-    padding: .25em .6em;
-    text-align: center;
-    text-transform: lowercase;
-    vertical-align: baseline;
-    white-space: nowrap;
+// Variant constructor
+@mixin label-variant($state) {
+    background-color: color($state);
+    color: color($state, alt);
 
-    // Add hover effects, but only for links
-    &[href] {
-        &:hover,
-        &:focus {
-            text-decoration: none;
-            cursor: pointer;
-            background-color: color(gray, lighter);
-        }
-    }
-
-    // Removable labels
-    .btn.remove-button,
-    .btn.remove-button [class^="icon-"],
-    .btn.remove-button [class*=" icon-"] {
-        &,
-        &:hover {
-            box-shadow: none;
-            color: inherit;
-            font-size: 1em;
-            line-height: inherit;
-            margin-left: 2px;
-            text-decoration: none;
-            top: 0;
-        }
-    }
-
-    // Override default button styling
-    .btn.remove-button:active {
-        background-color: inherit !important;
+    .remove-button [class^="icon-"] {
+        color: color($state, alt);
     }
 }
 
-// Newer removable label styles
+// Label constructor
+%label {
+    @include label-variant('base');
+    border-radius: $border-radius;
+    display: inline-block;
+    font-size: $font-size-medium;
+    padding: 0 $padding-small-em;
+    text-align: center;
+    text-transform: lowercase;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+// Base labels
+.label {
+    @extend %label;
+}
+
+// State variations
+@each $state, $state-color, $state-color-alt in $state-colors {
+    @if $state != 'base' {
+        .label--#{'' + $state} {
+            @include label-variant($state);
+        }
+    }
+}
+
+// Removable labels (labels with a remove button attached)
 .label--removable {
     padding: 0;
 
     .label__text {
-        padding: .25em .6em;
+        padding: 0 $padding-small-em;
         display: inline-block;
     }
 
     .btn.remove-button {
-        padding: .25em .45em;
+        padding: $padding-micro-em $padding-small-em ($padding-micro-em + .1);
         background-color: rgba(0, 0, 0, .15);
         border-radius: 0 $border-radius $border-radius 0;
-        margin-left: 0 !important;
 
-        [class^="icon-"] {
-            margin-left: 0 !important;
-        }
-
-        &:focus {
-            @include pulsar-label-remove-button-focused;
-        }
-
+        &:focus,
         &:focus:active {
             @include pulsar-label-remove-button-focused;
         }
 
         &:active {
-            background-color: rgba(0, 0, 0, .2) !important;
+            background-color: rgba(0, 0, 0, .2);
         }
     }
 }
 
-// Colors
-// Contextual variations (linked labels get darker on :hover)
-@each $state, $state-color, $state-color-alt in $state-colors {
+// Links with labels (not a recommended pattern but in use in a few places)
+a {
+    .label {
+        text-decoration: underline;
+    }
 
-    // Ignore the base state
-    @if $state != 'base' {
-        .label--#{'' + $state} {
-            @include label-variant($state-color, $state-color-alt, true);
-        }
+    &:focus .label {
+        @include pulsar-link-label-focused;
     }
 }
-
-.label--large {
-    line-height: 2;
-
-    .remove-button {
-        line-height: inherit;
-    }
-}
-
-// Linked labels
-a:focus .label {
-    @include pulsar-link-label-focused;
-}
-
