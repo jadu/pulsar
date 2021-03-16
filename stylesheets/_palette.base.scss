@@ -10,9 +10,9 @@
 
 $palette-branding: (
     jadu-purple: (
-        darkest:    rgb(46, 54, 112),
-        dark:       rgb(52, 61, 128),
-        base:       rgb(61, 71, 150),
+        darkest:    darken(#3e4994, 10%),
+        dark:       darken(#3e4994, 7.5%),
+        base:       #3e4994,
         light:      rgb(86, 96, 173),
         pale:       rgb(104, 113, 183)
     ),

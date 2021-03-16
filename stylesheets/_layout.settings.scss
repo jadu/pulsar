@@ -5,7 +5,7 @@
 .tab__settings {
     @include clear-fix(true);
 
-    background-color: color(background, light);
+    background-color: color(white);
     margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
@@ -357,10 +357,6 @@
     @include respond-min($screen-medium) {
         margin-bottom: $line-height-small;
 
-        // stop tables extending past the container when enlarged (IE10)
-        // https://github.com/jadu/pulsar/pull/925#discussion_r234206459
-        -ms-flex: 1 1 auto;
-
         .ie9 & {
             padding-left: $padding-small-horizontal * 2;
         }
@@ -389,7 +385,10 @@
     }
 
     .tab__header {
+        background-color: color(white);
         flex-basis: 100%;
+        margin: 0 0 $margin-large-vertical;
+        padding: $padding-base;
         width: 100%;
     }
 }

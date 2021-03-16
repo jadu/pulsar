@@ -127,9 +127,9 @@ $footer-height:                       $line-height-base + ($footer-padding-verti
 // -----------------------------------------------------------------------------
 
 $nav-primary-width:                   85px;
-$nav-color-light: darken(rgb(45, 134, 179), 2.5%) !default; // must be AA 4.5:1
-$nav-color-dark: darken(rgb(45, 134, 179), 7.5%) !default;
-$nav-color-darker: darken(rgb(45, 134, 179), 10%) !default;
+$nav-color-light:                    #3e4994; // must be AA 4.5:1
+$nav-color-dark:                      darken(#3e4994, 7.5%);
+$nav-color-darker:                    darken(#3e4994, 10%);
 
 // -----------------------------------------------------------------------------
 //  Forms

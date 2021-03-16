@@ -41,22 +41,24 @@
 }
 
 .nav-inline {
+    background-color: color(white);
+    border-bottom: 1px solid color(gray, light);
     -webkit-overflow-scrolling: touch;
+    margin: 0 -20px;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    width: 100%;
+    width: auto;
 
     @include ie-lte(9) {
         height: 49px;
     }
 
     &__list {
-        border-bottom: 1px solid color(border);
         display: inline-block;
         list-style: none;
-        margin-bottom: 0;
-        min-width: 100%;
+        margin: 0 0 0 $gutter-width;
+        min-width: calc(100% - $gutter-width);
     }
 
     &__item {
@@ -70,7 +72,7 @@
     }
 
     &__item.is-active {
-        border-bottom: 2px solid $nav-color-light;
+        border-bottom: 4px solid $nav-color-light;
         margin-bottom: -1px;
     }
 

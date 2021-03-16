@@ -1,12 +1,18 @@
 .content-main {
-    position: relative;
+    display: 2px dashed red;
+    background-color: color(gray, off-white);
     display: table;
+    min-height: 100%;
     padding: 0 $gutter-width;
-    table-layout: fixed;
+    position: relative;
+    table-layout: fixed; // needed to make datatable overflow work at small widths
     width: 100%;
 }
 
 .main-title {
+    border-bottom: 1px solid color(gray, light);
+    color: color(jadu-purple);
+    font-family: $font-family-heading;
     font-size: 1.75em;
     line-height: 32px;
     margin-bottom: 13px;
@@ -115,11 +121,14 @@
 }
 
 .tab__pane {
-    margin-top: 24px;
+    margin-top: ($margin-large-vertical * 2);
     width: 100%;
 }
 
 .tab__content {
+    background-color: color(white);
+    margin-bottom: ($margin-large-vertical * 2);
+    padding: 15px $gutter-width $gutter-width;
     width: auto;
 }
 
@@ -177,8 +186,6 @@
     }
 }
 
-// experimenting with new tab rendering
-
 .tab__container {
     float: none;
     height: 100%;
@@ -212,7 +219,6 @@
         @include respond-min($screen-desktop) {
           display: table-cell;
           float: right;
-          padding-left: $padding-base;
         }
 
         .no-js & {
