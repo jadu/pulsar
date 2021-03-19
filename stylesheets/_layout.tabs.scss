@@ -13,14 +13,15 @@
 .main-title {
     color: color(jadu-purple);
     font-family: $font-family-heading;
-    font-size: 1.75em;
+    font-size: 1.5em;
     line-height: 32px;
-    margin-bottom: 13px;
     width: 100%;
 }
 
 .main-title {
     border-bottom: 1px solid color(gray, light);
+    font-size: 1.75em;
+    margin-bottom: 13px;
 }
 
 .sub-title {
