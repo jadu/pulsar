@@ -9,14 +9,18 @@
     width: 100%;
 }
 
+.parent-title,
 .main-title {
-    border-bottom: 1px solid color(gray, light);
     color: color(jadu-purple);
     font-family: $font-family-heading;
     font-size: 1.75em;
     line-height: 32px;
     margin-bottom: 13px;
     width: 100%;
+}
+
+.main-title {
+    border-bottom: 1px solid color(gray, light);
 }
 
 .sub-title {
