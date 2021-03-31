@@ -1,0 +1,66 @@
+---
+id: metadata
+title: Metadata
+sidebar_label: Metadata
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Provides a simple way to mark up key/value information provided by a Twig hash or JSON object.
+
+<div className="d-example">
+  <dl class="metadata"><dt class="metadata__key">File</dt>
+  <dd class="metadata__value">true_lies.avi</dd><dt class="metadata__key">Size</dt>
+  <dd class="metadata__value">1.2 Gb</dd><dt class="metadata__key">Type</dt>
+  <dd class="metadata__value">Video</dd></dl>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.metadata({
+    'items': {
+      'File': 'true_lies.avi',
+      'Size': '1.2 Gb',
+      'Type': 'Video'
+    }
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<dl class="metadata">
+  <dt class="metadata__key">File</dt>
+  <dd class="metadata__value">true_lies.avi</dd>
+  <dt class="metadata__key">Size</dt>
+  <dd class="metadata__value">1.2 Gb</dd>
+  <dt class="metadata__key">Type</dt>
+  <dd class="metadata__value">Video</dd>
+</dl>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| items | hash | A hash of items formatted as `{ 'key': 'value' }`, both will be displayed |

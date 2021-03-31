@@ -1,0 +1,127 @@
+---
+id: link
+title: Link
+sidebar_label: Link
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Creates a simple HTML link, often used inside other helpers.
+
+<div className="d-example">
+  <a href="http://www.jadu.net">Jadu</a>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.link({
+        'href': 'http://www.jadu.net',
+        'label': 'Jadu'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<a href="http://www.jadu.net">Jadu</a>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| href | string | The URL location to navigate to |
+| icon | string | An icon to place before the label |
+
+## Icons
+
+### Before the label
+
+<div className="d-example">
+  <a href="#add"><i aria-hidden="true" class="icon-plus"></i>&nbsp;Add</a>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.link({
+        'href': '#add',
+        'icon': 'plus',
+        'label': 'Add'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<a href="#add"><i aria-hidden="true" class="icon-plus"></i>&nbsp;Add</a>
+```
+
+</TabItem>
+</Tabs>
+
+### After the label
+
+<div className="d-example">
+  <a href="#view">View Live <i aria-hidden="true" class="icon-external-link"></i></a>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.link({
+        'href': '#view',
+        'label': 'View Live ' ~ html.icon('external-link')
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<a href="#view">View Live <i aria-hidden="true" class="icon-external-link"></i></a>
+```
+
+</TabItem>
+</Tabs>

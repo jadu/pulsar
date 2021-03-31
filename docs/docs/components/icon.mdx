@@ -1,0 +1,91 @@
+---
+id: icon
+title: Icon
+sidebar_label: Icon
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Help visually distinguish and provide extra meaning to certain items or actions. You can pass an icon name or mime type to generate the appropriate icon.
+
+Pulsar currently uses [Font Awesome 4](https://fontawesome.com/v4.7.0/), please refer to the [icon cheatsheet](https://fontawesome.com/v4.7.0/icons/) to see the full list of available icons.
+
+<div className="d-example">
+  <i className="icon-save"><span className="hide">Save</span></i>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.icon('save', {
+        'label': 'Save'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<i className="icon-save"><span className="hide">Save</span></i>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| class | string | A space-separated list of additional class names, these will be added to whatever classes the component requires for its own styling |
+| label | string | An optional label which can be accessed by screen readers, this should be used when there is no visible text label which can be used for context |
+
+## Mime type icons
+
+The icon helper can take a standard mime type string to make it easier to illustrate certain file types.
+
+<div className="d-example">
+  <i className="icon-file-word-o"><span className="hide">Microsoft Word</span></i>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.icon('application/msword', {
+        'label': 'Microsoft Word'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<i className="icon-file-word-o"><span className="hide">Microsoft Word</span></i>
+```
+
+</TabItem>
+</Tabs>

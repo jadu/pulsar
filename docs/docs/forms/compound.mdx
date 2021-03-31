@@ -1,0 +1,347 @@
+---
+id: compound
+title: Compound
+sidebar_label: Compound
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The compound helper allows you to build a form group using multiple separate inputs with a single common label, and render those in a screenreader-friendly way.
+
+## Defining inputs
+
+The inputs option accepts the same hash of options you would normally pass to a form helper, however you will need to explicitly define the type of input to create, which currently can be text, textarea, select or select2.
+
+You should provide sensible labels as well as unique IDs for each individual inputs so that screenreaders can announce the separate fields sensibly, use show-label': false to visually hide them from the user interface.
+
+<div className="d-example">
+  <fieldset id="compound-1" class="form__group form__group--compound">
+    <legend className="control__label" id="compound-1[label]">Example</legend>
+    <div className="controls">
+      <label for="guid-1473105725" id="guid-1473105725[label]" className="control__label hide">One</label>
+      <input id="guid-1473105725" placeholder="One" type="text" className="form__control form__control-col--1" />
+      <label for="guid-1214253806" id="guid-1214253806[label]" className="control__label hide">Two</label>
+      <input id="guid-1214253806" placeholder="Two" type="text" className="form__control form__control-col--1" />
+    </div>
+  </fieldset>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.compound({
+    'id': 'compound-1',
+    'label': 'Example',
+    'inputs': [
+      {
+        'class': 'form__control-col--1',
+        'label': 'One',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'One',
+        'show-label': false,
+        'type': 'text'
+      },
+      {
+        'class': 'form__control-col--1',
+        'label': 'Two',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'Two',
+        'show-label': false,
+        'type': 'text'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset id="compound-1" class="form__group form__group--compound">
+  <legend class="control__label" id="compound-1[label]">Example</legend>
+  <div class="controls">
+    <label for="guid-1473105725" id="guid-1473105725[label]" class="control__label hide">One</label>
+    <input id="guid-1473105725" placeholder="One" type="text" class="form__control form__control-col--1" />
+    <label for="guid-1214253806" id="guid-1214253806[label]" class="control__label hide">Two</label>
+    <input id="guid-1214253806" placeholder="Two" type="text" class="form__control form__control-col--1" />
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+## Example patterns
+
+### Date of birth
+
+<div className="d-example">
+  <fieldset id="compound-2" className="form__group form__group--compound">
+    <legend className="control__label" id="compound-2[label]">Date of birth</legend>
+    <div className="controls">
+      <label for="guid-1920474953" id="guid-1920474953[label]" className="control__label hide">Day</label>
+      <input id="guid-1920474953" placeholder="DD" type="text" aria-describedby="guid-402318983" className="form__control form__control-col--1" />
+      <label for="guid-844870068" id="guid-844870068[label]" className="control__label hide">Month</label>
+      <input id="guid-844870068" placeholder="MM" type="text" aria-describedby="guid-402318983" className="form__control form__control-col--1" />
+      <label for="guid-986794967" id="guid-986794967[label]" className="control__label hide">Year</label>
+      <input id="guid-986794967" placeholder="YYYY" type="text" aria-describedby="guid-402318983" className="form__control form__control-col--2" />
+      <span className="help-block" id="guid-402318983">For example: 25 12 1980</span>
+    </div>
+  </fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.compound({
+    'id': 'compound-2',
+    'help': 'For example: 25 12 1980',
+    'label': 'Date of birth',
+    'inputs': [
+      {
+        'class': 'form__control-col--1',
+        'label': 'Day',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'DD',
+        'show-label': false,
+        'type': 'text'
+      },
+      {
+        'class': 'form__control-col--1',
+        'label': 'Month',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'MM',
+        'show-label': false,
+        'type': 'text'
+      },
+      {
+        'class': 'form__control-col--2',
+        'label': 'Year',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'YYYY',
+        'show-label': false,
+        'type': 'text'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset id="compound-2" class="form__group form__group--compound">
+    <legend class="control__label" id="compound-2[label]">Date of birth</legend>
+    <div class="controls">
+      <label for="guid-1920474953" id="guid-1920474953[label]" class="control__label hide">Day</label>
+      <input id="guid-1920474953" placeholder="DD" type="text" aria-describedby="guid-402318983" class="form__control form__control-col--1" />
+      <label for="guid-844870068" id="guid-844870068[label]" class="control__label hide">Month</label>
+      <input id="guid-844870068" placeholder="MM" type="text" aria-describedby="guid-402318983" class="form__control form__control-col--1" />
+      <label for="guid-986794967" id="guid-986794967[label]" class="control__label hide">Year</label>
+      <input id="guid-986794967" placeholder="YYYY" type="text" aria-describedby="guid-402318983" class="form__control form__control-col--2" />
+      <span class="help-block" id="guid-402318983">For example: 25 12 1980</span>
+    </div>
+  </fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+### Date of birth with one invalid field
+
+<div className="d-example">
+  <fieldset id="compound-3" className="form__group form__group--compound has-error form__group--partial-state">
+    <legend className="control__label" id="compound-3[label]">Date for birth</legend>
+    <div className="controls">
+      <label for="guid-684938242" id="guid-684938242[label]" className="control__label hide">Day</label>
+      <input id="guid-684938242" placeholder="DD" type="text" aria-describedby="guid-234632202 guid-626871938" className="form__control form__control-col--1" />
+      <label for="guid-360748440" id="guid-360748440[label]" className="control__label hide">Month</label>
+      <input id="guid-360748440" placeholder="MM" type="text" aria-describedby="guid-234632202 guid-626871938" className="form__control form__control-col--1 has-error" />
+      <label for="guid-317168214" id="guid-317168214[label]" className="control__label hide">Year</label>
+      <input id="guid-317168214" placeholder="YYYY" type="text" aria-describedby="guid-234632202 guid-626871938" className="form__control form__control-col--2" />
+      <span className="help-block is-error" id="guid-234632202"><i aria-hidden="true" className="icon-warning-sign"></i> Please complete your month of birth</span>
+      <span className="help-block" id="guid-626871938">For example: 25 12 1980</span>
+    </div>
+  </fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.compound({
+    'id': 'compound-3',
+    'help': 'For example: 25 12 1980',
+    'label': 'Date for birth',
+    'error': 'Please complete your month of birth',
+    'class': 'form__group--partial-state',
+    'inputs': [
+      {
+        'class': 'form__control-col--1',
+        'label': 'Day',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'DD',
+        'show-label': false,
+        'type': 'text'
+      },
+      {
+        'class': 'form__control-col--1 has-error',
+        'label': 'Month',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'MM',
+        'show-label': false,
+        'type': 'text'
+      },
+      {
+        'class': 'form__control-col--2',
+        'label': 'Year',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'YYYY',
+        'show-label': false,
+        'type': 'text'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset id="compound-3" class="form__group form__group--compound has-error form__group--partial-state">
+  <legend class="control__label" id="compound-3[label]">Date for birth</legend>
+  <div class="controls">
+    <label for="guid-684938242" id="guid-684938242[label]" class="control__label hide">Day</label>
+    <input id="guid-684938242" placeholder="DD" type="text" aria-describedby="guid-234632202 guid-626871938" class="form__control form__control-col--1" />
+    <label for="guid-360748440" id="guid-360748440[label]" class="control__label hide">Month</label>
+    <input id="guid-360748440" placeholder="MM" type="text" aria-describedby="guid-234632202 guid-626871938" class="form__control form__control-col--1 has-error" />
+    <label for="guid-317168214" id="guid-317168214[label]" class="control__label hide">Year</label>
+    <input id="guid-317168214" placeholder="YYYY" type="text" aria-describedby="guid-234632202 guid-626871938" class="form__control form__control-col--2" />
+    <span class="help-block is-error" id="guid-234632202"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete your month of birth</span>
+    <span class="help-block" id="guid-626871938">For example: 25 12 1980</span>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+### Timeout
+
+<div className="d-example">
+  <fieldset id="compound-4" className="form__group form__group--compound">
+    <legend className="control__label" id="compound-4[label]">Response timeout</legend>
+    <div className="controls">
+      <label for="guid-85954670" id="guid-85954670[label]" className="control__label hide">Value</label>
+      <input id="guid-85954670" maxlength="3" type="text" value="30" aria-describedby="guid-561566533" className="form__control form__control-col--1" />
+      <label for="guid-1588260750" id="guid-1588260750[label]" className="control__label hide">Unit of time</label>
+      <select id="guid-1588260750" aria-describedby="guid-561566533" className="form__control u-width-auto select">
+        <option value="sec">Seconds</option>
+        <option value="min">Minutes</option>
+      </select>
+      <span className="help-block" id="guid-561566533">How long the system should wait for a response, usually 30 seconds</span>
+    </div>
+  </fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.compound({
+    'id': 'compound-3',
+    'help': 'For example: 25 12 1980',
+    'label': 'Date for birth',
+    'error': 'Please complete your month of birth',
+    'class': 'form__group--partial-state',
+    'inputs': [
+      {
+        'class': 'form__control-col--1',
+        'label': 'Day',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'DD',
+        'show-label': false,
+        'type': 'text'
+      },
+      {
+        'class': 'form__control-col--1 has-error',
+        'label': 'Month',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'MM',
+        'show-label': false,
+        'type': 'text'
+      },
+      {
+        'class': 'form__control-col--2',
+        'label': 'Year',
+        'id': 'guid-' ~ random(),
+        'placeholder': 'YYYY',
+        'show-label': false,
+        'type': 'text'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset id="compound-4" class="form__group form__group--compound">
+  <legend class="control__label" id="compound-4[label]">Response timeout</legend>
+  <div class="controls">
+    <label for="guid-85954670" id="guid-85954670[label]" class="control__label hide">Value</label>
+    <input id="guid-85954670" maxlength="3" type="text" value="30" aria-describedby="guid-561566533" class="form__control form__control-col--1" />
+    <label for="guid-1588260750" id="guid-1588260750[label]" class="control__label hide">Unit of time</label>
+    <select id="guid-1588260750" aria-describedby="guid-561566533" class="form__control u-width-auto select">
+      <option value="sec">Seconds</option>
+      <option value="min">Minutes</option>
+    </select>
+    <span class="help-block" id="guid-561566533">How long the system should wait for a response, usually 30 seconds</span>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>

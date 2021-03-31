@@ -1,87 +1,46 @@
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  title: 'Pulsar',
+  tagline: 'The design system for the Jadu platform',
+  url: 'https://jadu.github.io/pulsar',
+  baseUrl: '/pulsar/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'jadu', // Usually your GitHub org/user name.
+  projectName: 'pulsar', // Usually your repo name.
   plugins: ['docusaurus-plugin-sass'],
   themeConfig: {
     prism: {
       additionalLanguages: ['twig']
     },
     navbar: {
-      title: 'My Site',
+      title: 'Pulsar',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/pulsar-brand.svg',
       },
       items: [
         {
-          to: 'docs/',
+          to: '/docs/guides/getting-started',
           activeBasePath: 'docs',
-          label: 'Docs',
+          label: 'Documentation',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/jadu/pulsar',
           label: 'GitHub',
-          position: 'right',
+          position: 'left',
+        },
+        {
+          to: 'https://medium.com/pulsar',
+          label: 'Blog',
+          position: 'left'
         },
       ],
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Jadu, Inc. Built with Docusaurus.`,
     },
   },
   presets: [

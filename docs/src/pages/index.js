@@ -8,32 +8,34 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Easy to Use',
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    title: 'About Pulsar',
+    imageUrl: 'img/hero_1.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Pulsar provides a common framework, tools and documentation to help 
+        designers and developers build user interfaces within the Jadu platform.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: 'Designed for Jadu',
+    imageUrl: 'img/hero_2.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Components are designed with accessibility, usability and 
+        responsiveness in mind, providing additional features requiring as 
+        little configuration as possible.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: 'Collaborate',
+    imageUrl: 'img/hero_3.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        We welcome any feedback and ideas on how to improve the design system. 
+        If you are interested in contributing you can check out our 
+        contribution guidelines or report an issue.
       </>
     ),
   },
@@ -42,12 +44,10 @@ const features = [
 function Feature({imageUrl, title, description}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={clsx('col col--4', styles.feature)}>
+    <div className={clsx('text--center col col--4', styles.feature)}>
       {imgUrl && (
-        <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
-        </div>
-      )}
+          )}
       <h3>{title}</h3>
       <p>{description}</p>
     </div>

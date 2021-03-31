@@ -1,0 +1,123 @@
+---
+id: color
+title: Color
+sidebar_label: Color
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Choose colours using an interactive colour palette.
+
+## Dependencies
+
+This helper requires `PulsarFormComponent` to be included in your JavaScript.
+
+<div className="d-example">
+  <div className="form__group colorpicker js-colorpicker">
+    <label for="color-a1" className="control__label">Pick colour</label>
+    <div className="controls">
+      <div className="input-group">
+        <span className="input-group-addon">#</span>
+        <input id="color-a1" type="text" className="form__control" />
+      </div>
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.color({
+    'label': 'Pick colour',
+    'id': 'color-a1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group colorpicker js-colorpicker">
+  <label for="color-a1" class="control__label">Pick colour</label>
+  <div class="controls">
+    <div class="input-group">
+      <span class="input-group-addon">#</span>
+      <input id="color-a1" type="text" class="form__control" />
+    </div>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options.
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the disabling elements guide for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+<div class="d-example">
+  <div class="form__group colorpicker js-colorpicker">
+    <label for="color-a2" class="control__label">Pick colour</label>
+    <div class="controls">
+      <div class="input-group">
+        <span class="input-group-addon">#</span>
+        <input id="color-a2" disabled type="text" class="form__control is-disabled" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.color({
+    'label': 'Pick colour',
+    'id': 'color-a2',
+    'disabled': true
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group colorpicker js-colorpicker">
+  <label for="color-a2" class="control__label">Pick colour</label>
+  <div class="controls">
+    <div class="input-group">
+      <span class="input-group-addon">#</span>
+      <input id="color-a2" disabled type="text" class="form__control is-disabled" />
+    </div>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>

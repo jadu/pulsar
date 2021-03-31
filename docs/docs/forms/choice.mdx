@@ -1,0 +1,493 @@
+---
+id: choice
+title: Choice
+sidebar_label: Choice
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Displayed as a question with multiple answers, each of which has its own label and can allow either singular (checkboxes) or multiple (radios) choice.
+
+<div className="d-example">
+  <fieldset id="choice-a1" className="form__group form-choice"><legend className="control__label">Assign blame to</legend><div className="controls"><label className="control__label"><input name="choice-a1" value="sun" type="radio" className="form__control radio" /><span className="form-choice__label">Sunshine</span></label><label className="control__label"><input name="choice-a1" value="moon" type="radio" className="form__control radio" /><span className="form-choice__label">Moonlight</span></label><label className="control__label"><input name="choice-a1" value="good" type="radio" className="form__control radio" /><span className="form-choice__label">Good times</span></label><label className="control__label"><input name="choice-a1" value="boogie" type="radio" className="form__control radio" /><span className="form-choice__label">Boogie</span></label></div></fieldset>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.choice({
+    'label': 'Assign blame to',
+    'id': 'choice-a1',
+    'options': [
+      {
+        'label': 'Sunshine',
+        'name': 'choice-a1',
+        'value': 'sun'
+      },
+      {
+        'label': 'Moonlight',
+        'name': 'choice-a1',
+        'value': 'moon'
+      },
+      {
+        'label': 'Good times',
+        'name': 'choice-a1',
+        'value': 'good'
+      },
+      {
+        'label': 'Boogie',
+        'name': 'choice-a1',
+        'value': 'boogie'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset id="choice-a1" class="form__group form-choice">
+  <legend class="control__label">Assign blame to</legend>
+  <div class="controls">
+    <label class="control__label">
+      <input name="choice-a1" value="sun" type="radio" class="form__control radio" /><span class="form-choice__label">Sunshine</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a1" value="moon" type="radio" class="form__control radio" /><span class="form-choice__label">Moonlight</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a1" value="good" type="radio" class="form__control radio" /><span class="form-choice__label">Good times</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a1" value="boogie" type="radio" class="form__control radio" /><span class="form-choice__label">Boogie</span>
+    </label>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| optimize | string | <ul><li>`auto` use a select element if number of options is greater than 5 (default)</li><li>`few` force the use of checkboxes/radios regardless of the number of options</li><li>`many` force the use of select regardless of the number of options</li></ul> |
+| options | array | An array of `option` hashes that will be passed to the checkbox or radio helper, see their documentation for specifics |
+| multiple | bool | If `true`, uses checkboxes instead of radios, or passes the `multiple` attribute to the select2 element |
+
+## Multiple choice
+
+To allow multiple options to be chosen (checkboxes instead of radios), add the `'multiple': true` option.
+
+<div className="d-example">
+  <fieldset className="form__group form-choice"><legend className="control__label">Assign blame to</legend><div className="controls"><label className="control__label"><input name="choice-a2" value="sun" type="checkbox" className="form__control checkbox" /><span className="form-choice__label">Sunshine</span></label><label className="control__label"><input name="choice-a2" value="moon" type="checkbox" className="form__control checkbox" /><span className="form-choice__label">Moonlight</span></label><label className="control__label"><input name="choice-a2" value="good" type="checkbox" className="form__control checkbox" /><span className="form-choice__label">Good times</span></label><label className="control__label"><input name="choice-a2" value="boogie" type="checkbox" className="form__control checkbox" /><span className="form-choice__label">Boogie</span></label></div></fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.choice({
+    'label': 'Assign blame to',
+    'multiple': true,
+    'options': [
+      {
+        'label': 'Sunshine',
+        'name': 'choice-a2',
+        'value': 'sun'
+      },
+      {
+        'label': 'Moonlight',
+        'name': 'choice-a2',
+        'value': 'moon'
+      },
+      {
+        'label': 'Good times',
+        'name': 'choice-a2',
+        'value': 'good'
+      },
+      {
+        'label': 'Boogie',
+        'name': 'choice-a2',
+        'value': 'boogie'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset class="form__group form-choice">
+  <legend class="control__label">Assign blame to</legend>
+  <div class="controls">
+    <label class="control__label">
+      <input name="choice-a2" value="sun" type="checkbox" class="form__control checkbox" />
+      <span class="form-choice__label">Sunshine</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a2" value="moon" type="checkbox" class="form__control checkbox" />
+      <span class="form-choice__label">Moonlight</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a2" value="good" type="checkbox" class="form__control checkbox" />
+      <span class="form-choice__label">Good times</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a2" value="boogie" type="checkbox" class="form__control checkbox" />
+      <span class="form-choice__label">Boogie</span>
+    </label>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+## Disabled choices
+
+You can disable individual choices by adding the disabled attribute to the option, or options, you need.
+
+Add the `'disabled': true` option to disable the field on load. See the disabling elements guide for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+<div className="d-example">
+  <fieldset className="form__group form-choice"><legend className="control__label">Assign blame to</legend><div className="controls"><label className="control__label"><input name="choice-a3" value="sun" type="radio" className="form__control radio" /><span className="form-choice__label">Sunshine</span></label><label className="control__label"><input name="choice-a3" value="moon" disabled type="radio" className="form__control radio is-disabled" /><span className="form-choice__label">Moonlight</span></label><label className="control__label"><input name="choice-a3" value="good" type="radio" className="form__control radio" /><span className="form-choice__label">Good times</span></label><label className="control__label"><input name="choice-a3" value="boogie" type="radio" className="form__control radio" /><span className="form-choice__label">Boogie</span></label></div></fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.choice({
+    'label': 'Assign blame to',
+    'options': [
+      {
+        'label': 'Sunshine',
+        'name': 'choice-a3',
+        'value': 'sun'
+      },
+      {
+        'label': 'Moonlight',
+        'name': 'choice-a3',
+        'value': 'moon',
+          'disabled': true
+      },
+      {
+        'label': 'Good times',
+        'name': 'choice-a3',
+        'value': 'good'
+      },
+      {
+        'label': 'Boogie',
+        'name': 'choice-a3',
+        'value': 'boogie'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset class="form__group form-choice">
+  <legend class="control__label">Assign blame to</legend>
+  <div class="controls">
+    <label class="control__label">
+      <input name="choice-a3" value="sun" type="radio" class="form__control radio" />
+      <span class="form-choice__label">Sunshine</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a3" value="moon" disabled type="radio" class="form__control radio is-disabled" />
+      <span class="form-choice__label">Moonlight</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a3" value="good" type="radio" class="form__control radio" />
+      <span class="form-choice__label">Good times</span>
+    </label>
+    <label class="control__label">
+      <input name="choice-a3" value="boogie" type="radio" class="form__control radio" />
+      <span class="form-choice__label">Boogie</span>
+    </label>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+## Input types
+
+If there are more than five options, the choice helper will automatically switch to using a select input, this prevents long lists of radio/checkboxes. This behaviour can be overridden with the `optimize` option.
+
+
+<div className="d-example">
+  <div className="form__group form-choice"><label className="control__label">Highlight colour</label><div className="controls"><select class="form__control select js-select2"><option value="red">Red</option><option value="orange">Orange</option><option value="yellow">Yellow</option><option value="green">Green</option><option value="blue">Blue</option><option value="indigo">Indigo</option><option value="violet">Violet</option></select></div></div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.choice({
+    'label': 'Highlight colour',
+    'options': [
+      {
+        'label': 'Red',
+        'name': 'highlight',
+        'value': 'red'
+      },
+      {
+        'label': 'Orange',
+        'name': 'highlight',
+        'value': 'orange',
+          'disabled': true
+      },
+      {
+        'label': 'Yellow',
+        'name': 'highlight',
+        'value': 'yellow'
+      },
+      {
+        'label': 'Green',
+        'name': 'highlight',
+        'value': 'green'
+      },
+      {
+        'label': 'Blue',
+        'name': 'highlight',
+        'value': 'blue'
+      },
+      {
+        'label': 'Indigo',
+        'name': 'highlight',
+        'value': 'indigo'
+      },
+      {
+        'label': 'Violet',
+        'name': 'highlight',
+        'value': 'violet'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group form-choice">
+  <label class="control__label">Highlight colour</label>
+  <div class="controls">
+    <select class="form__control select js-select2">
+      <option value="red">Red</option>
+      <option value="orange">Orange</option>
+      <option value="yellow">Yellow</option>
+      <option value="green">Green</option>
+      <option value="blue">Blue</option>
+      <option value="indigo">Indigo</option>
+      <option value="violet">Violet</option>
+    </select>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Help text
+
+Depending on the needs of your UI you have two options for adding help text to the choice helper. To avoid confusion you should avoid using both help options.
+
+### Help for all choices
+
+If you pass the `help` option as a direct child of the choice helper it will be displayed in the usual position underneath the whole component. Use this method if your help text describes the whole component and all the available options.
+
+<div className="d-example">
+  <fieldset id="sharedType-1" className="form__group form-choice"><legend className="control__label">Sharing Method</legend><div className="controls"><label className="control__label"><input name="choice-a4" value="1" aria-describedby="guid-1520516767" type="radio" className="form__control radio" /><span className="form-choice__label">Duplicate</span></label><label className="control__label"><input name="choice-a4" value="2" aria-describedby="guid-1520516767" type="radio" className="form__control radio" /><span className="form-choice__label">Link Only</span></label><span className="help-block" id="guid-1520516767">Choose how this content will be shared</span></div></fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.choice({
+    'label': 'Sharing Method',
+    'id': 'sharedType-1',
+    'help': 'Choose how this content will be shared',
+    'options': [
+      {
+        'label': 'Duplicate',
+        'name': 'choice-a4',
+        'value': '1'
+      },
+      {
+        'label': 'Link Only',
+        'name': 'choice-a4',
+        'value': '2'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset id="sharedType-1" className="form__group form-choice">
+  <legend className="control__label">Sharing Method</legend>
+  <div className="controls">
+    <label className="control__label">
+      <input name="choice-a4" value="1" aria-describedby="guid-1520516767" type="radio" className="form__control radio" />
+      <span className="form-choice__label">Duplicate</span>
+    </label>
+    <label className="control__label">
+      <input name="choice-a4" value="2" aria-describedby="guid-1520516767" type="radio" className="form__control radio" />
+      <span className="form-choice__label">Link Only</span>
+    </label>
+    <span className="help-block" id="guid-1520516767">Choose how this content will be shared</span>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+### Help for individual choices
+
+You can pass `help` to each individual choice within the `options` array. This method is useful if you want to give specific guidance for each option.
+
+<div className="d-example">
+  <fieldset id="sharedType-2" className="form__group form-choice"><legend className="control__label">Sharing Method</legend><div className="controls"><label className="control__label"><input name="choice-a5" value="1" aria-describedby="guid-1752982604 " type="radio" className="form__control radio" /><span className="form-choice__label">Duplicate</span></label><span className="help-block" id="guid-1752982604">Visitor will stay on the shared site, your content will look and feel like part of that site</span><label className="control__label"><input name="choice-a5" value="2" aria-describedby="guid-1004575815 " type="radio" className="form__control radio" /><span className="form-choice__label">Link Only</span></label><span className="help-block" id="guid-1004575815">Visitors will be redirected to this site to view the content</span></div></fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.choice({
+    'label': 'Sharing Method',
+    'id': 'sharedType-2',
+    'options': [
+      {
+        'label': 'Duplicate',
+        'name': 'choice-a5',
+        'value': '1',
+        'help': 'Visitor will stay on the shared site, your content will look and feel like part of that site'
+      },
+      {
+        'label': 'Link Only',
+        'name': 'choice-a5',
+        'value': '2',
+        'help': 'Visitors will be redirected to this site to view the content'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset id="sharedType-2" class="form__group form-choice">
+  <legend class="control__label">Sharing Method</legend>
+  <div class="controls">
+    <label class="control__label">
+      <input name="choice-a5" value="1" aria-describedby="guid-1752982604 " type="radio" class="form__control radio" /><span class="form-choice__label">Duplicate</span>
+    </label>
+    <span class="help-block" id="guid-1752982604">Visitor will stay on the shared site, your content will look and feel like part of that site</span>
+    <label class="control__label">
+      <input name="choice-a5" value="2" aria-describedby="guid-1004575815 " type="radio" class="form__control radio" /<span class="form-choice__label">Link Only</span>
+    </label>
+    <span class="help-block" id="guid-1004575815">Visitors will be redirected to this site to view the content</span>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+## Choice block
+
+### Stacked blocks
+
+Block styling is available for the choice helper by adding the `choice--block` modifier class. Pass a standard form width modifier to the choice helper’s class option to control the width of all options.
+
+<div className="d-example">
+  <fieldset  className="form__group form-choice choice--block"><legend  className="control__label">Assign blame to</legend><div className="controls"><label  className="control__label"><input name="choice-a6" value="sun" type="radio"  className="form__control radio" /><span className="form-choice__label">Sunshine</span></label><label  className="control__label"><input name="choice-a6" value="moon" type="radio"  className="form__control radio" /><span className="form-choice__label">Moonlight</span></label><label  className="control__label"><input name="choice-a6" value="good" type="radio"  className="form__control radio" /><span className="form-choice__label">Good times</span></label><label  className="control__label"><input name="choice-a6" value="boogie" type="radio"  className="form__control radio" /><span className="form-choice__label">Boogie</span></label></div></fieldset>
+</div>
+
+### Inline blocks
+
+Add `choice--block choice--block-inline` to lay the options out horizontally.
+
+:::tip
+This example also uses the `form__group--small` class to reduce the width of the blocks to suit the text labels
+:::
+
+<div className="d-example">
+  <fieldset  className="form__group form-choice choice--block choice--block-inline form__group--small"><legend  className="control__label">Are you over 18?</legend><div className="controls"><label  className="control__label"><input name="age-gate" value="true" type="radio"  className="form__control radio" /><span className="form-choice__label">Yes</span></label><label  className="control__label"><input name="age-gate" value="false" type="radio"  className="form__control radio" /><span className="form-choice__label">No</span></label></div></fieldset>
+</div>

@@ -12,6 +12,11 @@
   overflow: hidden;
 }
 
+.hero--primary {
+  background-color: #fff;
+  --ifm-hero-text-color: var(--ifm-font-color-base);
+}
+
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
@@ -32,6 +37,5 @@
 }
 
 .featureImage {
-  height: 200px;
-  width: 200px;
+  max-width: 300px;
 }

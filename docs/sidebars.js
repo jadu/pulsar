@@ -1,6 +1,5 @@
 module.exports = {
   someSidebar: {
-    Docusaurus: ['doc1', 'doc2', 'doc3'],
     Guides: [
       'guides/getting-started',
       'guides/accessibility',
@@ -13,18 +12,55 @@ module.exports = {
     ],
     Components: [
       'components/badge',
-      'components/button',
       'components/block-list',
       'components/breadcrumb',
+      'components/button',
       'components/button-group',
       'components/card',
       'components/datatable',
       'components/dropdown-button',
-      'components/dropzone'
+      'components/dropzone',
+      'components/flash-message',
+      'components/icon',
+      'components/label',
+      'components/link',
+      'components/link-list',
+      'components/list',
+      'components/loading-spinner',
+      'components/media',
+      'components/metadata',
+      'components/modal',
+      'components/pagination',
+      'components/panel',
+      'components/progress-bar',
+      'components/progress-list',
+      'components/remove-button',
+      'components/status',
+      'components/table',
+      'components/tooltips'
     ],
     Forms: [
       'forms/creating-a-form',
-      'forms/error-summary'
+      'forms/button-group',
+      'forms/checkbox',
+      'forms/choice',
+      'forms/color',
+      'forms/compound',
+      'forms/content',
+      'forms/date',
+      'forms/error-summary',
+      'forms/fieldset',
+      'forms/file',
+      'forms/hidden',
+      'forms/password',
+      'forms/radio',
+      'forms/repeater',
+      'forms/select',
+      'forms/select2',
+      'forms/text',
+      'forms/textarea',
+      'forms/time',
+      'forms/toggle-switch'
     ]
   },
 };

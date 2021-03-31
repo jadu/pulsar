@@ -1,0 +1,128 @@
+---
+id: flash-message
+title: Flash Message
+sidebar_label: Flash message
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Flash messages alert the user when things happen, this may be to confirm that something has occurred successfully, like saving a document, or when something goes wrong. Flash messages may also highlight problems with the system that the user may need to know about, like a loss of network connectivity which is preventing auto-save.
+
+## Dependencies
+
+You will need the `FlashMessageComponent` to be included in your browserify configuration.
+
+Depending on your setup, this will probably need to be in be in a file called `index.js` or `main.js`.
+
+```js title="index.js"
+var FlashMessageComponent = require('/path/to/pulsar/FlashMessageComponent');
+
+module.exports = {
+    FlashMessageComponent: FlashMessageComponent
+}
+```
+
+```js title="main.js"
+var $html = $('html');
+
+pulsar.flash = new pulsar.FlashMessageComponent($html);
+
+$(function () {
+    pulsar.flash.init();
+});
+```
+
+```js title="Example usage"
+pulsar.flash.success('Ermahgherd!');
+```
+
+## HTML/Twig
+
+Your main view should have a container with the classes of `flash-container js-flash-container`. Any flash messages you choose to generate on page load should be placed here, and any that you subsequently create through the JS methods will also be placed here.
+
+<div className="d-example">
+  <section className="flash flash--success" aria-labelledby="guid-1414468922">
+    <i aria-hidden="true" className="icon-ok"></i>
+    <h2 id="guid-1414468922">This is a success message</h2>
+    <button className="close" data-dismiss="flash">
+      <i className="icon-remove">
+        <span className="hide">Close</span>
+      </i>
+    </button>
+  </section>
+</div>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| dismissable | bool | If `false`, will hide the dismiss (x) button (default: `true`) |
+| message | string | The text ti display, can contain HTML/Twig |
+| type | string | The style of message to display: `success`, `warning`, `error`, `info` |
+
+## Icons
+
+The icon for a flash message is automatically chosen based on the flash message time and can’t be overridden.
+
+## Remove dismiss button
+
+If you want to disable the ability to close a flash message (useful when you have flash messages in modals, for example), use the dismissable option.
+
+<div className="d-example">
+  <section class="flash flash--error" aria-labelledby="guid-1121414803"><i aria-hidden="true"  class="icon-warning-sign"></i><h2 id="guid-1121414803">This flash cannot be dismissed</h2></section>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    flash.message({
+        'message': 'This flash cannot be dismissed',
+        'type': 'error',
+        'dismissable': false
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<section class="flash flash--error" aria-labelledby="guid-1121414803"><i aria-hidden="true"  class="icon-warning-sign"></i><h2 id="guid-1121414803">This flash cannot be dismissed</h2></section>
+```
+
+</TabItem>
+</Tabs>
+
+## Triggering with JavaScript
+
+You can throw flash messages with JS, and like the Twig helper your styles and icons will be defined automatically.
+
+```js
+pulsar.flash.success('Something great happened!');
+```
+
+```js
+pulsar.flash.error('Oh no! Something bad happened');
+```
+
+```js
+pulsar.flash.warning('Something kinda bad happened, but it’s not
+critical...');
+```
+
+```js
+pulsar.flash.info('Something interesting happened that we need to tell
+you about');
+```

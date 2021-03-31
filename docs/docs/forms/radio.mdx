@@ -1,0 +1,217 @@
+---
+id: radio
+title: Radio
+sidebar_label: Radio
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generates a radio input field. There are various different options available to control the position of the radio and labels.
+
+:::note
+It is expected you will need more than one radio input to allow people to choose between a selection of options, you may want to look at the choice helper which lets you supply a group of options to be rendered as radio inputs.
+:::
+
+<div className="d-example">
+  <div className="form__group">
+  <div className="form__group form-radio">
+    <label for="guid-1739828169" className="control__label">My label</label>
+    <div className="controls">
+      <input id="guid-1739828169" name="radio-1" type="radio" className="form__control radio" />
+    </div>
+  </div>
+</div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.radio({
+    'label': 'My label',
+    'id': 'guid-' ~ random(),
+    'name': 'radio-1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <div class="form__group form-radio">
+    <label for="guid-1739828169" class="control__label">My label</label>
+    <div class="controls">
+      <input id="guid-1739828169" name="radio-1" type="radio" class="form__control radio" />
+    </div>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| input_placement | string | `left` (default) / `right` position of the input vs the label value |
+
+## Positioning
+
+### Inline
+
+The `form.radio_inline()` helper creates a `<label>` element with the radio placed inside, this allows the radio to be positioned either before or after the label value through the `input_placement` option.
+
+<div className="d-example">
+  <div className="form__group form-radio-inline">
+    <div className="controls">
+      <label for="guid-762536768" className="control__label">
+        <input id="guid-762536768" name="radio-3" type="radio" className="form__control radio" />Standard left aligned</label>
+    </div>
+  </div>
+
+  <div className="form__group form-radio-inline">
+    <div className="controls">
+      <label for="guid-2127935184" className="control__label">Right aligned<input id="guid-2127935184" name="radio-4" type="radio" className="form__control radio" /></label>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {2,10}
+{{
+  form.radio_inline({
+    'label': 'Standard left aligned',
+    'id': 'guid-' ~ random(),
+    'name': 'radio-3'
+  })
+}}
+
+{{
+  form.radio_inline({
+    'label': 'Right aligned',
+    'id': 'guid-' ~ random(),
+    'name': 'radio-4',
+    'input_placement': 'right'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group form-radio-inline">
+  <div class="controls">
+    <label for="guid-762536768" class="control__label">
+      <input id="guid-762536768" name="radio-3" type="radio" class="form__control radio" />Standard left aligned</label>
+  </div>
+</div>
+
+<div class="form__group form-radio-inline">
+  <div class="controls">
+    <label for="guid-2127935184" class="control__label">Right aligned<input id="guid-2127935184" name="radio-4" type="radio" class="form__control radio" /></label>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+### Indented
+
+Using `form.radio_inline` will cause the radio input to not follow the normal flow of a regular Pulsar form. If you want to maintain form alignment, use the `.form__group--indent` class to restore the position.
+
+<div className="d-example">
+  <div className="form__group form-radio-inline">
+    <div className="controls">
+      <label for="guid-619464244" className="control__label">
+        <input id="guid-619464244" name="radio-5" type="radio" className="form__control radio" />Standard inline position
+      </label>
+    </div>
+  </div>
+
+  <div className="form__group form-radio-inline form__group--indent">
+    <div className="controls">
+      <label for="guid-39047411" className="control__label">
+        <input id="guid-39047411" name="radio-6" type="radio" className="form__control radio" />Indented position
+      </label>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {2,9}
+{{
+  form.radio_inline({
+    'label': 'Standard inline position',
+    'id': 'guid-' ~ random(),
+    'name': 'radio-5'
+  })
+}}
+{{
+  form.radio_inline({
+    'label': 'Indented position',
+    'class': 'form__group--indent',
+    'id': 'guid-' ~ random(),
+    'name': 'radio-6'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html {1, 9}
+<div class="form__group form-radio-inline">
+  <div class="controls">
+    <label for="guid-619464244" class="control__label">
+      <input id="guid-619464244" name="radio-5" type="radio" class="form__control radio" />Standard inline position
+    </label>
+  </div>
+</div>
+
+<div class="form__group form-radio-inline form__group--indent">
+  <div class="controls">
+    <label for="guid-39047411" class="control__label">
+      <input id="guid-39047411" name="radio-6" type="radio" class="form__control radio" />Indented position
+    </label>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>

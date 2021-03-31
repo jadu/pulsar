@@ -1,0 +1,97 @@
+---
+id: fieldset
+title: Fieldset
+sidebar_label: Fieldset
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Fieldsets group related controls into logical sections.
+
+## Basic usage
+
+```twig
+{{
+    form.fieldset_start()
+}}
+
+    {# form fields #}
+
+{{
+    form.fieldset_end()
+}}
+```
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| legend | string | Label for the optional `<legend>` element |
+
+## Legend
+
+Give fieldsets a descriptive legend to break your form into logical sections.
+
+
+<div className="d-example">
+  <fieldset>
+    <legend className="legend">I am legend</legend>
+    <div className="form__group">
+      <label for="field-1" className="control__label">Example field</label>
+      <div className="controls">
+        <input id="field-1" name="field-1" type="text" className="form__control" />
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.fieldset_start({
+    'legend': 'I am legend'
+  })
+}}
+
+{{
+  form.text({
+    'label': 'Example field',
+    'id': 'field-1',
+    'name': 'field-1'
+  })
+}}
+
+{{
+  form.fieldset_end()
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset>
+  <legend class="legend">I am legend</legend>
+  <div class="form__group">
+    <label for="field-1" class="control__label">Example field</label>
+    <div class="controls">
+      <input id="field-1" name="field-1" type="text" class="form__control" />
+    </div>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>

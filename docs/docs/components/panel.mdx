@@ -1,0 +1,111 @@
+---
+id: panel
+title: Panel
+sidebar_label: Panel
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Display important information in a prominent container.
+
+<div className="d-example">
+  <section class="panel" aria-labelledby="guid-998724450">
+    <i aria-hidden="true"  class="icon-info-sign panel__icon"></i>
+    <h2 class="panel__title" id="guid-998724450">In West Philadelphia born and raised</h2>
+    <div class="panel__body">In the playground was where I spent most of my days.</div>
+  </section>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.panel({
+    'title': 'In West Philadelphia born and raised',
+    'body': 'In the playground was where I spent most of my days.',
+    'icon': 'info-sign'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<section class="panel" aria-labelledby="guid-998724450">
+    <i aria-hidden="true"  class="icon-info-sign panel__icon"></i>
+    <h2 class="panel__title" id="guid-998724450">In West Philadelphia born and raised</h2>
+    <div class="panel__body">In the playground was where I spent most of my days.</div>
+  </section>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| active_item | int | The index of the active item, will have the `is-active` class applied |
+| items | hash | A hash of links formatted by `{ 'label': 'href' } |
+| type | string | Markup scheme to use: `ul` (default), `ol`, `div` or `link` |
+
+## Setting the active item
+
+The list link is indexed (indexed by one), you can pass the index of the item you would like to be marked as active and it will have the `.is-active` class applied. You will need to style this active class yourself.
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.link_list({
+    'active_item': 2,
+    'items': {
+      'Value one': '#href_one',
+      'Value two (will be active)': '#href_two',
+      'Value three': '#href_three'
+    }
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul>
+  <li>
+    <a href="#href_one">Value one</a>
+  </li>
+  <li class="is-active">
+    <a href="#href_two">Value two (will be active)</a>
+  </li>
+  <li>
+    <a href="#href_three">Value three</a>
+  </li>
+</ul>
+```
+
+</TabItem>
+</Tabs>

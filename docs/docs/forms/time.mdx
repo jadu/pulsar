@@ -1,0 +1,72 @@
+---
+id: time
+title: Time
+sidebar_label: Time
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generate a text input field which will show a time picker overlay when focused.
+
+<div className="d-example">
+  <div className="form__group">
+    <label for="guid-421090519" className="control__label">Start time</label>
+    <div className="controls">
+      <input id="guid-421090519" name="time-1" placeholder="hh:mm" data-timepicker="true" type="text" className="form__control" />
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.time({
+    'label': 'Start time',
+    'id': 'guid-' ~ random(),
+    'name': 'time-1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-421090519" class="control__label">Start time</label>
+  <div class="controls">
+    <input id="guid-421090519" name="time-1" placeholder="hh:mm" data-timepicker="true" type="text" class="form__control" />
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options. The following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| data-appendTo | string | Override where the dropdown is appended (default `body`) |
+| data-className | string | A class to apply to the input that has the timepicker dropdown |
+| data-closeOnWindowScroll | boolean | Close the timepicker when the window is scrolled (default `false`) |
+| data-disableTimeRanges | array | Disable selection of certain time ranges by passing an array of time pairs, for example `[['3:00am', '4:30am'], ['5:00pm', '8:00pm']]` The start of the interval will be disabled but the end won’t |
+| data-disableTextInput | boolean | Disable the ability to type in the input box, forcing users to select from the list. (default `false`) |
+| data-maxTime | string | The time that should appear last in the dropdown list. Can be used to limit the range of time options |
+| data-minTime | string | The time that should appear first in the dropdown list |
+| data-orientation | string | <p>By default the timepicker will be aligned to the bottom left of the input element, or aligned to the top left if there isn’t enough room below the input. Values can be:</p><ul><li>`l` (left (default))</li><li>`r` (right)</li><li>`t` (top)</li><li>`b` (bottom)</li></ul>Combine letters to move to corners, e.g. tr for top-right
+| data-timeFormat | string | How times should be displayed in the list and input element. Uses PHP’s date() formatting syntax. Characters can be escaped with a preceeding double shash (e.g. `H\\hi`) (Default: `g:ia`) |

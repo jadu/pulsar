@@ -1,0 +1,247 @@
+---
+id: checkbox
+title: Checkbox
+sidebar_label: Checkbox
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generates a checkbox input field. There are various different options available to control the position of the checkbox and labels.
+
+<div className="d-example">
+  <div className="form__group form-checkbox">
+    <label for="checkbox-1" className="control__label">My label</label>
+    <div className="controls">
+      <input id="checkbox-1" name="checkbox-1" type="checkbox" className="form__control checkbox" />
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.checkbox({
+    'label': 'My label',
+    'id': 'checkbox-1',
+    'name': 'checkbox-1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group form-checkbox">
+    <label for="checkbox-1" class="control__label">My label</label>
+    <div class="controls">
+      <input id="checkbox-1" name="checkbox-1" type="checkbox" class="form__control checkbox" />
+    </div>
+  </div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| input_placement | string | `left` (default) / `right` position of the input vs. the label value |
+
+## Disabled checkboxes
+
+Add the `'disabled': true` option to disable the field on load. See the disabling elements guide for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+<div className="d-example">
+  <div className="form__group form-checkbox">
+    <label for="checkbox-2" className="control__label">My label</label>
+    <div className="controls">
+      <input id="checkbox-2" name="checkbox-2" disabled type="checkbox" className="form__control checkbox is-disabled" />
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.checkbox({
+    'label': 'My label',
+    'id': 'checkbox-2',
+    'name': 'checkbox-2',
+    'disabled': true
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group form-checkbox">
+  <label for="checkbox-2" class="control__label">My label</label>
+  <div class="controls">
+    <input id="checkbox-2" name="checkbox-2" disabled type="checkbox" class="form__control checkbox is-disabled" />
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Inline checkboxes
+
+The `form.checkbox_inline()` helper creates a `<label>` element with the checkbox placed inside, this allows the checkbox to be positioned either before or after the label value through the `input_placement` option.
+
+<div className="d-example">
+  <div className="form__group form-checkbox">
+    <label for="checkbox-2" className="control__label">My label</label>
+    <div className="controls">
+      <input id="checkbox-2" name="checkbox-2" disabled type="checkbox" className="form__control checkbox is-disabled" />
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.checkbox_inline({
+    'label': 'Standard left aligned',
+    'id': 'checkbox-3',
+    'name': 'checkbox-3'
+  })
+}}
+
+{{
+  form.checkbox_inline({
+    'label': 'Right aligned',
+    'id': 'checkbox-4',
+    'name': 'checkbox-4',
+    'input_placement': 'right'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group form-checkbox-inline">
+  <div class="controls">
+    <label for="checkbox-3" class="control__label">
+      <input id="checkbox-3" name="checkbox-3" type="checkbox" class="form__control checkbox" />Standard left aligned
+    </label>
+  </div>
+</div>
+<div class="form__group form-checkbox-inline">
+  <div class="controls">
+    <label for="checkbox-4" class="control__label">Right aligned
+      <input id="checkbox-4" name="checkbox-4" type="checkbox" class="form__control checkbox" />
+    </label>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Indented checkboxes
+
+Using `form.checkbox_inline` will cause the checkbox input to not follow the normal flow of a regular Pulsar form. If you want to maintain form alignment, use the `.form__group--indent` class to restore the position.
+
+<div className="d-example">
+  <div className="form__group form-checkbox-inline">
+    <div className="controls">
+      <label for="checkbox-5" className="control__label">
+      <input id="checkbox-5" name="checkbox-5" type="checkbox" className="form__control checkbox" />Standard inline position</label>
+    </div>
+  </div>
+  <div className="form__group form-checkbox-inline form__group--indent">
+    <div className="controls">
+      <label for="checkbox-6" className="control__label">
+      <input id="checkbox-6" name="checkbox-6" type="checkbox" className="form__control checkbox" />Indented position</label>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.checkbox_inline({
+    'label': 'Standard inline position',
+    'id': 'checkbox-5',
+    'name': 'checkbox-5'
+  })
+}}
+
+{{
+  form.checkbox_inline({
+    'label': 'Indented position',
+    'class': 'form__group--indent',
+    'id': 'checkbox-6',
+    'name': 'checkbox-6'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group form-checkbox-inline">
+  <div class="controls">
+    <label for="checkbox-5" class="control__label">
+    <input id="checkbox-5" name="checkbox-5" type="checkbox" class="form__control checkbox" />Standard inline position</label>
+  </div>
+</div>
+<div class="form__group form-checkbox-inline form__group--indent">
+  <div class="controls">
+    <label for="checkbox-6" class="control__label">
+    <input id="checkbox-6" name="checkbox-6" type="checkbox" class="form__control checkbox" />Indented position</label>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>

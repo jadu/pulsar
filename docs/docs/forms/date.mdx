@@ -1,0 +1,190 @@
+---
+id: date
+title: Date
+sidebar_label: Date
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+:::info New in Pulsar 12
+The date helper now has the ability to opt-in to use a WCAG 2.1 compliant date datepicker. Where possible, this should be used over the default date picker (Pikaday).
+:::
+
+Generate a text input field and button that displays a date picker overlay when clicked.
+
+The new Pulsar Date Picker is built on top of the jQuery UI datepicker. You can find more details in the [Pulsar Date Picker GitHub repo](https://github.com/jadu/pulsar-date-picker)
+
+## Opt-in
+
+For backwards compatibility, the new date picker is "opt-in" and the existing (deprecated) date picker Pikaday is the default. To opt in to the new Pulsar Date Picker you'll need to install via npm `npm install pulsar-date-picker --save` and then initialise as below:
+
+```js
+const datePicker = require('pulsar-date-picker');
+
+$(function () {
+    datePicker.init($html);
+});
+```
+
+Then pass the `'data-pulsar-datepicker': 'true'` option to your date helper.
+
+## Basic usage
+
+<div className="d-example">
+  <div className="form__group">
+    <label for="date-1" className="control__label">Start date</label>
+    <div className="controls">
+      <div className="input-group has-btn-appended">
+        <input data-pulsar-datepicker="true" id="date-1" name="date-1" placeholder="dd/mm/yyyy" data-pulsar-datepicker-trigger="guid-232383307" type="text" className="form__control" />
+        <span className="input-group-btn">
+          <button type="button" id="guid-232383307" className="btn"><i className="icon-calendar"><span className="hide">Show calendar</span></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {3}
+{{
+  form.date({
+    'data-pulsar-datepicker': 'true',
+    'label': 'Start date',
+    'id': 'date-1',
+    'name': 'date-1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="date-1" class="control__label">Start date</label>
+  <div class="controls">
+    <div class="input-group has-btn-appended">
+      <input data-pulsar-datepicker="true" id="date-1" name="date-1" placeholder="dd/mm/yyyy" data-pulsar-datepicker-trigger="guid-232383307" type="text" class="form__control" />
+      <span class="input-group-btn">
+        <button type="button" id="guid-232383307" class="btn"><i class="icon-calendar"><span class="hide">Show calendar</span></i></button>
+      </span>
+    </div>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| data-pulsar-datepicker-trigger | bool | If `true` (default), initialises the Pulsar Date Picker and adds the trigger button |
+| data-pulsar-datepicker-trigger-label | string | The hidden accessible label for the date picker trigger button. `Show calendar` (default) |
+| format | string | <p>Specify the date format to use, can be:</p><ul><li>`default` dd/mm/yyyy</li><li>`US` mm/dd/yyyy</li><li>`reverse` yyyy/mm/dd</li></ul> |
+
+## Date format
+
+Use the `format` attribute to change between `default` (UK), `US` and `reverse` (reverse UK) date formats.
+
+<div className="d-example">
+  <div className="form__group">
+    <label for="date-2" className="control__label">Start date</label>
+    <div className="controls">
+      <div className="input-group has-btn-appended">
+        <input data-pulsar-datepicker="true" id="date-2" name="date-2" placeholder="dd/mm/yyyy" data-pulsar-datepicker-format="US" data-pulsar-datepicker-trigger="guid-774268350" type="text" className="form__control" />
+        <span className="input-group-btn">
+          <button type="button" id="guid-774268350" className="btn"><i className="icon-calendar"><span className="hide">Show calendar</span></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {7}
+{{
+  form.date({
+    'data-pulsar-datepicker': 'true',
+    'label': 'Start date',
+    'id': 'date-2',
+    'name': 'date-2',
+    'format': 'US'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="date-2" class="control__label">Start date</label>
+  <div class="controls">
+    <div class="input-group has-btn-appended">
+      <input data-pulsar-datepicker="true" id="date-2" name="date-2" placeholder="dd/mm/yyyy" data-pulsar-datepicker-format="US" data-pulsar-datepicker-trigger="guid-774268350" type="text" class="form__control" />
+      <span class="input-group-btn">
+        <button type="button" id="guid-774268350" class="btn"><i class="icon-calendar"><span class="hide">Show calendar</span></i></button>
+      </span>
+    </div>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Accessibility
+
+The new date picker brings a range of accessibility improvements over the original (Pikaday).
+
+### Keyboard accessibility
+
+* `ESC` closes the date picker
+* `ENTER` and `SPACE` can be used to select a date
+* `TAB` and `SHIFT + TAB` can be used to cycle through the date picker controls
+* `ARROW KEYS` can be used to navigate through the displayed dates or to navigate to a previous/future week or month
+* `PAGE UP` goes to the previous month
+* `PAGE DOWN` goes to the next month
+* `HOME` goes to the first of the month
+* `END` goes to the last date of the month
+* Previous/Next controls can be accessed and activated via Keyboard
+
+### Focus management
+
+* Focus is trapped within the date picker until closed. Preventing AT users from accidentally navigating out of the date picker
+* Todays date (if displayed) or the selected date is focussed on open
+* Focus returns to the date input on close
+
+### Screen reader experience
+
+* The date picker container has an accessible label: Calendar view date picker
+* Individual dates have accessible labels, for example: 7 May 2020 Thursday
+* Previous/Next month controls have accessible labels, for example: Next month, June 2020 Previous month, April 2020
+
+### Misc
+
+* A `placeholder` matching the date format is added to the input
+* `autocomplete` on the input is disabled to prevent it overlapping the date picker

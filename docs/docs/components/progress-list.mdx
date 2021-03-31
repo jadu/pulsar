@@ -1,0 +1,90 @@
+---
+id: progress-list
+title: Progress List
+sidebar_label: Progress List
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Show a user’s position in a multi-step workflow.
+
+<div className="d-example">
+  <div className="progress-list">
+    <a href="#" className="progress-list__item progress-list__item--current">
+        <span className="progress-list__label">
+            <span className="badge badge--round badge--outline">Step 1</span>
+            Cut a hole in a box
+        </span>
+        <span className="progress-list__arrow">&gt;</span>
+    </a>
+    <a href="#" className="progress-list__item">
+        <span className="progress-list__label">
+            <span className="badge badge--round badge--outline">Step 2</span>
+            Put your junk in that box
+        </span>
+        <span className="progress-list__arrow">&gt;</span>
+    </a>
+  </div>
+</div>
+
+## Basic usage
+
+```html
+<div class="progress-list">
+  <a href="#" class="progress-list__item progress-list__item--current">
+      <span class="progress-list__label">
+          <span class="badge badge--round badge--outline">Step 1</span>
+          Cut a hole in a box
+      </span>
+      <span class="progress-list__arrow">&gt;</span>
+  </a>
+  <a href="#" class="progress-list__item">
+      <span class="progress-list__label">
+          <span class="badge badge--round badge--outline">Step 2</span>
+          Put your junk in that box
+      </span>
+      <span class="progress-list__arrow">&gt;</span>
+  </a>
+</div>
+```
+
+:::caution
+You must ensure that the direct children of the `progress-list` container are always `progress-list__item` elements. The styling used for this component contains `:first-child` and `:last-child` rules, to allow the use of mixed element types. Using other elements nested alongside `progress-list__item` elements may introduce layout problems.
+:::
+
+## States
+
+There are three states of a progress list item.
+
+<div className="d-example">
+  <div className="progress-list">
+    <a href="#" className="progress-list__item progress-list__item--complete">
+        <span className="progress-list__label">
+            <span className="badge badge--round badge--outline">Step 1</span>
+            Complete
+        </span>
+        <span className="progress-list__arrow">&gt;</span>
+    </a>
+    <a href="#" className="progress-list__item progress-list__item--current">
+        <span className="progress-list__label">
+            <span className="badge badge--round badge--outline">Step 2</span>
+            Current
+        </span>
+        <span className="progress-list__arrow">&gt;</span>
+    </a>
+    <a href="#" className="progress-list__item is-disabled">
+        <span className="progress-list__label">
+            <span className="badge badge--round badge--outline">Step 3</span>
+            Disabled
+        </span>
+        <span className="progress-list__arrow">&gt;</span>
+    </a>
+  </div>
+</div>
+
+| State | Description | Class |
+| ----- | ----------- | ----- |
+| Complete | The user has completed this step | `progress-list__item--complete` |
+| Current | The currently active step | `progress-list__item--current` |
+| Disabled | User cannot yet access this step | `is-disabled` |

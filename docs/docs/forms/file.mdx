@@ -1,0 +1,60 @@
+---
+id: file
+title: File
+sidebar_label: File
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generate a file input field.
+
+<div className="d-example">
+  <div className="form__group">
+    <label for="guid-125910704" className="control__label">Attach file</label>
+    <div className="controls">
+      <input id="guid-125910704" name="file-1" type="file"  className="form__control file" />
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.file({
+    'label': 'Attach file',
+    'id': 'guid-' ~ random(),
+    'name': 'file-1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-125910704" class="control__label">Attach file</label>
+  <div class="controls">
+    <input id="guid-125910704" name="file-1" type="file"  class="form__control file" />
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options.
