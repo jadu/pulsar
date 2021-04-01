@@ -11,7 +11,7 @@ Generates a select input field.
 
 <div className="d-example">
   <div className="form__group">
-    <label for="guid-1609313126" className="control__label">Pick a colour</label>
+    <label htmlFor="guid-1609313126" className="control__label">Pick a colour</label>
     <div className="controls">
       <select id="guid-1609313126" className="form__control select">
         <option value="">Choose</option>
@@ -95,12 +95,12 @@ Set the currently selected item by passing the option’s `value` to the main `s
 
 <div className="d-example">
   <div className="form__group">
-    <label for="guid-1723390467" className="control__label">Pick a colour</label>
+    <label htmlFor="guid-1723390467" className="control__label">Pick a colour</label>
     <div className="controls">
-      <select id="guid-1723390467" className="form__control select">
+      <select id="guid-1723390467" className="form__control select" defaultValue={'colour_blue'}>
         <option value="">Choose</option>
         <option value="colour_red">Red</option>
-        <option value="colour_blue" selected>Blue</option>
+        <option value="colour_blue">Blue</option>
       </select>
     </div>
   </div>
@@ -145,7 +145,7 @@ Set the currently selected item by passing the option’s `value` to the main `s
 
 ```html
 <div class="form__group">
-  <label for="guid-1723390467" class="control__label">Pick a colour</label>
+  <label htmlFor="guid-1723390467" class="control__label">Pick a colour</label>
   <div class="controls">
     <select id="guid-1723390467" class="form__control select">
       <option value="">Choose</option>
@@ -165,12 +165,12 @@ For multiple selects, pass the selected values as an array. If you want this to 
 
 <div className="d-example">
   <div className="form__group">
-    <label for="guid-895788692" className="control__label">Pick colours</label>
+    <label htmlFor="guid-895788692" className="control__label">Pick colours</label>
     <div className="controls">
-      <select id="guid-895788692" multiple className="form__control select">
+      <select id="guid-895788692" multiple className="form__control select" defaultValue={['colour_red', 'colour_blue']}>
         <option value="">Choose</option>
-        <option value="colour_red" selected>Red</option>
-        <option value="colour_blue" selected>Blue</option>
+        <option value="colour_red">Red</option>
+        <option value="colour_blue">Blue</option>
       </select>
     </div>
   </div>
@@ -238,7 +238,7 @@ You can disable specific options by adding the `disabled` attribute to the optio
 
 <div className="d-example">
   <div className="form__group">
-    <label for="guid-1473191617" className="control__label">Pick a colour</label>
+    <label htmlFor="guid-1473191617" className="control__label">Pick a colour</label>
     <div className="controls">
       <select id="guid-1473191617" className="form__control select">
         <option value="">Choose</option>
@@ -308,7 +308,7 @@ Your options can be arranged within optgroups using the `optgroup` nested syntax
 
 <div className="d-example">
   <div className="form__group">
-    <label for="guid-260727864" className="control__label">My label</label>
+    <label htmlFor="guid-260727864" className="control__label">My label</label>
     <div className="controls">
       <select id="guid-260727864" data-label="My label" className="form__control select js-select2">
         <optgroup label="optgroup one">

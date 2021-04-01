@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 Create a repeatable set of form fields that can be added and removed.
 
 <div className="d-example">
-  <form method="POST" enctype="application/x-www-form-urlencoded" className="form">
+  <form method="POST" encType="application/x-www-form-urlencoded" className="form">
     <div
         className="repeater"
         data-repeater=""
@@ -30,29 +30,29 @@ Create a repeatable set of form fields that can be added and removed.
               <tr>
                 <th data-repeater-for-name="text">Name</th>
                 <th data-repeater-for-name="select2multi">Favourite food</th>
-                <th rowspan="1" colspan="1" className="shrink-to-fit">Actions</th>
+                <th rowSpan="1" colSpan="1" className="shrink-to-fit">Actions</th>
               </tr>
             </thead>
             <tbody className="repeater__preview-data" data-repeater-preview-root>
               <tr className="repeater__empty-placeholder" data-repeater-preview-placeholder>
-                <td colspan="2">You have not added any team members</td>
+                <td colSpan="2">You have not added any team members</td>
                 <td className="table__td--align-right table-row__actions"></td>
               </tr>
             </tbody>
             <tfoot>
               <tr className="repeater__group" data-repeater-new-group>
-                <td className="table__form" colspan="3">
+                <td className="table__form" colSpan="3">
                   <div data-repeater-new-group-controls>
                     <fieldset>
                       <legend className="legend">Team Member</legend>
                       <div className="form__group">
-                        <label for="repeater-text" className="control__label">name</label>
+                        <label htmlFor="repeater-text" className="control__label">name</label>
                         <div className="controls">
                           <input id="repeater-text" name="text" type="text" className="form__control" />
                         </div>
                       </div>
                       <div className="form__group">
-                        <label for="repeater-select2multi" className="control__label">Favourite food</label>
+                        <label htmlFor="repeater-select2multi" className="control__label">Favourite food</label>
                         <div className="controls">
                           <select id="repeater-select2multi" name="select2multi" multiple data-label="Favourite food" className="form__control select js-select2">
                             <option value="food_pizza">Pizza</option>

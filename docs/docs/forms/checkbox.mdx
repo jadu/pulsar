@@ -11,7 +11,7 @@ Generates a checkbox input field. There are various different options available 
 
 <div className="d-example">
   <div className="form__group form-checkbox">
-    <label for="checkbox-1" className="control__label">My label</label>
+    <label htmlFor="checkbox-1" className="control__label">My label</label>
     <div className="controls">
       <input id="checkbox-1" name="checkbox-1" type="checkbox" className="form__control checkbox" />
     </div>
@@ -45,11 +45,11 @@ Generates a checkbox input field. There are various different options available 
 
 ```html
 <div class="form__group form-checkbox">
-    <label for="checkbox-1" class="control__label">My label</label>
-    <div class="controls">
-      <input id="checkbox-1" name="checkbox-1" type="checkbox" class="form__control checkbox" />
-    </div>
+  <label for="checkbox-1" class="control__label">My label</label>
+  <div class="controls">
+    <input id="checkbox-1" name="checkbox-1" type="checkbox" class="form__control checkbox" />
   </div>
+</div>
 ```
 
 </TabItem>
@@ -69,7 +69,7 @@ Add the `'disabled': true` option to disable the field on load. See the disablin
 
 <div className="d-example">
   <div className="form__group form-checkbox">
-    <label for="checkbox-2" className="control__label">My label</label>
+    <label htmlFor="checkbox-2" className="control__label">My label</label>
     <div className="controls">
       <input id="checkbox-2" name="checkbox-2" disabled type="checkbox" className="form__control checkbox is-disabled" />
     </div>
@@ -118,7 +118,7 @@ The `form.checkbox_inline()` helper creates a `<label>` element with the checkbo
 
 <div className="d-example">
   <div className="form__group form-checkbox">
-    <label for="checkbox-2" className="control__label">My label</label>
+    <label htmlFor="checkbox-2" className="control__label">My label</label>
     <div className="controls">
       <input id="checkbox-2" name="checkbox-2" disabled type="checkbox" className="form__control checkbox is-disabled" />
     </div>
@@ -143,7 +143,6 @@ The `form.checkbox_inline()` helper creates a `<label>` element with the checkbo
     'name': 'checkbox-3'
   })
 }}
-
 {{
   form.checkbox_inline({
     'label': 'Right aligned',
@@ -184,13 +183,13 @@ Using `form.checkbox_inline` will cause the checkbox input to not follow the nor
 <div className="d-example">
   <div className="form__group form-checkbox-inline">
     <div className="controls">
-      <label for="checkbox-5" className="control__label">
+      <label htmlFor="checkbox-5" className="control__label">
       <input id="checkbox-5" name="checkbox-5" type="checkbox" className="form__control checkbox" />Standard inline position</label>
     </div>
   </div>
   <div className="form__group form-checkbox-inline form__group--indent">
     <div className="controls">
-      <label for="checkbox-6" className="control__label">
+      <label htmlFor="checkbox-6" className="control__label">
       <input id="checkbox-6" name="checkbox-6" type="checkbox" className="form__control checkbox" />Indented position</label>
     </div>
   </div>
@@ -214,7 +213,6 @@ Using `form.checkbox_inline` will cause the checkbox input to not follow the nor
     'name': 'checkbox-5'
   })
 }}
-
 {{
   form.checkbox_inline({
     'label': 'Indented position',

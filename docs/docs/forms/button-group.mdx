@@ -17,11 +17,11 @@ Group a series of related buttons together on a single line. Great for creating 
     <legend className="control__label">Button group</legend>
     <div className="controls btn__group">
       <input id="guid-1599941972" name="foo-1" checked type="radio" className="form__control radio" />
-      <label for="guid-1599941972" className="control__label">Foo</label>
+      <label htmlFor="guid-1599941972" className="control__label">Foo</label>
       <input id="guid-286245278" name="foo-1" type="radio" className="form__control radio" />
-      <label for="guid-286245278" className="control__label">Bar</label>
+      <label htmlFor="guid-286245278" className="control__label">Bar</label>
       <input id="guid-1648801838" name="foo-1" type="radio" className="form__control radio" />
-      <label for="guid-1648801838"  className="control__label">Baz</label>
+      <label htmlFor="guid-1648801838" className="control__label">Baz</label>
     </div>
   </fieldset>
 </div>
@@ -94,7 +94,17 @@ You can configure this helper using the common helper options, the following opt
 ## Single choice (radio)
 
 <div className="d-example">
-  <fieldset className="form__group form__button-group"><legend className="control__label">Button group</legend><div className="controls btn__group"><input id="guid-491239517" name="foo-2" checked type="radio" className="form__control radio" /><label for="guid-491239517" className="control__label">Foo</label><input id="guid-330632027" name="foo-2" type="radio" className="form__control radio" /><label for="guid-330632027" className="control__label">Bar</label><input id="guid-1953900902" name="foo-2" type="radio" className="form__control radio" /><label for="guid-1953900902"  className="control__label">Baz</label></div></fieldset>
+  <fieldset className="form__group form__button-group">
+    <legend className="control__label">Button group</legend>
+    <div className="controls btn__group">
+      <input id="guid-491239517" name="foo-2" checked type="radio" className="form__control radio" />
+      <label htmlFor="guid-491239517" className="control__label">Foo</label>
+      <input id="guid-330632027" name="foo-2" type="radio" className="form__control radio" />
+      <label htmlFor="guid-330632027" className="control__label">Bar</label>
+      <input id="guid-1953900902" name="foo-2" type="radio" className="form__control radio" />
+      <label htmlFor="guid-1953900902" className="control__label">Baz</label>
+    </div>
+  </fieldset>
 </div>
 
 <Tabs
@@ -156,7 +166,17 @@ You can configure this helper using the common helper options, the following opt
 ## Multiple choice (checkbox)
 
 <div className="d-example">
-  <fieldset className="form__group form__button-group"><legend className="control__label">Button group</legend><div  className="controls btn__group"><input id="guid-2014096593" name="foo-3" checked type="checkbox" className="form__control checkbox" /><label for="guid-2014096593" className="control__label">Foo</label><input id="guid-1902797094" name="foo-3" type="checkbox" className="form__control checkbox" /><label for="guid-1902797094" className="control__label">Bar</label><input id="guid-1621410707" name="foo-3" type="checkbox" className="form__control checkbox" /><label for="guid-1621410707" className="control__label">Baz</label></div></fieldset>
+  <fieldset className="form__group form__button-group">
+    <legend className="control__label">Button group</legend>
+    <div className="controls btn__group">
+      <input id="guid-2014096593" name="foo-3" defaultChecked type="checkbox" className="form__control checkbox" />
+      <label htmlFor="guid-2014096593" className="control__label">Foo</label>
+      <input id="guid-1902797094" name="foo-3" type="checkbox" className="form__control checkbox" />
+      <label htmlFor="guid-1902797094" className="control__label">Bar</label>
+      <input id="guid-1621410707" name="foo-3" type="checkbox" className="form__control checkbox" />
+      <label htmlFor="guid-1621410707" className="control__label">Baz</label>
+    </div>
+  </fieldset>
 </div>
 
 <Tabs
@@ -223,13 +243,13 @@ You can configure this helper using the common helper options, the following opt
     <legend className="control__label">Alignment</legend>
     <div className="controls btn__group">
       <input id="align-left" name="alignment" checked type="radio" className="form__control radio" />
-      <label for="align-left" className="control__label"><i aria-hidden="true" className="icon-align-left"></i></label>
+      <label htmlFor="align-left" className="control__label"><i aria-hidden="true" className="icon-align-left"></i></label>
       <input id="align-center" name="alignment" type="radio" className="form__control radio" />
-      <label for="align-center" className="control__label"><i aria-hidden="true" className="icon-align-center"></i></label>
+      <label htmlFor="align-center" className="control__label"><i aria-hidden="true" className="icon-align-center"></i></label>
       <input id="align-right" name="alignment" type="radio" className="form__control radio" />
-      <label for="align-right" className="control__label"><i aria-hidden="true" className="icon-align-right"></i></label>
+      <label htmlFor="align-right" className="control__label"><i aria-hidden="true" className="icon-align-right"></i></label>
       <input id="justify" name="alignment" type="radio" className="form__control radio" />
-      <label for="justify" className="control__label"><i aria-hidden="true" className="icon-align-justify"></i></label>
+      <label htmlFor="justify" className="control__label"><i aria-hidden="true" className="icon-align-justify"></i></label>
     </div>
   </fieldset>
 </div>

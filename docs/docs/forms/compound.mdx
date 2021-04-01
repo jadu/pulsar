@@ -16,12 +16,12 @@ The inputs option accepts the same hash of options you would normally pass to a 
 You should provide sensible labels as well as unique IDs for each individual inputs so that screenreaders can announce the separate fields sensibly, use show-label': false to visually hide them from the user interface.
 
 <div className="d-example">
-  <fieldset id="compound-1" class="form__group form__group--compound">
+  <fieldset id="compound-1" className="form__group form__group--compound">
     <legend className="control__label" id="compound-1[label]">Example</legend>
     <div className="controls">
-      <label for="guid-1473105725" id="guid-1473105725[label]" className="control__label hide">One</label>
+      <label htmlFor="guid-1473105725" id="guid-1473105725[label]" className="control__label hide">One</label>
       <input id="guid-1473105725" placeholder="One" type="text" className="form__control form__control-col--1" />
-      <label for="guid-1214253806" id="guid-1214253806[label]" className="control__label hide">Two</label>
+      <label htmlFor="guid-1214253806" id="guid-1214253806[label]" className="control__label hide">Two</label>
       <input id="guid-1214253806" placeholder="Two" type="text" className="form__control form__control-col--1" />
     </div>
   </fieldset>
@@ -92,11 +92,11 @@ You should provide sensible labels as well as unique IDs for each individual inp
   <fieldset id="compound-2" className="form__group form__group--compound">
     <legend className="control__label" id="compound-2[label]">Date of birth</legend>
     <div className="controls">
-      <label for="guid-1920474953" id="guid-1920474953[label]" className="control__label hide">Day</label>
+      <label htmlFor="guid-1920474953" id="guid-1920474953[label]" className="control__label hide">Day</label>
       <input id="guid-1920474953" placeholder="DD" type="text" aria-describedby="guid-402318983" className="form__control form__control-col--1" />
-      <label for="guid-844870068" id="guid-844870068[label]" className="control__label hide">Month</label>
+      <label htmlFor="guid-844870068" id="guid-844870068[label]" className="control__label hide">Month</label>
       <input id="guid-844870068" placeholder="MM" type="text" aria-describedby="guid-402318983" className="form__control form__control-col--1" />
-      <label for="guid-986794967" id="guid-986794967[label]" className="control__label hide">Year</label>
+      <label htmlFor="guid-986794967" id="guid-986794967[label]" className="control__label hide">Year</label>
       <input id="guid-986794967" placeholder="YYYY" type="text" aria-describedby="guid-402318983" className="form__control form__control-col--2" />
       <span className="help-block" id="guid-402318983">For example: 25 12 1980</span>
     </div>
@@ -176,11 +176,11 @@ You should provide sensible labels as well as unique IDs for each individual inp
   <fieldset id="compound-3" className="form__group form__group--compound has-error form__group--partial-state">
     <legend className="control__label" id="compound-3[label]">Date for birth</legend>
     <div className="controls">
-      <label for="guid-684938242" id="guid-684938242[label]" className="control__label hide">Day</label>
+      <label htmlFor="guid-684938242" id="guid-684938242[label]" className="control__label hide">Day</label>
       <input id="guid-684938242" placeholder="DD" type="text" aria-describedby="guid-234632202 guid-626871938" className="form__control form__control-col--1" />
-      <label for="guid-360748440" id="guid-360748440[label]" className="control__label hide">Month</label>
+      <label htmlFor="guid-360748440" id="guid-360748440[label]" className="control__label hide">Month</label>
       <input id="guid-360748440" placeholder="MM" type="text" aria-describedby="guid-234632202 guid-626871938" className="form__control form__control-col--1 has-error" />
-      <label for="guid-317168214" id="guid-317168214[label]" className="control__label hide">Year</label>
+      <label htmlFor="guid-317168214" id="guid-317168214[label]" className="control__label hide">Year</label>
       <input id="guid-317168214" placeholder="YYYY" type="text" aria-describedby="guid-234632202 guid-626871938" className="form__control form__control-col--2" />
       <span className="help-block is-error" id="guid-234632202"><i aria-hidden="true" className="icon-warning-sign"></i> Please complete your month of birth</span>
       <span className="help-block" id="guid-626871938">For example: 25 12 1980</span>
@@ -264,12 +264,12 @@ You should provide sensible labels as well as unique IDs for each individual inp
   <fieldset id="compound-4" className="form__group form__group--compound">
     <legend className="control__label" id="compound-4[label]">Response timeout</legend>
     <div className="controls">
-      <label for="guid-85954670" id="guid-85954670[label]" className="control__label hide">Value</label>
-      <input id="guid-85954670" maxlength="3" type="text" value="30" aria-describedby="guid-561566533" className="form__control form__control-col--1" />
-      <label for="guid-1588260750" id="guid-1588260750[label]" className="control__label hide">Unit of time</label>
+      <label htmlFor="guid-85954670" id="guid-85954670[label]" className="control__label hide">Value</label>
+      <input id="guid-85954670" maxLength="3" type="text" defaultValue="30" aria-describedby="guid-561566533" className="form__control form__control-col--1" />
+      <label htmlFor="guid-1588260750" id="guid-1588260750[label]" className="control__label hide">Unit of time</label>
       <select id="guid-1588260750" aria-describedby="guid-561566533" className="form__control u-width-auto select">
-        <option value="sec">Seconds</option>
-        <option value="min">Minutes</option>
+        <option defaultValue="sec">Seconds</option>
+        <option defaultValue="min">Minutes</option>
       </select>
       <span className="help-block" id="guid-561566533">How long the system should wait for a response, usually 30 seconds</span>
     </div>
@@ -332,7 +332,7 @@ You should provide sensible labels as well as unique IDs for each individual inp
   <legend class="control__label" id="compound-4[label]">Response timeout</legend>
   <div class="controls">
     <label for="guid-85954670" id="guid-85954670[label]" class="control__label hide">Value</label>
-    <input id="guid-85954670" maxlength="3" type="text" value="30" aria-describedby="guid-561566533" class="form__control form__control-col--1" />
+    <input id="guid-85954670" maxLength="3" type="text" value="30" aria-describedby="guid-561566533" class="form__control form__control-col--1" />
     <label for="guid-1588260750" id="guid-1588260750[label]" class="control__label hide">Unit of time</label>
     <select id="guid-1588260750" aria-describedby="guid-561566533" class="form__control u-width-auto select">
       <option value="sec">Seconds</option>

@@ -198,10 +198,10 @@ You need to provide a way for the user to submit the form, and ideally a way to 
 The first button in the form actions will usually be the submit button and be a primary button in most cases.
 
 <div className="d-example">
-  <form method="POST" encType="application/x-www-form-urlencoded" class="form">
-    <div class="form__actions">
-      <button type="submit" class="btn btn--primary">Primary Action</button>
-      <a href="#home" class="btn btn--naked">Cancel</a>
+  <form method="POST" encType="application/x-www-form-urlencoded" className="form">
+    <div className="form__actions">
+      <button type="submit" className="btn btn--primary">Primary Action</button>
+      <a href="#home" className="btn btn--naked">Cancel</a>
     </div>
   </form>
 </div>
@@ -213,17 +213,17 @@ Form actions are normally positioned so they’re inline with the form controls 
 If the form is editing an existing ‘thing’ rather than creating something new then you may also want to provide a delete action, use the `u-float-right` utility class to move this to the right hand side.
 
 <div className="d-example">
-  <form method="POST" encType="application/x-www-form-urlencoded" class="form">
+  <form method="POST" encType="application/x-www-form-urlencoded" className="form">
     <div className="form__group">
       <label htmlFor="example" className="control__label">Example</label>
       <div className="controls">
         <input id="example" name="example" type="text" className="form__control" />
       </div>
     </div>
-    <div class="form__actions">
-      <button type="submit" class="btn btn--primary">Primary Action</button>
-      <a href="#home" class="btn btn--naked">Cancel</a>
-      <button class="btn btn--danger u-float-right">Delete</button>
+    <div className="form__actions">
+      <button type="submit" className="btn btn--primary">Primary Action</button>
+      <a href="#home" className="btn btn--naked">Cancel</a>
+      <button className="btn btn--danger u-float-right">Delete</button>
     </div>
   </form>
 </div>
@@ -231,17 +231,17 @@ If the form is editing an existing ‘thing’ rather than creating something ne
 You can make the actions align to the left hand edge of a form by adding the `.form__actions--flush` class.
 
 <div className="d-example">
-  <form method="POST" encType="application/x-www-form-urlencoded" class="form">
+  <form method="POST" encType="application/x-www-form-urlencoded" className="form">
     <div className="form__group">
       <label htmlFor="example" className="control__label">Example</label>
       <div className="controls">
         <input id="example" name="example" type="text" className="form__control" />
       </div>
     </div>
-    <div class="form__actions form__actions--flush">
-      <button type="submit" class="btn btn--primary">Primary Action</button>
-      <a href="#home" class="btn btn--naked">Cancel</a>
-      <button class="btn btn--danger u-float-right">Delete</button>
+    <div className="form__actions form__actions--flush">
+      <button type="submit" className="btn btn--primary">Primary Action</button>
+      <a href="#home" className="btn btn--naked">Cancel</a>
+      <button className="btn btn--danger u-float-right">Delete</button>
     </div>
   </form>
 </div>

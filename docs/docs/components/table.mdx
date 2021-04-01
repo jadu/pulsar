@@ -68,15 +68,15 @@ Because of the sheer amount of markup that tables can contain they're one of the
 ## Basic usage
 
 ```html
-<table class="table">
-  <caption class="hide">A list of films featuring Arnold Schwarzenegger</caption>
+<table className="table">
+  <caption className="hide">A list of films featuring Arnold Schwarzenegger</caption>
   <thead>
     <tr>
       <th scope="col">Title</th>
       <th scope="col">Owner</th>
       <th scope="col">Modified</th>
-      <th scope="col" class="u-text-align-center">Live</th>
-      <th scope="col" class="u-text-align-center">Visible</th>
+      <th scope="col" className="u-text-align-center">Live</th>
+      <th scope="col" className="u-text-align-center">Visible</th>
     </tr>
   </thead>
   <tbody>
@@ -84,36 +84,36 @@ Because of the sheer amount of markup that tables can contain they're one of the
       <td>Terminator Genisys</td>
       <td>Alan Taylor</td>
       <td>2015-06-25 12:34</td>
-      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
-      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
     </tr>
     <tr>
       <td>The Terminator</td>
       <td>James Cameron</td>
       <td>1991-07-01 12:34</td>
-      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
-      <td class="u-text-align-center"><i class="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+      <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
     </tr>
     <tr>
       <td>Predator</td>
       <td>John McTiernan</td>
       <td>1988-01-01 12:34</td>
-      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
-      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
     </tr>
     <tr>
       <td>Commando</td>
       <td>Mark L. Lester</td>
       <td>1986-02-21 12:34</td>
-      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
-      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
     </tr>
     <tr>
       <td>Conan the Barbarian</td>
       <td>John Millius</td>
       <td>1982-04-02 12:34</td>
-      <td class="u-text-align-center"><i class="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
-      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+      <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
     </tr>
   </tbody>
 </table>
@@ -133,10 +133,12 @@ For more information and examples on the use of scope visit [WCAG 2.1 H63](https
 <table class="table table--full">
   <caption class="hide">Example table showling use of scope="col"</caption>
   <thead>
-    <th scope="col">Column One</th>
-    <th scope="col">Column Two</th>
-    <th scope="col">Column Three</th>
-    <th scope="col">Column Four</th>
+    <tr>
+      <th scope="col">Column One</th>
+      <th scope="col">Column Two</th>
+      <th scope="col">Column Three</th>
+      <th scope="col">Column Four</th>
+    </tr>
   </thead>
   <tbody>
     <tr>
@@ -287,13 +289,15 @@ When dealing with user-supplied content and responsive design it's not possible 
 
 <div className="d-example">
   <strong>Normal scrolling example</strong>
-  <table class="table">
-      <caption class="hide">A list of films featuring Arnold Schwarzenegger</caption>
+  <table className="table">
+      <caption className="hide">A list of films featuring Arnold Schwarzenegger</caption>
       <thead>
+        <tr>
           <th scope="col">Column One</th>
           <th scope="col">Column Two</th>
           <th scope="col">Column Three</th>
           <th scope="col">Column Four</th>
+        </tr>
       </thead>
       <tbody>
           <tr>
@@ -311,12 +315,14 @@ When dealing with user-supplied content and responsive design it's not possible 
       </tbody>
   </table>
   <strong>Horizontal scrolling example</strong>
-  <table class="table table--horizontal">
+  <table className="table table--horizontal">
       <thead>
+        <tr>
           <th scope="col">Column One</th>
           <th scope="col">Column Two</th>
           <th scope="col">Column Three</th>
           <th scope="col">Column Four</th>
+        </tr>
       </thead>
       <tbody>
           <tr>

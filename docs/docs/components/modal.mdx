@@ -56,20 +56,20 @@ The following example uses the `.show` class to make sure the modal is visible i
 :::
 
 <div className="d-example">
-  <div class="modal show" id="myModal" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description" tabindex="-1">
-    <div class="modal__dialog">
-      <div class="modal__content">
-        <div class="modal__header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">×</span></button>
-          <h1 class="modal__title" id="myModal-title">A simple example</h1>
+  <div className="modal show" id="myModal" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description" tabIndex="-1">
+    <div className="modal__dialog">
+      <div className="modal__content">
+        <div className="modal__header">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">×</span></button>
+          <h1 className="modal__title" id="myModal-title">A simple example</h1>
         </div>
-        <div class="modal__body">
-          <p id="myModal-description" class="hide">Here goes a short description (a couple of lines) about the modal’s purpose, if needed.</p>
+        <div className="modal__body">
+          <p id="myModal-description" className="hide">Here goes a short description (a couple of lines) about the modal’s purpose, if needed.</p>
           <p>The modal body might have instructions, a form, or other stuff.</p>
         </div>
-        <div class="modal__footer">
-          <button type="button" class="btn btn--primary">Save Changes</button>
-          <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+        <div className="modal__footer">
+          <button type="button" className="btn btn--primary">Save Changes</button>
+          <button type="button" className="btn btn--naked" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
@@ -77,20 +77,20 @@ The following example uses the `.show` class to make sure the modal is visible i
 </div>
 
 ```html
-<div class="modal show" id="myModal" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description" tabindex="-1">
-    <div class="modal__dialog">
-      <div class="modal__content">
-        <div class="modal__header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">×</span></button>
-          <h1 class="modal__title" id="myModal-title">A simple example</h1>
+<div className="modal show" id="myModal" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description" tabIndex="-1">
+    <div className="modal__dialog">
+      <div className="modal__content">
+        <div className="modal__header">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">×</span></button>
+          <h1 className="modal__title" id="myModal-title">A simple example</h1>
         </div>
-        <div class="modal__body">
-          <p id="myModal-description" class="hide">Here goes a short description (a couple of lines) about the modal’s purpose, if needed.</p>
+        <div className="modal__body">
+          <p id="myModal-description" className="hide">Here goes a short description (a couple of lines) about the modal’s purpose, if needed.</p>
           <p>The modal body might have instructions, a form, or other stuff.</p>
         </div>
-        <div class="modal__footer">
-          <button type="button" class="btn btn--primary">Save Changes</button>
-          <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+        <div className="modal__footer">
+          <button type="button" className="btn btn--primary">Save Changes</button>
+          <button type="button" className="btn btn--naked" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@ The following example uses the `.show` class to make sure the modal is visible i
 
 ### ARIA requirements
 
-<table class="table table--full">
+<table className="table table--full">
     <thead>
         <tr>
             <th>Attribute</th>
@@ -113,32 +113,32 @@ The following example uses the `.show` class to make sure the modal is visible i
         <tr>
             <td><code>role="dialog"</code></td>
             <td><code>.modal</code></td>
-            <td>Identifies the element that serves as the modal container. <span class="label label--primary">Required</span></td>
+            <td>Identifies the element that serves as the modal container. <span className="label label--primary">Required</span></td>
         </tr>
         <tr>
             <td><code>aria-modal="true"</code></td>
             <td><code>.modal</code></td>
-            <td>Tells assistive technologies that the content under the current modal is not available for interaction. <span class="label label--primary">Required</span></td>
+            <td>Tells assistive technologies that the content under the current modal is not available for interaction. <span className="label label--primary">Required</span></td>
         </tr>
         <tr>
             <td><code>aria-labelledby="[id value of .modal__title]"</code></td>
             <td><code>.modal</code></td>
-            <td>Gives the modal an accessible name by referring to the element that provides the dialog title. <span class="label label--primary">Required</span></td>
+            <td>Gives the modal an accessible name by referring to the element that provides the dialog title. <span className="label label--primary">Required</span></td>
         </tr>
         <tr>
             <td><code>aria-describedby="[id value of applicable content]"</code></td>
             <td><code>.modal</code></td>
-            <td>Gives the modal an accessible description by referring to the modal content that describes the primary message or purpose of the dialog. Not used if there is no static text that describes the modal. <span class="label">optional</span></td>
+            <td>Gives the modal an accessible description by referring to the modal content that describes the primary message or purpose of the dialog. Not used if there is no static text that describes the modal. <span className="label">optional</span></td>
         </tr>
         <tr>
             <td><code>aria-label="Close modal dialog"</code></td>
             <td><code>.close</code></td>
-            <td>Provides an accessible name for the close button as it uses an icon instead of text. <span class="label label--primary">Required</span></td>
+            <td>Provides an accessible name for the close button as it uses an icon instead of text. <span className="label label--primary">Required</span></td>
         </tr>
         <tr>
             <td><code>aria-hidden="true"</code></td>
             <td><code>Close icon or added to a wrapping span where × is used</code></td>
-            <td>Hides the close icon or X from screen readers. <span class="label label--primary">Required</span></td>
+            <td>Hides the close icon or X from screen readers. <span className="label label--primary">Required</span></td>
         </tr>
     </tbody>
 </table>
@@ -310,7 +310,7 @@ $('#myModal').on('show.bs.modal', function (e) {
 });
 ```
 
-<table class="table table--full">
+<table className="table table--full">
     <thead>
         <tr>
             <th>Event</th>

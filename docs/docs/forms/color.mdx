@@ -15,7 +15,7 @@ This helper requires `PulsarFormComponent` to be included in your JavaScript.
 
 <div className="d-example">
   <div className="form__group colorpicker js-colorpicker">
-    <label for="color-a1" className="control__label">Pick colour</label>
+    <label htmlFor="color-a1" className="control__label">Pick colour</label>
     <div className="controls">
       <div className="input-group">
         <span className="input-group-addon">#</span>
@@ -72,13 +72,13 @@ You can configure this helper using the common helper options.
 
 Add the `'disabled': true` option to disable the field on load. See the disabling elements guide for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
 
-<div class="d-example">
-  <div class="form__group colorpicker js-colorpicker">
-    <label for="color-a2" class="control__label">Pick colour</label>
-    <div class="controls">
-      <div class="input-group">
-        <span class="input-group-addon">#</span>
-        <input id="color-a2" disabled type="text" class="form__control is-disabled" />
+<div className="d-example">
+  <div className="form__group colorpicker js-colorpicker">
+    <label htmlFor="color-a2" className="control__label">Pick colour</label>
+    <div className="controls">
+      <div className="input-group">
+        <span className="input-group-addon">#</span>
+        <input id="color-a2" disabled type="text" className="form__control is-disabled" />
       </div>
     </div>
   </div>
