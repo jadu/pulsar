@@ -7,6 +7,7 @@
 // --------------------
 .caret {
   @include inline-block;
+  color: inherit;
   width: 0;
   height: 0;
   margin-left: 2px;
@@ -92,10 +93,6 @@
       text-align: center;
       width: 23px;
     }
-  }
-
-  > li > .btn {
-    @extend .btn--white;
   }
 }
 

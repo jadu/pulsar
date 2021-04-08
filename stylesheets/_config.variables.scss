@@ -82,6 +82,12 @@ $screen-large:                        1200px !default;
 $screen-large-desktop:                $screen-large !default;
 
 // -----------------------------------------------------------------------------
+//  Buttons
+// -----------------------------------------------------------------------------
+
+$btn-border-radius: 0; // Just experimenting with 0 border for a while...
+
+// -----------------------------------------------------------------------------
 //  Borders
 // -----------------------------------------------------------------------------
 
@@ -114,6 +120,10 @@ $padding-large-vertical:              10px !default;
 $padding-large-horizontal:            16px !default;
 $padding-small-vertical:              5px !default;
 $padding-small-horizontal:            10px !default;
+
+
+$padding-small-em:                    .5em !default;
+$padding-micro-em:                    .2em !default;
 
 // -----------------------------------------------------------------------------
 //  Layout
