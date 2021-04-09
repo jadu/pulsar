@@ -76,7 +76,7 @@ $palette-monochromes: (
 
 $palette-states: (
     base: (
-        base:  map-get(map-get($palette-monochromes, gray), lightest),
+        base:  map-get(map-get($palette-monochromes, gray), lighter),
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), lighter), (#fff, #000)),
         light: lighten(map-get(map-get($palette-monochromes, gray), lightest), 5),
         dark:  map-get(map-get($palette-monochromes, gray), darker)
