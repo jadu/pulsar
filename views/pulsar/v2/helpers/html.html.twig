@@ -94,7 +94,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
                     'class': 'label--primary js-bulk-actions-badge',
                     'style': 'display: none;'
                 }),
-            'class': items.class ~ ' btn--outline',
+            'class': items.class|default() ~ ' btn--outline',
             'items': actions
         })
     }}
