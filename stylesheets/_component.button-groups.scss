@@ -23,6 +23,7 @@
 
         // Restore expected borders for solo outline buttons only
         &.btn--outline:only-of-type {
+            border-right-color: inherit;
             border-right-width: 1px;
         }
 
