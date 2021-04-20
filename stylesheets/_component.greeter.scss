@@ -44,13 +44,13 @@ $greeter-font-size-medium:              1.25em !default;
 $greeter-font-size-small:               .9em !default;
 
 // Colours
-$greeter-bg-color:                      color(jadu-blue, dark) !default;
-$greeter-bg-color-lighter:              color(jadu-blue, light) !default;
+$greeter-bg-color:                      color(jadu-purple) !default;
+$greeter-bg-color-lighter:              color(jadu-purple, light) !default;
 $greeter-bg-color-darker:               darken($greeter-bg-color, 3) !default;
 $greeter-text-color:                    color(white) !default;
 $greeter-text-color-alt:                color(black) !default;
 $greeter-link-underline-color:          $greeter-bg-color-lighter !default;
-$greeter-button-bg-color:               darken(color(jadu-blue, dark), 6) !default;
+$greeter-button-bg-color:               darken(color(jadu-purple), 6) !default;
 $greeter-button-bg-color-hover:         darken($greeter-button-bg-color, 8) !default;
 $greeter-button-border-color:           darken($greeter-button-bg-color, 10) !default;
 $greeter-button-bg-color-disabled:      $greeter-bg-color-darker !default;
