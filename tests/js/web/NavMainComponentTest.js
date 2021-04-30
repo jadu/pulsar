@@ -13,7 +13,7 @@ describe('NavMainComponent', function () {
         this.$html = $('html');
         this.$body = $('body');
         this.$window = $('<div></div>');
-        this.$window.height(150);
+        this.$window.height(140);
         this.window = this.$window[0];
         this.window.matchMedia = sinon.stub();
 
@@ -490,6 +490,8 @@ describe('NavMainComponent', function () {
     describe("when the window is too short for the whole primary navigation to be displayed", function () {
         beforeEach(function() {
             this.navMainComponent.init();
+            // this.$window.height(50);
+            // this.$window.resize();
         });
 
         it('should show the more icon link', function () {
