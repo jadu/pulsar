@@ -32,10 +32,24 @@
             z-index: 1;
         }
     }
+
+    .is-active {
+        background-color: color(primary);
+        color: color(primary, alt);
+        font-family: $font-family-regular;
+
+        &::after {
+            background-color: color(white);
+            bottom: 4px;
+            content: '';
+            display: block;
+            height: 2px;
+            position: absolute;
+            width: auto;
+            right: 5px;
+            left: 5px;
+            border-radius: 3px;
+        }
+    }
 }
 
-// .dropdown .btn,
-// .dropup .btn {
-//     border-right-width: 0;
-//     border-radius: $btn-border-radius;
-// }
