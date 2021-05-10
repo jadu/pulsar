@@ -262,10 +262,6 @@ td.table__form,
     }
 }
 
-.table-container + .pagination {
-    margin-top: -24px; // negate default bottom border of .table
-}
-
 // Map deprecated table styles to this one -------------------------------------
 
 .table--datagrid {
