@@ -34,17 +34,6 @@
     > *:last-child {
         margin-bottom: 0;
     }
-
-    // Ensure AA colour contrast
-    a {
-        color: color(link, dark);
-    }
-
-    // Ensure AA colour contrast
-    a:focus,
-    .help-block {
-        color: color(text);
-    }
 }
 
 
