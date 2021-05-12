@@ -153,7 +153,7 @@ $state-colors:
     (danger,    map-get(map-get($palette-states, danger), base),  map-get(map-get($palette-states, danger), alt)),
     (info,      map-get(map-get($palette-states, info), base),    map-get(map-get($palette-states, info), alt)),
     (inverse,   map-get(map-get($palette-states, inverse), base), map-get(map-get($palette-states, inverse), alt)),
-    ('white',     map-get(map-get($palette-states, 'white'), base), map-get(map-get($palette-states, 'white'), alt)),
+    ('white',   map-get(map-get($palette-states, 'white'), base), map-get(map-get($palette-states, 'white'), alt)),
     (new,       map-get(map-get($palette-states, new), base),     map-get(map-get($palette-states, new), alt));
 
 // scss-lint:enable SpaceAfterComma

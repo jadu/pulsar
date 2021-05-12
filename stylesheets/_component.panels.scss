@@ -73,7 +73,7 @@
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .panel--#{$state} .remove-button > [class^="icon-"] {
+    .panel--#{'' + $state} .remove-button > [class^="icon-"] {
         color: color(white);
     }
 }
@@ -87,7 +87,7 @@
 @each $state, $state-color, $state-color-alt in $state-colors {
     // Exclude unneeded states
     @if $state != base and $state != new and $state != white {
-        .panel--#{$state} {
+        .panel--#{'' + $state} {
             background-color: $state-color;
             color: $state-color-alt;
 

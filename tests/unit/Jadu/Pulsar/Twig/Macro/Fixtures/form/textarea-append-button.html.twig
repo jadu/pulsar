@@ -1,0 +1,12 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.textarea({
+        'append': html.button({
+            'label': 'Button'
+        }),
+        'append_type': 'button'
+    })
+}}
+{% endblock %}

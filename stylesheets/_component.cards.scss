@@ -77,7 +77,7 @@
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .card--#{$state} {
+    .card--#{'' + $state} {
         background-color: color($state, light);
         border-color: color($state);
 

@@ -321,6 +321,63 @@
     }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Prepended',
+            'prepend': '£'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Appended',
+            'append': '.00'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Prepended &amp; Appended',
+            'append': '.00',
+            'prepend': '£'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Appended button',
+            'append_type': 'button',
+            'append': html.button({ 'label': 'Button' })
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Prepended button',
+            'prepend_type': 'button',
+            'prepend': html.button({ 'label': 'Button' })
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Appended & Prepended button',
+            'append_type': 'button',
+            'append': html.button({ 'label': 'Button' }),
+            'prepend_type': 'button',
+            'prepend': html.button({ 'label': 'Button' })
+        })
+    }}
+
+    {{ form.fieldset_end() }}
 
     {{
         form.end({
