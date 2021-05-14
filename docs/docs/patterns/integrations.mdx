@@ -13,7 +13,7 @@ Integrations are a highly technical feature, often linking together separate sys
 
 The integrations hub lists all of the currently available integrations available within a given Continuum product using a Pulsar 'piano' layout, listing the integrations as tabs on the left and their configurations on the right.
 
-![Screenshot showing integrations hub example](assets/one.png)
+![Screenshot showing integrations hub example](/img/one.png)
 
 ## Integrations tab
 
@@ -21,7 +21,7 @@ The tabs content is marked up as a standard media object, using Pulsar’s `html
 
 <div className="d-example">
   <div className="media">
-    <img src="/pulsar/assets/office365.png" alt="Office365 logo" className="media__image" />
+    <img src={require('@site/static/img/office365.png').default} alt="Office365 logo" className="media__image" />
     <div className="media__body">
       <p>Office 365</p>
       <span className="small-type">Access Outlook calendars within your CMS</span>
@@ -111,7 +111,7 @@ The description is a single line to provide extra information about what the int
   <div className="d-guidelines__block d-guidelines__block--do">
     <div className="d-guidelines-preview">
       <div className="media">
-      <img src="/pulsar/assets/office365.png" alt="Office365 logo" className="media__image" />
+      <img src={require('@site/static/img/office365.png').default} alt="Office365 logo" className="media__image" />
       <div className="media__body">
         <p>Office 365</p>
         <span className="small-type">Access Outlook calendars within your CMS</span>
@@ -124,7 +124,7 @@ The description is a single line to provide extra information about what the int
   <div className="d-guidelines__block d-guidelines__block--not">
     <div className="d-guidelines-preview">
       <div className="media">
-        <img src="/pulsar/assets/office365.png" alt="Office365 logo" className="media__image" />
+        <img src={require('@site/static/img/office365.png').default} alt="Office365 logo" className="media__image" />
         <div className="media__body">
           <p>Office 365</p>
           <span className="small-type">Enable Office365 integration</span>
@@ -143,7 +143,7 @@ A properly formed tab description should be able to complete the following sente
 
 An integration should use the 'masterswitch' layout pattern where possible, this provides a clear 'on/off' switch for an Administrator to enable or disable an integration in one easy step, and helps the person to understand whether an integration is currently active or not.
 
-![Screenshot showing the layout of an integration](assets/two.png)
+![Screenshot showing the layout of an integration](/img/two.png)
 
 A brief description (one or two short paragraphs) should be put at the top of the settings view (above the masterswitch) to further explain this integration or to provide important information which may be needed to successfully set it up.
 
@@ -321,7 +321,7 @@ If the admin needs to ask their sysadmin/network administrator for specific valu
 
 For more complex integrations it may make sense to split the settings over multiple tabs.
 
-![Screenshot showing hte layout of a tabbed integration](assets/three.png)
+![Screenshot showing the layout of a tabbed integration](/img/three.png)
 
 The first tab should be active when the user enables the masterswitch, however you may need/want to disable the other tabs until some required information has been completed.
 
