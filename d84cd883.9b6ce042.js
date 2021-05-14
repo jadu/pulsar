@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[76],{145:function(a){a.exports=JSON.parse('{"allTagsPath":"/pulsar/blog/tags","slug":"hola","name":"hola","count":1,"permalink":"/pulsar/blog/tags/hola"}')}}]);
