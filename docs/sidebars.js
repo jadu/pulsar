@@ -61,6 +61,14 @@ module.exports = {
       'forms/textarea',
       'forms/time',
       'forms/toggle-switch'
+    ],
+    Patterns: [
+      'patterns/actionsbar',
+      'patterns/common-form',
+      'patterns/common-list',
+      'patterns/disabled-ui',
+      'patterns/filter-bar',
+      'patterns/integrations'
     ]
   },
 };
