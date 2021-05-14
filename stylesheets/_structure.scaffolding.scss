@@ -40,9 +40,11 @@ body {
 a {
   color: color(link);
   cursor: pointer;
+  text-underline-offset: 2px;
 
   &:hover {
     color: color(link, hover);
+    text-decoration-thickness: 2px;
   }
 
   &:focus {
