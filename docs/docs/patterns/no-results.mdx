@@ -1,0 +1,54 @@
+---
+id: no-results
+title: No results
+sidebar_label: No results
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+When an interface needs to list items you should provide a helpful fallback message for when no results are found. If the user has the relevant permissions to create or add one of these items, you should provide a call to action to help them along their way.
+
+No result messages have subtle, unique styling to differentiate them from regular content.
+
+## Basic message
+
+A generic component to use wherever suitable, can be used within an empty tab if no content is available but the tab still needs to be displayed for navigation purposes.
+
+<div className="d-example">
+  <div className="no-results">
+    <div className="no-results__message">
+        <p>There are currently no [things] to display</p>
+    </div>
+    <a href="#" className="btn btn--primary no-results__action">New [Thing]</a>
+  </div>
+</div>
+
+## Empty tables
+
+You should still display the column titles in the table header, this helps to inform the user about what kind of data is normally present in the table.
+
+:::tip Using no-results with DataTables
+If you’re using datatables instead of plain HTML tables you simply need to have a table with no rows in the body and this message will be displayed automatically. Check the [datatable documentation](/docs/components/datatable#no-results) for more information on how to customise this message.
+:::
+
+<div className="d-example">
+  <table className="table table--full">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="no-results" colspan="2">
+          <div className="no-results__message">
+            <p>There are currently no [things] to display</p>
+          </div>
+          <a href="#" className="btn btn--primary no-results__action">New [Thing]</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -68,7 +68,9 @@ module.exports = {
       'patterns/common-list',
       'patterns/disabled-ui',
       'patterns/filter-bar',
-      'patterns/integrations'
+      'patterns/integrations',
+      'patterns/masterswitch',
+      'patterns/no-results'
     ]
   },
 };
