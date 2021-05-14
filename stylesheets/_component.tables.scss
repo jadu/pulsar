@@ -192,11 +192,8 @@
 }
 
 .table-action {
-    border-bottom: 0;
-    border-right: 1px dotted color(border);
     display: inline-block;
     margin-right: 5px;
-    padding-right: 10px;
 
     &:last-child {
         border-right: 0;

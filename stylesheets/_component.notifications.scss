@@ -48,6 +48,12 @@
         display: none;
     }
 
+    // Disable default button is-active styles
+    &.is-active {
+        background-color: initial;
+        color: initial;
+    }
+
     // the red dot indicator
     &.has-new::before {
         background-color: color(danger);
