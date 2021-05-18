@@ -70,7 +70,10 @@ module.exports = {
       'patterns/filter-bar',
       'patterns/integrations',
       'patterns/masterswitch',
-      'patterns/no-results'
+      'patterns/no-results',
+      'patterns/piano',
+      'patterns/rules',
+      'patterns/table-detail'
     ]
   },
 };
