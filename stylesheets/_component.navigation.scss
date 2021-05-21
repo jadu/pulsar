@@ -444,9 +444,10 @@
 }
 
 .jadu-branding {
+    background-color: rgba(0, 0, 0, .3);
+    border-bottom: 3px solid color(white);
     display: block;
-    margin-top: 3px;
-    padding: 10px 0 4px;
+    padding: 0;
     text-decoration: none;
 
     &.is-active {
@@ -551,7 +552,7 @@
     background-size: $branding-navigation-width $branding-navigation-height;
     background-repeat: no-repeat;
     display: inline-block;
-    height: $branding-navigation-height;
+    height: 50px;
     text-align: center;
     width: $branding-navigation-width;
 
