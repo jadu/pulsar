@@ -82,10 +82,10 @@ $palette-states: (
         dark:  map-get(map-get($palette-monochromes, gray), darker)
     ),
     primary: (
-        base:  #2575b0,
-        alt:   pick_best_color(#2575b0, (#fff, #000)),
-        light: lighten(#2575b0, 45),
-        dark:  darken(#2575b0, 5)
+        base:  map-get(map-get($palette-branding, jadu-purple), base),
+        alt:   #fff,
+        light: map-get(map-get($palette-branding, jadu-purple), light),
+        dark:  map-get(map-get($palette-branding, jadu-purple), dark)
     ),
     success: (
         base:  #297c46,
