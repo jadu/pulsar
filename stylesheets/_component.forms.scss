@@ -819,3 +819,24 @@ fieldset.form__group {
     outline: 3px solid color(border, focus);
     outline-offset: 0;
 }
+
+// maxlength counter
+.inputLength__label {
+    background-color: color(grey, lightest);
+    border-radius: $border-radius;
+    color: color(text);
+    display: inline-block;
+    min-width: 25px;
+    padding: 2px 5px 0;
+    text-align: center;
+}
+
+.inputLength--warn > .inputLength__label {
+    background-color: color(warning);
+    color: color(warning, alt);
+}
+
+.inputLength--stop > .inputLength__label {
+    background-color: color(danger);
+    color: color(danger, alt);
+}
