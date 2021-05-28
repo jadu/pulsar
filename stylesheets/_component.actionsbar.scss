@@ -66,7 +66,6 @@
             @include respond-min($screen-smaller) {
                 border-bottom-right-radius: 0;
                 border-top-right-radius: 0;
-                border-right: 1px solid color(base, dark);
             }
 
             &:not(:last-child) .btn.dropdown__toggle {
@@ -86,7 +85,6 @@
             @include respond-min($screen-smaller) {
                 border-bottom-left-radius: 0;
                 border-top-left-radius: 0;
-                border-left: 1px solid color(base, dark);
             }
 
             &:not(:first-child) .btn.dropdown__toggle {
