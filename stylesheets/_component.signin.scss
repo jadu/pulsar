@@ -13,7 +13,8 @@ body {
 // prevent white flash before video plugin is initialised
 .signin-backdrop {
 	background: rgb(62, 73, 158);
-	background: linear-gradient(137deg, rgba(62, 73, 158, 1) 0%, rgba(52, 53, 107, 1) 50%, rgba(204, 44, 131, 1) 100%);
+	background: $background-gradient;
+	background-attachment: fixed;
 	bottom: 0;
 	left: 0;
 	position: absolute;
