@@ -59,7 +59,7 @@
 .modal__content {
     position: relative;
     background-color: $modal-content-bg;
-    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 0 $shadow-large rgba(0, 0, 0, .2);
     background-clip: padding-box;
     // Remove focus outline from opened modal
     outline: none;
@@ -76,6 +76,8 @@
 
 // Modal background
 .modal__backdrop {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
     position: fixed;
     top: 0;
     right: 0;
@@ -84,14 +86,10 @@
     z-index: ($zindex-modal - 10);
     background-color: $modal-backdrop-bg;
 
-    @include ie-lte(7) {
-        background-color: none;
-    }
-
     // Fade for backdrop
-    &.fade { @include opacity(0); }
+    &.fade { background-color: none; }
 
-    &.in { @include opacity(.5); }
+    &.in { background-color: rgba(0, 0, 0, .5); }
 }
 
 // Modal header

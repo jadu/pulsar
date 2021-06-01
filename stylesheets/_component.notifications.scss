@@ -29,13 +29,11 @@
     padding: 0; // reset .dropdown__menu defaults
     position: absolute;
     right: 10px;
-    top: 60px;
     width: auto;
 
     @include respond-min($screen-phone) {
         left: auto;
         right: -160px;
-        top: 40px;
         width: 380px;
     }
 }

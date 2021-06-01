@@ -245,7 +245,7 @@
     }
 
     .nav-main:not(.is-open) & {
-        box-shadow: inset -4px 0 0 rgba(0, 0, 0, .2);
+        box-shadow: inset (-$shadow-small) 0 0 rgba(0, 0, 0, .2);
     }
 
     .nav-link {
@@ -332,7 +332,7 @@
 .nav-quaternary {
     background-color: $nav-color-dark;
     background: $background-gradient;
-    box-shadow: 4px 0 4px rgba(0, 0, 0, .2), inset 4px 0 0 rgba(0, 0, 0, .2);
+    box-shadow: $shadow-large 0 0 rgba(0, 0, 0, .2), inset $shadow-small 0 0 rgba(0, 0, 0, .2);
     left: $nav-primary-width;
     margin-left: -320px;
     overflow-x: hidden;
@@ -368,12 +368,10 @@
     .nav-link {
         background-color: transparent;
         border: 0;
-        border-top-right-radius: 8px;
-        border-bottom-left-radius: 8px;
         text-align: left;
 
         &:hover {
-            background-color: darken($nav-color-dark, 4%);
+            background-color: rgba(255, 255, 255, .2);
             color: color(white);
         }
 

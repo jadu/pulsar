@@ -8,6 +8,10 @@
     width: 100%;
 }
 
+.pulsar-datepicker.ui-datepicker {
+    box-shadow: 0 0 0 $shadow-small rgba(0, 0, 0, .2);
+}
+
 .ui-datepicker-calendar {
     width: 400px;
 }

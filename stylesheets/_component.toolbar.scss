@@ -29,7 +29,7 @@
     }
 
     .btn {
-        border-color: color(text);
+        // border-color: color(text);
         width: 100%;
     }
 
@@ -42,42 +42,6 @@
             vertical-align: baseline;
         }
     }
-    // .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
-    //     border: 1px solid $input-border;
-    //     border-width: 1px;
-    //     padding-bottom: 6px;
-    //     padding-top: 6px;
-    //     width: 100%;
-
-    //     @include respond-min($screen-desktop) {
-    //         padding-bottom: 7px;
-    //         padding-top: 7px;
-    //     }
-
-    //     &:hover {
-    //         background-color: color(background, light) !important;
-    //         margin-bottom: 0;
-    //         transform: none;
-    //     }
-
-    //     &:focus {
-    //         border-width: 1px;
-    //     }
-
-    //     i {
-    //         font-size: 18px;
-    //         vertical-align: middle;
-
-    //         @include respond-min($screen-desktop) {
-    //             font-size: 14px;
-    //             vertical-align: baseline;
-    //         }
-    //     }
-
-    //     > .caret {
-    //         border-top-color: color(text);
-    //     }
-    // }
 
     .toolbar-action__text {
         display: none;
@@ -94,9 +58,6 @@
     }
 
     .dropdown__menu {
-        border-top: 2px solid $input-border;
-        top: 40px;
-
         .media {
             line-height: 24px;
             padding: 10px;

@@ -225,14 +225,16 @@
           float: right;
         }
 
-        .no-js & {
-          display: table-cell;
-        }
-
-        .heading {
-            font-size: $font-size-large;
+        h2 {
+            font-family: $font-family-heading-light;
+            font-size: 1rem;
+            font-weight: normal;
             line-height: $line-height-large;
             margin: 0;
+        }
+
+        .no-js & {
+          display: table-cell;
         }
     }
 }
