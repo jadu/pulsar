@@ -301,8 +301,8 @@
   }
 
   &.link--danger {
-    background-color: color(danger) !important;
-    color: color(white) !important;
+    background-color: color(danger);
+    color: color(white);
 
     &:hover {
       background-color: darken(color(danger), 5%);
