@@ -332,7 +332,7 @@
 .nav-quaternary {
     background-color: $nav-color-dark;
     background: $background-gradient;
-    box-shadow: 4px 0 4px rgba(0, 0, 0, .2), inset 4px 0 0 rgb(0, 0, 0, .2);
+    box-shadow: 4px 0 4px rgba(0, 0, 0, .2), inset 4px 0 0 rgba(0, 0, 0, .2);
     left: $nav-primary-width;
     margin-left: -320px;
     overflow-x: hidden;
