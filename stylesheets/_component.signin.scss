@@ -29,26 +29,26 @@ body {
 }
 
 .signin-brand {
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    top: 50px;
-    width: 200px;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	top: 50px;
+	width: 200px;
 }
 
 .jadu-logomark {
-    background: url($branding-navigation-fallback);
-    background: url($branding-navigation), linear-gradient(transparent, transparent);
-    background-size: $branding-navigation-width $branding-navigation-height;
-    background-repeat: no-repeat;
-    display: inline-block;
-    text-align: center;
-    height: 48px;
-    width: $branding-navigation-width;
+	background: url($branding-navigation-fallback);
+	background: url($branding-navigation), linear-gradient(transparent, transparent);
+	background-size: $branding-navigation-width $branding-navigation-height;
+	background-repeat: no-repeat;
+	display: inline-block;
+	text-align: center;
+	height: 48px;
+	width: $branding-navigation-width;
 }
 
 .jadu-wordmark {
-    display: none;
+	display: none;
 }
 
 .signin {
