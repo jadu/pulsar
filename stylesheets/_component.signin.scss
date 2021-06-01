@@ -338,8 +338,8 @@ body {
 }
 
 .signin__icon {
-	background: url($branding-site-fallback);
 	background: linear-gradient(137deg, rgba(62, 73, 158, 1) 0%, rgba(52, 53, 107, 1) 50%, rgba(204, 44, 131, 1) 100%);
+	background-image: url($branding-site-fallback);
 	background-size: $branding-site-height $branding-site-width;
 	background-position: 50% 0;
 	background-repeat: no-repeat;
