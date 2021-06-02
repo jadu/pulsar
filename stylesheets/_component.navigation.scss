@@ -245,10 +245,6 @@
         background-color: rgba(255, 255, 255, .2);
     }
 
-    .nav-main:not(.is-open) & {
-        // box-shadow: inset (-$shadow-micro) 0 0 rgba(0, 0, 0, .2);
-    }
-
     .nav-link {
         background-color: transparent;
         border: 0;
