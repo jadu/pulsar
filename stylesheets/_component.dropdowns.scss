@@ -51,11 +51,8 @@
   margin: $shadow-small 0 0; // override default ul
   list-style: none;
   background-color: $dropdown-bg;
-  border: 1px solid $dropdown-fallback-border; // IE8 fallback
-  border: 1px solid $dropdown-border;
-  // border-radius: $border-radius;
-  // box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-  box-shadow: 0 0 0 $shadow-small rgba(0, 0, 0, .2);
+  // border: 1px solid $dropdown-border;
+  box-shadow: 0 0 0 $shadow-small color(background, shadow);
   background-clip: padding-box;
 
   // Aligns the dropdown menu to right
@@ -66,7 +63,7 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
-    background-color: $dropdown-divider-bg;
+    background-color: color(border);
     display: block;
     height: 1px;
     margin: ($line-height-base / 4) 0;
@@ -116,7 +113,7 @@
   &.active {
     background-color: $dropdown-link-hover-bg;
     box-shadow: 0;
-    color: $dropdown-link-hover-color !important;
+    color: $dropdown-link-hover-color;
     text-decoration: none;
     transform: none;
   }
@@ -324,6 +321,10 @@
       @include pulsar-dropdown-item-focused;
       background-color: color(background, focus) !important;
       color: color(black) !important;
+    }
+
+    &.disabled {
+      background-color: color(danger, light);
     }
 
     > .badge {

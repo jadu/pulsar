@@ -188,7 +188,8 @@ $palette-alias: (
         dark:      map-get(map-get($palette-monochromes, gray), lightest),
         light:     lighten(map-get(map-get($palette-monochromes, gray), off-white), 2.1),
         selected:  map-get(map-get($palette-states, info), light),
-        focus:     #fd0
+        focus:     #fd0,
+        shadow:    rgba(62, 73, 148, .3)
     ),
 );
 

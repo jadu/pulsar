@@ -59,7 +59,7 @@
 .modal__content {
     position: relative;
     background-color: $modal-content-bg;
-    box-shadow: 0 0 0 $shadow-large rgba(0, 0, 0, .2);
+    box-shadow: 0 0 0 $shadow-large color(background, shadow);
     background-clip: padding-box;
     // Remove focus outline from opened modal
     outline: none;
@@ -89,7 +89,7 @@
     // Fade for backdrop
     &.fade { background-color: none; }
 
-    &.in { background-color: rgba(0, 0, 0, .5); }
+    &.in { background-color: color(background, shadow); }
 }
 
 // Modal header

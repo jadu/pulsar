@@ -3,7 +3,7 @@
     background: color(white);
     border-left: 1px solid $modal-header-border-color;
     bottom: 0;
-    box-shadow: 0 0 0 $shadow-large rgba(0, 0, 0, .2);
+    box-shadow: 0 0 0 $shadow-large color(background, shadow);
     display: none;
     height: 100%;
     overflow-x: none;
@@ -88,7 +88,7 @@
         height: 100%;
         -webkit-backdrop-filter: blur(2px);
         backdrop-filter: blur(2px);
-        background-color: rgba(0, 0, 0, .5);
+        background-color: color(background, shadow);
         transition: background-color .5s;
         width: 100%;
     }

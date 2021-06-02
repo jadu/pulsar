@@ -94,7 +94,7 @@
     margin: 0;
     background-color: #fff;
     border: 1px solid color(border);
-    box-shadow: 0 0 0 6px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 0 $shadow-small color(background, shadow);
     background-clip: padding-box;
 }
 

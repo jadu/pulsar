@@ -30,7 +30,7 @@
 
 .pika-single.is-bound {
     position: absolute;
-    box-shadow: 0 0 0 $shadow-small rgba(0, 0, 0, .2);
+    box-shadow: 0 0 0 $shadow-small color(background, shadow);
 }
 
 .pika-title {
