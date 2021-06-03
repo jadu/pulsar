@@ -187,7 +187,7 @@ $palette-alias: (
         base:      map-get(map-get($palette-monochromes, gray), off-white),
         dark:      map-get(map-get($palette-monochromes, gray), lightest),
         light:     lighten(map-get(map-get($palette-monochromes, gray), off-white), 2.1),
-        selected:  rgba(62, 73, 148, .2),
+        selected:  #edeef7,
         focus:     #fd0,
         shadow:    rgba(62, 73, 148, .3)
     ),
