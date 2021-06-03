@@ -138,6 +138,11 @@
         vertical-align: bottom;
     }
 
+    td .status--icon {
+        font-size: 1.25em;
+        vertical-align: middle;
+    }
+
     td.table__actions {
         @include respond-min($screen-desktop) {
             border-bottom: 0;
