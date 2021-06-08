@@ -267,12 +267,20 @@ body {
 	}
 
 	label {
-		@extend %hide;
+		display: block;
+		padding-left: 20px;
+		text-align: left;
+		width: 100%;
+
+		@include respond-min($screen-tablet) {
+			padding-left: 40px;
+		}
 	}
 }
 
 .signin__info {
 	display: block;
+	font-family: $font-family-heading-light;
 	font-size: $font-size-base;
 	line-height: $line-height-base;
 	margin-bottom: 1em;
