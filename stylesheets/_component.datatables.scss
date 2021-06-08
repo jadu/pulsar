@@ -215,7 +215,7 @@ th.sorting_disabled:hover {
     [type="search"] {
         border: 1px solid color(border);
         color: black;
-        border-radius: 4px;
+        border-radius: $border-radius;
         margin-left: 10px;
         padding: 5px;
 

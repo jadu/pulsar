@@ -7,17 +7,17 @@ $brand-height:                        24px !default;
 $brand-width:                         $nav-primary-width !default;
 $brand-background-size:               100% !default;
 
-$branding-site:                       $image-path + 'branding/logo-cms-white.svg';
+$branding-site:                       $image-path + 'branding/central-brandmark.svg' !default;
 $branding-site-fallback:              $image-path + 'branding/logo-cms-white.png';
-$branding-site-height:                65px;
-$branding-site-width:                 65px;
+$branding-site-height:                70px;
+$branding-site-width:                 70px;
 $branding-site-radius:                0;
 
-$branding-navigation:                 $image-path + 'branding/jadu-connect-test.svg' !default;
-$branding-navigation-focus:           $image-path + 'branding/logo-cms-black.svg' !default;
+$branding-navigation:                 $image-path + 'branding/central-brandmark.svg' !default;
+$branding-navigation-focus:           $image-path + 'branding/central-brandmark.svg' !default;
 $branding-navigation-fallback:        $image-path + 'branding/logo-cms-white.png' !default;
-$branding-navigation-height:          55px !default;
-$branding-navigation-width:           65px !default;
+$branding-navigation-height:          100px !default;
+$branding-navigation-width:           72px !default;
 
 $branding-footer:                     $image-path + 'branding/jadu-continuum-brandmark.svg' !default;
 $branding-footer-fallback:            $image-path + 'branding/jadu-continuum-brandmark.png' !default;

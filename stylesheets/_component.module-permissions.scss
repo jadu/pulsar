@@ -127,7 +127,7 @@ $module-permissions-breakpoint: $screen-tablet;
 
 // Control visibility of individual CRUD control labels
 .crud__permission {
-    border-radius: 4px;
+    border-radius: $border-radius;
     cursor: pointer;
     height: 42px;
     line-height: 42px;

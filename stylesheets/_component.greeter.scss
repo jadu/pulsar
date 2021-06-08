@@ -217,7 +217,7 @@ $greeter-brand-bottom-height:           40px !default;
         background-color: $greeter-button-bg-color;
         border: 0;
         border-bottom: $greeter-button-border-width solid $greeter-button-border-color;
-        border-radius: 4px;
+        border-radius: $border-radius;
         color: color(white);
         font-size: $greeter-font-size-small;
         line-height: 1em;

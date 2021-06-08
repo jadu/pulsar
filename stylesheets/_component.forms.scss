@@ -824,7 +824,7 @@ fieldset.form__group {
 // maxlength counter
 .inputLength__label {
     background-color: color(grey, lightest);
-    border-radius: $border-radius;
+    border-radius: $border-radius-small;
     color: color(text);
     display: inline-block;
     min-width: 25px;

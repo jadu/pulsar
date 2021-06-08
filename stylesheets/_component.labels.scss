@@ -11,7 +11,7 @@
 // Label constructor
 %label {
     @include label-variant('base');
-    border-radius: $border-radius;
+    border-radius: $border-radius-small;
     display: inline-block;
     font-size: $font-size-medium;
     padding: 0 $padding-small-em;
