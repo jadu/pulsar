@@ -92,16 +92,8 @@ $greeter-brand-bottom-height:           40px !default;
 \* -------------------------------------------------------------------------- */
 
 .greeter {
-    background-clip: border-box;
     background-color: $greeter-bg-color;
-    background-image: url($greeter-brand-top-image-fallback);
-    background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
-    background-size: $greeter-brand-top-width $greeter-brand-top-height;
-    background-position: 20px 20px;
-    background-origin: padding-box;
-    background-repeat: no-repeat;
     color: $greeter-text-color;
-    min-height: $greeter-min-height;
     max-width: $greeter-width-max;
     padding: $greeter-padding;
     width: $greeter-width-responsive;
@@ -118,25 +110,6 @@ $greeter-brand-bottom-height:           40px !default;
 
         &:hover {
             border-bottom-color: $greeter-text-color;
-        }
-    }
-
-    &__header {
-        background-clip: border-box;
-        background: url($greeter-brand-top-image-fallback);
-        background: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
-        background-size: $greeter-brand-top-width $greeter-brand-top-height;
-        background-origin: padding-box;
-        background-repeat: no-repeat;
-        padding-top: $greeter-brand-top-height + $gutter-width;
-        text-align: right;
-
-        // Support transparent PNG background images in IE8
-        @include ie-lte(8) {
-            background-image: url($greeter-brand-top-image-fallback) !important;
-            filter: progid:DXImageTransform.Microsoft.gradient(
-                startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
-            );
         }
     }
 
