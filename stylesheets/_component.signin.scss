@@ -338,6 +338,24 @@ body {
   animation: shake 500ms ease-in-out;
 }
 
+.signin--error,
+.signin--success {
+	color: color(white);
+
+	.btn {
+		border-color: color(white);
+		color: color(white);
+	}
+
+	a {
+		color: color(white);
+	}
+
+	.signin__input {
+		border-color: color(black);
+	}
+}
+
 .signin__icon {
 	background-image: url($branding-site);
 	background-size: $branding-site-height;
