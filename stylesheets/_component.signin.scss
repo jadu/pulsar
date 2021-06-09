@@ -365,7 +365,7 @@ body {
 
 .signin__icon {
 	background-image: url($branding-site);
-	background-size: $branding-site-height;
+	background-size: $branding-site-height 100px;
 	background-position: 50% 0;
 	background-repeat: no-repeat;
 	border-radius: $branding-site-radius;
