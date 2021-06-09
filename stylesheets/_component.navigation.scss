@@ -453,7 +453,7 @@
     }
 
     &:focus .jadu-logomark {
-        background: url($branding-navigation-focus), linear-gradient(transparent, transparent);
+        background-image: url($branding-navigation-focus), linear-gradient(transparent, transparent);
     }
 }
 

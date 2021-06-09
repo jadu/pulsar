@@ -171,7 +171,7 @@ $palette-alias: (
         placeholder: #737373
     ),
     link: (
-        base:     #22759f, // WCAG 5.1 AA compliant
+        base:     map-get(map-get($palette-branding, jadu-purple), base), // WCAG 5.1 AA compliant
         dark:     darken(#22759f, 5),
         hover:    #000,
         focus:    darken(#22759f, 15),
