@@ -35,6 +35,10 @@
   .caret {
     border-top-color: color(primary, alt);
   }
+
+  &:focus .caret {
+    border-top-color: color(black);
+  }
 }
 
 // The dropdown menu (ul)
