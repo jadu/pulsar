@@ -3,7 +3,6 @@
     background: color(white);
     border-left: 1px solid $modal-header-border-color;
     bottom: 0;
-    box-shadow: 0 0 0 $shadow-large color(background, shadow);
     display: none;
     height: 100%;
     overflow-x: none;
@@ -29,6 +28,7 @@
 }
 
 .table-detail.table-detail--open {
+    box-shadow: 0 0 0 $shadow-large color(background, shadow);
     -webkit-transform: none;
     display: table-cell;
     transform: none;
