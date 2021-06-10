@@ -1,35 +1,31 @@
-@mixin button-group-item() {
-    border-radius: 0;
-    border-right-width: 0;
-
-    &:first-of-type {
-        border-top-left-radius: $btn-border-radius;
-        border-bottom-left-radius: $btn-border-radius;
-    }
-
-    &:last-of-type {
-        border-top-right-radius: $btn-border-radius;
-        border-bottom-right-radius: $btn-border-radius;
-        border-right-width: 1px;
-    }
-}
-
 %btn__group,
 .btn__group, {
     display: inline-block;
 
     .btn {
-        @include button-group-item;
+        border-right: 1px solid;
+        border-right-color: #fff;
 
         // Restore expected borders for solo outline buttons only
         &.btn--outline:only-of-type {
-            border-right-color: inherit;
-            border-right-width: 1px;
+            border-right: 1px solid;
+            border-right-color: #fff;
         }
 
         // Make sure focused buttons aren't overlapped by subsequent children
         &:focus {
+            border-right-color: color(background, focus);
             z-index: 1;
+        }
+    }
+
+    .btn--outline {
+        border-right: 0;
+
+        &:focus,
+        &:last-of-type {
+            border-right: 1px solid;
+            border-right-color: inherit;
         }
     }
 

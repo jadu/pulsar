@@ -507,7 +507,6 @@ fieldset {
 
     .controls > .control__label {
         @extend %btn;
-        @include button-group-item;
     }
 
     // Hide the inputs which drive the button group behaviour

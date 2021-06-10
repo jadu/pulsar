@@ -45,7 +45,7 @@
     }
 
     .btn.remove-button {
-        padding: $padding-micro-em $padding-small-em ($padding-micro-em + .1);
+        padding: .25em $padding-small-em ($padding-micro-em + .1);
         background-color: rgba(0, 0, 0, .15);
         border-radius: 0 $border-radius $border-radius 0;
 
