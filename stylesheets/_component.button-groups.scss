@@ -1,6 +1,6 @@
 @mixin button-group-item() {
     border-radius: 0;
-    border-right: 1px solid rgba(0, 0, 0, .1);
+    border-right-width: 0;
 
     &:first-of-type {
         border-top-left-radius: $btn-border-radius;
@@ -10,7 +10,7 @@
     &:last-of-type {
         border-top-right-radius: $btn-border-radius;
         border-bottom-right-radius: $btn-border-radius;
-        border-right-width: 0;
+        border-right-width: 1px;
     }
 }
 
