@@ -44,6 +44,7 @@ $greeter-font-size-medium:              1.25em !default;
 $greeter-font-size-small:               .9em !default;
 
 // Colours
+$greeter-bg:                            linear-gradient(315deg, #161a37 0, #3d4696 100%) !default;
 $greeter-bg-color:                      color(jadu-purple) !default;
 $greeter-bg-color-lighter:              color(jadu-purple, light) !default;
 $greeter-bg-color-darker:               darken($greeter-bg-color, 3) !default;
@@ -92,7 +93,7 @@ $greeter-brand-bottom-height:           40px !default;
 \* -------------------------------------------------------------------------- */
 
 .greeter {
-    background-color: $greeter-bg-color;
+    background-image: $greeter-bg;
     color: $greeter-text-color;
     max-width: $greeter-width-max;
     padding: $greeter-padding;

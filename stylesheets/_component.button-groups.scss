@@ -9,7 +9,7 @@
         // Restore expected borders for solo outline buttons only
         &.btn--outline:only-of-type {
             border-right: 1px solid;
-            border-right-color: #fff;
+            // border-right-color: #fff;
         }
 
         // Make sure focused buttons aren't overlapped by subsequent children
