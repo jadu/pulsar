@@ -812,6 +812,10 @@ fieldset.form__group {
 
 // CK editor focus styles. Plugin used in all products. Chained for specificity bump.
 // scss-lint:disable SelectorFormat
+.cke_chrome.cke_chrome {
+    box-shadow: none;
+}
+
 .cke_focus.cke_focus {
     border: 3px solid color(black);
     border-radius: 0;
