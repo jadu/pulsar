@@ -1,0 +1,8 @@
+@mixin label-variant($state) {
+  background-color: color($state);
+  color: color($state, alt);
+
+  .remove-button [class^="icon-"] {
+      color: color($state, alt);
+  }
+}
