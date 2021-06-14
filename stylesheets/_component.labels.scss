@@ -1,16 +1,6 @@
-// Variant constructor
-@mixin label-variant($state) {
-    background-color: color($state);
-    color: color($state, alt);
-
-    .remove-button [class^="icon-"] {
-        color: color($state, alt);
-    }
-}
-
 // Label constructor
 %label {
-    @include label-variant('base');
+    @include label-state-variant('base');
     border-radius: $border-radius-small;
     display: inline-block;
     font-size: $font-size-medium;
@@ -30,7 +20,7 @@
 @each $state, $state-color, $state-color-alt in $state-colors {
     @if $state != 'base' {
         .label--#{'' + $state} {
-            @include label-variant($state);
+            @include label-state-variant($state);
         }
     }
 }

@@ -1,8 +1,32 @@
-@mixin label-variant($state) {
+@mixin label-state-variant($state) {
   background-color: color($state);
   color: color($state, alt);
 
   .remove-button [class^="icon-"] {
       color: color($state, alt);
+  }
+}
+
+
+@mixin label-variant($color, $text-color: $label-color-alt) {
+  background-color: $color;
+  color: $text-color;
+  text-transform: lowercase;
+
+  // Removable labels (older style, kept for BC)
+  .btn.remove-button,
+  .btn.remove-button [class^="icon-"],
+  .btn.remove-button [class*=" icon-"] {
+      &,
+      &:hover {
+          color: $text-color;
+      }
+  }
+
+  &[href] {
+      &:hover,
+      &:focus {
+          background-color: darken($color, 10%);
+      }
   }
 }
