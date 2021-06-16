@@ -228,8 +228,8 @@
             font-family: $font-family-heading-light;
             font-size: 1rem;
             font-weight: normal;
-            line-height: $line-height-large;
-            margin: 0;
+            line-height: $line-height-base;
+            margin: 0 0 $margin-large-vertical;
         }
 
         .no-js & {
