@@ -3,21 +3,26 @@
 'use strict';
 
 var $ = require('jquery'),
-    NavMainComponent = require('../../../js/NavMainComponent');
+    NavMainComponent = require('../../../js/NavMainComponent'),
+    FocusManagementService = require('../../../js/FocusManagementService');
 
 $.fx.off = true;
 
 describe('NavMainComponent', function () {
     beforeEach(function() {
-        this.$html = $('<div></div>').appendTo('html');
-        this.$body = $('<body></body>').appendTo(this.$html);
+        this.$html = $('html');
+        this.$body = $('body');
         this.$window = $('<div></div>');
         this.$window.height(150);
         this.window = this.$window[0];
         this.window.matchMedia = sinon.stub();
 
         this.$markup = $(`
-            <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
+            <a href="#" class="skip-link">Skip</a>
+            <div class="toolbar">
+                <a href="#" class="example-toolbar-link">Example link</a>
+                <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
+            </div>
             <nav class="nav-main" aria-label="Primary" id="aria-main-nav">
                <div class="nav-primary">
                    <a tabindex="1" href="http://jadu.net" class="jadu-branding">Jadu</a>
@@ -39,8 +44,10 @@ describe('NavMainComponent', function () {
                        </li>
                    </ul>
                </div>
-               <div class="nav-secondary" id="aria-secondary-nav">
-                   <button data-nav-action="close">x</button>
+               <div class="nav-secondary nav-flyout" id="aria-secondary-nav">
+                   <div class="nav-controls">
+                       <button class="nav-controls__close" data-nav-action="close">x</button>
+                   </div>
                    <form>
                        <input type="search" placeholder="search" />
                        <button>Go</button>
@@ -60,8 +67,10 @@ describe('NavMainComponent', function () {
                        </ul>
                    </div>
                </div>
-               <div class="nav-tertiary" id="aria-tertiary-nav">
-                   <button data-nav-action="close">x</button>
+               <div class="nav-tertiary nav-flyout" id="aria-tertiary-nav">
+                   <div class="nav-controls">
+                       <button class="nav-controls__close" data-nav-action="close">x</button>
+                   </div>
                    <div class="nav-list">
                        <ul class="nav-items">
                            <li class="nav-item">
@@ -79,8 +88,10 @@ describe('NavMainComponent', function () {
                        </ul>
                    </div>
                </div>
-               <div class="nav-quaternary" id="aria-quaternary-nav">
-                   <button data-nav-action="close">x</button>
+               <div class="nav-quaternary nav-flyout" id="aria-quaternary-nav">
+                   <div class="nav-controls">
+                       <button class="nav-controls__close-ltr" data-nav-action="close">x</button>
+                   </div>
                    <div class="nav-list" data-nav="#three_one">
                        <ul class="nav-items">
                            <li class="nav-item">
@@ -100,49 +111,53 @@ describe('NavMainComponent', function () {
             <div class="content-main">
                 <a href="#" data-toggle="popover" data-content="foo">popover test</a>
             </div>
+            <div class="footer">Footer</div>
         `).appendTo(this.$body);
 
-        this.$mobileMenuButton = this.$html.find('.mobile-menu-button');
-        this.$navMain = this.$html.find('.nav-main');
-        this.$contentMain = this.$html.find('.content-main');
+        this.$mobileMenuButton = this.$body.find('.mobile-menu-button');
+        this.$navMain = this.$body.find('.nav-main');
+        this.$contentMain = this.$body.find('.content-main');
+        this.$skipLink = this.$body.find('.skip-link');
+        this.$toolbarExampleLink = this.$body.find('.example-toolbar-link');
+        this.$footer = this.$body.find('.footer');
         this.$navTertiary = this.$navMain.find('.nav-tertiary');
         this.$navQuaternary = this.$navMain.find('.nav-quaternary');
 
-        this.$closeSecondaryLink = this.$html.find('.nav-secondary [data-nav-action="close"]');
-        this.$closeTertiaryNavLink = this.$html.find('.nav-tertiary [data-nav-action="close"]');
-        this.$closeQuaternaryNavLink = this.$html.find('.nav-quaternary [data-nav-action="close"]');
+        this.$closeSecondaryLink = this.$body.find('.nav-secondary [data-nav-action="close"]');
+        this.$closeTertiaryNavLink = this.$body.find('.nav-tertiary [data-nav-action="close"]');
+        this.$closeQuaternaryNavLink = this.$body.find('.nav-quaternary [data-nav-action="close"]');
 
-        this.$linkOne = this.$html.find('[href="#one"]');
-        this.$linkTwo = this.$html.find('[data-target="#two"]');
-        this.$linkThree = this.$html.find('[href="#three"]');
-        this.$missingHref = this.$html.find('.qa-missing-href');
-        this.$missingDataTarget = this.$html.find('.qa-missing-target');
+        this.$linkOne = this.$body.find('[href="#one"]');
+        this.$linkTwo = this.$body.find('[data-target="#two"]');
+        this.$linkThree = this.$body.find('[href="#three"]');
+        this.$missingHref = this.$body.find('.qa-missing-href');
+        this.$missingDataTarget = this.$body.find('.qa-missing-target');
 
-        this.$secondaryLink = this.$html.find('[href="#two_one"]');
-        this.$secondaryButton = this.$html.find('[data-target="#two_two"]');
-        
-        this.$tertiaryLink = this.$html.find('[href="#three_one"]');
-        this.$tertiaryButton = this.$html.find('[data-target="#three_two"]');
-        this.$tertiarymissingHref = this.$html.find('.qa-tertiary-missing-href');
-        this.$tertiarymissingDataTarget = this.$html.find('.qa-tertiary-missing-target');
+        this.$secondaryLink = this.$body.find('[href="#two_one"]');
+        this.$secondaryButton = this.$body.find('[data-target="#two_two"]');
+
+        this.$tertiaryLink = this.$body.find('[href="#three_one"]');
+        this.$tertiaryButton = this.$body.find('[data-target="#three_two"]');
+        this.$tertiarymissingHref = this.$body.find('.qa-tertiary-missing-href');
+        this.$tertiarymissingDataTarget = this.$body.find('.qa-tertiary-missing-target');
 
         $.fn.popover = sinon.stub().returnsThis();
-        this.$popoverLink = this.$html.find('[data-toggle="popover"]');
+        this.$popoverLink = this.$body.find('[data-toggle="popover"]');
 
         // set height on nav items as no css in tests
-        this.$html.find('.nav-item').height(20);
-        this.$html.find('.more-icon').height(20);
+        this.$body.find('.nav-item').height(20);
+        this.$body.find('.more-icon').height(20);
 
-        this.navMainComponent = new NavMainComponent(this.$html, this.window);
-    });
+        this.focusManagementService = new FocusManagementService();
+        this.navMainComponent = new NavMainComponent(this.$html, this.window, this.focusManagementService);
 
-    beforeEach(function () {
+        this.focusManagementService.storeElement = sinon.spy();
+        this.focusManagementService.trapFocus = sinon.spy();
         this.window.matchMedia.returns({matches: true});
     });
 
     afterEach(function () {
-        this.$html.remove(); // Detach test DOM from the real one
-        delete $.fn.popover;
+        this.$markup.remove();
     });
 
     describe('when component is initalised, if html arguement is missing', function () {
@@ -186,6 +201,17 @@ describe('NavMainComponent', function () {
         });
     });
 
+    describe('when component is initalised in mobile mode, the closed mobile nav should be hidden from screen readers', function () {
+        beforeEach(function () {
+            this.window.matchMedia.returns({matches: false});
+            this.navMainComponent.init();
+        });
+
+        it('should hide the nav from screen readers', function () {
+            expect(this.$navMain.attr('aria-hidden')).to.equal('true');
+        });
+    });
+
     describe('when the window is resized, the initial tabindex should be changed to -1', function () {
         beforeEach(function () {
             this.navMainComponent.init();
@@ -196,6 +222,33 @@ describe('NavMainComponent', function () {
 
         it('should maintain the initial tabindex', function () {
             expect(this.$linkOne.attr('tabindex')).to.equal('-1');
+        });
+    });
+
+    describe('When the window is resized from mobile to desktop', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.window.matchMedia.returns({matches: false});
+            this.$window.trigger('resize');
+        });
+
+        it('should close any open mobile navs', function () {
+            this.window.matchMedia.returns({matches: true});
+            this.$window.trigger('resize');
+
+            expect(this.$navMain.attr('aria-hidden')).to.be.undefined;
+        });
+
+        it('should unhide any previously aria-hidden page areas', function () {
+            this.clickEvent = $.Event('click');
+            this.$mobileMenuButton.trigger(this.clickEvent);
+            this.window.matchMedia.returns({matches: true});
+            this.$window.trigger('resize');
+
+            expect(this.$body.find('.skip-link').attr('aria-hidden')).to.be.undefined;
+            expect(this.$body.find('.example-toolbar-link').attr('aria-hidden')).to.be.undefined;
+            expect(this.$body.find('.content-main').attr('aria-hidden')).to.be.undefined;
+            expect(this.$body.find('.footer').attr('aria-hidden')).to.be.undefined;
         });
     });
 
@@ -225,6 +278,13 @@ describe('NavMainComponent', function () {
         it('should change the menu buttons aria-expanded attribute to true', function () {
             expect(this.$mobileMenuButton.attr('aria-expanded')).to.be.equal('true');
         });
+
+        it('should hide everything outside of the nav from screen reader', function () {
+            expect(this.$body.find('.skip-link').attr('aria-hidden')).to.equal('true');
+            expect(this.$body.find('.example-toolbar-link').attr('aria-hidden')).to.equal('true');
+            expect(this.$body.find('.content-main').attr('aria-hidden')).to.equal('true');
+            expect(this.$body.find('.footer').attr('aria-hidden')).to.equal('true');
+        });
     })
 
     describe('When mobile menu button is clicked twice', function () {
@@ -248,6 +308,13 @@ describe('NavMainComponent', function () {
 
         it('should change the menu buttons aria-expanded attribute to true', function () {
             expect(this.$mobileMenuButton.attr('aria-expanded')).to.be.equal('false');
+        });
+
+        it('should unhide everything outside of the nav from screen reader', function () {
+            expect(this.$body.find('.skip-link').attr('aria-hidden')).to.be.undefined;
+            expect(this.$body.find('.example-toolbar-link').attr('aria-hidden')).to.be.undefined;
+            expect(this.$body.find('.content-main').attr('aria-hidden')).to.be.undefined;
+            expect(this.$body.find('.footer').attr('aria-hidden')).to.be.undefined;
         });
     })
 
@@ -306,6 +373,15 @@ describe('NavMainComponent', function () {
 
         it('should not add the is-active class to the other sub navigation menus', function () {
             expect(this.$html.find('[data-nav="#two"]').hasClass('is-active')).to.be.false;
+        });
+
+        it('should focus the secondary nav close button', function () {
+            expect(this.$html.find('.nav-secondary [data-nav-action="close"]').is(':focus')).to.be.true;
+        });
+
+        it('should trap focus within the secondary nav', function () {
+            expect(this.focusManagementService.storeElement).to.have.been.calledOnce;
+            expect(this.focusManagementService.trapFocus).to.have.been.calledOnce;
         });
     });
 
@@ -440,7 +516,7 @@ describe('NavMainComponent', function () {
 
         it('should close the secondary nav when open', function () {
             this.$html.find('.nav-secondary').addClass('is-open');
-            
+
             this.$moreIconLink.trigger(this.clickEvent);
 
             expect(this.$html.find('.nav-secondary').hasClass('is-open')).to.be.false;
@@ -472,7 +548,7 @@ describe('NavMainComponent', function () {
             expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.true;
 
             this.$moreIconLink.trigger(this.clickEvent2);
-            
+
             expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.false;
         });
 
@@ -486,7 +562,7 @@ describe('NavMainComponent', function () {
         it('should remove the is-active class from the quaternary navs active nav-list if its already open', function () {
             this.$moreIconLink.trigger(this.clickEvent);
             this.$tertiaryButton.trigger(this.clickEvent3);
-            
+
             expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.true;
 
             this.$moreIconLink.trigger(this.clickEvent2);
@@ -499,6 +575,19 @@ describe('NavMainComponent', function () {
             this.$moreIconLink.trigger(this.clickEvent2);
 
             expect(this.$moreIconLink.attr('aria-expanded')).to.be.equal('false');
+        });
+
+        it('should focus the tertiary nav close button', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+
+            expect(this.$html.find('.nav-tertiary [data-nav-action="close"]').is(':focus')).to.be.true;
+        });
+
+        it('should trap focus within the tertiary nav', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+
+            expect(this.focusManagementService.storeElement).to.have.been.calledOnce;
+            expect(this.focusManagementService.trapFocus).to.have.been.calledOnce;
         });
 
         describe('when a tertiary nav link is clicked', function () {
@@ -521,6 +610,15 @@ describe('NavMainComponent', function () {
             it('should change the clicked links aria-expanded to true', function () {
                 expect(this.$tertiaryLink.attr('aria-expanded')).to.be.equal('true');
             });
+
+            it('should focus the quaternary nav close button', function () {
+                expect(this.$html.find('.nav-quaternary [data-nav-action="close"]').is(':focus')).to.be.true;
+            });
+
+            it('should trap focus within the quaternary nav', function () {
+                expect(this.focusManagementService.storeElement).to.have.been.calledOnce;
+                expect(this.focusManagementService.trapFocus).to.have.been.calledOnce;
+            });
         });
 
         describe('clicking on a tertiary nav link with a missing href', function () {
@@ -528,20 +626,20 @@ describe('NavMainComponent', function () {
                 this.navMainComponent.init();
                 this.clickEvent = $.Event('click');
             });
-    
+
             it('should throw an error', function () {
                 expect(() => {
                     this.$tertiarymissingHref.trigger(this.clickEvent);
                 }).to.throw('A nav link must have a href or data-target attribute');
             });
         });
-    
+
         describe('clicking on a tertiary nav link with a missing data-target', function () {
             beforeEach(function () {
                 this.navMainComponent.init();
                 this.clickEvent = $.Event('click');
             });
-    
+
             it('should throw an error', function () {
                 expect(() => {
                     this.$tertiarymissingDataTarget.trigger(this.clickEvent);
@@ -679,7 +777,7 @@ describe('NavMainComponent', function () {
                 expect(this.$navTertiary.hasClass('is-open')).to.be.false;
             }, 200);
         });
-        
+
         it('should hide the open quaternary nav', function () {
             setTimeout(() => {
                 expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
@@ -700,8 +798,8 @@ describe('NavMainComponent', function () {
 		});
 
         it('should be hidden when opening the secondary navigation', function () {
-            expect($.fn.popover).to.have.been.calledWith('hide');            
-        })
+            expect($.fn.popover).to.have.been.calledWith('hide');
+        });
     });
 
     describe('opening the secondary nav when a popover is open', function () {
@@ -717,7 +815,102 @@ describe('NavMainComponent', function () {
 		});
 
         it('should be hidden when opening the secondary navigation', function () {
-            expect($.fn.popover).to.have.been.calledWith('hide');            
-        })
+            expect($.fn.popover).to.have.been.calledWith('hide');
+        });
+    });
+
+    describe('When ESC is pressed and navs are open', function () {
+        beforeEach(function () {
+            this.keydownEvent = $.Event('keydown');
+            this.keydownEvent.keyCode = 27;
+            this.clickEvent = $.Event('click');
+            this.clickEvent2 = $.Event('click');
+        });
+
+        it('should close the Quaternary nav if open', function () {
+            this.navMainComponent.init();
+            this.$window.height(200);
+            this.$window.resize();
+            this.$moreIconLink = this.$html.find('.more-icon > .nav-link');
+            this.$moreIconLink.trigger(this.clickEvent);
+            this.$tertiaryLink.trigger(this.clickEvent2);
+
+            this.$html.trigger(this.keydownEvent);
+
+            expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.false;
+        });
+
+        it('should close the Tertiary nav if open', function () {
+            this.navMainComponent.init();
+            this.$window.height(200);
+            this.$window.resize();
+            this.$moreIconLink = this.$html.find('.more-icon > .nav-link');
+            this.$moreIconLink.trigger(this.clickEvent);
+
+            this.$html.trigger(this.keydownEvent);
+
+            expect(this.$html.find('.nav-tertiary').hasClass('is-open')).to.be.false;
+        });
+
+        it('should close the Secondary nav if open', function () {
+            this.navMainComponent.init();
+            this.$linkOne.trigger(this.clickEvent);
+
+            this.$html.trigger(this.keydownEvent);
+
+            expect(this.$html.find('.nav-secondary').hasClass('is-open')).to.be.false;
+        });
+
+        it('should close the primary nav if open on mobile', function () {
+            this.window.matchMedia.returns({matches: false});
+            this.navMainComponent.init();
+            this.$mobileMenuButton.trigger(this.clickEvent);
+
+            this.$html.trigger(this.keydownEvent);
+
+            expect(this.$body.hasClass('open-nav')).to.be.false;
+        });
+    });
+
+    describe('isNavOpen()', function () {
+        it('should return true if quaternary nav is open', function () {
+            this.navMainComponent.init();
+
+            this.$html.find('.nav-quaternary').addClass('is-open');
+
+            expect(this.navMainComponent.isNavOpen()).to.be.true;
+        });
+
+        it('should return true if tertiary nav is open', function () {
+            this.navMainComponent.init();
+
+            this.$html.find('.nav-tertiary').addClass('is-open');
+
+            expect(this.navMainComponent.isNavOpen()).to.be.true;
+        });
+
+        it('should return true if secondary nav is open', function () {
+            this.navMainComponent.init();
+
+            this.$html.find('.nav-secondary').addClass('is-open');
+
+            expect(this.navMainComponent.isNavOpen()).to.be.true;
+        });
+
+        it('should return true if mobile nav is open', function () {
+            this.window.matchMedia.returns({matches: false});
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+
+            this.$mobileMenuButton.trigger(this.clickEvent);
+
+            expect(this.navMainComponent.isNavOpen()).to.be.true;
+        });
+
+        it('should return false if all navs are closed', function () {
+            this.navMainComponent.init();
+
+            expect(this.navMainComponent.isNavOpen()).to.be.false;
+        });
     });
 });

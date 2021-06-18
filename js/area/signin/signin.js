@@ -1,6 +1,7 @@
-var $ = require('jquery'),
-	placeholder = require('../../../libs/jquery-placeholder/jquery.placeholder'),
-	vide = require('../../../libs/vide/dist/jquery.vide.min');
+var $ = require('jquery');
+
+require('jquery-placeholder');
+require('vide');
 
 function SignInComponent(html) {
 	this.$html = html;
@@ -40,6 +41,14 @@ SignInComponent.prototype.init = function () {
 	component.animationEnd = 'webkitAnimationEnd oanimationend oAnimationEnd msAnimationEnd animationend';
 	component.transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
 	component.twoStepAttempt = 0;
+
+	component.motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
+	component.$videoBlock = this.$html.find('#video-bg');
+
+	// Handle background video and OS motion control
+	component.handleReduceMotion();
+	component.motionQuery.addListener(component.handleReduceMotion.bind(this));
+
 
 	// Polyfill placeholder behaviour in oldIE
 	this.$html.find('input').placeholder();
@@ -208,7 +217,9 @@ SignInComponent.prototype.reset = function () {
 		.removeClass('signin--error')
 		.find('.signin__hint').remove();
 
-	this.$html.find('input:not([name="username"])').blur();
+	if (this.$html.find('.signin-container input:not([name="username"])').length) {
+		this.$html.find('.signin-container input:not([name="username"])').trigger('blur');
+	}
 
 	$('.signin__input, .signin__submit, .signin__link', $('.signin-reset'))
 		.prop('tabindex', '-1');
@@ -295,7 +306,7 @@ SignInComponent.prototype.switchPanel = function (panelClass) {
 	newPanel
 		.attr('aria-hidden', 'false')
 		.find('[tabindex]')
-		.removeAttr('disabled')
+		.prop('disabled', false)
 		.each(function() {
 			$(this).attr('tabindex', '0');
 		});
@@ -304,7 +315,7 @@ SignInComponent.prototype.switchPanel = function (panelClass) {
 	oldPanel
 		.attr('aria-hidden', 'true')
 		.find('[tabindex]')
-		.attr('disabled', 'disabled')
+		.prop('disabled', true)
 		.each(function() {
 			$(this).attr('tabindex', '-1');
 		});
@@ -440,6 +451,28 @@ SignInComponent.prototype.success = function () {
 
 	component.$alert.append(document.createTextNode(component.successMessage));
 	component.$container.addClass('active-success');
+
+}
+
+SignInComponent.prototype.handleReduceMotion = function () {
+
+	var component = this,
+		videVideoPath = component.$videoBlock.attr('data-video-bg'),
+		videPosterPath = component.$videoBlock.attr('data-video-poster'),
+		videOptions;
+
+	if (!component.motionQuery.matches) {
+		videOptions = {
+			mp4: videVideoPath,
+			poster: videPosterPath
+		};
+	} else {
+		videOptions = {
+			poster: videPosterPath
+		};
+	}
+
+	component.$videoBlock.vide(videOptions);
 
 }
 

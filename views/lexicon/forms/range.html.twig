@@ -11,7 +11,7 @@
     {{ form.fieldset_start() }}
     {{
         form.range({
-            'id': 'range-1',
+            'id': 'guid-' ~ random(),
             'label': 'Range field'
         })
     }}
@@ -19,7 +19,7 @@
 
     {{
         form.range({
-            'id': 'range-2',
+            'id': 'guid-' ~ random(),
             'label': 'Range field with value',
             'value': '6'
         })
@@ -27,7 +27,7 @@
 
     {{
         form.range({
-            'id': 'range-3',
+            'id': 'guid-' ~ random(),
             'label': 'Required',
             'required': true
         })
@@ -35,26 +35,9 @@
 
     {{
         form.range({
-            'id': 'range-4',
+            'id': 'guid-' ~ random(),
             'label': 'Range field with help',
             'help': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.range({
-            'id': 'range-5',
-            'label': 'Range field with guidance',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.range({
-            'id': 'range-6',
-            'label': 'Required with guidance',
-            'guidance': 'Help text to give more information about expected input',
-            'required': true
         })
     }}
 
@@ -63,13 +46,7 @@
 
     {{
         form.range({
-            'help': 'This example omits the label option entirely'
-        })
-    }}
-
-    {{
-        form.range({
-            'id': 'range-7',
+            'id': 'guid-' ~ random(),
             'label': 'Range field',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option'
@@ -78,36 +55,33 @@
 
     {{
         form.range({
-            'id': 'range-8',
+            'id': 'guid-' ~ random(),
             'label': 'Range input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.range({
-            'id': 'range-9',
+            'id': 'guid-' ~ random(),
             'label': 'Range input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
             'class': 'form__group--top',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.range({
-            'id': 'range-10',
+            'id': 'guid-' ~ random(),
             'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
             'class': 'form__group--top form__group--flush',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
@@ -116,78 +90,78 @@
 
     {{
         form.range({
+            'id': 'guid-' ~ random(),
             'label': 'form__group--top form__group--flush and form__group--mini',
             'class': 'form__group--top form__group--flush form__group--mini',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.range({
+            'id': 'guid-' ~ random(),
             'label': 'form__group--top form__group--flush and form__group--small',
             'class': 'form__group--top form__group--flush form__group--small',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.range({
+            'id': 'guid-' ~ random(),
             'label': 'form__group--top form__group--flush and form__group--medium',
             'class': 'form__group--top form__group--flush form__group--medium',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.range({
+            'id': 'guid-' ~ random(),
             'label': 'form__group--top form__group--flush and form__group',
             'class': 'form__group--top form__group--flush',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.range({
+            'id': 'guid-' ~ random(),
             'label': 'form__group--top form__group--flush and form__group--large',
             'class': 'form__group--top form__group--flush form__group--large',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.range({
+            'id': 'guid-' ~ random(),
             'label': 'form__group--top form__group--flush and form__group--xlarge',
             'class': 'form__group--top form__group--flush form__group--xlarge',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.range({
+            'id': 'guid-' ~ random(),
             'label': 'form__group--top form__group--flush and form__group--full',
             'class': 'form__group--top form__group--flush form__group--full',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
@@ -197,7 +171,7 @@
 
     {{
         form.range({
-            'id': 'range-11',
+            'id': 'guid-' ~ random(),
             'label': 'Range field with error',
             'error': 'Please complete this field'
         })
@@ -205,7 +179,7 @@
 
     {{
         form.range({
-            'id': 'range-12',
+            'id': 'guid-' ~ random(),
             'label': 'Range field with multiple errors',
             'error': ['Do this', 'Do this too']
         })
@@ -213,7 +187,7 @@
 
     {{
         form.range({
-            'id': 'range-13',
+            'id': 'guid-' ~ random(),
             'label': 'Range field with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
@@ -222,7 +196,7 @@
 
     {{
         form.range({
-            'id': 'range-14',
+            'id': 'guid-' ~ random(),
             'class': 'has-error',
             'label': 'Range field error with help only',
             'help': 'Help text to give more information about expected input'
@@ -234,7 +208,7 @@
 
     {{
         form.range({
-            'id': 'range-15',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
@@ -242,7 +216,7 @@
     }}
     {{
         form.range({
-            'id': 'range-16',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -251,7 +225,7 @@
 
     {{
         form.range({
-            'id': 'range-17',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
@@ -259,7 +233,7 @@
     }}
     {{
         form.range({
-            'id': 'range-18',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
@@ -267,7 +241,7 @@
     }}
     {{
         form.range({
-            'id': 'range-19',
+            'id': 'guid-' ~ random(),
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -279,7 +253,7 @@
 
     {{
         form.range({
-            'id': 'range-1-col',
+            'id': 'guid-' ~ random(),
             'label': 'One column',
             'class': 'form__control-col--1',
             'name': 'inputTextMini',
@@ -288,7 +262,7 @@
 
     {{
         form.range({
-            'id': 'range-2-col',
+            'id': 'guid-' ~ random(),
             'label': 'Two columns',
             'class': 'form__control-col--2',
             'name': 'inputTextSmall'
@@ -297,7 +271,7 @@
 
     {{
         form.range({
-            'id': 'range-3-col',
+            'id': 'guid-' ~ random(),
             'label': 'Three columns',
             'class': 'form__control-col--3',
             'name': 'inputTextMedium'
@@ -306,7 +280,7 @@
 
     {{
         form.range({
-            'id': 'range-4-col',
+            'id': 'guid-' ~ random(),
             'label': 'Four columns',
             'class': 'form__control-col--4',
             'name': 'inputTextRegular'
@@ -315,7 +289,7 @@
 
     {{
         form.range({
-            'id': 'range-5-col',
+            'id': 'guid-' ~ random(),
             'label': 'Five columns',
             'class': 'form__control-col--5',
             'name': 'inputTextLarge'
@@ -324,7 +298,7 @@
 
     {{
         form.range({
-            'id': 'range-6-col',
+            'id': 'guid-' ~ random(),
             'label': 'Six columns',
             'class': 'form__control-col--6',
             'name': 'inputTextXLarge'
@@ -333,7 +307,7 @@
 
     {{
         form.range({
-            'id': 'range-7-col',
+            'id': 'guid-' ~ random(),
             'label': 'Seven columns',
             'class': 'form__control-col--7',
             'name': 'inputTextFull'
@@ -342,7 +316,7 @@
 
     {{
         form.range({
-            'id': 'range-8-col',
+            'id': 'guid-' ~ random(),
             'label': 'Eight columns',
             'class': 'form__control-col--8',
             'name': 'inputTextFull'
@@ -351,7 +325,7 @@
 
     {{
         form.range({
-            'id': 'range-9-col',
+            'id': 'guid-' ~ random(),
             'label': 'Nine columns',
             'class': 'form__control-col--9',
             'name': 'inputTextFull'
@@ -363,7 +337,7 @@
 
     {{
         form.range({
-            'id': 'range-20',
+            'id': 'guid-' ~ random(),
             'label': 'Mini',
             'class': 'form__group--mini',
             'name': 'inputTextMini'
@@ -372,7 +346,7 @@
 
     {{
         form.range({
-            'id': 'range-21',
+            'id': 'guid-' ~ random(),
             'label': 'Small',
             'class': 'form__group--small',
             'name': 'inputTextSmall'
@@ -381,7 +355,7 @@
 
     {{
         form.range({
-            'id': 'range-22',
+            'id': 'guid-' ~ random(),
             'label': 'Medium',
             'class': 'form__group--medium',
             'name': 'inputTextMedium'
@@ -390,7 +364,7 @@
 
     {{
         form.range({
-            'id': 'range-23',
+            'id': 'guid-' ~ random(),
             'label': 'Regular',
             'class': 'form__group--regular',
             'name': 'inputTextRegular'
@@ -399,7 +373,7 @@
 
     {{
         form.range({
-            'id': 'range-24',
+            'id': 'guid-' ~ random(),
             'label': 'Large',
             'class': 'form__group--large',
             'name': 'inputTextLarge'
@@ -408,7 +382,7 @@
 
     {{
         form.range({
-            'id': 'range-25',
+            'id': 'guid-' ~ random(),
             'label': 'Extra Large',
             'class': 'form__group--xlarge',
             'name': 'inputTextXLarge'
@@ -417,7 +391,7 @@
 
     {{
         form.range({
-            'id': 'range-26',
+            'id': 'guid-' ~ random(),
             'label': 'Full',
             'class': 'form__group--full',
             'name': 'inputTextFull'
@@ -429,7 +403,7 @@
 
     {{
         form.range({
-            'id': 'range-27',
+            'id': 'guid-' ~ random(),
             'label': 'Prepended',
             'prepend': '£'
         })
@@ -437,7 +411,7 @@
 
     {{
         form.range({
-            'id': 'range-28',
+            'id': 'guid-' ~ random(),
             'label': 'Appended',
             'append': '.00'
         })
@@ -445,16 +419,7 @@
 
     {{
         form.range({
-            'id': 'range-29',
-            'label': 'Appended with guidance',
-            'append': '.00',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.range({
-            'id': 'range-30',
+            'id': 'guid-' ~ random(),
             'label': 'Prepended &amp; Appended',
             'append': html.icon('volume-up'),
             'prepend': html.icon('volume-down')
@@ -468,7 +433,7 @@
     {% for i in 1..9 %}
         {{
             form.range({
-                'id': 'range-' ~ random(),
+                'id': 'guid-' ~ random(),
                 'name': 'range-' ~ random(),
                 'prepend': 'Prepend',
                 'label': i ~ ' columns',
@@ -483,7 +448,7 @@
     {% for width in legacyGrid %}
         {{
             form.range({
-                'id': 'range-' ~ random(),
+                'id': 'guid-' ~ random(),
                 'name': 'range-' ~ random(),
                 'prepend': 'Prepend',
                 'label': width,
@@ -555,7 +520,19 @@
 
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

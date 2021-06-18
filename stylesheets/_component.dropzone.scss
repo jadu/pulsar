@@ -92,6 +92,11 @@ $dropzone-icon-rotation: 30deg;
     position: relative;
 }
 
+.dropzone__browse.btn {
+    margin: 10px 0;
+    position: static;
+}
+
 .dropzone__help {
     color: color(text);
     display: inline-block;
@@ -261,14 +266,26 @@ $dropzone-icon-rotation: 30deg;
 
         .dropzone__icon--left {
             transform: rotate(-#{$dropzone-icon-rotation}) translateY(50%);
+
+            @include prefers-reduced-motion() {
+                transform: rotate(-#{$dropzone-icon-rotation}) translateY(75%);
+            }
         }
 
         .dropzone__icon--centre {
             transform: translateY(0) translateX(-50%);
+
+            @include prefers-reduced-motion() {
+                transform: translateX(-50%) translateY(25%);
+            }
         }
 
         .dropzone__icon--right {
             transform: rotate(#{$dropzone-icon-rotation}) translateY(50%);
+
+            @include prefers-reduced-motion() {
+                transform: rotate($dropzone-icon-rotation) translateY(75%);
+            }
         }
     }
 }

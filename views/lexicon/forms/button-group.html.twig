@@ -115,34 +115,7 @@
 
     {{
         form.button_group({
-            'label': 'Button group with guidance (radios)',
-            'guidance': 'Help text to give more information about expected input',
-            'items': [
-                {
-                    'id': 'foo-' ~ i,
-                    'label': 'Foo ' ~ i,
-                    'name': 'foo-' ~ i,
-                    'checked': true
-                },
-                {
-                    'id': 'bar-' ~ i,
-                    'label': 'Bar ' ~ i,
-                    'name': 'foo-' ~ i
-                },
-                {
-                    'id': 'baz-' ~ i,
-                    'label': 'Baz ' ~ i,
-                    'name': 'foo-' ~  i
-                }
-            ]
-        })
-    }}
-    {% set i = i + 1 %}
-
-    {{
-        form.button_group({
-            'label': 'Required with guidance, with on option pre-selected (radios)',
-            'guidance': 'Help text to give more information about expected input',
+            'label': 'Required with an option pre-selected (radios)',
             'required': true,
             'items': [
                 {
@@ -165,9 +138,7 @@
         })
     }}
     {% set i = i + 1 %}
-    
 
-    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
@@ -201,7 +172,6 @@
         form.button_group({
             'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline (radios)',
             'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input',
             'items': [
                 {
                     'id': 'foo-' ~ i,
@@ -229,7 +199,6 @@
             'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line (radios)',
             'class': 'form__group--top',
             'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input',
             'items': [
                 {
                     'id': 'foo-' ~ i,
@@ -257,7 +226,6 @@
             'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge (radios)',
             'class': 'form__group--top form__group--flush',
             'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input',
             'items': [
                 {
                     'id': 'foo-' ~ i,
@@ -562,7 +530,8 @@
             'actions': [
                 html.button({
                     'label': 'Save',
-                    'class': 'btn--primary'
+                    'class': 'btn--primary',
+                    'type': 'submit'
                 }),
                 html.button({
                     'label': 'Cancel',

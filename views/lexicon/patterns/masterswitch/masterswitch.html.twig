@@ -4,13 +4,18 @@
 
 {% block tab_content %}
 
+{{
+    form.create()
+}}
+
     <div class="masterswitch">
 
         {{
             form.toggle_switch({
                 'class': 'masterswitch-control',
                 'label': 'Enable masterswitch content',
-                'id': 'toggletest1'
+                'id': 'toggle-' ~ random(),
+                'name': 'masterswitch'
             })
         }}
 
@@ -18,15 +23,14 @@
 
         <section class="masterswitch-content is-disabled">
 
-	    {{
-                form.create()
-            }}
-            <h4>This content should be disabled until the masterswitch is turned on.</h4>
+            <p>This content should be disabled until the masterswitch is turned on.</p>
+
+            {{ form.fieldset_start({'legend': 'Masterswitch content'}) }}
 
             {{
                 form.text({
                     'label': 'Text input',
-                    'id': 'inputText-5',
+                    'id': 'text-' ~ random(),
                     'name': 'inputText',
                     'placeholder': 'Placeholder'
                 })
@@ -34,19 +38,21 @@
 
             {{
                 html.link({
-                    'label': 'External link',
-                    'href': 'http://google.com'
+                    'label': 'Link',
+                    'href': '#'
                 })
             }}
 
             {{
                 form.checkbox({
+                    'id': 'checkbox-' ~ random(),
                     'label': 'Normal checkbox'
                 })
             }}
 
             {{
                 form.checkbox({
+                    'id': 'checkbox-' ~ random(),
                     'label': 'Disabled checkbox',
                     'disabled': true
                 })
@@ -55,28 +61,31 @@
             {{
                 html.link({
                     'label': 'Disabled link',
-                    'href': '#normal',
+                    'href': '#',
                     'disabled': true
                 })
             }}
 
-            {{
-                form.end({
-                    'class': 'form__actions--flush',
-                    'actions': [
-                        html.button({
-                            'label': 'Save Changes',
-                            'class': 'btn--primary'
-                        }),
-                        html.button({
-                            'label': 'Cancel',
-                            'class': 'btn--naked'
-                        })
-                    ]
-                })
-            }}<!--
+            {{ form.fieldset_end() }}<!--
      --></section>
     </div>
+
+{{
+    form.end({
+        'class': 'form__actions',
+        'actions': [
+            html.button({
+                'label': 'Save Changes',
+                'class': 'btn--primary',
+                'type': 'submit'
+            }),
+            html.button({
+                'label': 'Cancel',
+                'class': 'btn--naked'
+            })
+        ]
+    })
+}}
 
 {% endblock tab_content %}
 

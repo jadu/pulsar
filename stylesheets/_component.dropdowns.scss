@@ -53,12 +53,13 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
+    background-color: $dropdown-divider-bg;
     display: block;
     height: 1px;
     margin: ($line-height-base / 4) 0;
     min-width: 160px;
     overflow: hidden;
-    background-color: $dropdown-divider-bg;
+    padding: 0;
   }
 
   > li {
@@ -66,15 +67,23 @@
   }
 
   // Links within the dropdown menu
-  > li > a {
-    display: block;
-    padding: 3px 15px 3px 10px;
+  > li > a,
+  > li > .btn,
+  > li > span {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
     clear: both;
+    color: $dropdown-link-color;
+    display: block;
     font-weight: normal;
     line-height: $line-height-base;
-    color: $dropdown-link-color;
-    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    padding: 3px 15px 3px 10px;
+    text-align: left;
     text-decoration: none;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    width: 100%;
 
     [class^="icon-"],
     [class*=" icon-"] {
@@ -85,26 +94,36 @@
     }
   }
 
+  > li > .btn {
+    @extend .btn--white;
+  }
 }
 
 // Hover/Focus state
 // -----------
-.dropdown__menu > li > a:not(.is-disabled) {
+.dropdown__menu > li > a:not(.is-disabled),
+.dropdown__menu > li > .btn:not(.is-disabled) {
   &:hover,
-  &:focus,
   &.active {
-    text-decoration: none;
     background-color: $dropdown-link-hover-bg;
-    color: $dropdown-link-hover-color;
+    box-shadow: 0;
+    color: $dropdown-link-hover-color !important;
+    text-decoration: none;
+    transform: none;
+  }
+
+  &:focus {
+    @include pulsar-dropdown-item-focused;
+    color: color(black) !important;
   }
 }
 
 // Active state
 // ------------
-.dropdown__menu > .active > a {
+.dropdown__menu > .active > a,
+.dropdown__menu > .active > .btn {
   &,
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: $dropdown-link-active-bg;
     color: $dropdown-link-active-color;
     text-decoration: none;
@@ -115,7 +134,8 @@
 // Disabled state
 // --------------
 // Gray out text and ensure the hover/focus state remains gray
-.dropdown__menu > .disabled > a {
+.dropdown__menu > .disabled > a,
+.dropdown__menu > .disabled > .btn {
   &,
   &:hover,
   &:focus {
@@ -123,7 +143,8 @@
   }
 }
 // Nuke hover/focus effects
-.dropdown__menu > .disabled > a {
+.dropdown__menu > .disabled > a,
+.dropdown__menu > .disabled > .btn {
   &:hover,
   &:focus {
     text-decoration: none;
@@ -143,7 +164,8 @@
   }
 
   // Remove the outline when :focus is triggered
-  > a {
+  > a,
+  > .btn {
     outline: 0;
   }
 }
@@ -198,7 +220,8 @@
   }
 }
 
-.dropdown__menu > li > a {
+.dropdown__menu > li > a,
+.dropdown__menu > li > .btn {
   &:hover > .badge {
     @extend %badge--primary;
     background-color: darken($dropdown-link-active-bg, 20%);
@@ -206,10 +229,15 @@
 
   &.link--primary {
     background-color: color(primary);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(primary), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -220,10 +248,15 @@
 
   &.link--success {
     background-color: color(success);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(success), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -234,10 +267,15 @@
 
   &.link--warning {
     background-color: color(warning);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(warning), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -248,10 +286,15 @@
 
   &.link--info {
     background-color: color(info);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(info), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -261,11 +304,16 @@
   }
 
   &.link--danger {
-    background-color: color(danger);
-    color: color(white);
+    background-color: color(danger) !important;
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(danger), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -276,10 +324,15 @@
 
   &.link--inverse {
     background-color: color(inverse);
-    color: color(white);
+    color: color(white) !important;
 
     &:hover {
       background-color: darken(color(inverse), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
     }
 
     > .badge {
@@ -293,7 +346,8 @@
   min-width: 300px;
 }
 
-.dropdown__menu > li > a > .progress {
+.dropdown__menu > li > a > .progress,
+.dropdown__menu > li > .btn > .progress {
   height: 3px;
   margin-bottom: 0;
 

@@ -12,7 +12,7 @@
   }
 
   &:focus {
-    outline: 3px solid color(border, focus);
+    @include pulsar-button-focused;
   }
 }
 

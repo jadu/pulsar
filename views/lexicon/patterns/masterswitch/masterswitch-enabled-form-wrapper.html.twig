@@ -7,14 +7,16 @@
 {{
     form.create()
 }}
+
     <div class="masterswitch">
 
         {{
             form.toggle_switch({
                 'class': 'masterswitch-control',
                 'label': 'Enable masterswitch content',
-                'id': 'toggletest3',
-                'checked': true
+                'id': 'toggle-' ~ random(),
+                'checked': true,
+                'name': 'masterswitch-enabled-form-wrapper'
             })
         }}
 
@@ -24,10 +26,12 @@
 
             <p>This content should be disabled until the masterswitch is turned on.</p>
 
+            {{ form.fieldset_start({'legend': 'Masterswitch content'}) }}
+
             {{
                 form.text({
                     'label': 'Text input',
-                    'id': 'inputText-2',
+                    'id': 'text-' ~ random(),
                     'name': 'inputText',
                     'placeholder': 'Placeholder'
                 })
@@ -35,19 +39,21 @@
 
             {{
                 html.link({
-                    'label': 'External link',
-                    'href': 'http://google.com'
+                    'label': 'Link',
+                    'href': '#'
                 })
             }}
 
             {{
                 form.checkbox({
+                    'id': 'checkbox-' ~ random(),
                     'label': 'Normal checkbox'
                 })
             }}
 
             {{
                 form.checkbox({
+                    'id': 'checkbox-' ~ random(),
                     'label': 'Disabled checkbox',
                     'disabled': true
                 })
@@ -56,20 +62,23 @@
             {{
                 html.link({
                     'label': 'Disabled link',
-                    'href': '#normal',
+                    'href': '#',
                     'disabled': true
                 })
-            }}<!--
+            }}
+
+            {{ form.fieldset_end() }}<!--
      --></section>
     </div>
 
 {{
     form.end({
-        'class': 'form__actions--flush',
+        'class': 'form__actions',
         'actions': [
             html.button({
                 'label': 'Save Changes',
-                'class': 'btn--primary'
+                'class': 'btn--primary',
+                'type': 'submit'
             }),
             html.button({
                 'label': 'Cancel',

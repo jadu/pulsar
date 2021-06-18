@@ -2,13 +2,16 @@
 
 var $ = require('jquery');
 
-function NavMainComponent ($html, rootWindow) {
+function NavMainComponent ($html, rootWindow, focusManagementService) {
     this.$html = $html;
     this.window = rootWindow;
     this.$window = $(rootWindow);
+    this.focusManagementService = focusManagementService;
 };
 
 NavMainComponent.MISSING_ATTR_ERROR = 'A nav link must have a href or data-target attribute';
+NavMainComponent.CLOSE_WITH_ESCAPE = "CLOSE_WITH_ESCAPE";
+NavMainComponent.CLOSE_WITH_CLICK = "CLOSE_WITH_CLICK";
 
 /**
  * Initialise
@@ -26,7 +29,6 @@ NavMainComponent.prototype.init = function () {
 
     component.$body = this.$html.find('body');
     component.$navMain = this.$html.find('.nav-main');
-    component.$contentMain = this.$html.find('.content-main');
     component.$brandingLink = this.$html.find('.jadu-branding');
     component.$navPrimary = this.$html.find('.nav-primary');
     component.$navSecondary = this.$html.find('.nav-secondary');
@@ -43,23 +45,21 @@ NavMainComponent.prototype.init = function () {
     // Check which tabindexes should be applied to navigation links to ensure WCAG compliance
     component.manageTabIndexes();
 
+    // Hide nav from SR on mobile
+    var isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
+    if (isMobile) {
+        component.$navMain.attr('aria-hidden', 'true');
+    }
+
     // Open navigation on mobile
     component.$mobileMenuButton.on('click', function(event) {
         var $self = $(this);
         event.stopImmediatePropagation();
-        component.$body.toggleClass('open-nav');
-        $self.toggleClass('open');
 
         if ($self.text() === 'Menu') {
-            $self.text('Close');
-            $self.attr('aria-expanded', 'true');
-            component.$brandingLink.attr('tabindex', '3');
-            component.$primaryNavLinks.attr('tabindex', '3');
+            component.showMobileNav(true);
         } else {
-            $self.text('Menu');
-            $self.attr('aria-expanded', 'false');
-            component.$brandingLink.attr('tabindex', '-1');
-            component.$primaryNavLinks.attr('tabindex', '-1');
+            component.showMobileNav(false);
         }
     });
 
@@ -70,15 +70,24 @@ NavMainComponent.prototype.init = function () {
         component.moreIconClickHandler($self)
     });
 
-    // Re-adjust nav items on window resize to calc if more button is needed 
-    component.$window.resize(function () {
+    // Re-adjust nav items on window resize to calc if more button is needed
+    component.$window.on('resize', function () {
+        var isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
+
         component.adjustNavItems();
         component.manageTabIndexes();
+
+        if (!isMobile) {
+            component.showMobileNav(false);
+            component.$navMain.removeAttr('aria-hidden');
+        }
     });
 
-    // Close navs on main content click
-    component.$contentMain.on('click', function () {
-        component.closeNavs($(this));
+    // Close navs when element outside of nav is clicked
+    component.$body.find('.toolbar, .content-main, .footer').on('click', function () {
+        if (component.isNavOpen()) {
+            component.closeNavs($(this));
+        }
     });
 
     // Open secondary nav on primary nav item click
@@ -107,7 +116,7 @@ NavMainComponent.prototype.init = function () {
             $self.attr('aria-expanded', 'true');
         }
 
-        component.openQuaternaryNav(target);
+        component.openQuaternaryNav(target, $self);
     });
 
     // Close respective navs on close link click
@@ -115,7 +124,43 @@ NavMainComponent.prototype.init = function () {
         event.preventDefault();
         component.closeNavs($(this));
     });
-};
+
+    // Close respective navs on ESC
+    this.$html.on('keydown', function (event) {
+        if (event.keyCode === 27) {
+            if (component.$navQuaternary.hasClass('is-open')) {
+                component.closeQuaternaryNav({ type: NavMainComponent.CLOSE_WITH_ESCAPE });
+            } else if (component.$navTertiary.hasClass('is-open')) {
+                component.closeTertiaryNav();
+            } else if (component.$navSecondary.hasClass('is-open')) {
+                component.closeSecondaryNav({ type: NavMainComponent.CLOSE_WITH_ESCAPE });
+            } else if (isMobile && component.$body.hasClass('open-nav')) {
+                component.showMobileNav(false)
+            }
+        }
+    });
+}
+
+/**
+ * Check if any navs are open
+ * @returns {boolean}
+ */
+NavMainComponent.prototype.isNavOpen = function () {
+    var component = this,
+        isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
+
+    if (component.$navQuaternary.hasClass('is-open')) {
+        return true;
+    } else if (component.$navTertiary.hasClass('is-open')) {
+        return true;
+    } else if (component.$navSecondary.hasClass('is-open')) {
+        return true;
+    } else if (isMobile && component.$body.hasClass('open-nav')) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 /**
  * Unto the tabindex if the main nav is in responsive mode
@@ -132,22 +177,22 @@ NavMainComponent.prototype.manageTabIndexes = function () {
         component.$brandingLink.attr('tabindex', '1');
         component.$primaryNavLinks.attr('tabindex', '1');
     }
-};
+}
 
 /**
  * Open secondary navigation, close all other navs and highlight primary nav item parent
- * @param {jQuery} $linkClicked - jQuery object of the link clicked to open secondary nav
+ * @param {jQuery} $triggeringElement - the element clicked to open secondary nav
  * @param {Event} event - click event for the primary nav link
  */
-NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
+NavMainComponent.prototype.openSecondaryNav = function ($triggeringElement, event) {
     var component = this,
         target;
 
-    if ($linkClicked.attr('href')) {
-        target = $linkClicked.attr('href');
+    if ($triggeringElement.attr('href')) {
+        target = $triggeringElement.attr('href');
     }
-    else if ($linkClicked.attr('data-target')) {
-        target = $linkClicked.attr('data-target');
+    else if ($triggeringElement.attr('data-target')) {
+        target = $triggeringElement.attr('data-target');
     } else {
         throw new Error(NavMainComponent.MISSING_ATTR_ERROR)
     }
@@ -163,7 +208,7 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     // If href is a fragment (therefore opens a sub nav), don't add it to the URL because it breaks the back button
     if (target.indexOf('#') !== -1) {
         event.preventDefault();
-        $linkClicked.attr('aria-expanded', 'true');
+        $triggeringElement.attr('aria-expanded', 'true');
         component.$navSecondary.addClass('is-open');
         component.$navSecondary.find('.nav-list.is-active').removeClass('is-active');
         component.$navSecondary.find('[data-nav="' + target + '"]').addClass('is-active');
@@ -172,18 +217,23 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
         component.$navMain.addClass('is-open');
     } else {
-        component.closeNavs($linkClicked);
+        component.closeNavs($triggeringElement);
     }
 
     component.$navPrimary.find('.is-active').removeClass('is-active');
     component.$navPrimary.find('[href="' + target + '"], [data-target="' + target + '"]').addClass('is-active');
-};
+
+    // Manage focus
+    component.focusManagementService.storeElement($triggeringElement);
+    component.focusManagementService.focusFirstFocusableElement(component.$navSecondary);
+    component.focusManagementService.trapFocus(component.$navSecondary);
+}
 
 /**
  * Open quaternary navigation
  * @param {string} target - href of target nav list
  */
-NavMainComponent.prototype.openQuaternaryNav = function (target) {
+NavMainComponent.prototype.openQuaternaryNav = function (target, $trigger) {
     var component = this;
 
     // If menu item has child menu options and therefore is same-page link then open $navQuaternary
@@ -193,7 +243,12 @@ NavMainComponent.prototype.openQuaternaryNav = function (target) {
 
     // Show the target nav-list in the opened nav
     component.$navQuaternary.find('[data-nav="' + target + '"]').addClass('is-active');
-};
+
+    // Manage focus
+    component.focusManagementService.storeElement($trigger);
+    component.focusManagementService.focusFirstFocusableElement(component.$navQuaternary);
+    component.focusManagementService.trapFocus(component.$navQuaternary);
+}
 
 /**
  * Close respective nav(s) depending on which close link was clicked
@@ -201,10 +256,10 @@ NavMainComponent.prototype.openQuaternaryNav = function (target) {
  */
 NavMainComponent.prototype.closeNavs = function ($linkClicked) {
     var component = this,
-        $linkParent = $linkClicked.parent();
+        $linkParent = $linkClicked.closest('.nav-flyout');
 
     if ($linkParent.hasClass('nav-secondary')) {
-        component.closeSecondaryNav();
+        component.closeSecondaryNav({ type: NavMainComponent.CLOSE_WITH_CLICK, trigger: $linkClicked });
     }
 
     else if ($linkParent.hasClass('nav-tertiary')) {
@@ -212,20 +267,22 @@ NavMainComponent.prototype.closeNavs = function ($linkClicked) {
     }
 
     else if ($linkParent.hasClass('nav-quaternary')) {
-        component.closeQuaternaryNav();
+        component.closeQuaternaryNav({ type: NavMainComponent.CLOSE_WITH_CLICK, trigger: $linkClicked });
     }
 
+    // like a body click or something outside of navs
     else {
-        component.closeSecondaryNav();
+        component.closeSecondaryNav({ type: NavMainComponent.CLOSE_WITH_CLICK, trigger: $linkClicked });
         component.closeTertiaryNav();
-        component.closeQuaternaryNav();
+        component.closeQuaternaryNav({ type: NavMainComponent.CLOSE_WITH_CLICK, trigger: $linkClicked });
     }
 }
 
 /**
  * Close secondary navigation
+ * @param {Object} [action]
  */
-NavMainComponent.prototype.closeSecondaryNav = function () {
+NavMainComponent.prototype.closeSecondaryNav = function (action) {
     var component = this;
 
     component.$navMain.removeClass('is-open');
@@ -234,6 +291,25 @@ NavMainComponent.prototype.closeSecondaryNav = function () {
     component.$primaryNavLinks.removeClass('is-active');
     component.$navMain.find('.nav-item.is-active').removeClass('is-active');
     component.$navSecondary.find('.nav-list').removeClass('is-active');
+
+    if (action === undefined) {
+        return;
+    }
+
+    switch (action.type) {
+        case NavMainComponent.CLOSE_WITH_ESCAPE:
+            if (component.focusManagementService.hasStoredElement()) {
+                component.focusManagementService.returnFocusToElement();
+            }
+            break;
+        case NavMainComponent.CLOSE_WITH_CLICK:
+            if (action.trigger.parents('.nav-secondary').length > 0) {
+                if (component.focusManagementService.hasStoredElement()) {
+                    component.focusManagementService.returnFocusToElement();
+                }
+            }
+            break;
+    }
 }
 
 /**
@@ -245,23 +321,80 @@ NavMainComponent.prototype.closeTertiaryNav = function () {
     component.$navTertiary.removeClass('is-open');
     component.$navTertiary.find('.nav-list').removeClass('is-active');
 
-    // Reset aria-expanded on more button
     component.$navMain.find('[aria-expanded=true]')
         .removeClass('is-active')
-        .attr('aria-expanded', 'false');
+        .attr('aria-expanded', 'false')
+        .trigger('focus');
 }
 
 /**
  * Close quaternary navigation
+ * @param {Object} [action]
  */
-NavMainComponent.prototype.closeQuaternaryNav = function () {
+NavMainComponent.prototype.closeQuaternaryNav = function (action) {
     var component = this;
 
     component.$navQuaternary.removeClass('is-open');
     component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
-
-    // Reset aria-expanded on tertiary link
     component.$navTertiary.find('[aria-expanded=true]').attr('aria-expanded', 'false');
+
+    if (action === undefined) {
+        return;
+    }
+
+    switch (action.type) {
+        case NavMainComponent.CLOSE_WITH_ESCAPE:
+            if (component.focusManagementService.hasStoredElement()) {
+                component.focusManagementService.returnFocusToElement();
+            }
+            break;
+        case NavMainComponent.CLOSE_WITH_CLICK:
+            if (action.trigger.parents('.nav-quaternary').length > 0) {
+                if (component.focusManagementService.hasStoredElement()) {
+                    component.focusManagementService.returnFocusToElement();
+                }
+            }
+            break;
+    }
+}
+
+/**
+ * Toggle mobile navigation
+ */
+NavMainComponent.prototype.showMobileNav = function (show) {
+    var component = this;
+
+    if (show === false) {
+        component.$body.removeClass('open-nav');
+        component.$mobileMenuButton
+            .removeClass('open')
+            .text('Menu')
+            .attr('aria-expanded', 'false');
+        component.$brandingLink.attr('tabindex', '-1');
+        component.$primaryNavLinks.attr('tabindex', '-1');
+        component.$navMain.attr('aria-hidden', 'true');
+        component.$body.find('.skip-link').removeAttr('aria-hidden');
+        component.$body.find('.toolbar > :not(.mobile-menu-button)').removeAttr('aria-hidden');
+        component.$body.find('.content-main').removeAttr('aria-hidden');
+        component.$body.find('.footer').removeAttr('aria-hidden');
+
+        return;
+    }
+
+    component.$body.addClass('open-nav');
+    component.$mobileMenuButton
+        .addClass('open')
+        .text('Close')
+        .attr('aria-expanded', 'true');
+    component.$brandingLink.attr('tabindex', '3');
+    component.$primaryNavLinks.attr('tabindex', '3');
+    component.$navMain.attr('aria-hidden', 'false');
+
+    // Hide rest of page from SR while nav open
+    component.$body.find('.skip-link').attr('aria-hidden', 'true');
+    component.$body.find('.toolbar > :not(.mobile-menu-button)').attr('aria-hidden', 'true');
+    component.$body.find('.content-main').attr('aria-hidden', 'true');
+    component.$body.find('.footer').attr('aria-hidden', 'true');
 }
 
 /**
@@ -274,7 +407,7 @@ NavMainComponent.prototype.adjustNavItems = function () {
         moreIconHeight = 72, // Pre calculated height of the "More" nav item
         navItemsCountTotal = component.$html.find('.nav-primary .nav-items li').length,
         numberOfHiddenNavItems = 0;
-        
+
     // When nav items + more icon height is greater than available window height
     if (navItemsHeight + moreIconHeight > availableHeight) {
         // If there is not enough space hide the last primary nav items
@@ -347,7 +480,7 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
 
     // Add the "More" nav item
     if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)) {
-        navItems.append('<li class="nav-item t-nav-item more-icon"><button class="nav-link t-nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-tertiary-nav"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></button></li>');
+        navItems.append('<li class="nav-item t-nav-item more-icon"><button tabindex="3" class="nav-link t-nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-tertiary-nav"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></button></li>');
     }
 
     // Check if "More" nav item is visible
@@ -424,6 +557,11 @@ NavMainComponent.prototype.moreIconClickHandler = function ($moreLink) {
         // Open $navTertiary
         component.$navTertiary.find('.nav-list').addClass('is-active');
         component.$navTertiary.addClass('is-open');
+
+        // Manage focus
+        component.focusManagementService.storeElement($moreLink);
+        component.focusManagementService.focusFirstFocusableElement(component.$navTertiary);
+        component.focusManagementService.trapFocus(component.$navTertiary);
     }
 };
 

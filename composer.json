@@ -1,7 +1,6 @@
 {
     "name": "jadu/pulsar",
     "description": "The User Experience and Interface framework for the Jadu Continuum Platform",
-    "version": "10.2.3",
     "license": "MIT",
     "autoload": {
         "psr-0": {
@@ -12,7 +11,7 @@
         "twig/twig": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "phpunit/phpunit": "^7"
     }
 }

@@ -119,8 +119,3 @@ abbr[title] {
         font-size: 2em;
     }
 }
-
-a:not(.btn).is-disabled {
-    color: color(link, disabled) !important;
-    cursor: not-allowed;
-}

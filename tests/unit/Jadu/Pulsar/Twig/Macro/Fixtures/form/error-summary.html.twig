@@ -1,0 +1,17 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.error_summary({
+        'errors': [
+            {
+                'label': 'Enter your first name',
+                'href': 'first-name'
+            },
+            {
+                'label': 'Enter your last name',
+                'href': 'last-name'
+            }
+        ]
+    })
+}}
+{% endblock %}

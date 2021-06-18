@@ -21,7 +21,10 @@ describe('TableDetailComponent', () => {
 			'		<th>Actions</th>' +
 			'	</thead>' +
 			'	<tbody>' +
-			'		<tr data-table-detail-content="<p>content</p><form><button>button</button></form>" data-table-detail-panel-custom-title="custom panel title">' +
+			'		<tr class="parent" data-table-detail-content="<p>content</p><form><button>button</button></form>" data-table-detail-panel-custom-title="custom panel title">' +
+			'			<td><a href="#" data-table-detail-view-detail="true">Details</a></td>' +
+			'		</tr>' +
+			'		<tr class="child">' +
 			'			<td><a href="#" data-table-detail-view-detail="true">Details</a></td>' +
 			'		</tr>' +
 			'	</tbody>' +
@@ -147,7 +150,7 @@ describe('TableDetailComponent', () => {
 		it('should prevent the default behaviour of the click', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 
 			expect(clickEvent.isDefaultPrevented()).to.be.true;
 		});
@@ -155,7 +158,7 @@ describe('TableDetailComponent', () => {
 		it('should set a custom panel title if one is set', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel-title]').text()).to.equal('custom panel title');
 		});
@@ -164,7 +167,7 @@ describe('TableDetailComponent', () => {
 			tableDetailComponent.init($body);
 			$body.find('[data-table-detail-panel-body]').append('some content to be removed');
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel-body]').html()).to.equal('<p>content</p><form><button>button</button></form>');
 		});
@@ -172,7 +175,7 @@ describe('TableDetailComponent', () => {
 		it('should add the "in" class to the backdrop to show it', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 
 			expect($body.find('.table-detail-backdrop').hasClass('in')).to.be.true;
 		});
@@ -180,7 +183,7 @@ describe('TableDetailComponent', () => {
 		it('should add the "table-detail--open" class to the panel to open it', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.true;
 		});
@@ -189,7 +192,7 @@ describe('TableDetailComponent', () => {
 			tableDetailComponent.init($body);
 			$body.find('[data-table-detail-content]').attr('data-table-detail-content', '<p>Content</p>')
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-close-panel]').is(':focus')).to.be.true;
 		});
@@ -197,9 +200,28 @@ describe('TableDetailComponent', () => {
 		it('should focus the first focusable element if one is present ', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel-body] form button').is(':focus')).to.be.true;
+		});
+	});
+
+	describe('When the view panel link is clicked from the child row', () => {
+		it('should fetch the panel title from the parent row', () => {
+			tableDetailComponent.init($body);
+
+			$body.find('.child [data-table-detail-view-detail]').trigger(clickEvent);
+
+			expect($body.find('[data-table-detail-panel-title]').text()).to.equal('custom panel title');
+		});
+
+		it('should empty the panel body and replace the content', () => {
+			tableDetailComponent.init($body);
+			$body.find('[data-table-detail-panel-body]').append('some content to be removed');
+
+			$body.find('.child [data-table-detail-view-detail]').trigger(clickEvent);
+
+			expect($body.find('[data-table-detail-panel-body]').html()).to.equal('<p>content</p><form><button>button</button></form>');
 		});
 	});
 
@@ -240,7 +262,7 @@ describe('TableDetailComponent', () => {
 		it('should remove the "in" class from the backdrop to hide it', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
 
 			expect($body.find('.table-detail-backdrop').hasClass('in')).to.be.false;
@@ -249,7 +271,7 @@ describe('TableDetailComponent', () => {
 		it('should remove the "table-detail--open" class from the panel', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.false;
@@ -258,7 +280,7 @@ describe('TableDetailComponent', () => {
 		it('should add tabindex="-1" to all focusable elements', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel-body] button').attr('tabindex')).to.equal('-1');
@@ -270,7 +292,7 @@ describe('TableDetailComponent', () => {
 		it('should not be possible to focus elements in the panel', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel-body] button').attr('tabindex')).to.equal('-1');
@@ -280,7 +302,7 @@ describe('TableDetailComponent', () => {
 		it('should add the aria-hidden="true" attribute to the panel', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
 
 			expect($body.find('.table-detail[aria-hidden="true"]')).to.have.length(1);
@@ -308,7 +330,7 @@ describe('TableDetailComponent', () => {
 		it('should remove the "in" class from the backdrop to hide it', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 			expect($body.find('.table-detail-backdrop').hasClass('in')).to.be.true;
 
 			$body.find('.table-detail-backdrop').trigger(clickEvent);
@@ -318,7 +340,7 @@ describe('TableDetailComponent', () => {
 		it('should remove the "table-detail--open" class from the panel to close it', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
+			$body.find('.parent [data-table-detail-view-detail]').trigger(clickEvent);
 			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.true;
 
 			$body.find('.table-detail-backdrop').trigger(clickEvent);

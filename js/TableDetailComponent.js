@@ -20,10 +20,10 @@ class TableDetailComponent {
         }
 
         let $panelHtml = $(
-            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true" aria-hidden="true">' +
+            '<div class="table-detail t-table-detail" data-table-detail-panel role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="table-detail-title">' +
             '   <div class="table-detail__header">' +
             '       <button type="button" class="close table-detail__header-close" data-table-detail-close-panel aria-label="Close" tabindex="-1"><span aria-hidden="true">&times;</span></button>' +
-            '       <h1 class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
+            '       <h1 id="table-detail-title" class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
             '   </div>' +
             '   <div class="table-detail__body" data-table-detail-panel-body></div>' +
             '</div>'
@@ -66,10 +66,20 @@ class TableDetailComponent {
         this.$tableDetailBackdrop = this.$html.find('.table-detail-backdrop');
 
         // Open click listener
-        this.$table.find('[data-table-detail-view-detail]').on('click', (event) => {
+        this.$table.on('click', '[data-table-detail-view-detail]', (event) => {
             event.preventDefault();
-            let detailContent = $(event.currentTarget).closest('tr').data('table-detail-content');
-            let customDetailPanelTitle = $(event.currentTarget).closest('tr').data('table-detail-panel-custom-title');
+
+            let $parentRow = $(event.currentTarget).closest('tr');
+
+            // If the table is in DT collapse mode, and the detail trigger is in the child row
+            // then fetch the detail content from the appropriate parent row
+            if ($parentRow.hasClass('child')) {
+                $parentRow = $parentRow.prev();
+            }
+
+            let detailContent = $parentRow.data('table-detail-content');
+            let customDetailPanelTitle = $parentRow.data('table-detail-panel-custom-title');
+
             $triggeringElement = $(event.target);
 
             this.viewDetail(detailContent, customDetailPanelTitle);
@@ -79,25 +89,23 @@ class TableDetailComponent {
         this.$detailPanel.find('[data-table-detail-close-panel]').on('click', (event) => {
             event.preventDefault();
             this.closeDetail();
-            $triggeringElement.focus();
+            $triggeringElement.trigger('focus');
         });
 
         // Close with backdrop click
         this.$tableDetailBackdrop.on('click', (event) => {
             event.preventDefault();
             if (this.panelIsOpen) {
-                console.log('backdrop clicked');
                 this.closeDetail();
-                $triggeringElement.focus();
+                $triggeringElement.trigger('focus');
             }
         });
 
         // Close ESC button
         this.$html.on('keydown', (event) => {
             if (event.keyCode === 27 && this.panelIsOpen) {
-                console.log('esc pressed');
                 this.closeDetail();
-                $triggeringElement.focus();
+                $triggeringElement.trigger('focus');
             }
         });
     }
@@ -180,13 +188,13 @@ class TableDetailComponent {
                 // Focus previous, check if first element is is currently in focus, if so focus last element
                 if ($focusableElements.first().is(':focus')) {
                     event.preventDefault();
-                    $focusableElements.last().focus();
+                    $focusableElements.last().trigger('focus');
                 }
             } else {
                 // Focus next, check if last element is is currently in focus, if so focus first element
                 if ($focusableElements.last().is(':focus')) {
                     event.preventDefault();
-                    $focusableElements.first().focus();
+                    $focusableElements.first().trigger('focus');
                 }
             }
         }
@@ -205,9 +213,9 @@ class TableDetailComponent {
 
         // If the panel body contains a focusable element we should focus that rather than the close button
         if ($focusablePanelBodyElements.length > 0) {
-            $focusablePanelBodyElements.first().focus();
+            $focusablePanelBodyElements.first().trigger('focus');
         } else {
-            this.$detailPanel.find('[data-table-detail-close-panel]').focus();
+            this.$detailPanel.find('[data-table-detail-close-panel]').trigger('focus');
         }
 
         this.boundKeydownListener = this.keydownListener.bind(this, $focusableElements);

@@ -36,11 +36,37 @@
 
                 {{
                     form.select2({
-                        'label': 'Colour',
-                        'id': 'colour-3',
-                        'multiple': true,
-                        'placeholder': 'Choose one or more',
+                        'label': 'Colour (single + ph)',
+                        'id': 'colour-' ~ random(),
+                        'data-placeholder': 'Select One',
+                        'options': {
+                            '': 'Select One',
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour (single + ph + preselected)',
+                        'id': 'colour-' ~ random(),
+                        'data-placeholder': 'Select One',
                         'selected': 'colour_blue',
+                        'options': {
+                            '': 'Select One',
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour 3 (multi + ph)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
+                        'data-placeholder': 'Select one or more',
                         'options': {
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
@@ -50,15 +76,26 @@
 
                 {{
                     form.select2({
-                        'label': 'Size',
-                        'id': 'size-3',
-                        'placeholder': 'Choose one',
-                        'selected': 'medium',
+                        'label': 'Colour 4 (multi no ph)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
                         'options': {
-                            '': '',
-                            'small': 'Small',
-                            'medium': 'Medium',
-                            'large': 'Large'
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour 5 (multi no ph preselected)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
+                        'selected': ['colour_red', 'colour_blue'],
+                        'options': {
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue',
+                            'colour_pink': 'Pink'
                         }
                     })
                 }}
@@ -66,21 +103,21 @@
                 {{
                     form.text({
                         'label': 'Text field example',
-                        'id': 'foo-3'
+                        'id': 'foo-' ~ random(),
                     })
                 }}
 
                 {{
                     form.date({
                         'label': 'Added from',
-                        'id': 'addedFrom-3',
+                        'id': 'addedFrom-' ~ random(),
                     })
                 }}
 
                 {{
                     form.date({
                         'label': 'Added to',
-                        'id': 'addedTo-3',
+                        'id': 'addedTo-' ~ random(),
                         'value': '04/07/2017'
                     })
                 }}
@@ -88,7 +125,7 @@
                 {{
                     form.checkbox({
                         'label': 'In stock',
-                        'id': 'inStock-3',
+                        'id': 'inStock-' ~ random(),
                         'checked': true
                     })
                 }}

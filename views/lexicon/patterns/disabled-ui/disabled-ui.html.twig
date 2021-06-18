@@ -18,6 +18,8 @@
     })
 }}
 
+    {{ form.fieldset_start({ 'legend': 'Example disabled UI' }) }}
+
     <p>Example text</p>
 
     {{
@@ -32,30 +34,35 @@
     {{
         html.link({
             'label': 'External link',
-            'href': 'http://google.com'
+            'href': 'http://google.com',
+            'disabled': true
         })
     }}
 
     {{
         form.checkbox({
+            'id': 'checkbox-' ~ random(),
             'label': 'Normal checkbox'
         })
     }}
 
     {{
         form.checkbox({
+            'id': 'checkbox-' ~ random(),
             'label': 'Disabled checkbox',
             'disabled': true
         })
     }}
 
+    {{ form.fieldset_end() }}
 
 {{
     form.end({
         'actions': [
             html.button({
                 'label': 'Save Changes',
-                'class': 'btn--primary'
+                'class': 'btn--primary',
+                'type': 'submit'
             }),
             html.button({
                 'label': 'Cancel',

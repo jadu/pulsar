@@ -1,20 +1,42 @@
 .main-search {
     border: 1px solid $input-border;
     border-radius: 4px;
-    clear: both;
     display: block;
-    margin: 0 20px 12px;
+    flex: 1 1 100%;
+    flex-grow: 1;
+    height: 32px;
+    margin-bottom: 10px;
     position: relative;
 
     @include respond-min($screen-tablet) {
-        display: table;
+        flex-grow: 0;
+        max-width: 180px;
     }
+}
 
-    @include respond-min($screen-desktop) {
-        left: $nav-primary-width + $gutter-width;
-        margin: 0;
-        position: absolute;
-        top: 18px;
+// Set margin and position of loading spinner when directly adjacent to the search button
+.main-search .loading {
+    height: 15px;
+    position: absolute;
+    right: -19px; // 15px width + 4px margin
+    top: 7px;
+    width: 15px;
+
+    @include respond-min($screen-tablet) {
+        height: 20px;
+        right: -30px;
+        width: 20px;
+    }
+}
+
+// Set size of loading spinner at viewpoints
+.main-search .loading i {
+    height: 15px;
+    width: 14px; // balance out the circle spinner
+
+    @include respond-min($screen-tablet) {
+        height: 20px;
+        width: 20px;
     }
 }
 
@@ -41,8 +63,7 @@ input.main-search__field {
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
-        outline-offset: 3px;
+        @include pulsar-input-focused;
     }
 }
 
@@ -54,19 +75,20 @@ input.main-search__field::-ms-clear {
     background: none;
     border: 0;
     color: #555;
-    padding: 0;
+    padding: 1px 8px 0;
     position: absolute;
-    right: 10px;
+    right: 0;
     top: 5px;
     z-index: 3;
 
     @include respond-min($screen-tablet) {
-        left: 155px;
+        left: 149px; // magic number to accommodate focus style
         right: auto;
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
+        @include pulsar-link-focused;
+        border-top-right-radius: $border-radius;
     }
 }
 

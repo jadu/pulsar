@@ -1,27 +1,26 @@
+$piano-bg: #fafafa;
+
 .piano-wrapper {
-    border-top: 1px solid color(border);
+    background-color: color(white);
+    border: 1px solid color(grey, lightest);
     position: relative;
 
     @include respond-min($screen-desktop) {
         overflow: hidden;
     }
-
-    @include ie-lte(8) {
-        position: static;
-    }
 }
 
 .piano {
-    border-left: 1px solid color(border);
-    border-right: 1px solid color(border);
-    margin-bottom: 20px;
+    background-color: $piano-bg;
+    border-left: 1px solid color(grey, lightest);
+    border-right: 1px solid color(grey, lightest);
 
     @include respond-min($screen-desktop) {
-        overflow-x: hidden;
         border-left: 0;
         float: left;
-        height: 75vh;
+        height: 83vh;
         margin-bottom: 0;
+        overflow-x: hidden;
         width: 30%;
     }
 
@@ -39,30 +38,31 @@
 }
 
 .piano__item {
-    border-bottom: 1px solid color(border);
+    background-color: color(white);
+    border-bottom: 1px solid color(grey, lightest);
     clear: both;
     overflow: hidden;
-    padding: 10px;
 
-    @include respond-min($screen-desktop) {
-        border-left: 1px solid color(border);
-        transition: background .3s ease;
-
-        &:hover {
-          background: lighten(color(new), 4%);
-        }
-    }
-
-    a {
+    > a {
+        display: block;
+        padding: $padding-base;
         text-decoration: none;
+
+        @include respond-min($screen-desktop) {
+            &:hover {
+                background: color(gray, off-white);
+            }
+        }
     }
 }
 
 .piano__item.is-selected {
+    background-color: color(white);
+
     @include respond-min($screen-desktop) {
         background: color(new);
 
-        &:hover {
+        > a:hover {
             background: color(new);
         }
     }
@@ -79,11 +79,11 @@
 }
 
 .piano__item-header {
-    color: #6a6a6a;
+    color: color(text);
     vertical-align: top;
 
     .is-selected & {
-        border-bottom: 1px solid color(border);
+        border-bottom: 1px solid color(grey, lightest);
         padding-bottom: 5px;
 
         @include respond-min($screen-desktop) {
@@ -95,25 +95,20 @@
 
 .piano__item-content {
     clear: both;
+    padding: $padding-base;
 
     .is-selected & {
-        margin-top: 10px;
+        margin-top: $margin-base;
 
         @include respond-min($screen-desktop) {
             height: 100%;
             margin-top: 0;
-            padding-top: 10px;
-            position: absolute;
             overflow-y: auto;
+            padding: $padding-base 0 0;
+            position: absolute;
             right: 10px;
             top: 10px;
             width: 68%;
-        }
-
-        @include ie-lte(8) {
-            height: auto;
-            padding-bottom: 50px;
-            overflow-y: visible;
         }
     }
 
@@ -122,20 +117,26 @@
     }
 
     .message-reply {
-        margin: 10px 0 0;
-
-        @include ie-lte(8) {
-            width: 100%;
-        }
+        margin: $margin-base 0 0;
     }
 
     .message {
-        padding: 10px 0 0;
+        padding: 0 0 $padding-base;
         width: 100%;
 
-        time {
-            float: right;
+        *:last-child {
+            padding-bottom: 0;
+            margin-bottom: 0;
         }
+    }
+
+    .message__meta {
+        font-family: $font-family-regular;
+        margin-bottom: $margin-base;
+    }
+
+    .message__meta-list {
+        list-style: none;
     }
 
     .history {
@@ -157,49 +158,38 @@
         }
     }
 
-    date {
-        color: color(text, light);
-        display: none;
-        font-size: 14px;
-
-        .piano-active-content & {
-            display: inline-block;
-            float: right;
-        }
-    }
-
     h4 {
-        font-size: 16px;
+        font-size: $font-size-base;
 
         .piano-active-content & {
-            font-size: 18px;
+            font-size: $font-size-large;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: $margin-base * 2;
         }
     }
 }
 
 .piano__item-content-header {
-    margin-bottom: 10px;
+    margin-bottom: $margin-base * 2;
+    padding-bottom: $padding-base;
+    border-bottom: 1px solid color(grey, lightest);
 }
 
 .piano__avatar {
     border-radius: 50%;
     float: left;
     height: 25px;
-    margin-bottom: 5px;
-    margin-right: 10px;
+    margin-bottom: $margin-base / 2;
+    margin-right: $margin-base;
     width: 25px;
 }
 
 .piano__user {
     color: #000;
-    // font-size: 14px;
 }
 
 .piano__title {
     clear: both;
-    font-size: 14px;
     margin: 0;
 }
 
@@ -211,8 +201,8 @@
 
 .piano__form {
     background: none;
-    margin-bottom: 10px;
-    padding: 0;
+    margin-bottom: $margin-base;
+    padding: 0 0 $padding-base * 2;
 }
 
 .piano__item-toggle {
@@ -284,23 +274,6 @@
     .preview > p {
         display: inline;
     }
-
-    .sender {
-        display: none;
-        font-family: $font-family-regular;
-
-        @include respond-min($screen-desktop) {
-            display: inline;
-        }
-    }
-
-    time {
-        display: none;
-
-        @include respond-min($screen-desktop) {
-            display: inline;
-        }
-    }
 }
 
 .with-settings.piano__item-content {
@@ -355,16 +328,4 @@
 
 .setting__actions {
     padding: 10px;
-}
-
-.piano-wrapper {
-
-    .tab__content {
-        display: table;
-    }
-
-    .tabs__content {
-        display: table;
-        width: 100%;
-    }
 }

@@ -1,151 +1,90 @@
 @import 'component.labels';
 
 .toolbar {
-    display: block;
-    float: left;
-    margin-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding: 12px 20px 0;
-    width: 100%;
 
-    @include respond-min($screen-desktop) {
-        background-color: color(white);
-        height: 60px;
-        margin-bottom: 0;
-        padding: 14px 20px;
-    }
-
-    .dropdown {
-        position: static;
-
-        @include respond-min($screen-xsmall) {
-            position: relative;
-        }
-    }
-
-    .dropdown__menu {
-        clear: both;
-        left: $padding-small-horizontal;
-        position: absolute;
-        right: $padding-small-horizontal;
-        top: 60px;
-
-        @include respond-min($screen-xsmall) {
-            left: auto;
-            right: 0;
-            top: 35px;
-        }
-    }
-
-}
-
-.user-menu > .btn {
-    padding: 0;
-
-    &:hover {
-        top: 0;
+    .main-title {
+        flex: 1 1 100%;
     }
 }
 
-.nav-user {
-    float: right;
-    font-size: $font-size-base;
-
-    .btn {
-        font-size: $font-size-base;
-    }
-
-    .dropdown {
-        float: left;
-        margin-left: 20px;
-        min-width: 60px;
-        z-index: $zindex-dropdown;
-    }
-
-    .dropdown__header {
-        border-bottom: 1px solid color(gray, lighter);
-        font-family: $font-family-regular;
-        padding: 3px 15px 3px 10px;
-    }
-
-    .dropdown__menu .is-active {
-        background-color: color(jadu-blue, pale);
-    }
+.toolbar-actions {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 }
 
-.site-switcher__label {
-    color: color('text');
-    display: inline-block;
-    text-decoration: none;
-}
-
-// Height of toolbar right hand actions
-.nav-user > .dropdown > .btn, // pulsar
-.nav-user > .dropdown > .dropdown-toggle, // cms
-.site-switcher__label {
-    height: 42px;
-    line-height: 42px;
-    padding: 0;
-    top: 0;
-    vertical-align: top;
-}
-
-.toolbar-icon,
-%toolbar-icon {
-    float: right;
-    font-size: 24px;
-    line-height: 42px; // maintain alignment in toolbar
-    margin-left: $gutter-width;
-    padding: 4px 0;
-    position: relative; // stop is-new indicator wandering off when parents switch to static position
-    text-decoration: none;
-
-    @include respond-min($screen-phone) {
-        padding: 0;
-    }
-
-    &,
-    &:link,
-    &:visited {
-        color: color(text, light);
-    }
-
-    &:hover,
-    & a:hover {
-        color: color(text);
-    }
-
-    &.is-active {
-        color: color(black);
-    }
-}
-
-.toolbar-help-link {
-    @extend %label;
-
-    border-radius: 15px;
-    color: color(text);
-    font-size: 14px;
-    font-weight: normal;
-    padding: 5px 8px;
-    position: relative;
-    top: -4px;
-    text-decoration: none;
-
-    &:hover {
-        top: -4px; // don't move this element on hover
-    }
-}
-
-.toolbar-help {
-    display: none;
+.toolbar-actions .dropdown {
+    flex-grow: 1;
+    margin-left: 5px;
 
     @include respond-min($screen-tablet) {
-        display: block;
+        flex-grow: 0;
+    }
+
+    &:first-of-type {
+        margin-left: 0;
+    }
+
+    .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
+        border: 1px solid $input-border;
+        border-width: 1px;
+        padding-bottom: 6px;
+        padding-top: 6px;
+        width: 100%;
+
+        @include respond-min($screen-desktop) {
+            padding-bottom: 7px;
+            padding-top: 7px;
+        }
+
+        &:hover {
+            background-color: color(background, light) !important;
+            margin-bottom: 0;
+            transform: none;
+        }
+
+        &:focus {
+            @include pulsar-outline-button-focused;
+            border-width: 1px;
+        }
+
+        i {
+            font-size: 18px;
+            vertical-align: middle;
+
+            @include respond-min($screen-desktop) {
+                font-size: 14px;
+                vertical-align: baseline;
+            }
+        }
+
+        > .caret {
+            border-top-color: color(text);
+        }
+    }
+
+    .toolbar-action__text {
+        display: none;
+        margin-left: 0;
+
+        @include respond-min($screen-desktop) {
+            display: inline;
+            margin-left: 5px;
+        }
+    }
+
+    .caret {
+        margin-left: 3px;
     }
 
     .dropdown__menu {
-        min-width: 180px;
-        padding: 0;
+        border-top: 2px solid $input-border;
+        top: 40px;
 
         .media {
             line-height: 24px;
@@ -156,4 +95,32 @@
             }
         }
     }
+
+    // First two actions
+    &:nth-child(-n+2) .dropdown__menu {
+        left: 0;
+        right: auto;
+    }
+
+    // Last two actions
+    &:nth-child(n+3) .dropdown__menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+.toolbar-actions .toolbar-action--icon .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
+    line-height: 16px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+
+    i {
+        font-size: 18px;
+        vertical-align: middle;
+    }
+}
+
+.toolbar-icon,
+%toolbar-icon {
+    position: relative; // stop is-new indicator wandering off when parents switch to static position
 }

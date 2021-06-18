@@ -19,7 +19,7 @@
 
     .remove__control {
         border: 0;
-        color: #999 !important;
+        color: color(text) !important;
         position: absolute;
         text-decoration: none;
         top: 10px;
@@ -27,15 +27,16 @@
     }
 
     [href].conditional-block__link--when {
-        color: #1292c9;
+        color: color(primary, dark);
     }
 
-    [href].conditional-block__link--and {
-        color: #646464;
+    [href].conditional-block__link--and,
+    [href].conditional-block__link--or {
+        color: color(gray, dark);
     }
 
     [href].conditional-block__link--then {
-        color: #459a8c;
+        color: color(success, dark);
     }
 }
 
@@ -109,19 +110,19 @@
 }
 
 .rule-block__header--when {
-    box-shadow: inset 4px 0 0 0 #128fc5;
-    color: #128fc5;
+    box-shadow: inset 4px 0 0 0 color(primary, dark);
+    color: color(primary, dark);
 }
 
 .rule-block__header--then {
-    box-shadow: inset 4px 0 0 0 #459a8c;
-    color: #459a8c;
+    box-shadow: inset 4px 0 0 0 color(success, dark);
+    color: color(success, dark);
 }
 
 .rule-block__header--and,
 .rule-block__header--or {
-    box-shadow: inset 4px 0 0 0 #646464;
-    color: #646464;
+    box-shadow: inset 4px 0 0 0 color(gray, dark);
+    color: color(gray, dark);
 }
 
 .rule-block__heading {
@@ -211,6 +212,12 @@
     span {
         text-decoration: underline;
     }
+
+    &:focus i {
+        color: color(black);
+        position: relative;
+        z-index: 2;
+    }
 }
 
 // Double chained to override default fieldset styling
@@ -249,7 +256,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block__heading {
-        color: color(danger);
+        color: color(danger, dark);
     }
 
     .help-block {
@@ -306,7 +313,7 @@ td.table__form .rules + .form__group:last-of-type {
     $rule-color-if:     #3f8ccc;
     $rule-color-and:    #f7d183;
     $rule-color-or:     #9d7ee3;
-    $rule-color-return: #7dbc8e;
+    $rule-color-return: #6aa17a;
     $rule-color-help:   #b54745;
 
     border-left: 4px solid color(gray, lightest);
@@ -338,6 +345,27 @@ td.table__form .rules + .form__group:last-of-type {
         bottom: 0;
     }
 
+    &.rules-container--linear {
+        border-left: 0;
+        padding-left: 0;
+
+        &::before {
+            background-color: color(gray, lightest);
+            height: calc(100% - 10px);
+            left: 45px;
+            top: 5px;
+            width: 4px;
+        }
+
+        &::after {
+            display: none;
+        }
+
+        .rule-link--and {
+            margin-left: 45px;
+        }
+    }
+
     .rule-link {
         position: relative;
         padding-top: 10px;
@@ -359,7 +387,7 @@ td.table__form .rules + .form__group:last-of-type {
             display: inline-block;
             margin-left: 25px;
             min-width: 50px;
-            padding: 8px 0;
+            padding: 8px;
             text-align: center;
 
             &:hover {
@@ -389,8 +417,9 @@ td.table__form .rules + .form__group:last-of-type {
         }
     }
 
-    .rule-block--else-if + .rule-links .rule-link--or,
-    .rule-block--and + .rule-links .rule-link--or {
+    .rule-block--if + .rule-links .rule-link--or,
+    .rule-block--and + .rule-links .rule-link--or,
+    .rule-block--else-if + .rule-links .rule-link--or {
         border-left: 4px solid color(gray, lightest);
         margin-left: 20px;
         padding-left: 40px;
@@ -490,7 +519,7 @@ td.table__form .rules + .form__group:last-of-type {
 
     .rule-block--if,
     .rule-block--else-if {
-        background-color: lighten($rule-color-if, 40);
+        background-color: lighten($rule-color-if, 41);
         border-color: $rule-color-if;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
@@ -547,7 +576,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block--or {
-        background-color: lighten($rule-color-or, 25);
+        background-color: lighten($rule-color-or, 26);
         border-color: $rule-color-or;
 
         .rule-block__header {
@@ -574,7 +603,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block--return {
-        background-color: lighten($rule-color-return, 30);
+        background-color: lighten($rule-color-return, 40);
         border-color: $rule-color-return;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
@@ -589,7 +618,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block--else-return {
-        background-color: color(gray, lightest);
+        background-color: color(gray, off-white);
         border-color: color(gray, dark);
         border-radius: 15px;
 
@@ -622,14 +651,45 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .remove__control {
+        background: none;
+        border: 0;
         color: color(white);
         font-size: $font-size-large;
+        padding: 2px 6px;
         position: absolute;
-        right: 10px;
-        top: 10px;
+        right: 2px;
+        top: 5px;
 
         @include respond-min($screen-tablet) {
             color: color(text);
+        }
+    }
+
+    // Make multiple select2 fit same height as single select2
+    .select2-container {
+        vertical-align: top;
+
+        .select2-search__field {
+            min-height: auto;
+            height: 33px;
+        }
+
+        .select2-selection--multiple {
+            min-height: 48px;
+        }
+    }
+}
+
+.rules-container--spaced {
+    .rule-block__controls {
+        margin-left: $padding-base;
+    }
+
+    .rule-block + .rule-block {
+        margin-top: $line-height-base;
+
+        .rule-block__header {
+            border-top: 0;
         }
     }
 }

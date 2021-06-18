@@ -1,0 +1,11 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% block body %}
+{{
+    form.range({
+        'label': 'Required',
+        'required': true
+    })
+}}
+{% endblock %}

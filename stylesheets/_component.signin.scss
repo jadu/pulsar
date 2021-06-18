@@ -118,6 +118,12 @@ body {
 			top: 0;
 		}
 
+		&:focus {
+			background-color: color(background, focus);
+			border-color: color(black);
+			box-shadow: none;
+		}
+
 		&:active {
 			top: 1px;
 		}
@@ -143,7 +149,7 @@ body {
 }
 
 .signin__inner {
-	transition: background-color .5s, margin-left .5s;
+	transition: background-color .5s, margin-left .25s;
 	float: left;
 	width: 1210px;
 

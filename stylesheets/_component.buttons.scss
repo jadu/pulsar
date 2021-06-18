@@ -71,8 +71,7 @@ $btn-white:                 'white';
     }
 
     &:focus {
-        outline: 3px solid color(border, focus);
-        outline-offset: 3px;
+        @include pulsar-button-focused;
     }
 
     &:hover,
@@ -89,6 +88,14 @@ $btn-white:                 'white';
             top: -3px;
             width: 101%; // make it slightly wider to prevent side jitter
             z-index: -1;
+        }
+
+        &:focus {
+            box-shadow: 0 1px 0 color(black);
+        }
+
+        &:focus:active {
+            box-shadow: none;
         }
     }
 }
@@ -111,10 +118,15 @@ $btn-white:                 'white';
         color: color($state, alt) !important;  // should be immutable
     }
 
+    &:focus {
+        @include pulsar-button-focused;
+    }
+
     &:active,
     &.active {
         background-color: darken(color($state), 5);
         box-shadow: 0 0 0 $shadow-color;
+        color: color($state, alt) !important;
         top: 2px;
     }
 
@@ -192,6 +204,18 @@ $btn-white:                 'white';
         box-shadow: none;
         margin-bottom: 1px; // offsets 1px padding reduction that causes content below to jump on button hover
         padding-bottom: $btn-padding-bottom - 1;
+
+        &:focus {
+            box-shadow: 0 1px 0 color(black);
+        }
+
+        &:focus:active {
+            box-shadow: none;
+        }
+    }
+
+    &:focus {
+        @include pulsar-outline-button-focused;
     }
 
     &:active,
@@ -203,11 +227,14 @@ $btn-white:                 'white';
         top: 2px;
     }
 
+    &:active:focus {
+        border: 2px solid color(base);
+    }
+
     &.is-disabled,
     &:disabled {
         background-color: transparent !important;
         box-shadow: none !important;
-        color: color(text, disabled) !important;
     }
 
     &.btn--naked {
@@ -224,9 +251,23 @@ $btn-white:                 'white';
 
     @each $state, $state-color, $state-color-alt in $state-colors {
         &.btn--#{$state} {
-            border: 2px solid $state-color !important;
-            box-shadow: none !important;
+            border: 2px solid $state-color;
+            box-shadow: none;
             color: color($state, dark) !important;
+
+            &:hover {
+                &:focus {
+                    box-shadow: 0 1px 0 color(black);
+                }
+
+                &:focus:active {
+                    box-shadow: none;
+                }
+            }
+
+            &:focus {
+                @include pulsar-outline-button-focused;
+            }
 
             &:active,
             &.active {
@@ -236,6 +277,11 @@ $btn-white:                 'white';
                 &.btn--#{$btn-white} {
                     color: color(text) !important;
                 }
+            }
+
+            &:active:focus {
+                border: 2px solid $state-color;
+                box-shadow: none;
             }
 
             &.is-disabled,
@@ -252,7 +298,6 @@ $btn-white:                 'white';
 
             &.btn--naked {
                 border: 0 !important;
-                box-shadow: none !important;
 
                 &:active,
                 &.active {
@@ -272,10 +317,6 @@ $btn-white:                 'white';
                 }
             }
         }
-    }
-
-    &.btn--naked {
-        box-shadow: none !important;
     }
 }
 
@@ -298,6 +339,10 @@ $btn-white:                 'white';
     &:hover,
     &.is-hovered {
         box-shadow: none;
+    }
+
+    &:focus {
+        @include pulsar-button-focused;
     }
 
     &.is-disabled,

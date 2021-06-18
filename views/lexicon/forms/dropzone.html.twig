@@ -4,17 +4,16 @@
 
 {% block tab_content %}
     <h2 class="heading">DropZone</h2>
-
     {{
         html.dropzone({
             'class': 'lex-dropzone',
             'id': 'lexicon-dropzone',
-            'data-helper-content': '<h5>Multimedia</h5> <ul> <li>Images</li> <li>Video</li> <li>Audio</li> </ul> <h5>Text</h5> <ul> <li>Plain text</li> <li>Rich text</li> <li>Web page</li> </ul> <h5>Documents</h5> <ul> <li>Microsoft Word</li> <li>Microsoft Excel</li> <li>Open Document</li> <li>Open Office</li> <li>PDF</li> </ul>',
+            'data-helper-content': 'Images, Video, Audio, Plain text, Rich text, Web page, Microsoft Word, Microsoft Excel, Open Document, Open Office, PDF',
             'data-helper-container': 'body',
-            'data-helper-title': 'Accepted files',
+            'data-helper-title': 'Allowed files',
             'data-dropzone-max-files': '4',
             'data-dropzone-input-node-id': 'dropzone_input_hidden',
-            'data-dropzone-idle-html': '<a class="dropzone__browse" href="#">Browse Files&hellip;</a>',
+            'data-dropzone-idle-html': '<button class="dropzone__browse btn" aria-label="Browse files to upload">Browse Files</button>',
             'data-dropzone-whitelist': 'audio/* image/* video/* application/ogg text/plain text/html application/pdf application/vnd.ms-office application/vnd.ms-powerpoint application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet application/vnd.ms-xpsdocument application/vnd.ms-works application/vnd.oasis.opendocument.spreadsheet application/vnd.oasis.opendocument.text application/vnd.sun.xml.calc application/vnd.sun.xml.writer application/vnd.sun.xml.writer.global application/rtf text/rtf text/richtext'
         })
     }}

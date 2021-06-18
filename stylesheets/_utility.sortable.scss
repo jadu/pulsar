@@ -1,5 +1,5 @@
 @mixin sortable-handle {
-    color: color(text, light);
+    color: color(black);
     content: '\f0c9';
     font-family: fontawesome;
     left: 10px;
@@ -8,7 +8,7 @@
 }
 
 @mixin sortable-success {
-    color: color(success);
+    color: color(success, dark);
     font-family: fontawesome;
     left: 10px;
     position: absolute;
@@ -26,7 +26,7 @@ div.is-sortable {
             background-color: color(background);
 
             &::before {
-                color: color(jadu-blue);
+                color: color(primary, dark);
             }
         }
 
@@ -42,10 +42,6 @@ div.is-sortable {
         &.form__group::before {
             top: 22px;
         }
-    }
-
-    .input-group-guidance {
-        background-color: transparent;
     }
 }
 
@@ -77,13 +73,13 @@ div.is-sorting {
 
         &:hover {
             &::before {
-                color: color(jadu-blue);
+                color: color(primary, dark);
             }
         }
     }
 
     .has-success > td:first-of-type::before {
-        color: color(success);
+        color: color(success, dark);
         content: '\f058';
     }
 
@@ -96,7 +92,7 @@ div.is-sorting {
     }
 
     .sortable__count {
-        color: #777;
+        color: color(black);
         font-family: $font-family-regular;
         left: 30px;
         position: absolute;

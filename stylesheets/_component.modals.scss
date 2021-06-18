@@ -102,7 +102,9 @@
 }
 // Close icon
 .modal__header .close {
-    margin-top: -2px;
+    margin-top: -15px;
+    margin-right: -15px;
+    padding: 14px;
 }
 
 // Title text within header
@@ -228,24 +230,44 @@
 
     .close,
     .download {
-        color: color(gray);
+        color: color(gray) !important;
         font-size: 1.4em;
-        padding: 20px;
         transition: color .1s ease;
 
-        &:hover,
+        &:hover {
+            color: color(jadu-blue) !important;
+        }
+
         &:focus {
-            color: color(jadu-blue);
+            @include pulsar-modal-header-button-focused;
         }
     }
 
     .close {
+        border-radius: 0;
+        box-shadow: none;
+        margin-right: 0;
         margin-top: 0;
+        padding: 17px;
+
+        &:active {
+            background: none;
+            top: 0;
+        }
+
+        &:hover {
+            transform: none;
+
+            &::after {
+                position: relative;
+            }
+        }
     }
 
     .download {
         border-right: 1px solid color(gray, off-white);
         float: right;
+        padding: 18px;
 
         @include ie-lte(9) {
             display: inline-block;

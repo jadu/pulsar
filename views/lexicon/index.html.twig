@@ -53,6 +53,20 @@
 {% set tab_metadata %}
     {% include 'lexicon/tabs/metadata.html.twig' %}
 {% endset %}
+{% set tooltips_v2 %}
+    {% include 'lexicon/tabs/tooltips_v2.html.twig' %}
+{% endset %}
+
+{% set flash_message = {
+    'message': 'this is a flash message',
+    'type': 'info',
+    'autohide': false
+}%}
+
+{% block ribbon %}
+<h1 class="u-margin-top">This is a ribbon</h1>
+<p>some ribbon data</p>
+{% endblock ribbon %}
 
 {%
     set tabs_content = [
@@ -137,6 +151,11 @@
           "id"    : "tooltips",
           "label" : "Tooltips",
           "src"   : tab_tooltips
+        },
+        {
+          "id"    : "tooltips_v2",
+          "label" : "Tooltips v2",
+          "src"   : tooltips_v2
         }
     ]
 %}

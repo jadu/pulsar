@@ -36,22 +36,9 @@ build:
 	@ sudo gem install scss_lint -v ${SASSLINTVER} --no-ri --no-rdoc --no-user-install
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling PhantomJS...${HR}\n"
-	@ -brew install phantomjs
-	@ echo "\n${CHECK} Done"
-
-	@ echo "${HR}\nInstalling ImageMagick...${HR}\n"
-	@ -brew install imagemagick
-	@ echo "\n${CHECK} Done"
-
 	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"
 	@ -brew install node
 	@ npm install -g npm
-	@ echo "\n${CHECK} Done"
-
-	@ echo "${HR}\nInstalling Bower and its dependencies...${HR}\n"
-	@ npm install -g bower
-	@ bower install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Grunt and its libraries...${HR}\n"
@@ -77,4 +64,3 @@ build:
 
 	@ echo "Run 'npm start' to start the Pulsar development environment."
 	@ echo "Run 'grunt' to watch for Sass changes."
-	@ echo "If you have issues, check the wiki page: https://github.com/jadu/pulsar/wiki/Make-errors"

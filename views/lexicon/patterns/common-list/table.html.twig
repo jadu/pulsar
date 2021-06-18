@@ -1,0 +1,300 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'class': 'bulk-actions',
+            'items': [
+                [
+                    {
+                        'label': 'Create thing',
+                        'href': '#',
+                        'icon': 'plus'
+                    },
+                    {
+                        'label': 'New filter',
+                        'href': '#',
+                        'icon': 'filter',
+                        'data-ui': 'show-filter-bar'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Make a copy',
+                        'href': '#',
+                        'icon': 'copy',
+                        'data-bulk-action': true
+                    },
+                    {
+                        'label': 'Change owner',
+                        'href': '#',
+                        'icon': 'user',
+                        'data-bulk-action': true
+                    }
+                ],
+                [
+                    {
+                        'label': 'Make live',
+                        'href': '#',
+                        'icon': 'check-circle',
+                        'data-bulk-action': true
+                    },
+                    {
+                        'label': 'Take offline',
+                        'href': '#',
+                        'icon': 'times-rectangle',
+                        'data-bulk-action': true
+                    },
+                    {
+                        'label': 'Make visible',
+                        'href': '#',
+                        'icon': 'eye-open',
+                        'data-bulk-action': true
+                    },
+                    {
+                        'label': 'Make invisible',
+                        'href': '#',
+                        'icon': 'eye-slash',
+                        'data-bulk-action': true
+                    }
+                ],
+                [
+                    {
+                        'label': 'Delete',
+                        'href': '#',
+                        'icon': 'times',
+                        'class': 'link--danger',
+                        'data-bulk-action': true
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Create Thing',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{%
+    set table_data = {
+        'columns': [
+            { 'title': 'Title' },
+            { 'title': 'Owner' },
+            { 'title': 'Modified'},
+            {
+                'title': 'Live',
+                'attrs': {
+                    'data-orderable': 'false',
+                    'class': 'u-text-align-center u-shrink-to-fit'
+                }
+            },
+            {
+                'title': 'Visible',
+                'attrs': {
+                    'data-orderable': 'false',
+                    'class': 'u-text-align-center u-shrink-to-fit'
+                }
+            }
+        ],
+        'data': [
+            {
+                'Title': 'The Terminator',
+                'Owner': 'James Cameron',
+                'Modified': '1991-07-01 12:34',
+                'Live': true,
+                'Visible': false
+            },
+            {
+                'Title': 'Conan the Barbarian',
+                'Owner': 'John Millius',
+                'Modified': '1982-04-02 12:34',
+                'Live': false,
+                'Visible': true
+            },
+            {
+                'Title': 'Predator',
+                'Owner': 'John McTiernan',
+                'Modified': '1988-01-01 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Commando',
+                'Owner': 'Mark L. Lester',
+                'Modified': '1986-02-21 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Terminator Genisys',
+                'Owner': 'Alan Taylor',
+                'Modified': '2015-06-25 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Conan the Destroyer',
+                'Owner': 'Richard Fleischer',
+                'Modified': '1984-06-29 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Terminator 2: Judgement Day',
+                'Owner': 'James Cameron',
+                'Modified': '1991-08-16 12:34:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Twins',
+                'Owner': 'Ivan Reitman',
+                'Modified': '1988-12-08 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Escape Plan',
+                'Owner': 'Mikael Håfström',
+                'Modified': '2013-10-18 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'The Last Stand',
+                'Owner': 'Kim Je-woon',
+                'Modified': '2013-01-18 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'True Lies',
+                'Owner': 'James Cameron',
+                'Modified': '1994-07-15 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Aftermath',
+                'Owner': 'Elliott Lester',
+                'Modified': '2017-04-07 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Sabotage',
+                'Owner': 'David Ayer',
+                'Modified': '2014-05-09',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Total Recall',
+                'Owner': 'Paul Verhoven',
+                'Modified': '2012-08-29 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Maggie',
+                'Owner': 'Henry Hobson',
+                'Modified': '2015-05-06 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Red Sonja',
+                'Owner': 'Richard Fleischer',
+                'Modified': '1985-07-03 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Kindergarten Cop',
+                'Owner': 'Ivan Reitman',
+                'Modified': '1991-02-01 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'The Running Man',
+                'Owner': 'Paul Michael Glaser',
+                'Modified': '1987-11-13 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Junior',
+                'Owner': 'Ivan Reitman',
+                'Modified': '1994-11-23 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Last Action Hero',
+                'Owner': 'John McTiernan',
+                'Modified': '1993-07-30 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Red Heat',
+                'Owner': 'Walter Hill',
+                'Modified': '1998-06-17 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Raw Deal',
+                'Owner': 'John Irvin',
+                'Modified': '1986-06-06 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Eraser',
+                'Owner': 'Chuck Russell',
+                'Modified': '1996-06-21 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Jingle All the Way',
+                'Owner': 'Brian Levant',
+                'Modified': '1996-11-16 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'The 6th Day',
+                'Owner': 'Roger Spottiswoode',
+                'Modified': '2000-11-13 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Collateral Damage',
+                'Owner': 'Andrew Davis',
+                'Modified': '2002-02-08 12:00',
+                'Live': true,
+                'Visible': true
+            }
+        ]
+    }
+%}
+
+{% block tab_content %}
+    {{
+        html.datatable({
+            'data-order': '[[ 3, "desc" ]]',
+            'data': table_data|default,
+            'caption': 'A list of films featuring Arnold Schwarzenegger'
+        })
+    }}
+{% endblock tab_content %}
