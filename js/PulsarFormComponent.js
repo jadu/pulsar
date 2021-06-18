@@ -130,6 +130,7 @@ PulsarFormComponent.prototype.initColourpickers = function () {
         $pickerInput.insertAfter($input);
 
         // changing the picker should update the input
+        /* istanbul ignore next: won't test spectrum internals */
         $pickerInput.spectrum({
             color: '#' + $input.val(),
             disabled: isDisabled,
