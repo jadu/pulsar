@@ -406,14 +406,18 @@ NavMainComponent.prototype.adjustNavItems = function () {
         navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true)),
         moreIconHeight = 72, // Pre calculated height of the "More" nav item
         navItemsCountTotal = component.$html.find('.nav-primary .nav-items li').length,
-        numberOfHiddenNavItems = 0;
+        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-item:hidden').length;
 
     // When nav items + more icon height is greater than available window height
     if (navItemsHeight + moreIconHeight > availableHeight) {
+        // Prevent infinite loop when all nav items are already hidden
+        if (numberOfHiddenNavItems === (navItemsCountTotal - 1)) {
+            return
+        }
         // If there is not enough space hide the last primary nav items
         component.hidePrimaryNavItems(navItemsHeight, moreIconHeight, availableHeight);
         // Get the number of hidden items to make only them visible in the tertiary menu
-        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-item:hidden').length;
         // Add "More" nav item and check its visibility if already exists
         component.addMoreNavItem(numberOfHiddenNavItems);
         // Hide the primary nav items duplicate in tertiary menu
@@ -421,7 +425,7 @@ NavMainComponent.prototype.adjustNavItems = function () {
     } else if (navItemsHeight + moreIconHeight < availableHeight) {
         // Unhide items if they were hidden and there is space in the primary nav
         component.unhidePrimaryNavItems();
-        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-item:hidden').length;
         component.lastItemSubstitution(numberOfHiddenNavItems);
     }
 };
