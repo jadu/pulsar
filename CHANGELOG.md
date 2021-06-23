@@ -30,6 +30,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `form__group--top` modifier class now works when control label element is a `span` [#1330](https://github.com/jadu/pulsar/pull/1330)
 - Form labels for choice block components are now properly aligned vertically with the inputs [#1332](https://github.com/jadu/pulsar/pull/1332)
 - Mobile `form.compound` label spacing [#1366](https://github.com/jadu/pulsar/pull/1366)
+- Stop 'more' navigation menu triggering when only one menu item is out of bounds [#1394](https://github.com/jadu/pulsar/pull/1394)
+- Fix infinite loop in 'more' navigation menu [#1381](https://github.com/jadu/pulsar/pull/1381)
+- Prevent situations where the last item in a piano list would be obscured [#1385](https://github.com/jadu/pulsar/pull/1385)
 
 ### Security
 - Stop (old) tooltip.js from directly interpreting selectors passed through options [#1359](https://github.com/jadu/pulsar/pull/1359)
