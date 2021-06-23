@@ -409,11 +409,12 @@ NavMainComponent.prototype.adjustNavItems = function () {
         numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-item:hidden').length;
 
     // When nav items + more icon height is greater than available window height
-    if (navItemsHeight + moreIconHeight > availableHeight) {
+    if (navItemsHeight > availableHeight) {
         // Prevent infinite loop when all nav items are already hidden
         if (numberOfHiddenNavItems === (navItemsCountTotal - 1)) {
             return
         }
+
         // If there is not enough space hide the last primary nav items
         component.hidePrimaryNavItems(navItemsHeight, moreIconHeight, availableHeight);
         // Get the number of hidden items to make only them visible in the tertiary menu
