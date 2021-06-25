@@ -1,16 +1,15 @@
 .ui-report.tab__pane {
-    background-color: color(gray, off-white);
-    border-top: 1px solid color(border);
-    height: 100%; // relies on the 100% height of .content-main
-    margin: -1px (-$gutter-width) 0;
-    overflow: auto; // stop chart container breaking grey background colour
-    padding: 16px $gutter-width;
-    width: auto; // make sure megative left/right margins work
+    // background-color: color(gray, off-white);
+    // border-top: 1px solid color(border);
+    // height: 100%; // relies on the 100% height of .content-main
+    // margin: -1px (-$gutter-width) 0;
+    // overflow: auto; // stop chart container breaking grey background colour
+    // padding: 16px $gutter-width;
+    // width: auto; // make sure megative left/right margins work
 }
 
 .report {
     background-color: color(white);
-    padding: $gutter-width;
 
     &.is-loading > * {
         opacity: .3;

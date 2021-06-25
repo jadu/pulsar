@@ -150,7 +150,8 @@
 }
 
 .rule-block__controls {
-    margin: 1em 0;
+    margin: 1em;
+    padding-left: 1em;
 
     @include respond-min($screen-tablet) {
         margin: .6em 1.7em 0 .4em;

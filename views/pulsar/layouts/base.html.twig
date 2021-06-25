@@ -123,9 +123,6 @@
 
                 {% set _ribbon = '' %}
                 {% set _ribbon = block('ribbon') %}
-                {% if _ribbon is empty %}
-                <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
-                {% endif %}
 
             </header>
 
