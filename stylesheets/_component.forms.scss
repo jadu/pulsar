@@ -501,21 +501,16 @@ fieldset {
 }
 
 .form__button-group {
-
     > .control__label {
         padding-top: 3px;
     }
 
     .controls > .control__label {
-        @extend .btn;
+        @extend %btn;
+        @include button-group-item;
     }
 
-    .controls > .control__label:not(:first-of-type) {
-        margin-left: -1px;
-    }
-
-    // Position elements outside of the container as display:none or
-    // visibility:hidden causes the inputs to stop being interactive in IE8
+    // Hide the inputs which drive the button group behaviour
     .form__control.form__control,
     .form__control.form__control.checkbox,
     .form__control.form__control.radio {
@@ -524,18 +519,37 @@ fieldset {
         top: 0;
     }
 
-    .form__control:checked + .control__label {
-        background-color: color(grey, lighter);
-        box-shadow: 0 2px 0 color(primary);
+    // Selected state
+    .form__control:checked + .control__label,
+    .form__control:checked + .control__label:hover {
+        background-color: color(primary);
+        color: color(primary, alt);
         font-family: $font-family-regular;
     }
 
-    .form__control:focus + .control__label {
-        @include pulsar-button-focused;
+    // Visible indicator to not rely on colour alone
+    .form__control:checked + .control__label::after {
+        background-color: color(white);
+        bottom: 4px;
+        content: '';
+        display: block;
+        height: 2px;
+        position: absolute;
+        width: auto;
+        right: 5px;
+        left: 5px;
+        border-radius: 3px;
     }
 
-    .btn__group {
-        vertical-align: top;
+    // Make sure focused buttons aren't overlapped by subsequent children
+    .form__control:focus + .control__label,
+    .form__control:focus + .control__label:hover {
+        @include pulsar-button-focused;
+        z-index: 1;
+    }
+
+    .form__control:focus + .control__label::after {
+        background-color: color(black);
     }
 }
 

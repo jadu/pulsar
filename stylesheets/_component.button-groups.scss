@@ -1,198 +1,40 @@
-/**
- * These are HTML button groups, if you're looking for form button groups,
- * check _component.forms.scss
- */
+@mixin button-group-item() {
+    border-radius: 0;
+    border-right: 1px solid rgba(0, 0, 0, .1);
 
-// Make the div behave like a button
-.btn__group {
-    position: relative;
-    vertical-align: middle; // match .btn alignment given font-size hack above
-
-    &:not(.controls) {
-        @include inline-block;
+    &:first-of-type {
+        border-top-left-radius: $btn-border-radius;
+        border-bottom-left-radius: $btn-border-radius;
     }
 
-    > .btn:not(.btn--naked),
-    > .btn__group {
-        position: relative;
-        vertical-align: bottom;
+    &:last-of-type {
+        border-top-right-radius: $btn-border-radius;
+        border-bottom-right-radius: $btn-border-radius;
+        border-right-width: 0;
+    }
+}
 
-        // Bring the "active" button to the front
-        &:hover,
-        &:focus,
-        &:active,
-        &.active {
-            z-index: 2;
+%btn__group,
+.btn__group, {
+    display: inline-block;
+
+    .btn {
+        @include button-group-item;
+
+        // Restore expected borders for solo outline buttons only
+        &.btn--outline:only-of-type {
+            border-right-width: 1px;
         }
-    }
 
-    > .btn:not(:first-of-type):not(.btn--naked):not(.edit-button):not(.remove-button) {
-        border-left: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-    }
-
-    @each $state, $state-color, $state-color-alt in $state-colors {
-        > .btn--#{'' + $state}:not(:first-of-type):not(.btn--naked):not(.edit-button):not(.remove-button) {
-            border-left-color: darken(color($state), 10);
-            border-right-color: darken(color($state), 10);
-        }
-    }
-
-    .is-disabled + .control__label {
-        opacity: .5;
-
-        &:hover {
-            cursor: not-allowed;
-            transform: none;
+        // Make sure focused buttons aren't overlapped by subsequent children
+        &:focus {
+            z-index: 1;
         }
     }
 }
 
-.btn__group > .btn + .btn,
-.btn__group > .btn__group + .btn__group {
-    margin-left: -1px;
-}
-
-.btn__group > .btn:not(.btn--naked):not(.edit-button):not(.remove-button):first-of-type,
-.btn__group > .btn__group:first-of-type {
-    border-left-width: 0;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-}
-
-.btn__group > .btn:not(.btn--naked):not(.edit-button):not(.remove-button):last-of-type,
-.btn__group > .btn__group:last-of-type {
+.dropdown .btn,
+.dropup .btn {
     border-right-width: 0;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
-
-.btn__group > .btn:not(:first-of-type):not(:last-of-type):not(.dropdown__toggle),
-.btn__group > .btn__group:not(:first-of-type):not(:last-of-type) {
-    border-radius: 0;
-}
-
-// Prevent double borders when buttons are next to each other
-.btn__group .btn + .btn,
-.btn__group .btn__group + .btn__group {
-    margin-left: -1px;
-}
-
-// Optional: Group multiple button groups together for a toolbar
-.btn__toolbar {
-    @include clear-fix;
-
-    .btn__group {
-        float: left;
-    }
-
-    // Space out series of button groups
-    > .btn,
-    > .btn__group {
-        + .btn,
-        + .btn__group {
-            margin-left: 4px; // match the default display: inline-block; spacing for consistency
-        }
-
-        + .btn {
-            + .btn {
-                margin-left: 0; // for fixing the white-space between rows of display: inline-block; buttons
-            }
-        }
-    }
-}
-
-// Set corners individual because sometimes a single button can be in a .btn__group and we need :first-of-type and :last-of-type to both match
-.btn__group > .btn:first-of-type,
-.btn__group > .btn__group:first-of-type {
-    margin-left: 0;
-
-    &:not(:last-of-type):not(.dropdown__toggle) {
-        @include border-right-radius(0);
-    }
-}
-
-// Need .dropdown__toggle since :last-of-type doesn't apply given a .dropdown-menu immediately after it
-.btn__group > .btn:last-of-type:not(:first-of-type),
-.btn__group > .dropdown__toggle:not(:first-of-type) {
-    @include border-left-radius(0);
-}
-
-// Custom edits for including btn__groups within btn__groups (useful for including dropdown buttons within a btn__group)
-.btn__group > .btn__group {
-    margin-left: -1px;
-}
-
-.btn__group > .btn__group:not(:first-of-type):not(:last-of-type) > .btn {
-    border-radius: 0;
-}
-
-.btn__group > .btn__group:first-of-type {
-    > .btn:last-of-type,
-    > .dropdown__toggle {
-        @include border-right-radius(0);
-    }
-}
-
-.btn__group > .btn__group:last-of-type > .btn:first-of-type {
-    @include border-left-radius(0);
-}
-
-// On active and open, don't show outline
-.btn__group .dropdown__toggle:active,
-.btn__group.open .dropdown__toggle {
-    outline: 0;
-}
-
-
-
-// Split button dropdowns
-// ----------------------
-
-// Remove the box-shadow and borders from btns
-.btn__group > .btn__group > .btn {
-    box-shadow: none;
-    border-right: 0;
-    border-left: 0;
-}
-
-// Add the box-shadow to the nested .btn__group rather than the .btn
-.btn__group > .btn__group {
-    box-shadow: 0 2px 0 #ccc;
-}
-
-// Give the line between buttons some depth
-.btn__group > .btn + .dropdown__toggle {
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-.btn__group > .btn-lg + .dropdown__toggle {
-    padding-left: 12px;
-    padding-right: 12px;
-}
-
-// The clickable button for toggling the menu
-// Remove the gradient and set the same inset shadow as the :active state
-.btn__group.open .dropdown__toggle {
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-}
-
-// Reposition the caret
-.btn .caret {
-    margin-left: 0;
-}
-// Carets in other button sizes
-.btn-lg .caret {
-    border-width: 5px;
-}
-// Upside down carets for .dropup
-.dropup .btn-lg .caret {
-    border-bottom-width: 5px;
-}
-
-// Checkbox and radio options
-.btn__group[data-toggle="buttons"] > .btn > input[type="radio"],
-.btn__group[data-toggle="buttons"] > .btn > input[type="checkbox"] {
-    display: none;
+    border-radius: $btn-border-radius;
 }

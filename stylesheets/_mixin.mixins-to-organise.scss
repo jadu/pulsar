@@ -109,7 +109,7 @@
 
     // Color the label and help text
     .help-block,
-    .control__label {
+    > .control__label {
         color: $text-color;
     }
 

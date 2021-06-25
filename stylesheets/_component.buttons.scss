@@ -1,385 +1,125 @@
-/**
- * -----------------------------------------------------------------------------
- *  _buttons.scss
- * -----------------------------------------------------------------------------
- *
- * Interface buttons can be links, buttons or submit inputs and can be used
- * anywhere in the UI for different needs.
- *
- * Example:
- *
- * <a class="button [button--modifier]" role="button" href="#">Button text</a>
- * <button class="button [button--modifier]" type="submit">Button text</button>
- * <input class="button [button--modifier]" type="submit" value="Button text">
- */
+// Variant constructor
+@mixin button-variant($state) {
+    background-color: color($state);
+    color: color($state, alt);
 
-/**
- * Button constructor
- *
- * 1. Corrects inability to style clickable `input` types in iOS
- * 2. Normalize `box-sizing` across all elements that this component could be
- *    applied to.
- * 3. Inherit text color from ancestor.
- * 4. Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+.
- * 5. Prevent button text from being selectable.
- * 6. Prevent wrapping across multiple lines.
- * 7. Remove excess padding and border in Firefox 4+
- */
+    &:hover {
+        background-color: darken(color($state), 10);
+        color: color($state, alt);
+    }
 
-$btn-padding-top:           10px;
-$btn-padding-bottom:        7px;
-$btn-padding-x:             14px;
+    &:disabled,
+    &.disabled,
+    &.is-disabled {
+        color: color($state, alt);
+    }
 
-$btn-small-padding-top:     $btn-padding-top / 2.5;
-$btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
-$btn-small-padding-x:       $btn-padding-x / 2.5;
+    &.btn--naked {
+        color: color($state, dark);
+    }
+}
 
-// Stop compressed grunt output converting `.btn--white` to `.btn--#fff`
-// https://github.com/jadu/pulsar/pull/502
-// scss-lint:disable StringQuotes
-$btn-white:                 'white';
-// scss-lint:enable StringQuotes
-
-.btn {
-    @include inline-block;
-    -webkit-appearance: none; /* 1 */
-    background: transparent;
-    border: 0;
-    border-radius: $border-radius;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; /* 2 */
-    color: inherit; /* 3 */
+// Button Constructor
+%btn {
+    @include button-variant('base');
     cursor: pointer;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: normal; /* 4 */
-    margin: 0;
-    padding: $btn-padding-top $btn-padding-x $btn-padding-bottom;
+    display: inline-block;
+    font-family: $font-family-base;
+    line-height: normal;
+    padding: $padding-large-vertical $padding-large-vertical ($padding-large-vertical - 1);
     position: relative;
     text-align: center;
     text-decoration: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    user-select: none; /* 5 */
-    vertical-align: top;
-    white-space: nowrap; /* 6 */
-
-    &::-moz-focus-inner { /* 7 */
-      border: 0;
-      padding: 0;
-    }
-
-    &:focus {
-        @include pulsar-button-focused;
-    }
-
-    &:hover,
-    &.is-hovered {
-        transform: translateY(1px);
-
-        // Uses a pseudo-element to fill the gap that caused the jitter
-        &::after {
-            bottom: 0;
-            content: '';
-            height: calc(100% + 5px);
-            left: -.05%; // make it slightly wider to prevent side jitter
-            position: absolute;
-            top: -3px;
-            width: 101%; // make it slightly wider to prevent side jitter
-            z-index: -1;
-        }
-
-        &:focus {
-            box-shadow: 0 1px 0 color(black);
-        }
-
-        &:focus:active {
-            box-shadow: none;
-        }
-    }
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
-/**
- * Mixin to theme button states
- */
-
-@mixin button-states($state) {
-    $shadow-color: darken(color($state), 10);
-
-    background-color: color($state);
-    box-shadow: 0 2px 0 $shadow-color;
-    color: color($state, alt) !important; // should be immutable
-    position: relative;
-
-    &:hover,
-    &.is-hovered {
-        box-shadow: 0 1px 0 $shadow-color;
-        color: color($state, alt) !important;  // should be immutable
-    }
-
-    &:focus {
-        @include pulsar-button-focused;
-    }
-
-    &:active,
-    &.active {
-        background-color: darken(color($state), 5);
-        box-shadow: 0 0 0 $shadow-color;
-        color: color($state, alt) !important;
-        top: 2px;
-    }
-
-    &:disabled,
-    &.is-disabled,
-    &.disabled {
-        opacity: .5;
-
-        &.btn--naked {
-            color: color($state, dark) !important;
-
-            &:active,
-            &.active {
-                background-color: transparent !important;
-                color: color($state, dark) !important;
-            }
-        }
-    }
-
-    > .badge {
-        background-color: color($state, dark);
-        color: pick_best_color(color($state, dark), (#fff, color(gray, dark))) !important;
-
-        &.badge--outline {
-            background-color: transparent;
-            color: inherit !important;
-        }
-    }
-
-    &.btn--naked {
-        color: color($state, dark) !important;
-
-        &:active,
-        &.active {
-            background-color: color($state, light) !important;
-            color: color($state, dark) !important;
-
-            &:not(:disabled):not(.is-disabled).btn--#{$btn-white} {
-                color: color(text) !important;
-            }
-        }
-    }
-}
-
-/**
- * UI states
- */
-
+// Base buttons
 .btn {
-    @include button-states('base');
-    border-bottom-style: solid;
-    text-decoration: none;
+    @extend %btn;
+    border: 0;
+
+    &:focus,
+    &:focus:hover {
+        @include pulsar-button-focused;
+    }
 
     &:disabled,
-    &.is-disabled,
-    &.disabled {
-        cursor: not-allowed !important;
+    &.disabled,
+    &.is-disabled {
+        opacity: .5;
+        pointer-events: none;
+    }
+
+    .icon,
+    [class*=icon-] {
+        font-size: 14px;
     }
 }
 
+// State variations
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .btn--#{'' + $state} {
-        @include button-states($state);
+    @if $state != 'base' {
+        .btn--#{'' + $state} {
+            @include button-variant($state);
+        }
     }
 }
 
+// Outline button styles
 .btn--outline {
-    background: none !important;
-    border: 2px solid color(base);
-    box-shadow: none;
-    padding: ($btn-padding-top - 2) ($btn-padding-x - 2) $btn-padding-bottom;
+    background: none;
+    border: 1px solid color(base, alt);
+    color: color(base, alt);
+    padding-bottom: $padding-large-vertical - 2;
+    padding-top: $padding-large-vertical - 1;
 
-    &:hover,
-    &.is-hovered {
-        box-shadow: none;
-        margin-bottom: 1px; // offsets 1px padding reduction that causes content below to jump on button hover
-        padding-bottom: $btn-padding-bottom - 1;
-
-        &:focus {
-            box-shadow: 0 1px 0 color(black);
-        }
-
-        &:focus:active {
-            box-shadow: none;
-        }
-    }
-
-    &:focus {
-        @include pulsar-outline-button-focused;
-    }
-
-    &:active,
-    &.active {
-        background-color: color(base, light) !important;
-        box-shadow: none;
-        color: pick_best_color(color(base, light), (#fff, color(gray, dark))) !important;
-        padding-bottom: $btn-padding-bottom - 2;
-        top: 2px;
-    }
-
-    &:active:focus {
-        border: 2px solid color(base);
-    }
-
-    &.is-disabled,
-    &:disabled {
-        background-color: transparent !important;
-        box-shadow: none !important;
-    }
-
-    &.btn--naked {
-        padding: $btn-padding-top $btn-padding-x $btn-padding-bottom !important;
-    }
-
-    &.btn--small {
-        padding: ($btn-small-padding-top - 2) ($btn-small-padding-x - 2) ($btn-small-padding-bottom - 2) !important;
-
-        &.btn--naked {
-           padding: $btn-small-padding-top $btn-small-padding-x $btn-small-padding-bottom !important;
-        }
+    // Double chain focus states to stop outline state variation overriding background colour
+    &.btn--outline:focus,
+    &.btn--outline:hover:focus {
+        @include pulsar-button-focused;
+        border-color: color(black);
+        box-shadow: 0 0 0 1px color(black);
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
-        &.btn--#{'' + $state} {
-            border: 2px solid $state-color;
-            box-shadow: none;
-            color: color($state, dark) !important;
+        @if $state != 'base' {
+            &.btn--#{'' + $state} {
+                border-color: $state-color;
+                color: color($state, dark);
 
-            &:hover {
-                &:focus {
-                    box-shadow: 0 1px 0 color(black);
+                &:hover {
+                    background-color: $state-color;
+                    color: $state-color-alt;
                 }
 
-                &:focus:active {
-                    box-shadow: none;
-                }
-            }
-
-            &:focus {
-                @include pulsar-outline-button-focused;
-            }
-
-            &:active,
-            &.active {
-                background-color: color($state, light) !important;
-                color: color($state, dark) !important;
-
-                &.btn--#{$btn-white} {
-                    color: color(text) !important;
-                }
-            }
-
-            &:active:focus {
-                border: 2px solid $state-color;
-                box-shadow: none;
-            }
-
-            &.is-disabled,
-            &:disabled {
-                &:active,
-                &.active {
-                    background-color: transparent !important;
-
-                    &.btn--#{$btn-white} {
-                        color: color($state, dark) !important;
-                    }
-                }
-            }
-
-            &.btn--naked {
-                border: 0 !important;
-
-                &:active,
-                &.active {
-                    color: color($state, dark) !important;
-
-                    &.btn--#{$btn-white} {
-                        color: color(text) !important;
-                    }
-                }
-
-                &.is-disabled,
-                &:disabled {
-                    &:active,
-                    &.active {
-                        color: color($state) !important;
-                    }
+                &:disabled,
+                &.disabled,
+                &.is-disabled {
+                    color: color($state, dark);
                 }
             }
         }
     }
 }
 
-.btn--naked,
-.btn--naked > .btn {
-    background: none;
-    border: 0 !important;
-    box-shadow: none;
-    color: color(text) !important;
-
-    // IE8 fix btn--naked background and border
-    @include ie-lte(8) {
-        background: none;
-        border: 0;
-        box-shadow: none;
-    }
-
-    &:active,
-    &.active,
-    &:hover,
-    &.is-hovered {
-        box-shadow: none;
-    }
-
-    &:focus {
-        @include pulsar-button-focused;
-    }
-
-    &.is-disabled,
-    &:disabled {
-        background: none !important;
-        box-shadow: none !important;
-        color: color(text, disabled) !important;
-    }
-}
-
-.btn--naked.btn__group.open .dropdown__toggle {
-    box-shadow: none;
-}
-
-.btn--#{$btn-white} {
-    &.is-disabled,
-    &:disabled {
-        opacity: .5;
-    }
-}
-
-.btn--small {
-    font-size: 12px !important;
-    padding: $btn-small-padding-top $btn-small-padding-x $btn-small-padding-bottom !important;
-}
-
-// The text in small, disabled buttons look like garbage on low-dpi screens,
-// so we'll disable font smoothing for this edge case (and re-enable it
-// for hi-dpi screens).
-.btn--#{$btn-white},
+// Naked button styles
 .btn--naked {
-    &.is-disabled,
-    &:disabled {
-        -webkit-font-smoothing: none;
+    background: none;
+    border: 0;
 
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            -webkit-font-smoothing: subpixel-antialiased;
-        }
+    &:hover {
+        background: none;
+    }
+}
+
+// Small buttons
+.btn--small {
+    font-size: $font-size-medium;
+    padding: $padding-small-vertical $padding-small-vertical ($padding-small-vertical - 1);
+
+    &.btn--outline {
+        padding: ($padding-small-vertical - 1) $padding-small-vertical ($padding-small-vertical - 2);
     }
 }
