@@ -1,7 +1,7 @@
 .content-main {
     background-color: #ebe7ee;
     display: table;
-    min-height: 100%;
+    // min-height: 100%;
     padding: 0 $gutter-width;
     position: relative;
     table-layout: fixed; // needed to make datatable overflow work at small widths
