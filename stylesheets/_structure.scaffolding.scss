@@ -54,7 +54,7 @@ a {
 
   &.is-disabled,
   &.disabled {
-    color: color(link, disabled) !important;
+    color: color(link, disabled);
     cursor: not-allowed;
   }
 }
