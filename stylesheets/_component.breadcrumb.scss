@@ -4,6 +4,10 @@
     margin: 0 0 ($line-height-base / 2);
     width: 100%;
 
+    ol {
+        margin: 0;
+    }
+
     li {
         display: inline;
         list-style-type: none;
