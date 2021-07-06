@@ -4,6 +4,21 @@
     margin: 0 0 ($line-height-base / 2);
     width: 100%;
 
+    li {
+        display: inline;
+        list-style-type: none;
+        margin-right: 5px;
+
+        &::after {
+            content: '/';
+            margin-left: 5px;
+        }
+
+        &:last-child::after {
+            content: '';
+        }
+    }
+
     a {
         color: color(gray, dark); // must be AA 4.5:1
 
