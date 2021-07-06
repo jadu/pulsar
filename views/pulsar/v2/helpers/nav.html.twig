@@ -154,17 +154,23 @@
     {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     <nav class="breadcrumb" aria-label="breadcrumbs">
+    {%- if items is defined and items is not empty %}
+        <ol>
+    {%- endif -%}
     {%- for item in items -%}
-        {% if loop.last %}
-            {% set item = item|merge({
-                'aria-current': 'page'
-            }) %}
-        {% endif %}
+            <li>
+                {% if loop.last %}
+                    {% set item = item|merge({
+                        'aria-current': 'page'
+                    }) %}
+                {% endif %}
 
-        {{ html.link(item) }}
-
-        {%- if not loop.last -%}/{%- endif -%}
+                {{ html.link(item) }}
+            </li>
     {%- endfor -%}
+    {%- if items is defined and items is not empty %}
+        </ol>
+    {%- endif -%}
     </nav>
     {% endspaceless %}
 {%- endmacro -%}
