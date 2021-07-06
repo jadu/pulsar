@@ -80,6 +80,7 @@
 .select2-dropdown {
     background-color: white;
     border: 1px solid $input-border;
+    border-radius: 0;
     box-shadow: 0 0 0 $shadow-small color(background, shadow);
     box-sizing: border-box;
     display: block;
