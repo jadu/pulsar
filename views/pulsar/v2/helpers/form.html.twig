@@ -835,7 +835,7 @@ attribute on the `form` element will be set to `POST`.
     {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    {% set defaults = {'class': 'form'} %}
+    {% set defaults = {'class': 'form', 'novalidate': true} %}
     {% set alternateMethods = ['DELETE', 'PATCH', 'PUT'] %}
 
     {% if options.method is defined and options.method|upper in alternateMethods %}
