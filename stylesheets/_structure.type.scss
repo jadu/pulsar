@@ -24,6 +24,13 @@ h6 {
     margin: 0 0 1em;
 }
 
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-regular;
+}
+
 p {
     margin: 0 0 ($line-height-base / $line-height-small);
 
