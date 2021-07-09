@@ -203,14 +203,10 @@
     }
 
     .tab__content {
-        display: block;
-
-        @include respond-min($screen-desktop) {
-            display: table-cell;
-            float: left;
-            vertical-align: top;
-            width: 100%;
-        }
+        display: table-cell;
+        float: left;
+        vertical-align: top;
+        width: 100%;
     }
 
     .tab__sidebar {
