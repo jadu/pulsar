@@ -1,5 +1,5 @@
 .content-main {
-    background-color: color(backdrop);
+    background-color: color(background, backdrop);
     display: table;
     min-height: 100%;
     padding: 0 $gutter-width;
