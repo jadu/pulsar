@@ -228,6 +228,10 @@
             margin: 0 0 $margin-large-vertical;
         }
 
+        a {
+            color: color(text);
+        }
+
         .no-js & {
           display: table-cell;
         }
