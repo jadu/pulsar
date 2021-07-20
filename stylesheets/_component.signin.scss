@@ -37,19 +37,24 @@ body {
 }
 
 .jadu-logomark {
-	background: url($branding-navigation-fallback);
-	background: url($branding-navigation), linear-gradient(transparent, transparent);
+	background: url($branding-navigation);
 	background-size: $branding-navigation-width $branding-navigation-height;
 	background-repeat: no-repeat;
 	display: inline-block;
 	margin-top: 5px;
 	text-align: center;
-	height: 100px;
+	height: $branding-navigation-height;
 	width: $branding-navigation-width;
 }
 
 .jadu-wordmark {
-	display: none;
+	background: url($branding-wordmark);
+	background-position: center;
+	background-repeat: no-repeat;
+	display: block;
+	filter: invert(100);
+	height: $branding-wordmark-height;
+	text-indent: -999px;
 }
 
 .signin {

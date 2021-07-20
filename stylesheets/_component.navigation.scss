@@ -471,15 +471,21 @@
 
 .jadu-branding {
     display: block;
-    padding: 0;
+    padding: 0 0 10px;
     text-decoration: none;
 
     &.is-active {
         background: none;
     }
 
-    &:focus .jadu-logomark {
-        background-image: url($branding-navigation-focus), linear-gradient(transparent, transparent);
+    &:focus {
+        .jadu-logomark {
+            filter: grayscale(1);
+        }
+
+        .jadu-wordmark {
+            filter: invert(0);
+        }
     }
 }
 
@@ -571,8 +577,7 @@
 }
 
 .jadu-logomark {
-    background: url($branding-navigation-fallback);
-    background: url($branding-navigation), linear-gradient(transparent, transparent);
+    background: url($branding-navigation);
     background-size: $branding-navigation-width $branding-navigation-height;
     background-repeat: no-repeat;
     display: inline-block;
