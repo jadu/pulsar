@@ -16,12 +16,8 @@ $font-family-regular:                 'proxima_nova_rgregular', 'Helvetica Neue'
 $font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
 $font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', monospace !default;
 
-// $background-gradient:                 linear-gradient(190deg, #3e499e 0, #34356a 60%, #cc2c83 100%);
-// $background-gradient:                 linear-gradient(190deg, #161a37 0, #3d4696 60%, #cc2c83 100%);
-// $background-gradient:                 linear-gradient(65deg, rgba(48, 60, 150, 1) 0%, rgba(255, 255, 255, 0) 30%),
-//                                       linear-gradient(190deg, #161a37 0, #2d366f 33%, #303c96 66%, #1c61d7 100%);
-$background-gradient: linear-gradient(150deg, #2c3044 0, #2c3044 10%, #2d366f 50%, #2d366f 75%);
-
+$background-gradient: url('../images/branding/central-gradient.svg');
+$signin-gradient: url('../images/branding/central-gradient-large.svg');
 
 // -----------------------------------------------------------------------------
 //  Typographic grid

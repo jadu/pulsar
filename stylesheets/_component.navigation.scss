@@ -227,9 +227,10 @@
 }
 
 .nav-primary {
-    background-color: $nav-color-light;
+    background-color: #2f3248;
     background-image: $background-gradient;
-    background-attachment: scroll;
+    background-position: left bottom;
+    background-repeat: no-repeat;
     box-shadow: inset (-$shadow-micro) 0 0 rgba(0, 0, 0, .2);
     overflow-y: hidden;
     text-align: center;
@@ -239,18 +240,6 @@
 
     @include respond-min($screen-desktop) {
         position: fixed;
-    }
-
-    &::before {
-        background-image: radial-gradient(ellipse, #1c61d7 0, #1c61d7 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
-        bottom: -240px;
-        content: '';
-        display: block;
-        height: 500px;
-        position: absolute;
-        left: 10px;
-        transform: rotate(315deg);
-        width: 300px;
     }
 
     .is-open &::before {
@@ -344,8 +333,10 @@
 .nav-tertiary,
 .nav-quaternary {
     background-attachment: scroll;
-    background-color: $nav-color-dark;
-    background-image: linear-gradient(150deg, #2c3044 0, #2c3044 10%, #2d366f 40%, #2d366f 75%);
+    background-color: #2f3248;
+    background-image: $background-gradient;
+    background-position: right bottom;
+    background-repeat: no-repeat;
     box-shadow: $shadow-large 0 0 color(background, shadow);
     left: $nav-primary-width;
     margin-left: -320px;
@@ -368,18 +359,6 @@
     // cope with presence of scrollbars in IE
     @include ie-lte(10) {
         width: 280px;
-    }
-
-    &::before {
-        background-image: radial-gradient(ellipse, #1c61d7 0, #1c61d7 10%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
-        bottom: -240px;
-        content: '';
-        display: block;
-        height: 500px;
-        position: absolute;
-        left: 100px;
-        transform: rotate(90deg);
-        width: 300px;
     }
 
     .nav-container {
