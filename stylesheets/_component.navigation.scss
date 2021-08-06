@@ -573,7 +573,13 @@
 }
 
 .jadu-wordmark {
-    display: none;
+    background: url($branding-wordmark);
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    filter: invert(100);
+    height: $branding-wordmark-height;
+    text-indent: -999px;
 }
 
 // IE8 fix for issue with open mobile nav being cut off

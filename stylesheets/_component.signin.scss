@@ -50,16 +50,6 @@ body {
 	width: $branding-navigation-width;
 }
 
-.jadu-wordmark {
-	background: url($branding-wordmark);
-	background-position: center;
-	background-repeat: no-repeat;
-	display: block;
-	filter: invert(100);
-	height: $branding-wordmark-height;
-	text-indent: -999px;
-}
-
 .signin {
 	background-color: $signin-bg-color-fallback;
 	background-color: $signin-bg-color;
