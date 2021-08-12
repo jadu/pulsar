@@ -41,7 +41,7 @@
         }
     }
 
-    a {
+    a:not(.btn) {
         font-family: $font-family-regular;
 
         &,
