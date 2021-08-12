@@ -31,9 +31,9 @@
 \* -------------------------------------------------------------------------- */
 
 // Dimensions
-$greeter-min-height:                    200px !default;
+$greeter-min-height:                    400px !default;
 $greeter-width-responsive:              80% !default;
-$greeter-width-max:                     600px !default;
+$greeter-width-max:                     700px !default;
 $greeter-padding:                       $gutter-width !default;
 $greeter-form-width-max:                500px;
 $greeter-button-border-width:           3px;
@@ -44,7 +44,7 @@ $greeter-font-size-medium:              1.25em !default;
 $greeter-font-size-small:               .9em !default;
 
 // Colours
-$greeter-bg:                            linear-gradient(315deg, #161a37 0, #3d4696 100%) !default;
+$greeter-bg:                            url($image-path + 'branding/central-greeter-gradient.svg') !default;
 $greeter-bg-color:                      color(jadu-purple) !default;
 $greeter-bg-color-lighter:              color(jadu-purple, light) !default;
 $greeter-bg-color-darker:               darken($greeter-bg-color, 3) !default;
@@ -94,11 +94,33 @@ $greeter-brand-bottom-height:           40px !default;
 
 .greeter {
     background-image: $greeter-bg;
+    background-position: -5px -5px;
     box-shadow: 0 0 0 $shadow-large color(background, shadow);
     color: $greeter-text-color;
+    min-height: $greeter-min-height;
     max-width: $greeter-width-max;
     padding: $greeter-padding;
+    position: relative;
     width: $greeter-width-responsive;
+
+    &::before {
+        background-image: url($image-path + 'branding/central-greeter-shape.svg');
+        background-position: 105%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        display: block;
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    &__header {
+        position: relative;
+        margin-top: 20%;
+    }
 
     &__link {
         border-bottom: 1px dotted $greeter-link-underline-color;
@@ -116,6 +138,7 @@ $greeter-brand-bottom-height:           40px !default;
     }
 
     &__title {
+        font-family: $font-family-heading;
         font-size: $greeter-font-size-large;
         line-height: 1em;
         margin-bottom: .25em;
@@ -224,8 +247,9 @@ $greeter-brand-bottom-height:           40px !default;
     }
 
     &__footer {
-        font-size: $greeter-font-size-small;
-        text-align: right;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
     }
 
     &__brand-bottom {
