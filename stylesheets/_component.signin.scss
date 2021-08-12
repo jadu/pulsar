@@ -35,8 +35,13 @@ body {
 	display: block;
 	margin: 0 auto;
 	position: relative;
+	text-align: center;
 	top: 50px;
-	width: 100px;
+	width: 100%;
+
+	> img {
+		width: 200px;
+	}
 }
 
 .jadu-logomark {
@@ -362,7 +367,7 @@ body {
 
 .signin__icon {
 	background-image: url($branding-site);
-	background-size: $branding-site-height 100px;
+	background-size: cover;
 	background-position: 50% 0;
 	background-repeat: no-repeat;
 	border-radius: $branding-site-radius;
