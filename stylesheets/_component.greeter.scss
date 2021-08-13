@@ -262,6 +262,7 @@ $greeter-brand-bottom-height:           40px !default;
     }
 
     &__footer {
+        font-family: $font-family-heading-light;
         position: absolute;
         bottom: 10px;
         right: 10px;
