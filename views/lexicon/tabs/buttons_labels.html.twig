@@ -12,6 +12,18 @@
 
 
 {% block tab_content %}
+    <section class="greeter">
+        <header class="greeter__header">
+            <h1 class="greeter__title">Hello again, Longname Longnamerson.</h1>
+            <ul class="list--naked">
+                <li>You have <strong>no</strong> tasks outstanding</li>
+                <li>You have <strong>1</strong> tasks awaiting action</li>
+            </ul>
+        </header>
+        <footer class="greeter__footer">CMS #124</footer>
+    </section>
+
+    <br /><br />
 {{
         form.text({
             'id': 'guid-' ~ random(),
