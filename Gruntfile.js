@@ -1,4 +1,4 @@
-const Fiber = require('fibers');
+// const Fiber = require('fibers');
 const sass = require('dart-sass');
 
 module.exports = function(grunt) {
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     implementation: sass,
-                    fiber: Fiber,
+                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -104,7 +104,7 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     implementation: sass,
-                    fiber: Fiber,
+                    // fiber: Fiber,
                     outputStyle: 'compressed'
                 },
                 files: [{
@@ -120,7 +120,7 @@ module.exports = function(grunt) {
             lexicon: {
                 options: {
                     implementation: sass,
-                    fiber: Fiber,
+                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{

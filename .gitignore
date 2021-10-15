@@ -35,3 +35,4 @@ pulsar.zip
 /ngrok
 /.vagrant
 /phpunit
+/docs/node_modules
