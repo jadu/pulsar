@@ -29,7 +29,6 @@
     }
 
     .btn {
-        // border-color: color(text);
         width: 100%;
     }
 
@@ -80,17 +79,6 @@
         right: 0;
     }
 }
-
-// .toolbar-actions .toolbar-action--icon .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
-//     line-height: 16px;
-//     padding-bottom: 6px;
-//     padding-top: 6px;
-
-//     i {
-//         font-size: 18px;
-//         vertical-align: middle;
-//     }
-// }
 
 .toolbar-icon,
 %toolbar-icon {

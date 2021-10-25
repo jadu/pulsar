@@ -21,33 +21,8 @@
         color: color(black);
     }
 
-    // [href],
-    // .continuum-cms & [href]:link {
-    //     border-bottom: 1px dotted color(grey, light);
-    //     color: color(link);
-    //     text-decoration: none;
-
-    //     &:not(.btn):focus {
-    //         @include pulsar-link-focused;
-    //     }
-
-    //     &:focus {
-    //         border: 0;
-    //         color: color(black);
-    //     }
-    // }
-
-    // [href].btn {
-    //     border-bottom: 0;
-    // }
-
     tbody > tr:hover {
         background-color: color(background, light);
-
-        // [href],
-        // .continuum-cms & [href]:link {
-        //     color: color(link, dark);
-        // }
     }
 
     tr {
@@ -57,12 +32,6 @@
     tr.selected td,
     tr.is-selected td {
         background-color: color(background, selected);
-
-        // [href],
-        // .continuum-cms & [href]:link {
-        //     border-bottom: 1px dotted color(link, dark);
-        //     color: color(link, dark);
-        // }
     }
 
     tr.is-disabled td:not(.table-row__actions) {
@@ -186,7 +155,6 @@
 // Added by javascript, allows the table to scroll horizontally at narrow
 // viewports
 .table-container {
-    // margin-bottom: 24px;
     overflow-x: auto;
     overflow-y: hidden;
     position: relative;
