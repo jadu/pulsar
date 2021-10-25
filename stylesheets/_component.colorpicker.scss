@@ -15,9 +15,9 @@
 // Be specific to our use-case in order to override styles
 .btn.sp-replacer {
     background: color(background);
-    border: 0;
+    border: 1px solid color(border);
     color: color(text);
-    height: 46px;
+    height: $input-height-base;
     margin-left: 6px;
     // padding: 8px 14px 6px;
     position: relative;
