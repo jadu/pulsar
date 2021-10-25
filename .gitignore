@@ -36,3 +36,5 @@ pulsar.zip
 /.vagrant
 /phpunit
 /docs/node_modules
+/docs/.docusaurus
+.phpunit.result.cache

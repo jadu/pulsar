@@ -232,6 +232,11 @@
         font-size: 1.4em;
         transition: color .1s ease;
 
+        .icon,
+        [class*=icon-] {
+            font-size: 1.4em;
+        }
+
         &:hover {
             color: color(jadu-blue) !important;
         }
@@ -246,7 +251,6 @@
         box-shadow: none;
         margin-right: 0;
         margin-top: 0;
-        padding: 17px;
 
         &:active {
             background: none;
@@ -265,7 +269,7 @@
     .download {
         border-right: 1px solid color(gray, off-white);
         float: right;
-        padding: 18px;
+        padding: 15px;
 
         @include ie-lte(9) {
             display: inline-block;
