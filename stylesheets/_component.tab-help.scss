@@ -74,9 +74,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     border: 0;
     color: color(white);
     font-size: $font-size-xlarge;
+    line-height: $font-size-xlarge;
     margin-bottom: 10px;
     position: absolute;
-    right: 0;
+    right: 5px;
     text-decoration: none;
     top: 10px;
 
