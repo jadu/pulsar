@@ -603,7 +603,8 @@ fieldset {
 .form__control.checkbox {
     &::before {
         content: '';
-        font-family: 'FontAwesome';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
         height: 20px;
         left: 2px;
         position: absolute;
@@ -629,22 +630,18 @@ fieldset {
 .form__control.radio {
     border-radius: $border-radius-large;
 
-    &::before {
-        content: '';
-        font-family: 'FontAwesome';
-        font-size: 11px;
-        height: 20px;
-        left: 5.5px;
-        position: absolute;
-        top: -13px;
-    }
-
     &:focus {
         @include pulsar-radio-focused;
     }
 
     &:checked::before {
-        content: '\f111';
+        background-color: color(black);
+        border-radius: 12px;
+        content: '';
+        display: block;
+        height: 12px;
+        margin: 4px auto;
+        width: 12px;
     }
 }
 
