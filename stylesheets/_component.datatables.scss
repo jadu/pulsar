@@ -111,7 +111,7 @@ a.dt-button {
         &.sorting::after,
         &.sorting_asc::after,
         &.sorting_desc::after {
-            @include icon-FontAwesome();
+            // @include icon-FontAwesome();
             font-size: $font-size-base;
             line-height: 22px;
             position: absolute;
@@ -303,7 +303,7 @@ th.sorting_disabled:hover {
 
 .parent .table-child-toggle i::before {
     color: color(jadu-red);
-    content: $minus-sign;
+    // content: $minus-sign;
 }
 
 .datatable .child ul {

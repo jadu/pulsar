@@ -23,13 +23,18 @@ $ie-version: 12 !default;
 
 // Proxima Nova (requires license)
 $font-path: '../fonts/';
+
 @import '../fonts/config.fonts';
 
 // Font awesome
-$fa-font-path: '../node_modules/font-awesome/fonts';
+$fa-font-path: '../fonts/fontawesome-free-5.15.4-web/webfonts';
 $fa-css-prefix: 'icon';
 @import 'deprecated.icons';
-@import '../node_modules/font-awesome/scss/font-awesome';
+@import '../fonts/fontawesome-free-5.15.4-web/scss/fontawesome';
+@import '../fonts/fontawesome-free-5.15.4-web/scss/regular';
+@import '../fonts/fontawesome-free-5.15.4-web/scss/solid';
+@import '../fonts/fontawesome-free-5.15.4-web/scss/brands';
+@import '../fonts/fontawesome-free-5.15.4-web/scss/v4-shims';
 
 // Mixins
 @import 'mixin.border-radius';

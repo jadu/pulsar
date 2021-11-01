@@ -1,3 +1,5 @@
+
+
 // State variations
 @each $state, $state-color, $state-color-alt in $state-colors {
     .icon--#{'' + $state}::before {
@@ -39,3 +41,177 @@
         }
     }
 }
+
+// Map Font Awesome 5 to FA4's pseudo elements
+[class*="icon-"] {
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 900;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+// Map Font Awesome 4 names to their FA5 variant
+// scss-lint:disable all
+.icon-android::before                   { font-family: 'Font Awesome 5 Brands'; } // android
+.icon-apple::before                     { font-family: 'Font Awesome 5 Brands'; } // apple
+.icon-ban-circle::before                { content: '\f05e'; } // ban
+.icon-bar-chart::before                 { content: '\f080'; } // chart-bar
+.icon-beaker::before                    { content: '\f0c3'; } // flask
+.icon-bell-alt::before                  { content: '\f0f3'; font-weight: 400; } // bell
+.icon-bookmark-empty::before            { content: '\f02e'; font-weight: 400; } // bookmark
+.icon-bitbucket::before                 { font-family: 'Font Awesome 5 Brands'; } // bitbucket
+.icon-btc::before                       { content: '\f15a'; font-family: 'Font Awesome 5 Brands'; } // btc
+.icon-calendar-empty::before            { content: '\f133'; font-weight: 400; } // calendar
+.icon-check-empty::before               { content: '\f0c8'; font-weight: 400; } // square
+.icon-check-sign::before                { content: '\f14a'; } // check-square
+.icon-circle-blank::before              { content: '\f111'; font-weight: 400; } // circle-empty
+.icon-circle-arrow-left::before         { content: '\f0a8'; } // arrow-circle-left
+.icon-circle-arrow-right::before        { content: '\f0a9'; } // arrow-circle-right
+.icon-circle-arrow-up::before           { content: '\f0aa'; } // arrow-circle-up
+.icon-circle-arrow-down::before         { content: '\f0ab'; } // arrow-circle-down
+.icon-check-minus::before               { content: '\f146'; font-weight: 400; } // minus-square
+.icon-chevron-sign-left::before         { content: '\f137'; } // arrow-chevron-left
+.icon-chevron-sign-right::before        { content: '\f138'; } // arrow-chevron-right
+.icon-chevron-sign-up::before           { content: '\f139'; } // arrow-chevron-up
+.icon-chevron-sign-down::before         { content: '\f13a'; } // arrow-chevron-down
+.icon-cloud-download::before            { content: '\f381'; } // cloud-download-alt
+.icon-cloud-upload::before              { content: '\f382'; } // cloud-upload-alt
+.icon-cny::before                       { content: '\f157'; } // yen-sign
+.icon-code-fork::before                 { content: '\f126'; } // code-branch
+.icon-collapse::before                  { content: '\f150'; } // caret-square-down
+.icon-collapse-top::before              { content: '\f151'; } // caret-square-up
+.icon-collapse-alt::before              { content: '\f146'; font-weight: 400; } // compress-alt
+.icon-comments-alt::before              { content: '\f086'; } // comments
+.icon-css3::before                      { font-family: 'Font Awesome 5 Brands'; } // facebook
+.icon-dashboard::before                 { content: '\f3fd'; } // tachometer-alt
+.icon-dribbble::before                  { font-family: 'Font Awesome 5 Brands'; } // dribbble
+.icon-edit-sign::before                 { content: '\f14b'; } // pen-square
+.icon-exchange::before                  { content: '\f362'; } // exchange-alt
+.icon-external-link-sign::before        { content: '\f360'; } // external-link-square-alt
+.icon-ellipsis-horizontal::before       { content: '\f141'; } // ellipsis-h
+.icon-ellipsis-vertical::before         { content: '\f142'; } // ellipsis-v
+.icon-eur::before                       { content: '\f153'; } // euro-sign
+.icon-file-text::before                 { content: '\f15c'; } // file-alt
+.icon-flag-alt::before                  { content: '\f024'; font-weight: 400; } // flag
+.icon-download-alt::before              { content: '\f019'; } // download
+.icon-double-angle-left::before         { content: '\f100'; } // angle-double-left
+.icon-double-angle-right::before        { content: '\f101'; } // angle-double-right
+.icon-double-angle-up::before           { content: '\f102'; } // angle-double-up
+.icon-double-angle-down::before         { content: '\f103'; } // angle-double-down
+.icon-envelope-alt::before              { content: '\f0e0'; font-weight: 400; } // envelope
+.icon-exclamation-sign::before          { content: '\f06a'; } // exclamation-circle
+.icon-expand-alt::before                { content: '\f0fe'; font-weight: 400; } // plus-square
+.icon-external-link::before             { content: '\f35d'; } // external-link-alt
+.icon-eye-open::before                  { content: '\f06e'; } // eye
+.icon-eye-close::before                 { content: '\f070'; } // eye-slash
+.icon-facebook::before                  { font-family: 'Font Awesome 5 Brands'; } // facebook
+.icon-facebook-sign::before             { content: '\f082'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // facebook-square
+.icon-facetime-video::before            { content: '\f03d'; } // video
+.icon-folder-close::before              { content: '\f07b'; } // folder
+.icon-folder-close-alt::before          { content: '\f07b'; font-weight: 400; } // folder-alt
+.icon-folder-open-alt::before           { content: '\f07c'; font-weight: 400; } // folder-open
+.icon-food::before                      { content: '\f2e7'; } // utensils
+.icon-foursquare::before                { font-family: 'Font Awesome 5 Brands'; } // foursquare
+.icon-file-text-alt::before             { content: '\f15c'; font-weight: 400; } // file-alt
+.icon-fullscreen::before                { content: '\f31e'; } // expand-arrows-alt
+.icon-github::before                    { font-family: 'Font Awesome 5 Brands'; } // github
+.icon-github-alt::before                { content: '\f113'; font-family: 'Font Awesome 5 Brands'; } // github
+.icon-github-sign::before               { content: '\f092'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // github-square
+.icon-glass::before                     { content: '\f000'; } // glass-martini
+.icon-group::before                     { content: '\f0c0'; } // users
+.icon-h-sign::before                    { content: '\f0fd'; } // h-square
+.icon-hand-left::before                 { content: '\f0a5'; font-weight: 400; } // hand-point-left
+.icon-hand-right::before                { content: '\f0a4'; font-weight: 400; } // hand-point-right
+.icon-hand-up::before                   { content: '\f0a6'; font-weight: 400; } // hand-point-up
+.icon-hand-down::before                 { content: '\f0a7'; font-weight: 400; } // hand-point-down
+.icon-heart-empty::before               { content: '\f004'; font-weight: 400; } // heart
+.icon-html5::before                     { font-family: 'Font Awesome 5 Brands'; } // facebook
+.icon-indent-left::before               { content: '\f03c'; } // indent
+.icon-indent-right::before              { content: '\f03b'; } // outdent
+.icon-info-sign::before                 { content: '\f05a'; } // info-circle
+.icon-inr::before                       { content: '\f156'; } // rupee-sign
+.icon-jpy::before                       { content: '\f157'; } // yen-sign
+.icon-krw::before                       { content: '\f159'; } // won-sign
+.icon-legal::before                     { content: '\f0e3'; } // gavel
+.icon-level-up::before                  { content: '\f3bf'; } // level-up-alt
+.icon-level-down::before                { content: '\f3be'; } // level-down-alt
+.icon-linkedin::before                  { content: '\f0e1'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // linkedin
+.icon-linkedin-sign::before             { content: '\f08c'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // linkedin-square
+.icon-linux::before                     { font-family: 'Font Awesome 5 Brands'; } // linux
+.icon-long-arrow-left::before           { content: '\f30a'; } // long-arrow-alt-left
+.icon-long-arrow-right::before          { content: '\f30b'; } // long-arrow-alt-right
+.icon-long-arrow-up::before             { content: '\f30c'; } // long-arrow-alt-up
+.icon-long-arrow-down::before           { content: '\f309'; } // long-arrow-alt-down
+.icon-mail-reply-all::before            { content: '\f122'; } // reply-all
+.icon-microphone-off::before            { content: '\f131'; } // microphone-slash
+.icon-minus-sign::before                { content: '\f056'; } // minus-circle
+.icon-mobile-phone::before              { content: '\f3cd'; } // mobile-alt
+.icon-money::before                     { content: '\f3d1'; } // money-alt
+.icon-move::before                      { content: '\f0b2'; } // arrows-alt
+.icon-minus-sign-alt::before            { content: '\f146'; } // minus-square
+.icon-off::before                       { content: '\f011'; } // power-off
+.icon-ok::before                        { content: '\f00c'; } // check
+.icon-ok-circle::before                 { content: '\f058'; font-weight: 400; } // check-circle
+.icon-ok-sign::before                   { content: '\f058'; } // check-circle
+.icon-paper-clip::before                { content: '\f0c6'; } // paperclip
+.icon-pencil::before                    { content: '\f303'; } // pencil-alt
+.icon-picture::before                   { content: '\f03e'; } // image
+.icon-phone-sign::before                { content: '\f098'; } // phone-square
+.icon-pinterest::before                 { content: '\f0d2'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // pinterest
+.icon-pinterest-sign::before            { content: '\f0d3'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // pinterest-square
+.icon-play-sign::before                 { content: '\f144'; } // play-circle
+.icon-plus-sign::before                 { content: '\f055'; } // plus-circle
+.icon-plus-sign-alt::before             { content: '\f0fe'; } // plus-square
+.icon-gbp::before                       { content: '\f154'; } // pound-sign
+.icon-pushpin::before                   { content: '\f08d'; } // thumbtack
+.icon-question-sign::before             { content: '\f059'; } // question-circle
+.icon-remove::before                    { content: '\f00d'; } // times
+.icon-remove-sign::before               { content: '\f057'; } // times-circle
+.icon-remove-circle::before             { content: '\f057'; font-weight: 400; } // times-circle
+.icon-resize-full::before               { content: '\f424'; } // expand-alt
+.icon-resize-small::before              { content: '\f422'; } // compress-alt
+.icon-refresh::before                   { content: '\f2f1'; } // sync-alt
+.icon-remove-circle::before             { content: '\f057'; } // times-circle
+.icon-reorder::before                   { content: '\f0c9'; } // bars
+.icon-resize-horizontal::before         { content: '\f337'; } // arrows-alt-h
+.icon-resize-vertical::before           { content: '\f338'; } // arrows-alt-v
+.icon-rss-sign::before                  { content: '\f143'; } // rss-square
+.icon-share-sign::before                { content: '\f1e1'; } // share-alt-square
+.icon-shield::before                    { content: '\f3ed'; } // shield-alt
+.icon-sign-blank::before                { content: '\f0c8'; } // square
+.icon-signin::before                    { content: '\f2f6'; } // signin-alt
+.icon-signout::before                   { content: '\f2f5'; } // sign-out-alt
+.icon-signout::before                   { content: '\f2f5'; } // sign-out-alt
+.icon-skype::before                     { font-family: 'Font Awesome 5 Brands'; } // skype
+.icon-sort-by-alphabet::before          { content: '\f15d'; } // sort-alpha-down
+.icon-sort-by-alphabet-alt::before      { content: '\f881'; } // sort-alpha-down-alt
+.icon-sort-by-attributes::before        { content: '\f160'; } // sort-amount-down
+.icon-sort-by-attributes-alt::before    { content: '\f884'; } // sort-amount-down-alt
+.icon-sort-by-order::before             { content: '\f162'; } // sort-numeric-down
+.icon-sort-by-order-alt::before         { content: '\f886'; } // sort-numeric-down-alt
+.icon-repeat::before                    { content: '\f2f9'; } // redo-alt
+.icon-screenshot::before                { content: '\f05b'; } // crosshairs
+.icon-stackexchange::before             { content: '\f18d'; font-family: 'Font Awesome 5 Brands'; } // stack-exchange
+.icon-star-empty::before                { content: '\f005'; font-weight: 400; } // star
+.icon-star-half-empty::before           { content: '\f5c0'; } // star-half-alt
+.icon-ticket::before                    { content: '\f3ff'; } // ticket
+.icon-tablet::before                    { content: '\f3fa'; } // tablet-alt
+.icon-thumbs-down-alt::before           { content: '\f165'; font-weight: 400; } // thumbs-down
+.icon-thumbs-up-alt::before             { content: '\f164'; font-weight: 400; } // thumbs-up
+.icon-time::before                      { content: '\f017'; font-weight: 400; } // time
+.icon-trello::before                    { font-family: 'Font Awesome 5 Brands'; } // trello
+.icon-twitter-sign::before              { content: '\f081'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // twitter-square
+.icon-twitter::before                   { font-family: 'Font Awesome 5 Brands'; } // twitter
+.icon-upload-alt::before                { content: '\f093'; } // upload-alt
+.icon-usd::before                       { content: '\f155'; } // dollar-sign
+.icon-warning-sign::before              { content: '\f071'; } // exclamation-triangle
+.icon-windows::before                   { font-family: 'Font Awesome 5 Brands'; } // windows
+.icon-youtube::before                   { font-family: 'Font Awesome 5 Brands'; } // youtube-square
+.icon-youtube-play::before              { content: '\f167'; font-family: 'Font Awesome 5 Brands'; } // youtube-square
+.icon-youtube-sign::before              { content: '\f431'; font-family: 'Font Awesome 5 Brands'; } // youtube-square
+.icon-zoom-in::before                   { content: '\f00e'; } // search-plus
+.icon-zoom-out::before                  { content: '\f010'; } // search-minus
+// scss-lint:enable all
