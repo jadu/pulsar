@@ -21,3 +21,99 @@
     text-align: center;
     width: 100%;
 }
+
+.cheatsheet-set {
+    article {
+        border-bottom: 1px solid #ccc;
+        width: calc(100%/6);
+    }
+
+    .icon-name,
+    .icon-unicode {
+        font-family: 'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    }
+
+    .v-top {
+        vertical-align: top;
+    }
+
+    .dt {
+        display: table;
+    }
+
+    .dtc {
+        display: table-cell;
+    }
+
+    .tl {
+        text-align: left;
+    }
+
+    .tr {
+        text-align: right;
+    }
+
+    .pa0 {
+        padding: 0;
+    }
+
+    .pt2 {
+        padding-top: .5rem;
+    }
+
+    .pb2 {
+        padding-bottom: .5rem;
+    }
+
+    .pr2 {
+        padding-right: .5rem;
+    }
+
+    .pr4 {
+        padding-right: 1.5rem;
+    }
+
+    .w2 {
+        width: 2rem;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+
+    .word-wrap {
+        word-break: break-all;
+    }
+
+    .nb2 {
+        margin-bottom: -0.5rem;
+    }
+
+    .nr4 {
+        margin-right: -1.5rem;
+    }
+
+    .justify-start {
+        justify-content: flex-start;
+    }
+
+    .items-stretch {
+        align-items: stretch;
+    }
+
+    .flex-wrap {
+        flex-wrap: wrap;
+    }
+
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .gray5 {
+        color: #adb5bd;
+    }
+}
