@@ -1,18 +1,28 @@
 @mixin sortable-handle {
     color: color(black);
     content: '\f0c9';
-    font-family: fontawesome;
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 900;
     left: 10px;
     position: absolute;
+    text-rendering: auto;
     top: 10px;
+    -webkit-font-smoothing: antialiased;
 }
 
 @mixin sortable-success {
     color: color(success, dark);
-    font-family: fontawesome;
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 900;
     left: 10px;
     position: absolute;
+    text-rendering: auto;
     top: 10px;
+    -webkit-font-smoothing: antialiased;
 }
 
 div.is-sortable {
