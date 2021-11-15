@@ -318,6 +318,7 @@ body {
 
 	&::before {
 		content: '\f0a4';
+		font-family: 'Font Awesome 5 Free';
 	}
 
 	.signin-twostep & {
@@ -339,6 +340,7 @@ body {
 
 		&::before {
 			content: '\f0a5';
+			font-family: 'Font Awesome 5 Free';
 		}
 	}
 }
@@ -404,11 +406,13 @@ body {
 
 	.signin--error &::before {
 		content: '\f119';
+		font-family: 'Font Awesome 5 Free';
 		font-size: 75px;
 	}
 
 	.signin-twostep &::before {
 		content: '\f10b';
+		font-family: 'Font Awesome 5 Free';
 		font-size: 65px;
 
 		.signin--error & {
@@ -418,6 +422,7 @@ body {
 
 	.signin-forgot &::before {
 		content: '\f128';
+		font-family: 'Font Awesome 5 Free';
 		font-size: 65px;
 		width: 40px;
 		margin-left: -2px;
@@ -431,6 +436,7 @@ body {
 			content: '\f0e0';
 			display: inline-block;
 			color: #2f8dbd;
+			font-family: 'Font Awesome 5 Free';
 			font-size: 35px;
 			width: 66px;
 		}
@@ -444,6 +450,7 @@ body {
 		&::before {
 			content: '\f087';
 			color: color(success);
+			font-family: 'Font Awesome 5 Free';
 			font-size: 35px;
 		}
 	}
