@@ -91,11 +91,12 @@
 .icon-dashboard::before                 { content: '\f3fd'; } // tachometer-alt
 .icon-dribbble::before                  { font-family: 'Font Awesome 5 Brands'; } // dribbble
 .icon-edit-sign::before                 { content: '\f14b'; } // pen-square
-.icon-exchange::before                  { content: '\f362'; } // exchange-alt
-.icon-external-link-sign::before        { content: '\f360'; } // external-link-square-alt
 .icon-ellipsis-horizontal::before       { content: '\f141'; } // ellipsis-h
 .icon-ellipsis-vertical::before         { content: '\f142'; } // ellipsis-v
+.icon-envelope-o::before                { content: '\f0e0'; font-weight: 400; } // envelope
 .icon-eur::before                       { content: '\f153'; } // euro-sign
+.icon-exchange::before                  { content: '\f362'; } // exchange-alt
+.icon-external-link-sign::before        { content: '\f360'; } // external-link-square-alt
 .icon-file-text::before                 { content: '\f15c'; } // file-alt
 .icon-flag-alt::before                  { content: '\f024'; font-weight: 400; } // flag
 .icon-download-alt::before              { content: '\f019'; } // download
