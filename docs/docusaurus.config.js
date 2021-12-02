@@ -2,7 +2,7 @@ module.exports = {
   title: 'Pulsar',
   tagline: 'The design system for the Jadu platform',
   url: 'https://jadu.github.io',
-  baseUrl: '/pulsar/',
+  baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
