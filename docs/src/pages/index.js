@@ -6,10 +6,14 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
+import HeroOne from '@site/static/img/hero_1.svg';
+import HeroTwo from '@site/static/img/hero_2.svg';
+import HeroThree from '@site/static/img/hero_3.svg';
+
 const features = [
   {
     title: 'About Pulsar',
-    imageUrl: 'img/hero_1.svg',
+    HeroImage: HeroOne,
     description: (
       <>
         Pulsar provides a common framework, tools and documentation to help 
@@ -19,7 +23,7 @@ const features = [
   },
   {
     title: 'Designed for Jadu',
-    imageUrl: 'img/hero_2.svg',
+    HeroImage: HeroTwo,
     description: (
       <>
         Components are designed with accessibility, usability and 
@@ -30,7 +34,7 @@ const features = [
   },
   {
     title: 'Collaborate',
-    imageUrl: 'img/hero_3.svg',
+    HeroImage: HeroThree,
     description: (
       <>
         We welcome any feedback and ideas on how to improve the design system. 
@@ -41,13 +45,10 @@ const features = [
   },
 ];
 
-function Feature({imageUrl, title, description}) {
-  const imgUrl = useBaseUrl(imageUrl);
+function Feature({HeroImage, title, description}) {
   return (
     <div className={clsx('text--center col col--4', styles.feature)}>
-      {imgUrl && (
-          <img className={styles.featureImage} src={imgUrl} alt={title} />
-          )}
+      <HeroImage className={styles.featureImage} alt={title} />
       <h3>{title}</h3>
       <p>{description}</p>
     </div>
