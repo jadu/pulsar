@@ -10,6 +10,10 @@ module.exports = {
   projectName: 'pulsar', // Usually your repo name.
   plugins: ['docusaurus-plugin-sass'],
   themeConfig: {
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true
+    },
     prism: {
       additionalLanguages: ['twig']
     },
