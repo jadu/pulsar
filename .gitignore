@@ -21,6 +21,7 @@ pulsar.zip
 /shots
 /fonts
 /fonts/_config.fonts.scss
+/docs
 
 /.csscomb.json
 /validation-status.json
@@ -35,6 +36,3 @@ pulsar.zip
 /ngrok
 /.vagrant
 /phpunit
-/docs/node_modules
-/docs/.docusaurus
-.phpunit.result.cache
