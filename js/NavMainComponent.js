@@ -149,13 +149,13 @@ NavMainComponent.prototype.isNavOpen = function () {
     var component = this,
         isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
 
-    if (component.$navQuaternary.hasClass('is-open')) {
-        return true;
-    } else if (component.$navTertiary.hasClass('is-open')) {
+    if (isMobile && component.$body.hasClass('open-nav')) {
         return true;
     } else if (component.$navSecondary.hasClass('is-open')) {
         return true;
-    } else if (isMobile && component.$body.hasClass('open-nav')) {
+    } else if (component.$navTertiary.hasClass('is-open')) {
+        return true;
+    } else if (component.$navQuaternary.hasClass('is-open')) {
         return true;
     } else {
         return false;

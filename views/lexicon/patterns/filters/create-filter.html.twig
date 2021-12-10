@@ -38,9 +38,8 @@
                     form.select2({
                         'label': 'Colour (single + ph)',
                         'id': 'colour-' ~ random(),
-                        'data-placeholder': 'Select One',
+                        'placeholder': 'Select One',
                         'options': {
-                            '': 'Select one',
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
                         }
@@ -52,7 +51,7 @@
                         'label': 'Colour 3 (multi + ph)',
                         'id': 'colour-' ~ random(),
                         'multiple': true,
-                        'data-placeholder': 'Select one or more',
+                        'placeholder': 'Select one or more',
                         'options': {
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
@@ -82,6 +81,7 @@
 
                 {{
                     form.date({
+                        'data-pulsar-datepicker': 'true',
                         'label': 'Added from',
                         'id': 'addedFrom-' ~ random(),
                         'class': 'form__group--full'
@@ -90,6 +90,7 @@
 
                 {{
                     form.date({
+                        'data-pulsar-datepicker': 'true',
                         'label': 'Added to',
                         'id': 'addedTo-' ~ random(),
                         'class': 'form__group--full'
@@ -98,6 +99,7 @@
 
                 {{
                     form.checkbox({
+                        'data-pulsar-datepicker': 'true',
                         'label': 'In stock',
                         'id': 'inStock-' ~ random(),
                     })
@@ -108,7 +110,7 @@
             form.end({
                 'actions': [
                     form.submit({
-                        'label': 'Save',
+                        'label': 'Apply Filter',
                         'class': 'btn--primary'
                     }),
                     html.link({
