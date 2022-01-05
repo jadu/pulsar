@@ -9,7 +9,7 @@
 
 {% macro caret(visible) %}
 {% spaceless %}
-    {% if visible is defined and visible != 0 %}
+    {% if visible is defined and visible != 0 and visible != null %}
         &nbsp;<span class="caret"></span>
     {% endif  %}
 {% endspaceless %}
@@ -70,25 +70,6 @@
 {% spaceless %}
     {% if value is not empty %}
         form="{{ value }}"
-    {% endif %}
-{% endspaceless %}
-{% endmacro %}
-
-
-{% macro guidance(value, options) %}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% spaceless %}
-    {% if value is not empty %}
-    {{
-        html.icon('question-sign', {
-            'class': 'input-group-guidance',
-            'data-container': options['guidance-container']|default('body'),
-            'data-content': value,
-            'data-placement': 'top',
-            'data-toggle': 'popover',
-            'data-autoclose': 'true'
-        })
-    }}
     {% endif %}
 {% endspaceless %}
 {% endmacro %}
@@ -155,7 +136,7 @@
 {% macro required(required) %}
 {% spaceless %}
     {% if required %}
-        &nbsp;<span class="required-indicator" data-toggle="tooltips" title="required">*</span>
+        &nbsp;<span aria-hidden="true" class="required-indicator" data-tippy-content="required">*</span>
     {% endif  %}
 {% endspaceless %}
 {% endmacro %}

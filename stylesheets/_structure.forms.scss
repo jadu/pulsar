@@ -57,6 +57,11 @@
     @include col-span($form-control-cols, false);
 }
 
+// Tight spacing to bring related controls closer together
+.form__group.form__group--tight {
+    margin-bottom: $margin-base-vertical;
+}
+
 // inputs can be aligned next to each other if required
 .form__group--inline > .controls {
 
@@ -93,7 +98,8 @@
 // }
 
 .form__group--top {
-    > .control__label {
+    > .control__label,
+    > span.control__label {
         @include col-span(12);
     }
 
@@ -137,10 +143,6 @@
             display: none;
         }
     }
-}
-
-.controls > .textarea {
-    max-width: 99%; // take into account any textarea border which might look like it’s overlapping at 100% width
 }
 
 // at narrow viewports, forms collapse into a single column view

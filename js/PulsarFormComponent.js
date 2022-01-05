@@ -3,9 +3,10 @@
 var $ = require('jquery'),
     TimePickerComponent = require('./TimePickerComponent');
 
-require('../libs/pikaday/plugins/pikaday.jquery');
-require('../libs/select2/dist/js/select2.min');
-require('../libs/spectrum/spectrum');
+require('pikaday'),
+require('pikaday/plugins/pikaday.jquery');
+require('spectrum-colorpicker');
+require('select2')();
 
 function PulsarFormComponent(html) {
     this.$html = html;
@@ -30,27 +31,8 @@ PulsarFormComponent.prototype.init = function () {
     // Time picker
     component.initTimePickers();
 
-    // reinitialise select2 items in a tab when the tab is focused to fix widths
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var $target = $($(e.target).attr('href')),
-            $select2 = $target.find('.js-select2:not([data-init="false"])');
-
-        $.each($select2, function() {
-            component.initSelect2($(this));
-        });
-    });
-
-    // reinitialise select2 items when opening a modal to fix widths
-    $('[data-toggle="modal"]').on('click', function (e) {
-        var $target = $($(e.target).attr('href')),
-            $select2 = $target.find('.js-select2:not([data-init="false"])');
-
-        $target.on('shown.bs.modal', function() {
-            $.each($select2, function() {
-                component.initSelect2($(this));
-            });
-        });
-    });
+    // Toggle switches
+    component.initToggleSwitches();
 }
 
 /**
@@ -107,10 +89,15 @@ PulsarFormComponent.prototype.initDatePickers = function () {
         }
 
         // Initialize pikaday with the correct date format
-        $(element).pikaday({ format: defaultDateFormat });
+        $(element).pikaday({
+            format: defaultDateFormat
+        });
 
         // Initialize placeholder attribute based on the date format
         $(element).attr('placeholder', defaultDateFormat.toLowerCase());
+
+        // Switch off autocomplete to avoid it overlapping the date picker
+        $(element).attr('autocomplete', 'off');
     });
 }
 
@@ -159,6 +146,10 @@ PulsarFormComponent.prototype.initColourpickers = function () {
                 }
             }
         });
+
+        // Remove the text input inside the picker, which we don't use and 
+        // causes a11y issues if left in the markup
+        component.$html.find('.sp-input-container').remove();
 
         // changing the input should update the picker
         $input.on('change', function () {
@@ -237,6 +228,29 @@ PulsarFormComponent.prototype.initSelect2 = function (target) {
 
         $this.select2(config);
         $this.parent().find('.select2-container').removeAttr('style');
+    });
+}
+
+/**
+ * Initiate Toggle Switches
+ * 
+ * This only allows click events on the main label, or the actual toggle control
+ */
+PulsarFormComponent.prototype.initToggleSwitches = function () {
+    var component = this;
+
+    component.$html.on('click', '.toggle-switch-wrapper-label', function(e) {
+        var $target = $(e.target),
+            $toggle = $(this).find('.toggle-switch');
+
+        if ($target.hasClass('toggle-switch-label') || 
+            $target.hasClass('toggle-switch') || 
+            $target.hasClass('control__label')) 
+        {
+            $toggle.trigger('focus');
+        } else {
+            e.preventDefault();
+        }
     });
 }
 

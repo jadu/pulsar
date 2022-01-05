@@ -20,7 +20,8 @@
 
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('lodash');
 
   // MODAL CLASS DEFINITION
   // ======================
@@ -35,7 +36,7 @@ var $ = require('jquery');
   }
 
   Modal.DEFAULTS = {
-      backdrop: true
+      backdrop: 'static'
     , keyboard: true
     , show: true
   }
@@ -82,10 +83,10 @@ var $ = require('jquery');
       transition ?
         that.$element.find('.modal-dialog') // wait for modal to slide in
           .one($.support.transition.end, function () {
-            that.$element.focus().trigger(e)
+            that.$element.trigger('focus').trigger(e)
           })
           .emulateTransitionEnd(300) :
-        that.$element.focus().trigger(e)
+        that.$element.trigger('focus').trigger(e)
     })
   }
 
@@ -124,7 +125,7 @@ var $ = require('jquery');
       .off('focusin.bs.modal') // guard against infinite focus loop
       .on('focusin.bs.modal', $.proxy(function (e) {
         if (this.$element[0] !== e.target && !this.$element.has(e.target).length) {
-          this.$element.focus()
+          this.$element.trigger('focus')
         }
       }, this))
   }
@@ -233,7 +234,7 @@ var $ = require('jquery');
   $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
     var $this   = $(this)
     var href    = $this.attr('href')
-    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
+    var $target = $(_.escape($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, '')))) //strip for ie7
     var option  = $target.data('modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
 
     e.preventDefault()
@@ -241,7 +242,7 @@ var $ = require('jquery');
     $target
       .modal(option, this)
       .one('hide', function () {
-        $this.is(':visible') && $this.focus()
+        $this.is(':visible') && $this.trigger('focus')
       })
   })
 
@@ -251,9 +252,4 @@ var $ = require('jquery');
       $(document.body).removeClass('modal-open');
     });
 
-  // Focus the first input in a modal when the modal has been opened
-  $(document).on('shown.bs.modal', '.modal', function() {
-    $(':input:not(input[type=button], input[type=submit], button):visible:first', $(this)).focus();
-  });
-  
 module.exports = Modal;

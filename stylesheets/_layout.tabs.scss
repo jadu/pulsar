@@ -1,7 +1,6 @@
 .content-main {
     position: relative;
     display: table;
-    height: 100%;
     padding: 0 $gutter-width;
     table-layout: fixed;
     width: 100%;
@@ -9,8 +8,9 @@
 
 .main-title {
     font-size: 1.75em;
-    line-height: 24px;
+    line-height: 32px;
     margin-bottom: 13px;
+    width: 100%;
 }
 
 .sub-title {
@@ -60,6 +60,11 @@
         width: 100%;
     }
 
+    @include prefers-reduced-motion() {
+        left: $nav-primary-width;
+        transform: none;
+    }
+
     .lt-ie10 & {
         left: $nav-primary-width;
     }
@@ -77,6 +82,12 @@
         transform: none;
         transition: transform 500ms ease;
         width: 100%;
+    }
+
+    @include prefers-reduced-motion() {
+        left: -300px;
+        transform: none;
+        transition: none;
     }
 }
 

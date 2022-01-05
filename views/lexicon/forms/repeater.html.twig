@@ -6,17 +6,16 @@
     {{ form.create({
         'id': 'repeater-submit-debug'
     }) }}
-
         {{ form.repeater_start({
-            'label': 'The Pulsar team',
+            'label': 'The Pulsar team with pre-filled data',
             'empty': 'You have not added any team members',
             'headings': [
                 { name: 'text', label: 'Name' },
-                { name: 'select2multi', label: 'Favourite food' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
             'add-another-group-text': 'Add another',
+            'actions-column-text': 'Actions',
             'values': [
                 [{ name: 'text', value: 'Mike' }, { name: 'select2multi', value: ['food_gravy'] }],
                 [{ name: 'text', value: 'James' }, { name: 'select2multi', value: ['food_gravy', 'food_pizza'] }],
@@ -28,32 +27,79 @@
                     'legend': 'Team Member'
                 })
             }}
-
-            {{
-                form.text({
-                    'label': 'name',
-                    'id': 'repeater-text',
-                    'name': 'text'
-                })
-            }}
-
-            {{
-                form.select2({
-                    'label': 'Favourite food',
-                    'id': 'repeater-select2multi',
-                    'name': 'select2multi',
-                    'multiple': true,
-                    'options': [
-                        { value: 'food_pizza', label: 'Pizza' },
-                        { value: 'food_gravy', label: 'Gravy' },
-                        { value: 'food_puds', label: 'Yorkshire Pudding' }
-                    ]
-                })
-            }}
+                {{
+                    form.text({
+                        'label': 'name',
+                        'id': 'repeater-text',
+                        'name': 'text'
+                    })
+                }}
+            {{ form.fieldset_end() }}
 
         {{ form.repeater_end() }}
 
-    {{ form.end() }}
+        {{ form.repeater_start({
+            'label': 'The Pulsar team',
+            'empty': 'You have not added any team members',
+            'headings': [
+                { name: 'text', label: 'Name' },
+            ],
+            'max-entries': 3,
+            'add-new-group-text': 'Add',
+            'add-another-group-text': 'Add another',
+            'actions-column-text': 'Actions',
+        }) }}
+
+            {{
+                form.fieldset_start({
+                    'legend': 'Team Member'
+                })
+            }}
+                {{
+                    form.text({
+                        'label': 'name',
+                        'id': 'repeater-text-2',
+                        'name': 'text'
+                    })
+                }}
+            {{ form.fieldset_end() }}
+
+        {{ form.repeater_end() }}
+
+    {{
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
+    }}
+
+    <pre id="repeater-request"></pre>
+
+    <script>
+        const form = document.getElementById('repeater-submit-debug');
+        const preview = document.getElementById('repeater-request');
+
+        form.addEventListener('submit', event => {
+            const data = new FormData(event.target);
+            let payload = (new Date()).toString() + '\n';
+
+            event.preventDefault();
+            for (const pair of data) {
+                payload += pair[0] + '=' + pair[1] + '\n';
+            }
+
+            preview.innerText = payload;
+        });
+    </script>
 
 {% endblock tab_content %}
 

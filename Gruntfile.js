@@ -1,3 +1,6 @@
+// const Fiber = require('fibers');
+const sass = require('dart-sass');
+
 module.exports = function(grunt) {
 
     'use strict';
@@ -85,7 +88,8 @@ module.exports = function(grunt) {
         sass: {
             dev: {
                 options: {
-                    outputStyle: 'nested',
+                    implementation: sass,
+                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -97,8 +101,10 @@ module.exports = function(grunt) {
                     src:    '*.scss'
                 }]
             },
-            dist_modern: {
+            dist: {
                 options: {
+                    implementation: sass,
+                    // fiber: Fiber,
                     outputStyle: 'compressed'
                 },
                 files: [{
@@ -111,23 +117,10 @@ module.exports = function(grunt) {
                     src:    ['pulsar.scss']
                 }]
             },
-            dist_ie: {
-                options: {
-                    outputStyle: 'nested'
-                },
-                files: [{
-                    cwd:    'stylesheets/',
-                    dest:   'dist/css/',
-                    expand: true,
-                    flatten: true,
-                    ext:    '.css',
-                    extDot: 'first',
-                    src:    'pulsar-ie*.scss'
-                }]
-            },
             lexicon: {
                 options: {
-                    outputStyle: 'nested',
+                    implementation: sass,
+                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -141,45 +134,10 @@ module.exports = function(grunt) {
             }
         },
 
-        replace: {
-            projector: {
-                src: ['stylesheets/pulsar.scss'],
-                dest: 'stylesheets/pulsar-theme-projector.scss',
-                replacements: [{
-                    from: 'palette.base',
-                    to: 'palette.projector'
-                }]
-            },
-            projector_ie9: {
-                src: ['stylesheets/pulsar-ie9.scss'],
-                dest: 'stylesheets/pulsar-ie9-theme-projector.scss',
-                replacements: [{
-                    from: 'palette.base',
-                    to: 'palette.projector'
-                }]
-            },
-            projector_ie8: {
-                src: ['stylesheets/pulsar-ie8.scss'],
-                dest: 'stylesheets/pulsar-ie8-theme-projector.scss',
-                replacements: [{
-                    from: 'palette.base',
-                    to: 'palette.projector'
-                }]
-            },
-            projector_ie7: {
-                src: ['stylesheets/pulsar-ie7.scss'],
-                dest: 'stylesheets/pulsar-ie7-theme-projector.scss',
-                replacements: [{
-                    from: 'palette.base',
-                    to: 'palette.projector'
-                }]
-            }
-        },
-
         autoprefixer: {
             dev: {
                 options: {
-                    browsers: ['last 2 version', 'ie 7', 'ie 8', 'ie 9']
+                    browsers: ['last 2 versions', 'IE 10']
                 },
                 expand: true,
                 src:    'css/*.css'
@@ -199,7 +157,7 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
-                tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer', 'bless:css']
+                tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer']
             },
             scsslint: {
                 files: 'stylesheets/**/*.scss',
@@ -467,23 +425,38 @@ module.exports = function(grunt) {
                         }
                     }
                 }
-            }
-        },
-
-        bless: {
-            css: {
+            },
+            deployer: {
+                src: 'images/favicons/src/favicon-deployer.svg',
+                dest: 'images/favicons/deployer',
                 options: {
-                    cacheBuster: true,
-                    compress: true,
-                    logCount: true
-                },
-                files: {
-                    'css/pulsar-ie7.min.css': 'css/pulsar-ie7.css',
-                    'css/pulsar-ie8.min.css': 'css/pulsar-ie8.css',
-                    'css/pulsar-ie9.min.css': 'css/pulsar-ie9.css',
-                    'css/pulsar-ie7-theme-projector.min.css': 'css/pulsar-ie7-theme-projector.css',
-                    'css/pulsar-ie8-theme-projector.min.css': 'css/pulsar-ie8-theme-projector.css',
-                    'css/pulsar-ie9-theme-projector.min.css': 'css/pulsar-ie9-theme-projector.css'
+                    iconsPath: '/images/favicons/deployer/',
+                    html: [ 'views/pulsar/components/favicons-deployer.html' ],
+                    design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#3d4796',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#3d4796',
+                            themeColor: '#3d4796',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
+                        windows: {
+                            pictureAspect: 'noChange',
+                            backgroundColor: '#3d4796',
+                            onConflict: 'override'
+                        }
+                    }
                 }
             }
         },
@@ -509,37 +482,11 @@ module.exports = function(grunt) {
                 'views/**/*'
             ],
             options: {
-                proxy: 'http://localhost:3000/app/app.php/lexicon',
+                proxy: 'http://localhost:9000/app/app.php/lexicon',
                 reloadOnRestart: true,
                 watchTask: true
             }
-	    },
-
-        casperjs: {
-            options: {
-                async: {
-                    parallel: false
-                },
-                silent: false
-            },
-            files: ['../pulsar/tests/js/casper.js']
-        },
-
-        validation: {
-            options: {
-                reset: grunt.option('reset') || false,
-                stoponerror: false,
-                maxTry: 3,
-                relaxerror: ['Bad value X-UA-Compatible for attribute http-equiv on element meta.'], // ignores these errors
-                generateReport: true,
-                errorHTMLRootDir: "tests/validation/error_reports",
-                useTimeStamp: true,
-                errorTemplate: "tests/validation/w3c_validation_error_Template.html"
-            },
-            files: {
-                src: ['../pulsar/tests/validation/html_output/*.html']
-            }
-        }
+	    }
 
     });
 
@@ -559,11 +506,9 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'copy',
         'scsslint',
-        'replace',
         'sass:dev',
         'sass:lexicon',
         'autoprefixer',
-        'bless',
         'browserify:dev',
         'browserify:lexicon',
         'browserSync',
@@ -572,16 +517,13 @@ module.exports = function(grunt) {
 
     grunt.registerTask('post-merge', [
         'exec:fixProximaNova',
-        'replace',
         'sass:dev',
         'browserify'
     ]);
 
     grunt.registerTask('build', [
         'scsslint',
-        'replace',
-        'sass:dist_modern',
-        'sass:dist_ie',
+        'sass:dist',
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
@@ -589,9 +531,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('deploy', [
-        'replace',
-        'sass:dist_modern',
-        'sass:dist_ie',
+        'sass:dist',
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
@@ -609,11 +549,6 @@ module.exports = function(grunt) {
         'exec:updateBower',
         'exec:updateGems',
         'exec:updateNpm'
-    ]);
-
-    grunt.registerTask('validate', [
-        'casperjs',
-        'validation'
     ]);
 
     grunt.registerTask('javascript:tests', [

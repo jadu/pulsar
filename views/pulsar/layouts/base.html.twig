@@ -5,16 +5,8 @@
 {% set cssPath  = base_path ~ 'css/' %}
 {% set imgPath  = base_path ~ 'images/' %}
 {% set jsPath   = base_path ~ 'js/' %}
-{% set libsPath = base_path ~ 'libs/' %}
-{% set themeFile = '' %}
-{% if constant_defined('theme') %}
-    {% set themeFile = '-theme-' ~ get_constant('theme') %}
-{% endif %}
 <!DOCTYPE html>
-<!--[if IE 7]>         <html lang="en" class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
-<!--[if IE 8]>         <html lang="en" class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
-<!--[if IE 9]>         <html lang="en" class="no-js ie9 lt-ie10"><![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+<html lang="en" class="no-js">
 <head>
     <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
     <meta charset="utf-8">
@@ -44,27 +36,8 @@
     <meta name="msapplication-config" content="{{ imgPath }}favicons/cms/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie7' ~ themeFile ~ '.min.css' }}" /><![endif]-->
-    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie8' ~ themeFile ~ '.min.css' }}" /><![endif]-->
-    <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie9' ~ themeFile ~ '.min.css' }}" /><![endif]-->
-    <!--[if gt IE 9]><!-->
-    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar' ~ themeFile ~ '.css' }}" />
+    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
     <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'lexicon.css' }}" />
-    <!--<![endif]-->
-
-
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="{{ libsPath ~ 'html5shiv/dist/html5shiv.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'nwmatcher/src/nwmatcher.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'selectivizr/selectivizr.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'respond/dest/respond.min.js' }}"></script>
-    <![endif]-->
-
-    <!--[if IE 7]>
-    <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
-    <![endif]-->
-
-    <!-- <link rel="stylesheet" href="http://basehold.it/12"> -->
 
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
@@ -79,95 +52,105 @@
 
     {% block pageStyle %}{% endblock %}
 </head>
-<body class="language-html theme-slate">
-<a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
+<body class="language-html">
+    <div role="complementary" aria-label="skip to main content">
+        <a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
+    </div>
 
 {% block body %}
-    <div role="main" class="container" id="top">
+    <div class="container" id="top">
         <div class="inner-wrapper">
             {{ nav.primary({ 'data': nav_data|default() }) }}
 
-            {% include '@pulsar/pulsar/components/flash.html.twig' %}
+            <header class="toolbar">
 
-            <div class="toolbar">
+                <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
 
-                <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
-
-                {% block notifications %}{% endblock %}
-
-                <div class="nav-user">
-                {% block user_menu %}
-                {{
-                    html.button_dropdown({
-                        'parent_class': 'dropdown user-menu btn--naked',
-                        'label': 'Paul Stanton',
-                        'tabindex': '5',
-                        'items': [
-                            html.link({
-                                "label": html.icon('user') ~ " My details",
-                                "href": "#foo"
-                            }),
-                            html.link({
-                                "label": html.icon('key') ~ " Change password",
-                                "href": "#foo"
-                            }),
-                            html.divider(),
-                            html.link({
-                                "label": html.icon('power-off') ~ " Sign out",
-                                "href": "#foo"
-                            })
-                        ]
-                    })
-                }}
+                {% block search %}
+                <form action="/search" class="main-search" data-ui="search-box" role="search">
+                    <input type="search" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
+                    <button id="search-submit" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
+                </form>
                 {% endblock %}
+
+                <div class="toolbar-actions">
+                    {% block user_menu %}
+                    {{
+                        html.button_dropdown({
+                            'class': 'btn--outline btn--inverse',
+                            'label': html.icon('building-o') ~ ' <span class="toolbar-action__text">Pulsar City Council</span>',
+                            'items': [
+                                html.link({
+                                    "label": html.icon('random') ~ " Stellar City Council",
+                                    "href": "#"
+                                }),
+                                html.link({
+                                    "label": html.icon('random') ~ " Comets City Council",
+                                    "href": "#"
+                                })
+                            ]
+                        })
+                    }}
+                    {{
+                        html.button_dropdown({
+                            'class': 'btn--outline btn--inverse',
+                            'label': html.icon('user-o') ~ ' <span class="toolbar-action__text">Paul Stanton</span> (23)',
+                            'items': [
+                                html.link({
+                                    "label": html.icon('user') ~ " My details",
+                                    "href": "#"
+                                }),
+                                html.link({
+                                    "label": html.icon('key') ~ " Change password",
+                                    "href": "#"
+                                }),
+                                html.divider(),
+                                html.link({
+                                    "label": html.icon('power-off') ~ " Sign out",
+                                    "href": "#"
+                                })
+                            ]
+                        })
+                    }}
+                    {% endblock %}
+                    {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
+                    {% block notifications %}{% endblock %}
                 </div>
 
-                {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
+                {% include '@pulsar/pulsar/components/flash.html.twig' %}
 
-            </div>
+                {{ nav.breadcrumbs(breadcrumbs|default) }}
 
-            {% block search %}
-            <form action="/search" class="main-search" data-ui="search-box">
-                <input type="search" tabindex="3" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
-                <button id="search-submit" tabindex="3" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
-            </form>
-            {% endblock %}
+                {% set _ribbon = '' %}
+                {% set _ribbon = block('ribbon') %}
+                {% if _ribbon is empty %}
+                <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+                {% endif %}
+
+            </header>
 
             <div class="content-main">
                 <div class="tabs__content">
-                    {{ nav.breadcrumbs(breadcrumbs|default) }}
                     {% block header_actions %}{% endblock %}
-                    {% set _ribbon = '' %}
-                    {% set _ribbon = block('ribbon') %}
                     {% if _ribbon is not empty %}
                         {% block ribbon_content %}
                             <div class="ribbon-wrapper">
-                                <header class="ribbon">
+                                <section class="ribbon" aria-label="content summary">
                                     {{ _ribbon|raw }}
-                                </header>
+                                </section>
                             </div>
                         {% endblock %}
-                    {% else %}
-                        <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
                     {% endif %}
                     {% block tabs_list %}{% endblock %}
-                    <div id="skip-target">
-                        {% block tabs_content %}{% endblock %}
-                    </div>
+                    {% block tabs_content %}{% endblock %}
                 </div>
             </div>
 
-            <div class="tab-help-container t-tab-help-container"><div class="tab-help"></div></div>
+            <aside aria-label="help" class="tab-help-container t-tab-help-container"><div class="tab-help"></div></aside>
         </div>
     </div>
 
     <footer class="footer">
-        {{
-            html.link({
-                'label': html.icon('circle-arrow-up', { 'label': 'Back to top' }),
-                'href': '#top'
-            })
-        }}
         {{
             html.link({
                 'label': 'Jadu Continuum',

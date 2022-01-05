@@ -30,6 +30,7 @@
 
 .progress-bar--warning {
     background-color: color(warning);
+    color: color(warning, alt);
 }
 
 .progress-bar--danger {
@@ -39,77 +40,3 @@
 .progress-bar--compact {
     height: 5px;
 }
-
-// Stepped Progressbar
-.stepped-progressbar {
-    display: table;
-    margin-bottom: 30px;
-    padding: 20px;
-    width: 100%;
-
-    .step {
-        display: block;
-        float: left;
-        margin: 10px 0;
-        overflow: hidden;
-        position: relative;
-        width: 50px;
-
-        &.last span::after {
-            width: 0;
-        }
-
-        &.successful span::after {
-            border-top: 2px dotted color(success);
-        }
-    }
-
-    .step-box {
-        background-color: color(white);
-        border: 1px solid color(gray);
-        border-radius: 50%;
-        display: block;
-        font-size: 16px;
-        height: 30px;
-        position: relative;
-        text-align: center;
-        width: 30px;
-        zoom: 1;
-
-        .icon {
-            vertical-align: middle;
-        }
-
-        &::after {
-            border-top: 2px dotted color(gray);
-            content: '';
-            display: block;
-            left: 30px;
-            position: absolute;
-            top: 14px;
-            width: 1000px;
-        }
-
-        &.current {
-            background-color: color(jadu-blue, pale);
-            border-color: color(jadu-blue, darkest);
-            border-radius: 25%;
-        }
-
-        &.completed {
-            border-color: color(success);
-            color: color(success);
-        }
-
-        &.final {
-            border-color: color(success);
-            border-radius: 25%;
-            color: color(success);
-        }
-      }
-
-      .step-number {
-          vertical-align: middle;
-      }
-}
-

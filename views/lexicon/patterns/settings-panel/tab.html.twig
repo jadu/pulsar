@@ -1,0 +1,512 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Edit form',
+                        'href': '/edit',
+                        'icon': 'pencil'
+                    }
+                ],
+                [
+                    {
+                        'label': 'View CXM case',
+                        'href': '/cxm',
+                        'icon': 'arrow-right'
+                    },
+                    {
+                        'label': 'View payments',
+                        'href': '/paybridge',
+                        'icon': 'credit-card'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Download PDF',
+                        'href': '/download-pdf',
+                        'icon': 'file-pdf-o'
+                    },
+                    {
+                        'label': 'Export archive',
+                        'href': '/download-archive',
+                        'icon': 'file-archive-o'
+                    },
+                    {
+                        'label': 'Print',
+                        'href': '/print',
+                        'icon': 'print'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'View CXM Case',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_header %}
+    <p>tab header goes here</p>
+{% endblock tab_header %}
+
+{% block tab_settings %}
+
+    <div class="settings-section settings-section--stacked">
+
+        {{ form.fieldset_start({ 'legend': 'Section heading' }) }}
+
+        {{
+            form.text({
+                'id': 'guid-' ~ random(),
+                'label': 'Text',
+                'error': 'Please complete this field'
+            })
+        }}
+
+        {{
+            form.textarea({
+                'id': 'guid-' ~ random(),
+                'label': 'Textarea',
+                'error': 'Please complete this field'
+            })
+        }}
+
+        {{
+            form.password({
+                'id': 'guid-' ~ random(),
+                'label': 'Password',
+                'error': 'Please complete this field'
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': 'Date',
+                'error': 'Please complete this field'
+            })
+        }}
+
+        {{
+            form.time({
+                'id': 'guid-' ~ random(),
+                'label': 'Time',
+                'error': 'Please complete this field'
+            })
+        }}
+
+        {{
+            form.file({
+                'id': 'guid-' ~ random(),
+                'label': 'File',
+                'error': 'Please complete this field'
+            })
+        }}
+
+        {{
+            form.color({
+                'id': 'guid-' ~ random(),
+                'label': 'Color',
+                'error': 'Please complete this field'
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'Select',
+                'id': 'guid-' ~ random(),
+                'error': 'Please complete this field',
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.select2({
+                'label': 'Select2',
+                'id': 'guid-' ~ random(),
+                'error': 'Please complete this field',
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.compound({
+                'label': 'Compound',
+                'id': 'guid-' ~ random(),
+                'inputs': [
+                    {
+
+                        'label': 'Value',
+                        'id': 'guid-' ~ random(),
+                        'maxlength': '3',
+                        'show-label': false,
+                        'type': 'text'
+                    },
+                    {
+                        'label': 'Unit of time',
+                        'id': 'guid-' ~ random(),
+                        'show-label': false,
+                        'type': 'select',
+                        'options': [
+                            {
+                                'label': 'Seconds',
+                                'value': 'sec'
+                            },
+                            {
+                                'label': 'Minutes',
+                                'value': 'min'
+                            }
+                        ]
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'id': 'guid-' ~ random(),
+                'label': 'Toggle switch'
+            })
+        }}
+
+        {{
+            form.range({
+                'id': 'guid-' ~ random(),
+                'label': 'Range'
+            })
+        }}
+
+
+        {{ form.fieldset_end() }}
+
+    </div>
+
+{% endblock tab_settings %}
+
+{% block tab_content %}
+
+        <h2 class="content-heading">Page 1 - Your details</h2>
+
+        {{
+            form.text({
+                'id': 'guid-' ~ random(),
+                'label': 'Text',
+            })
+        }}
+
+        {{
+            form.textarea({
+                'id': 'guid-' ~ random(),
+                'label': 'Textarea'
+            })
+        }}
+
+        {{
+            form.password({
+                'id': 'guid-' ~ random(),
+                'label': 'Password',
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': 'Date',
+            })
+        }}
+
+        {{
+            form.time({
+                'id': 'guid-' ~ random(),
+                'label': 'Time'
+            })
+        }}
+
+        {{
+            form.file({
+                'id': 'guid-' ~ random(),
+                'label': 'File'
+            })
+        }}
+
+        {{
+            form.color({
+                'id': 'guid-' ~ random(),
+                'label': 'Color'
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'Select',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.select2({
+                'label': 'Select2',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.compound({
+                'label': 'Compound',
+                'id': 'guid-' ~ random(),
+                'inputs': [
+                    {
+
+                        'label': 'Value',
+                        'id': 'guid-' ~ random(),
+                        'maxlength': '3',
+                        'show-label': false,
+                        'type': 'text'
+                    },
+                    {
+                        'label': 'Unit of time',
+                        'id': 'guid-' ~ random(),
+                        'show-label': false,
+                        'type': 'select',
+                        'options': [
+                            {
+                                'label': 'Seconds',
+                                'value': 'sec'
+                            },
+                            {
+                                'label': 'Minutes',
+                                'value': 'min'
+                            }
+                        ]
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'id': 'guid-' ~ random(),
+                'label': 'Toggle switch'
+            })
+        }}
+
+        {{
+            form.range({
+                'id': 'guid-' ~ random(),
+                'label': 'Range'
+            })
+        }}
+
+        {{ form.fieldset_start({ 'legend': 'Legend' }) }}
+
+        {{
+            form.checkbox({
+                'id': 'guid-' ~ random(),
+                'label': 'Checkbox'
+            })
+        }}
+
+        {{
+            form.radio({
+                'id': 'guid-' ~ random(),
+                'label': 'Radio'
+            })
+        }}
+
+        {{
+            form.checkbox_inline({
+                'id': 'guid-' ~ random(),
+                'label': 'Checkbox inline'
+            })
+        }}
+
+        {{
+            form.radio_inline({
+                'id': 'guid-' ~ random(),
+                'label': 'Radio inline'
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice checkbox',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Checkbox One',
+                        'value': 'one',
+                        'name': 'one',
+                        'checked': true
+                    },
+                    {
+                        'label': 'Checkbox Two',
+                        'value': 'two',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Checkbox Three',
+                        'value': 'three',
+                        'name': 'one'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice radio',
+                'multiple': true,
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Radio One',
+                        'value': 'one',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Radio Two',
+                        'value': 'two',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Radio Three',
+                        'value': 'three',
+                        'name': 'one'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice as select2',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Select2 One',
+                        'value': 'one',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Two',
+                        'value': 'two',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Three',
+                        'value': 'three',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Four',
+                        'value': 'four',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Five',
+                        'value': 'five',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Six',
+                        'value': 'six',
+                        'name': 'three'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'class': 'choice--block',
+                'label': 'Choice block radios',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': html.icon('bold') ~ ' Bold',
+                        'value': 'bold',
+                        'name': 'five'
+                    },
+                    {
+                        'label': html.icon('italic') ~ ' Italic',
+                        'value': 'italic',
+                        'name': 'five',
+                        'checked': true
+                    },
+                    {
+                        'label': html.icon('underline') ~ ' Underline',
+                        'value': 'underline',
+                        'name': 'five'
+                    },
+                ]
+            })
+        }}
+
+        {{ form.fieldset_end() }}
+
+        {{
+            form.end({
+                'actions': [
+                    html.button({
+                        'label': 'Save',
+                        'class': 'btn--primary',
+                        'type': 'submit'
+                    }),
+                    html.button({
+                        'label': 'Cancel',
+                        'class': 'btn--naked'
+                    })
+                ]
+            })
+        }}
+
+{% endblock tab_content %}

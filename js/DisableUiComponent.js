@@ -29,7 +29,7 @@ DisableUiComponent.prototype.disable = function (target) {
         $this.find(FORM_ELEMENTS)
             .on('click', preventDefaultAndStopPropagation)
             .addClass('disabled')
-            .attr('disabled', 'disabled');
+            .prop('disabled', true);
 
         // Disable labels
         $this.find(LABEL_ELEMENTS).addClass('u-cursor-not-allowed');
@@ -37,10 +37,12 @@ DisableUiComponent.prototype.disable = function (target) {
         // Disable links (uses .js-disable as any existing disabled)
         $this.find(LINK_ELEMENTS)
             .on('click', preventDefaultAndStopPropagation)
-            .addClass('js-disabled u-cursor-not-allowed');
+            .addClass('js-disabled u-cursor-not-allowed')
+            .attr('aria-disabled', 'true')
+            .attr('tabindex', '-1');
 
         // Wrap with disabled wrapper to visually disable
-        $this.wrap('<div class="u-ui-disabled"></div>');
+        $this.wrap('<div class="u-ui-disabled" aria-disabled="true"></div>');
     });
 };
 
@@ -53,21 +55,23 @@ DisableUiComponent.prototype.enable = function (target) {
         var $this = $(this);
 
         // Remove attribute used to disable a UI on load
-        $this.removeAttr('data-disable-ui');
+        $this.removeAttr('data-disable-ui aria-disabled');
 
         // Enable form elements
         $this.find(FORM_ELEMENTS)
-            .unbind('click', preventDefaultAndStopPropagation)
+            .off('click', preventDefaultAndStopPropagation)
             .removeClass('disabled')
-            .removeAttr('disabled');
+            .prop('disabled', false);
 
         // Enable labels
         $this.find(LABEL_ELEMENTS).removeClass('u-cursor-not-allowed');
 
         // Enable links
         $this.find(LINK_ELEMENTS)
-            .unbind('click', preventDefaultAndStopPropagation)
-            .removeClass('js-disabled u-cursor-not-allowed');
+            .off('click', preventDefaultAndStopPropagation)
+            .removeClass('js-disabled u-cursor-not-allowed')
+            .removeAttr('aria-disabled')
+            .removeAttr('tabindex');
 
         // Remove wrapper which provides visually disabled styling
         if ($this.parent().hasClass('u-ui-disabled')) {

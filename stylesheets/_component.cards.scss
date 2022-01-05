@@ -26,10 +26,15 @@
 }
 
 .card__title {
+    display: inline-block;
     font-family: $font-family-regular;
+    font-size: $font-size-large;
+    line-height: 1em;
+    margin: 0 0 1em;
 }
 
 .card__body {
+    display: block; // allow spans as well as divs
     padding: .75em;
 
     li:last-child {
@@ -72,7 +77,7 @@
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .card--#{$state} {
+    .card--#{'' + $state} {
         background-color: color($state, light);
         border-color: color($state);
 

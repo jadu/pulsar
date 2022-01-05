@@ -8,28 +8,36 @@
     <h2 class="heading">Variations</h2>
     {{
         html.progress({
-            value: 50
+            'value': 50,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            class: 'progress-bar--success',
-            value: 60,
+            'class': 'progress-bar--success',
+            'value': 60,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            class: 'progress-bar--warning',
-            value: 70,
+            'class': 'progress-bar--warning',
+            'value': 70,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            class: 'progress-bar--danger',
-            value: 80,
+            'class': 'progress-bar--danger',
+            'value': 80,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
@@ -37,15 +45,17 @@
 
     {{
         html.progress({
-            value: 5,
-            value_visible: true
+            'value': 5,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            value: 10,
-            value_visible: true
+            'value': 10,
+            'value_visible': true,
+            'aria-label': 'Upload progress'
         })
     }}
 
@@ -53,17 +63,19 @@
     <h2 class="heading">Custom labels</h2>
     {{
         html.progress({
-            label:  'uploaded',
-            value: 80,
-            value_visible:  true
+            'label':  'uploaded',
+            'value': 80,
+            'value_visible':  true,
+            'aria-label': 'Upload progress'
         })
     }}
 
     {{
         html.progress({
-            class: 'progress-bar--success',
-            label: 'done ' ~ html.icon('ok'),
-            value: 100
+            'class': 'progress-bar--success',
+            'label': 'done ' ~ html.icon('ok'),
+            'value': 100,
+            'aria-label': 'Upload progress'
         })
     }}
 
@@ -71,7 +83,7 @@
 
     <div class="progress-list">
 
-        <a href="#one" class="progress-list__item progress-list__item--current">
+        <a href="#" class="progress-list__item progress-list__item--current">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 1</span>
                 Cut a hole in a box
@@ -79,7 +91,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#two" class="progress-list__item">
+        <a href="#" class="progress-list__item">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 2</span>
                 Put your junk in that box
@@ -91,7 +103,7 @@
 
     <div class="progress-list">
 
-        <a href="#one" class="progress-list__item progress-list__item--current">
+        <a href="#" class="progress-list__item progress-list__item--current">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 1</span>
                 Current
@@ -99,7 +111,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#two" class="progress-list__item">
+        <a href="#" class="progress-list__item">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 2</span>
                 Default
@@ -107,35 +119,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#three" class="progress-list__item">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">Step 3</span>
-                Default
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-
-    </div>
-
-    <div class="progress-list">
-
-        <a href="#one" class="progress-list__item progress-list__item--complete">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">Step 1</span>
-                Complete
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-
-        <a href="#two" class="progress-list__item progress-list__item--current">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">Step 2</span>
-                Current
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-
-        <a href="#three" class="progress-list__item">
+        <a href="#" class="progress-list__item">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 3</span>
                 Default
@@ -147,7 +131,7 @@
 
     <div class="progress-list">
 
-        <a href="#one" class="progress-list__item progress-list__item--complete">
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 1</span>
                 Complete
@@ -155,7 +139,35 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#two" class="progress-list__item progress-list__item--complete">
+        <a href="#" class="progress-list__item progress-list__item--current">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 2</span>
+                Current
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 3</span>
+                Default
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+    </div>
+
+    <div class="progress-list">
+
+        <a href="#" class="progress-list__item progress-list__item--complete">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 1</span>
+                Complete
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 2</span>
                 Complete
@@ -163,7 +175,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#three" class="progress-list__item progress-list__item--current">
+        <a href="#" class="progress-list__item progress-list__item--current">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 3</span>
                 Current
@@ -175,7 +187,7 @@
 
     <div class="progress-list">
 
-        <a href="#four" class="progress-list__item progress-list__item--complete">
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 1</span>
                 Complete
@@ -183,7 +195,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#five" class="progress-list__item progress-list__item--complete">
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 2</span>
                 Complete
@@ -191,7 +203,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#six" class="progress-list__item progress-list__item--complete">
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 3</span>
                 Complete
@@ -199,7 +211,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#seven" class="progress-list__item progress-list__item--complete">
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 4</span>
                 Complete
@@ -207,7 +219,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#eight" class="progress-list__item progress-list__item--complete">
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">Step 5</span>
                 Complete
@@ -216,111 +228,4 @@
         </a>
 
     </div>
-
-    <h2 class="heading">Stepped Progress Bar</h2>
-
-    <h3 class="hide" id="aria-stepped-progress-bar-heading-1">Step 1 of 4</h3>
-    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-1">
-        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">1</span></span></li>
-        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">2</span></span></li>
-        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">3</span></span></li>
-        <li class="step last"><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
-    </ol>
-
-    <h3 class="hide" id="aria-stepped-progress-bar-heading-2">Step 2 of 4</h3>
-    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-2">
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">2</span></span></li>
-        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">3</span></span></li>
-        <li class="step last"><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
-    </ol>
-
-    <h3 class="hide" id="aria-stepped-progress-bar-heading-3">Step 3 of 4</h3>
-    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-3">
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">3</span></span></li>
-        <li class="step last" ><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
-    </ol>
-
-    <h3 class="hide" id="aria-stepped-progress-bar-heading-4">Step 4 of 4</h3>
-    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="4" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-4">
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step last"><span class="step-box final"><i class="icon-flag-checkered" aria-hidden="true" ></i></span></li>
-    </ol>
-
-    <h4>A Very Long Example (Responsiveness)</h4>
-    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="4" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-4">
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
-        <li class="step last"><span class="step-box final"><i class="icon-flag-checkered" aria-hidden="true" ></i></span></li>
-    </ol>
-
 {% endblock tab_content %}

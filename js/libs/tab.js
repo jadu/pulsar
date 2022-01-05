@@ -19,7 +19,8 @@
 
 "use strict";
 
-var $ = require('jquery');
+var $ = require('jquery'),
+	_ = require('lodash');
 
 	// TAB CLASS DEFINITION
 	// ====================
@@ -49,7 +50,7 @@ var $ = require('jquery');
 
 		if (e.isDefaultPrevented()) return
 
-		var $target = $(selector)
+		var $target = $(_.escape(selector))
 
 		// If we have sub-tabs, selecting the parent should activate and highlight the first one
 		if (!$target.length)  {
@@ -156,10 +157,4 @@ var $ = require('jquery');
 		}
 	});
 
-	$(document).ready(function() {
-		// Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
-		$('.tabs > .tabs__content > .tab__pane').css('min-height', $('.tabs__list').height());
-	});
-
 module.exports = Tab;
-

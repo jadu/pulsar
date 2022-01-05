@@ -27,13 +27,19 @@
     }
 }
 
-.dt-disable-selection .table-selection {
-    min-width: 0;
-    padding: 0;
-    width: 0;
+// Hide row selection checkboxes if the DT is using the data-select="false" attribute but the developer is not using
+// the html.datatable helper and has left the checkboxes in the markup
+.dt-disable-selection {
+    clear: both;
 
-    .table-row-select {
-        display: none;
+    .table-selection {
+        min-width: 0;
+        padding: 0;
+        width: 0;
+
+        .checkbox {
+            display: none;
+        }
     }
 }
 
@@ -83,6 +89,8 @@ a.dt-button {
 
     td,
     th {
+        overflow: hidden;
+
         &.sorting:hover,
         &.sorting_asc:hover,
         &.sorting_desc:hover {
@@ -97,9 +105,7 @@ a.dt-button {
         &.sorting:focus,
         &.sorting_asc:focus,
         &.sorting_desc:focus {
-            outline: 3px solid color(border, focus);
-            outline-offset: -3px;
-            z-index: 1;
+            @include pulsar-datatables-sorting-focused;
         }
 
         &.sorting::after,
@@ -214,9 +220,7 @@ th.sorting_disabled:hover {
         padding: 5px;
 
         &:focus {
-            border: 1px solid color(primary);
-            outline: 3px solid color(border, focus);
-            outline-offset: 2px;
+            @include pulsar-input-focused;
         }
     }
 }
@@ -254,10 +258,6 @@ th.sorting_disabled:hover {
 
 .paginate_button {
     padding: 5px;
-
-    &:focus {
-        outline: 3px solid color(border, focus);
-    }
 }
 
 // scss-lint:enable SelectorFormat
@@ -269,18 +269,41 @@ th.sorting_disabled:hover {
 }
 
 .table-child-toggle {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    box-sizing: border-box;
     color: color(jadu-blue);
+    cursor: pointer;
     display: none;
-    font-size: 14px;
+    font-size: $font-size-base;
+    font-weight: normal;
+    line-height: normal;
+    margin: 0;
+    padding: 4px 7px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    vertical-align: top;
+    white-space: nowrap;
+
+    &:focus {
+        @include pulsar-button-focused;
+    }
+
+    &:hover {
+        color: color(black);
+    }
 
     .collapsed & {
         display: inline-block;
     }
+}
 
-    .parent &::before {
-        color: color(jadu-red);
-        content: $minus-sign;
-    }
+.parent .table-child-toggle i::before {
+    color: color(jadu-red);
+    content: $minus-sign;
 }
 
 .datatable .child ul {
@@ -343,10 +366,18 @@ th.sorting_disabled:hover {
         padding: 0 $gutter-width;
         text-align: center;
         text-decoration: none;
+
+        &:focus {
+            @include pulsar-pagination-focused;
+        }
     }
 
     .paginate_button.current {
         background-color: darken(color(white), 10%);
+
+        &:focus {
+            @include pulsar-pagination-focused;
+        }
     }
 }
 
@@ -354,25 +385,47 @@ th.sorting_disabled:hover {
     display: block;
     float: none;
     font-family: $font-size-small;
-    line-height: 42px;
-    margin-bottom: 10px;
+    margin: $margin-large-vertical 0;
     text-align: center;
     width: 100%;
 
     @include respond-min($screen-tablet) {
         display: inline-block;
         float: right;
-        margin-bottom: 0;
+        margin: $margin-small-vertical 0 $margin-small-horizontal;
         text-align: left;
         width: auto;
     }
 
+    select {
+        appearance: none;
+        background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, color(gray, off-white), color(gray, off-white));
+        background-position: calc(100% - 10px) calc(1em - 2px), calc(100% - 5px) calc(1em - 2px), 100% 0;
+        background-size: 5px 5px, 5px 5px, 22px 100%;
+        background-repeat: no-repeat;
+        border: 1px solid $input-border;
+        border-radius: $input-border-radius;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 30px 0 $padding-base-horizontal;
+
+        // remove the arrow in IE10 & 11, modern browsers are taken care of
+        // by the `appearance` property
+        &::-ms-expand {
+            display: none;
+
+            @media screen and (-ms-high-contrast: active) {
+                display: block;
+            }
+        }
+    }
+
     select:focus {
-        outline: 3px solid color(border, focus);
+        @include pulsar-input-focused;
     }
 }
 
-.dataTables_wrapper > .table-container {
+.dataTables_wrapper .table-container {
     clear: both; // make sure container appears in correct place when used in datatable context
     margin-bottom: 0; // make sure pagination sits directly underneath the table
 }
@@ -382,8 +435,6 @@ th.sorting_disabled:hover {
 .datatable.table--horizontal .table-responsive {
     display: none;
 }
-
-// scss-lint:enable SelectorFormat
 
 .dtr-details {
     .dtr-title {
@@ -404,3 +455,10 @@ th.sorting_disabled:hover {
         }
     }
 }
+
+// Prevent interactive elements in the original head from taking focus on tab
+.dataTables_scrollBody thead tr[role="row"] {
+    visibility: collapse;
+}
+
+// scss-lint:enable SelectorFormat

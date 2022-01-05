@@ -17,8 +17,6 @@
 /dist
 /tests/logs
 /css
-libs/livereload-js
-libs/phantomcss
 pulsar.zip
 /shots
 /fonts
@@ -36,3 +34,4 @@ pulsar.zip
 /.vscode
 /ngrok
 /.vagrant
+/phpunit

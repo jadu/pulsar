@@ -5,18 +5,27 @@
     position: relative;
 
     &__title {
-        font-size: $font-size-xlarge;
-        line-height: 32px;
-        padding: 8px 5px 0 10px;
+        background: rgba(0, 0, 0, .01);
+        border: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+        clear: none;
+        font-size: $font-size-large * 1.1;
+        line-height: $font-size-large * 1.3;
+        margin-bottom: 0;
+        padding: 12px $padding-large-horizontal;
 
         i::before {
           width: 30px;
         }
+
+        .panel--padded & {
+            margin-top: -($padding-large-vertical * 2);
+            padding-top: 12px + ($padding-large-vertical * 2);
+        }
     }
 
     &__body {
-        max-height: 20em;
-        padding: 10px $padding-base-horizontal;
+        padding: 10px $padding-large-horizontal;
 
         p,
         ul {
@@ -58,31 +67,44 @@
     }
 }
 
+.panel--scroll .panel__body {
+    max-height: 20em;
+    overflow-y: auto;
+}
+
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .panel--#{$state} .remove-button > [class^="icon-"] {
+    .panel--#{'' + $state} .remove-button > [class^="icon-"] {
         color: color(white);
     }
 }
 
 .panel__icon {
     float: left;
-    font-size: 24px;
-    margin: 10px 10px 0 12px;
+    font-size: $font-size-large * 1.1;
+    margin: 14px 10px 0 $padding-large-horizontal;
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
     // Exclude unneeded states
     @if $state != base and $state != new and $state != white {
-        .panel--#{$state} {
+        .panel--#{'' + $state} {
             background-color: $state-color;
             color: $state-color-alt;
+
+            .panel__title {
+                color: $state-color-alt;
+            }
 
             a,
             a:link,
             a:hover,
             a:active,
             a:visited {
-                color: $state-color-alt;
+                color: $state-color-alt !important;
+            }
+
+            a:focus {
+                color: color(black) !important;
             }
         }
     }
@@ -97,8 +119,8 @@
 }
 
 .panel--padded {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding-bottom: ($padding-large-vertical * 2);
+    padding-top: ($padding-large-vertical * 2);
 }
 
 // Panels within form groups should respect their width
@@ -109,6 +131,15 @@
 
     .form__group--#{$variant} .panel {
         width: #{$width};
+    }
+}
+
+// When panel actions is a sibling of body, position it appropriately
+.panel__body + .panel__actions {
+    padding: 0 12px 10px;
+
+    &.panel__actions--inline {
+        padding-left: 0;
     }
 }
 
@@ -136,7 +167,7 @@
 
 .panel__actions--inline {
     display: inline-block;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 $padding-large-horizontal;
 }
 
 .panel__actions--center {
@@ -145,7 +176,7 @@
 }
 
 .panel__actions--right {
-    margin: 10px 0 0;
+    margin: $padding-large-horizontal 0 0;
     text-align: right;
 }
 

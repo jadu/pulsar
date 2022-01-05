@@ -8,8 +8,13 @@
     {{ html.loading() }}
     <br />
 
+    <h2 class="heading">Standalone with custom label</h2>
+    {{ html.loading({
+        'label': 'Custom loading'
+    }) }}
+    <br />
+
     <h2 class="heading">After form inputs</h2>
-    {{ form.create() }}
     {{
         form.select({
             'label': 'Select input',
@@ -21,6 +26,16 @@
             }
         })
     }}
-    </form>
+
+    <h2 class="heading">Loading block (for centering within modals or tombstone UIs)</h2>
+    {{
+        html.loading({
+            'class': 'loading--large',
+            'message': 'Loading content...',
+            'type': 'block'
+        })
+    }}
+
+    <br />
 
 {% endblock tab_content %}

@@ -8,48 +8,46 @@
 
     {{
         form.radio({
-            'id': 'radio-1',
-            'label': 'Radio'
+            'id': 'guid-' ~ random(),
+            'label': 'Radio',
+            'name': 'radio-example-1'
         })
     }}
 
     {{
         form.radio({
-            'id': 'radio-2',
+            'id': 'guid-' ~ random(),
             'label': 'Radio selected',
-            'checked': true
+            'checked': true,
+            'name': 'radio-example-2'
         })
     }}
 
     {{
         form.radio({
-            'id': 'radio-3',
+            'id': 'guid-' ~ random(),
             'label': 'Required',
-            'required': true
+            'required': true,
+            'name': 'radio-example-3'
         })
     }}
 
     {{
         form.radio({
-            'id': 'radio-4',
+            'id': 'guid-' ~ random(),
             'label': 'Radio with help',
-            'help': 'Help text to give more information about expected input'
+            'help': 'Help text to give more information about expected input',
+            'name': 'radio-example-4'
         })
     }}
 
     {{
         form.radio({
-            'id': 'radio-5',
-            'label': 'Radio with guidance',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.radio({
+            'id': 'guid-' ~ random(),
             'label': 'Radio',
             'show-label': false,
-            'help': 'This example hides the label with the <code>show-label</code> option'
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'name': 'radio-example-5'
         })
     }}
 
@@ -57,24 +55,23 @@
 
     {{
         form.radio_inline({
-            'id': 'radio-6',
+            'id': 'guid-' ~ random(),
             'label': 'Radio inline'
         })
     }}
 
     {{
         form.radio_inline({
-            'id': 'radio-7',
+            'id': 'guid-' ~ random(),
             'label': 'Radio inline plus extras',
             'help': 'Help text to give more information about expected input',
-            'guidance': 'Help text to give more information about expected input',
             'required': true
         })
     }}
 
     {{
         form.radio_inline({
-            'id': 'radio-8',
+            'id': 'guid-' ~ random(),
             'label': 'Radio inline and indented',
             'class': 'form__group--indent form__group--full'
         })
@@ -82,11 +79,10 @@
 
     {{
         form.radio_inline({
-            'id': 'radio-9',
+            'id': 'guid-' ~ random(),
             'label': 'Radio inline, indented plus extras',
             'class': 'form__group--indent form__group--full',
             'help': 'Help text to give more information about expected input',
-            'guidance': 'Help text to give more information about expected input',
             'required': true
         })
     }}
@@ -96,7 +92,7 @@
 
     {{
         form.radio({
-            'id': 'radio-10',
+            'id': 'guid-' ~ random(),
             'label': 'Radio with error',
             'error': 'Please complete this field'
         })
@@ -104,7 +100,7 @@
 
     {{
         form.radio({
-            'id': 'radio-11',
+            'id': 'guid-' ~ random(),
             'label': 'Radio with multiple errors',
             'error': ['Do this', 'Do this too']
         })
@@ -112,7 +108,7 @@
 
     {{
         form.radio({
-            'id': 'radio-12',
+            'id': 'guid-' ~ random(),
             'label': 'Radio with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
@@ -121,7 +117,7 @@
 
     {{
         form.radio({
-            'id': 'radio-13',
+            'id': 'guid-' ~ random(),
             'class': 'has-error',
             'label': 'Radio error with help only',
             'help': 'Help text to give more information about expected input'
@@ -133,7 +129,7 @@
 
     {{
         form.radio({
-            'id': 'radio-14',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
@@ -141,7 +137,7 @@
     }}
     {{
         form.radio({
-            'id': 'radio-15',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -150,7 +146,7 @@
 
     {{
         form.radio({
-            'id': 'radio-16',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
@@ -158,7 +154,7 @@
     }}
     {{
         form.radio({
-            'id': 'radio-17',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
@@ -166,7 +162,7 @@
     }}
     {{
         form.radio({
-            'id': 'radio-18',
+            'id': 'guid-' ~ random(),
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -176,7 +172,19 @@
     {{ form.fieldset_end() }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

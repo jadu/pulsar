@@ -34,10 +34,21 @@
 
                 {{
                     form.select2({
-                        'label': 'Colour',
-                        'id': 'colour-3',
-                        'multiple': true,
-                        'placeholder': 'Choose one or more',
+                        'label': 'Colour (single + ph)',
+                        'id': 'colour-' ~ random(),
+                        'placeholder': 'Select One',
+                        'options': {
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour (single + ph + preselected)',
+                        'id': 'colour-' ~ random(),
+                        'placeholder': 'Select One',
                         'selected': 'colour_blue',
                         'options': {
                             'colour_red': 'Red',
@@ -48,15 +59,39 @@
 
                 {{
                     form.select2({
-                        'label': 'Size',
-                        'id': 'size-3',
-                        'placeholder': 'Choose one',
-                        'selected': 'medium',
+                        'label': 'Colour 3 (multi + ph)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
+                        'placeholder': 'Select one or more',
                         'options': {
-                            '': '',
-                            'small': 'Small',
-                            'medium': 'Medium',
-                            'large': 'Large'
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour 4 (multi no ph)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
+                        'options': {
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour 5 (multi no ph preselected)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
+                        'selected': ['colour_red', 'colour_blue'],
+                        'options': {
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue',
+                            'colour_pink': 'Pink'
                         }
                     })
                 }}
@@ -64,29 +99,34 @@
                 {{
                     form.text({
                         'label': 'Text field example',
-                        'id': 'foo-3'
+                        'id': 'foo-' ~ random(),
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.date({
+                        'data-pulsar-datepicker': 'true',
                         'label': 'Added from',
-                        'id': 'addedFrom-3',
+                        'id': 'addedFrom-' ~ random(),
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.date({
+                        'data-pulsar-datepicker': 'true',
                         'label': 'Added to',
-                        'id': 'addedTo-3',
-                        'value': '04/07/2017'
+                        'id': 'addedTo-' ~ random(),
+                        'value': '04/07/2017',
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.checkbox({
                         'label': 'In stock',
-                        'id': 'inStock-3',
+                        'id': 'inStock-' ~ random(),
                         'checked': true
                     })
                 }}
@@ -96,7 +136,7 @@
             form.end({
                 'actions': [
                     form.submit({
-                        'label': 'Save',
+                        'label': 'Apply Filter',
                         'class': 'btn--primary'
                     }),
                     html.link({

@@ -1,9 +1,9 @@
 version: '2'
 services:
     web:
-        image: php:7.0-apache
+        image: php:7.2-apache
         working_dir: /var/www/html
         volumes:
           - ./:/var/www/html/:cached        
         ports:
-          - 3000:80
+          - 9000:80

@@ -100,8 +100,25 @@
         }
     }
 
-    &:focus .progress-list__label {
-        outline: 3px solid color(border, focus);
+    &.progress-list__item:focus {
+        @include pulsar-progress-list-item-focused;
+
+        &:not(:last-child)::after {
+            border-top-color: color(black);
+
+            @include respond-min($screen-tablet) {
+                border-left-color: color(background, focus);
+                border-top-color: transparent;
+            }
+        }
+
+        .progress-list__label {
+            color: color(black);
+        }
+
+        .badge {
+            color: color(black) !important;
+        }
     }
 }
 
@@ -177,15 +194,7 @@
         box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     }
 
-    .badge {
-        color: color(white) !important;
-    }
-
-    .progress-list__label {
-        color: color(primary, alt);
-    }
-
-    &:not(:last-child)::after {
+    &:not(:last-child)::after { // can we reduce the speciity of this selector!
         border-top-color: color(primary);
 
         @include respond-min($screen-tablet) {
@@ -206,6 +215,14 @@
                 border-top-color: transparent;
             }
         }
+    }
+
+    .badge {
+        color: color(white) !important;
+    }
+
+    .progress-list__label {
+        color: color(primary, alt);
     }
 }
 

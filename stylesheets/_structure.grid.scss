@@ -69,6 +69,11 @@ $gutter_pc:     .5;
     margin-left: ($one_col * $num) + ($gutter_pc * ($num));
 }
 
+@mixin shrink($num) {
+    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    width: (100% - (($one_col * $num) + ($gutter_pc * ($num))));
+}
+
 // indent an element using padding-left by a given number of columns
 @mixin push-padding($num) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;

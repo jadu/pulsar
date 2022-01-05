@@ -1,20 +1,19 @@
+const $ = require("jquery");
+
 class RepeaterPreviewService {
     /**
      * Create / Update Repeater preview elements
-     * @param queryService {QueryService}
-     * @param activeFunctionService {ActiveFunctionService}
-     * @param inputValueService {InputValueService}
+     * @param {HTMLElement} root
+     * @param {InputValueService} inputValueService
      * @param options
      */
     constructor (
-        queryService,
-        activeFunctionService,
+        root,
         inputValueService,
         options = {}
     ) {
+        this.root = root;
         this.inputValueService = inputValueService;
-        this.queryService = queryService;
-        this.activeFunctionService = activeFunctionService;
         this.emptyHTML = options.empty || 'empty';
     }
 
@@ -30,7 +29,7 @@ class RepeaterPreviewService {
 
         // For each heading, create a repeater preview
         headings.forEach(heading => {
-            const name = heading.getAttribute(this.queryService.getAttr('preview-heading'));
+            const name = heading.getAttribute('data-repeater-for-name');
             const data = state[name];
             let value = this.emptyHTML;
 
@@ -40,7 +39,7 @@ class RepeaterPreviewService {
 
             const preview = document.createElement('td');
 
-            preview.setAttribute(this.queryService.getAttr('preview-update-id'), `${name}_${id}`);
+            preview.setAttribute('data-repeater-preview-update-id', `${name}_${id}`);
 
             data.value
                 .filter(input => input.selected && input.value)
@@ -70,7 +69,7 @@ class RepeaterPreviewService {
 
             // If our heading exists inside the state object
             if (state[name]) {
-                const preview = root.querySelector(`[${this.queryService.getAttr('preview-update-id')}="${name}_${id}"]`);
+                const preview = root.querySelector(`[data-repeater-preview-update-id="${name}_${id}"]`);
 
                 // Set the value for each input in the state
                 data.value
@@ -85,19 +84,21 @@ class RepeaterPreviewService {
     }
 
     /**
-     * Toggle disabled state of preview UI, if a preview ID is not passed in
-     * we'll disabled all preview UI elements
-     * @param previewId?
+     * Toggle the disabled state of preview UI buttons
      */
-    toggleUi (previewId) {
-        this.queryService.get('preview-element', { all: true })
-            .filter(preview => {
-                return previewId !== undefined ?
-                    parseInt(preview.getAttribute(this.queryService.getAttr('preview-id')), 10) !== previewId :
-                    true;
-            })
+    toggleUi () {
+        const $preview = $(this.root).find('[data-repeater-preview-id]');
+
+        $preview.toArray()
             .forEach(preview => {
-                $(preview).find(this.queryService.getQuery('preview-ui')).toggleClass('disabled');
+                let $previewUi = $(preview).find('[data-repeater-preview-ui]');
+                $previewUi.toggleClass('disabled');
+
+                if ($previewUi.prop('disabled') !== false) {
+                    $previewUi.prop('disabled', false);
+                } else {
+                    $previewUi.prop('disabled', true);
+                }
             });
     }
 

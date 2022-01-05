@@ -8,14 +8,14 @@
 
     {{
         form.file({
-            'id': 'file-1',
+            'id': 'guid-' ~ random(),
             'label': 'File field'
         })
     }}
 
     {{
         form.file({
-            'id': 'file-2',
+            'id': 'guid-' ~ random(),
             'label': 'Required',
             'required': true
         })
@@ -23,34 +23,17 @@
 
     {{
         form.file({
-            'id': 'file-3',
+            'id': 'guid-' ~ random(),
             'label': 'File field with help',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
-    {{
-        form.file({
-            'id': 'file-4',
-            'label': 'File field with guidance',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.file({
-            'id': 'file-5',
-            'label': 'Required with guidance',
-            'guidance': 'Help text to give more information about expected input',
-            'required': true
-        })
-    }}
-
-    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
         form.file({
+            'id': 'guid-' ~ random(),
             'label': 'File field',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option'
@@ -59,44 +42,42 @@
 
     {{
             form.file({
-                'id': 'file-6',
+                'id': 'guid-' ~ random(),
                 'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
                 'name': 'inputTextLong',
                 'placeholder': 'Placeholder',
-                'help': 'Example block-level help text here',
-                'guidance': 'Help text to give more information about expected input'
+                'help': 'Example block-level help text here'
             })
         }}
 
         {{
             form.file({
-                'id': 'file-7',
+                'id': 'guid-' ~ random(),
                 'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
                 'class': 'form__group--top',
                 'name': 'inputTextLong',
                 'placeholder': 'Placeholder',
-                'help': 'Example block-level help text here',
-                'guidance': 'Help text to give more information about expected input'
+                'help': 'Example block-level help text here'
             })
         }}
 
         {{
             form.file({
-                'id': 'file-8',
+                'id': 'guid-' ~ random(),
                 'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
                 'class': 'form__group--top form__group--flush',
                 'name': 'inputTextLong',
                 'placeholder': 'Placeholder',
-                'help': 'Example block-level help text here',
-                'guidance': 'Help text to give more information about expected input'
+                'help': 'Example block-level help text here'
             })
         }}
 
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
         form.file({
-            'id': 'file-9',
+            'id': 'guid-' ~ random(),
             'label': 'File field with error',
             'error': 'Please complete this field'
         })
@@ -104,7 +85,7 @@
 
     {{
         form.file({
-            'id': 'file-10',
+            'id': 'guid-' ~ random(),
             'label': 'File field with multiple errors',
             'error': ['Do this', 'Do this too']
         })
@@ -112,7 +93,7 @@
 
     {{
         form.file({
-            'id': 'file-11',
+            'id': 'guid-' ~ random(),
             'label': 'File field with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
@@ -121,7 +102,7 @@
 
     {{
         form.file({
-            'id': 'file-12',
+            'id': 'guid-' ~ random(),
             'class': 'has-error',
             'label': 'File field error with help only',
             'help': 'Help text to give more information about expected input'
@@ -133,7 +114,7 @@
 
     {{
         form.file({
-            'id': 'file-13',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
@@ -141,7 +122,7 @@
     }}
     {{
         form.file({
-            'id': 'file-14',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -150,7 +131,7 @@
 
     {{
         form.file({
-            'id': 'file-15',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
@@ -158,7 +139,7 @@
     }}
     {{
         form.file({
-            'id': 'file-16',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
@@ -166,7 +147,7 @@
     }}
     {{
         form.file({
-            'id': 'file-17',
+            'id': 'guid-' ~ random(),
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -178,7 +159,7 @@
 
     {{
         form.file({
-            'id': 'file-1-col',
+            'id': 'guid-' ~ random(),
             'label': 'One column',
             'class': 'form__control-col--1',
             'name': 'inputFileMini',
@@ -187,7 +168,7 @@
 
     {{
         form.file({
-            'id': 'file-2-col',
+            'id': 'guid-' ~ random(),
             'label': 'Two columns',
             'class': 'form__control-col--2',
             'name': 'inputFileSmall'
@@ -196,7 +177,7 @@
 
     {{
         form.file({
-            'id': 'file-3-col',
+            'id': 'guid-' ~ random(),
             'label': 'Three columns',
             'class': 'form__control-col--3',
             'name': 'inputFileMedium'
@@ -205,7 +186,7 @@
 
     {{
         form.file({
-            'id': 'file-4-col',
+            'id': 'guid-' ~ random(),
             'label': 'Four columns',
             'class': 'form__control-col--4',
             'name': 'inputFileRegular'
@@ -214,7 +195,7 @@
 
     {{
         form.file({
-            'id': 'file-5-col',
+            'id': 'guid-' ~ random(),
             'label': 'Five columns',
             'class': 'form__control-col--5',
             'name': 'inputFileLarge'
@@ -223,7 +204,7 @@
 
     {{
         form.file({
-            'id': 'file-6-col',
+            'id': 'guid-' ~ random(),
             'label': 'Six columns',
             'class': 'form__control-col--6',
             'name': 'inputFileXLarge'
@@ -232,7 +213,7 @@
 
     {{
         form.file({
-            'id': 'file-7-col',
+            'id': 'guid-' ~ random(),
             'label': 'Seven columns',
             'class': 'form__control-col--7',
             'name': 'inputFileFull'
@@ -241,7 +222,7 @@
 
     {{
         form.file({
-            'id': 'file-8-col',
+            'id': 'guid-' ~ random(),
             'label': 'Eight columns',
             'class': 'form__control-col--8',
             'name': 'inputFileFull'
@@ -250,7 +231,7 @@
 
     {{
         form.file({
-            'id': 'file-9-col',
+            'id': 'guid-' ~ random(),
             'label': 'Nine columns',
             'class': 'form__control-col--9',
             'name': 'inputFileFull'
@@ -262,7 +243,7 @@
 
     {{
         form.file({
-            'id': 'file-18',
+            'id': 'guid-' ~ random(),
             'label': 'Mini',
             'class': 'form__group--mini',
             'name': 'inputTextMini'
@@ -271,7 +252,7 @@
 
     {{
         form.file({
-            'id': 'file-19',
+            'id': 'guid-' ~ random(),
             'label': 'Small',
             'class': 'form__group--small',
             'name': 'inputTextSmall'
@@ -280,7 +261,7 @@
 
     {{
         form.file({
-            'id': 'file-20',
+            'id': 'guid-' ~ random(),
             'label': 'Medium',
             'class': 'form__group--medium',
             'name': 'inputTextMedium'
@@ -289,7 +270,7 @@
 
     {{
         form.file({
-            'id': 'file-21',
+            'id': 'guid-' ~ random(),
             'label': 'Regular',
             'name': 'inputTextRegular'
         })
@@ -297,7 +278,7 @@
 
     {{
         form.file({
-            'id': 'file-22',
+            'id': 'guid-' ~ random(),
             'label': 'Large',
             'class': 'form__group--large',
             'name': 'inputTextLarge'
@@ -306,7 +287,7 @@
 
     {{
         form.file({
-            'id': 'file-23',
+            'id': 'guid-' ~ random(),
             'label': 'Extra Large',
             'class': 'form__group--xlarge',
             'name': 'inputTextXLarge'
@@ -315,7 +296,7 @@
 
     {{
         form.file({
-            'id': 'file-24',
+            'id': 'guid-' ~ random(),
             'label': 'Full',
             'class': 'form__group--full',
             'name': 'inputTextFull'
@@ -327,7 +308,7 @@
 
     {{
         form.file({
-            'id': 'file-25',
+            'id': 'guid-' ~ random(),
             'label': 'Prepended',
             'prepend': '£'
         })
@@ -335,7 +316,7 @@
 
     {{
         form.file({
-            'id': 'file-26',
+            'id': 'guid-' ~ random(),
             'label': 'Appended',
             'append': '.00'
         })
@@ -343,16 +324,7 @@
 
     {{
         form.file({
-            'id': 'file-27',
-            'label': 'Appended with guidance',
-            'append': '.00',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.file({
-            'id': 'file-28',
+            'id': 'guid-' ~ random(),
             'label': 'Prepended &amp; Appended',
             'append': '.00',
             'prepend': '£'
@@ -362,7 +334,19 @@
     {{ form.fieldset_end() }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

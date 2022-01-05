@@ -2,9 +2,16 @@
 
 /* jshint: global e, ui */
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('lodash');
 
-require('../libs/jquery-ui/jquery-ui.min');
+$.ui = require('jquery-ui/ui/widget.js');
+
+require('jquery-ui/ui/data');
+require('jquery-ui/ui/disable-selection');
+require('jquery-ui/ui/scroll-parent');
+require('jquery-ui/ui/widgets/mouse');
+require('jquery-ui/ui/widgets/sortable');
 
 function PulsarSortableComponent(html, window) {
     this.$html = html;
@@ -148,7 +155,7 @@ PulsarSortableComponent.prototype.addOrder = function() {
 
     component.$html.find('.table.is-sortable tr > td:first-of-type').each(function(i) {
         var $this = $(this),
-            label = $this.text(),
+            label = _.escape($this.text()),
             count = i + 1;
 
         $this.html('<span class="sortable__count js-sortable-count">' + (count) + '</span> ' + label);

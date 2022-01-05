@@ -1,11 +1,3 @@
-
-.lex-item {
-    background-color: green;
-    color: white;
-    margin: 10px 0;
-    padding: 10px;
-}
-
 .lex-table td.cell--inverse,
 .lex-table td.cell--inverse:hover {
     background-color: #2d86b3 !important;
@@ -18,4 +10,14 @@
 
 .lex-wrapper {
     padding: 20px;
+}
+
+// Used in reports pattern UI
+// style to show chart container in lieu of an actual working chart
+.lexicon-report-chart {
+    border: 1px dashed #ccc;
+    background-color: #efefef;
+    line-height: 240px;
+    text-align: center;
+    width: 100%;
 }

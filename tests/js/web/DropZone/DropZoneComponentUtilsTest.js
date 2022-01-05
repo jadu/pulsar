@@ -52,6 +52,7 @@ describe('DropZoneComponentUtils', () => {
 
         beforeEach(() => {
             options = {
+                fileRemoveLabel: 'Remove',
                 fileNodeName: true,
                 fileNodeDesc: true,
                 fileNodeSize: true,
@@ -83,7 +84,7 @@ describe('DropZoneComponentUtils', () => {
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
-                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<button class="btn btn--naked close" aria-label="Remove foo"><i class="icon icon-times-circle"></i></button>' +
                 '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
                 '<div class="meta">' +
                 '<p class="name">foo</p>' +
@@ -106,7 +107,7 @@ describe('DropZoneComponentUtils', () => {
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
-                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<button class="btn btn--naked close" aria-label="Remove foo"><i class="icon icon-times-circle"></i></button>' +
                 '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
                 '<div class="meta">' +
                 '<p class="name">foo</p>' +
@@ -129,7 +130,7 @@ describe('DropZoneComponentUtils', () => {
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
-                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<button class="btn btn--naked close" aria-label="Remove "><i class="icon icon-times-circle"></i></button>' +
                 '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
                 '<div class="meta">' +
                 '<p class="description">foo</p>' +
@@ -152,7 +153,7 @@ describe('DropZoneComponentUtils', () => {
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
-                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<button class="btn btn--naked close" aria-label="Remove foo"><i class="icon icon-times-circle"></i></button>' +
                 '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
                 '<div class="meta">' +
                 '<p class="name">foo</p>' +
@@ -175,7 +176,7 @@ describe('DropZoneComponentUtils', () => {
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
-                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<button class="btn btn--naked close" aria-label="Remove foo"><i class="icon icon-times-circle"></i></button>' +
                 '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
                 '<div class="meta">' +
                 '<p class="name">foo</p>' +
@@ -199,7 +200,7 @@ describe('DropZoneComponentUtils', () => {
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
-                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<button class="btn btn--naked close" aria-label="Remove foo"><i class="icon icon-times-circle"></i></button>' +
                 '<div class="thumbnail"><i class="dropzone__file-icon icon icon-foo"></i></div>' +
                 '<div class="meta">' +
                 '<p class="name">foo</p>' +

@@ -1,5 +1,4 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
-{% set i = 1 %}
 
 {% block tab_content %}
 
@@ -9,64 +8,57 @@
 
     {{
         form.text({
+            'id': 'guid-' ~ random(),
             'label': 'Text',
-            'id': i
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.textarea({
-            'label': 'Textarea',
-            'id': i
+            'id': 'guid-' ~ random(),
+            'label': 'Textarea'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.password({
+            'id': 'guid-' ~ random(),
             'label': 'Password',
-            'id': i
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.date({
+            'id': 'guid-' ~ random(),
             'label': 'Date',
-            'id': i
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.time({
-            'label': 'Time',
-            'id': i
+            'id': 'guid-' ~ random(),
+            'label': 'Time'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.file({
-            'label': 'File',
-            'id': i
+            'id': 'guid-' ~ random(),
+            'label': 'File'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.color({
-            'label': 'Color',
-            'id': i
+            'id': 'guid-' ~ random(),
+            'label': 'Color'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.select({
             'label': 'Select',
-            'id': i,
+            'id': 'guid-' ~ random(),
             'options': [
                 {
                     'label': 'Value one',
@@ -79,12 +71,11 @@
             ]
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.select2({
             'label': 'Select2',
-            'id': i,
+            'id': 'guid-' ~ random(),
             'options': [
                 {
                     'label': 'Value one',
@@ -97,12 +88,11 @@
             ]
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.compound({
             'label': 'Compound',
-            'id': i,
+            'id': 'guid-' ~ random(),
             'inputs': [
                 {
                     'class': 'form__control-col--1',
@@ -132,80 +122,72 @@
             ]
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.toggle_switch({
+            'id': 'guid-' ~ random(),
             'label': 'Toggle switch',
-            'id': i
+            'name': 'all-toggle-example-1'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.range({
-            'label': 'Range',
-            'id': i,
+            'id': 'guid-' ~ random(),
+            'label': 'Range'
         })
     }}
-    {% set i = i + 1 %}
 
     {{ form.fieldset_start({ 'legend': 'Checkboxes and radios' }) }}
 
     {{
         form.checkbox({
-            'label': 'Checkbox',
-            'id': i
+            'id': 'guid-' ~ random(),
+            'label': 'Checkbox'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.radio({
-            'label': 'Radio',
-            'id': i
+            'id': 'guid-' ~ random(),
+            'label': 'Radio'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.checkbox_inline({
-            'label': 'Checkbox inline',
-            'id': i
+            'id': 'guid-' ~ random(),
+            'label': 'Checkbox inline'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.radio_inline({
-            'label': 'Radio inline',
-            'id': i
+            'id': 'guid-' ~ random(),
+            'label': 'Radio inline'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.checkbox_inline({
+            'id': 'guid-' ~ random(),
             'label': 'Checkbox inline indented',
-            'class': 'form__group--indent',
-            'id': i
+            'class': 'form__group--indent'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.radio_inline({
+            'id': 'guid-' ~ random(),
             'label': 'Radio inline indented',
-            'class': 'form__group--indent',
-            'id': i
+            'class': 'form__group--indent'
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.choice({
             'label': 'Choice checkbox',
-            'id': i,
+            'id': 'guid-' ~ random(),
             'options': [
                 {
                     'label': 'Checkbox One',
@@ -226,13 +208,12 @@
             ]
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.choice({
             'label': 'Choice radio',
             'multiple': true,
-            'id': i,
+            'id': 'guid-' ~ random(),
             'options': [
                 {
                     'label': 'Radio One',
@@ -252,12 +233,11 @@
             ]
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.choice({
             'label': 'Choice as select2',
-            'id': i,
+            'id': 'guid-' ~ random(),
             'options': [
                 {
                     'label': 'Select2 One',
@@ -292,13 +272,12 @@
             ]
         })
     }}
-    {% set i = i + 1 %}
 
     {{
         form.choice({
             'class': 'choice--block',
             'label': 'Choice block radios',
-            'id': i,
+            'id': 'guid-' ~ random(),
             'options': [
                 {
                     'label': html.icon('bold') ~ ' Bold',
@@ -319,12 +298,23 @@
             ]
         })
     }}
-    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

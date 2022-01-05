@@ -90,18 +90,18 @@
     {% set ruleClass = 'rules__step' %}
 
     {% if options.error is defined and options.error is not empty %}
-        {% set ruleClass = ruleClass ~ ' has-error' %}
+        {% set ruleWrapperClass = ' has-error' %}
     {% endif %}
 
     <fieldset{{ attributes(options|defaults({'class': ruleClass})|only('class')) }}>
-        <legend class="hide">{{ options.type|default }}</legend>
+        <legend class="hide">{{ options.type|default }} rule block</legend>
         <div class="rule__triggers__container" data-index="1">
 
-            <div class="rule-block-wrapper">
+            <div class="rule-block-wrapper {% if ruleWrapperClass is defined and ruleWrapperClass is not empty %}{{ ruleWrapperClass }}{% endif %}">
                 <div class="rule-block rule-block--{{ options.type|default }}" data-index="__index__">
                     <div class="rule-block__header rule-block__header--{{ options.type|default }}">
-                        <h5 class="rule-block__heading">{{ options.type|default }}</h5>
-                        <i data-toggle="tooltips" data-placement="right" data-title="What should cause this rule to run" title="What should cause this rule to run" aria-hidden="true"  class="icon-question-sign rule-block__heading__icon"></i>
+                        <h3 class="rule-block__heading">{{ options.type|default }}</h3>
+                        <i data-tippy-placement="right" data-tippy-content="What should cause this rule to run" class="icon-question-sign rule-block__heading__icon"></i>
                     </div>
 
                     <div class="rule-block__controls rule__trigger__form">
@@ -115,19 +115,16 @@
                         {% endif %}
 
                         {% if (options.removeable is defined and options.removeable != false) or options.removeable is not defined %}
-                            <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
+                            <button type="button" data-action="remove" data-tippy-placement="left" data-tippy-content="Remove this item" class="btn remove-button js-remove-trigger "><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
                         {% endif %}
 
                     </div>
-                    {{ form.error({ 'value': options.error|default }) }}
                 </div>
             </div>
 
             {% if options.show_or is defined and options.show_or == true %}
             <div class="conditional-block conditional-block--indented">
-                <a href="#" class="js-add-trigger conditional-block__link conditional-block__link--{{ options.type|default }}">
-                    <i class="icon-arrow-right"></i><span>Or</span>
-                </a>
+                <button type="button" class="btn btn--outline btn--inverse js-add-trigger" aria-label="Add a new OR condition">Or</button>
             </div>
             {% endif %}
 
@@ -141,9 +138,7 @@
                     <div class="conditional-block conditional-block--flush">
                 {% endif %}
 
-                        <a href="#" class="js-add-condition-collection conditional-block__link conditional-block__link--{{ options.type|default }}">
-                            <i class="icon-arrow-right"></i><span>And</span>
-                        </a>
+                        <button type="button" class="btn btn--outline btn--inverse js-add-condition-collection" aria-label="Add a new AND condition">And</button> {# reseach diff between visual label and aria label in VC #}
                     </div>
             {% endif %}
         </div>

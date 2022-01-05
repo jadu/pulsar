@@ -28,16 +28,15 @@
 
 {% block tab_content %}
 
-    <div class="filter-bar display--none">
+    <div class="filter-bar u-display-none">
         {{ form.create() }}
             {{ form.fieldset_start({'legend': 'Filter by'}) }}
 
                 {{
                     form.select2({
-                        'label': 'Colour',
-                        'id': 'colour-4',
-                        'multiple': true,
-                        'placeholder': 'Choose one or more',
+                        'label': 'Colour (single + ph)',
+                        'id': 'colour-' ~ random(),
+                        'placeholder': 'Select One',
                         'options': {
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
@@ -47,14 +46,25 @@
 
                 {{
                     form.select2({
-                        'label': 'Size',
-                        'id': 'size-4',
-                        'placeholder': 'Choose one',
+                        'label': 'Colour 3 (multi + ph)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
+                        'placeholder': 'Select one or more',
                         'options': {
-                            '': '',
-                            'small': 'Small',
-                            'medium': 'Medium',
-                            'large': 'Large'
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour 4 (multi no ph)',
+                        'id': 'colour-' ~ random(),
+                        'multiple': true,
+                        'options': {
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
                         }
                     })
                 }}
@@ -62,28 +72,34 @@
                 {{
                     form.text({
                         'label': 'Text field example',
-                        'id': 'foo-4'
+                        'id': 'foo-' ~ random(),
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.date({
+                        'data-pulsar-datepicker': 'true',
                         'label': 'Added from',
-                        'id': 'addedFrom-4',
+                        'id': 'addedFrom-' ~ random(),
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.date({
+                        'data-pulsar-datepicker': 'true',
                         'label': 'Added to',
-                        'id': 'addedTo-4'
+                        'id': 'addedTo-' ~ random(),
+                        'class': 'form__group--full'
                     })
                 }}
 
                 {{
                     form.checkbox({
+                        'data-pulsar-datepicker': 'true',
                         'label': 'In stock',
-                        'id': 'inStock-4'
+                        'id': 'inStock-' ~ random(),
                     })
                 }}
 
@@ -92,7 +108,7 @@
             form.end({
                 'actions': [
                     form.submit({
-                        'label': 'Save',
+                        'label': 'Apply Filter',
                         'class': 'btn--primary'
                     }),
                     html.link({

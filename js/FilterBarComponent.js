@@ -1,6 +1,7 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('lodash');
 
 function FilterBarComponent(html) {
     this.$html = html;
@@ -41,10 +42,13 @@ function showFilterBar (component, $filterbar) {
         e.preventDefault();
 
         // Show add button if hidden by clear
-        $addFilterButton.removeClass('display--none');
+        $addFilterButton.removeClass('u-display-none');
 
         // Show filter bar
-        $filterbar.removeClass('display--none');
+        $filterbar.removeClass('u-display-none');
+
+        // Focus add button
+        $addFilterButton.trigger('focus');
     });
 }
 
@@ -56,11 +60,11 @@ function createFilterListButton ($filterbar) {
 
     // Loop through form groups
     $formGroups.each(function() {
-        $filterList.append('<li><a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ $(this).find('.control__label').text() +'">'+ $(this).find('.control__label').text() +'</a></li>');
+        $filterList.append('<li><a href="#" role="button" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ _.escape($(this).find('.control__label').text()) +'">'+ _.escape($(this).find('.control__label').text()) +'</a></li>');
     });
 
     // Build up list and mark up for Add filter button
-    $addFilterButton = $('<button class="btn filter-bar__add" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content="" aria-haspopup="true"><i class="icon-plus"><span class="hide">Add</span></i></button>');
+    $addFilterButton = $('<button class="btn filter-bar__add" type="button" aria-expanded="false" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content="" aria-haspopup="true"><i class="icon-plus"><span class="hide">Add filter</span></i></button>');
     $addFilterButton.attr('data-content', $filterList[0].outerHTML);
 
     // Append button and label wrapper
@@ -70,19 +74,26 @@ function createFilterListButton ($filterbar) {
     // Initialize popover
     $addFilterButton.popover();
 
-    // Prevent default on button
     $filterbar.on('click', '[data-ui="show-filter-list"]', function(e) {
         e.preventDefault();
+
+        var $addFilterButton = $(this);
+
+        if ($addFilterButton.attr('aria-expanded') == 'false') {
+            $addFilterButton.attr('aria-expanded', 'true');
+        } else {
+            $addFilterButton.attr('aria-expanded', 'false');
+        }
     });
 }
 
 function hideFormControls ($filterbar) {
     $filterbar
         .find('.form__group')
-        .addClass('display--none');
+        .addClass('u-display-none');
     $filterbar
         .find('.form__actions')
-        .addClass('display--none');
+        .addClass('u-display-none');
 }
 
 function moveFormActions ($filterbar) {
@@ -90,7 +101,7 @@ function moveFormActions ($filterbar) {
         $fieldset = $filterbar.find('fieldset');
 
     $formActions.appendTo($fieldset);
-    $formActions.addClass('display--none');
+    $formActions.addClass('u-display-none');
 }
 
 function showAddFilterPopover ($filterbar) {
@@ -112,11 +123,13 @@ function showAddFilterPopover ($filterbar) {
         filterId = $(this).attr('data-filter-id');
         $field = $filterbar.find('#' + filterId);
 
+        $addFilterButton.attr('aria-expanded', 'false');
+
         // Hide the filter item in the list
         updateFilterList($addFilterButton, filterId, 'hide');
 
         // Add new filter label
-        $filterLabel = $('<span class="label label--primary label--large" data-filter-id="'+ filterId +'">' + filterTitle + ' <span class="chosen-filter"></span></span>');
+        $filterLabel = $('<span class="label label--primary label--large label--removable" data-filter-id="'+ _.escape(filterId) +'"><span class="label__text">' + _.escape(filterTitle) + ' <span class="chosen-filter"></span></span></span>');
         $filterLabel.insertBefore($addFilterButton);
 
         // If checkbox, check it but no need to display it or move to popover
@@ -130,7 +143,7 @@ function showAddFilterPopover ($filterbar) {
 
             // Add the remove button to the label
             filterId = $filterLabel.attr('data-filter-id');
-            $filterLabel.append('<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a>');
+            $filterLabel.append('<button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ _.escape(filterId) +'"><i class="icon-remove-sign"><span class="hide">Remove '+ _.escape(filterTitle) +' filter</span></i></button>');
 
             // Add the label
             $filterLabel
@@ -142,6 +155,13 @@ function showAddFilterPopover ($filterbar) {
 
             // Check if save button should be visible
             formActionsVisibility($filterbar);
+
+            // Focus the add button or, if that's not visible, focus the save button
+            if (!$addFilterButton.hasClass('u-display-none')) {
+                $addFilterButton.trigger('focus');
+            } else {
+                $filterbar.find('.form__actions .btn--primary').trigger('focus');
+            }
 
         } else {
 
@@ -155,17 +175,17 @@ function showAddFilterPopover ($filterbar) {
 
             // Hide the control label
             $formGroup
-                .removeClass('display--none')
+                .removeClass('u-display-none')
                 .find('.control__label')
                     .addClass('hide');
 
             // Add popover controls
-            $popoverControls = $('<div class="form__actions form__actions--flush"><button type="submit" class="btn btn--primary is-disabled" data-ui="add-filter" disabled="disabled">Add</button><a type="link" data-ui="filter-cancel" data-filter-id="' + filterId + '" href="#" class="btn btn--naked">Cancel</a></div>');
+            $popoverControls = $('<div class="form__actions form__actions--flush"><button type="submit" class="btn btn--primary is-disabled" data-ui="add-filter" disabled="disabled">Add</button><button type="button" data-ui="filter-cancel" data-filter-id="' + _.escape(filterId) + '" class="btn btn--naked">Cancel</button></div>');
             $popoverControls.insertAfter($formGroup);
 
             // Refresh the select2
             $select2 = $popoverContent.find('.js-select2:not([data-init="false"])');
-            select2Placeholder = $select2.attr('placeholder');
+            select2Placeholder = $select2.attr('data-placeholder');
             $select2.select2({placeholder: select2Placeholder});
 
             // Trigger popover with form field on added label
@@ -198,7 +218,7 @@ function showAddFilterPopover ($filterbar) {
 
             // Focus on field to avoid unnecessary extra click
             if ($field.hasClass('js-select2') && $field.data('init') !== false) {
-                $field.select2('open');
+                $field.select2('focus');
             } else {
                 /* istanbul ignore next: difficult to test due to generated popover content */
                 $field.focus();
@@ -235,7 +255,8 @@ function addFilter ($filterbar) {
             $legend = $filterbar.find('form fieldset legend'),
             values,
             valueForLabel = null,
-            filterId;
+            filterId,
+            initalLabelText = _.escape($label.text());
 
         e.preventDefault();
 
@@ -263,7 +284,7 @@ function addFilter ($filterbar) {
 
         // Add the remove button to the label
         filterId = $label.attr('data-filter-id');
-        $label.append('<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a>');
+        $label.append('<button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ _.escape(filterId) +'"><i class="icon-remove-sign"><span class="hide">Remove '+ _.escape(initalLabelText) + ' filter</span></i></button>');
 
         // Swap classes
         $label
@@ -271,7 +292,7 @@ function addFilter ($filterbar) {
             .addClass('label--inverse');
 
         // Hide the field
-        $formGroup.addClass('display--none');
+        $formGroup.addClass('u-display-none');
 
         // Move the form group out of the popover and back into the filterbar form
         $formGroup.insertAfter($legend);
@@ -286,6 +307,13 @@ function addFilter ($filterbar) {
 
         // Check if save button should be visible
         formActionsVisibility($filterbar);
+
+        // Focus the add button or, if that's not visible, focus the save button
+        if (!$addFilterButton.hasClass('u-display-none')) {
+            $addFilterButton.trigger('focus');
+        } else {
+            $filterbar.find('.form__actions .btn--primary').trigger('focus');
+        }
     });
 }
 
@@ -325,7 +353,7 @@ function removeFilter ($filterbar) {
         }
 
         // Hide the field
-        $formGroup.addClass('display--none');
+        $formGroup.addClass('u-display-none');
 
         // Move the form group out of the popover and back into the form
         $formGroup.insertAfter($legend);
@@ -348,6 +376,9 @@ function removeFilter ($filterbar) {
 
         // Check if save button should be visible
         formActionsVisibility($filterbar);
+
+        // Shift focus to add button
+        $addFilterButton.trigger('focus')
     });
 }
 
@@ -357,22 +388,30 @@ function filterListButtonVisibility ($filterbar) {
         $addFilterList;
 
     addFilterList = $addFilterButton.attr('data-content');
-    $addFilterList = $(addFilterList);
+    $addFilterList = $(_.unescape(addFilterList));
 
-    if ($addFilterList.find('li:not(.display--none)').length) {
-        $addFilterButton.removeClass('display--none');
+    if ($addFilterList.find('li:not(.u-display-none)').length) {
+        $addFilterButton.removeClass('u-display-none');
     } else {
-        $addFilterButton.addClass('display--none');
+        $addFilterButton.addClass('u-display-none');
     }
 }
 
 function formActionsVisibility ($filterbar) {
     var $formActions = $filterbar.find('.form__actions');
 
+    // Ensure form actions are visible after all filters remove when filters present on load
+    if ($filterbar.data('had-filters-on-load') === true) {
+        $formActions.removeClass('u-display-none');
+        $formActions.find('.btn--primary').removeClass('u-display-none');
+
+        return;
+    }
+
     if ($filterbar.find('.label').length) {
-        $formActions.removeClass('display--none');
+        $formActions.removeClass('u-display-none');
     } else {
-        $formActions.addClass('display--none');
+        $formActions.addClass('u-display-none');
     }
 }
 
@@ -384,7 +423,7 @@ function clearAllFilters ($filterbar) {
         e.preventDefault();
 
         // Close filter bar
-        $filterbar.addClass('display--none');
+        $filterbar.addClass('u-display-none');
 
         // Remove all labels
         $filterbar.find('.label').remove();
@@ -402,7 +441,7 @@ function clearAllFilters ($filterbar) {
 
 function updateFilterList ($addFilterButton, filterId, visibility) {
     var addFilterList = $addFilterButton.attr('data-content'),
-        $addFilterList = $(addFilterList),
+        $addFilterList = $(_.unescape(addFilterList)),
         $filterItem,
         $filterItemParent;
 
@@ -412,11 +451,11 @@ function updateFilterList ($addFilterButton, filterId, visibility) {
     }
 
     if (visibility === 'show') {
-        $filterItemParent.removeClass('display--none');
+        $filterItemParent.removeClass('u-display-none');
     } else if (visibility === 'hide') {
-        $filterItemParent.addClass('display--none');
+        $filterItemParent.addClass('u-display-none');
     } else if (visibility === 'reset') {
-        $addFilterList.find('li.display--none').removeClass('display--none');
+        $addFilterList.find('li.u-display-none').removeClass('u-display-none');
     }
 
     $addFilterButton.attr('data-content', $addFilterList[0].outerHTML);
@@ -430,17 +469,23 @@ function populateFilterList ($filterbar) {
 
     var $formGroups = $filterbar.find('.form__group'),
         $labelContainer = $filterbar.find('.filter-bar__labels'),
-        $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]');
+        $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]'),
+        hiddenFormGroups = 0;
 
     $formGroups.each(function() {
         var $this = $(this),
             $filterField = $this.find('.form__control'),
             filterId = $filterField.attr('id'),
             filterLabel = $this.find('.control__label').text().trim(),
-            filterValue = $filterField.val();
+            filterValue = $filterField.val(),
+            initalLabelText = filterLabel;
 
         if ($filterField.hasClass('select')) {
-            filterValue = $(':selected', $filterField).text();
+            if ($filterField.prop('multiple')) {
+                filterValue = $filterField.find('option:selected').toArray().map(item => item.text).join(', ');
+            } else if ($filterField.find('option:selected').val()) {
+                filterValue = $filterField.find('option:selected').text();
+            }
         }
 
         if ($filterField[0].type === 'checkbox') {
@@ -453,14 +498,29 @@ function populateFilterList ($filterbar) {
             filterLabel = filterLabel + ': ';
         }
 
-        if (filterValue !== '' && filterValue !== null) {
-            $labelContainer.prepend('<span class="label label--large label--inverse" data-filter-id="' + filterId + '">' + filterLabel + filterValue + '<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a></span>');
+        if (filterValue !== '' && filterValue !== null && filterValue.length !== 0) {
+            $labelContainer.prepend('<span class="label label--large label--inverse label--removable" data-filter-id="' + _.escape(filterId) + '"><span class="label__text">' + _.escape(filterLabel) + _.escape(filterValue) + '</span><button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ _.escape(filterId) +'"><i class="icon-remove-sign"><span class="hide">Remove '+ _.escape(initalLabelText) +' filter</span></i></button></span>');
+
+            // Keep track of how many filters have already been applied
+            hiddenFormGroups++;
 
             // Hide the filter item in the list
             updateFilterList($addFilterButton, filterId, 'hide');
 
             // Show the filterbar
-            $filterbar.removeClass('display--none');
+            $filterbar.removeClass('u-display-none');
+
+            // Track if there were filters on load for form action visibility
+            $filterbar.data('had-filters-on-load', true);
+
+            // Show the clear button
+            $filterbar.find('.form__actions').removeClass('u-display-none');
+            $filterbar.find('.form__actions .btn--primary').addClass('u-display-none');
+        }
+
+        // Don't show add filter button if all filters have been loaded
+        if ($formGroups.length === hiddenFormGroups) {
+            $addFilterButton.addClass('u-display-none');
         }
     });
 }

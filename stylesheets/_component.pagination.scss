@@ -35,6 +35,10 @@
       background-color: darken(color(white), 10%);
       color: color(text);
     }
+
+    > a:focus {
+      @include pulsar-pagination-focused;
+    }
   }
 
   li.is-disabled {
@@ -45,9 +49,15 @@
     }
   }
 
-  li:not(.is-disabled) > a:hover {
-    background-color: darken(color(white), 5%);
-    color: color(text);
+  li:not(.is-disabled) {
+    > a:hover {
+      background-color: darken(color(white), 5%);
+      color: color(text);
+    }
+
+    > a:focus {
+        @include pulsar-pagination-focused;
+    }
   }
 
   form {

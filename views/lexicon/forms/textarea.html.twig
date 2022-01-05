@@ -8,14 +8,14 @@
 
     {{
         form.textarea({
-            'id': 'textarea-1',
+            'id': 'guid-' ~ random(),
             'label': 'Textarea'
         })
     }}
 
     {{
         form.textarea({
-            'id': 'textarea-2',
+            'id': 'guid-' ~ random(),
             'label': 'Textarea with value',
             'value': 'My value'
         })
@@ -23,7 +23,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-3',
+            'id': 'guid-' ~ random(),
             'label': 'Required',
             'required': true
         })
@@ -31,7 +31,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-4',
+            'id': 'guid-' ~ random(),
             'label': 'Placeholder',
             'placeholder': 'Oh, hello'
         })
@@ -39,35 +39,17 @@
 
     {{
         form.textarea({
-            'id': 'textarea-5',
+            'id': 'guid-' ~ random(),
             'label': 'Textarea with help',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
-    {{
-        form.textarea({
-            'id': 'textarea-6',
-            'label': 'Textarea with guidance',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
-
-    {{
-        form.textarea({
-            'id': 'textarea-7',
-            'label': 'Required with guidance',
-            'guidance': 'Help text to give more information about expected input',
-            'required': true
-        })
-    }}
-
-    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
         form.textarea({
-            'id': 'textarea-8',
+            'id': 'guid-' ~ random(),
             'label': 'Textarea',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option'
@@ -76,44 +58,42 @@
 
     {{
         form.textarea({
-            'id': 'textarea-9',
+            'id': 'guid-' ~ random(),
             'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.textarea({
-            'id': 'textarea-10',
+            'id': 'guid-' ~ random(),
             'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
             'class': 'form__group--top',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
     {{
         form.textarea({
-            'id': 'textarea-11',
+            'id': 'guid-' ~ random(),
             'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
             'class': 'form__group--top form__group--flush',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
+            'help': 'Example block-level help text here'
         })
     }}
 
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
         form.textarea({
-            'id': 'textarea-12',
+            'id': 'guid-' ~ random(),
             'label': 'Textarea with error',
             'error': 'Please complete this field'
         })
@@ -121,7 +101,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-13',
+            'id': 'guid-' ~ random(),
             'label': 'Textarea with multiple errors',
             'error': ['Do this', 'Do this too']
         })
@@ -129,7 +109,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-14',
+            'id': 'guid-' ~ random(),
             'label': 'Textarea with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
@@ -138,7 +118,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-15',
+            'id': 'guid-' ~ random(),
             'class': 'has-error',
             'label': 'Textarea error with help only',
             'help': 'Help text to give more information about expected input'
@@ -150,7 +130,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-16',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
@@ -158,7 +138,7 @@
     }}
     {{
         form.textarea({
-            'id': 'textarea-17',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -167,7 +147,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-18',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
@@ -175,7 +155,7 @@
     }}
     {{
         form.textarea({
-            'id': 'textarea-19',
+            'id': 'guid-' ~ random(),
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
@@ -183,7 +163,7 @@
     }}
     {{
         form.textarea({
-            'id': 'textarea-20',
+            'id': 'guid-' ~ random(),
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -195,7 +175,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-1-col',
+            'id': 'guid-' ~ random(),
             'label': 'One column',
             'class': 'form__control-col--1',
             'name': 'inputTextareaMini',
@@ -204,7 +184,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-2-col',
+            'id': 'guid-' ~ random(),
             'label': 'Two columns',
             'class': 'form__control-col--2',
             'name': 'inputTextareaSmall'
@@ -213,7 +193,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-3-col',
+            'id': 'guid-' ~ random(),
             'label': 'Three columns',
             'class': 'form__control-col--3',
             'name': 'inputTextareaMedium'
@@ -222,7 +202,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-4-col',
+            'id': 'guid-' ~ random(),
             'label': 'Four columns',
             'class': 'form__control-col--4',
             'name': 'inputTextareaRegular'
@@ -231,7 +211,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-5-col',
+            'id': 'guid-' ~ random(),
             'label': 'Five columns',
             'class': 'form__control-col--5',
             'name': 'inputTextareaLarge'
@@ -240,7 +220,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-6-col',
+            'id': 'guid-' ~ random(),
             'label': 'Six columns',
             'class': 'form__control-col--6',
             'name': 'inputTextareaXLarge'
@@ -249,7 +229,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-7-col',
+            'id': 'guid-' ~ random(),
             'label': 'Seven columns',
             'class': 'form__control-col--7',
             'name': 'inputTextareaFull'
@@ -258,7 +238,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-8-col',
+            'id': 'guid-' ~ random(),
             'label': 'Eight columns',
             'class': 'form__control-col--8',
             'name': 'inputTextareaFull'
@@ -267,7 +247,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-9-col',
+            'id': 'guid-' ~ random(),
             'label': 'Nine columns',
             'class': 'form__control-col--9',
             'name': 'inputTextareaFull'
@@ -279,7 +259,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-21',
+            'id': 'guid-' ~ random(),
             'label': 'Mini',
             'class': 'form__group--mini',
             'name': 'inputTextMini'
@@ -288,7 +268,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-22',
+            'id': 'guid-' ~ random(),
             'label': 'Small',
             'class': 'form__group--small',
             'name': 'inputTextSmall'
@@ -297,7 +277,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-23',
+            'id': 'guid-' ~ random(),
             'label': 'Medium',
             'class': 'form__group--medium',
             'name': 'inputTextMedium'
@@ -306,7 +286,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-24',
+            'id': 'guid-' ~ random(),
             'class': 'form__group--regular',
             'label': 'Regular',
             'name': 'inputTextRegular'
@@ -315,7 +295,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-25',
+            'id': 'guid-' ~ random(),
             'label': 'Large',
             'class': 'form__group--large',
             'name': 'inputTextLarge'
@@ -324,7 +304,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-26',
+            'id': 'guid-' ~ random(),
             'label': 'Extra Large',
             'class': 'form__group--xlarge',
             'name': 'inputTextXLarge'
@@ -333,7 +313,7 @@
 
     {{
         form.textarea({
-            'id': 'textarea-27',
+            'id': 'guid-' ~ random(),
             'label': 'Full',
             'class': 'form__group--full',
             'name': 'inputTextFull'
@@ -341,9 +321,78 @@
     }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
 
     {{
-        form.end()
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Prepended',
+            'prepend': '£'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Appended',
+            'append': '.00'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Prepended &amp; Appended',
+            'append': '.00',
+            'prepend': '£'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Appended button',
+            'append_type': 'button',
+            'append': html.button({ 'label': 'Button' })
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Prepended button',
+            'prepend_type': 'button',
+            'prepend': html.button({ 'label': 'Button' })
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'guid-' ~ random(),
+            'label': 'Appended & Prepended button',
+            'append_type': 'button',
+            'append': html.button({ 'label': 'Button' }),
+            'prepend_type': 'button',
+            'prepend': html.button({ 'label': 'Button' })
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary',
+                    'type': 'submit'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}
