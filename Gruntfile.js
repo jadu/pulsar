@@ -245,7 +245,7 @@ module.exports = function(grunt) {
         bump: {
             options: {
                 updateConfigs: ['pkg'],
-                files: ['pulsar.json', 'package.json', 'composer.json', 'bower.json', 'VERSION'],
+                files: ['pulsar.json', 'package.json', 'bower.json', 'VERSION'],
                 commit: true,
                 commitMessage: 'Release v%VERSION%',
                 commitFiles: ['-a'],
