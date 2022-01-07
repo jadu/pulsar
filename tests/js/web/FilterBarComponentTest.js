@@ -5,8 +5,8 @@ var $ = require('jquery'),
 
 describe('FilterBarComponent', function () {
 	beforeEach(function() {
-		this.$html = $('<html></html>');
-		this.$body = $('<body></body>').appendTo(this.$html);
+		this.$html = $('html');
+		this.$body = $('body');
 		this.$showFilterBarLink = $('<a href="#" data-ui="show-filter-bar">Add filter</a>').appendTo(this.$body);
 		this.$container = $(
 			'<div class="filter-bar u-display-none">' +
@@ -154,6 +154,12 @@ describe('FilterBarComponent', function () {
 
 			expect(this.$showFilterListButton.hasClass('u-display-none')).to.be.false;
 		});
+
+		it('should focus the filter bar add button', function () {
+			this.$showFilterBarLink.trigger(this.clickEvent);
+
+			expect(this.$showFilterListButton.is(':focus')).to.be.true;
+		});
 	});
 
 	describe('When filter list button is clicked', function() {
@@ -174,6 +180,19 @@ describe('FilterBarComponent', function () {
 			this.$showFilterListButton.trigger(this.clickEvent);
 
 			expect($.fn.popover).to.have.been.called;
+		});
+
+		it('should set aria-expanded to true', function () {
+			this.$showFilterListButton.trigger(this.clickEvent);
+
+			expect(this.$showFilterListButton.attr('aria-expanded')).to.be.equal('true');
+		});
+
+		it('should set aria-expanded to false if clicked twice', function () {
+			this.$showFilterListButton.trigger(this.clickEvent);
+			this.$showFilterListButton.trigger(this.clickEvent);
+
+			expect(this.$showFilterListButton.attr('aria-expanded')).to.be.equal('false');
 		});
 	});
 
@@ -222,27 +241,62 @@ describe('FilterBarComponent', function () {
 
 			beforeEach(function() {
 		        this.$popoverFilterLink = this.$container.find('.filter-bar__list [data-filter-id="inStock"]');
-				this.$popoverFilterLink.trigger(this.clickEvent);
 			});
 
 			it('should add a label to the filter bar for the clicked filter', function () {
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
 				expect(this.$container.find('span.label--inverse[data-filter-id="inStock"]')).to.have.length(1);
 			});
 
 			it('should add the correct data-filter-id to the label', function () {
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
 				expect(this.$container.find('span[data-filter-id="inStock"]')).to.have.length(1);
 			});
 
 			it('should close the filter list popover', function () {
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
 				expect($.fn.popover).to.have.been.calledWith('hide');
 			});
 
 			it('should check the checkbox', function () {
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
 				expect(this.$container.find('input#inStock').prop('checked')).to.be.true;
 			});
 
 			it('should add the remove button to the label', function () {
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
 				expect(this.$container.find('span[data-filter-id="inStock"] button[data-ui="filter-cancel"]')).to.have.length(1);
+			});
+
+			it('should the correct accessible text to the label remove button', function () {
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
+				var $removeButton = this.$container.find('span[data-filter-id="inStock"] button[data-ui="filter-cancel"]');
+
+				expect($removeButton.find('.hide').text()).to.be.equal('Remove In Stock filter');
+			});
+
+			it('should focus the add button, if it is visible', function () {
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
+				expect(this.$container.find('[data-ui="show-filter-list"]').is(':focus')).to.be.true;
+			});
+
+			it('should focus the save button, if there are no more filter options', function () {
+				var addFilterButtonList = this.$showFilterListButton.attr('data-content'),
+				$addFilterButtonList = $(addFilterButtonList),
+				$filterItemParents = $addFilterButtonList.find('li');
+				$filterItemParents.addClass('u-display-none');
+				this.$showFilterListButton.attr('data-content', $addFilterButtonList[0].outerHTML);
+
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
+				expect(this.$container.find('.form__actions .btn--primary').is(':focus')).to.be.true;
 			});
 		});
 
@@ -373,6 +427,12 @@ describe('FilterBarComponent', function () {
 				this.$removeFilterButton2.trigger(this.clickEvent);
 
 				expect(this.$container.find('.form__actions:not(.u-display-none)')).to.have.length(1);
+			});
+
+			it('should focus the add button', function () {
+				this.$removeFilterButton.trigger(this.clickEvent);
+
+				expect(this.$container.find('[data-ui="show-filter-list"]').is(':focus')).to.be.true;
 			});
 		});
 
@@ -510,7 +570,7 @@ describe('FilterBarComponent', function () {
 			this.filterBar.init();
 
 			expect(this.$container.find('span[data-filter-id="size"]')).to.have.length(1);
-			expect(this.$container.find('span[data-filter-id="size"]').text()).to.be.equal('Size: Medium');
+			expect(this.$container.find('span[data-filter-id="size"] .label__text').text()).to.be.equal('Size: Medium');
 		});
 
 		it('should add a comma separated label to the filterbar for select inputs with the multiple attribute', function () {
@@ -519,7 +579,23 @@ describe('FilterBarComponent', function () {
 			this.filterBar.init();
 
 			expect(this.$container.find('span[data-filter-id="colour"]')).to.have.length(1);
-			expect(this.$container.find('span[data-filter-id="colour"]').text()).to.be.equal('Colour: Red, Blue');
+			expect(this.$container.find('span[data-filter-id="colour"] .label__text').text()).to.be.equal('Colour: Red, Blue');
+		});
+
+		it('should the correct accessible text to the label remove button for checkbox fields', function () {
+			this.filterBar.init();
+
+			var $checkboxLabelRemoveButtonA11yText = this.$container.find('span[data-filter-id="inStock"] .remove-button .hide').text();
+
+			expect($checkboxLabelRemoveButtonA11yText).to.be.equal('Remove In stock filter');
+		});
+
+		it('should the correct accessible text to the label remove button for other fields', function () {
+			this.filterBar.init();
+
+			var $textInputLabelRemoveButtonA11yText = this.$container.find('span[data-filter-id="foo"] .remove-button .hide').text();
+
+			expect($textInputLabelRemoveButtonA11yText).to.be.equal('Remove Text field example filter');
 		});
 
 		it('should hide the add filter button if all filters have been used', function () {
@@ -528,6 +604,40 @@ describe('FilterBarComponent', function () {
 			this.filterBar.init();
 
 			expect(this.$container.find('[data-ui="show-filter-list"]').hasClass('u-display-none')).to.be.true;
+		});
+
+		it('should show the clear button', function () {
+			this.filterBar.init();
+
+			expect(this.$container.find('.form__actions').hasClass('u-display-none')).to.be.false;
+		});
+
+		it('should hide the save button', function () {
+			this.filterBar.init();
+
+			expect(this.$container.find('.form__actions .btn--primary').hasClass('u-display-none')).to.be.true;
+		});
+
+		it('should show the form actions when a change has been made', function () {
+			this.clickEvent = $.Event('click');
+
+			this.filterBar.init();
+			this.$container.find('span[data-filter-id="inStock"] .remove-button').trigger(this.clickEvent);
+
+			expect(this.$container.find('.form__actions').hasClass('u-display-none')).to.be.false;
+			expect(this.$container.find('.form__actions .btn--primary').hasClass('u-display-none')).to.be.false;
+		});
+
+		it('should show the save button when all filters have been removed', function () {
+			this.clickEvent = $.Event('click');
+
+			this.filterBar.init();
+			this.$container.find('span[data-filter-id="foo"] .remove-button').trigger(this.clickEvent);
+			this.$container.find('span[data-filter-id="inStock"] .remove-button').trigger(this.clickEvent);
+			this.$container.find('span[data-filter-id="size"] .remove-button').trigger(this.clickEvent);
+
+			expect(this.$container.find('.form__actions').hasClass('u-display-none')).to.be.false;
+			expect(this.$container.find('.form__actions .btn--primary').hasClass('u-display-none')).to.be.false;
 		});
 	});
 });
