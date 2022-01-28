@@ -259,8 +259,8 @@ $zindex-modal:                        3000 !default;
 //  Signin
 // -----------------------------------------------------------------------------
 
-$signin-bg-color:          #fff;
+$signin-bg-color:          rgba(255, 255, 255, .95);
 $signin-bg-color-fallback: #fff;
 
-$signin-full-width:        400px;
-$signin-mobile-width:      300px;
+$signin-full-width:        500px;
+$signin-mobile-width:      400px;
