@@ -12,7 +12,7 @@
 
 	<div class="signin-container">
 
-		<div class="signin signin--error signin--recapt t-signin-bg">
+		<div class="signin signin--recapt t-signin-bg">
 			<h1 class="signin__heading" role="alert" aria-atomic="true">Pulsar City Council</h1>
 			<div class="signin__inner">
 				
@@ -57,6 +57,12 @@
 						<button class="btn btn--primary signin__submit" name="signin-submit" type="submit" tabindex="0">Sign In</button>
 					</div>
 
+					<div class="signin__actions">
+						<span>Alternative sign-in methods</span>
+						<button class="btn btn--outline signin__alt"><span class="connect-logo"></span> Sign in with Jadu Connect</button>
+						<button class="btn btn--outline signin__alt"><i class="fas fa-lock"></i> Sign in with SAML SSO</button>
+					</div>
+
 				</form>
 
 				<form class="signin__panel signin-reset" aria-hidden="true">
@@ -84,6 +90,7 @@
 					</div>
 
 					<a class="signin__link" href="#forgot-username" tabindex="-1" disabled="disabled">Don’t know your username?</a>
+					<br />
 					<a class="signin__link" href="#signin" tabindex="-1" disabled="disabled">Cancel</a>
 				</form>
 
