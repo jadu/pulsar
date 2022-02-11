@@ -58,7 +58,7 @@ $signin-panel-mobile-width:	300px;
 
 .signin {
 	background-color: $signin-bg-color;
-	box-shadow: 0 0 0 10px rgb(0 0 0 / 30%);
+	box-shadow: 0 0 0 10px rgba(0, 0, 0, .3);
 	overflow: hidden;
 	margin: 0;
 	padding: $padding-base 0;
