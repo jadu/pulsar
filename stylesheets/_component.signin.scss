@@ -107,10 +107,10 @@ $signin-panel-mobile-width:	300px;
 
 	.active-forgot & {
 		position: relative;
-		margin-left: -$signin-panel-mobile-width * 3;
+		margin-left: -$signin-panel-mobile-width * 2;
 
 		@include respond-min($screen-tablet) {
-			margin-left: -$signin-panel-full-width * 3;
+			margin-left: -$signin-panel-full-width * 2;
 		}
 	}
 
@@ -125,10 +125,10 @@ $signin-panel-mobile-width:	300px;
 
 	.active-twostep & {
 		position: relative;
-		margin-left: -$signin-panel-mobile-width * 2;
+		margin-left: -$signin-panel-mobile-width * 3;
 
 		@include respond-min($screen-tablet) {
-			margin-left: -$signin-panel-full-width * 2;
+			margin-left: -$signin-panel-full-width * 3;
 		}
 
 		.signin-form,
