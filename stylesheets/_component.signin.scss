@@ -261,29 +261,38 @@ $signin-panel-mobile-width:	300px;
 	}
 }
 
+.signin__info {
+	background-color: #d5d5d5;
+	display: block;
+	margin: 0 0 1em;
+	padding: 1em;
+}
+
 .signin__link {
 	display: inline-block;
 	margin-top: .5em;
 }
 
 .signin__group {
+	clear: left;
 	position: relative;
 }
 
 .signin__hint {
-	// @include icon-FontAwesome();
 	animation-duration: 1s;
 	animation-fill-mode: both;
 	animation-iteration-count: infinite;
-	animation-name: hint-wobble;
+	animation-name: hint-wobble-small;
 	display: inline-block;
-	font-size: 1.5em;
-	left: 5px;
+	font-size: 1em;
+	left: -16px;
 	position: absolute;
 	width: 25px;
-	top: 2px;
+	top: 32px;
 
 	@include respond-min($screen-tablet) {
+		animation-name: hint-wobble;
+		font-size: 1.5em;
 		left: -30px;
 		top: 32px;
 	}
@@ -325,70 +334,33 @@ $signin-panel-mobile-width:	300px;
 }
 
 .signin__icon {
-	display: inline-block;
-	margin: 20px auto 0;
-	text-align: center;
-	width: 100%;
+	display: block;
+	float: left;
+	margin: 1em 5px 0 0;
 
 	.signin--error &,
 	.signin-reset &,
 	.signin-forgot &,
 	.signin-twostep &,
 	.signin-success & {
-		background-image: none;
-		line-height: 65px;
-		margin-bottom: 6px;
-	}
-
-	.signin-reset &,
-	.signin-forgot &,
-	.signin-twostep &,
-	.signin-success & {
 		&::before {
-			color: color(grey, light);
-			display: inline-block;
-			width: 66px;
+			font-family: 'Font Awesome 5 Free';
+			font-style: normal;
+			font-weight: 600;
 		}
 	}
+
 
 	.signin--error &::before {
 		content: '\f06a';
 		color: color(danger);
-		font-family: 'Font Awesome 5 Free';
-		font-size: 75px;
-		font-style: normal;
-		font-weight: 600;
 	}
 
 	.signin-twostep &::before {
 		content: '\f502';
-		font-family: 'Font Awesome 5 Free';
-		font-size: 65px;
-		font-style: normal;
-		font-weight: 600;
 
 		.signin--error & {
 			color: color(danger);
-		}
-	}
-
-	.signin-forgot &::before {
-		content: '\f059';
-		font-family: 'Font Awesome 5 Free';
-		font-size: 65px;
-		font-style: normal;
-		width: 40px;
-		margin-left: -2px;
-	}
-
-	.signin-reset & {
-		&::before {
-			content: '\f658';
-			display: inline-block;
-			font-family: 'Font Awesome 5 Free';
-			font-size: 65px;
-			font-style: normal;
-			font-weight: 600;
 		}
 	}
 
@@ -400,9 +372,7 @@ $signin-panel-mobile-width:	300px;
 		&::before {
 			content: '\f058';
 			color: color(success);
-			font-family: 'Font Awesome 5 Free';
 			font-size: 100px;
-			font-style: normal;
 			width: 100px;
 		}
 	}
@@ -469,6 +439,16 @@ $signin-panel-mobile-width:	300px;
 
 	25%, 75% {
 		transform: translateX(-5px);
+	}
+}
+
+@keyframes hint-wobble-small {
+	0%, 50%, 100% {
+		transform: translateX(0);
+	}
+
+	25%, 75% {
+		transform: translateX(-2px);
 	}
 }
 
