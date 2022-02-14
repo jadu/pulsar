@@ -337,9 +337,6 @@ $signin-panel-mobile-width:	300px;
 	margin: 1em 5px 0 0;
 
 	.signin--error &,
-	.signin-reset &,
-	.signin-forgot &,
-	.signin-twostep &,
 	.signin-success & {
 		&::before {
 			font-family: 'Font Awesome 5 Free';
@@ -348,18 +345,9 @@ $signin-panel-mobile-width:	300px;
 		}
 	}
 
-
 	.signin--error &::before {
 		content: '\f06a';
 		color: color(danger);
-	}
-
-	.signin-twostep &::before {
-		content: '\f502';
-
-		.signin--error & {
-			color: color(danger);
-		}
 	}
 
 	.active-success .signin-success & {
@@ -374,10 +362,6 @@ $signin-panel-mobile-width:	300px;
 			width: 100px;
 		}
 	}
-}
-
-.signin-twostep {
-	text-align: center;
 }
 
 .signin-twostep label {
