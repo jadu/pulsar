@@ -354,6 +354,8 @@ $signin-panel-mobile-width:	300px;
 		animation-duration: 1s;
 		animation-fill-mode: both;
 		animation-name: success-icon;
+		text-align: center;
+		width: 100%;
 
 		&::before {
 			content: '\f058';
