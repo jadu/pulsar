@@ -7,11 +7,9 @@ $signin-panel-mobile-width:	300px;
 
 .signin-backdrop {
 	background: #fff;
-	//background-image: url('https://images.unsplash.com/photo-1589732560035-eb0c20e2a9ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80');
-	background-image: url('https://images.unsplash.com/photo-1432847712612-926caafaa802?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
-	// background: $signin-gradient;
+	background-image: url('https://images.unsplash.com/photo-1507721794920-1e07c043fd27?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80');
 	background-attachment: fixed;
-	background-position: center bottom;
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	bottom: 0;
@@ -351,10 +349,10 @@ $signin-panel-mobile-width:	300px;
 	}
 
 	.active-success .signin-success & {
-		animation-duration: 1s;
-		animation-fill-mode: both;
-		animation-name: success-icon;
+		height: 150px;
+		position: relative;
 		text-align: center;
+		top: 60px;
 		width: 100%;
 
 		&::before {
@@ -397,22 +395,6 @@ $signin-panel-mobile-width:	300px;
 
 	a:focus {
 		color: #000;
-	}
-}
-
-// Scale effect is disabled in Firefox because of horrible performance issues
-@keyframes success-icon {
-	0% {
-		transform: translateY(0) scale(1);
-	}
-
-	50% {
-		transform: translateY(160%) scale(2);
-	}
-
-	100% {
-		-moz-transform: translateY(160%) scale(1);
-		transform: translateY(160%) scale(1.5);
 	}
 }
 
