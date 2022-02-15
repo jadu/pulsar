@@ -560,7 +560,8 @@
     background-size: $branding-navigation-width $branding-navigation-height;
     background-repeat: no-repeat;
     display: inline-block;
-    height: 50px;
+    height: $branding-navigation-height;
+    margin-top: 5px;
     text-align: center;
     width: $branding-navigation-width;
 
