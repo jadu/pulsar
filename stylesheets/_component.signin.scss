@@ -444,16 +444,6 @@ $signin-panel-mobile-width:	300px;
 	}
 }
 
-@keyframes fade-in {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
 [id="recaptcha_widget_div"] {
 	display: inline-block;
 	margin: 0 auto 1em;
