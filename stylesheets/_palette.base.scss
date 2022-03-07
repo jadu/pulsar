@@ -24,11 +24,11 @@ $palette-branding: (
         pale:        rgb(231, 58, 34)
     ),
     jadu-blue: (
-        darkest:     rgb(34, 101, 134),
-        dark:        rgb(45, 134, 179),
-        base:        rgb(51, 153, 204),
-        light:       rgb(96, 176, 215),
-        pale:        rgb(164, 210, 223)
+        darkest:     darken(#c1c6e8, 10%),
+        dark:        darken(#c1c6e8, 5%),
+        base:        #c1c6e8,
+        light:       lighten(#c1c6e8, 5%),
+        pale:        lighten(#c1c6e8, 10%)
     ),
     jadu-green: (
         darkest:     rgb(81, 116, 35),
