@@ -2,18 +2,18 @@ $font-family-light:   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial
 $font-family-regular: 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $font-family-heading: 'code_pro_bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $font-family-heading-light: 'code_pro_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$font-family-icons:   'Font Awesome 5 Free'; 
+$font-family-icons:   'Font Awesome 6 Free'; 
 
 // Font awesome
-$fa-path: '../fonts/fontawesome-free-5.15.4-web' !default;
+$fa-path: '../fonts/fontawesome-free-6.0.0-web' !default;
 $fa-font-path: $fa-path + '/webfonts' !default;
 $fa-css-prefix: 'icon';
 
-@import '../fonts/fontawesome-free-5.15.4-web/scss/fontawesome';
-@import '../fonts/fontawesome-free-5.15.4-web/scss/regular';
-@import '../fonts/fontawesome-free-5.15.4-web/scss/solid';
-@import '../fonts/fontawesome-free-5.15.4-web/scss/brands';
-@import '../fonts/fontawesome-free-5.15.4-web/scss/v4-shims';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/fontawesome';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/regular';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/solid';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/brands';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/v4-shims';
 
 @font-face {
   font-family: 'proxima_novalight';
