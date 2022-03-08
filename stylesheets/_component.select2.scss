@@ -315,7 +315,7 @@
     &:after {
         color: color(black);
         content: '\f057';
-        font-family: 'Font Awesome 5 Free';
+        font-family: $font-family-icons;
         font-weight: 900;
         margin-right: 5px;
         visibility: visible;

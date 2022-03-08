@@ -295,7 +295,7 @@ $signin-panel-mobile-width:	300px;
 
 	&::before {
 		content: '\f0a4';
-		font-family: 'Font Awesome 5 Free';
+		font-family: $font-family-icons;
 		font-style: normal;
 	}
 
@@ -319,7 +319,7 @@ $signin-panel-mobile-width:	300px;
 
 		&::before {
 			content: '\f0a5';
-			font-family: 'Font Awesome 5 Free';
+			font-family: $font-family-icons;
 			font-style: normal;
 		}
 	}
@@ -337,7 +337,7 @@ $signin-panel-mobile-width:	300px;
 	.signin--error &,
 	.signin-success & {
 		&::before {
-			font-family: 'Font Awesome 5 Free';
+			font-family: $font-family-icons;
 			font-style: normal;
 			font-weight: 600;
 		}

@@ -1,7 +1,7 @@
 @mixin sortable-handle {
     color: color(black);
     content: '\f0c9';
-    font-family: 'Font Awesome 5 Free';
+    font-family: $font-family-icons;
     font-style: normal;
     font-variant: normal;
     font-weight: 900;
@@ -14,7 +14,7 @@
 
 @mixin sortable-success {
     color: color(success, dark);
-    font-family: 'Font Awesome 5 Free';
+    font-family: $font-family-icons;
     font-style: normal;
     font-variant: normal;
     font-weight: 900;

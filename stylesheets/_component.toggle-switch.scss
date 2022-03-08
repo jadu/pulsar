@@ -83,7 +83,7 @@
     &::after {
         color: color(white);
         content: '\f00c \f00d';
-        font-family: 'Font Awesome 5 Free';
+        font-family: $font-family-icons;
         font-weight: 900;
         font-size: $font-size-base;
         left: 10px;

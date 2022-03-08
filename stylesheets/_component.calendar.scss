@@ -72,7 +72,7 @@
     &::before {
         content: '\f0d9';
         padding: 5px;
-        font-family: 'Font Awesome 5 Free';
+        font-family: $font-family-icons;
         font-weight: 900;
     }
 }
@@ -83,7 +83,7 @@
     &::after {
         content: '\f0da';
         padding: 5px;
-        font-family: 'Font Awesome 5 Free';
+        font-family: $font-family-icons;
         font-weight: 900;
     }
 }

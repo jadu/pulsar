@@ -12,14 +12,14 @@
     @include ie-lte(8) {
         .table-row-select:before {
             content: '\f14a';
-            font-family: 'Font Awesome 5 Free';
+            font-family: $font-family-icons;
         }
     }
     // scss-lint:enable PseudoElement
 
     .table-row-select::before {
         content: '\f14a';
-        font-family: 'Font Awesome 5 Free';
+        font-family: $font-family-icons;
     }
 
     a,
@@ -123,7 +123,7 @@ a.dt-button {
         &.sorting::after {
             content: '\f0dc';
             color: color(text, light);
-            font-family: 'Font Awesome 5 Free';
+            font-family: $font-family-icons;
             font-weight: 900;
         }
 
@@ -172,7 +172,7 @@ a.dt-button {
 tr.selected .table-row-select::before {
     color: color(primary);
     content: '\f14a';
-    font-family: 'Font Awesome 5 Free';
+    font-family: $font-family-icons;
 }
 
 // scss-lint:disable SelectorFormat

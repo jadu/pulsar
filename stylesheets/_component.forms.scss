@@ -603,7 +603,7 @@ fieldset {
 .form__control.checkbox {
     &::before {
         content: '';
-        font-family: 'Font Awesome 5 Free';
+        font-family: $font-family-icons;
         font-weight: 900;
         height: 20px;
         left: 2px;
