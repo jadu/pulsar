@@ -78,7 +78,9 @@
         </section>
         {% endif %}
         <div class="tab__content" id="skip-target" role="main">
-            <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+            {% if heading is defined %}
+                <h1 class="main-title">{{ heading }}</h1>
+            {% endif %}
             {% block tab_content %}{% endblock %}
         </div>
         {% if _hasSidebar == true %}
