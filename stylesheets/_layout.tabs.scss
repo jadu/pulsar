@@ -40,7 +40,7 @@
     backface-visibility: hidden;
     background-color: color(background, backdrop);
     display: table;
-    height: calc(100vh);
+    height: 100%;
     left: 0;
     padding-bottom: 24px; // make sure content clears the footer
     position: relative;
