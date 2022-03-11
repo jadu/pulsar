@@ -90,17 +90,11 @@ $module-permissions-breakpoint: $screen-tablet;
     }
 }
 
-.module-toggle,
-.refine-toggle {
-    float: right;
-    line-height: 44px;
-    text-decoration: none;
-}
-
 // View/Create/Update/Delete controls
 .crud {
     display: none;
     float: right;
+    margin-right: 60px;
 
     @at-root .is-open & {
         display: inline-block;
@@ -123,6 +117,14 @@ $module-permissions-breakpoint: $screen-tablet;
     position: relative;
     text-align: center;
     min-width: 60px;
+}
+
+.module-toggle,
+.refine-toggle {
+    line-height: 44px;
+    position: absolute;
+    text-decoration: none;
+    right: 0;
 }
 
 // Control visibility of individual CRUD control labels
