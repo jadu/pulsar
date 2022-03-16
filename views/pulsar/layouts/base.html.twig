@@ -123,6 +123,10 @@
 
                 {{ nav.breadcrumbs(breadcrumbs|default) }}
 
+                {% if parentTitle is defined and parentTitle is not empty %}
+                    <span class="main-title">{{ parentTitle }}</span>
+                {% endif %}
+
                 {% set _ribbon = '' %}
                 {% set _ribbon = block('ribbon') %}
 
