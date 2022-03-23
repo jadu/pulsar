@@ -25,9 +25,18 @@
 
     a {
         color: color(gray, dark); // must be AA 4.5:1
+        text-decoration: none;
 
         &:hover {
-            color: color(link, hover);
+            color: color(gray, dark);
+        }
+
+        &[href] {
+            text-decoration: underline;
+
+            &:hover {
+                color: color(link, hover);
+            }
         }
 
         &:focus {
