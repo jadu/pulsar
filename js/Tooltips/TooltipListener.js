@@ -102,6 +102,9 @@ class TooltipListener {
 
     onCreate (instance) {
         // Remove unnecessary aria-expanded attribute (added by the interactive option - needed for content hover)
+        console.log('temporary debugging');
+        console.log(instance.reference);
+        console.log($(instance.reference));
         $(instance.reference).removeAttr('aria-expanded');
     }
 
