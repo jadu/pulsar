@@ -71,8 +71,6 @@ $signin-panel-mobile-width:	300px;
 	}
 
 	&--error {
-		animation: shake 400ms;
-
 		.loading--circle i {
 			border: 1px solid rgba(0, 0, 0, .2);
 			border-top-color: color(white);
@@ -325,10 +323,6 @@ $signin-panel-mobile-width:	300px;
 	}
 }
 
-.shake {
-  animation: shake 500ms;
-}
-
 .signin__icon {
 	display: block;
 	float: left;
@@ -415,32 +409,6 @@ $signin-panel-mobile-width:	300px;
 
 	25%, 75% {
 		transform: translateX(-2px);
-	}
-}
-
-@keyframes shake {
-	0% {
-		transform: translateX(0);
-	}
-
-	12.5% {
-		transform: translateX(-10px) rotateY(-5deg);
-	}
-
-	37.5% {
-		transform: translateX(10px) rotateY(4deg);
-	}
-
-	62.5% {
-		transform: translateX(-5px) rotateY(-2deg);
-	}
-
-	87.5% {
-		transform: translateX(5px) rotateY(1deg);
-	}
-
-	100% {
-		transform: translateX(0);
 	}
 }
 
