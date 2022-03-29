@@ -1,5 +1,7 @@
 'use strict';
 
+var $ = require('jquery');
+
 /**
  * Accessible tooltips using the tippyjs library with some custom behaviour to meet WCAG 2.1 1.4.13
  */
