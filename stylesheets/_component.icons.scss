@@ -45,7 +45,7 @@
 // Map Font Awesome 5 to FA4's pseudo elements
 [class*="icon-"] {
     display: inline-block;
-    font-family: 'Font Awesome 6 Free';
+    font-family: $font-family-icons;
     font-style: normal;
     font-variant: normal;
     font-weight: 900;
@@ -55,8 +55,8 @@
 
 // Map Font Awesome 4 names to their FA5 variant
 // scss-lint:disable all
-.icon-android::before                   { font-family: 'Font Awesome 5 Brands'; } // android
-.icon-apple::before                     { font-family: 'Font Awesome 5 Brands'; } // apple
+.icon-android::before                   { font-family: $font-family-icons; } // android
+.icon-apple::before                     { font-family: $font-family-icons; } // apple
 .icon-ban-circle::before                { content: '\f05e'; } // ban
 .icon-bar-chart::before                 { content: '\f080'; } // chart-bar
 .icon-beaker::before                    { content: '\f0c3'; } // flask
@@ -64,8 +64,8 @@
 .icon-bell-o::before                    { content: '\f0f3'; font-weight: 400; } // bell
 .icon-bookmark-empty::before            { content: '\f02e'; font-weight: 400; } // bookmark
 .icon-building-o::before                { content: '\f1ad'; font-weight: 400; } // building
-.icon-bitbucket::before                 { font-family: 'Font Awesome 5 Brands'; } // bitbucket
-.icon-btc::before                       { content: '\f15a'; font-family: 'Font Awesome 5 Brands'; } // btc
+.icon-bitbucket::before                 { font-family: $font-family-icons; } // bitbucket
+.icon-btc::before                       { content: '\f15a'; font-family: $font-family-icons; } // btc
 .icon-calendar-check-o::before          { content: '\f274'; font-weight: 400; } // calendar-check
 .icon-calendar-empty::before            { content: '\f133'; font-weight: 400; } // calendar
 .icon-caret-square-o-down::before       { content: '\f150'; font-weight: 400; } // caret-square-down
@@ -89,10 +89,10 @@
 .icon-collapse-top::before              { content: '\f151'; } // caret-square-up
 .icon-collapse-alt::before              { content: '\f146'; font-weight: 400; } // compress-alt
 .icon-comments-alt::before              { content: '\f086'; } // comments
-.icon-css3::before                      { font-family: 'Font Awesome 5 Brands'; } // facebook
+.icon-css3::before                      { font-family: $font-family-icons; } // facebook
 .icon-dashboard::before                 { content: '\f3fd'; } // tachometer-alt
 .icon-dot-circle-o::before              { content: '\f192'; font-weight: 400; } // dot-circle
-.icon-dribbble::before                  { font-family: 'Font Awesome 5 Brands'; } // dribbble
+.icon-dribbble::before                  { font-family: $font-family-icons; } // dribbble
 .icon-edit-sign::before                 { content: '\f14b'; } // pen-square
 .icon-ellipsis-horizontal::before       { content: '\f141'; } // ellipsis-h
 .icon-ellipsis-vertical::before         { content: '\f142'; } // ellipsis-v
@@ -113,20 +113,20 @@
 .icon-external-link::before             { content: '\f35d'; } // external-link-alt
 .icon-eye-open::before                  { content: '\f06e'; } // eye
 .icon-eye-close::before                 { content: '\f070'; } // eye-slash
-.icon-facebook::before                  { font-family: 'Font Awesome 5 Brands'; } // facebook
-.icon-facebook-sign::before             { content: '\f082'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // facebook-square
+.icon-facebook::before                  { font-family: $font-family-icons; } // facebook
+.icon-facebook-sign::before             { content: '\f082'; font-weight: 400; font-family: $font-family-icons; } // facebook-square
 .icon-facetime-video::before            { content: '\f03d'; } // video
 .icon-folder-close::before              { content: '\f07b'; } // folder
 .icon-folder-close-alt::before          { content: '\f07b'; font-weight: 400; } // folder-alt
 .icon-folder-open-alt::before           { content: '\f07c'; font-weight: 400; } // folder-open
 .icon-food::before                      { content: '\f2e7'; } // utensils
-.icon-foursquare::before                { font-family: 'Font Awesome 5 Brands'; } // foursquare
+.icon-foursquare::before                { font-family: $font-family-icons; } // foursquare
 .icon-file-text-alt::before             { content: '\f15c'; font-weight: 400; } // file-alt
 .icon-fullscreen::before                { content: '\f31e'; } // expand-arrows-alt
 .icon-gear::before                      { content: '\f013'; } // cog
-.icon-github::before                    { font-family: 'Font Awesome 5 Brands'; } // github
-.icon-github-alt::before                { content: '\f113'; font-family: 'Font Awesome 5 Brands'; } // github
-.icon-github-sign::before               { content: '\f092'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // github-square
+.icon-github::before                    { font-family: $font-family-icons; } // github
+.icon-github-alt::before                { content: '\f113'; font-family: $font-family-icons; } // github
+.icon-github-sign::before               { content: '\f092'; font-weight: 400; font-family: $font-family-icons; } // github-square
 .icon-glass::before                     { content: '\f000'; } // glass-martini
 .icon-group::before                     { content: '\f0c0'; } // users
 .icon-h-sign::before                    { content: '\f0fd'; } // h-square
@@ -135,7 +135,7 @@
 .icon-hand-up::before                   { content: '\f0a6'; font-weight: 400; } // hand-point-up
 .icon-hand-down::before                 { content: '\f0a7'; font-weight: 400; } // hand-point-down
 .icon-heart-empty::before               { content: '\f004'; font-weight: 400; } // heart
-.icon-html5::before                     { font-family: 'Font Awesome 5 Brands'; } // facebook
+.icon-html5::before                     { font-family: $font-family-icons; } // facebook
 .icon-indent-left::before               { content: '\f03c'; } // indent
 .icon-indent-right::before              { content: '\f03b'; } // outdent
 .icon-info-sign::before                 { content: '\f05a'; } // info-circle
@@ -145,9 +145,9 @@
 .icon-legal::before                     { content: '\f0e3'; } // gavel
 .icon-level-up::before                  { content: '\f3bf'; } // level-up-alt
 .icon-level-down::before                { content: '\f3be'; } // level-down-alt
-.icon-linkedin::before                  { content: '\f0e1'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // linkedin
-.icon-linkedin-sign::before             { content: '\f08c'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // linkedin-square
-.icon-linux::before                     { font-family: 'Font Awesome 5 Brands'; } // linux
+.icon-linkedin::before                  { content: '\f0e1'; font-weight: 400; font-family: $font-family-icons; } // linkedin
+.icon-linkedin-sign::before             { content: '\f08c'; font-weight: 400; font-family: $font-family-icons; } // linkedin-square
+.icon-linux::before                     { font-family: $font-family-icons; } // linux
 .icon-long-arrow-left::before           { content: '\f30a'; } // long-arrow-alt-left
 .icon-long-arrow-right::before          { content: '\f30b'; } // long-arrow-alt-right
 .icon-long-arrow-up::before             { content: '\f30c'; } // long-arrow-alt-up
@@ -168,8 +168,8 @@
 .icon-pencil::before                    { content: '\f303'; } // pencil-alt
 .icon-picture::before                   { content: '\f03e'; } // image
 .icon-phone-sign::before                { content: '\f098'; } // phone-square
-.icon-pinterest::before                 { content: '\f0d2'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // pinterest
-.icon-pinterest-sign::before            { content: '\f0d3'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // pinterest-square
+.icon-pinterest::before                 { content: '\f0d2'; font-weight: 400; font-family: $font-family-icons; } // pinterest
+.icon-pinterest-sign::before            { content: '\f0d3'; font-weight: 400; font-family: $font-family-icons; } // pinterest-square
 .icon-play-sign::before                 { content: '\f144'; } // play-circle
 .icon-plus-sign::before                 { content: '\f055'; } // plus-circle
 .icon-plus-sign-alt::before             { content: '\f0fe'; } // plus-square
@@ -194,7 +194,7 @@
 .icon-signin::before                    { content: '\f2f6'; } // signin-alt
 .icon-signout::before                   { content: '\f2f5'; } // sign-out-alt
 .icon-signout::before                   { content: '\f2f5'; } // sign-out-alt
-.icon-skype::before                     { font-family: 'Font Awesome 5 Brands'; } // skype
+.icon-skype::before                     { font-family: $font-family-icons; } // skype
 .icon-sort-by-alphabet::before          { content: '\f15d'; } // sort-alpha-down
 .icon-sort-by-alphabet-alt::before      { content: '\f881'; } // sort-alpha-down-alt
 .icon-sort-by-attributes::before        { content: '\f160'; } // sort-amount-down
@@ -204,7 +204,7 @@
 .icon-repeat::before                    { content: '\f2f9'; } // redo-alt
 .icon-screenshot::before                { content: '\f05b'; } // crosshairs
 .icon-sliders::before                   { content: '\f1de' } // sliders-h
-.icon-stackexchange::before             { content: '\f18d'; font-family: 'Font Awesome 5 Brands'; } // stack-exchange
+.icon-stackexchange::before             { content: '\f18d'; font-family: $font-family-icons; } // stack-exchange
 .icon-star-empty::before                { content: '\f005'; font-weight: 400; } // star
 .icon-star-half-empty::before           { content: '\f5c0'; } // star-half-alt
 .icon-ticket::before                    { content: '\f3ff'; } // ticket
@@ -213,17 +213,17 @@
 .icon-thumbs-down-alt::before           { content: '\f165'; font-weight: 400; } // thumbs-down
 .icon-thumbs-up-alt::before             { content: '\f164'; font-weight: 400; } // thumbs-up
 .icon-time::before                      { content: '\f017'; font-weight: 400; } // time
-.icon-trello::before                    { font-family: 'Font Awesome 5 Brands'; } // trello
-.icon-twitter-sign::before              { content: '\f081'; font-weight: 400; font-family: 'Font Awesome 5 Brands'; } // twitter-square
-.icon-twitter::before                   { font-family: 'Font Awesome 5 Brands'; } // twitter
+.icon-trello::before                    { font-family: $font-family-icons; } // trello
+.icon-twitter-sign::before              { content: '\f081'; font-weight: 400; font-family: $font-family-icons; } // twitter-square
+.icon-twitter::before                   { font-family: $font-family-icons; } // twitter
 .icon-upload-alt::before                { content: '\f093'; } // upload-alt
 .icon-user-o::before                    { content: '\f007'; font-weight: 400; } // user
 .icon-usd::before                       { content: '\f155'; } // dollar-sign
 .icon-warning-sign::before              { content: '\f071'; } // exclamation-triangle
-.icon-windows::before                   { font-family: 'Font Awesome 5 Brands'; } // windows
-.icon-youtube::before                   { font-family: 'Font Awesome 5 Brands'; } // youtube-square
-.icon-youtube-play::before              { content: '\f167'; font-family: 'Font Awesome 5 Brands'; } // youtube-square
-.icon-youtube-sign::before              { content: '\f431'; font-family: 'Font Awesome 5 Brands'; } // youtube-square
+.icon-windows::before                   { font-family: $font-family-icons; } // windows
+.icon-youtube::before                   { font-family: $font-family-icons; } // youtube-square
+.icon-youtube-play::before              { content: '\f167'; font-family: $font-family-icons; } // youtube-square
+.icon-youtube-sign::before              { content: '\f431'; font-family: $font-family-icons; } // youtube-square
 .icon-zoom-in::before                   { content: '\f00e'; } // search-plus
 .icon-zoom-out::before                  { content: '\f010'; } // search-minus
 // scss-lint:enable all
