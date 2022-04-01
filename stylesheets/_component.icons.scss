@@ -1,5 +1,3 @@
-
-
 // State variations
 @each $state, $state-color, $state-color-alt in $state-colors {
     .icon--#{'' + $state}::before {
