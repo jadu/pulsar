@@ -580,8 +580,6 @@
         margin-bottom: (-$footer-height);
 
         .tab__content {
-            min-height: 100vh;
-            padding-bottom: $footer-height;
             left: calc(370px + 1%);
             position: relative;
         }
