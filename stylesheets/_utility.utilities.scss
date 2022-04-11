@@ -5,12 +5,14 @@
  */
 
 %u-float-left,
- .u-float-left {
+.u-float-left,
+.pull-left {
      float: left !important;
 }
 
 %u-float-right,
-.u-float-right {
+.u-float-right,
+.pull-right {
     float: right !important;
 }
 
