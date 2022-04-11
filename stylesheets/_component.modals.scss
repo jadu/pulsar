@@ -107,6 +107,7 @@
 
 // Title text within header
 .modal__title {
+    font-family: $font-family-heading;
     font-size: $font-size-xlarge;
     line-height: $modal-title-line-height;
     margin: 0;
