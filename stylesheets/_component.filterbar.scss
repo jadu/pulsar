@@ -16,10 +16,13 @@
     }
 
     .label {
+        border-radius: $border-radius-small * 2;
         box-sizing: border-box;
         display: block;
         margin-bottom: $gutter-width / 2;
         overflow-wrap: break-word;
+        padding-bottom: 6px;
+        padding-top: 7px;
         vertical-align: middle;
         white-space: normal;
         width: 100%;
@@ -32,7 +35,8 @@
             width: auto;
         }
 
-        .remove-button {
+        .btn.remove-button {
+            background-color: transparent;
             float: right;
 
             @include respond-min($screen-tablet) {
