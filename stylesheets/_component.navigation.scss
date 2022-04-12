@@ -58,7 +58,7 @@
         display: inline-block;
         list-style: none;
         margin: 0 0 0 $gutter-width;
-        min-width: calc(100% - $gutter-width);
+        min-width: calc(100% - #{$gutter-width});
     }
 
     &__item {
