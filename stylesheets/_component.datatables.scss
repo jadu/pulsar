@@ -129,10 +129,14 @@ a.dt-button {
 
         &.sorting_asc::after {
             content: '\f0de';
+            font-family: $font-family-icons;
+            font-weight: 900;
         }
 
         &.sorting_desc::after {
             content: '\f0dd';
+            font-family: $font-family-icons;
+            font-weight: 900;
         }
 
         &.sorting_disabled::after {
