@@ -169,7 +169,45 @@ $signin-panel-mobile-width:	300px;
 	background-color: transparent;
 }
 
-.signin__input {
+// form alignment
+.signin .form {
+	background-color: transparent;
+
+	fieldset {
+		padding: 0;
+	}
+
+	p {
+		margin-bottom: $line-height-base / 2;
+	}
+
+	.legend {
+		border-bottom: 1px solid color(border);
+		line-height: $line-height-base;
+		margin-bottom: 5px;
+	}
+
+	.form__group {
+		margin-bottom: 0;
+	}
+
+	.form__group--top .control__label {
+		margin-bottom: 0;
+	}
+
+	.form__actions {
+		border-top: 0;
+		padding-bottom: 0;
+	}
+
+	.input-group-btn .btn {
+		border: 2px solid color(black);
+		line-height: 44px;
+	}
+}
+
+.signin__input,
+.form__control.form__control {
 	background-color: none;
 	border: 2px solid color(black);
 	display: inline-block;
