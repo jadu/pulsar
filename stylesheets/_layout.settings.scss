@@ -44,15 +44,8 @@
 .settings-section {
     &:not(.settings-section--primary) {
         @include respond-min-max($screen-smaller, $screen-medium) {
-            border-left: 1px solid color(border);
-            border-top: 0;
-            float: right;
-            margin-left: $padding-small-horizontal * 2;
-            margin-top: 0;
-            max-width: calc(100% - 200px - #{$padding-small-horizontal * 2});
-            padding-left: $padding-small-horizontal * 2;
-            padding-top: 0;
-            width: 75%;
+            float: left;
+            width: 100%;
         }
     }
 
