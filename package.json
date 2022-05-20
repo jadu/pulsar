@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
-    "axios": ">=0.21.1",
+    "axios": ">=0.21.2",
     "babel-core": "^6.26.0",
     "babel-istanbul": "^0.12.2",
     "babel-polyfill": "^6.26.0",
