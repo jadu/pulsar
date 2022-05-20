@@ -19,7 +19,7 @@
     "test:browser:watch": "npm run build:tests:watch"
   },
   "devDependencies": {
-    "aliasify": "^1.9.0",
+    "aliasify": "^2.1.0",
     "axios": "^0.26.1",
     "babel-core": "^6.26.0",
     "babel-istanbul": "^0.12.2",
