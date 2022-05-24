@@ -565,7 +565,11 @@
     text-align: center;
     width: $branding-navigation-width;
 
-	// Support transparent PNG background images in IE8
+    span {
+        color: color(white);
+    }
+
+    // Support transparent PNG background images in IE8
     @include ie-lte(8) {
         filter: progid:DXImageTransform.Microsoft.gradient(
             startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
