@@ -213,7 +213,10 @@ $signin-panel-mobile-width:	300px;
 	display: inline-block;
 	margin: 0 auto 1em;
 	padding: 10px;
-	width: 100%;
+
+	&:not(.checkbox) {
+		width: 100%;
+	}
 
 	&:focus {
 		@include pulsar-input-focused;
