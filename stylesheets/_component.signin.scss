@@ -212,7 +212,10 @@ $signin-panel-mobile-width:	300px;
 	border: 2px solid color(black);
 	display: inline-block;
 	margin: 0 auto 1em;
-	padding: 10px;
+
+	&:not(.select) {
+		padding: 10px;
+	}
 
 	&:not(.checkbox) {
 		width: 100%;
