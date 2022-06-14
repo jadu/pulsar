@@ -240,8 +240,8 @@ $signin-panel-mobile-width:	300px;
 	}
 }
 
-.signin__code1,
-.signin__code2 {
+.signin__code1.signin__code1,
+.signin__code2.signin__code2 {
 	@extend .signin__input;
 	display: inline-block;
 	font-family: courier;
@@ -368,21 +368,19 @@ $signin-panel-mobile-width:	300px;
 	}
 
 	.signin-twostep & {
-		left: 55px;
+		left: -17px;
 		top: 10px;
 
 		@include respond-min($screen-tablet) {
-			left: 85px;
+			left: -30px;
 		}
 	}
 
 	.signin__code2 + & {
-		left: inherit;
-		right: 50px;
+		left: 175px;
 
 		@include respond-min($screen-tablet) {
-			left: inherit;
-			right: 80px;
+			left: 180px;
 		}
 
 		&::before {
