@@ -27,7 +27,7 @@ $signin-panel-mobile-width:	300px;
 	height: 46px;
 	left: 0;
 	margin: 0;
-	position: absolute;
+	position: fixed;
 	right: 0;
 	text-align: center;
 	width: $signin-mobile-width;
@@ -52,22 +52,16 @@ $signin-panel-mobile-width:	300px;
 
 .signin-container {
 	display: flex;
-	height: 100%;
 }
 
 .signin {
-	background-color: $signin-bg-color;
-	box-shadow: 0 0 0 10px rgba(0, 0, 0, .3);
-	overflow: hidden;
 	margin: 0;
-	padding: $padding-base 0;
-	width: $signin-mobile-width;
+	width: $signin-mobile-width - 40px;
 	transition: width .25s, padding .25s;
 
 	@include respond-min($screen-tablet) {
-		width: $signin-full-width;
+		width: $signin-full-width - 40px;
 		margin: 40px;
-		padding: 40px 0;
 	}
 
 	&--error {
@@ -81,20 +75,37 @@ $signin-panel-mobile-width:	300px;
 .signin__inner {
 	float: left;
 	height: calc(100% - 100px);
-	overflow-x: visible;
-	overflow-y: scroll;
+	margin-left: 10px;
+	margin-top: -95px;
 	transition: width .25s, padding .25s;
 	width: $signin-panel-mobile-width * 6;
 
-	@include respond-min(540px) {
+	@include respond-min($screen-tablet) {
 		height: 100%;
-		padding-bottom: 70px;
+		margin-left: 0;
+		margin-top: -75px;
 		width: $signin-panel-full-width * 6;
+	}
+
+	.signin__inner::-webkit-scrollbar-track {
+		background-color: rgba(57, 57, 57, 0);
+		border-radius: 8px;
+	}
+
+	.signin__inner::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 7px;
+	}
+
+	.signin__inner::-webkit-scrollbar-thumb {
+		border-radius: 4px;
+		background-color: transparent;
+		box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 	}
 
 	.active-reset & {
 		position: relative;
-		margin-left: -$signin-panel-mobile-width;
+		margin-left: -$signin-panel-mobile-width + 10px;
 
 		@include respond-min($screen-tablet) {
 			margin-left: -$signin-panel-full-width;
@@ -103,7 +114,7 @@ $signin-panel-mobile-width:	300px;
 
 	.active-forgot & {
 		position: relative;
-		margin-left: -$signin-panel-mobile-width * 2;
+		margin-left: -$signin-panel-mobile-width * 2 + 10px;
 
 		@include respond-min($screen-tablet) {
 			margin-left: -$signin-panel-full-width * 2;
@@ -112,7 +123,7 @@ $signin-panel-mobile-width:	300px;
 
 	.active-success.active-success & {
 		position: relative;
-		margin-left: -$signin-panel-mobile-width * 4;
+		margin-left: -$signin-panel-mobile-width * 4 + 10px;
 
 		@include respond-min($screen-tablet) {
 			margin-left: -$signin-panel-full-width * 4;
@@ -121,7 +132,7 @@ $signin-panel-mobile-width:	300px;
 
 	.active-twostep & {
 		position: relative;
-		margin-left: -$signin-panel-mobile-width * 3;
+		margin-left: -$signin-panel-mobile-width * 3 + 10px;
 
 		@include respond-min($screen-tablet) {
 			margin-left: -$signin-panel-full-width * 3;
@@ -154,19 +165,22 @@ $signin-panel-mobile-width:	300px;
 }
 
 .signin__panel {
+	background-color: $signin-bg-color;
+	border-top: 1px solid #ccc;
+	box-shadow: 0 0 0 10px rgba(0, 0, 0, .3);
 	float: left;
-	padding: 0 0 2.5em 20px;
+	padding: 75px 20px 20px;
 	transition: width .25s, padding .25s, z-index .25s;
 	width: $signin-panel-mobile-width;
 
 	@include respond-min($screen-tablet) {
-		padding-left: 40px;
+		padding: 75px 40px 40px;
 		width: $signin-panel-full-width;
 	}
-}
 
-.signin-form {
-	background-color: transparent;
+	&[aria-hidden="true"] {
+		visibility: hidden;
+	}
 }
 
 // form alignment
@@ -297,15 +311,19 @@ $signin-panel-mobile-width:	300px;
 }
 
 .signin__heading {
-	border-bottom: 1px solid #ccc;
 	color: color(gray, darker);
 	font-family: $font-family-heading;
-	margin: 0 $padding-base;
-	padding-bottom: 1em;
+	margin: 0 $padding-base 0 10px;
+	padding: 20px;
+	position: relative;
 	text-align: left;
+	width: $signin-mobile-width - 20px;
+	z-index: 1;
 
 	@include respond-min($screen-tablet) {
-		margin: 0 40px;
+		margin: 0;
+		padding: 20px 0 20px 40px;
+		width: $signin-full-width - 40px;
 	}
 }
 
