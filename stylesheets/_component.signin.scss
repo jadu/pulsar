@@ -229,6 +229,10 @@ $signin-panel-mobile-width:	300px;
 		padding: 10px;
 	}
 
+	&.checkbox {
+		margin: 0 1em 0 0;
+	}
+
 	&:not(.checkbox) {
 		width: 100%;
 	}
