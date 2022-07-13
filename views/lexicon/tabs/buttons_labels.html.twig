@@ -5,54 +5,37 @@
 
 {% block tab_sidebar %}
 
-<h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Some button help</h2>
+<h2 class="heading">Some button help</h2>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tellus dolor, condimentum efficitur arcu sed, feugiat pellentesque lacus. Pellentesque ac ipsum ac mauris cursus volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
 {% endblock tab_sidebar %}
 
 
 {% block tab_content %}
+    <section class="greeter">
+        <header class="greeter__header">
+            <h1 class="greeter__title">Hello again, Longname Longnamerson.</h1>
+            <ul class="list--naked">
+                <li>You have <strong>no</strong> tasks outstanding</li>
+                <li>You have <strong>1</strong> tasks awaiting action</li>
+            </ul>
+        </header>
+        <footer class="greeter__footer">CMS #124</footer>
+    </section>
 
-<h2 class="heading">Links & Lists</h2>
-<p>
-    <a href="#">Normal</a> / <a href="#" class="is-disabled">Disabled</a>
-    
-    {{ html.button({ 
-        label: html.icon('ok') ~ "<script>alert('There’s some holes in this house')</script>"|escape('html'),
-        type: 'submit'
-    }) }}
-    
-    {{ html.button({ 
-        label: html.icon('ok') ~ "<strong onclick='alert(2)'>foo</strong>",
-        type: 'submit'
-    }) }}
-    
-    
-    {% set userEmail = 'user@email.com<script>alert(\'script\')</script>' %}
-    
-    {{ form.content({ 
-        label: 'email',
-        value: '<a href=”mailto:' ~ userEmail ~ '">' ~ userEmail ~ '</a>'
-    }) }}
-    
+    <br /><br />
     {{
-        html.list({
-            items: [
-            'Simple',
-            'List'
-            ]
+        form.text({
+            'id': 'guid-' ~ random(),
+            'label': 'Text',
+            'maxlength': 20,
+            'data-maxlength': true,
+            'help': 'This is another help block'
         })
     }}
-    
-    {{
-        html.link_list({
-            items: {
-                'Google': 'http://google.com',
-                'Twitter': 'http://twitter.com'
-            }
-        })
-    }}
-</p>
+    <h2 class="heading">Links & Lists</h2>
+    <p>
+        <a href="#">Normal</a> / <a href="#" class="is-disabled">Disabled</a>
 
 <h2 class="heading">Button variations</h2>
 
@@ -394,26 +377,30 @@
         {{
             html.button_group({
                 buttons: [
-                html.button({
-                    label: html.icon('align-left', {
-                        'label': 'Align left'
-                    })
-                }),
-                html.button({
-                    label: html.icon('align-center', {
-                        'label': 'Align center'
-                    })
-                }),
-                html.button({
-                    label: html.icon('align-right', {
-                        'label': 'Align right'
-                    })
-                }),
-                html.button({
-                    label: html.icon('align-justify', {
-                        'label': 'Align justify'
-                    })
-                })
+                    html.button({
+                        class: 'btn--outline',
+                        label: html.icon('align-left', {
+                            'label': 'Align left'
+                        })
+                    }),
+                    html.button({
+                        class: 'btn--outline',
+                        label: html.icon('align-center', {
+                            'label': 'Align center'
+                        })
+                    }),
+                    html.button({
+                        class: 'btn--outline',
+                        label: html.icon('align-right', {
+                            'label': 'Align right'
+                        })
+                    }),
+                    html.button({
+                        class: 'btn--outline',
+                        label: html.icon('align-justify', {
+                            'label': 'Align justify'
+                        })
+                     })
                 ]
             })
         }}

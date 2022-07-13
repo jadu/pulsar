@@ -8,6 +8,10 @@
     width: 100%;
 }
 
+.pulsar-datepicker.ui-datepicker {
+    box-shadow: 0 0 0 $shadow-small color(background, shadow);
+}
+
 .ui-datepicker-calendar {
     width: 400px;
 }
@@ -68,7 +72,8 @@
     &::before {
         content: '\f0d9';
         padding: 5px;
-        font-family: 'FontAwesome';
+        font-family: $font-family-icons;
+        font-weight: 900;
     }
 }
 
@@ -78,7 +83,8 @@
     &::after {
         content: '\f0da';
         padding: 5px;
-        font-family: 'FontAwesome';
+        font-family: $font-family-icons;
+        font-weight: 900;
     }
 }
 

@@ -16,6 +16,9 @@ $font-family-regular:                 'proxima_nova_rgregular', 'Helvetica Neue'
 $font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
 $font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', monospace !default;
 
+$background-gradient:                 url('../images/branding/central-gradient.svg');
+$signin-gradient:                     url('../images/branding/central-gradient-large.svg');
+
 // -----------------------------------------------------------------------------
 //  Typographic grid
 // -----------------------------------------------------------------------------
@@ -82,12 +85,27 @@ $screen-large:                        1200px !default;
 $screen-large-desktop:                $screen-large !default;
 
 // -----------------------------------------------------------------------------
+//  Buttons
+// -----------------------------------------------------------------------------
+
+$btn-border-radius: 0; // Just experimenting with 0 border for a while...
+
+// -----------------------------------------------------------------------------
 //  Borders
 // -----------------------------------------------------------------------------
 
 $border-width:                        1px !default;
-$border-radius:                       4px !default;
+$border-radius:                       0 !default;
+$border-radius-small:                 4px !default;
 $border-radius-large:                 20px !default;
+
+// -----------------------------------------------------------------------------
+//  Shadows
+// -----------------------------------------------------------------------------
+
+$shadow-large:                        12px;
+$shadow-small:                        6px;
+$shadow-micro:                        3px;
 
 // -----------------------------------------------------------------------------
 //  Dropdowns
@@ -115,6 +133,9 @@ $padding-large-horizontal:            16px !default;
 $padding-small-vertical:              5px !default;
 $padding-small-horizontal:            10px !default;
 
+$padding-small-em:                    .5em !default;
+$padding-micro-em:                    .2em !default;
+
 // -----------------------------------------------------------------------------
 //  Layout
 // -----------------------------------------------------------------------------
@@ -127,9 +148,9 @@ $footer-height:                       $line-height-base + ($footer-padding-verti
 // -----------------------------------------------------------------------------
 
 $nav-primary-width:                   85px;
-$nav-color-light: darken(rgb(45, 134, 179), 2.5%) !default; // must be AA 4.5:1
-$nav-color-dark: darken(rgb(45, 134, 179), 7.5%) !default;
-$nav-color-darker: darken(rgb(45, 134, 179), 10%) !default;
+$nav-color-light:                    #3e4994; // must be AA 4.5:1
+$nav-color-dark:                      darken(#3e4994, 7.5%);
+$nav-color-darker:                    darken(#3e4994, 10%);
 
 // -----------------------------------------------------------------------------
 //  Forms
@@ -238,8 +259,5 @@ $zindex-modal:                        3000 !default;
 //  Signin
 // -----------------------------------------------------------------------------
 
-$signin-bg-color:          rgba(34, 101, 134, .9);
-$signin-bg-color-fallback: rgb(34, 101, 134);
-
-$signin-full-width:        400px;
-$signin-mobile-width:      300px;
+$signin-bg-color:          rgba(255, 255, 255, .9);
+$signin-bg-color-fallback: #fff;

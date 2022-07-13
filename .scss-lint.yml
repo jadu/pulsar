@@ -121,6 +121,9 @@ linters:
 
   PropertySpelling:
     enabled: true
+    extra_properties:
+      - text-underline-offset
+      - text-decoration-thickness
 
   PropertyUnits:
     enabled: false

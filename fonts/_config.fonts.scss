@@ -1,0 +1,49 @@
+$font-family-light:   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-regular: 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading: 'code_pro_bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading-light: 'code_pro_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-icons:   'Font Awesome 6 Free';
+$font-family-brands:  'Font Awesome 6 Brands';
+
+// Font awesome
+$fa-path: '../fonts/fontawesome-free-6.0.0-web' !default;
+$fa-font-path: $fa-path + '/webfonts' !default;
+$fa-css-prefix: 'icon';
+
+@import '../fonts/fontawesome-free-6.0.0-web/scss/fontawesome';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/regular';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/solid';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/brands';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/v4-shims';
+
+@font-face {
+  font-family: 'proxima_novalight';
+  src: url($font-path + 'proxima_nova/proximanova-light.woff2') format('woff2'),
+       url($font-path + 'proxima_nova/proximanova-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_nova_rgregular';
+  src: url($font-path + 'proxima_nova/proximanova-regular.woff2') format('woff2'),
+       url($font-path + 'proxima_nova/proximanova-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'code_pro_bold';
+  src: url($font-path + 'code_pro/code_pro_bold_lc-webfont.woff2') format('woff2'),
+       url($font-path + 'code_pro/code_pro_bold_lc-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'code_pro_regular';
+  src: url($font-path + 'code_pro/code_pro_lc-webfont.woff2') format('woff2'),
+       url($font-path + 'code_pro/code_pro_lc-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

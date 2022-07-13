@@ -10,6 +10,9 @@
         form.text({
             'id': 'guid-' ~ random(),
             'label': 'Text',
+            'maxlength': 20,
+            'data-maxlength': true,
+            'help': 'This is another help block'
         })
     }}
 
@@ -320,16 +323,6 @@
 {% endblock tab_content %}
 
 {% block tab_sidebar %}
-    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
-        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157" />
-    </a>
-    <br />
-    {{
-        html.button({
-            'label': 'View Documentation',
-            'type': 'link',
-            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
-        })
-    }}
+   
 
 {% endblock tab_sidebar %}

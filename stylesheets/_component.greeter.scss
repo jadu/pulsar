@@ -31,9 +31,9 @@
 \* -------------------------------------------------------------------------- */
 
 // Dimensions
-$greeter-min-height:                    200px !default;
+$greeter-min-height:                    400px !default;
 $greeter-width-responsive:              80% !default;
-$greeter-width-max:                     600px !default;
+$greeter-width-max:                     700px !default;
 $greeter-padding:                       $gutter-width !default;
 $greeter-form-width-max:                500px;
 $greeter-button-border-width:           3px;
@@ -44,13 +44,14 @@ $greeter-font-size-medium:              1.25em !default;
 $greeter-font-size-small:               .9em !default;
 
 // Colours
-$greeter-bg-color:                      color(jadu-blue, dark) !default;
-$greeter-bg-color-lighter:              color(jadu-blue, light) !default;
+$greeter-bg:                            url($image-path + 'branding/central-greeter-gradient.svg') !default;
+$greeter-bg-color:                      color(jadu-purple) !default;
+$greeter-bg-color-lighter:              color(jadu-purple, light) !default;
 $greeter-bg-color-darker:               darken($greeter-bg-color, 3) !default;
 $greeter-text-color:                    color(white) !default;
 $greeter-text-color-alt:                color(black) !default;
 $greeter-link-underline-color:          $greeter-bg-color-lighter !default;
-$greeter-button-bg-color:               darken(color(jadu-blue, dark), 6) !default;
+$greeter-button-bg-color:               darken(color(jadu-purple), 6) !default;
 $greeter-button-bg-color-hover:         darken($greeter-button-bg-color, 8) !default;
 $greeter-button-border-color:           darken($greeter-button-bg-color, 10) !default;
 $greeter-button-bg-color-disabled:      $greeter-bg-color-darker !default;
@@ -92,21 +93,49 @@ $greeter-brand-bottom-height:           40px !default;
 \* -------------------------------------------------------------------------- */
 
 .greeter {
-    background-clip: border-box;
-    background-color: $greeter-bg-color;
-    background-image: url($greeter-brand-top-image-fallback);
-    background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
-    background-size: $greeter-brand-top-width $greeter-brand-top-height;
-    background-position: 20px 20px;
-    background-origin: padding-box;
-    background-repeat: no-repeat;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    background-image: $greeter-bg;
+    background-position: -5px -5px;
+    box-shadow: 0 0 0 $shadow-large color(background, shadow);
     color: $greeter-text-color;
     min-height: $greeter-min-height;
     max-width: $greeter-width-max;
     padding: $greeter-padding;
+    position: relative;
     width: $greeter-width-responsive;
+
+    &::before {
+        background-image: url($image-path + 'branding/central-greeter-shape.svg');
+        background-position: 105%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        display: block;
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    &__header {
+        position: relative;
+        margin-top: 20%;
+
+        li {
+            margin-top: $margin-base-vertical;
+        }
+
+        strong {
+            border: 2px solid color(white);
+            border-radius: 20px;
+            display: inline-block;
+            height: 25px;
+            line-height: 23px;
+            min-width: 25px;
+            text-align: center;
+            padding: 0 5px;
+        }
+    }
 
     &__link {
         border-bottom: 1px dotted $greeter-link-underline-color;
@@ -123,26 +152,8 @@ $greeter-brand-bottom-height:           40px !default;
         }
     }
 
-    &__header {
-        background-clip: border-box;
-        background: url($greeter-brand-top-image-fallback);
-        background: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
-        background-size: $greeter-brand-top-width $greeter-brand-top-height;
-        background-origin: padding-box;
-        background-repeat: no-repeat;
-        padding-top: $greeter-brand-top-height + $gutter-width;
-        text-align: right;
-
-        // Support transparent PNG background images in IE8
-        @include ie-lte(8) {
-            background-image: url($greeter-brand-top-image-fallback) !important;
-            filter: progid:DXImageTransform.Microsoft.gradient(
-                startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
-            );
-        }
-    }
-
     &__title {
+        font-family: $font-family-heading;
         font-size: $greeter-font-size-large;
         line-height: 1em;
         margin-bottom: .25em;
@@ -219,7 +230,7 @@ $greeter-brand-bottom-height:           40px !default;
         background-color: $greeter-button-bg-color;
         border: 0;
         border-bottom: $greeter-button-border-width solid $greeter-button-border-color;
-        border-radius: 4px;
+        border-radius: $border-radius;
         color: color(white);
         font-size: $greeter-font-size-small;
         line-height: 1em;
@@ -251,8 +262,10 @@ $greeter-brand-bottom-height:           40px !default;
     }
 
     &__footer {
-        font-size: $greeter-font-size-small;
-        text-align: right;
+        font-family: $font-family-heading-light;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
     }
 
     &__brand-bottom {

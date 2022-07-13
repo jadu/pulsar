@@ -29,13 +29,11 @@
     padding: 0; // reset .dropdown__menu defaults
     position: absolute;
     right: 10px;
-    top: 60px;
     width: auto;
 
     @include respond-min($screen-phone) {
         left: auto;
         right: -160px;
-        top: 40px;
         width: 380px;
     }
 }
@@ -46,6 +44,21 @@
     // Fix an issue in CMS where legacy dropdowns create a duplicate caret in :before
     &::before {
         display: none;
+    }
+
+    // Disable default button is-active styles
+    &.is-active {
+        background-color: color(white);
+        color: color(text);
+    }
+
+    &.is-active::after {
+        display: none;
+    }
+
+    &.is-active:hover {
+        background-color: color(base);
+        color: color(base, alt);
     }
 
     // the red dot indicator

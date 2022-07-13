@@ -19,7 +19,7 @@ HelpTextComponent.prototype.init = function () {
 
     // Help toggle click bind
     component.$html
-        .on('touchstart click', '.js-show-page-help', function(e) {
+        .on('click', '.js-show-page-help', function(e) {
             e.preventDefault();
             e.stopPropagation();
             component.toggleHelpSidebar();
@@ -27,7 +27,7 @@ HelpTextComponent.prototype.init = function () {
         .on('focusout', '.tab-help-container', (event) => component.handleFocusOut(event));
 
     // Close help button
-    $tabHelpContainer.on('touchstart click', '.js-close-page-help', function(e) {
+    $tabHelpContainer.on('click', '.js-close-page-help', function(e) {
         e.preventDefault();
         e.stopPropagation();
         component.toggleHelpSidebar();
@@ -97,7 +97,7 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
     if (activeTabSideBarContentHtml && activeTabSideBarContentHtml.length > 0) {
 
         // If clicked outside of sidebar, close sidebar
-        this.$document.on('touchstart click', function(e) {
+        this.$document.on('click', function(e) {
 
             // side bar help is open
             if (component.$html.hasClass('open-help')) {

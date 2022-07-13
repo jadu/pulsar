@@ -10,7 +10,7 @@
         border-bottom: 1px solid rgba(0, 0, 0, .1);
         clear: none;
         font-size: $font-size-large * 1.1;
-        line-height: $font-size-large * 1.3;
+        line-height: 20px;
         margin-bottom: 0;
         padding: 12px $padding-large-horizontal;
 
@@ -35,9 +35,13 @@
                 margin-bottom: 0;
             }
         }
+
+        .btn {
+            vertical-align: bottom;
+        }
     }
 
-    a {
+    a:not(.btn) {
         font-family: $font-family-regular;
 
         &,
@@ -67,6 +71,10 @@
     }
 }
 
+.panel--outline {
+    border: 1px solid color(grey, light);
+}
+
 .panel--scroll .panel__body {
     max-height: 20em;
     overflow-y: auto;
@@ -81,7 +89,7 @@
 .panel__icon {
     float: left;
     font-size: $font-size-large * 1.1;
-    margin: 14px 10px 0 $padding-large-horizontal;
+    margin: 10px;
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
@@ -100,11 +108,11 @@
             a:hover,
             a:active,
             a:visited {
-                color: $state-color-alt !important;
+                color: $state-color-alt;
             }
 
             a:focus {
-                color: color(black) !important;
+                color: color(black);
             }
         }
     }
