@@ -7,6 +7,7 @@
 // --------------------
 .caret {
   @include inline-block;
+  color: inherit;
   width: 0;
   height: 0;
   margin-left: 2px;
@@ -24,6 +25,22 @@
   position: relative;
 }
 
+// Make sure transparent trigger buttons sit over dropdown shadow
+.dropdown.open > .btn--outline {
+  background-color: color(primary);
+  border: 1px solid color(primary);
+  color: color(primary, alt);
+  z-index: $zindex-dropdown + 1;
+
+  .caret {
+    border-top-color: color(primary, alt);
+  }
+
+  &:focus .caret {
+    border-top-color: color(black);
+  }
+}
+
 // The dropdown menu (ul)
 // ----------------------
 .dropdown__menu {
@@ -33,16 +50,12 @@
   z-index: $zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
   float: left;
-  font-size: $dropdown-font-size;
   min-width: 160px;
   padding: 5px 0;
-  margin: 0; // override default ul
+  margin: $shadow-small 0 0; // override default ul
   list-style: none;
   background-color: $dropdown-bg;
-  border: 1px solid $dropdown-fallback-border; // IE8 fallback
-  border: 1px solid $dropdown-border;
-  // border-radius: $border-radius;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  box-shadow: 0 0 0 $shadow-small color(background, shadow);
   background-clip: padding-box;
 
   // Aligns the dropdown menu to right
@@ -53,7 +66,7 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
-    background-color: $dropdown-divider-bg;
+    background-color: color(border);
     display: block;
     height: 1px;
     margin: ($line-height-base / 4) 0;
@@ -79,7 +92,7 @@
     display: block;
     font-weight: normal;
     line-height: $line-height-base;
-    padding: 3px 15px 3px 10px;
+    padding: 4px 15px 2px 5px;
     text-align: left;
     text-decoration: none;
     white-space: nowrap; // prevent links from randomly breaking onto new lines
@@ -93,10 +106,6 @@
       width: 23px;
     }
   }
-
-  > li > .btn {
-    @extend .btn--white;
-  }
 }
 
 // Hover/Focus state
@@ -107,7 +116,7 @@
   &.active {
     background-color: $dropdown-link-hover-bg;
     box-shadow: 0;
-    color: $dropdown-link-hover-color !important;
+    color: $dropdown-link-hover-color;
     text-decoration: none;
     transform: none;
   }
@@ -175,7 +184,7 @@
 .dropdown-header {
   display: block;
   padding: 3px 20px;
-  font-size: $font-size-small;
+  // font-size: $font-size-small;
   line-height: $line-height-base;
   color: color(gray, light);
 }
@@ -215,7 +224,7 @@
   // Different positioning for bottom up menu
   .dropdown__menu {
     top: auto;
-    bottom: 100%;
+    bottom: 43px;
     margin-bottom: 1px;
   }
 }
@@ -304,8 +313,8 @@
   }
 
   &.link--danger {
-    background-color: color(danger) !important;
-    color: color(white) !important;
+    background-color: color(danger);
+    color: color(white);
 
     &:hover {
       background-color: darken(color(danger), 5%);
@@ -315,6 +324,10 @@
       @include pulsar-dropdown-item-focused;
       background-color: color(background, focus) !important;
       color: color(black) !important;
+    }
+
+    &.disabled {
+      background-color: color(danger, light);
     }
 
     > .badge {

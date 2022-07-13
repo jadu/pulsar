@@ -1,16 +1,24 @@
 .content-main {
-    position: relative;
     display: table;
+    min-height: 100%;
     padding: 0 $gutter-width;
-    table-layout: fixed;
+    position: relative;
+    table-layout: fixed; // needed to make datatable overflow work at small widths
+    width: 100%;
+}
+
+.parent-title,
+.main-title {
+    color: color(jadu-purple);
+    font-family: $font-family-heading;
+    font-size: 1.5em;
+    line-height: 32px;
     width: 100%;
 }
 
 .main-title {
     font-size: 1.75em;
-    line-height: 32px;
     margin-bottom: 13px;
-    width: 100%;
 }
 
 .sub-title {
@@ -31,7 +39,7 @@
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
     display: table;
-    height: calc(100vh);
+    height: 100%;
     left: 0;
     padding-bottom: 24px; // make sure content clears the footer
     position: relative;
@@ -115,11 +123,14 @@
 }
 
 .tab__pane {
-    margin-top: 24px;
+    margin-top: ($margin-large-vertical * 2);
     width: 100%;
 }
 
 .tab__content {
+    background-color: color(white);
+    margin-bottom: ($margin-large-vertical * 2);
+    padding: 15px $gutter-width $gutter-width;
     width: auto;
 }
 
@@ -177,8 +188,6 @@
     }
 }
 
-// experimenting with new tab rendering
-
 .tab__container {
     float: none;
     height: 100%;
@@ -193,14 +202,10 @@
     }
 
     .tab__content {
-        display: block;
-
-        @include respond-min($screen-desktop) {
-            display: table-cell;
-            float: left;
-            vertical-align: top;
-            width: 100%;
-        }
+        display: table-cell;
+        float: left;
+        vertical-align: top;
+        width: 100%;
     }
 
     .tab__sidebar {
@@ -212,17 +217,22 @@
         @include respond-min($screen-desktop) {
           display: table-cell;
           float: right;
-          padding-left: $padding-base;
+        }
+
+        h2 {
+            font-family: $font-family-heading-light;
+            font-size: 1rem;
+            font-weight: normal;
+            line-height: $line-height-base;
+            margin: 0 0 $margin-large-vertical;
+        }
+
+        a {
+            color: color(text);
         }
 
         .no-js & {
           display: table-cell;
-        }
-
-        .heading {
-            font-size: $font-size-large;
-            line-height: $line-height-large;
-            margin: 0;
         }
     }
 }

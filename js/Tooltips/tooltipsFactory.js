@@ -1,5 +1,7 @@
 'use strict';
 
+var $ = require('jquery');
+
 const tippy = require('tippy.js').default;
 const { hideAll } = require('tippy.js');
 const TooltipListener = require('./TooltipListener');

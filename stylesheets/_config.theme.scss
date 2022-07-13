@@ -58,9 +58,9 @@ $badge-link-hover-color:        #fff !default;
 // -----------------------------------------------------------------------------
 
 $dropdown-bg:                    #fff !default;
-$dropdown-border:                color(gray, light) !default;
-$dropdown-fallback-border:       color(gray) !default;
-$dropdown-divider-bg:            color(gray, light) !default;
+$dropdown-border:                color(black) !default;
+$dropdown-fallback-border:       color(black) !default;
+$dropdown-divider-bg:            color(black) !default;
 $dropdown-link-active-color:     #fff !default;
 $dropdown-link-active-bg:        color(primary) !default;
 $dropdown-link-color:            color(gray, dark) !default;
@@ -129,6 +129,6 @@ $state-info-border:              #2f6e8e !default;
 //  Navigation
 // -----------------------------------------------------------------------------
 
-$nav-color-light: color(jadu-blue, dark) !default;
-$nav-color-dark: darken(color(jadu-blue, dark), 5%) !default;
-$nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
+$nav-color-light:                #3e4994 !default; // must be AA 4.5:1
+$nav-color-dark:                   darken(#3e4994, 7.5%) !default;
+$nav-color-darker:                 darken(#3e4994, 10%) !default;

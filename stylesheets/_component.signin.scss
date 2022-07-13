@@ -1,181 +1,150 @@
+// scss-lint:disable UrlFormat
 
-html,
-body {
-	height: 100%;
-	margin: 0;
-}
+$signin-full-width:					500px;
+$signin-mobile-width:				320px;
+$signin-panel-full-width:		460px;
+$signin-panel-mobile-width:	300px;
 
-.video {
-	height: 100%;
-	width: 100%;
-}
-
-// prevent white flash before video plugin is initialised
 .signin-backdrop {
-	background-color: color(black);
+	background: #fff;
+	background-image: url('../images/signin-backdrop.jpg');
+	background-attachment: fixed;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	bottom: 0;
 	left: 0;
-	position: absolute;
+	position: fixed;
 	right: 0;
 	top: 0;
 	z-index: -1;
 }
 
-// Fixes an issue with Safari where animations break when on top of a video
-.signin-container {
-	transform: translate3d(0, 0, 0);
-}
-
 .signin-brand {
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    top: 50px;
-    width: 200px;
+	border-top: 1px solid #ccc;
+	bottom: 0;
+	display: block;
+	height: 46px;
+	left: 0;
+	margin: 0;
+	position: fixed;
+	right: 0;
+	text-align: center;
+	width: $signin-mobile-width;
+
+	@include respond-min(540px) {
+		border: 0;
+		left: auto;
+		right: 10px;
+		width: 200px;
+	}
+
+	> img {
+		filter: brightness(0);
+		vertical-align: bottom;
+		width: 200px;
+
+		@include respond-min(540px) {
+			filter: drop-shadow(0 0 10px #000);
+		}
+	}
 }
 
-.jadu-logomark {
-    background: url($branding-navigation-fallback);
-    background: url($branding-navigation), linear-gradient(transparent, transparent);
-    background-size: $branding-navigation-width $branding-navigation-height;
-    background-repeat: no-repeat;
-    display: inline-block;
-    text-align: center;
-    height: $branding-navigation-height;
-    width: $branding-navigation-width;
-}
-
-.jadu-wordmark {
-    display: none;
+.signin-container {
+	display: flex;
 }
 
 .signin {
-	background-color: $signin-bg-color-fallback;
-	background-color: $signin-bg-color;
-	border-radius: 2px;
-	box-shadow: 0 0 50px color(black);
-	color: color(white);
-	margin: 0 auto;
-	min-height: 350px;
-	padding: 0 0 10px;
-	opacity: 1;
-	overflow: hidden;
-	position: relative;
-	top: 5em;
-	width: $signin-mobile-width;
-	zoom: 1;
-	transition: background-color .25s;
+	margin: 0;
+	width: $signin-mobile-width - 40px;
+	transition: width .25s, padding .25s;
 
 	@include respond-min($screen-tablet) {
-		min-height: 320px;
-		padding: 0 0 20px;
-		width: $signin-full-width;
+		width: $signin-full-width - 40px;
+		margin: 40px;
 	}
 
 	&--error {
-		background-color: color(danger);
-		animation: shake 400ms ease-in-out;
-
 		.loading--circle i {
 			border: 1px solid rgba(0, 0, 0, .2);
 			border-top-color: color(white);
 		}
 	}
-
-	&--success {
-		background-color: color(success);
-	}
-
-	form {
-		overflow: visible;
-	}
-
-	input,
-	button {
-		&:focus {
-			outline: none;
-			box-shadow: 0 0 5px black;
-		}
-	}
-
-	input {
-		background-color: color(white);
-		color: color(black);
-	}
-
-	a {
-		color: color(white);
-	}
-
-	.btn {
-		background: none;
-		border: 2px solid white;
-		box-shadow: none;
-
-		&:hover,
-		&:focus {
-			background-color: rgba(0, 0, 0, .1);
-			top: 0;
-		}
-
-		&:active {
-			top: 1px;
-		}
-
-		&.is-loading {
-			padding-top: 4px;
-			padding-bottom: 5px;
-
-			&:hover {
-				background-color: none;
-			}
-		}
-	}
-
-	&.active-success {
-		animation-delay: .8s;
-		animation-duration: .25s;
-		animation-fill-mode: both;
-		animation-name: success-container;
-		background-color: rgb(41, 124, 70);
-		background-color: rgba(41, 124, 70, .9);
-	}
 }
 
 .signin__inner {
-	transition: background-color .5s, margin-left .25s;
 	float: left;
-	width: 1210px;
+	height: calc(100% - 100px);
+	margin-left: 10px;
+	margin-top: -95px;
+	transition: width .25s, padding .25s;
+	width: $signin-panel-mobile-width * 6;
+
+	@include respond-min($screen-tablet) {
+		height: 100%;
+		margin-left: 0;
+		margin-top: -75px;
+		width: $signin-panel-full-width * 6;
+	}
+
+	.signin__inner::-webkit-scrollbar-track {
+		background-color: rgba(57, 57, 57, 0);
+		border-radius: 8px;
+	}
+
+	.signin__inner::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 7px;
+	}
+
+	.signin__inner::-webkit-scrollbar-thumb {
+		border-radius: 4px;
+		background-color: transparent;
+		box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+	}
 
 	.active-reset & {
 		position: relative;
-		margin-left: -$signin-mobile-width;
+		margin-left: -$signin-panel-mobile-width + 10px;
 
 		@include respond-min($screen-tablet) {
-			margin-left: -$signin-full-width;
+			margin-left: -$signin-panel-full-width;
 		}
 	}
 
 	.active-forgot & {
 		position: relative;
-		margin-left: -$signin-mobile-width * 2;
+		margin-left: -$signin-panel-mobile-width * 2 + 10px;
 
 		@include respond-min($screen-tablet) {
-			margin-left: -$signin-full-width * 2;
+			margin-left: -$signin-panel-full-width * 2;
+		}
+	}
+
+	.active-success.active-success & {
+		position: relative;
+		margin-left: -$signin-panel-mobile-width * 4 + 10px;
+
+		@include respond-min($screen-tablet) {
+			margin-left: -$signin-panel-full-width * 4;
 		}
 	}
 
 	.active-twostep & {
+		position: relative;
+		margin-left: -$signin-panel-mobile-width * 3 + 10px;
+
+		@include respond-min($screen-tablet) {
+			margin-left: -$signin-panel-full-width * 3;
+		}
 
 		.signin-form,
 		.signin-reset {
-			opacity: 0;
 			visibility: hidden;
 			z-index: -1;
 		}
 
 		.signin-twostep {
-			opacity: 1;
 			z-index: 1;
 		}
 	}
@@ -184,282 +153,313 @@ body {
 		.signin-form,
 		.signin-reset,
 		.signin-twostep {
-			opacity: 0;
 			visibility: hidden;
 			z-index: -1;
 		}
 
 		.signin-success {
-			opacity: 1;
 			z-index: 1;
 		}
 	}
 
 }
 
-
 .signin__panel {
+	background-color: $signin-bg-color;
+	border-top: 1px solid #ccc;
+	box-shadow: 0 0 0 10px rgba(0, 0, 0, .3);
 	float: left;
-	text-align: center;
-	transition: opacity .5s, z-index .5s;
-	width: $signin-mobile-width;
+	padding: 75px 20px 20px;
+	transition: width .25s, padding .25s, z-index .25s;
+	width: $signin-panel-mobile-width;
 
 	@include respond-min($screen-tablet) {
-		width: $signin-full-width;
+		padding: 75px 40px 40px;
+		width: $signin-panel-full-width;
+	}
+
+	&[aria-hidden="true"] {
+		visibility: hidden;
 	}
 }
 
-.signin__actions {
-	margin: 0 auto 1em;
+// form alignment
+.signin .form {
+	fieldset {
+		padding: 0;
+	}
+
+	p {
+		margin-bottom: $line-height-base / 2;
+	}
+
+	.legend {
+		border-bottom: 1px solid color(border);
+		line-height: $line-height-base;
+		margin-bottom: 5px;
+	}
+
+	.form__group {
+		margin-bottom: 0;
+	}
+
+	.form__group--top .control__label {
+		margin-bottom: 0;
+	}
+
+	.form__actions {
+		border-top: 0;
+		padding-bottom: 0;
+	}
+
+	.input-group-btn .btn {
+		border: 2px solid color(black);
+		line-height: 44px;
+	}
 }
 
-.signin__input {
+.signin__input,
+.signin .form__control.form__control {
 	background-color: none;
-	border: 0;
-	box-shadow: inset 0 3px 0 #efefef;
-	border-radius: 2px;
+	border: 2px solid color(black);
 	display: inline-block;
 	margin: 0 auto 1em;
-	padding: 10px;
-	width: 80%;
+
+	&:not(.select) {
+		padding: 10px;
+	}
+
+	&.checkbox {
+		margin: 0 1em 0 0;
+	}
+
+	&:not(.checkbox) {
+		width: 100%;
+	}
+
+	&:focus {
+		@include pulsar-input-focused;
+	}
 }
 
-.signin__code1,
-.signin__code2 {
+.signin__code1.signin__code1,
+.signin__code2.signin__code2 {
 	@extend .signin__input;
 	display: inline-block;
 	font-family: courier;
 	letter-spacing: 5px;
-	margin: 0 5px 1em;
+	margin: 0 5px 1em 0;
 	padding: 10px 10px 10px 12px;
-	width: 20%;
+	width: 81px;
 
 	@include respond-min($screen-tablet) {
 		padding: 10px 10px 10px 20px;
 	}
 }
 
+.signin__actions + .signin__actions {
+	border-top: 1px solid #ccc;
+	margin-top: 2em;
+	padding-top: 1.5em;
+}
+
+.signin__action {
+	display: block;
+	margin: 0 0 1em;
+	width: 100%;
+}
+
 .signin__submit {
 	display: inline-block;
 	margin: 0 auto;
+	width: 40%;
+
+	.loading {
+		margin: 0 auto;
+	}
 }
 
-.signin__group {
+.signin__alt {
+	background-color: color(white);
+	border-radius: 20px;
+	display: block;
+	margin-top: 1em;
+	text-align: left;
+	width: 100%;
+
+	.svg-inline--fa {
+		margin-right: 10px;
+	}
+}
+
+.connect-logo {
+	&::before {
+		background: url('../images/branding/jadu-connect-logomark.svg');
+    background-size: 19px 19px;
+		background-repeat: no-repeat;
+		content: '';
+    display: inline-block;
+		height: 19px;
+		text-align: center;
+		vertical-align: middle;
+    width: 19px;
+	}
+}
+
+.signin__action-separator {
+	display: inline-block;
+	text-align: center;
+	width: 18%;
+}
+
+.signin__heading {
+	color: color(gray, darker);
+	font-family: $font-family-heading;
+	margin: 0 $padding-base 0 10px;
+	padding: 20px;
 	position: relative;
+	text-align: left;
+	top: 10px;
+	width: $signin-mobile-width - 20px;
+	z-index: 1;
 
-	.signin__reset {
-		color: $signin-bg-color;
-		position: absolute;
-		text-decoration: none;
-		top: 10px;
-		right: 50px;
-	}
-
-	.tooltip-arrow {
-		border-left-color: $signin-bg-color !important;
-	}
-
-	.tooltip-inner {
-		background-color: $signin-bg-color;
-	}
-
-	label {
-		@extend %hide;
+	@include respond-min($screen-tablet) {
+		margin: 0;
+		padding: 20px 0 20px 40px;
+		width: $signin-full-width - 40px;
 	}
 }
 
 .signin__info {
 	display: block;
-	font-size: $font-size-base;
-	line-height: $line-height-base;
-	margin-bottom: 1em;
-	padding: 0 5px;
+	margin: 1em 0;
 }
 
 .signin__link {
 	display: inline-block;
-	font-size: .8em;
+	margin-top: .5em;
+}
 
-	&:focus {
-		outline-color: color(white);
-	}
+.signin__group {
+	clear: left;
+	position: relative;
 }
 
 .signin__hint {
-	@include icon-FontAwesome();
 	animation-duration: 1s;
 	animation-fill-mode: both;
 	animation-iteration-count: infinite;
-	animation-name: hint-wobble;
+	animation-name: hint-wobble-small;
 	display: inline-block;
-	font-size: 1.5em;
-	left: 5px;
+	font-size: 1em;
+	left: -16px;
 	position: absolute;
 	width: 25px;
-	top: 2px;
+	top: 32px;
 
 	@include respond-min($screen-tablet) {
-		left: 12px;
-		top: 6px;
+		animation-name: hint-wobble;
+		font-size: 1.5em;
+		left: -30px;
+		top: 32px;
 	}
 
 	&::before {
 		content: '\f0a4';
+		font-family: $font-family-icons;
+		font-style: normal;
 	}
 
 	.signin-twostep & {
-		left: 55px;
+		left: -17px;
+		top: 10px;
 
 		@include respond-min($screen-tablet) {
-			left: 85px;
+			left: -30px;
 		}
 	}
 
 	.signin__code2 + & {
-		left: inherit;
-		right: 50px;
+		left: 175px;
 
 		@include respond-min($screen-tablet) {
-			left: inherit;
-			right: 80px;
+			left: 180px;
 		}
 
 		&::before {
 			content: '\f0a5';
+			font-family: $font-family-icons;
+			font-style: normal;
 		}
 	}
 }
 
-.shake {
-  animation: shake 500ms ease-in-out;
-}
-
 .signin__icon {
-	background: url($branding-site-fallback);
-	background: url($branding-site), linear-gradient(transparent, transparent);
-	background-size: $branding-site-height $branding-site-width;
-	background-position: 50% 0;
-	background-repeat: no-repeat;
-	border-radius: $branding-site-radius;
-	display: inline-block;
-	margin: 20px auto 0;
-	text-align: center;
-	height: $branding-site-height;
-	width: $branding-site-width;
+	display: block;
+	float: left;
+	margin: 1em 5px 0 0;
 
 	.signin--error &,
-	.signin-reset &,
-	.signin-forgot &,
-	.signin-twostep &,
 	.signin-success & {
-		@include icon-FontAwesome();
-		background-image: none;
-		border-radius: 65px;
-		line-height: 65px;
-		margin-bottom: 6px;
-	}
-
-	.signin-reset &,
-	.signin-forgot &,
-	.signin-twostep &,
-	.signin-success & {
-		background-color: #fff;
-
 		&::before {
-			display: inline-block;
-			color: #2f8dbd;
-			width: 66px;
+			font-family: $font-family-icons;
+			font-style: normal;
+			font-weight: 600;
 		}
 	}
 
 	.signin--error &::before {
-		content: '\f119';
-		font-size: 75px;
-	}
-
-	.signin-twostep &::before {
-		content: '\f10b';
-		font-size: 65px;
-
-		.signin--error & {
-			color: color(danger);
-		}
-	}
-
-	.signin-forgot &::before {
-		content: '\f128';
-		font-size: 65px;
-		width: 40px;
-		margin-left: -2px;
-	}
-
-	.signin-reset & {
-		background-color: #fff;
-
-		&::before {
-			//&#xf0e0;
-			content: '\f0e0';
-			display: inline-block;
-			color: #2f8dbd;
-			font-size: 35px;
-			width: 66px;
-		}
+		content: '\f06a';
+		color: color(danger);
 	}
 
 	.active-success .signin-success & {
-		animation-duration: 1s;
-		animation-fill-mode: both;
-		animation-name: success-icon;
+		height: 150px;
+		position: relative;
+		text-align: center;
+		top: 60px;
+		width: 100%;
 
 		&::before {
-			content: '\f087';
+			content: '\f058';
 			color: color(success);
-			font-size: 35px;
+			font-size: 100px;
+			width: 100px;
 		}
 	}
 }
 
-
-.signin-twostep,
-.signin-success {
-
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -1;
-
-	.signin__group {
-		margin-top: 1.5em;
-	}
+.signin-twostep label {
+	display: none;
 }
 
 // 2FA code input in control centre UI
 .form__group .controls,
 .modal {
 	.form__control.signin__code1,
-    .form__control.signin__code2 {
-        display: inline-block;
-        font-family: courier;
-        letter-spacing: 2px;
-        padding: 0 10px;
-        width: 55px;
-    }
+	.form__control.signin__code2 {
+		display: inline-block;
+		font-family: courier;
+		letter-spacing: 2px;
+		padding: 0 10px;
+		width: 55px;
+	}
 }
 
-// Scale effect is disabled in Firefox because of horrible performance issues
-@keyframes success-icon {
-	0% {
-		transform: translateY(0) scale(1);
+.signin-credits {
+	bottom: 10px;
+	color: #fff;
+	display: none;
+	font-size: $font-size-small;
+	position: absolute;
+	right: 10px;
+
+	a {
+		color: #fff;
 	}
 
-	50% {
-		transform: translateY(160%) scale(2);
-	}
-
-	100% {
-		-moz-transform: translateY(160%) scale(1);
-		transform: translateY(160%) scale(1.5);
+	a:focus {
+		color: #000;
 	}
 }
 
@@ -473,78 +473,14 @@ body {
 	}
 }
 
-@keyframes shake {
-	0% {
+@keyframes hint-wobble-small {
+	0%, 50%, 100% {
 		transform: translateX(0);
 	}
 
-	12.5% {
-		transform: translateX(-10px) rotateY(-5deg);
+	25%, 75% {
+		transform: translateX(-2px);
 	}
-
-	37.5% {
-		transform: translateX(10px) rotateY(4deg);
-	}
-
-	62.5% {
-		transform: translateX(-5px) rotateY(-2deg);
-	}
-
-	87.5% {
-		transform: translateX(5px) rotateY(1deg);
-	}
-
-	100% {
-		transform: translateX(0);
-	}
-}
-
-@keyframes fade-in {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
-
-
-// Full-bleed background image for IE7 & 8
-// The required markup & image for this is contained in a conditional comment
-.signin-oldie-bg {
-	position: fixed;
-	top: -50%;
-	left: -50%;
-	width: 200%;
-	height: 200%;
-
-	img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		margin: auto;
-		min-width: 50%;
-		min-height: 50%;
-	}
-
-	+ .video {
-		background: none;
-	}
-}
-
-
-// IE8 fixes for icon positions
-.ie8 .signin-reset .signin__icon {
-	padding-left: 15px;
-}
-
-.ie8 .signin-twostep .signin__icon,
-.ie8 .signin-success .signin__icon {
-	padding-left: 18px;
 }
 
 [id="recaptcha_widget_div"] {
@@ -552,7 +488,4 @@ body {
 	margin: 0 auto 1em;
 }
 
-.signin-twostep-help {
-	text-align: left;
-	list-style-position: outside;
-}
+// scss-lint:enable UrlFormat

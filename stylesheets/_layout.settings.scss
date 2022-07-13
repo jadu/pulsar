@@ -5,7 +5,7 @@
 .tab__settings {
     @include clear-fix(true);
 
-    background-color: color(background, light);
+    background-color: color(white);
     margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
@@ -34,17 +34,6 @@
     > *:last-child {
         margin-bottom: 0;
     }
-
-    // Ensure AA colour contrast
-    a {
-        color: color(link, dark);
-    }
-
-    // Ensure AA colour contrast
-    a:focus,
-    .help-block {
-        color: color(text);
-    }
 }
 
 
@@ -55,15 +44,8 @@
 .settings-section {
     &:not(.settings-section--primary) {
         @include respond-min-max($screen-smaller, $screen-medium) {
-            border-left: 1px solid color(border);
-            border-top: 0;
-            float: right;
-            margin-left: $padding-small-horizontal * 2;
-            margin-top: 0;
-            max-width: calc(100% - 200px - #{$padding-small-horizontal * 2});
-            padding-left: $padding-small-horizontal * 2;
-            padding-top: 0;
-            width: 75%;
+            float: left;
+            width: 100%;
         }
     }
 
@@ -121,7 +103,7 @@
     @include respond-min-max($screen-smaller, $screen-medium) {
         float: left;
         min-width: 200px;
-        width: calc(25% - #{$padding-small-horizontal * 2});
+        width: 100%;
     }
 
     @include respond-max($screen-smaller) {
@@ -357,10 +339,6 @@
     @include respond-min($screen-medium) {
         margin-bottom: $line-height-small;
 
-        // stop tables extending past the container when enlarged (IE10)
-        // https://github.com/jadu/pulsar/pull/925#discussion_r234206459
-        -ms-flex: 1 1 auto;
-
         .ie9 & {
             padding-left: $padding-small-horizontal * 2;
         }
@@ -389,7 +367,10 @@
     }
 
     .tab__header {
+        background-color: color(white);
         flex-basis: 100%;
+        margin: 0 0 $margin-large-vertical;
+        padding: $padding-base;
         width: 100%;
     }
 }
@@ -592,8 +573,6 @@
         margin-bottom: (-$footer-height);
 
         .tab__content {
-            min-height: 100vh;
-            padding-bottom: $footer-height;
             left: calc(370px + 1%);
             position: relative;
         }

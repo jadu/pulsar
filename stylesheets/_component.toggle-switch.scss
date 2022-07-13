@@ -82,8 +82,9 @@
 
     &::after {
         color: color(white);
-        content: '\F00C \F00D';
-        font-family: 'FontAwesome';
+        content: '\f00c \f00d';
+        font-family: $font-family-icons;
+        font-weight: 900;
         font-size: $font-size-base;
         left: 10px;
         letter-spacing: 14.4px; // Magic number - for correct alignment

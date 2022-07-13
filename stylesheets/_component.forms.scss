@@ -13,7 +13,6 @@ fieldset {
 
         legend {
             border-bottom: 1px solid color(border);
-            color: color(text);
             display: block;
             font-size: $font-size-xlarge;
             line-height: $line-height-base;
@@ -39,12 +38,12 @@ fieldset {
 }
 
 .form__group--compact .form__control {
-    height: 33px;
-    line-height: 33px;
+    height: 38px;
+    line-height: 38px;
 }
 
 .form__group--compact .input-group-addon {
-    line-height: 30px;
+    line-height: 36px;
 }
 
 .modal .form__group {
@@ -285,6 +284,7 @@ fieldset {
 }
 
 .legend {
+    font-family: $font-family-heading-light;
     font-size: $font-size-large;
     margin-bottom: .5em;
 }
@@ -385,6 +385,7 @@ fieldset {
         .form__group--#{$variant}.form__group--#{$variant} .form__control:not(.checkbox):not(.radio),
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control + .select2 {
+            max-width: 100%;
             width: #{$width};
         }
     }
@@ -501,21 +502,17 @@ fieldset {
 }
 
 .form__button-group {
-
     > .control__label {
         padding-top: 3px;
     }
 
     .controls > .control__label {
-        @extend .btn;
+        @extend %btn;
+        border-right: 1px solid;
+        border-right-color: #fff;
     }
 
-    .controls > .control__label:not(:first-of-type) {
-        margin-left: -1px;
-    }
-
-    // Position elements outside of the container as display:none or
-    // visibility:hidden causes the inputs to stop being interactive in IE8
+    // Hide the inputs which drive the button group behaviour
     .form__control.form__control,
     .form__control.form__control.checkbox,
     .form__control.form__control.radio {
@@ -524,18 +521,37 @@ fieldset {
         top: 0;
     }
 
-    .form__control:checked + .control__label {
-        background-color: color(grey, lighter);
-        box-shadow: 0 2px 0 color(primary);
+    // Selected state
+    .form__control:checked + .control__label,
+    .form__control:checked + .control__label:hover {
+        background-color: color(primary);
+        color: color(primary, alt);
         font-family: $font-family-regular;
     }
 
-    .form__control:focus + .control__label {
-        @include pulsar-button-focused;
+    // Visible indicator to not rely on colour alone
+    .form__control:checked + .control__label::after {
+        background-color: color(white);
+        bottom: 4px;
+        content: '';
+        display: block;
+        height: 2px;
+        position: absolute;
+        width: auto;
+        right: 5px;
+        left: 5px;
+        border-radius: 3px;
     }
 
-    .btn__group {
-        vertical-align: top;
+    // Make sure focused buttons aren't overlapped by subsequent children
+    .form__control:focus + .control__label,
+    .form__control:focus + .control__label:hover {
+        @include pulsar-button-focused;
+        z-index: 1;
+    }
+
+    .form__control:focus + .control__label::after {
+        background-color: color(black);
     }
 }
 
@@ -588,7 +604,8 @@ fieldset {
 .form__control.checkbox {
     &::before {
         content: '';
-        font-family: 'FontAwesome';
+        font-family: $font-family-icons;
+        font-weight: 900;
         height: 20px;
         left: 2px;
         position: absolute;
@@ -614,22 +631,18 @@ fieldset {
 .form__control.radio {
     border-radius: $border-radius-large;
 
-    &::before {
-        content: '';
-        font-family: 'FontAwesome';
-        font-size: 11px;
-        height: 20px;
-        left: 5.5px;
-        position: absolute;
-        top: -13px;
-    }
-
     &:focus {
         @include pulsar-radio-focused;
     }
 
     &:checked::before {
-        content: '\f111';
+        background-color: color(black);
+        border-radius: 12px;
+        content: '';
+        display: block;
+        height: 12px;
+        margin: 4px auto;
+        width: 12px;
     }
 }
 
@@ -799,9 +812,34 @@ fieldset.form__group {
 
 // CK editor focus styles. Plugin used in all products. Chained for specificity bump.
 // scss-lint:disable SelectorFormat
+.cke_chrome.cke_chrome {
+    box-shadow: none;
+}
+
 .cke_focus.cke_focus {
     border: 3px solid color(black);
     border-radius: 0;
     outline: 3px solid color(border, focus);
     outline-offset: 0;
+}
+
+// maxlength counter
+.inputLength__label {
+    background-color: color(grey, lightest);
+    border-radius: $border-radius-small;
+    color: color(text);
+    display: inline-block;
+    min-width: 25px;
+    padding: 2px 5px 0;
+    text-align: center;
+}
+
+.inputLength--warn > .inputLength__label {
+    background-color: color(warning);
+    color: color(warning, alt);
+}
+
+.inputLength--stop > .inputLength__label {
+    background-color: color(danger);
+    color: color(danger, alt);
 }

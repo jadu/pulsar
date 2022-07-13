@@ -447,10 +447,15 @@ SignInComponent.prototype.twoStepFail = function() {
 
 SignInComponent.prototype.success = function () {
 
-	var component = this;
+	var component = this,
+		successPanel = component.$container.find('.signin-success'),
+		oldPanel = component.$container.find('.signin__panel:not(.signin-success)');
 
 	component.$alert.append(document.createTextNode(component.successMessage));
 	component.$container.addClass('active-success');
+
+	successPanel.attr('aria-hidden', 'false');
+	oldPanel.attr('aria-hidden', 'true');
 
 }
 

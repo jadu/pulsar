@@ -12,12 +12,14 @@
     @include ie-lte(8) {
         .table-row-select:before {
             content: '\f14a';
+            font-family: $font-family-icons;
         }
     }
     // scss-lint:enable PseudoElement
 
     .table-row-select::before {
         content: '\f14a';
+        font-family: $font-family-icons;
     }
 
     a,
@@ -111,7 +113,7 @@ a.dt-button {
         &.sorting::after,
         &.sorting_asc::after,
         &.sorting_desc::after {
-            @include icon-FontAwesome();
+            // @include icon-FontAwesome();
             font-size: $font-size-base;
             line-height: 22px;
             position: absolute;
@@ -121,14 +123,20 @@ a.dt-button {
         &.sorting::after {
             content: '\f0dc';
             color: color(text, light);
+            font-family: $font-family-icons;
+            font-weight: 900;
         }
 
         &.sorting_asc::after {
             content: '\f0de';
+            font-family: $font-family-icons;
+            font-weight: 900;
         }
 
         &.sorting_desc::after {
             content: '\f0dd';
+            font-family: $font-family-icons;
+            font-weight: 900;
         }
 
         &.sorting_disabled::after {
@@ -168,6 +176,7 @@ a.dt-button {
 tr.selected .table-row-select::before {
     color: color(primary);
     content: '\f14a';
+    font-family: $font-family-icons;
 }
 
 // scss-lint:disable SelectorFormat
@@ -215,7 +224,7 @@ th.sorting_disabled:hover {
     [type="search"] {
         border: 1px solid color(border);
         color: black;
-        border-radius: 4px;
+        border-radius: $border-radius;
         margin-left: 10px;
         padding: 5px;
 
@@ -303,7 +312,7 @@ th.sorting_disabled:hover {
 
 .parent .table-child-toggle i::before {
     color: color(jadu-red);
-    content: $minus-sign;
+    // content: $minus-sign;
 }
 
 .datatable .child ul {
@@ -343,8 +352,6 @@ th.sorting_disabled:hover {
 
 .dataTables_bottom {
     @include clear-fix;
-
-    margin-bottom: 24px;
 }
 
 .dataTables_paginate {
