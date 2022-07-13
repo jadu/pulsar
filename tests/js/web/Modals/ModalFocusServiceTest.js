@@ -21,7 +21,7 @@ describe('ModalFocusService', () => {
         $link = $('<a href="#">focus trap test link</a>');
         $actionsMenu = $(`
             <div class="btn__group dropdown">
-                <button data-toggle="dropdown" class="btn dropdown__toggle">Actions</button>
+                <button data-toggle="dropdown" class="btn dropdown__toggle btn--outline">Actions</button>
                 <ul class="dropdown__menu">
                     <li><a href="#">focus trap test link 2</a></li>
                 </ul>

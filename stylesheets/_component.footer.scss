@@ -60,18 +60,13 @@
 }
 
 .branding-footer {
-    background: url($branding-footer-fallback);
     background: url($branding-footer), linear-gradient(transparent, transparent);
-    background-size: $branding-footer-width 16px;
+    background-size: $branding-footer-width $branding-footer-height;
     background-position: 50%;
     background-repeat: no-repeat;
-    height: 16px;
-    margin-left: 15px;
     display: inline-block;
+    height: $branding-footer-height;
+    margin-right: 2px;
     text-indent: -9999px;
     width: $branding-footer-width;
-
-    .lt-ie10 & {
-        background-size: $branding-footer-width 16px;
-    }
 }

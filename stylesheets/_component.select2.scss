@@ -80,8 +80,8 @@
 .select2-dropdown {
     background-color: white;
     border: 1px solid $input-border;
-    border-radius: 4px;
-    box-shadow: 0 5px 10px rgba(0,0,0,.4);
+    border-radius: 0;
+    box-shadow: 0 0 0 $shadow-small color(background, shadow);
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -177,7 +177,7 @@
 .select2-container--default .select2-selection--single {
     background-color: #fafafa;
     border: 1px solid $input-border;
-    border-radius: 4px;
+    border-radius: $border-radius;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -242,7 +242,7 @@
 .select2-container--default .select2-selection--multiple {
     background-color: #fafafa;
     border: 1px solid $input-border;
-    border-radius: 4px;
+    border-radius: $border-radius;
     cursor: text;
 }
 
@@ -278,7 +278,7 @@
     display: inline-block;
     float: left;
     font-weight: 500;
-    line-height: 34px;
+    line-height: 33px;
     margin: 6px 0 0 5px;
     max-width: 86%; // Magic number - largest max-width usable to prevent the label overlapping the dropdown arrow
     overflow: hidden;
@@ -315,7 +315,8 @@
     &:after {
         color: color(black);
         content: '\f057';
-        font-family: 'FontAwesome';
+        font-family: $font-family-icons;
+        font-weight: 900;
         margin-right: 5px;
         visibility: visible;
 
@@ -461,7 +462,7 @@
 .select2-container--classic .select2-selection--single {
     background-color: #f7f7f7;
     border: 1px solid $input-border;
-    border-radius: 4px;
+    border-radius: $border-radius;
     outline: 0;
     background-image: -webkit-linear-gradient(top, white 50%, #eee 100%);
     background-image: -o-linear-gradient(top, white 50%, #eee 100%);
@@ -574,7 +575,7 @@
 .select2-container--classic .select2-selection--multiple {
     background-color: white;
     border: 1px solid $input-border;
-    border-radius: 4px;
+    border-radius: $border-radius;
     cursor: text;
     outline: 0;
 }
@@ -596,7 +597,7 @@
 .select2-container--classic .select2-selection--multiple .select2-selection__choice {
     background-color: #e4e4e4;
     border: 1px solid $input-border;
-    border-radius: 4px;
+    border-radius: $border-radius;
     cursor: default;
     float: left;
     margin-right: 5px;

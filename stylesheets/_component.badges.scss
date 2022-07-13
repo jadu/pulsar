@@ -29,9 +29,11 @@
 // Inside labels
 .label {
     @each $state, $state-color, $state-color-alt in $state-colors {
-        &.label--#{'' + $state} .badge {
-            background-color: $state-color !important;
-            color: pick_best_color($state-color, (#fff, color(text))) !important;
+        @if $state != 'base' {
+            &.label--#{'' + $state} .badge {
+                background-color: $state-color !important;
+                color: pick_best_color($state-color, (#fff, color(text))) !important;
+            }
         }
     }
 
@@ -69,14 +71,16 @@ a.list-group-item.active > .badge,
 
 // Variations
 @each $state, $state-color, $state-color-alt in $state-colors {
-    .badge--#{'' + $state},
-    %badge--#{'' + $state} {
-        background-color: $state-color;
-        color: pick_best_color($state-color, (#fff, color(text))) !important;
+    @if $state != 'base' {
+        .badge--#{'' + $state},
+        %badge--#{'' + $state} {
+            background-color: $state-color;
+            color: pick_best_color($state-color, (#fff, color(text))) !important;
 
-        &.badge--outline {
-            border-color: $state-color;
-            color: $state-color !important;
+            &.badge--outline {
+                border-color: $state-color;
+                color: $state-color !important;
+            }
         }
     }
 }

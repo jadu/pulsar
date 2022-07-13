@@ -98,6 +98,10 @@ $piano-bg: #fafafa;
     clear: both;
     padding: $padding-base;
 
+    .nav-inline {
+        margin: 0 0 0 -20px;
+    }
+
     .is-selected & {
         margin-top: $margin-base;
 
@@ -148,6 +152,11 @@ $piano-bg: #fafafa;
             font-weight: 400;
             margin-bottom: $margin-base * 2;
         }
+    }
+
+    // Stop focus state of submit buttons being cropped by overflow
+    .form__actions--flush {
+        padding-left: 2px;
     }
 }
 

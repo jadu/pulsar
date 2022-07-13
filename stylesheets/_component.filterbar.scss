@@ -1,6 +1,5 @@
 .filter-bar {
     background-color: lighten(color(gray, off-white), 1%);
-    margin: 0 (-$gutter-width);
     padding: $padding-base ($padding-base * 2) 0;
     position: relative;
 
@@ -17,10 +16,14 @@
     }
 
     .label {
+        border-radius: $border-radius-small * 2;
         box-sizing: border-box;
         display: block;
         margin-bottom: $gutter-width / 2;
         overflow-wrap: break-word;
+        padding-bottom: 6px;
+        padding-top: 7px;
+        vertical-align: middle;
         white-space: normal;
         width: 100%;
         word-break: break-all;
@@ -32,7 +35,8 @@
             width: auto;
         }
 
-        .remove-button {
+        .btn.remove-button {
+            background-color: transparent;
             float: right;
 
             @include respond-min($screen-tablet) {
@@ -73,7 +77,7 @@
             float: left;
             font-size: 16px;
             height: 100%;
-            line-height: 35px;
+            line-height: 38px;
             margin-bottom: 0;
             padding: 0;
             vertical-align: top;
@@ -141,13 +145,11 @@
 .btn.filter-bar__add {
     display: block;
     margin-bottom: $gutter-width;
-    padding: 7px 14px 6px;
     width: 100%;
 
     @include respond-min($screen-tablet) {
         display: inline-block;
         margin-bottom: $gutter-width / 2;
-        vertical-align: top;
         width: auto;
     }
 }

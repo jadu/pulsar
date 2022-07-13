@@ -105,7 +105,7 @@ $accent-color:                  color(jadu-blue);
 $accent-color-alt:              color(white);
 
 $text-color:                    color(text);
-$link-color:                    color(jadu-blue);
+$link-color:                    color(jadu-purple);
 $link-hover-color:              darken($blue, 20%);
 $inverse-link-color:            $white;
 $inverse-link-hover-color:      darken($white, 10%);
@@ -485,17 +485,13 @@ $rich-list-item-text-selected-color:  color(white) !default;
 .input-group-guidance {
     background-color: color(white);
     border: 0;
-    color: color(jadu-blue);
+    color: color(text);
     font-size: $font-size-base;
     font-weight: normal;
     line-height: 24px;
     padding: 0 $padding-base-horizontal;
     text-align: center;
     vertical-align: baseline;
-
-    &:hover {
-        color: color(jadu-blue, dark);
-    }
 
     // Nuke default margins from checkboxes and radios to vertically center within.
     input[type="radio"],

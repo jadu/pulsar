@@ -1,9 +1,7 @@
 .ui-timepicker-wrapper {
-    -moz-box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .5);
     background: color(white);
     border: 1px solid color('border');
-    box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 0 $shadow-small color(background, shadow);
     margin: 0;
     max-height: 150px;
     outline: none;
