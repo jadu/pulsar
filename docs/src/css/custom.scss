@@ -10,6 +10,13 @@ $image-path: '../../../images/' !default;
 
 $margin-bottom: 1.125 * 1rem;
 
+$font-family-light:   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-regular: 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading: 'code_pro_bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading-light: 'code_pro_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-icons:   'Font Awesome 6 Free';
+$font-family-brands:  'Font Awesome 6 Brands';
+
 // Font awesome
 $fa-font-path: '/static/font-awesome/fonts';
 $fa-css-prefix: 'icon';
@@ -157,6 +164,10 @@ $fa-css-prefix: 'icon';
     --ifm-table-border-width: 0;
 
     --ifm-alert-color: #000;
+}
+
+body {
+    font-size: 16px;
 }
 
 .hero--primary {
