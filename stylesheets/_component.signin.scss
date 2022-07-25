@@ -1,491 +1,601 @@
 // scss-lint:disable UrlFormat
 
-$signin-full-width:					500px;
-$signin-mobile-width:				320px;
-$signin-panel-full-width:		460px;
+$signin-full-width:			500px;
+$signin-mobile-width:		320px;
+$signin-panel-full-width:	460px;
 $signin-panel-mobile-width:	300px;
 
 .signin-backdrop {
-	background: #fff;
-	background-image: url('../images/signin-backdrop.jpg');
-	background-attachment: fixed;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	bottom: 0;
-	left: 0;
-	position: fixed;
-	right: 0;
-	top: 0;
-	z-index: -1;
+    background: #fff;
+    background-image: url('../images/signin-backdrop.jpg');
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -1;
 }
 
 .signin-brand {
-	border-top: 1px solid #ccc;
-	bottom: 0;
-	display: block;
-	height: 46px;
-	left: 0;
-	margin: 0;
-	position: fixed;
-	right: 0;
-	text-align: center;
-	width: $signin-mobile-width;
+    bottom: 0;
+    display: none;
+    height: 46px;
+    margin: 0;
+    position: fixed;
+    text-align: right;
+    width: calc(100% - 20px);
 
-	@include respond-min(540px) {
-		border: 0;
-		left: auto;
-		right: 10px;
-		width: 200px;
-	}
+    @include respond-min($screen-tablet) {
+        display: block;
+    }
 
-	> img {
-		filter: brightness(0);
-		vertical-align: bottom;
-		width: 200px;
-
-		@include respond-min(540px) {
-			filter: drop-shadow(0 0 10px #000);
-		}
-	}
+    > img {
+        filter: drop-shadow(0 0 3px #000);
+        -webkit-filter: drop-shadow(0 0 3px #000);
+        vertical-align: bottom;
+        width: 150px;
+    }
 }
 
 .signin-container {
-	display: flex;
+    display: flex;
+    // position: fixed;
+    width: 100%;
 }
 
 .signin {
-	margin: 0;
-	width: $signin-mobile-width - 40px;
-	transition: width .25s, padding .25s;
+    background-color: $signin-bg-color;
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, .3);
+    margin: 0 auto 20px;
+    width: $signin-mobile-width;
+    transition: width .25s, padding .25s;
 
-	@include respond-min($screen-tablet) {
-		width: $signin-full-width - 40px;
-		margin: 40px;
-	}
+    @include respond-min(340px) {
+        margin-top: 10px;
+    }
 
-	&--error {
-		.loading--circle i {
-			border: 1px solid rgba(0, 0, 0, .2);
-			border-top-color: color(white);
-		}
-	}
+    @include respond-min(360px) {
+        margin-top: 20px;
+    }
+
+    @include respond-min($screen-tablet) {
+        width: $signin-full-width - 40px;
+        margin: 40px;
+    }
+
+    &--error {
+        .loading--circle i {
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-top-color: color(white);
+        }
+    }
 }
 
 .signin__inner {
-	float: left;
-	height: calc(100% - 100px);
-	margin-left: 10px;
-	margin-top: -95px;
-	transition: width .25s, padding .25s;
-	width: $signin-panel-mobile-width * 6;
+    float: left;
+    height: calc(100% - 100px);
+    margin-left: 10px;
+    transition: width .25s, padding .25s;
+    width: $signin-panel-mobile-width * 6;
 
-	@include respond-min($screen-tablet) {
-		height: 100%;
-		margin-left: 0;
-		margin-top: -75px;
-		width: $signin-panel-full-width * 6;
-	}
+    @include respond-min($screen-tablet) {
+        height: 100%;
+        margin-left: 0;
+        width: $signin-panel-full-width * 6;
+    }
 
-	.signin__inner::-webkit-scrollbar-track {
-		background-color: rgba(57, 57, 57, 0);
-		border-radius: 8px;
-	}
+    .signin__inner::-webkit-scrollbar-track {
+        background-color: rgba(57, 57, 57, 0);
+        border-radius: 8px;
+    }
 
-	.signin__inner::-webkit-scrollbar {
-		-webkit-appearance: none;
-		width: 7px;
-	}
+    .signin__inner::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+    }
 
-	.signin__inner::-webkit-scrollbar-thumb {
-		border-radius: 4px;
-		background-color: transparent;
-		box-shadow: 0 0 1px rgba(255, 255, 255, .5);
-	}
+    .signin__inner::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: transparent;
+        box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    }
 
-	.active-reset & {
-		position: relative;
-		margin-left: -$signin-panel-mobile-width + 10px;
+    .active-reset & {
+        position: relative;
+        margin-left: -$signin-panel-mobile-width + 10px;
 
-		@include respond-min($screen-tablet) {
-			margin-left: -$signin-panel-full-width;
-		}
-	}
+        @include respond-min($screen-tablet) {
+            margin-left: -$signin-panel-full-width;
+        }
+    }
 
-	.active-forgot & {
-		position: relative;
-		margin-left: -$signin-panel-mobile-width * 2 + 10px;
+    .active-forgot & {
+        position: relative;
+        margin-left: -$signin-panel-mobile-width * 2 + 10px;
 
-		@include respond-min($screen-tablet) {
-			margin-left: -$signin-panel-full-width * 2;
-		}
-	}
+        @include respond-min($screen-tablet) {
+            margin-left: -$signin-panel-full-width * 2;
+        }
+    }
 
-	.active-success.active-success & {
-		position: relative;
-		margin-left: -$signin-panel-mobile-width * 4 + 10px;
+    .active-success.active-success & {
+        position: relative;
+        margin-left: -$signin-panel-mobile-width * 4 + 10px;
 
-		@include respond-min($screen-tablet) {
-			margin-left: -$signin-panel-full-width * 4;
-		}
-	}
+        @include respond-min($screen-tablet) {
+            margin-left: -$signin-panel-full-width * 4;
+        }
+    }
 
-	.active-twostep & {
-		position: relative;
-		margin-left: -$signin-panel-mobile-width * 3 + 10px;
+    .active-twostep & {
+        position: relative;
+        margin-left: -$signin-panel-mobile-width * 3 + 10px;
 
-		@include respond-min($screen-tablet) {
-			margin-left: -$signin-panel-full-width * 3;
-		}
+        @include respond-min($screen-tablet) {
+            margin-left: -$signin-panel-full-width * 3;
+        }
 
-		.signin-form,
-		.signin-reset {
-			visibility: hidden;
-			z-index: -1;
-		}
+        .signin-form,
+        .signin-reset {
+            visibility: hidden;
+            z-index: -1;
+        }
 
-		.signin-twostep {
-			z-index: 1;
-		}
-	}
+        .signin-twostep {
+            z-index: 1;
+        }
+    }
 
-	.active-success & {
-		.signin-form,
-		.signin-reset,
-		.signin-twostep {
-			visibility: hidden;
-			z-index: -1;
-		}
+    .active-success & {
+        .signin-form,
+        .signin-reset,
+        .signin-twostep {
+            visibility: hidden;
+            z-index: -1;
+        }
 
-		.signin-success {
-			z-index: 1;
-		}
-	}
-
+        .signin-success {
+            z-index: 1;
+        }
+    }
 }
 
 .signin__panel {
-	background-color: $signin-bg-color;
-	border-top: 1px solid #ccc;
-	box-shadow: 0 0 0 10px rgba(0, 0, 0, .3);
-	float: left;
-	padding: 75px 20px 20px;
-	transition: width .25s, padding .25s, z-index .25s;
-	width: $signin-panel-mobile-width;
+    float: left;
+    padding: 0 20px 20px;
+    transition: width .25s, padding .25s, z-index .25s;
+    width: $signin-panel-mobile-width;
 
-	@include respond-min($screen-tablet) {
-		padding: 75px 40px 40px;
-		width: $signin-panel-full-width;
-	}
+    @include respond-min($screen-tablet) {
+        padding: 0 40px 40px;
+        width: $signin-panel-full-width;
+    }
 
-	&[aria-hidden="true"] {
-		visibility: hidden;
-	}
+    &[aria-hidden="true"] {
+        visibility: hidden;
+    }
 }
 
 // form alignment
-.signin .form {
-	fieldset {
-		padding: 0;
-	}
+.signin form {
+    background-color: transparent;
+}
 
-	p {
-		margin-bottom: $line-height-base / 2;
-	}
+.signin {
+    p {
+        margin: ($line-height-base / 2) 0;
+    }
 
-	.legend {
-		border-bottom: 1px solid color(border);
-		line-height: $line-height-base;
-		margin-bottom: 5px;
-	}
+    fieldset {
+        padding: 0;
+    }
 
-	.form__group {
-		margin-bottom: 0;
-	}
+    hr {
+        margin: 2em 0;
+    }
 
-	.form__group--top .control__label {
-		margin-bottom: 0;
-	}
+    .legend {
+        border-bottom: 1px solid color(border);
+        line-height: $line-height-base;
+        margin-bottom: 5px;
+        padding-top: 40px;
+        width: 100%;
+    }
 
-	.form__actions {
-		border-top: 0;
-		padding-bottom: 0;
-	}
+    .form__group {
+        margin-bottom: 0;
+    }
 
-	.input-group-btn .btn {
-		border: 2px solid color(black);
-		line-height: 44px;
-	}
+    .form__group--top .control__label {
+        margin: 0 0 5px;
+    }
+
+    .help-block {
+        margin: 0;
+    }
+
+    .form__actions {
+        border-top: 0;
+        padding-bottom: 0;
+    }
+
+    .input-group-btn .btn {
+        border: 2px solid color(black);
+        line-height: 48px;
+    }
+
+    .input-group-btn:last-child > span > .btn {
+        margin-left: 6px;
+    }
+
+    .has-error {
+        background-color: color(white);
+        padding: 0 20px;
+        margin: 0 -30px;
+        width: calc(100% + 60px);
+
+        @include respond-min($screen-tablet) {
+            padding: 0 40px;
+            margin: 0 -40px;
+            width: calc(100% + 80px);
+        }
+
+        .btn {
+            border: 0 !important;
+            color: color(black) !important;
+            outline: 2px solid color(danger);
+        }
+
+        .btn--naked {
+            outline: none;
+        }
+
+        .control__label {
+            color: color(danger) !important;
+        }
+
+        .form__control.form__control {
+            outline: 2px solid color(danger);
+        }
+    }
+
+    .has-error .help-block {
+        background-color: color(white);
+        color: color(danger) !important;
+        font-family: $font-family-regular;
+        padding: 0 20px 1em;
+        margin: 0 -20px;
+
+        @include respond-min($screen-tablet) {
+            padding: 0 40px 1em;
+            margin: 0 -40px;
+        }
+
+        i {
+            color: color(danger) !important;
+            font-size: 1.5em;
+            margin-right: .25em;
+            vertical-align: text-bottom;
+        }
+    }
 }
 
 .signin__input,
 .signin .form__control.form__control {
-	background-color: none;
-	border: 2px solid color(black);
-	display: inline-block;
-	margin: 0 auto 1em;
+    background-color: none;
+    border: 0;
+    color: color(text) !important;
+    display: inline-block;
+    margin: 0 auto 1em;
+    outline: 2px solid rgba(0, 0, 0, .5);
 
-	&:not(.select) {
-		padding: 10px;
-	}
+    &:not(.select) {
+        padding: .5em;
+    }
 
-	&.checkbox {
-		margin: 0 1em 0 0;
-	}
+    &.checkbox {
+        margin: 0 1em 0 0;
 
-	&:not(.checkbox) {
-		width: 100%;
-	}
+        // check position
+        &::before {
+            height: .5em;
+            left: .25em;
+            line-height: 1.4em;
+            top: 0;
+        }
+    }
 
-	&:focus {
-		@include pulsar-input-focused;
-	}
+    &:not(.checkbox) {
+        width: 100%;
+    }
+
+    &:focus {
+        @include pulsar-input-focused;
+    }
 }
 
 .signin__code1.signin__code1,
 .signin__code2.signin__code2 {
-	@extend .signin__input;
-	display: inline-block;
-	font-family: courier;
-	letter-spacing: 5px;
-	margin: 0 5px 1em 0;
-	padding: 10px 10px 10px 12px;
-	width: 81px;
+    @extend .signin__input;
+    display: inline-block;
+    font-family: courier;
+    letter-spacing: 5px;
+    margin: 0 5px 1em 0;
+    padding: 10px 10px 10px 12px;
+    width: 81px;
 
-	@include respond-min($screen-tablet) {
-		padding: 10px 10px 10px 20px;
-	}
+    @include respond-min($screen-tablet) {
+        padding: 10px 10px 10px 20px;
+    }
 }
 
-.signin__actions + .signin__actions {
-	border-top: 1px solid #ccc;
-	margin-top: 2em;
-	padding-top: 1.5em;
+.signin__actions {
+    margin-top: 2em;
 }
 
 .signin__action {
-	display: block;
-	margin: 0 0 1em;
-	width: 100%;
+    display: block;
+    margin: 0 0 1em;
+    width: 100%;
 }
 
 .signin__submit {
-	display: inline-block;
-	margin: 0 auto;
-	width: 40%;
+    display: inline-block;
+    margin: 0 auto;
+    width: 40%;
 
-	.loading {
-		margin: 0 auto;
-	}
+    .loading {
+        margin: 0 auto;
+    }
 }
 
 .signin__alt {
-	background-color: color(white);
-	border-radius: 20px;
-	display: block;
-	margin-top: 1em;
-	text-align: left;
-	width: 100%;
+    background-color: color(white);
+    border-radius: 20px;
+    display: block;
+    margin-top: 1em;
+    text-align: left;
+    width: 100%;
 
-	.svg-inline--fa {
-		margin-right: 10px;
-	}
+    .svg-inline--fa {
+        margin-right: 10px;
+    }
 }
 
 .connect-logo {
-	&::before {
-		background: url('../images/branding/jadu-connect-logomark.svg');
-    background-size: 19px 19px;
-		background-repeat: no-repeat;
-		content: '';
-    display: inline-block;
-		height: 19px;
-		text-align: center;
-		vertical-align: middle;
-    width: 19px;
-	}
+    &::before {
+        background: url('../images/branding/jadu-connect-logomark.svg');
+        background-size: 19px 19px;
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        height: 19px;
+        text-align: center;
+        vertical-align: middle;
+        width: 19px;
+    }
+}
+
+.signin__brand {
+    margin-left: 30px;
+    margin-right: 10px;
+    position: relative;
+    top: 20px;
+    width: 100px;
+
+    @include respond-min($screen-tablet) {
+        margin-left: 40px;
+    }
 }
 
 .signin__action-separator {
-	display: inline-block;
-	text-align: center;
-	width: 18%;
+    display: inline-block;
+    text-align: center;
+    width: 18%;
 }
 
 .signin__heading {
-	color: color(gray, darker);
-	font-family: $font-family-heading;
-	margin: 0 $padding-base 0 10px;
-	padding: 20px;
-	position: relative;
-	text-align: left;
-	top: 10px;
-	width: $signin-mobile-width - 20px;
-	z-index: 1;
+    color: color(gray, darker);
+    font-family: $font-family-heading;
+    font-size: 1.5em;
+    margin: 10px 30px 20px;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    top: 10px;
+    word-break: break-word;
+    z-index: 1;
 
-	@include respond-min($screen-tablet) {
-		margin: 0;
-		padding: 20px 0 20px 40px;
-		width: $signin-full-width - 40px;
-	}
+    @include respond-min($screen-tablet) {
+        font-size: 1.75em;
+        margin: 0 40px;
+        padding: 20px 0;
+    }
 }
 
 .signin__info {
-	display: block;
-	margin: 1em 0;
+    display: block;
+    margin: 1em 0;
 }
 
 .signin__link {
-	display: inline-block;
-	margin-top: .5em;
+    display: inline-block;
+    margin-top: .5em;
 }
 
-.signin__group {
-	clear: left;
-	position: relative;
+.signin__group,
+.form__group {
+    clear: left;
+    margin: 0;
+    position: relative;
 }
 
 .signin__hint {
-	animation-duration: 1s;
-	animation-fill-mode: both;
-	animation-iteration-count: infinite;
-	animation-name: hint-wobble-small;
-	display: inline-block;
-	font-size: 1em;
-	left: -16px;
-	position: absolute;
-	width: 25px;
-	top: 32px;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: hint-wobble-small;
+    display: inline-block;
+    font-size: 1em;
+    left: -16px;
+    position: absolute;
+    width: 25px;
+    top: 32px;
 
-	@include respond-min($screen-tablet) {
-		animation-name: hint-wobble;
-		font-size: 1.5em;
-		left: -30px;
-		top: 32px;
-	}
+    @include respond-min($screen-tablet) {
+        animation-name: hint-wobble;
+        font-size: 1.5em;
+        left: -30px;
+        top: 32px;
+    }
 
-	&::before {
-		content: '\f0a4';
-		font-family: $font-family-icons;
-		font-style: normal;
-	}
+    &::before {
+        content: '\f0a4';
+        font-family: $font-family-icons;
+        font-style: normal;
+    }
 
-	.signin-twostep & {
-		left: -17px;
-		top: 10px;
+    .signin-twostep & {
+        left: -17px;
+        top: 10px;
 
-		@include respond-min($screen-tablet) {
-			left: -30px;
-		}
-	}
+        @include respond-min($screen-tablet) {
+            left: -30px;
+        }
+    }
 
-	.signin__code2 + & {
-		left: 175px;
+    .signin__code2 + & {
+        left: 175px;
 
-		@include respond-min($screen-tablet) {
-			left: 180px;
-		}
+        @include respond-min($screen-tablet) {
+            left: 180px;
+        }
 
-		&::before {
-			content: '\f0a5';
-			font-family: $font-family-icons;
-			font-style: normal;
-		}
-	}
+        &::before {
+            content: '\f0a5';
+            font-family: $font-family-icons;
+            font-style: normal;
+        }
+    }
 }
 
 .signin__icon {
-	display: block;
-	float: left;
-	margin: 1em 5px 0 0;
+    display: block;
+    float: left;
+    margin: 1em 5px 0 0;
 
-	.signin--error &,
-	.signin-success & {
-		&::before {
-			font-family: $font-family-icons;
-			font-style: normal;
-			font-weight: 600;
-		}
-	}
+    .signin--error &,
+    .signin-success & {
+        &::before {
+            font-family: $font-family-icons;
+            font-style: normal;
+            font-weight: 600;
+        }
+    }
 
-	.signin--error &::before {
-		content: '\f06a';
-		color: color(danger);
-	}
+    .signin--error &::before {
+        content: '\f06a';
+        color: color(danger);
+    }
 
-	.active-success .signin-success & {
-		height: 150px;
-		position: relative;
-		text-align: center;
-		top: 60px;
-		width: 100%;
+    .active-success .signin-success & {
+        height: 150px;
+        position: relative;
+        text-align: center;
+        top: 60px;
+        width: 100%;
 
-		&::before {
-			content: '\f058';
-			color: color(success);
-			font-size: 100px;
-			width: 100px;
-		}
-	}
+        &::before {
+            content: '\f058';
+            color: color(success);
+            font-size: 100px;
+            width: 100px;
+        }
+    }
 }
 
 .signin-twostep label {
-	display: none;
+    display: none;
 }
 
 // 2FA code input in control centre UI
 .form__group .controls,
 .modal {
-	.form__control.signin__code1,
-	.form__control.signin__code2 {
-		display: inline-block;
-		font-family: courier;
-		letter-spacing: 2px;
-		padding: 0 10px;
-		width: 55px;
-	}
+    .form__control.signin__code1,
+    .form__control.signin__code2 {
+        display: inline-block;
+        font-family: courier;
+        letter-spacing: 2px;
+        padding: 0 10px;
+        width: 55px;
+    }
 }
 
 .signin-credits {
-	bottom: 10px;
-	color: #fff;
-	display: none;
-	font-size: $font-size-small;
-	position: absolute;
-	right: 10px;
+    bottom: 10px;
+    color: #fff;
+    display: none;
+    font-size: $font-size-small;
+    position: absolute;
+    right: 10px;
 
-	a {
-		color: #fff;
-	}
+    a {
+        color: #fff;
+    }
 
-	a:focus {
-		color: #000;
-	}
+    a:focus {
+        color: #000;
+    }
 }
 
-@keyframes hint-wobble {
-	0%, 50%, 100% {
-		transform: translateX(0);
-	}
+// scss-lint:disable SelectorFormat
+// Show/hide password on invitation invite
+.hideShowPassword-toggle {
+    @extend .btn;
+    @extend .btn--naked;
+    color: #6a6a6a !important;
+    margin-right: 3px;
+    padding: 3px 6px;
+    text-transform: uppercase;
+    z-index: 3;
+}
+// scss-lint:enable SelectorFormat
 
-	25%, 75% {
-		transform: translateX(-5px);
-	}
+@keyframes hint-wobble {
+    0%, 50%, 100% {
+        transform: translateX(0);
+    }
+
+    25%, 75% {
+        transform: translateX(-5px);
+    }
 }
 
 @keyframes hint-wobble-small {
-	0%, 50%, 100% {
-		transform: translateX(0);
-	}
+    0%, 50%, 100% {
+        transform: translateX(0);
+    }
 
-	25%, 75% {
-		transform: translateX(-2px);
-	}
+    25%, 75% {
+        transform: translateX(-2px);
+    }
 }
 
 [id="recaptcha_widget_div"] {
-	display: inline-block;
-	margin: 0 auto 1em;
+    display: inline-block;
+    margin: 0 auto 1em;
 }
+
+// scss-lint:disable SelectorFormat
+// stop inline styles added by js component preventing responsive width change
+// on viewport resize
+.hideShowPassword-wrapper {
+    width: 100% !important;
+}
+// scss-lint:enable SelectorFormat
 
 // scss-lint:enable UrlFormat
