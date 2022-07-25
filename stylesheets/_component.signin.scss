@@ -233,7 +233,11 @@ $signin-panel-mobile-width:	300px;
     .panel--danger {
         border-bottom: 2px solid color(white) !important;
         border-top: 2px solid color(white) !important;
-        margin: 20px -40px;
+        margin: 20px -30px;
+
+        @include respond-min($screen-tablet) {
+            margin: 20px -40px;
+        }
 
         .panel__body {
             padding: 10px 40px;
@@ -305,6 +309,8 @@ $signin-panel-mobile-width:	300px;
     border: 0;
     color: color(text) !important;
     display: inline-block;
+    height: 48px;
+    line-height: 48px;
     margin: 0 auto 1em;
     outline: 2px solid rgba(0, 0, 0, .5);
 
@@ -313,6 +319,7 @@ $signin-panel-mobile-width:	300px;
     }
 
     &.checkbox {
+        height: 22px;
         margin: 0 1em 0 0;
 
         // check position
