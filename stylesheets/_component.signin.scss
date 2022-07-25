@@ -234,9 +234,8 @@ $signin-panel-mobile-width:	300px;
     .panel--danger {
         border-bottom: 2px solid color(white) !important;
         border-top: 2px solid color(white) !important;
-        margin-left: -40px;
-        margin-right: -40px;
-        
+        margin: 20px -40px;
+
         .panel__body {
             padding: 10px 40px;
         }
