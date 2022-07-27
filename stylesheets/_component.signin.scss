@@ -213,6 +213,10 @@ $signin-panel-mobile-width:	300px;
 
     .form__group {
         margin-bottom: 0;
+
+        > .control__label {
+            color: inherit;
+        }
     }
 
     .form__group--top .control__label {
@@ -455,16 +459,6 @@ $signin-panel-mobile-width:	300px;
 .signin__link {
     display: inline-block;
     margin-top: .5em;
-}
-
-.form__group {
-    clear: left;
-    margin: 0;
-    position: relative;
-
-    > .control__label {
-        color: inherit;
-    }
 }
 
 .signin__hint {
