@@ -200,8 +200,9 @@ $signin-panel-mobile-width:	300px;
     }
 
     .legend,
-    .form .legend {
+    .form .legend.legend {
         border-bottom: 1px solid inherit;
+        border-color: inherit;
         font-size: $font-size-large;
         line-height: $line-height-base;
         margin-bottom: 5px;
