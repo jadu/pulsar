@@ -179,7 +179,8 @@ $signin-panel-mobile-width:	300px;
         }
     }
 
-    form {
+    form,
+    .form {
         background-color: transparent;
     }
 
@@ -197,10 +198,6 @@ $signin-panel-mobile-width:	300px;
 
     a:hover {
         color: inherit;
-    }
-
-    .form {
-        background-color: inherit;
     }
 
     .legend,
