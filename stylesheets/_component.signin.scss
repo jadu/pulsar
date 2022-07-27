@@ -449,11 +449,14 @@ $signin-panel-mobile-width:	300px;
     margin-top: .5em;
 }
 
-.signin__group,
 .form__group {
     clear: left;
     margin: 0;
     position: relative;
+
+    > .control__label {
+        color: inherit;
+    }
 }
 
 .signin__hint {
