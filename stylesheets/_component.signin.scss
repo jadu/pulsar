@@ -201,6 +201,10 @@ $signin-panel-mobile-width:	300px;
         color: inherit;
     }
 
+    a:focus {
+        color: color(black);
+    }
+
     .legend,
     .form .legend.legend {
         border-bottom: 1px solid inherit;
