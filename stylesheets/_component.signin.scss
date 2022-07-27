@@ -229,8 +229,8 @@ $signin-panel-mobile-width:	300px;
     }
 
     .input-group-btn .btn {
-        border: 2px solid color(black);
-        line-height: 48px;
+        border: 2px solid inherit;
+        line-height: 44px;
     }
 
     .input-group-btn:last-child > span > .btn {
