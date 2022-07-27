@@ -195,8 +195,13 @@ $signin-panel-mobile-width:	300px;
         margin: 2em 0;
     }
 
-    .legend {
-        border-bottom: 1px solid color(border);
+    a:hover {
+        color: inherit;
+    }
+
+    .legend,
+    .form .legend {
+        border-bottom: 1px solid inherit;
         font-size: $font-size-large;
         line-height: $line-height-base;
         margin-bottom: 5px;
