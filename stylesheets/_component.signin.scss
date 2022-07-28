@@ -247,7 +247,8 @@ $signin-panel-mobile-width:	300px;
         margin-left: 6px;
     }
 
-    .panel--danger {
+    .panel--danger,
+    .signin--error .signin__info {
         border-bottom: 2px solid color(white) !important;
         border-top: 2px solid color(white) !important;
         margin: 20px -30px;
@@ -266,6 +267,11 @@ $signin-panel-mobile-width:	300px;
         i {
             color: color(white) !important;
         }
+    }
+
+    .signin--error .signin__info {
+        @extend .panel--danger;
+        padding: 10px 40px;
     }
 
     .has-error {
