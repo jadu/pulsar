@@ -29,6 +29,11 @@
 </p>
 
 <p>
+    Launch a responsive modal<br/>
+    <button class="btn" data-toggle="modal" data-target="#modalResponsive">Launch Responsive Modal</button>
+</p>
+
+<p>
     Launch a full page modal, from a link <br/>
     <a data-toggle="modal" href="#myFullScreenModal" class="btn">Launch Full Screen Modal</a>
 </p>
@@ -295,6 +300,274 @@
                     </figure>
                 </div>
             </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal modal--responsive modal__example" id="modalResponsive" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalResponsive-title" aria-describedby="modalResponsive-description">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <form>
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal__title" id="modalResponsive-title">A simple example with error summary</h1>
+                </div>
+                <div class="modal__body">
+                    <p id="modalResponsive-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
+                    <p>The modal body might have instructions, a form, or other stuff.</p>
+
+                    {{
+                        form.error_summary({
+                            'heading': 'There is a problem',
+                            'errors': [
+                                {
+                                    'label': 'Enter your first name',
+                                    'href': 'first-name'
+                                },
+                                {
+                                    'label': 'Enter your last name',
+                                    'href': 'last-name'
+                                }
+                            ]
+                        })
+                    }}
+
+                    {{ form.fieldset_start({'legend': 'Example form with errors'}) }}
+
+                        {{
+                            form.text({
+                                'label': 'First name',
+                                'id': 'first-name',
+                                'required': true,
+                                'error': 'Enter your first name'
+                            })
+                        }}
+
+                        {{
+                            form.text({
+                                'label': 'Last name',
+                                'id': 'last-name',
+                                'required': true,
+                                'error': 'Enter your last name'
+                            })
+                        }}
+
+                        {{
+                            form.text({
+                                'label': 'Last name',
+                                'id': 'last-name',
+                                'required': true,
+                                'error': 'Enter your last name'
+                            })
+                        }}
+
+                        {{
+                            form.checkbox({
+                                'label': 'Are you human?',
+                                'id': 'are-you-human'
+                            })
+                        }}
+
+                        {{
+                            form.select2({
+                                'label': 'Favourite colours',
+                                'id': 'select',
+                                'multiple': true,
+                                'options': {
+                                    'colour_red': 'Red',
+                                    'colour_blue': 'Blue'
+                                }
+                            })
+                        }}
+
+                        {{
+                            form.choice({
+                                'label': 'Assign blame to',
+                                'multiple': true,
+                                'options': [
+                                    {
+                                        'label': 'Sunshine',
+                                        'name': 'choice-a2',
+                                        'value': 'sun'
+                                    },
+                                    {
+                                        'label': 'Moonlight',
+                                        'name': 'choice-a2',
+                                        'value': 'moon'
+                                    },
+                                    {
+                                        'label': 'Good times',
+                                        'name': 'choice-a2',
+                                        'value': 'good'
+                                    },
+                                    {
+                                        'label': 'Boogie',
+                                        'name': 'choice-a2',
+                                        'value': 'boogie'
+                                    }
+                                ]
+                            })
+                        }}
+                    {{ form.fieldset_end() }}
+
+                    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'One column',
+                            'class': 'form__control-col--1',
+                            'name': 'inputTextMini',
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Two columns',
+                            'class': 'form__control-col--2',
+                            'name': 'inputTextSmall'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Three columns',
+                            'class': 'form__control-col--3',
+                            'name': 'inputTextMedium'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Four columns',
+                            'class': 'form__control-col--4',
+                            'name': 'inputTextRegular'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Five columns',
+                            'class': 'form__control-col--5',
+                            'name': 'inputTextLarge'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Six columns',
+                            'class': 'form__control-col--6',
+                            'name': 'inputTextXLarge'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Seven columns',
+                            'class': 'form__control-col--7',
+                            'name': 'inputTextFull'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Eight columns',
+                            'class': 'form__control-col--8',
+                            'name': 'inputTextFull'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Nine columns',
+                            'class': 'form__control-col--9',
+                            'name': 'inputTextFull'
+                        })
+                    }}
+
+                    {{ form.fieldset_end() }}
+                    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Mini',
+                            'class': 'form__group--mini',
+                            'name': 'inputTextMini'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Small',
+                            'class': 'form__group--small',
+                            'name': 'inputTextSmall'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Medium',
+                            'class': 'form__group--medium',
+                            'name': 'inputTextMedium'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Regular',
+                            'class': 'form__group--regular',
+                            'name': 'inputTextRegular'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Large',
+                            'class': 'form__group--large',
+                            'name': 'inputTextLarge'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Extra Large',
+                            'class': 'form__group--xlarge',
+                            'name': 'inputTextXLarge'
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'id': 'guid-' ~ random(),
+                            'label': 'Full',
+                            'class': 'form__group--full',
+                            'name': 'inputTextFull'
+                        })
+                    }}
+
+                    {{ form.fieldset_end() }}
+
+                </div>
+                <div class="modal__footer">
+                    <button type="submit" class="btn btn--primary">Save Changes</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div><!-- /.modal__content -->
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
