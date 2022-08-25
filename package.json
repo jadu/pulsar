@@ -1,6 +1,6 @@
 {
   "name": "jadu-pulsar",
-  "version": "11.0.0-beta.1",
+  "version": "13.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -55,7 +55,6 @@
     "grunt-leading-indent": "^0.2.0",
     "grunt-mocha": "^1.2.0",
     "grunt-notify": "^0.4.3",
-    "grunt-phpunit": "^0.3.6",
     "grunt-real-favicon": "^0.2.4",
     "grunt-sass": "^3.1.0",
     "grunt-sass-replace": "^0.1.18",

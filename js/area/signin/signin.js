@@ -33,7 +33,7 @@ SignInComponent.prototype.init = function () {
 
 	component.$alert = $('.alert');
 	component.successMessage = 'Signed in successfully';
-	component.signInFailMessage = 'Your username and/or password was incorrect';
+	component.signInFailMessage = '<i class="icon icon-exclamation-triangle"></i> Your username and/or password was incorrect';
 
 	component.hint = '<i class="signin__hint"></i>',
 	component.infoText = component.$info.text(),
@@ -106,7 +106,7 @@ SignInComponent.prototype.init = function () {
 	this.$html.find('[name="signin-submit"]').on('click', function(e) {
 		e.preventDefault();
 
-		var infoText = 'Enter your username and password';
+		var infoText = '<i class="icon icon-exclamation-triangle"></i> Enter your username and password';
 
 		if (!component.$usernameField.val() || !component.$passwordField.val()) {
 			component.$container
@@ -116,7 +116,7 @@ SignInComponent.prototype.init = function () {
 				});
 
 			if (component.$usernameField.val() && !component.$passwordField.val()) {
-				infoText = 'Enter your password';
+				infoText = '<i class="icon icon-exclamation-triangle"></i> Enter your password';
 
 				component.$passwordField.focus();
 
@@ -133,7 +133,7 @@ SignInComponent.prototype.init = function () {
 						});
 				};
 			} else if (!component.$usernameField.val() && component.$passwordField.val()) {
-				infoText = 'Enter your username';
+				infoText = '<i class="icon icon-exclamation-triangle"></i> Enter your username';
 				component.$usernameField.focus();
 
 				if (!component.$usernameField.prev('.signin__hint').length) {
@@ -447,10 +447,15 @@ SignInComponent.prototype.twoStepFail = function() {
 
 SignInComponent.prototype.success = function () {
 
-	var component = this;
+	var component = this,
+		successPanel = component.$container.find('.signin-success'),
+		oldPanel = component.$container.find('.signin__panel:not(.signin-success)');
 
 	component.$alert.append(document.createTextNode(component.successMessage));
 	component.$container.addClass('active-success');
+
+	successPanel.attr('aria-hidden', 'false');
+	oldPanel.attr('aria-hidden', 'true');
 
 }
 

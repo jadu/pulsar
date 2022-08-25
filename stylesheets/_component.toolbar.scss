@@ -11,9 +11,8 @@
 }
 
 .toolbar-actions {
-    flex: 1;
-    flex-grow: 1;
     display: flex;
+    flex: 1 1 auto;
     justify-content: flex-end;
     margin-bottom: 12px;
 }
