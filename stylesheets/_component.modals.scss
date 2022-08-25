@@ -1,14 +1,6 @@
 // Modals
 // --------------------------------------------------
 
-// .modal--open         - body class for killing the scroll
-// .modal               - container to scroll within
-// .modal__dialog       - positioning shell for the actual modal
-// .modal__content      - actual modal w/ bg and corners
-// .modal--full-screen  - modifier for a full screen modal
-//
-
-
 // Kill the scroll on the body
 .modal-open {
     overflow: hidden;
