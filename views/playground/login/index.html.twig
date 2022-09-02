@@ -16,39 +16,77 @@
 			<div class="signin__inner">
 
 				<form id="signin" class="signin__panel signin-form" aria-hidden="false">
-
-					<div class="signin__group">
-						<label for="username">Username <span class="hide">required</span></label>
-						<input
-							autofocus
-							autocapitalize="off"
-							autocomplete="off"
-							autocorrect="off"
-							class="signin__input"
-							id="username"
-							name="username"
-							type="text"
-							autocomplete="off"
-							tabindex="0"
-						/>
+					<fieldset>
+				<div class="panel panel--danger margin-vertical">
+					<div class="panel__body">
+						<p class="u-margin-top-none"><i aria-hidden="true" class="icon-warning-sign"></i> Incorrect email or password</p>
 					</div>
+				</div>
 
-					<div class="signin__group">
-						<label for="password">Password <span class="hide">required</span></label>
-						<input
-							autocapitalize="off"
-							autocomplete="off"
-							autocorrect="off"
-							class="signin__input"
-							id="password"
-							name="password"
-							tabindex="0"
-							type="password"
-						/>
-						<a class="signin__action" href="#forgot-password" tabindex="0">Forgotten password?</a>
-					</div>
+					{{
+						form.text({
+							'id': 'guid-' ~ random(),
+							'class': 'form__group--top form__group--full form__group--flush',
+							'label': 'Text field'
+						})
+					}}
+
+					{{
+						form.textarea({
+							'id': 'guid-' ~ random(),
+							'class': 'form__group--top form__group--full form__group--flush',
+							'label': 'Textarea'
+						})
+					}}
+
+					{{
+						form.checkbox_inline({
+							'id': 'guid-' ~ random(),
+							'label': 'Checkbox inline',
+							'name': 'checkbox-example-1'
+						})
+					}}
+
+					{{
+						form.select({
+							'id': 'guid-' ~ random(),
+							'class': 'form__group--top form__group--full form__group--flush',
+							'label': 'Required',
+							'required': true,
+							'options': [
+								{
+									'label': 'Choose',
+									'value': ''
+								},
+								{
+									'label': 'Value one',
+									'value': 'value1'
+								},
+								{
+									'label': 'Value two',
+									'value': 'value2'
+								}
+							]
+						})
+					}}
+</fieldset>
+					<p class="u-margin-top">Once signed in you can track the progress of your cases and collaborate in real time.</p>
+
+					<fieldset><legend class="legend">Problems signing in?</legend>
+
+                        <p class="u-margin-top">Enter your email address and we'll send you details of what to do next.</p>
+
+                    <div class="form__group form__group--top form__group--flush form__group--full"><label for="request_user_email_address_verification_command_email" class="required control__label">
+            Email
+
+                        <span aria-hidden="true" class="required-indicator">*</span></label><div class="controls"><input class="form__control form__group--top form__group--flush form__group--full" type="email" id="request_user_email_address_verification_command_email" name="request_user_email_address_verification_command[email]" required="required" autocomplete="email"></div></div>
+                    <input class="form__control" type="hidden" id="request_user_email_address_verification_command__token" name="request_user_email_address_verification_command[_token]" value="ot1jLXWSMu2yfmxhPZo9oIcsnTiDcYnVWOB3cQBdR_A">
+                    </fieldset>
+
 
 					<div class="form__group form-checkbox-inline" data-widget-id="complete_registration_page-widget-30-11"><div class="controls" data-widget-id="complete_registration_page-widget-29-11"><label class="control__label" for="privacy_policy_input" data-widget-id="complete_registration_page-widget-1076-0"><input type="checkbox" class="form__control checkbox" id="privacy_policy_input" data-widget-id="complete_registration_page-widget-1071-0"><span data-widget-id="complete_registration_page-widget-1075-0">I agree to the <a href="https://site.com" target="_blank" data-widget-id="complete_registration_page-widget-1074-0">Privacy Policy</a></span></label></div></div>
+
+					<fieldset data-widget-id="complete_registration_page-widget-1078-0"><legend class="legend" data-widget-id="complete_registration_page-widget-1078-0-legend">Create an account</legend><p class="u-margin-top" data-widget-id="complete_registration_page-widget-1029-0">Almost there! Complete the details below to create your account. Required fields are marked with an asterisk (*). </p><div class="form__group form__group--top form__group--flush form__group--full" data-widget-id="complete_registration_page-widget-30-0"><label class="control__label " for="title" data-widget-id="complete_registration_page-widget-24-0">Title</label><div class="controls" data-widget-id="complete_registration_page-widget-29-0"><input type="text" value="" autocomplete="honorific-prefix" class="form__control" id="title" data-widget-id="complete_registration_page-widget-1030-0"></div></div><div class="form__group form__group--top form__group--flush form__group--full" data-widget-id="complete_registration_page-widget-30-1"><label class="control__label required" for="forename" data-widget-id="complete_registration_page-widget-24-1">First name <span class="required-indicator" aria-hidden="true" data-widget-id="complete_registration_page-widget-23-0">*</span></label><div class="controls" data-widget-id="complete_registration_page-widget-29-1"><input type="text" value="" autocomplete="given-name" class="form__control" id="forename" required="required" data-widget-id="complete_registration_page-widget-1032-0"></div></div><div class="form__group form__group--top form__group--flush form__group--full" data-widget-id="complete_registration_page-widget-30-2"><label class="control__label " for="middle_names" data-widget-id="complete_registration_page-widget-24-2">Middle names</label><div class="controls" data-widget-id="complete_registration_page-widget-29-2"><input type="text" value="" autocomplete="additional-name" class="form__control" id="middle_names" data-widget-id="complete_registration_page-widget-1034-0"></div></div><div class="form__group form__group--top form__group--flush form__group--full" data-widget-id="complete_registration_page-widget-30-3"><label class="control__label required" for="surname" data-widget-id="complete_registration_page-widget-24-3">Last name <span class="required-indicator" aria-hidden="true" data-widget-id="complete_registration_page-widget-23-1">*</span></label><div class="controls" data-widget-id="complete_registration_page-widget-29-3"><input type="text" value="" autocomplete="family-name" class="form__control" id="surname" required="required" data-widget-id="complete_registration_page-widget-1036-0"></div></div><div class="form__group form__group--top form__group--flush form__group--full" data-widget-id="complete_registration_page-widget-30-4"><label class="control__label required" for="postcode" data-widget-id="complete_registration_page-widget-24-4">Postcode <span class="required-indicator" aria-hidden="true" data-widget-id="complete_registration_page-widget-23-2">*</span></label><div class="controls" data-widget-id="complete_registration_page-widget-29-4"><div class="address-finder input-group has-btn-appended" data-widget-id="complete_registration_page-widget-1052-0"><input type="text" value="" autocomplete="postal-code" class="form__control" id="postcode" required="required" data-widget-id="complete_registration_page-widget-1049-0"><div class="input-group-btn" data-widget-id="complete_registration_page-widget-1051-0"><span data-widget-id="complete_registration_page-widget-50-0"><button type="button" name="uire[actionButton]" class="btn btn--outline" disabled="disabled" aria-label="Find address" aria-hidden="false" data-widget-id="complete_registration_page-widget-49-0">Find</button></span></div></div></div></div><div class="form__group form__group--top form__group--flush form__group--full" data-widget-id="complete_registration_page-widget-1064-0"></div><div class="form__group form__group--top form__group--flush form__group--full" data-widget-id="complete_registration_page-widget-30-5"><label class="control__label " for="telephone" data-widget-id="complete_registration_page-widget-24-5">Telephone</label><div class="controls" data-widget-id="complete_registration_page-widget-29-5"><input type="text" value="" autocomplete="tel" class="form__control" id="telephone" data-widget-id="complete_registration_page-widget-1065-0"></div></div><div class="form__group form__group--top form__group--flush form__group--full" data-widget-id="complete_registration_page-widget-30-6"><label class="control__label required" for="password" data-widget-id="complete_registration_page-widget-24-6">Create a password <span class="required-indicator" aria-hidden="true" data-widget-id="complete_registration_page-widget-23-3">*</span></label><div class="controls" data-widget-id="complete_registration_page-widget-29-6"><div class="hideShowPassword-wrapper" style="position: relative; display: inline-block; vertical-align: baseline; margin: 0px 0px 16px;"><input type="password" value="" class="form__control hide-show-password hideShowPassword-field" id="password" autocomplete="new-password" aria-describedby="password-help" data-widget-id="complete_registration_page-widget-1067-0" style="margin: 0px; padding-right: 58.296875px;"><button type="button" aria-label="Show Password" title="Show Password" tabindex="0" class="hideShowPassword-toggle hideShowPassword-toggle-show" style="position: absolute; right: 0px; top: 50%; margin-top: -12.5px;" aria-pressed="false">Show</button></div><p class="help-block" id="password-help" data-widget-id="complete_registration_page-widget-1069-0">Min 8 characters, at least 1 upper and 1 lowercase character, 1 symbol and 1 number</p></div></div><div class="form__group form-checkbox-inline" data-widget-id="complete_registration_page-widget-30-7"><div class="controls" data-widget-id="complete_registration_page-widget-29-7"><label class="control__label" for="privacy_policy_input" data-widget-id="complete_registration_page-widget-1076-0"><span data-widget-id="complete_registration_page-widget-1075-0"><input type="checkbox" class="form__control checkbox" id="privacy_policy_input" data-widget-id="complete_registration_page-widget-1071-0">I agree to the <a href="https://www.birmingham.gov.uk/termsandconditions" target="_blank" data-widget-id="complete_registration_page-widget-1074-0">Privacy Policy</a></span></label></div></div></fieldset>
 
 					<!-- recaptcha goes here -->
 

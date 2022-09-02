@@ -114,10 +114,20 @@
                             {% endfor %}
                         {% endif %}
 
+                    </div>
+                    <div class="rule-block__actions">
                         {% if (options.removeable is defined and options.removeable != false) or options.removeable is not defined %}
-                            <button type="button" data-action="remove" data-tippy-placement="left" data-tippy-content="Remove this item" class="btn remove-button js-remove-trigger "><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+                        <button type="button" data-action="remove" data-tippy-placement="right" data-tippy-content="Remove this item" class="btn remove-button js-remove-trigger "><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
                         {% endif %}
 
+                        {% if (options.notifications is defined and options.notifications != false) %}
+                        <button type="button" data-action="remove" data-tippy-placement="right" data-tippy-content="Failure Notification Email Recipients" class="btn rule-notifications-button">
+                            <span class="fa-layers fa-fw">
+                                <i class="fa-solid fa-message"></i>
+                                <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-8 up-1" style="font-weight:900">{{ options.notificationsCount|default(0) }}</span>
+                            </span>
+                        </button>
+                        {% endif %}
                     </div>
                 </div>
             </div>

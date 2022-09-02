@@ -107,6 +107,7 @@
         border: 0;
         display: table-cell;
         height: 100%;
+        min-width: 95px;
         padding: 0 10px;
         text-align: center;
         vertical-align: middle;
@@ -149,12 +150,9 @@
 }
 
 .rule-block__controls {
-    margin: 1em;
-    padding-left: 1em;
-
-    @include respond-min($screen-tablet) {
-        margin: .6em 1.7em 0 .4em;
-    }
+    display: table-cell;
+    padding: 10px 0 0 5px;
+    width: 100%;
 }
 
 .rule-block__control {
@@ -750,5 +748,41 @@ td.table__form .rules + .form__group:last-of-type {
         .rule-block__header {
             border-top: 0;
         }
+    }
+}
+
+.rule-block__actions {
+    display: table-cell;
+    text-align: right;
+    vertical-align: top;
+
+    .remove-button.remove-button {
+        padding: 5px 7px;
+        position: relative;
+        right: unset;
+        top: unset;
+    }
+
+    button {
+        display: table-cell;
+    }
+}
+
+.rule-notifications-button {
+    @extend .btn--naked;
+    background-color: transparent;
+    border: 0;
+    font-size: 1.5em;
+    padding: 5px 2px;
+    vertical-align: top;
+    white-space: nowrap;
+
+    &:hover {
+        transform: none;
+    }
+
+    &:focus {
+        @include pulsar-icon-button-focused;
+        transform: none;
     }
 }
