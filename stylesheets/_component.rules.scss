@@ -768,21 +768,8 @@ td.table__form .rules + .form__group:last-of-type {
     }
 }
 
-.rule-notifications-button {
-    @extend .btn--naked;
-    background-color: transparent;
-    border: 0;
-    font-size: 1.5em;
-    padding: 5px 2px;
-    vertical-align: top;
-    white-space: nowrap;
-
-    &:hover {
-        transform: none;
-    }
-
-    &:focus {
-        @include pulsar-icon-button-focused;
-        transform: none;
-    }
+.input-group-btn > .btn.rule-notifications-button {
+    font-size: 1.55em;
+    line-height: 1.55em;
+    padding: 8px 11px 3px;
 }
