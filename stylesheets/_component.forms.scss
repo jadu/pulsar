@@ -385,7 +385,6 @@ fieldset {
         .form__group--#{$variant}.form__group--#{$variant} .form__control:not(.checkbox):not(.radio),
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control + .select2 {
-            max-width: 100%;
             width: #{$width};
         }
     }

@@ -345,6 +345,7 @@ $signin-panel-mobile-width:	300px;
     &.checkbox {
         height: 22px;
         margin: 0 1em 0 0;
+        padding: 0;
 
         // check position
         &::before {
@@ -362,6 +363,26 @@ $signin-panel-mobile-width:	300px;
     &:focus {
         @include pulsar-input-focused;
     }
+}
+
+.signin option,
+.signin .select2 * {
+    color: color(text) !important;
+}
+
+.signin .select2-container {
+    margin: 0 auto 1em;
+}
+
+.signin .select2-selection__choice__remove,
+.select2-selection__choice__remove:hover {
+    color: transparent !important;
+}
+
+.signin .select2-selection {
+    border: 0;
+    color: color(text, placeholder) !important;
+    outline: 2px solid rgba(0, 0, 0, .5);
 }
 
 .signin__code1.signin__code1,
@@ -636,5 +657,4 @@ $signin-panel-mobile-width:	300px;
     width: 100% !important;
 }
 // scss-lint:enable SelectorFormat
-
 // scss-lint:enable UrlFormat
