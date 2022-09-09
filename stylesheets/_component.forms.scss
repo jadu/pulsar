@@ -242,16 +242,21 @@ fieldset {
     // disabled if the fieldset is disabled. Due to implementation difficulty,
     // we don't honor that edge case; we style them as disabled anyway.
     &[disabled],
-    &[readonly],
     fieldset[disabled] & {
         cursor: not-allowed;
         color: color(text); // Required for cross-browser consistency
         background-color: $input-bg-disabled;
     }
 
+    &[readonly] {
+        border-style: dashed;
+        cursor: not-allowed;
+    }
+
     &:focus {
         @include pulsar-input-focused;
 
+        border-style: solid;
         z-index: 1;
     }
 }

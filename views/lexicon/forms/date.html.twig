@@ -150,6 +150,14 @@
                 'help': 'Stop! Can’t touch this'
             })
         }}
+        {{
+        form.date({
+            'data-pulsar-datepicker': 'true',
+            'id': 'guid-' ~ random(),
+            'label': '"readonly": true',
+            'readonly': true
+        })
+    }}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}

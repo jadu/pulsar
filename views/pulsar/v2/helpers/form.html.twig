@@ -933,7 +933,7 @@ data-pulsar-datepicker-trigger-label | string | Label for the pulsar date picker
 
         {# Disable button if input is disabled #}
         {% set isDisabled = false %}
-        {% if options.disabled is defined and options.disabled is not empty and options.disabled == true %}
+        {% if (options.disabled is defined and options.disabled is not empty and options.disabled == true) or (options.readonly is defined and options.readonly is not empty and options.readonly == true) %}
             {% set isDisabled = true %}
         {% endif %}
 
