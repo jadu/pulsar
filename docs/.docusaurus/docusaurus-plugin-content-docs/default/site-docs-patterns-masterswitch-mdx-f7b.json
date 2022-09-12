@@ -1,0 +1,28 @@
+{
+  "unversionedId": "patterns/masterswitch",
+  "id": "patterns/masterswitch",
+  "title": "Masterswitch",
+  "description": "The masterswitch pattern allows you to enable and disable a larger UI with a single control. Commonly used in ‘settings’ interfaces it provides an easy to understand on/off switch for users.",
+  "source": "@site/docs/patterns/masterswitch.mdx",
+  "sourceDirName": "patterns",
+  "slug": "/patterns/masterswitch",
+  "permalink": "/pulsar/docs/patterns/masterswitch",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/patterns/masterswitch.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "masterswitch",
+    "title": "Masterswitch",
+    "sidebar_label": "Masterswitch"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Integrations",
+    "permalink": "/pulsar/docs/patterns/integrations"
+  },
+  "next": {
+    "title": "No results",
+    "permalink": "/pulsar/docs/patterns/no-results"
+  }
+}

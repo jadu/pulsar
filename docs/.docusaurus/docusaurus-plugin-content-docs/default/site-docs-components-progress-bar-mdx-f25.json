@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/progress-bar",
+  "id": "components/progress-bar",
+  "title": "Progress Bar",
+  "description": "Provide up-to-date feedback on the progress of a workflow or action with simple progress bars.",
+  "source": "@site/docs/components/progress-bar.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/progress-bar",
+  "permalink": "/pulsar/docs/components/progress-bar",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/progress-bar.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "progress-bar",
+    "title": "Progress Bar",
+    "sidebar_label": "Progress Bar"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Panel",
+    "permalink": "/pulsar/docs/components/panel"
+  },
+  "next": {
+    "title": "Progress List",
+    "permalink": "/pulsar/docs/components/progress-list"
+  }
+}

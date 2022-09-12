@@ -1,0 +1,28 @@
+{
+  "unversionedId": "guides/colour-and-state",
+  "id": "guides/colour-and-state",
+  "title": "Colour and state",
+  "description": "Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s brand styleguide.",
+  "source": "@site/docs/guides/colour-and-state.mdx",
+  "sourceDirName": "guides",
+  "slug": "/guides/colour-and-state",
+  "permalink": "/pulsar/docs/guides/colour-and-state",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/colour-and-state.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "colour-and-state",
+    "title": "Colour and state",
+    "sidebar_label": "Colour and state"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Browser support",
+    "permalink": "/pulsar/docs/guides/browsers"
+  },
+  "next": {
+    "title": "Design tokens",
+    "permalink": "/pulsar/docs/guides/design-tokens"
+  }
+}

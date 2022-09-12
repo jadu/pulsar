@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/button-group",
+  "id": "components/button-group",
+  "title": "Button group",
+  "description": "Group a collection of related buttons together on a single line. Great for creating toolbars.",
+  "source": "@site/docs/components/button-group.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/button-group",
+  "permalink": "/pulsar/docs/components/button-group",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/button-group.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "button-group",
+    "title": "Button group",
+    "sidebar_label": "Button group"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Button",
+    "permalink": "/pulsar/docs/components/button"
+  },
+  "next": {
+    "title": "Card",
+    "permalink": "/pulsar/docs/components/card"
+  }
+}

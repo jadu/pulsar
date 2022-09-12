@@ -1,0 +1,28 @@
+{
+  "unversionedId": "forms/textarea",
+  "id": "forms/textarea",
+  "title": "Textarea",
+  "description": "Generates a textarea with options to control the number of rows (the height) of the element as well as additional help and guidance information.",
+  "source": "@site/docs/forms/textarea.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/textarea",
+  "permalink": "/pulsar/docs/forms/textarea",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/textarea.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "textarea",
+    "title": "Textarea",
+    "sidebar_label": "Textarea"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Text",
+    "permalink": "/pulsar/docs/forms/text"
+  },
+  "next": {
+    "title": "Time",
+    "permalink": "/pulsar/docs/forms/time"
+  }
+}

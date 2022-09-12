@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/list",
+  "id": "components/list",
+  "title": "List",
+  "description": "Pass an array of items and have them rendered as a simple unordered or ordered list, this is particularly useful when chained with other helpers.",
+  "source": "@site/docs/components/list.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/list",
+  "permalink": "/pulsar/docs/components/list",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/list.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "list",
+    "title": "List",
+    "sidebar_label": "List"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Link list",
+    "permalink": "/pulsar/docs/components/link-list"
+  },
+  "next": {
+    "title": "Loading spinner",
+    "permalink": "/pulsar/docs/components/loading-spinner"
+  }
+}

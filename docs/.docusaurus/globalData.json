@@ -1,0 +1,383 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/pulsar/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/pulsar/docs",
+          "mainDocId": "doc1",
+          "docs": [
+            {
+              "id": "components/badge",
+              "path": "/pulsar/docs/components/badge",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/block-list",
+              "path": "/pulsar/docs/components/block-list",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/breadcrumb",
+              "path": "/pulsar/docs/components/breadcrumb",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/button",
+              "path": "/pulsar/docs/components/button",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/button-group",
+              "path": "/pulsar/docs/components/button-group",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/card",
+              "path": "/pulsar/docs/components/card",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/datatable",
+              "path": "/pulsar/docs/components/datatable",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/dropdown-button",
+              "path": "/pulsar/docs/components/dropdown-button",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/dropzone",
+              "path": "/pulsar/docs/components/dropzone",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/flash-message",
+              "path": "/pulsar/docs/components/flash-message",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/icon",
+              "path": "/pulsar/docs/components/icon",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/label",
+              "path": "/pulsar/docs/components/label",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/link",
+              "path": "/pulsar/docs/components/link",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/link-list",
+              "path": "/pulsar/docs/components/link-list",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/list",
+              "path": "/pulsar/docs/components/list",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/loading-spinner",
+              "path": "/pulsar/docs/components/loading-spinner",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/media",
+              "path": "/pulsar/docs/components/media",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/metadata",
+              "path": "/pulsar/docs/components/metadata",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/modal",
+              "path": "/pulsar/docs/components/modal",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/pagination",
+              "path": "/pulsar/docs/components/pagination",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/panel",
+              "path": "/pulsar/docs/components/panel",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/progress-bar",
+              "path": "/pulsar/docs/components/progress-bar",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/progress-list",
+              "path": "/pulsar/docs/components/progress-list",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/remove-button",
+              "path": "/pulsar/docs/components/remove-button",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/status",
+              "path": "/pulsar/docs/components/status",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/table",
+              "path": "/pulsar/docs/components/table",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "components/tooltips",
+              "path": "/pulsar/docs/components/tooltips",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "doc1",
+              "path": "/pulsar/docs/"
+            },
+            {
+              "id": "doc2",
+              "path": "/pulsar/docs/doc2"
+            },
+            {
+              "id": "doc3",
+              "path": "/pulsar/docs/doc3"
+            },
+            {
+              "id": "forms/button-group",
+              "path": "/pulsar/docs/forms/button-group",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/checkbox",
+              "path": "/pulsar/docs/forms/checkbox",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/choice",
+              "path": "/pulsar/docs/forms/choice",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/color",
+              "path": "/pulsar/docs/forms/color",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/compound",
+              "path": "/pulsar/docs/forms/compound",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/content",
+              "path": "/pulsar/docs/forms/content",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/creating-a-form",
+              "path": "/pulsar/docs/forms/creating-a-form",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/date",
+              "path": "/pulsar/docs/forms/date",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/error-summary",
+              "path": "/pulsar/docs/forms/error-summary",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/fieldset",
+              "path": "/pulsar/docs/forms/fieldset",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/file",
+              "path": "/pulsar/docs/forms/file",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/hidden",
+              "path": "/pulsar/docs/forms/hidden",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/password",
+              "path": "/pulsar/docs/forms/password",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/radio",
+              "path": "/pulsar/docs/forms/radio",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/range",
+              "path": "/pulsar/docs/forms/range"
+            },
+            {
+              "id": "forms/repeater",
+              "path": "/pulsar/docs/forms/repeater",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/select",
+              "path": "/pulsar/docs/forms/select",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/select2",
+              "path": "/pulsar/docs/forms/select2",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/text",
+              "path": "/pulsar/docs/forms/text",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/textarea",
+              "path": "/pulsar/docs/forms/textarea",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/time",
+              "path": "/pulsar/docs/forms/time",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "forms/toggle-switch",
+              "path": "/pulsar/docs/forms/toggle-switch",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "guides/accessibility",
+              "path": "/pulsar/docs/guides/accessibility",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "guides/browsers",
+              "path": "/pulsar/docs/guides/browsers",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "guides/colour-and-state",
+              "path": "/pulsar/docs/guides/colour-and-state",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "guides/design-tokens",
+              "path": "/pulsar/docs/guides/design-tokens",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "guides/disabling-elements",
+              "path": "/pulsar/docs/guides/disabling-elements",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "guides/error-messages",
+              "path": "/pulsar/docs/guides/error-messages",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "guides/getting-started",
+              "path": "/pulsar/docs/guides/getting-started",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "guides/helpers",
+              "path": "/pulsar/docs/guides/helpers",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "mdx",
+              "path": "/pulsar/docs/mdx"
+            },
+            {
+              "id": "patterns/actionsbar",
+              "path": "/pulsar/docs/patterns/actionsbar",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/common-form",
+              "path": "/pulsar/docs/patterns/common-form",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/common-list",
+              "path": "/pulsar/docs/patterns/common-list",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/disabled-ui",
+              "path": "/pulsar/docs/patterns/disabled-ui",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/filter-bar",
+              "path": "/pulsar/docs/patterns/filter-bar",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/integrations",
+              "path": "/pulsar/docs/patterns/integrations",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/masterswitch",
+              "path": "/pulsar/docs/patterns/masterswitch",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/no-results",
+              "path": "/pulsar/docs/patterns/no-results",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/piano",
+              "path": "/pulsar/docs/patterns/piano",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/rules",
+              "path": "/pulsar/docs/patterns/rules",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "patterns/table-detail",
+              "path": "/pulsar/docs/patterns/table-detail",
+              "sidebar": "someSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "someSidebar": {
+              "link": {
+                "path": "/pulsar/docs/guides/getting-started",
+                "label": "guides/getting-started"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

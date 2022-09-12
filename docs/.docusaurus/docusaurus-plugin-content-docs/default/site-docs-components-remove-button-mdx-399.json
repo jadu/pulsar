@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/remove-button",
+  "id": "components/remove-button",
+  "title": "Remove Button",
+  "description": "Used by other helpers to add consistenly styled button to indicate an object can be removed.",
+  "source": "@site/docs/components/remove-button.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/remove-button",
+  "permalink": "/pulsar/docs/components/remove-button",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/remove-button.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "remove-button",
+    "title": "Remove Button",
+    "sidebar_label": "Remove Button"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Progress List",
+    "permalink": "/pulsar/docs/components/progress-list"
+  },
+  "next": {
+    "title": "Status",
+    "permalink": "/pulsar/docs/components/status"
+  }
+}

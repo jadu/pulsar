@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/panel",
+  "id": "components/panel",
+  "title": "Panel",
+  "description": "Display important information in a prominent container.",
+  "source": "@site/docs/components/panel.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/panel",
+  "permalink": "/pulsar/docs/components/panel",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/panel.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "panel",
+    "title": "Panel",
+    "sidebar_label": "Panel"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Pagination",
+    "permalink": "/pulsar/docs/components/pagination"
+  },
+  "next": {
+    "title": "Progress Bar",
+    "permalink": "/pulsar/docs/components/progress-bar"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "forms/choice",
+  "id": "forms/choice",
+  "title": "Choice",
+  "description": "Displayed as a question with multiple answers, each of which has its own label and can allow either singular (checkboxes) or multiple (radios) choice.",
+  "source": "@site/docs/forms/choice.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/choice",
+  "permalink": "/pulsar/docs/forms/choice",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/choice.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "choice",
+    "title": "Choice",
+    "sidebar_label": "Choice"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Checkbox",
+    "permalink": "/pulsar/docs/forms/checkbox"
+  },
+  "next": {
+    "title": "Color",
+    "permalink": "/pulsar/docs/forms/color"
+  }
+}

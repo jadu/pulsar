@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/badge",
+  "id": "components/badge",
+  "title": "Badge",
+  "description": "Badges can be used to highlight new or unread items, Limited usage is recommended, mainly for displaying numeric values in combination with other data to provide context. Do not use in place of labels, or any other similar element.",
+  "source": "@site/docs/components/badge.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/badge",
+  "permalink": "/pulsar/docs/components/badge",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/badge.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "badge",
+    "title": "Badge",
+    "sidebar_label": "Badge"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Helpers",
+    "permalink": "/pulsar/docs/guides/helpers"
+  },
+  "next": {
+    "title": "Block List",
+    "permalink": "/pulsar/docs/components/block-list"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "guides/accessibility",
+  "id": "guides/accessibility",
+  "title": "Accessibility",
+  "description": "The Pulsar Design System provides accessible components, layouts and recommended patterns which serve as a foundation for your application development.",
+  "source": "@site/docs/guides/accessibility.mdx",
+  "sourceDirName": "guides",
+  "slug": "/guides/accessibility",
+  "permalink": "/pulsar/docs/guides/accessibility",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/accessibility.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "accessibility",
+    "title": "Accessibility",
+    "sidebar_label": "Accessibility"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Getting started",
+    "permalink": "/pulsar/docs/guides/getting-started"
+  },
+  "next": {
+    "title": "Browser support",
+    "permalink": "/pulsar/docs/guides/browsers"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/block-list",
+  "id": "components/block-list",
+  "title": "Block List",
+  "description": "A block list is a simple way to present lists of information and supports different markup schemes depending on what is most appropriate for the data. Markup can be based around ul, ol, div or link elements.",
+  "source": "@site/docs/components/block-list.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/block-list",
+  "permalink": "/pulsar/docs/components/block-list",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/block-list.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "block-list",
+    "title": "Block List",
+    "sidebar_label": "Block List"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Badge",
+    "permalink": "/pulsar/docs/components/badge"
+  },
+  "next": {
+    "title": "Breadcrumb",
+    "permalink": "/pulsar/docs/components/breadcrumb"
+  }
+}

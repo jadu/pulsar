@@ -1,0 +1,28 @@
+{
+  "unversionedId": "forms/text",
+  "id": "forms/text",
+  "title": "Text",
+  "description": "Generates a text input field allowing users to input data, with a variety of options for additional help and guidance information.",
+  "source": "@site/docs/forms/text.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/text",
+  "permalink": "/pulsar/docs/forms/text",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/text.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "text",
+    "title": "Text",
+    "sidebar_label": "Text"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Select2",
+    "permalink": "/pulsar/docs/forms/select2"
+  },
+  "next": {
+    "title": "Textarea",
+    "permalink": "/pulsar/docs/forms/textarea"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "forms/time",
+  "id": "forms/time",
+  "title": "Time",
+  "description": "Generate a text input field which will show a time picker overlay when focused.",
+  "source": "@site/docs/forms/time.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/time",
+  "permalink": "/pulsar/docs/forms/time",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/time.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "time",
+    "title": "Time",
+    "sidebar_label": "Time"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Textarea",
+    "permalink": "/pulsar/docs/forms/textarea"
+  },
+  "next": {
+    "title": "Toggle switch",
+    "permalink": "/pulsar/docs/forms/toggle-switch"
+  }
+}

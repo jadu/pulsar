@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/media",
+  "id": "components/media",
+  "title": "Media",
+  "description": "The media object is, typically, an image on the left with descriptive content on the right. They can be used standalone, stacked, or as part of other components like block lists.",
+  "source": "@site/docs/components/media.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/media",
+  "permalink": "/pulsar/docs/components/media",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/media.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "media",
+    "title": "Media",
+    "sidebar_label": "Media"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Loading spinner",
+    "permalink": "/pulsar/docs/components/loading-spinner"
+  },
+  "next": {
+    "title": "Metadata",
+    "permalink": "/pulsar/docs/components/metadata"
+  }
+}

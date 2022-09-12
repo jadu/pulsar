@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/link",
+  "id": "components/link",
+  "title": "Link",
+  "description": "Creates a simple HTML link, often used inside other helpers.",
+  "source": "@site/docs/components/link.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/link",
+  "permalink": "/pulsar/docs/components/link",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/link.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "link",
+    "title": "Link",
+    "sidebar_label": "Link"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Label",
+    "permalink": "/pulsar/docs/components/label"
+  },
+  "next": {
+    "title": "Link list",
+    "permalink": "/pulsar/docs/components/link-list"
+  }
+}

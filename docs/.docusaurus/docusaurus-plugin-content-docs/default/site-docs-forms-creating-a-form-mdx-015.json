@@ -1,0 +1,28 @@
+{
+  "unversionedId": "forms/creating-a-form",
+  "id": "forms/creating-a-form",
+  "title": "Creating a form",
+  "description": "A form is a collection of inputs that allow users to create and edit 'things' within the Jadu platform. Pulsar forms provide consistent styling as well as sensible defaults so that developers can quickly compose useful, accessible forms.",
+  "source": "@site/docs/forms/creating-a-form.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/creating-a-form",
+  "permalink": "/pulsar/docs/forms/creating-a-form",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/creating-a-form.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "creating-a-form",
+    "title": "Creating a form",
+    "sidebar_label": "Creating a form"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Tooltips",
+    "permalink": "/pulsar/docs/components/tooltips"
+  },
+  "next": {
+    "title": "Button Group",
+    "permalink": "/pulsar/docs/forms/button-group"
+  }
+}

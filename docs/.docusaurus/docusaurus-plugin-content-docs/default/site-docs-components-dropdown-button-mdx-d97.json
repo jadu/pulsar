@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/dropdown-button",
+  "id": "components/dropdown-button",
+  "title": "Dropdown button",
+  "description": "Display a contextual list of actions presented as a drop down list when the button is pressed.",
+  "source": "@site/docs/components/dropdown-button.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/dropdown-button",
+  "permalink": "/pulsar/docs/components/dropdown-button",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/dropdown-button.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "dropdown-button",
+    "title": "Dropdown button",
+    "sidebar_label": "Dropdown button"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Datatable",
+    "permalink": "/pulsar/docs/components/datatable"
+  },
+  "next": {
+    "title": "Dropzone",
+    "permalink": "/pulsar/docs/components/dropzone"
+  }
+}

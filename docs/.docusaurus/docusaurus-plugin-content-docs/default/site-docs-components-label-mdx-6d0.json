@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/label",
+  "id": "components/label",
+  "title": "Label",
+  "description": "Provide extra contextual meaning to things, like stateful information.",
+  "source": "@site/docs/components/label.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/label",
+  "permalink": "/pulsar/docs/components/label",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/label.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "label",
+    "title": "Label",
+    "sidebar_label": "Label"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Icon",
+    "permalink": "/pulsar/docs/components/icon"
+  },
+  "next": {
+    "title": "Link",
+    "permalink": "/pulsar/docs/components/link"
+  }
+}

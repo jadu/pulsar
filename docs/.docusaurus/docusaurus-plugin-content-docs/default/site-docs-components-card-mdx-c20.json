@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/card",
+  "id": "components/card",
+  "title": "Card",
+  "description": "Cards are a flexible container for standout content with a range of configurable options for headers and footers, images and calls to action.",
+  "source": "@site/docs/components/card.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/card",
+  "permalink": "/pulsar/docs/components/card",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/card.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "card",
+    "title": "Card",
+    "sidebar_label": "Card"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Button group",
+    "permalink": "/pulsar/docs/components/button-group"
+  },
+  "next": {
+    "title": "Datatable",
+    "permalink": "/pulsar/docs/components/datatable"
+  }
+}

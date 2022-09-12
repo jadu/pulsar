@@ -1,0 +1,28 @@
+{
+  "unversionedId": "guides/disabling-elements",
+  "id": "guides/disabling-elements",
+  "title": "Disabling elements",
+  "description": "Disabling an element requires adding the appropriate attribute for the browser and any assistive device to recognise the element as being disabled, as well as a class to toggle the disabled styling of a given element.",
+  "source": "@site/docs/guides/disabling-elements.mdx",
+  "sourceDirName": "guides",
+  "slug": "/guides/disabling-elements",
+  "permalink": "/pulsar/docs/guides/disabling-elements",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/disabling-elements.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "disabling-elements",
+    "title": "Disabling elements",
+    "sidebar_label": "Disabling elements"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Design tokens",
+    "permalink": "/pulsar/docs/guides/design-tokens"
+  },
+  "next": {
+    "title": "Error messages",
+    "permalink": "/pulsar/docs/guides/error-messages"
+  }
+}

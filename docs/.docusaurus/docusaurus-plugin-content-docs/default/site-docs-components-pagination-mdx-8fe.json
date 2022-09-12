@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/pagination",
+  "id": "components/pagination",
+  "title": "Pagination",
+  "description": "Provide a control for users to navigate through 'pages' of content and to get a sense of how many records may be available.",
+  "source": "@site/docs/components/pagination.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/pagination",
+  "permalink": "/pulsar/docs/components/pagination",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/pagination.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "pagination",
+    "title": "Pagination",
+    "sidebar_label": "Pagination"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Modal",
+    "permalink": "/pulsar/docs/components/modal"
+  },
+  "next": {
+    "title": "Panel",
+    "permalink": "/pulsar/docs/components/panel"
+  }
+}

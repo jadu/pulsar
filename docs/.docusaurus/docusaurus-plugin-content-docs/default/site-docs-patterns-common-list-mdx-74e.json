@@ -1,0 +1,28 @@
+{
+  "unversionedId": "patterns/common-list",
+  "id": "patterns/common-list",
+  "title": "Common List",
+  "description": "The common list user interface pattern is the most frequent pattern used to display a paginated collection of ‘Things’, with related actions which can manipulate that collection.",
+  "source": "@site/docs/patterns/common-list.mdx",
+  "sourceDirName": "patterns",
+  "slug": "/patterns/common-list",
+  "permalink": "/pulsar/docs/patterns/common-list",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/patterns/common-list.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "common-list",
+    "title": "Common List",
+    "sidebar_label": "Common List"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Common Form",
+    "permalink": "/pulsar/docs/patterns/common-form"
+  },
+  "next": {
+    "title": "Disabled UI",
+    "permalink": "/pulsar/docs/patterns/disabled-ui"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "forms/content",
+  "id": "forms/content",
+  "title": "Content",
+  "description": "Generates a paragraph of text where an input would normally be positioned within a form while still allowing a regular form label to illustrate it.",
+  "source": "@site/docs/forms/content.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/content",
+  "permalink": "/pulsar/docs/forms/content",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/content.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "content",
+    "title": "Content",
+    "sidebar_label": "Content"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Compound",
+    "permalink": "/pulsar/docs/forms/compound"
+  },
+  "next": {
+    "title": "Date",
+    "permalink": "/pulsar/docs/forms/date"
+  }
+}

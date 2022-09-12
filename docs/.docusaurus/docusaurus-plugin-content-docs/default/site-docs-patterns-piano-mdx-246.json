@@ -1,0 +1,28 @@
+{
+  "unversionedId": "patterns/piano",
+  "id": "patterns/piano",
+  "title": "Piano",
+  "description": "The piano pattern allows you to switch between different panels of content within the same UI. Commonly used in integration and messages UIs.",
+  "source": "@site/docs/patterns/piano.mdx",
+  "sourceDirName": "patterns",
+  "slug": "/patterns/piano",
+  "permalink": "/pulsar/docs/patterns/piano",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/patterns/piano.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "piano",
+    "title": "Piano",
+    "sidebar_label": "Piano"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "No results",
+    "permalink": "/pulsar/docs/patterns/no-results"
+  },
+  "next": {
+    "title": "Rules",
+    "permalink": "/pulsar/docs/patterns/rules"
+  }
+}

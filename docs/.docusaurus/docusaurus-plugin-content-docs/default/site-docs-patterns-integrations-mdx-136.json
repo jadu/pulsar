@@ -1,0 +1,28 @@
+{
+  "unversionedId": "patterns/integrations",
+  "id": "patterns/integrations",
+  "title": "Integrations",
+  "description": "Integrations are a highly technical feature, often linking together separate systems and software using technical terminology like port numbers, timeouts and access tokens. Great care should be taken to design the integration to help the user understand what information they must supply and where they can find it.",
+  "source": "@site/docs/patterns/integrations.mdx",
+  "sourceDirName": "patterns",
+  "slug": "/patterns/integrations",
+  "permalink": "/pulsar/docs/patterns/integrations",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/patterns/integrations.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "integrations",
+    "title": "Integrations",
+    "sidebar_label": "Integrations"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Filter Bar",
+    "permalink": "/pulsar/docs/patterns/filter-bar"
+  },
+  "next": {
+    "title": "Masterswitch",
+    "permalink": "/pulsar/docs/patterns/masterswitch"
+  }
+}

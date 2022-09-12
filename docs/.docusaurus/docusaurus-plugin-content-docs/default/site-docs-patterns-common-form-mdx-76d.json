@@ -1,0 +1,28 @@
+{
+  "unversionedId": "patterns/common-form",
+  "id": "patterns/common-form",
+  "title": "Common Form",
+  "description": "The common form user interface pattern is the most frequent pattern used to display a form which can be used to create a new Thing or edit an existing Thing.",
+  "source": "@site/docs/patterns/common-form.mdx",
+  "sourceDirName": "patterns",
+  "slug": "/patterns/common-form",
+  "permalink": "/pulsar/docs/patterns/common-form",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/patterns/common-form.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "common-form",
+    "title": "Common Form",
+    "sidebar_label": "Common Form"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Actions Bar",
+    "permalink": "/pulsar/docs/patterns/actionsbar"
+  },
+  "next": {
+    "title": "Common List",
+    "permalink": "/pulsar/docs/patterns/common-list"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/button",
+  "id": "components/button",
+  "title": "Button",
+  "description": "Pulsar buttons are an all purpose user interface element allowing users to perform actions, submit forms and progress through transactions.",
+  "source": "@site/docs/components/button.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/button",
+  "permalink": "/pulsar/docs/components/button",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/button.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "button",
+    "title": "Button",
+    "sidebar_label": "Button"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Breadcrumb",
+    "permalink": "/pulsar/docs/components/breadcrumb"
+  },
+  "next": {
+    "title": "Button group",
+    "permalink": "/pulsar/docs/components/button-group"
+  }
+}

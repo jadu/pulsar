@@ -1,0 +1,28 @@
+{
+  "unversionedId": "forms/select",
+  "id": "forms/select",
+  "title": "Select",
+  "description": "Generates a select input field.",
+  "source": "@site/docs/forms/select.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/select",
+  "permalink": "/pulsar/docs/forms/select",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/select.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "select",
+    "title": "Select",
+    "sidebar_label": "Select"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Repeater",
+    "permalink": "/pulsar/docs/forms/repeater"
+  },
+  "next": {
+    "title": "Select2",
+    "permalink": "/pulsar/docs/forms/select2"
+  }
+}

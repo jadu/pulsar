@@ -1,0 +1,28 @@
+{
+  "unversionedId": "patterns/filter-bar",
+  "id": "patterns/filter-bar",
+  "title": "Filter Bar",
+  "description": "The filter bar pattern allows you to build up a list of filters to be applied to a UI. Commonly used to filter tabular data as an alternative to displaying a potentially large form.",
+  "source": "@site/docs/patterns/filter-bar.mdx",
+  "sourceDirName": "patterns",
+  "slug": "/patterns/filter-bar",
+  "permalink": "/pulsar/docs/patterns/filter-bar",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/patterns/filter-bar.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "filter-bar",
+    "title": "Filter Bar",
+    "sidebar_label": "Filter Bar"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Disabled UI",
+    "permalink": "/pulsar/docs/patterns/disabled-ui"
+  },
+  "next": {
+    "title": "Integrations",
+    "permalink": "/pulsar/docs/patterns/integrations"
+  }
+}

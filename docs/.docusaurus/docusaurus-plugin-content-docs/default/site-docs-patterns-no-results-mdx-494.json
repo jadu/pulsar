@@ -1,0 +1,28 @@
+{
+  "unversionedId": "patterns/no-results",
+  "id": "patterns/no-results",
+  "title": "No results",
+  "description": "When an interface needs to list items you should provide a helpful fallback message for when no results are found. If the user has the relevant permissions to create or add one of these items, you should provide a call to action to help them along their way.",
+  "source": "@site/docs/patterns/no-results.mdx",
+  "sourceDirName": "patterns",
+  "slug": "/patterns/no-results",
+  "permalink": "/pulsar/docs/patterns/no-results",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/patterns/no-results.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "no-results",
+    "title": "No results",
+    "sidebar_label": "No results"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Masterswitch",
+    "permalink": "/pulsar/docs/patterns/masterswitch"
+  },
+  "next": {
+    "title": "Piano",
+    "permalink": "/pulsar/docs/patterns/piano"
+  }
+}

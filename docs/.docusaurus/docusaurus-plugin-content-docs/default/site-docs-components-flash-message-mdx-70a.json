@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/flash-message",
+  "id": "components/flash-message",
+  "title": "Flash Message",
+  "description": "Flash messages alert the user when things happen, this may be to confirm that something has occurred successfully, like saving a document, or when something goes wrong. Flash messages may also highlight problems with the system that the user may need to know about, like a loss of network connectivity which is preventing auto-save.",
+  "source": "@site/docs/components/flash-message.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/flash-message",
+  "permalink": "/pulsar/docs/components/flash-message",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/flash-message.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "flash-message",
+    "title": "Flash Message",
+    "sidebar_label": "Flash message"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Dropzone",
+    "permalink": "/pulsar/docs/components/dropzone"
+  },
+  "next": {
+    "title": "Icon",
+    "permalink": "/pulsar/docs/components/icon"
+  }
+}

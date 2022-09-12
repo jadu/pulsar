@@ -1,0 +1,24 @@
+{
+  "unversionedId": "guides/getting-started",
+  "id": "guides/getting-started",
+  "title": "Getting started",
+  "description": "As a Jadu designer or developer, you’re probably working on one or more of the Jadu platform products (CMS, XFP and CXM). Pulsar is already installed and available for you to use in your user-interface. There are, however, some important things to know.",
+  "source": "@site/docs/guides/getting-started.mdx",
+  "sourceDirName": "guides",
+  "slug": "/guides/getting-started",
+  "permalink": "/pulsar/docs/guides/getting-started",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/getting-started.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "getting-started",
+    "title": "Getting started",
+    "sidebar_label": "Getting started"
+  },
+  "sidebar": "someSidebar",
+  "next": {
+    "title": "Accessibility",
+    "permalink": "/pulsar/docs/guides/accessibility"
+  }
+}

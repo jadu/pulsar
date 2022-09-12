@@ -1,0 +1,28 @@
+{
+  "unversionedId": "forms/toggle-switch",
+  "id": "forms/toggle-switch",
+  "title": "Toggle switch",
+  "description": "An alternative presentation for a checkbox, providing a more obvious visual indication of the on/off state.",
+  "source": "@site/docs/forms/toggle-switch.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/toggle-switch",
+  "permalink": "/pulsar/docs/forms/toggle-switch",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/toggle-switch.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "toggle-switch",
+    "title": "Toggle switch",
+    "sidebar_label": "Toggle switch"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Time",
+    "permalink": "/pulsar/docs/forms/time"
+  },
+  "next": {
+    "title": "Actions Bar",
+    "permalink": "/pulsar/docs/patterns/actionsbar"
+  }
+}

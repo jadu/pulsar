@@ -1,0 +1,28 @@
+{
+  "unversionedId": "components/breadcrumb",
+  "id": "components/breadcrumb",
+  "title": "Breadcrumb",
+  "description": "A basic helper to render a list of breadcrumb links. A view should set a breadcrumbs object which will then be rendered by the base template.",
+  "source": "@site/docs/components/breadcrumb.mdx",
+  "sourceDirName": "components",
+  "slug": "/components/breadcrumb",
+  "permalink": "/pulsar/docs/components/breadcrumb",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/components/breadcrumb.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "breadcrumb",
+    "title": "Breadcrumb",
+    "sidebar_label": "Breadcrumb"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Block List",
+    "permalink": "/pulsar/docs/components/block-list"
+  },
+  "next": {
+    "title": "Button",
+    "permalink": "/pulsar/docs/components/button"
+  }
+}

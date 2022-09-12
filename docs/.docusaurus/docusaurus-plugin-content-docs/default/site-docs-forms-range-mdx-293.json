@@ -1,0 +1,19 @@
+{
+  "unversionedId": "forms/range",
+  "id": "forms/range",
+  "title": "Range",
+  "description": "Generates a range slider input.",
+  "source": "@site/docs/forms/range.mdx",
+  "sourceDirName": "forms",
+  "slug": "/forms/range",
+  "permalink": "/pulsar/docs/forms/range",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/forms/range.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "range",
+    "title": "Range",
+    "sidebar_label": "Range"
+  }
+}

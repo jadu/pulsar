@@ -1,0 +1,28 @@
+{
+  "unversionedId": "guides/design-tokens",
+  "id": "guides/design-tokens",
+  "title": "Design tokens",
+  "description": "Design tokens store static values for a variety of design attributes. Use them in place of hardcoded values to ensure consistency in your user interface.",
+  "source": "@site/docs/guides/design-tokens.mdx",
+  "sourceDirName": "guides",
+  "slug": "/guides/design-tokens",
+  "permalink": "/pulsar/docs/guides/design-tokens",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/design-tokens.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "design-tokens",
+    "title": "Design tokens",
+    "sidebar_label": "Design tokens"
+  },
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Colour and state",
+    "permalink": "/pulsar/docs/guides/colour-and-state"
+  },
+  "next": {
+    "title": "Disabling elements",
+    "permalink": "/pulsar/docs/guides/disabling-elements"
+  }
+}
