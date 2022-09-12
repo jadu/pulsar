@@ -1,4 +1,4 @@
-name: CI
+name: Docusaurus
 on: [push]
 
 jobs:
@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: redkubes/docusaurus-deploy-action@v1
         with:
-          source-folder: docs
+          source-folder: docs/docs
           git-user: stanton
           git-password: ${{ secrets.GITHUB_TOKEN }}
           deployment-branch: gh-pages
