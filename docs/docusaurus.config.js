@@ -9,7 +9,7 @@ const config = {
   title: 'Pulsar',
   tagline: 'The design system and user interface framework for Jadu',
   url: 'https://jadu.github.io/',
-  baseUrl: '/',
+  baseUrl: '/pulsar/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
