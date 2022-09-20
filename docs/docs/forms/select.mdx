@@ -1,0 +1,397 @@
+---
+id: select
+title: Select
+sidebar_label: Select
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generates a select input field.
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-1609313126" className="control__label">Pick a colour</label>
+    <div className="controls">
+      <select id="guid-1609313126" className="form__control select">
+        <option value="">Choose</option>
+        <option value="colour_red">Red</option>
+        <option value="colour_blue">Blue</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.select({
+    'label': 'Pick a colour',
+    'id': 'guid-' ~ random(),
+    'options': [
+      {
+        'label': 'Choose',
+        'value': ''
+      },
+      {
+        'label': 'Red',
+        'value': 'colour_red'
+      },
+      {
+        'label': 'Blue',
+        'value': 'colour_blue'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-1609313126" class="control__label">Pick a colour</label>
+  <div class="controls">
+    <select id="guid-1609313126" class="form__control select">
+      <option value="">Choose</option>
+      <option value="colour_red">Red</option>
+      <option value="colour_blue">Blue</option>
+    </select>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options. The following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| multiple | boolean | Whether multiple options can be selected (default: false) |
+| options | array | An array of labels and values to use as options |
+| selected | string | The value of the item in options that should be initially selected |
+| size | int | The number of options to display when the list is shown |
+
+## Selected option
+
+### Single select
+
+Set the currently selected item by passing the option’s `value` to the main `selected` option.
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-1723390467" className="control__label">Pick a colour</label>
+    <div className="controls">
+      <select id="guid-1723390467" className="form__control select" defaultValue={'colour_blue'}>
+        <option value="">Choose</option>
+        <option value="colour_red">Red</option>
+        <option value="colour_blue">Blue</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {5}
+{{
+  form.select({
+    'label': 'Pick a colour',
+    'id': 'guid-' ~ random(),
+    'selected': 'colour_blue',
+    'options': [
+      {
+        'label': 'Choose',
+        'value': ''
+      },
+      {
+        'label': 'Red',
+        'value': 'colour_red'
+      },
+      {
+        'label': 'Blue',
+        'value': 'colour_blue'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label htmlFor="guid-1723390467" class="control__label">Pick a colour</label>
+  <div class="controls">
+    <select id="guid-1723390467" class="form__control select">
+      <option value="">Choose</option>
+      <option value="colour_red">Red</option>
+      <option value="colour_blue" selected>Blue</option>
+    </select>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+### Multiple select
+
+For multiple selects, pass the selected values as an array. If you want this to look much nicer consider using the select2 helper instead.
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-895788692" className="control__label">Pick colours</label>
+    <div className="controls">
+      <select id="guid-895788692" multiple className="form__control select" defaultValue={['colour_red', 'colour_blue']}>
+        <option value="">Choose</option>
+        <option value="colour_red">Red</option>
+        <option value="colour_blue">Blue</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {6}
+{{
+  form.select({
+    'label': 'Pick colours',
+    'id': 'guid-' ~ random(),
+    'multiple': true,
+    'selected': ['colour_red', 'colour_blue'],
+    'options': [
+      {
+        'label': 'Choose',
+        'value': ''
+      },
+      {
+        'label': 'Red',
+        'value': 'colour_red'
+      },
+      {
+        'label': 'Blue',
+        'value': 'colour_blue'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-895788692" class="control__label">Pick colours</label>
+  <div class="controls">
+    <select id="guid-895788692" multiple class="form__control select">
+      <option value="">Choose</option>
+      <option value="colour_red" selected>Red</option>
+      <option value="colour_blue" selected>Blue</option>
+    </select>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Disabled options
+
+You can disable the entire input as normal by passing the `'disabled': true` option (see the disabling elements guide for more information).
+
+You can disable specific options by adding the `disabled` attribute to the option array.
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-1473191617" className="control__label">Pick a colour</label>
+    <div className="controls">
+      <select id="guid-1473191617" className="form__control select">
+        <option value="">Choose</option>
+        <option value="colour_red" disabled="disabled">Red</option>
+        <option value="colour_blue">Blue</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {13}
+{{
+  form.select({
+    'label': 'Pick a colour',
+    'id': 'guid-' ~ random(),
+    'options': [
+      {
+        'label': 'Choose',
+        'value': ''
+      },
+      {
+        'label': 'Red',
+        'value': 'colour_red',
+        'disabled': true
+      },
+      {
+        'label': 'Blue',
+        'value': 'colour_blue'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-1473191617" class="control__label">Pick a colour</label>
+  <div class="controls">
+    <select id="guid-1473191617" class="form__control select">
+      <option value="">Choose</option>
+      <option value="colour_red" disabled="disabled">Red</option>
+      <option value="colour_blue">Blue</option>
+    </select>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Optgroups
+
+Your options can be arranged within optgroups using the `optgroup` nested syntax.
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-260727864" className="control__label">My label</label>
+    <div className="controls">
+      <select id="guid-260727864" data-label="My label" className="form__control select js-select2">
+        <optgroup label="optgroup one">
+          <option value="val-alpha">alpha</option>
+          <option value="val-bravo">bravo</option>
+        </optgroup>
+        <optgroup label="optgroup two">
+          <option value="val-charlie">charlie</option>
+          <option value="val-delta">delta</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {5-33}
+{{
+  form.select2({
+    'label': 'My label',
+    'id': 'guid-' ~ random(),
+    'options':
+    [
+      {
+        'label': 'optgroup one',
+        'options': [
+          {
+            'label': 'alpha',
+            'value': 'val-alpha'
+          },
+          {
+            'label': 'bravo',
+            'value': 'val-bravo'
+          }
+        ]
+      },
+      {
+        'label': 'optgroup two',
+        'options': [
+          {
+            'label': 'charlie',
+            'value': 'val-charlie'
+          },
+          {
+            'label': 'delta',
+            'value': 'val-delta'
+          }
+        ]
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-260727864" class="control__label">My label</label>
+  <div class="controls">
+    <select id="guid-260727864" data-label="My label" class="form__control select js-select2">
+      <optgroup label="optgroup one">
+        <option value="val-alpha">alpha</option>
+        <option value="val-bravo">bravo</option>
+      </optgroup>
+      <optgroup label="optgroup two">
+        <option value="val-charlie">charlie</option>
+        <option value="val-delta">delta</option>
+      </optgroup>
+    </select>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>

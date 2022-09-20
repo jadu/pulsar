@@ -1,0 +1,394 @@
+---
+id: button
+title: Button
+sidebar_label: Button
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Pulsar buttons are an all purpose user interface element allowing users to perform actions, submit forms and progress through transactions.
+
+<div className="d-example">
+  <button className="btn">My Action</button>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.button({
+        'label': 'My Action'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Button>My Action</Button>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<button class="btn">My Action</button>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| type | string | Type of button to create, can be `button` (default), `link`, `input` or `submit` |
+
+## Labelling your button
+
+The text label you use for a button should be clear enough for any user to understand what will happen if the user clicks the button, don't rely on colour alone to indicate whether this is a primary or dangerous action, the label is the most important piece of information.
+
+If the button relates to an action, the label should ideally be a verb, use the common state classes to reinforce dangerous or destructive actions with colour, but don't rely on colour alone to communicate a button’s intention.
+
+<div className="d-example">
+  <button className="btn btn--primary">New Thing</button> <button className="btn btn--primary">Save</button> <button className="btn">Edit</button> <button className="btn">Copy</button> <button className="btn">Show</button> <button className="btn">Hide</button>  <button className="btn btn--danger">Delete</button>
+</div>
+
+Other recommendations for labelling your buttons include:
+
+<div className="d-guidelines">
+  <div className="d-guidelines__block d-guidelines__block--do">
+  <div className="d-guidelines-preview">
+    <button className="btn btn--primary">New Document</button>
+  </div>
+  <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> use title case</div></div>
+  <div className="d-guidelines__block d-guidelines__block--not">
+    <div className="d-guidelines-preview">
+      <button className="btn btn--primary">New document</button> <button className="btn btn--danger">DELETE</button>
+    </div>
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> use sentence case or all caps</div></div>
+</div>
+
+<div className="d-guidelines">
+  <div className="d-guidelines__block d-guidelines__block--do">
+    <div className="d-guidelines-preview">
+      <button className="btn btn--primary">New Event</button>
+    </div>
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> use a text only label for primary actions, unless explicitly required for the UI</div>
+  </div>
+  <div className="d-guidelines__block d-guidelines__block--not">
+    <div className="d-guidelines-preview">
+      <button className="btn btn--primary"><i aria-hidden="true" className="icon-plus"></i> Create Event</button>
+    </div>
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> add icons to primary actions</div>
+  </div>
+</div>
+
+If an action relates to creating new items of content, use 'New', Do not use 'Create' or 'Create New'. 
+
+<div className="d-example">
+  <button className="btn btn--primary">New Thing</button>
+</div>
+
+If a button triggers more than one action you should communicate the chain of events to the user, ideally in the order in which they will happen. This helps users to build a mental model of what is happening when they push a button.
+
+<div className="d-example">
+  <button className="btn btn--primary">Save Changes and Publish Now</button> <button className="btn btn--primary">Save Changes and Submit for Proofing</button> <button className="btn btn--danger">Reset Password and Notify User</button>
+</div>
+
+## Using icons
+
+If your button is labelled using only an icon, you must supply an appropriate descriptive label to be announced by screenreaders, either by the icon's `label` option, or using `aria-label`.
+
+<div className="d-example">
+  <button className="btn">
+    <i className="icon-plus">
+      <span className="hide">Add to list</span>
+    </i>
+  </button>
+  &nbsp;
+  <button className="btn" aria-label="Add to list">
+    <i className="icon-plus"></i>
+  </button>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.button({
+        'label': html.icon('plus', { 'label': 'Add to list' })
+    })
+}}
+
+{{
+    html.button({
+        'label': html.icon('plus'),
+        'aria-label': 'Add to list'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Button className="btn">
+  <i className="icon-plus">
+    <span className="hide">Add to list</span>
+  </i>
+</Button>
+
+<Button className="btn" aria-label="Add to list">
+  <i className="icon-plus"></i>
+</Button>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<button class="btn">
+  <i class="icon-plus">
+    <span class="hide">Add to list</span>
+  </i>
+</button>
+
+<button class="btn" aria-label="Add to list">
+  <i class="icon-plus"></i>
+</button>
+```
+
+</TabItem>
+</Tabs>
+
+## Button types
+
+The underlying HTML element you use for a button is an important choice, particularly for accessibility reasons, and your choice will usually be based on the type of action you wish to perform. In most cases this can usually be determined by this simple rule:
+
+* if the button _goes somewhere_, it should be a link
+* if the button _does something_, it should be a button
+
+:::tip Accessibility tip
+If you absolutely have to use a link for a button that _does something_, you should add the following affordances:
+
+* add the `aria-role="button"` attribute to make the element announce itself as a button rather than a link
+* add a javascript event handler to be triggered when the user presses the `space` key, as regular buttons will be triggered on both `enter` and `space`, but regular links will not
+:::
+
+### Link button
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.button({
+        'label': 'Next',
+        'class': 'btn--primary',
+        'type': 'link',
+        'href': '/path/to/destination'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Button 
+  className="btn btn--primary" 
+  type="link" 
+  href="/path/to/destination">Next</Button>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<a class="btn btn--primary" href="/path/to/destination">Next</a>
+```
+
+</TabItem>
+</Tabs>
+
+### Input button
+
+Only for use within forms, and you should have a really good reason not to use a regular `button`.
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.button({
+        'label': 'Add Keyword',
+        'type': 'input'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Button type="input">Add Keyword</Button>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<input type="button" value="Add Keyword" class="btn" />
+```
+
+</TabItem>
+</Tabs>
+
+### Submit button
+
+Should only be used to submit forms, if you're building a Pulsar styled form you can use standard submit controls with the form end component.
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.button({
+        'label': 'Submit',
+        'type': 'submit'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Button type="submit">Submit</Button>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<input type="submit" class="btn">Submit</input>
+```
+
+</TabItem>
+</Tabs>
+
+### Disabled buttons
+
+If an action is unavailable you can disable the button, the common `.is-disabled` class will visually style the disabled state.
+
+If you're not using the Twig or React helpers, you must make sure the following is applied to your button when disabled:
+
+* if using `button`, `input` or `submit` type, add the `disabled` attribute
+* if using `link` type, add the `aria-disabled="true"` attribute
+
+:::tip Accessibility tip
+Disabled buttons cannot be focused with the keyboard so will be invisible to screenreaders, this behaviour may be desired, or you may need to choose another UI pattern if you feel screenreader users need to always be aware that a button is present. Consider your use cases carefully.
+:::
+
+#### Adding tooltips to disabled buttons
+
+The disabled attribute prevents mouse events from firing and stops tooltips from working entirely, the only way around this which works for all our supported browsers is to wrap the button in a containing `div` and attach the tooltip to that element.
+
+<div className="d-example">
+  <div data-tippy-content="Can’t touch this" tabIndex="0" className="u-display-inline-block">
+    <button disabled="disabled" className="btn is-disabled">Disabled Button</button>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+<div data-tippy-content="Can’t touch this" tabindex="0" class="u-display-inline-block">
+  {{ 
+    html.button({
+      'label': 'Disabled Button',
+      'disabled': true
+    })
+  }}
+</div>
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<div data-tippy-content="Can’t touch this" tabIndex="0" className="u-display-inline-block">
+  <Button disabled>Disabled Button</Button>
+</div>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div data-tippy-content="Can’t touch this" tabindex="0" class="u-display-inline-block">
+  <button disabled="disabled" class="btn is-disabled">Disabled Button</button>
+</div>
+```
+
+</TabItem>
+</Tabs>
+

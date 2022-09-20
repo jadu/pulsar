@@ -1,0 +1,174 @@
+---
+id: loading-spinner
+title: Loading spinner
+sidebar_label: Loading spinner
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Give feedback to the user that something is happening or that information is being retrieved from the server.
+
+Adding the hide class will allow you to place the loading markup in the DOM on pageload for you to toggle with javascript.
+
+<div className="d-example">
+  <span className="loading"><i>Loading...</i></span>
+  <br />
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{ html.loading() }}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<span class="loading"><i>Loading...</i></span>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options.
+
+## Centering within a container
+
+<div className="d-example">
+  <div className="loading-block">
+    <span className="loading"><i>Loading...</i></span>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.loading({
+    'type': 'block'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="loading-block">
+  <span class="loading"><i>Loading...</i></span>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Large spinner
+
+When a spinner is used to indicate a large section of an interface is still loading it may be more you can use the large spinner to be more obvious.
+
+<div className="d-example">
+  <div className="loading-block">
+    <span className="loading loading--large"><i>Loading...</i></span>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.loading({
+        'class': 'loading--large',
+        'type': 'block'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="loading-block">
+  <span class="loading"><i>Loading...</i></span>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Custom message
+
+A line of text can be included to tell the user what’s happening.
+
+<div className="d-example">
+  <div className="loading-block">
+    <span className="loading loading--large"><i>Loading...</i></span>
+    <span className="loading-block__message">Loading your cases...</span>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.loading({
+    'class': 'loading--large',
+    'message': 'Loading your cases...',
+    'type': 'block'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="loading-block">
+  <div class="loading-block">
+    <span class="loading loading--large"><i>Loading...</i></span>
+    <span class="loading-block__message">Loading your cases...</span>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>

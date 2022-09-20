@@ -1,0 +1,199 @@
+---
+id: select2
+title: Select2
+sidebar_label: Select2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The select2 helper is like a regular select but adds extra functionality such as quicksearch, and the ability to add custom markup to your results.
+
+:::info
+Pulsar uses its own [fork of SelectWoo](https://github.com/jadu/selectWoo), which contains additional accessibility enhancements over the [original selectWoo](https://github.com/woocommerce/selectWoo) which in turn offers better accessibility support over the [original select2](https://select2.org/).
+
+You can find more information about the Jadu branch of selectWoo, such as screen reader coverage and known bugs on the [Jadu/selectWoo GitHub repo](Jadu/selectWoo GitHub repo)
+:::
+
+## Dependencies
+
+:::tip
+Check Pulsar’s package.json for the current version of the selectWoo package that you should be including.
+:::
+
+```js package.json
+"dependencies": {
+  "select2": "github:jadu/selectWoo#jadu-1.1.3"
+}
+```
+
+```js index.js
+var PulsarFormComponent = require('/path/to/pulsar/PulsarFormComponent');
+
+$(function () {
+  var $html = $('html');
+
+  pulsarForm = new PulsarFormComponent($html);
+  pulsarForm.init();
+});
+```
+
+This will then initialise all select elements with the `js-select2` class (which will be included automatically if you’re using the helpers).
+
+## Basic usage
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-669494026" className="control__label">Pick a colour</label>
+    <div className="controls">
+      <select id="guid-669494026" data-label="Pick a colour" data-placeholder="Please choose" className="form__control select js-select2">
+        <option value="">Please choose</option>
+        <option value="colour_red">Red</option>
+        <option value="colour_blue">Blue</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.select2({
+    'label': 'Pick a colour',
+    'id': 'guid-' ~ random(),
+    'placeholder': 'Please choose',
+    'options': [
+      {
+        'label': 'Red',
+        'value': 'colour_red'
+      },
+      {
+        'label': 'Blue',
+        'value': 'colour_blue'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-669494026" class="control__label">Pick a colour</label>
+  <div class="controls">
+    <select id="guid-669494026" data-label="Pick a colour" data-placeholder="Please choose" class="form__control select js-select2">
+      <option value="">Please choose</option>
+      <option value="colour_red">Red</option>
+      <option value="colour_blue">Blue</option>
+    </select>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| multiple | boolean | Whether multiple options can be selected (default: false) |
+| options | array | An array of labels and values to use as options |
+| placeholder | string | The placeholder to show when no values are selected |
+| selected | string | The value of the item in options that should be initially selected |
+| size | int | The number of options to display when the list is shown |
+
+## Selected option
+
+See the regular select documentation.
+
+## Disabled options
+
+See the regular select documentation.
+
+## Optgroups
+
+See the regular select documentation.
+
+## Placeholder
+
+Placeholders can be set using the `placeholder` option.
+
+:::tip
+For single select select2s, select2 requires an empty option for use with the placeholder. This will be added automatically if you are using the form.select2 helper.
+:::
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-1510240028" className="control__label">My label</label>
+    <div className="controls">
+      <select id="guid-1510240028" data-label="My label" data-placeholder="Please choose" className="form__control select js-select2">
+        <option value="">Please choose</option>
+        <option value="colour_red">Red</option>
+        <option value="colour_blue">Blue</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {5}
+{{
+  form.select2({
+    'label': 'My label',
+    'id': 'guid-' ~ random(),
+    'placeholder': 'Please choose',
+    'options': [
+      {
+        'label': 'Red',
+        'value': 'colour_red'
+      },
+      {
+        'label': 'Blue',
+        'value': 'colour_blue'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-1510240028" class="control__label">My label</label>
+  <div class="controls">
+    <select id="guid-1510240028" data-label="My label" data-placeholder="Please choose" class="form__control select js-select2">
+      <option value="">Please choose</option>
+      <option value="colour_red">Red</option>
+      <option value="colour_blue">Blue</option>
+    </select>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>

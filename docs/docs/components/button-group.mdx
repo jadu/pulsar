@@ -1,0 +1,160 @@
+---
+id: button-group
+title: Button group
+sidebar_label: Button group
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Group a collection of related [buttons](button.mdx) together on a single line. Great for creating toolbars.
+
+<div className="d-example">
+  <div className="btn__group">
+    <button className="btn">Alpha</button>
+    <button className="btn">Bravo</button>
+    <button className="btn">Charlie</button>
+  </div>
+</div>
+
+:::tip
+If you’re creating button groups within a form you may find the form button group components more suited to your needs
+:::
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button_group({
+    'buttons': [
+      html.button({ 'label': 'Alpha' }),
+      html.button({ 'label': 'Bravo' }),
+      html.button({ 'label': 'Charlie' })
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<ButtonGroup>
+  <Button>Alpha</Button>
+  <Button>Bravo</Button>
+  <Button>Charlie</Button>
+</ButtonGroup>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div className="btn__group">
+  <button className="btn">Alpha</button>
+  <button className="btn">Bravo</button>
+  <button className="btn">Charlie</button>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Twig helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| buttons | array | An array of `button` elements |
+
+## Icon-only buttons
+
+For assistive technology, you must make sure your icons have their own labels which will be announced when the button receives focus.
+
+<div className="d-example">
+  <div className="btn__group">
+    <button className="btn"><i className="icon-align-left"><span className="hide">Text align: left</span></i></button>
+    <button className="btn"><i className="icon-align-center"><span className="hide">Text align: center</span></i></button>
+    <button className="btn"><i className="icon-align-right"><span className="hide">Text align: right</span></i></button>
+    <button className="btn"><i className="icon-align-justify"><span className="hide">Text align: justify</span></i></button>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button_group({
+    'buttons': [
+      html.button({
+        'label': html.icon('align-left', {
+          'label': 'Text align: left' 
+        }) 
+      }),
+      html.button({
+        'label': html.icon('align-center', {
+          'label': 'Text align: center' 
+        }) 
+      }),
+      html.button({
+        'label': html.icon('align-right', {
+          'label': 'Text align: right' 
+        }) 
+      }),
+      html.button({
+        'label': html.icon('align-justify', {
+          'label': 'Text align: justify'
+        }) 
+      })
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<ButtonGroup>
+  <Button><i class="icon-align-left"><span class="hide">Text align: left</span></i></Button>
+  <Button><i class="icon-align-center"><span class="hide">Text align: center</span></i></Button>
+  <Button><i class="icon-align-right"><span class="hide">Text align: right</span></i></Button>
+  <Button><i class="icon-align-justify"><span class="hide">Text align: justify</span></i></Button>
+</ButtonGroup>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="btn__group">
+  <button class="btn"><i class="icon-align-left"><span class="hide">Text align: left</span></i></button>
+  <button class="btn"><i class="icon-align-center"><span class="hide">Text align: center</span></i></button>
+  <button class="btn"><i class="icon-align-right"><span class="hide">Text align: right</span></i></button>
+  <button class="btn"><i class="icon-align-justify"><span class="hide">Text align: justify</span></i></button>
+</div>
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,161 @@
+---
+id: disabling-elements
+title: Disabling elements
+sidebar_label: Disabling elements
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Disabling an element requires adding the appropriate attribute for the browser and any assistive device to recognise the element as being disabled, as well as a class to toggle the disabled styling of a given element.
+
+:::note
+Pulsar helpers will automatically use the correct attribute to use when you add `'disabled': true` to your helper options
+:::
+
+## The `disabled` attribute
+
+The following elements are the only ones which support the `disabled` attribute. You **do not** need to add `aria-diasbled` for these.
+
+* `<button>`
+* `<fieldset>`
+* `<input>`
+* `<optgroup>`
+* `<option>`
+* `<select>`
+* `<textarea>`
+
+## The `aria-disabled` attribute
+
+If an element doesn’t support `disabled`, you should use `aria-disabled="true"` to indicate to assistive technologies that an element is no longer interactive.
+
+## Disabled visual style
+
+Elements consistently use the `.is-disabled` class to visually represent the disabled state of the element.
+
+## Disabling on load
+
+Add the `'disabled': true` option to most helpers to disable the element, the required attributes and class should be added automatically.
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button({ 
+    'label': 'Button',
+    'disabled': true
+  })
+}}
+
+{{
+  html.link({
+    'href': 'http://www.jadu.net',
+    'label': 'Jadu',
+    'disabled': true
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Button 
+  disabled="disabled" 
+  className="btn is-disabled">Button</Button>
+
+<Link 
+  href="http://www.jadu.net" 
+  aria-disabled="true" 
+  className="is-disabled">Jadu</Link>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<button disabled="disabled" className="btn is-disabled">Button</button>
+
+<a href="http://www.jadu.net" aria-disabled="true" class="is-disabled">Jadu</a>
+```
+
+</TabItem>
+</Tabs>
+
+## Disabling with JavaScript
+
+If you’re writing javascript to disable/enable an element you must toggle both the correct attribute and class to maintain the support for assistive devices as well as compliance with relevant accessibility guidelines.
+
+```jsx
+if ($elementSupportsDisable) {
+  $('#elementToDisable')
+    .prop('disabled', true)
+    .addClass('.is-disabled');
+} else {
+  $('#elementToDisable')
+    .attr('aria-disabled', 'true')
+    .addClass('.is-disabled');
+}
+```
+
+## Tooltips on disabled elements
+
+If an element is `disabled`, you will need to use a wrapper element (`<span>`  or `<div>` ) made focuseable with `tabindex="0"` , and attach the tooltip to that element. Elements with the disabled attribute aren't interactive, meaning users cannot focus, hover, or click them to trigger a Tooltip.
+
+:::danger
+The tooltip will not be read by screenreaders and therefore this pattern should be avoided
+:::
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+<div data-tippy-content="Can’t touch this" tabindex="0" class="u-display-inline-block">
+  {{ 
+    html.button({
+      'label': 'Disabled Button',
+      'disabled': true
+    })
+  }}
+</div>
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<div data-tippy-content="Can’t touch this" tabindex="0" class="u-display-inline-block">
+  <Button 
+    disabled="disabled" 
+    className="btn is-disabled">Button</Button>
+</div>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div data-tippy-content="Can’t touch this" tabindex="0" class="u-display-inline-block">
+  <button disabled  class="btn is-disabled">Disabled Button</button>
+</div>
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,338 @@
+---
+id: modal
+title: Modal
+sidebar_label: Modal
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Modal windows, also known as dialogs or overlays are UI components that sit on top of the current page, usually with a semi-transparent layer behind them to separate them from the main page.
+
+Modals disable interaction with the rest of the page and force the user to first interact with the modal window. Modals are great for allowing a user to stay in the context of the current UI while being able to perform related actions without interrupting the workflow on the main page.
+
+## When to use a modal
+
+Modals are useful in many situations, where sending the user to another page might be disruptive. They should almost exclusively be triggered by user interaction. The purpose of the modal should be immediately apparent to the user.
+
+Read [our Medium post](https://medium.com/pulsar/modern-enterprise-ui-design-part-2-modal-dialogs-2ccd3cc33c92) for more information and examples.
+
+## When not to use a modal
+
+As modal windows block the user from interacting with the rest of the page, they should only be used when redirecting the user would break the flow of the interaction or task at hand. Misused, they can very quickly become annoying to the user to the point where they form a habit of dismissing them on instinct.
+
+❌  When the user hasn’t triggered the modal
+
+Randomly showing a modal is a jarring experience and confusing for the user. The only exception to this would be a time-critical notification, such as a session time out or expiry warning.
+
+❌  Prompting users to complete unrelated tasks
+
+Asking a user to complete their profile when viewing customer information and potentially on the phone to a customer isn’t good for anyone.
+
+❌  To display large amounts of data
+
+Modals by design are often smaller than the main page. Therefore they are less than ideal when you need to display a large amount of data.
+
+❌  To display error messages
+
+Don’t use a modal to display error or success messages relating to actions performed on the main page.
+
+❌  To display long forms
+
+Space is limited so displaying a long form in a modal should be avoided. Consider breaking the form down into simpler steps and the use of a multi-stage modal.
+
+❌  When another modal is already is view
+
+Spawning a modal from another modal or showing additional modals when one is already displayed should be avoided. Multiple modals are confusing for the user and create accessibility and usability issues.
+
+❌  To capture data unrelated to the users’ actions
+
+Don’t fall into the trap of using modals for everything. Very often, directing the user to a different page is the right solution. Use modals sparsely to enhance the experience.
+
+## Basic usage
+
+:::tip
+The following example uses the `.show` class to make sure the modal is visible in the documentation, you should not use this class if you want your modal hidden on page load.
+:::
+
+<div className="d-example">
+  <div className="modal show" id="myModal" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description" tabIndex="-1">
+    <div className="modal__dialog">
+      <div className="modal__content">
+        <div className="modal__header">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">×</span></button>
+          <h1 className="modal__title" id="myModal-title">A simple example</h1>
+        </div>
+        <div className="modal__body">
+          <p id="myModal-description" className="hide">Here goes a short description (a couple of lines) about the modal’s purpose, if needed.</p>
+          <p>The modal body might have instructions, a form, or other stuff.</p>
+        </div>
+        <div className="modal__footer">
+          <button type="button" className="btn btn--primary">Save Changes</button>
+          <button type="button" className="btn btn--naked" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+```html
+<div className="modal show" id="myModal" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description" tabIndex="-1">
+    <div className="modal__dialog">
+      <div className="modal__content">
+        <div className="modal__header">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">×</span></button>
+          <h1 className="modal__title" id="myModal-title">A simple example</h1>
+        </div>
+        <div className="modal__body">
+          <p id="myModal-description" className="hide">Here goes a short description (a couple of lines) about the modal’s purpose, if needed.</p>
+          <p>The modal body might have instructions, a form, or other stuff.</p>
+        </div>
+        <div className="modal__footer">
+          <button type="button" className="btn btn--primary">Save Changes</button>
+          <button type="button" className="btn btn--naked" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+```
+
+## Accessibility
+
+### ARIA requirements
+
+<table>
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Applies to</th>
+            <th>Outcome</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>role="dialog"</code></td>
+            <td><code>.modal</code></td>
+            <td>Identifies the element that serves as the modal container. <span className="label label--primary">Required</span></td>
+        </tr>
+        <tr>
+            <td><code>aria-modal="true"</code></td>
+            <td><code>.modal</code></td>
+            <td>Tells assistive technologies that the content under the current modal is not available for interaction. <span className="label label--primary">Required</span></td>
+        </tr>
+        <tr>
+            <td><code>aria-labelledby="[id value of .modal__title]"</code></td>
+            <td><code>.modal</code></td>
+            <td>Gives the modal an accessible name by referring to the element that provides the dialog title. <span className="label label--primary">Required</span></td>
+        </tr>
+        <tr>
+            <td><code>aria-describedby="[id value of applicable content]"</code></td>
+            <td><code>.modal</code></td>
+            <td>Gives the modal an accessible description by referring to the modal content that describes the primary message or purpose of the dialog. Not used if there is no static text that describes the modal. <span className="label">optional</span></td>
+        </tr>
+        <tr>
+            <td><code>aria-label="Close modal dialog"</code></td>
+            <td><code>.close</code></td>
+            <td>Provides an accessible name for the close button as it uses an icon instead of text. <span className="label label--primary">Required</span></td>
+        </tr>
+        <tr>
+            <td><code>aria-hidden="true"</code></td>
+            <td><code>Close icon or added to a wrapping span where × is used</code></td>
+            <td>Hides the close icon or X from screen readers. <span className="label label--primary">Required</span></td>
+        </tr>
+    </tbody>
+</table>
+
+### Focus management
+
+#### On open
+
+Focus should move to the first interactive element, often the first form input or the close button.
+
+#### Trap focus
+
+Focus should be trapped within the modal dialog. It should not be possible to navigate to any elements underneath the modal via the keyboard.
+
+When Tab is pressed on the last tabbable element, it should loop back to the first (generally the close button). When Tab + Shift is pressed on the first tabbable element, focus should loop to the last tabbable element.
+
+#### On close
+
+In addition to the standard X close button and cancel button, Escape should also close the modal dialog. Focus shoud return to the element that triggered the modal.
+
+The above behaviour is included in Pulsar by default. If you are using an alternative UI framework other than the markup above, you will need to ensure you include this behaviour. See the WAI ARIA authoring practices on dialogs for more details.
+
+## Opening Modals
+
+Typically, a modal will be opened when the user interacts with an action within the user interface, usually a button rather than a link (as the user doesn't navigate to another page).
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button({
+    'label': 'Show Example Modal',
+    'data-toggle': 'modal',
+    'data-target': '#modal-example'
+  })
+}}
+
+<div class="modal" id="modal-example" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description" tabindex="-1">
+  ...
+</div>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<button data-toggle="modal" data-target="#modal-example" class="btn">Show Example Modal</button>
+
+<div class="modal" id="modal-example" role="dialog" aria-modal="true" aria-labelledby="myModal-title" aria-describedby="myModal-description" tabindex="-1">
+  ...
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+### Opening a modal from an existing modal
+
+There will be times where a modal contains an action that requires a different modal to be presented to the user. This is possible, however there are a couple of important considerations to note.
+
+When modal-1 opens modal-2, you should:
+
+* Close modal-1 (do not visually stack modals)
+* Return the user to modal-1 if they cancel out of modal-2
+* Consider if the actions within modal-2 (such as cancel) should return the user to modal-1, or back to the main user interface
+
+For a button to both close an existing modal, and open a new one, you should use both the `data-dismiss` and the `data-toggle` attributes.
+
+```twig
+{{
+    html.button({
+        'label': 'Open Modal Two',
+        'data-dismiss': 'modal',
+        'data-toggle': 'modal',
+        'data-target': '#modal-two'
+    })
+}}
+```
+
+## Closing modals
+
+A button within a modal (or indeed anywhere within the UI) can close itself using the `data-dismiss="modal"` attribute. `Escape` should also close the modal dialog.
+
+:::caution
+Avoid using a link with an empty href attribute `<a href="#"...` as this will throw accessibility warnings in some automated a11y testing tools. Remember, if an action goes somewhere, use a link, if it does something, use a button.
+:::
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button({
+    'label': 'Cancel',
+    'class': 'btn--naked',
+    'data-dismiss': 'modal'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<button data-dismiss="modal" class="btn btn--naked">Cancel</button>
+```
+
+</TabItem>
+</Tabs>
+
+## Javascript methods
+
+### .modal(options)
+
+Activates your content as a modal. Accepts an optional options object.
+
+```js
+$('#myModal').modal({
+  keyboard: false
+})
+```
+
+### Toggle
+
+Manually toggles a modal. Returns to the caller before the modal has actually been shown or hidden (i.e. before the `shown.bs.modal` or `hidden.bs.modal` event occurs).
+
+```js
+$('#myModal').modal('toggle')
+```
+
+### Show
+
+Manually opens a modal. Returns to the caller before the modal has actually been shown (i.e. before the `shown.bs.modal` event occurs).
+
+```js
+$('#myModal').modal('show')
+```
+
+### Hide
+
+Manually hides a modal. Returns to the caller before the modal has actually been hidden (i.e. before the `hidden.bs.modal` event occurs).
+
+```js
+$('#myModal').modal('hide')
+```
+
+## Javascript events
+
+The modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the `<div id="myModal" class="modal">`).
+
+```js
+$('#myModal').on('show.bs.modal', function (e) {
+  // do something...
+});
+```
+
+<table>
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>show.bs.modal</code></td>
+            <td>This event fires immediately when the show instance method is called. If caused by a click, the clicked element is available as the <code>relatedTarget</code> property of the event</td>
+        </tr>
+        <tr>
+            <td><code>shown.bs.modal</code></td>
+            <td>This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete). If caused by a click, the clicked element is available as the relatedTarget property of the event</td>
+        </tr>
+        <tr>
+            <td><code>hide.bs.modal</code></td>
+            <td>This event is fired immediately when the hide instance method has been called</td>
+        </tr>
+        <tr>
+            <td><code>hidden.bs.modal</code></td>
+            <td>This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete)</td>
+        </tr>
+    </tbody>
+</table>

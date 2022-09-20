@@ -1,0 +1,185 @@
+---
+id: error-summary
+title: Error summary
+sidebar_label: Error summary (new)
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+When form validation fails it is important to display a list of all errors near the top of the page and link to the affected fields. This summary is especially important for people using assistive technology to make sure their tools announce the presence of errors as soon as possible.
+
+<div className="d-example">
+<form method="POST" encType="application/x-www-form-urlencoded" className="form">
+<section aria-labelledby="error-summary-title" data-error-summary="true" tabIndex="-1" className="error-summary">
+<h2 className="error-summary__title" id="error-summary-title">There is a problem</h2>
+<ul className="error-summary__list">
+<li className="error-summary__list-item">
+<a className="error-summary__list-link" href="#first-name">Enter your first name</a>
+</li>
+<li className="error-summary__list-item">
+<a className="error-summary__list-link" href="#last-name">Enter your last name</a>
+</li>
+</ul>
+</section>
+
+<fieldset>
+<legend className="legend">Example form with errors</legend>
+
+<div className="form__group form__group--full has-error">
+<label htmlFor="first-name" className="control__label">First name&nbsp;<span className="required-indicator" data-toggle="tooltips" title="" data-original-title="required">*</span></label>
+<div className="controls">
+<input id="first-name" required="" aria-required="true" type="text" aria-describedby="guid-12478230" aria-invalid="true" className="form__control" /><span className="help-block is-error" id="guid-12478230"><i aria-hidden="true" className="icon-warning-sign"></i> Enter your first name</span>
+</div>
+</div>
+
+<div className="form__group form__group--full has-error">
+<label htmlFor="last-name" className="control__label">Last name&nbsp;<span className="required-indicator" data-toggle="tooltips" title="" data-original-title="required">*</span></label>
+<div className="controls">
+<input id="last-name" required="" aria-required="true" type="text" aria-describedby="guid-482694121" aria-invalid="true" className="form__control" /><span className="help-block is-error" id="guid-482694121"><i aria-hidden="true" className="icon-warning-sign"></i> Enter your last name</span>
+</div>
+</div>
+</fieldset>
+
+<div className="form__actions">
+<button className="btn btn--primary">Save</button>
+<button className="btn btn--naked">Cancel</button>
+</div>
+</form>
+</div>
+
+## Installation
+
+This component requires the `ErrorSummaryComponent` to be included in your Pulsar browserify bundle.
+
+```jsx title="index.js"
+var ErrorSummaryComponent = require('/path/to/ErrorSummary/ErrorSummaryComponent');
+
+module.exports = {
+  ErrorSummaryComponent
+};
+```
+
+```jsx title="main.js"
+(function ($) {
+  pulsar.errorSummary = new pulsar.ErrorSummaryComponent();
+
+  $(function () {
+    pulsar.errorSummary.init($html);
+  });
+}(jQuery));
+```
+
+Finally, make sure the styles are being included into the Sass bundle.
+
+```scss title="pulsar.scss"
+@import 'component.error-summary';
+```
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{ form.create() }}
+
+{{
+  form.error_summary({
+    'heading': 'There is a problem',
+    'errors': [
+      {
+        'label': 'Enter your first name',
+        'href': 'first-name'
+      },
+      {
+        'label': 'Enter your last name',
+        'href': 'last-name'
+      }
+    ]
+  })
+}}
+
+{{ form.fieldset_start({'legend': 'Example form with errors'}) }}
+
+  {{
+    form.text({
+      'label': 'First name',
+      'id': 'first-name',
+      'required': true,
+      'error': 'Enter your first name'
+    })
+  }}
+
+  {{
+    form.text({
+      'label': 'Last name',
+      'id': 'last-name',
+      'required': true,
+      'error': 'Enter your last name'
+    })
+  }}
+
+{{ form.fieldset_end() }}
+
+{{
+  form.end({
+    'actions': [
+      html.button({
+        'label': 'Save',
+        'class': 'btn--primary'
+      }),
+      html.button({
+        'label': 'Cancel',
+        'class': 'btn--naked'
+      })
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Form>
+  ...
+  <FormActions>
+    <Button type="submit" className="btn--primary">Primary Action</Button>
+    <Button type="link" href="/path/to/cancel" className="btn--naked">Cancel</Button>
+  </FormActions>
+</Form>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<form method="POST" enctype="application/x-www-form-urlencoded" class="form">
+  ...
+  <div class="form__actions">
+    <button type="submit" class="btn btn--primary">Primary Action</button>
+    <a href="/home" class="btn btn--naked">Cancel</a>
+  </div>
+</form>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| heading | string | The text to be used as the error summary heading. This should always be "There is a problem". |
+| errors | array | An array of objects representing inputs with errors. Each object should contain the error text displayed under the input and the ID attribute of the input. |
