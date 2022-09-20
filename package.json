@@ -8,7 +8,7 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
-  },  
+  },
   "workspaces": [
     "docs"
   ],
@@ -68,7 +68,7 @@
     "browserify": "10.0.0",
     "browserify-istanbul": "^2.0.0",
     "browserify-shim": "^3.8.9",
-    "chai": "^1.9.2",
+    "chai": "^4.3.6",
     "chai-dom": "^1.11.0",
     "chai-hiff": "^1.0.0",
     "dart-sass": "^1.25.0",
@@ -104,8 +104,8 @@
     "mochify": "^5.2.0",
     "mochify-istanbul": "^2.4.2",
     "require-globify": "^1.4.1",
-    "sinon": "^2.4.1",
-    // "sinon-chai": "^2.8.0",
+    "sinon": "^14.0",
+    "sinon-chai": "^3.7.0",
     "sinon-jquery": "^1.0.3",
     "uglifyify": "^3.0.1"
   }
