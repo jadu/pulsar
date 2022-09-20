@@ -105,7 +105,7 @@
     "mochify-istanbul": "^2.4.2",
     "require-globify": "^1.4.1",
     "sinon": "^2.4.1",
-    "sinon-chai": "^2.8.0",
+    // "sinon-chai": "^2.8.0",
     "sinon-jquery": "^1.0.3",
     "uglifyify": "^3.0.1"
   }
