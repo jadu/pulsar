@@ -1,0 +1,237 @@
+---
+id: colour-and-state
+title: Colour and state
+sidebar_label: Colour and state
+---
+
+Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s brand styleguide.
+
+:::note
+Some colours may deviate from the Jadu Brand Guidelines where necessary to meet WCAG 2.1 AA colour contrast requirements
+:::
+
+## Colour
+
+When designing your user interface you must ensure that the colour of any text against it’s background must meet the minimum contrast ratio of 4.5:1 as defined by the [Web Content Accessibility Guidelines](https://www.w3.org/TR/WCAG21/#contrast-minimum) 2.1 at AA level. This is especially important given that our main typeface (Proxima Nova) is rather thin.
+
+### Fetching palette colours
+
+Colour variables are defined in the `_palette.base.scss` file and can be used anywhere. You should aim to use the sass variables rather than hardcoded values where possible.
+
+Use the `color()` function to fetch a colour from the palette.
+
+```scss
+.element {
+  background-color: color(jadu-blue);
+}
+```
+
+Use the optional ‘tone’ argument to fetch a variation of a colour if available in the palette.
+
+```scss
+.element {
+  background-color: color(jadu-blue, light);
+}
+```
+
+### Picking the best text colour
+
+To make your life easier, you can use the `pick_best_colour()` sass function which accepts two options, a background colour, and an array of two possible text colours, usually black and white. The function measures both text colours against the background and will pick the one with the highest measured contrast.
+
+```scss title="Example usage"
+pick_best_color(background, (foreground_1, foreground_2))
+```
+
+```scss
+.hex-example {
+    background-color: #bada55;
+    color: pick_best_color(#bada55, (#fff, #000));
+}
+
+.palette-example {
+    background-color: color(gray, dark);
+    color: pick_best_color(color(gray, dark), (#fff, #000));
+}
+```
+
+### Colour palettes
+
+#### State colours
+
+| Name | Base | Light | Dark |
+| ------ | ---- | ----- | ---- |
+| Primary | `color(primary)` | `color(primary, light)` | `color(primary, dark)` |
+| Info | `color(info)` | `color(info, light)` | `color(info, dark)` |
+| Success | `color(success)` | `color(success, light)` | `color(success, dark)` |
+| Warning | `color(warning)` | `color(warning, light)` | `color(warning, dark)` |
+| Danger | `color(danger)` | `color(danger, light)` | `color(danger, dark)` |
+| Inverse | `color(inverse)` | `color(inverse, light)` | `color(inverse, dark)` |
+| White | `color(white)` | `color(white, light)` | `color(white, dark)` |
+
+State colours have an `alt` variation that provides an accessible text colour which will ensure compatibility with WCAG 2.1 AA contrast ratios.
+
+```scss
+.element {
+  background-color: color(primary);
+  color: color(primary, alt);
+}
+```
+
+#### Monochromes
+
+| Name | Base |
+| ---- | ---- |
+| Black | `color(black)` |
+| Darker gray | `color(gray, darker)` |
+| Dark gray | `color(gray, dark)` |
+| Dull gray | `color(gray, dull)` |
+| Gray | `color(gray)` |
+| Light gray | `color(gray, light)` |
+| Lighter gray | `color(gray, lighter)` |
+| Lightest gray | `color(gray, lightest)` |
+| Off white | `color(off-white)` |
+| White | `color(white)` |
+
+#### Text and links
+
+| Name | Base |
+| ---- | ---- |
+| Text | `color(text)` |
+| Help text | `color(text, help)` |
+| Light text | `color(text, light)` |
+| Disabled text | `color(text, disabled)` |
+| Placeholder text | `color(text, placeholder)` |
+| Link | `color(link)` |
+| Dark link | `color(link, dark)` |
+| Hover link | `color(link, hover)` |
+| Focus link | `color(link, focus)` |
+| Inverse link | `color(link, inverse)` |
+| Inverse hover link | `color(link, inverse-hover)` |
+| Disabled link | `color(link, disabled)` |
+
+#### Borders and backgrounds
+
+| Name | Base |
+| ---- | ---- |
+| Border | `color(border)` |
+| Focus border | `color(border, focus)` |
+| Background | `color(background)` |
+| Dark background Dark | `color(background, dark)` |
+| Light background | `color(background, light)` |
+| Selected background | `color(background, selected)` |
+| Focus background | `color(background, focus)` |
+
+## State
+
+Use the correct colour and language combinations to properly communicate the state of a component to the user.
+
+:::tip Accessibility tip
+Never rely on colour alone, the language you use is more important than the colour when communicating state
+:::
+
+### Colour
+
+Colour should be used where possible to visually reinforce the action or state that you are presenting to the user.
+
+* <span className="d-example-inline"><span className="label">grey</span></span> indicates benign or neutral actions/states
+* <span className="d-example-inline"><span className="label label--primary">blue</span></span> indicates the primary action for a given screen and should be used sparingly, ideally once per UI
+* <span className="d-example-inline"><span className="label label--success">green</span></span> indicates positive or successful actions/states
+* <span className="d-example-inline"><span className="label label--danger">red</span></span> indicates negative or destructive actions/states
+* <span className="d-example-inline"><span className="label label--inverse">black</span></span> indicates blocking or restrictive actions/states
+
+<<<<<<< Updated upstream
+### language
+=======
+### Language
+>>>>>>> Stashed changes
+
+The state of a ‘thing’ can be indicated by textual labels, and modified by interactive controls. You should carefully chose appropriate terms that make the most sense to non-technical people, providing clear information in as few words as possible.
+
+Interactive controls which _modify_ a state should, in most cases, use a verb:
+
+<div className="d-example">
+  <button className="btn">Lock</button> <button className="btn btn--inverse">Unlock</button> 
+  <br /><br />
+  <button className="btn btn--primary">Show</button> <button className="btn">Hide</button> 
+  <br /><br />
+  <button className="btn btn--success">Publish</button> <button className="btn btn--danger">Unpublish</button> 
+</div>
+
+Labels which _indicate_ the current state should use past-participles or adjectives:
+
+<div className="d-example">
+  <span className="label label--inverse">locked</span> <span className="label">unlocked</span> 
+  <br /><br />
+  <span className="label label--success">visible</span> <span className="label label--danger">hidden</span> 
+  <br /><br />
+  <span className="label label--success">published</span> <span className="label label--danger">offline</span> 
+</div>
+
+Note the careful choice of terms in the examples above for the ‘unpublish’ action, ‘offline’ is a better label adjective to use than ‘unpublished’.
+
+### Icons
+
+When using iconography there may be the opportunity to use different icons to reflect the state and action and they may often appear together in the same interface.
+
+<div className="d-example">
+  State: <span className="label label--inverse"><i className="icon-lock"></i> locked</span>
+  <br /><br />
+  Action: <button className="btn"><i className="icon-unlock"></i> Unlock</button>
+</div>
+
+### State classes
+
+Pulsar has a collection of common state classes that you can use in your markup, many components (link buttons, labels, badges, etc) cater for these states, eg: `.btn--primary` `.label--success` etc.
+
+* primary
+* success
+* warning
+* danger
+* info
+* inverse
+
+The actual presentation of these state classes will differ depending on the component it is applied to so a danger button bay differ to a danger text input field. You should refer to the individual component documentaiton for state examples.
+
+### Switching state
+
+When your styles need to switch based on state there are common `.is-*` or `.has-*` namespaced classes. When writing your own components you should stick to this convention to modify or communicate state.
+
+:::note
+Avoid hooking javascript behaviour to these selectors, use your own `.js-*` namespaced classes instead. It's OK to have multiple classes, one for style and one for behaviour, e.g. `class="is-open js-open"`
+:::
+
+* `.is-open`
+* `.is-closed`
+* `.is-active`
+* `.is-disabled`
+
+* `.has-success`
+* `.has-warning`
+* `.has-error`
+* `.has-changed`
+
+As a general rule, the `.has-*` classes will apply a lighter version of the related state colour as hte background colour of the element, depending on the UI component, although it may have other effects too.
+
+Regular text can also use the main state classes, using the colours defined in the palette. You can also extend these with the sass `%` placeholder.
+
+* `.text--primary`
+* `.text--success`
+* `.text--warning`
+* `.text--danger`
+* `.text--info`
+* `.text--inverse`
+* `.text--white`
+* `.text--new`
+
+### State variable Sass map
+
+There is a sass map defined in `_palette.base.scss` which contains the state colours along with their text colour alternatives. You can use this in your own Sass components to loop over the state colouts to output repetitive rulesets to cover all states.
+
+```scss
+@each $state, $state-color, $state-color-alt in $state-colors {
+  .myComponent--#{$state} {
+    background-color: $state-color;
+    color: $state-color-alt;
+  }
+}
+```

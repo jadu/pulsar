@@ -1,0 +1,154 @@
+---
+id: panel
+title: Panel
+sidebar_label: Panel
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Display important information in a prominent container.
+
+<div className="d-example">
+  <section className="panel" aria-labelledby="guid-998724450">
+    <i aria-hidden="true"  className="icon-info-sign panel__icon"></i>
+    <h2 className="panel__title" id="guid-998724450">In West Philadelphia born and raised</h2>
+    <div className="panel__body">In the playground was where I spent most of my days.</div>
+  </section>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.panel({
+    'title': 'In West Philadelphia born and raised',
+    'body': 'In the playground was where I spent most of my days.',
+    'icon': 'info-sign'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<section class="panel" aria-labelledby="guid-998724450">
+    <i aria-hidden="true"  class="icon-info-sign panel__icon"></i>
+    <h2 class="panel__title" id="guid-998724450">In West Philadelphia born and raised</h2>
+    <div class="panel__body">In the playground was where I spent most of my days.</div>
+  </section>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+Option  | Type   | Description
+------- | ------ | --------------------------------------------------------------
+actions | array  | An array of `html.button` options to be displayed within the panel
+actions_position | string | Position of the actions, `left` (default), `inline`, `center`, `right`
+body    | string | The main content of the panel
+class   | string | CSS classes, space separated
+icon    | string | Icon to display next to the panel title
+id      | string | A unique identifier, if required
+title   | string | The title of the panel
+data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
+
+## Title
+
+The title is optional and will be displayed next to the optional `icon`. You should carefully choose your title to quickly summarise the information or choice the panel is presenting to the user.
+
+:::tip
+A panel without a title will render as a `div`, not a `section`
+:::
+
+## Icon
+
+You can choose any icon to reinforce the visual distinction of the panel, you will need to carefully consider the appropriate icon to pair with any panel state class you may be providing. It’s not a good idea to use an error icon with a success state, for example.
+
+## Actions
+
+A panel can contain optional calls to action which allow the user to act on the 
+important information the panel is bringing to their attention.
+
+Pass a hash of key:value pairs to the `actions` and they'll be rendered as buttons, the available options are the same as the regular button helper.
+
+:::tip
+You can also pass fully-formed HTML instead of a hash if you need to render anything other than a button
+:::
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.panel({
+    'title': 'Default (left) placement',
+    'icon': 'info-sign',
+    'body': 'You need to do a thing.',
+    'actions': [
+      {
+        'label': 'Don’t Do The Thing',
+        'class': 'btn--outline btn--small btn--inverse'
+      },
+      {
+        'label': 'Do The Thing',
+        'class': 'btn--outline btn--small btn--inverse',
+        'type': 'link',
+        'href': '#path-to-action'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<section class="panel" aria-labelledby="guid-949891478">
+  <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
+  <h2 class="panel__title" id="guid-949891478">Default (left) placement</h2>
+  <div class="panel__body">You need to do a thing.</div>
+  <div class="panel__actions">
+    <button class="btn btn--outline btn--small btn--inverse">Don’t Do The Thing</button>
+    <a href="#path-to-action" class="btn btn--outline btn--small btn--inverse">Do The Thing</a>
+  </div>
+</section>
+```
+
+</TabItem>
+</Tabs>
+
+<div className="d-example">
+<section class="panel" aria-labelledby="guid-949891478">
+  <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
+  <h2 class="panel__title" id="guid-949891478">Default (left) placement</h2>
+  <div class="panel__body">You need to do a thing.</div>
+  <div class="panel__actions">
+    <button class="btn btn--outline btn--small btn--inverse">Don’t Do The Thing</button>
+    <a href="#path-to-action" class="btn btn--outline btn--small btn--inverse">Do The Thing</a>
+  </div>
+</section>
+</div>

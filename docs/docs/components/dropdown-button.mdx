@@ -1,0 +1,185 @@
+---
+id: dropdown-button
+title: Dropdown button
+sidebar_label: Dropdown button
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Display a contextual list of actions presented as a drop down list when the button is pressed.
+
+<div className="d-example">
+  <div className="btn__group dropdown">
+    <button aria-haspopup="true" aria-expanded="false" aria-controls="guid-1404002197" data-toggle="dropdown" className="btn dropdown__toggle">My Action&nbsp;<span className="caret"></span></button>
+    <ul id="guid-1404002197" className="dropdown__menu pull-left">
+      <li><a href="#foo">Foo</a></li>
+      <li><a href="#bar">Bar</a></li>
+    </ul>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button_dropdown({
+    'label': 'My Action',
+    'items': [
+      html.link({ 'label': 'Foo', 'href': '#foo' }),
+      html.link({ 'label': 'Bar', 'href': '#bar' })
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div className="btn__group">
+  <button className="btn">Alpha</button>
+  <button className="btn">Bravo</button>
+  <button className="btn">Charlie</button>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Twig helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| caret | boolean | Whether to show the caret arrow after the label |
+| direction | string | The direction to open the menu, either `down` (default) or `up` |
+| items | array | An array of items to display in the dropdown list, usually links |
+
+## Separating items with dividers
+
+Use the divider helper to insert a horizontal line between items. This is a useful way to visually group related actions.
+
+<div className="d-example">
+  <div className="btn__group dropdown">
+    <button aria-haspopup="true" aria-expanded="false" aria-controls="guid-1762003808" data-toggle="dropdown" className="btn dropdown__toggle">My Action&nbsp;<span className="caret"></span></button>
+    <ul id="guid-1762003808" className="dropdown__menu pull-left">
+      <li><a href="#foo">Foo</a></li>
+      <li><span className="divider"></span></li>
+      <li><a href="#bar">Bar</a></li>
+    </ul>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button_dropdown({
+    'label': 'My Action',
+    'items': [
+      html.link({ 'label': 'Foo', 'href': '#foo' }),
+      html.divider(),
+      html.link({ 'label': 'Bar', 'href': '#bar' })
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="btn__group dropdown">
+  <button aria-haspopup="true" aria-expanded="false" aria-controls="guid-1762003808" data-toggle="dropdown" class="btn dropdown__toggle">My Action&nbsp;<span class="caret"></span></button>
+  <ul id="guid-1762003808" class="dropdown__menu pull-left">
+    <li><a href="#foo">Foo</a></li>
+    <li><span class="divider"></span></li>
+    <li><a href="#bar">Bar</a></li>
+  </ul>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Tooltips on dropdown items
+
+A tooltip may be used to provide additional context about a dropdown item.
+
+<div className="d-example">
+  <div className="btn__group dropdown">
+    <button aria-haspopup="true" aria-expanded="false" aria-controls="guid-1404002197" data-toggle="dropdown" className="btn dropdown__toggle">My Action&nbsp;<span className="caret"></span></button>
+    <ul id="guid-1404002197" className="dropdown__menu pull-left">
+      <li><a href="#foo">Foo</a></li>
+      <li><a href="#bar">Bar</a></li>
+    </ul>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button_dropdown({
+    'label': 'My Action',
+    'items': [
+      html.link({ 'label': 'No tooltip', 'href': '#foo' }),
+      html.link({
+        'label': 'With tooltip',
+        'href': '#bar',
+        'data-tippy-content': 'My tooltip',
+        'data-tippy-placement': 'right'
+      })
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="btn__group dropdown">
+  <button aria-haspopup="true" aria-expanded="false" aria-controls="guid-310366783" data-toggle="dropdown" class="btn dropdown__toggle">My Action&nbsp;<span class="caret"></span></button>
+  <ul id="guid-310366783" class="dropdown__menu pull-left">
+    <li><a href="#foo">No tooltip</a></li>
+    <li><a href="#bar" data-tippy-content="My tooltip" data-tippy-placement="right">With tooltip</a></li>
+  </ul>
+</div>
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,62 @@
+{
+  "_from": "@fortawesome/fontawesome-pro",
+  "_id": "@fortawesome/fontawesome-pro@6.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-T1JhszQ75ofAaa42XWBte5KsiBb7YM6CKMZTiR3zL0CHZGBabPg8J5FgMoJYlaxgrfLf+jOebDnoB0h43ljAsA==",
+  "_location": "/@fortawesome/fontawesome-pro",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@fortawesome/fontawesome-pro",
+    "name": "@fortawesome/fontawesome-pro",
+    "escapedName": "@fortawesome%2ffontawesome-pro",
+    "scope": "@fortawesome",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/6.2.0/fontawesome-pro-6.2.0.tgz",
+  "_shasum": "cfb0f1c8f4b33c5bee85fc337c29f77486a82611",
+  "_spec": "@fortawesome/fontawesome-pro",
+  "_where": "/Users/paulstanton/Localhost/pulsar",
+  "author": {
+    "name": "The Font Awesome Team",
+    "url": "https://github.com/orgs/FortAwesome/people"
+  },
+  "bugs": {
+    "url": "https://github.com/FortAwesome/Font-Awesome/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "The iconic font, CSS, and SVG framework",
+  "engines": {
+    "node": ">=6"
+  },
+  "homepage": "https://fontawesome.com",
+  "keywords": [
+    "font",
+    "awesome",
+    "fontawesome",
+    "icon",
+    "svg",
+    "bootstrap"
+  ],
+  "license": "UNLICENSED",
+  "main": "js/fontawesome.js",
+  "name": "@fortawesome/fontawesome-pro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FortAwesome/Font-Awesome.git"
+  },
+  "scripts": {
+    "postinstall": "node attribution.js"
+  },
+  "style": "css/fontawesome.css",
+  "version": "6.2.0"
+}

@@ -1,0 +1,420 @@
+---
+id: table
+title: Table
+sidebar_label: Table
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Tables (and the more interactive datatables) allow the presentation of tabular data. For the table layout pattern, you’ll likely want to use a datatable instead of a basic table.
+
+:::info
+Because of the sheer amount of markup that tables can contain they're one of the only components where the styling is applied largely to element selectors. You do, however, need the `.table` class on the `<table>` element.
+:::
+
+<div className="d-example">
+  <table className="table">
+    <caption className="hide">A list of films featuring Arnold Schwarzenegger</caption>
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Modified</th>
+            <th scope="col" className="u-text-align-center">Live</th>
+            <th scope="col" className="u-text-align-center">Visible</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Terminator Genisys</td>
+            <td>Alan Taylor</td>
+            <td>2015-06-25 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>The Terminator</td>
+            <td>James Cameron</td>
+            <td>1991-07-01 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+        </tr>
+        <tr>
+            <td>Predator</td>
+            <td>John McTiernan</td>
+            <td>1988-01-01 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>Commando</td>
+            <td>Mark L. Lester</td>
+            <td>1986-02-21 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>Conan the Barbarian</td>
+            <td>John Millius</td>
+            <td>1982-04-02 12:34</td>
+            <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+## Basic usage
+
+```html
+<table class="table">
+  <caption class="hide">A list of films featuring Arnold Schwarzenegger</caption>
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Owner</th>
+      <th scope="col">Modified</th>
+      <th scope="col" class="u-text-align-center">Live</th>
+      <th scope="col" class="u-text-align-center">Visible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Terminator Genisys</td>
+      <td>Alan Taylor</td>
+      <td>2015-06-25 12:34</td>
+      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+    </tr>
+    <tr>
+      <td>The Terminator</td>
+      <td>James Cameron</td>
+      <td>1991-07-01 12:34</td>
+      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td class="u-text-align-center"><i class="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+    </tr>
+    <tr>
+      <td>Predator</td>
+      <td>John McTiernan</td>
+      <td>1988-01-01 12:34</td>
+      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+    </tr>
+    <tr>
+      <td>Commando</td>
+      <td>Mark L. Lester</td>
+      <td>1986-02-21 12:34</td>
+      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+    </tr>
+    <tr>
+      <td>Conan the Barbarian</td>
+      <td>John Millius</td>
+      <td>1982-04-02 12:34</td>
+      <td class="u-text-align-center"><i class="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+      <td class="u-text-align-center"><i class="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### Table captions
+
+Use the `caption` element to describe a table in the same way you would use a heading. A caption helps users find, navigate and understand tables. You can hide the visually hide the caption while keeping it accessible and visible to screen readers by adding the `hide` class.
+
+### Table headers
+
+Use table headers to tell users what the rows and columns represent. Use the [TH scope attribute](https://html.spec.whatwg.org/multipage/tables.html#attr-th-scope) to help users of assistive technology distinguish between row and column headers.
+
+For more information and examples on the use of scope visit [WCAG 2.1 H63](https://www.w3.org/WAI/WCAG21/Techniques/html/H63.html) and the [Deque axe documentation on TH scope](https://dequeuniversity.com/rules/axe/3.5/scope-attr-valid).
+
+```html
+<table class="table table--full">
+  <caption class="hide">Example table showling use of scope="col"</caption>
+  <thead>
+    <tr>
+      <th scope="col">Column One</th>
+      <th scope="col">Column Two</th>
+      <th scope="col">Column Three</th>
+      <th scope="col">Column Four</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Column one data</td>
+      <td>Column two data</td>
+      <td>Column three data</td>
+      <td>Column four data</td>
+    </tr>
+    <tr>
+      <td>Column one data</td>
+      <td>Column two data</td>
+      <td>Column three data</td>
+      <td>Column four data</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+## Width options
+
+### Full width
+
+Tables can use the full available width of the parent container by adding the `.table--full` class on the `<table>` element.
+
+<div className="d-example">
+  <table className="table table--full">
+    <caption className="hide">A list of films featuring Arnold Schwarzenegger</caption>
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Modified</th>
+            <th scope="col" className="u-text-align-center">Live</th>
+            <th scope="col" className="u-text-align-center">Visible</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Terminator Genisys</td>
+            <td>Alan Taylor</td>
+            <td>2015-06-25 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>The Terminator</td>
+            <td>James Cameron</td>
+            <td>1991-07-01 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+        </tr>
+        <tr>
+            <td>Predator</td>
+            <td>John McTiernan</td>
+            <td>1988-01-01 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>Commando</td>
+            <td>Mark L. Lester</td>
+            <td>1986-02-21 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>Conan the Barbarian</td>
+            <td>John Millius</td>
+            <td>1982-04-02 12:34</td>
+            <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+```html
+<table class="table table--full">
+  ...
+</table>
+```
+
+### Fixed width
+
+Tables will automatically resize their columns depending on the column widths and the available space. You can override this behaviour, and make columns equal width, by adding the `.table--fixed` class on the `<table>` element.
+
+<div className="d-example">
+  <table className="table table--full table--fixed">
+    <caption className="hide">A list of films featuring Arnold Schwarzenegger</caption>
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Modified</th>
+            <th scope="col" className="u-text-align-center">Live</th>
+            <th scope="col" className="u-text-align-center">Visible</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Terminator Genisys</td>
+            <td>Alan Taylor</td>
+            <td>2015-06-25 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>The Terminator</td>
+            <td>James Cameron</td>
+            <td>1991-07-01 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+        </tr>
+        <tr>
+            <td>Predator</td>
+            <td>John McTiernan</td>
+            <td>1988-01-01 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>Commando</td>
+            <td>Mark L. Lester</td>
+            <td>1986-02-21 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>Conan the Barbarian</td>
+            <td>John Millius</td>
+            <td>1982-04-02 12:34</td>
+            <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+```html
+<table class="table table--full table--fixed">
+  ...
+</table>
+```
+
+## Horizontal scroll
+
+When dealing with user-supplied content and responsive design it's not possible to guarantee the table can nicely accommodate all content in the space available. For large tables it’s a good idea to allow the table to scroll horizontally when the content exceeds the viewport.
+
+<div className="d-example">
+  <strong>Normal scrolling example</strong>
+  <table className="table">
+      <caption className="hide">A list of films featuring Arnold Schwarzenegger</caption>
+      <thead>
+        <tr>
+          <th scope="col">Column One</th>
+          <th scope="col">Column Two</th>
+          <th scope="col">Column Three</th>
+          <th scope="col">Column Four</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>A really really long bit of content that will cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+          </tr>
+          <tr>
+              <td>A really really long bit of content that will cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+          </tr>
+      </tbody>
+  </table>
+  <strong>Horizontal scrolling example</strong>
+  <table className="table table--horizontal">
+      <thead>
+        <tr>
+          <th scope="col">Column One</th>
+          <th scope="col">Column Two</th>
+          <th scope="col">Column Three</th>
+          <th scope="col">Column Four</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>A really really long bit of content that will cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+          </tr>
+          <tr>
+              <td>A really really long bit of content that will cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+              <td>A really really long bit of content that will also cause the table to wrap and will look different if horizontal scroll is used or not</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+```html
+<table class="table">
+  ...
+</table>
+
+<table class="table table--horizontal">
+  ...
+</table>
+```
+
+## Centered columns
+
+Depending on the data you need to display you may wish to center-align the content within a column. Use the `.u-text-align-center` class on both the `<th>` and `<td>` elements you wish to center.
+
+The ‘Live’ and ‘Visible’ columns on this page use this method.
+
+## Increased contrast
+
+Some patterns, such as the form table pattern, place tables on a darker background. The `.table--contrast` class will use a darker background on the table body.
+
+<div className="d-example">
+  <table className="table table--full table--contrast">
+    <caption className="hide">A list of films featuring Arnold Schwarzenegger</caption>
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Modified</th>
+            <th scope="col" className="u-text-align-center">Live</th>
+            <th scope="col" className="u-text-align-center">Visible</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Terminator Genisys</td>
+            <td>Alan Taylor</td>
+            <td>2015-06-25 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>The Terminator</td>
+            <td>James Cameron</td>
+            <td>1991-07-01 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+        </tr>
+        <tr>
+            <td>Predator</td>
+            <td>John McTiernan</td>
+            <td>1988-01-01 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>Commando</td>
+            <td>Mark L. Lester</td>
+            <td>1986-02-21 12:34</td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+            <td>Conan the Barbarian</td>
+            <td>John Millius</td>
+            <td>1982-04-02 12:34</td>
+            <td className="u-text-align-center"><i className="icon-times-rectangle status--icon is-offline" aria-label="No"></i></td>
+            <td className="u-text-align-center"><i className="icon-check-circle status--icon is-online" aria-label="Yes"></i></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+```html
+<table className="table table--full table--contrast">
+  ...
+</table>
+```

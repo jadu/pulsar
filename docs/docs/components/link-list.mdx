@@ -1,0 +1,120 @@
+---
+id: link-list
+title: Link List
+sidebar_label: Link list
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+A specialised helper to create lists of links without the need to manually call multiple link helpers. Markup can be based around ul (default), ol, div or link elements.
+
+Lists are purposely left unstyled, but you can use block lists if you need nicer styling.
+
+<div className="d-example">
+  <ul>
+    <li>
+      <a href="#href_one">Value one</a>
+    </li>
+    <li>
+      <a href="#href_two">Value two</a>
+    </li>
+  </ul>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.link_list({
+    'items': {
+      'Value one': '#href_one',
+      'Value two': '#href_two'
+    }
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul>
+  <li>
+    <a href="#href_one">Value one</a>
+  </li>
+  <li>
+    <a href="#href_two">Value two</a>
+  </li>
+</ul>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| active_item | int | The index of the active item, will have the `is-active` class applied |
+| items | hash | A hash of links formatted by `{ 'label': 'href' } |
+| type | string | Markup scheme to use: `ul` (default), `ol`, `div` or `link` |
+
+## Setting the active item
+
+The list link is indexed (indexed by one), you can pass the index of the item you would like to be marked as active and it will have the `.is-active` class applied. You will need to style this active class yourself.
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.link_list({
+    'active_item': 2,
+    'items': {
+      'Value one': '#href_one',
+      'Value two (will be active)': '#href_two',
+      'Value three': '#href_three'
+    }
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul>
+  <li>
+    <a href="#href_one">Value one</a>
+  </li>
+  <li class="is-active">
+    <a href="#href_two">Value two (will be active)</a>
+  </li>
+  <li>
+    <a href="#href_three">Value three</a>
+  </li>
+</ul>
+```
+
+</TabItem>
+</Tabs>

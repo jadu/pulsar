@@ -1,0 +1,71 @@
+---
+id: common-form
+title: Common Form
+sidebar_label: Common Form
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The common form user interface pattern is the most frequent pattern used to display a form which can be used to create a new Thing or edit an existing Thing.
+
+## Titles
+
+### HTML title
+
+The title attribute is a an essential piece of information, especially for assisitive technology users and should be short, relevant to the data being listed, descriptive and make use of variables where necessary.
+
+Use the pipe character `|` to separate the heirarchy of information. The account or organisation name should be included to help the user discern between multi-tenanted systems like CXM, or Galaxies Sites.
+
+#### Examples
+
+```html
+<title>Publishing | News | Create News Item | {{ account_name }}</title>
+```
+
+```html
+<title>Publishing | News | Edit {{ content_name }} | {{ account_name }}</title>
+```
+
+### Page title
+
+The page title should describe the Thing being created or edited by the UI. For example. New Document, New Case etc. If you’re editing an existing Thing, there are two cases to consider:
+
+* When the form contains a field to the name/title of the Thing, the page title should be Edit Thing
+* For any situations where it is not appropriate to have the name/title of the Thing, either in a regular field or a disabled field, then you should include it in the page title, e.g. Edit Acme Organisation
+
+## Actions bar
+
+Usually, the primary action in the actions bar will be a save button for the form, which will be mirrored in the form actions. While in edit mode there’s usually not a need to provide an actions menu.
+
+## Primary action button
+
+The primary action is located towards the top right of the user interface and is typically an `html.button` element with the `.btn--primary` class which, when pressed, will perform a form submit or a save action, allowing people to save their changes.
+
+
+<div className="d-example">
+  <section className="actionsbar" aria-label="page actions">
+    <div className="float--left">
+      <div className="btn__group dropdown">
+        <button aria-haspopup="true" aria-expanded="false" aria-controls="guid-339142024" data-toggle="dropdown" className="btn dropdown__toggle bulk-actions" control-id="ControlID-8">Actions<span aria-label="0 rows selected" style={{display: 'none'}} className="badge label--primary js-bulk-actions-badge">0</span>&nbsp;<span className="caret"></span></button>
+        <ul id="guid-339142024" className="dropdown__menu pull-left">
+          <li><a href="#"><i aria-hidden="true" className="icon-plus"></i>&nbsp;New Thing</a></li>
+          <li><a href="#" data-ui="show-filter-bar"><i aria-hidden="true" className="icon-filter"></i>&nbsp;New filter</a></li>
+          <li><span className="divider"></span></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-copy"></i>&nbsp;Make a copy</a></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-user"></i>&nbsp;Change owner</a></li>
+          <li><span className="divider"></span></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-check-circle"></i>&nbsp;Make live</a></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-times-rectangle"></i>&nbsp;Take offline</a></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-eye-open"></i>&nbsp;Make visible</a></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-eye-slash"></i>&nbsp;Make invisible</a></li>
+          <li><span className="divider"></span></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="link--danger disabled"><i aria-hidden="true" className="icon-times"></i>&nbsp;Delete</a></li>
+        </ul>
+      </div>
+    </div>
+    <div className="float--right">
+      <button className="btn btn--primary" control-id="ControlID-9">New Thing</button>
+    </div>
+  </section>
+</div>

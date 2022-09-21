@@ -1,0 +1,8 @@
+{
+  "label": "Forms",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Create accessible, functional forms using Pulsar."
+  }
+}
