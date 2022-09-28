@@ -26,6 +26,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Authenticate NPM with the GPR
+    - uses: jgierer12/npm-auth-gpr@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
