@@ -1,0 +1,104 @@
+---
+id: list
+title: List
+sidebar_label: List
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Pass an array of items and have them rendered as a simple unordered or ordered list, this is particularly useful when chained with other helpers.
+
+Lists are purposely left unstyled, but you can use block lists if you need nicer styling.
+
+<div className="d-example">
+  <ul>
+    <li>foo</li>
+    <li>bar</li>
+  </ul>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.list({
+        'items': [
+            'foo',
+            'bar'
+        ]
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul>
+  <li>foo</li>
+  <li>bar</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| active_item | int | The index of the active item, will have the `is-active` class applied |
+| items | hash | A hash of items to display as list items |
+| type | string | Markup scheme to use: `ul` (default), `ol`, `div` or `link` |
+
+## Setting the active item
+
+The list items are indexed by one, you can pass the index of the item you would like to be marked as active and it will have the `.is-active` class applied. You will need to style this active class yourself.
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.list({
+    'active_item': 2,
+    'items': [
+      'foo',
+      'bar'
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<ul>
+  <li>foo</li>
+  <li class="is-active">bar</li>
+</ul>
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,8 @@
+{
+  "label": "Patterns",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Common user interface patterns used in Jadu software."
+  }
+}
