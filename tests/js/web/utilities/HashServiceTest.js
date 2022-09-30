@@ -11,7 +11,7 @@ describe('HashService', () => {
 
     describe('generate', () => {
         it('should return a truthy string value', () => {
-            expect(hashService.generate('foo')).to.be.truthy;
+            expect(hashService.generate('foo')).to.be.ok;
             expect(hashService.generate('foo')).to.be.a('string');
         });
 

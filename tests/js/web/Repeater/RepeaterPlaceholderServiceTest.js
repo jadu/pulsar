@@ -26,7 +26,7 @@ describe('RepeaterPlaceholderService', () => {
         it('should insert the placeholder as the first child element of the preview root', () => {
             repeaterPlaceholderService.add();
 
-            expect($html.find('[data-repeater-preview-placeholder]')).to.have.length.of(1);
+            expect($html.find('[data-repeater-preview-placeholder]')).to.have.lengthOf(1);
         });
     });
 
@@ -34,7 +34,7 @@ describe('RepeaterPlaceholderService', () => {
         it('should remove the preview element from the DOM and update the reference with a clone', () => {
             repeaterPlaceholderService.remove();
 
-            expect($html.find('[data-repeater-preview-placeholder]')).to.have.length.of(0);
+            expect($html.find('[data-repeater-preview-placeholder]')).to.have.lengthOf(0);
         });
     });
 });
