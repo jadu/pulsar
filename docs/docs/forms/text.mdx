@@ -1,0 +1,67 @@
+---
+id: text
+title: Text
+sidebar_label: Text
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generates a text input field allowing users to input data, with a variety of options for additional help and guidance information.
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-1303170267" className="control__label">My label</label>
+    <div className="controls">
+      <input id="guid-1303170267" name="text-1" type="text" className="form__control" />
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.text({
+    'label': 'My label',
+    'id': 'guid-' ~ random(),
+    'name': 'text-1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-1303170267" class="control__label">My label</label>
+  <div class="controls">
+    <input id="guid-1303170267" name="text-1" type="text" class="form__control" />
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options. The following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| append | string | Text or markup to include after the input element |
+| append_type | string | Use only when appending a button. button is the only valid value |
+| prepend | string | Text or markup to include before the input element |
+| prepend_type | string | Use only when prepending a button. button is the only valid value |

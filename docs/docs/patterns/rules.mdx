@@ -1,0 +1,1024 @@
+---
+id: rules
+title: Rules
+sidebar_label: Rules
+---
+
+The Rules pattern allows users to build up a conditional logic statement in a visual way.
+
+## Anatomy of a rule
+
+A complete rule is made up of blocks, which define specific conditions, and links, which allow additional blocks to be added.
+
+```text
+── Rule container
+   └── rule block
+       └── rule block header
+       └── rule block controls
+           └── rule block control
+   └── rule links
+       └── rule link
+```
+
+For a rule which is structured in the IF/ELSE/AND/OR/RETURN format, the blocks and links are typically arranged within the following example heirarchy.
+
+```text
+── IF block
+|  |  └── OR link
+|  |── AND block
+|  |  └── OR link
+|  |─── AND link
+|  └── RETURN block
+|── ELSE IF link
+└── ELSE RETURN block
+```
+
+## Rule blocks
+
+A rule block represents a single logical condition that must be matched for the rule to take this route. The controls within the rule block will be specific to the context of the parent user interface.
+
+The rule classes define how the block is visually styled, the block must use the parent `.rule-block` class.
+
+* `.rule-block--if`
+* `.rule-block--and`
+* `.rule-block--or`
+* `.rule-block--else`
+* `.rule-block--else-if`
+* `.rule-block--return`
+* `.rule-block--else-return`
+
+<div className="d-example">
+  <div id="rule-form-container-1" className="rules-container rules-container--v2">
+    <fieldset className="rule-block rule-block--if">
+      <legend className="hide">If rule condition</legend>
+      <div className="rule-block__header">
+        <h2 className="rule-block__heading">if</h2>
+      </div>
+      <div className="rule-block__controls">
+        <div className="rule-block__control">
+            <select id="guid-194036931" data-label="Pick a colour" data-placeholder="Please choose" className="form__control select js-select2">
+                <option value="">Choose condition</option>
+                <option value="colour_red">Red</option>
+                <option value="colour_blue">Blue</option>
+              </select>
+        </div>
+        <div className="rule-block__control">
+            <div className="form__group form__group--small"><label htmlFor="guid-129660931a" className="control__label hide">Choose logic</label><div className="controls"><select id="guid-129660931a" className="form__control select"><option value="value1">is</option><option value="value2">is not</option></select></div></div>
+        </div>
+        <div className="rule-block__control">
+            <div className="form__group form__group--medium"><label htmlFor="guid-148217431" className="control__label hide">Choose value</label><div className="controls"><select id="guid-148217431" data-label="Choose value" data-placeholder="Choose value" className="form__control select js-select2 select2-hidden-accessible" tabIndex="-1" aria-hidden="true"><option value="">Choose value</option><option value="value1">Value one</option><option value="value2">Value two</option></select><span className="select2 select2-container select2-container--default" dir="ltr"><span className="selection"><span className="select2-selection select2-selection--single" aria-haspopup="true" aria-expanded="false" tabIndex="0" aria-label="Choose value, Choose value" role="combobox" aria-controls="select2-guid-148217431-container" aria-owns="select2-guid-148217431-container"><span className="select2-selection__rendered" id="select2-guid-148217431-container" role="textbox" aria-readonly="true" aria-label="Choose value"><span className="select2-selection__placeholder">Choose value</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span></div></div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+```twig
+<div id="rule-form-container-1" class="rules-container rules-container--v2">
+  <fieldset class="rule-block rule-block--if">
+    <legend class="hide">If rule condition</legend>
+    <div class="rule-block__header">
+        <h2 class="rule-block__heading">if</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose condition',
+            'show-label': false,
+            'placeholder': 'Choose condition',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+      <div class="rule-block__control">
+        {{
+          form.select({
+            'class': 'form__group--small',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose logic',
+            'show-label': false,
+            'options': [
+              {
+                'label': 'is',
+                'value': 'value1'
+              },
+              {
+                'label': 'is not',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+      <div class="rule-block__control">
+        {{
+          form.select({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose value',
+            'show-label': false,
+            'placeholder': 'Choose value',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+  </fieldset>
+</div>
+```
+
+### Removable blocks
+
+Any blocks that a user has added by using the rule links should be removeable, this is achieved by adding the remove control as the last child of the rule block. These controls should also be present if a saved rule is loaded.
+
+The first IF block, as well as all RETURN and ELSE RETURN blocks should not be removeable.
+
+<div className="d-example">
+  <div id="rule-form-container-2" className="rules-container rules-container--v2">
+    <fieldset className="rule-block rule-block--and">
+      <legend className="hide">And rule condition</legend>
+      <div className="rule-block__header">
+        <h2 className="rule-block__heading">And</h2>
+      </div>
+      <div className="rule-block__controls">
+        <div className="rule-block__control">
+          <div className="form__group form__group--medium">
+            <label htmlFor="guid-1347839687" className="control__label hide">Choose condition</label>
+            <div className="controls">
+              <select id="guid-194036931" data-label="Pick a colour" data-placeholder="Please choose" className="form__control select js-select2">
+                <option value="">Choose condition</option>
+                <option value="colour_red">Red</option>
+                <option value="colour_blue">Blue</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" className="btn remove-button js-remove-condition"><i className="icon-remove-sign"><span className="hide">Remove this item</span></i></button>
+    </fieldset>
+  </div>
+</div>
+
+```twig {30}
+<div id="rule-form-container-2" class="rules-container rules-container--v2">
+  <fieldset class="rule-block rule-block--and">
+    <legend class="hide">And rule condition</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">And</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose condition',
+            'placeholder': 'Choose condition',
+            'show-label': false,
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+    <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" class="btn remove-button js-remove-condition"><i class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+  </fieldset>
+</div>
+```
+
+### Indented blocks
+
+When an OR block immediately follows an IF, AND or ELSE-IF rule, it should be indented using a `rule-block--indent` wrapper. Any rule links relating to this indented block should also be contained within the indent wrapper to maintain the layout of the ruleset.
+
+If an OR block follows another OR block, it does not need to be further indented.
+
+<div className="d-example">
+  <div id="rule-form-container-3" className="rules-container rules-container--v2">
+    <fieldset className="rule-block rule-block--if">
+      <legend className="hide">If rule condition</legend>
+      <div className="rule-block__header">
+        <h2 className="rule-block__heading">if</h2>
+      </div>
+      <div className="rule-block__controls">
+        <div className="rule-block__control">
+          <div className="form__group form__group--medium"><label htmlFor="guid-1413353920" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-1413353920" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+        </div>
+      </div>
+    </fieldset>
+    <div className="rule-block--indent">
+      <fieldset className="rule-block rule-block--or">
+        <legend className="hide">Or rule condition</legend>
+        <div className="rule-block__header">
+          <h2 className="rule-block__heading">or</h2>
+        </div>
+        <div className="rule-block__controls">
+          <div className="rule-block__control">
+            <div className="form__group form__group--medium"><label htmlFor="guid-1570171899" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-1570171899" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+          </div>
+        </div>
+        <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" className="btn remove-button js-remove-trigger"><i className="icon-remove-sign"><span className="hide">Remove this item</span></i></button>
+      </fieldset>
+      <fieldset className="rule-block rule-block--or">
+        <legend className="hide">Or rule condition</legend>
+        <div className="rule-block__header">
+          <h2 className="rule-block__heading">or</h2>
+        </div>
+        <div className="rule-block__controls">
+          <div className="rule-block__control">
+            <div className="form__group form__group--medium"><label htmlFor="guid-1217944090" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-1217944090" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+          </div>
+        </div>
+        <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" className="btn remove-button js-remove-condition"><i className="icon-remove-sign"><span className="hide">Remove this item</span></i></button>
+      </fieldset>
+      <div className="rule-links">
+        <div className="rule-link rule-link--or">
+          <button className="btn" aria-label="Add a new OR condition">or</button>
+        </div>
+      </div>
+    </div>
+    ...
+  </div>
+</div>
+
+```twig
+<div id="rule-form-container-3" class="rules-container rules-container--v2">
+  <fieldset class="rule-block rule-block--if">
+      <legend class="hide">If rule condition</legend>
+      <div class="rule-block__header">
+        <h2 class="rule-block__heading">if</h2>
+      </div>
+      <div class="rule-block__controls">
+        <div class="rule-block__control">
+          {{
+            form.select2({
+              'class': 'form__group--medium',
+              'id': 'guid-' ~ random(),
+              'label': 'Choose condition',
+              'placeholder': 'Choose condition',
+              'show-label': false,
+              'options': [
+                {
+                  'label': 'Value one',
+                  'value': 'value1'
+                },
+                {
+                  'label': 'Value two',
+                  'value': 'value2'
+                }
+              ]
+            })
+          }}
+        </div>
+      </div>
+  </fieldset>
+
+  <div class="rule-block--indent">
+    <fieldset class="rule-block rule-block--or">
+      <legend class="hide">Or rule condition</legend>
+      <div class="rule-block__header">
+        <h2 class="rule-block__heading">or</h2>
+      </div>
+      <div class="rule-block__controls">
+        <div class="rule-block__control">
+          {{
+            form.select2({
+              'class': 'form__group--medium',
+              'id': 'guid-' ~ random(),
+              'label': 'Choose condition',
+              'placeholder': 'Choose condition',
+              'show-label': false,
+              'options': [
+                {
+                  'label': 'Value one',
+                  'value': 'value1'
+                },
+                {
+                  'label': 'Value two',
+                  'value': 'value2'
+                }
+              ]
+            })
+          }}
+        </div>
+      </div>
+      <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" class="btn remove-button js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+    </fieldset>
+
+    <fieldset class="rule-block rule-block--or">
+      <legend class="hide">Or rule condition</legend>
+      <div class="rule-block__header">
+        <h2 class="rule-block__heading">or</h2>
+      </div>
+      <div class="rule-block__controls">
+        <div class="rule-block__control">
+          {{
+            form.select2({
+              'class': 'form__group--medium',
+              'id': 'guid-' ~ random(),
+              'label': 'Choose condition',
+              'placeholder': 'Choose condition',
+              'show-label': false,
+              'options': [
+                {
+                  'label': 'Value one',
+                  'value': 'value1'
+                },
+                {
+                  'label': 'Value two',
+                  'value': 'value2'
+                }
+              ]
+            })
+          }}
+        </div>
+      </div>
+      <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" class="btn remove-button js-remove-condition"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+    </fieldset>
+
+    <div class="rule-links">
+      <div class="rule-link rule-link--or">
+        <button class="btn" aria-label="Add a new OR condition">or</button>
+      </div>
+    </div>
+
+  </div><!-- /.ruleblock--indent -->
+
+  ...
+
+</div><!-- /.rules-container -->
+```
+
+## Ruleset examples
+
+### Basic 
+
+This example demonstrates the starting point of an IF/ELSEIF/AND/OR/RETURN type ruleset.
+
+<div className="d-example">
+  <div id="rule-form-container-4" className="rules-container rules-container--v2">
+    <fieldset className="rule-block rule-block--if">
+      <legend className="hide">If rule condition</legend>
+      <div className="rule-block__header">
+        <h2 className="rule-block__heading">if</h2>
+      </div>
+      <div className="rule-block__controls">
+        <div className="rule-block__control">
+          <div className="form__group form__group--medium"><label htmlFor="guid-104958055" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-104958055" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+        </div>
+      </div>
+    </fieldset>
+    <div className="rule-links">
+      <div className="rule-link rule-link--or">
+        <button className="btn" aria-label="Add a new OR condition">or</button>
+      </div>
+      <div className="rule-link rule-link--and">
+        <button className="btn" aria-label="Add a new AND condition">and</button>
+      </div>
+    </div>
+    <fieldset className="rule-block rule-block--return">
+      <legend className="hide">Return</legend>
+      <div className="rule-block__header">
+        <h2 className="rule-block__heading">return</h2>
+      </div>
+      <div className="rule-block__controls">
+        <div className="rule-block__control">
+          <div className="form__group form__group--medium"><label htmlFor="guid-1943076721" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-1943076721" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+        </div>
+      </div>
+    </fieldset>
+    <div className="rule-links">
+      <div className="rule-link rule-link--else-if">
+        <button className="btn">else if</button>
+      </div>
+    </div>
+    <fieldset className="rule-block rule-block--else-return">
+      <legend className="hide">Else return</legend>
+      <div className="rule-block__header">
+        <h2 className="rule-block__heading">else return</h2>
+      </div>
+      <div className="rule-block__controls">
+        <div className="rule-block__control">
+          <div className="form__group form__group--medium"><label htmlFor="guid-1700843938" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-1700843938" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+```twig
+<div id="rule-form-container-4" class="rules-container rules-container--v2">
+  <fieldset class="rule-block rule-block--if">
+    <legend class="hide">If rule condition</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">if</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose condition',
+            'show-label': false,
+            'placeholder': 'Choose condition',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="rule-links">
+    <div class="rule-link rule-link--or">
+      <button class="btn" aria-label="Add a new OR condition">or</button>
+    </div>
+    <div class="rule-link rule-link--and">
+      <button class="btn" aria-label="Add a new AND condition">and</button>
+    </div>
+  </div>
+
+  <fieldset class="rule-block rule-block--return">
+    <legend class="hide">Return</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">return</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose condition',
+            'show-label': false,
+            'placeholder': 'Choose condition',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="rule-links">
+    <div class="rule-link rule-link--else-if">
+      <button class="btn">else if</button>
+    </div>
+  </div>
+
+  <fieldset class="rule-block rule-block--else-return">
+    <legend class="hide">Else return</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">else return</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose condition',
+            'show-label': false,
+            'placeholder': 'Choose condition',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+  </fieldset>
+
+</div><!-- /.rules-container -->
+```
+
+### Full
+
+This example shows a complex rule with various conditions visible, this is here for illustration purposes only.
+
+<div className="d-example">
+<div id="rule-form-container-5" className="rules-container rules-container--v2">
+    <fieldset className="rule-block rule-block--if">
+        <legend className="hide">If rule condition</legend>
+        <div className="rule-block__header">
+            <h2 className="rule-block__heading">if</h2>
+        </div>
+        <div className="rule-block__controls">
+            <div className="rule-block__control">
+                <div className="form__group form__group--medium"><label htmlFor="guid-46064557" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-46064557" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+            </div>
+        </div>
+    </fieldset>
+    <div className="rule-block--indent">
+        <fieldset className="rule-block rule-block--or">
+            <legend className="hide">Or rule condition</legend>
+            <div className="rule-block__header">
+                <h2 className="rule-block__heading">or</h2>
+            </div>
+            <div className="rule-block__controls">
+                <div className="rule-block__control">
+                    <div className="form__group form__group--medium"><label htmlFor="guid-447295787" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-447295787" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+                </div>
+            </div>
+            <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" className="btn remove-button js-remove-condition"><i className="icon-remove-sign"><span className="hide">Remove this item</span></i></button>
+        </fieldset>
+        <fieldset className="rule-block rule-block--or">
+            <legend className="hide">Or rule condition</legend>
+            <div className="rule-block__header">
+                <h2 className="rule-block__heading">or</h2>
+            </div>
+            <div className="rule-block__controls">
+                <div className="rule-block__control">
+                    <div className="form__group form__group--medium"><label htmlFor="guid-482600375" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-482600375" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+                </div>
+            </div>
+            <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" className="btn remove-button js-remove-condition"><i className="icon-remove-sign"><span className="hide">Remove this item</span></i></button>
+        </fieldset>
+        <div className="rule-links">
+            <div className="rule-link rule-link--or">
+                <button className="btn" aria-label="Add a new OR condition">or</button>
+            </div>
+        </div>
+    </div>
+    <fieldset className="rule-block rule-block--and">
+        <legend className="hide">And rule condition</legend>
+        <div className="rule-block__header">
+            <h2 className="rule-block__heading">and</h2>
+        </div>
+        <div className="rule-block__controls">
+                <div className="rule-block__control">
+                    <div className="form__group form__group--medium"><label htmlFor="guid-808062836" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-808062836" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+                </div>
+        </div>
+        <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" className="btn remove-button js-remove-condition"><i className="icon-remove-sign"><span className="hide">Remove this item</span></i></button>
+    </fieldset>
+    <div className="rule-block--indent">
+        <fieldset className="rule-block rule-block--or">
+            <legend className="hide">Or rule condition</legend>
+            <div className="rule-block__header">
+                <h2 className="rule-block__heading">or</h2>
+            </div>
+            <div className="rule-block__controls">
+                <div className="rule-block__control">
+                    <div className="form__group form__group--medium"><label htmlFor="guid-737278965" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-737278965" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+                </div>
+            </div>
+            <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" className="btn remove-button js-remove-condition"><i className="icon-remove-sign"><span className="hide">Remove this item</span></i></button>
+        </fieldset>
+        <div className="rule-links">
+            <div className="rule-link rule-link--or">
+                <button className="btn" aria-label="Add a new OR condition">or</button>
+            </div>
+        </div>
+    </div>
+    <div className="rule-links">
+        <div className="rule-link rule-link--and">
+            <button className="btn" aria-label="Add a new AND condition">and</button>
+        </div>
+    </div>
+    <fieldset className="rule-block rule-block--return">
+        <legend className="hide">Return</legend>
+        <div className="rule-block__header">
+            <h2 className="rule-block__heading">return</h2>
+        </div>
+        <div className="rule-block__controls">
+            <div className="rule-block__control">
+                <div className="form__group form__group--medium"><label htmlFor="guid-2029827862" className="control__label hide">Choose return value</label><div className="controls"><select id="guid-2029827862" data-label="Choose return value" data-placeholder="Choose return value" className="form__control select js-select2"><option value="">Choose return value</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+            </div>
+        </div>
+    </fieldset>
+    <div className="rule-links">
+        <div className="rule-link rule-link--else-if">
+            <button className="btn">else if</button>
+        </div>
+    </div>
+    <fieldset className="rule-block rule-block--else-if">
+        <legend className="hide">Else If rule condition</legend>
+        <div className="rule-block__header">
+            <h2 className="rule-block__heading">else if</h2>
+        </div>
+        <div className="rule-block__controls">
+            <div className="rule-block__control">
+                <div className="form__group form__group--medium"><label htmlFor="guid-1334125568" className="control__label hide">Choose condition</label><div className="controls"><select id="guid-1334125568" data-label="Choose condition" data-placeholder="Choose condition" className="form__control select js-select2"><option value="">Choose condition</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+            </div>
+        </div>
+        <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" className="btn remove-button js-remove-condition"><i className="icon-remove-sign"><span className="hide">Remove this item</span></i></button>
+    </fieldset>
+    <div className="rule-links">
+        <div className="rule-link rule-link--or">
+            <button className="btn" aria-label="Add a new OR condition">or</button>
+        </div>
+        <div className="rule-link rule-link--and">
+            <button className="btn" aria-label="Add a new AND condition">and</button>
+        </div>
+    </div>
+    <fieldset className="rule-block rule-block--return">
+        <legend className="hide">Return</legend>
+        <div className="rule-block__header">
+            <h2 className="rule-block__heading">return</h2>
+        </div>
+        <div className="rule-block__controls">
+            <div className="rule-block__control">
+                <div className="form__group form__group--medium"><label htmlFor="guid-718103657" className="control__label hide">Choose return value</label><div className="controls"><select id="guid-718103657" data-label="Choose return value" data-placeholder="Choose return value" className="form__control select js-select2"><option value="">Choose return value</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+            </div>
+        </div>
+    </fieldset>
+    <div className="rule-links">
+        <div className="rule-link rule-link--else-if">
+            <button className="btn">else if</button>
+        </div>
+    </div>
+    <fieldset className="rule-block rule-block--else-return">
+        <legend className="hide">Else return</legend>
+        <div className="rule-block__header">
+            <h2 className="rule-block__heading">else return</h2>
+        </div>
+        <div className="rule-block__controls">
+            <div className="rule-block__control">
+                <div className="form__group form__group--medium"><label htmlFor="guid-1339034775" className="control__label hide">Choose return value</label><div className="controls"><select id="guid-1339034775" data-label="Choose return value" data-placeholder="Choose return value" className="form__control select js-select2"><option value="">Choose return value</option><option value="value1">Value one</option><option value="value2">Value two</option></select></div></div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+</div>
+
+```twig
+<div id="rule-form-container-5" class="rules-container rules-container--v2">
+  <fieldset class="rule-block rule-block--if">
+    <legend class="hide">If rule condition</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">if</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose condition',
+            'show-label': false,
+            'placeholder': 'Choose condition',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="rule-block--indent">
+
+    <fieldset class="rule-block rule-block--or">
+      <legend class="hide">Or rule condition</legend>
+      <div class="rule-block__header">
+        <h2 class="rule-block__heading">or</h2>
+      </div>
+      <div class="rule-block__controls">
+        <div class="rule-block__control">
+          {{
+            form.select2({
+              'class': 'form__group--medium',
+              'id': 'guid-' ~ random(),
+              'label': 'Choose condition',
+              'show-label': false,
+              'placeholder': 'Choose condition',
+              'options': [
+                {
+                  'label': 'Value one',
+                  'value': 'value1'
+                },
+                {
+                  'label': 'Value two',
+                  'value': 'value2'
+                }
+              ]
+            })
+          }}
+        </div>
+      </div>
+      <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left"  class="btn remove-button js-remove-condition"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+    </fieldset>
+
+    <fieldset class="rule-block rule-block--or">
+      <legend class="hide">Or rule condition</legend>
+      <div class="rule-block__header">
+        <h2 class="rule-block__heading">or</h2>
+      </div>
+      <div class="rule-block__controls">
+        <div class="rule-block__control">
+          {{
+            form.select2({
+              'class': 'form__group--medium',
+              'id': 'guid-' ~ random(),
+              'label': 'Choose condition',
+              'show-label': false,
+              'placeholder': 'Choose condition',
+              'options': [
+                {
+                  'label': 'Value one',
+                  'value': 'value1'
+                },
+                {
+                  'label': 'Value two',
+                  'value': 'value2'
+                }
+              ]
+            })
+          }}
+        </div>
+      </div>
+      <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" class="btn remove-button js-remove-condition"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+    </fieldset>
+
+    <div class="rule-links">
+      <div class="rule-link rule-link--or">
+        <button class="btn" aria-label="Add a new OR condition">or</button>
+      </div>
+    </div>
+
+  </div><!-- /.ruleblock--indent -->
+
+  <fieldset class="rule-block rule-block--and">
+    <legend class="hide">And rule condition</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">and</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose condition',
+            'show-label': false,
+            'placeholder': 'Choose condition',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+    <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" class="btn remove-button js-remove-condition"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+  </fieldset>
+
+  <div class="rule-block--indent">
+    <fieldset class="rule-block rule-block--or">
+      <legend class="hide">Or rule condition</legend>
+      <div class="rule-block__header">
+        <h2 class="rule-block__heading">or</h2>
+      </div>
+      <div class="rule-block__controls">
+        <div class="rule-block__control">
+          {{
+            form.select2({
+              'class': 'form__group--medium',
+              'id': 'guid-' ~ random(),
+              'label': 'Choose condition',
+              'show-label': false,
+              'placeholder': 'Choose condition',
+              'options': [
+                {
+                  'label': 'Value one',
+                  'value': 'value1'
+                },
+                {
+                  'label': 'Value two',
+                  'value': 'value2'
+                }
+              ]
+            })
+          }}
+        </div>
+      </div>
+      <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left"  class="btn remove-button js-remove-condition"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+    </fieldset>
+
+    <div class="rule-links">
+      <div class="rule-link rule-link--or">
+        <button class="btn" aria-label="Add a new OR condition">or</button>
+      </div>
+    </div>
+  </div><!-- /.ruleblock--indent -->
+
+  <div class="rule-links">
+    <div class="rule-link rule-link--and">
+      <button class="btn" aria-label="Add a new AND condition">and</button>
+    </div>
+  </div>
+
+  <fieldset class="rule-block rule-block--return">
+    <legend class="hide">Return</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">return</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose return value',
+            'show-label': false,
+            'placeholder': 'Choose return value',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="rule-links">
+    <div class="rule-link rule-link--else-if">
+      <button class="btn">else if</button>
+    </div>
+  </div>
+
+  <fieldset class="rule-block rule-block--else-if">
+    <legend class="hide">Else If rule condition</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">else if</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose condition',
+            'show-label': false,
+            'placeholder': 'Choose condition',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+    <button data-action="remove" data-tippy-content="Remove this item" data-tippy-placement="left" class="btn remove-button js-remove-condition"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
+  </fieldset>
+
+  <div class="rule-links">
+    <div class="rule-link rule-link--or">
+      <button class="btn" aria-label="Add a new OR condition">or</button>
+    </div>
+    <div class="rule-link rule-link--and">
+      <button class="btn" aria-label="Add a new AND condition">and</button>
+    </div>
+  </div>
+
+  <fieldset class="rule-block rule-block--return">
+    <legend class="hide">Return</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">return</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose return value',
+            'show-label': false,
+            'placeholder': 'Choose return value',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="rule-links">
+    <div class="rule-link rule-link--else-if">
+      <button class="btn">else if</button>
+    </div>
+  </div>
+
+  <fieldset class="rule-block rule-block--else-return">
+    <legend class="hide">Else return</legend>
+    <div class="rule-block__header">
+      <h2 class="rule-block__heading">else return</h2>
+    </div>
+    <div class="rule-block__controls">
+      <div class="rule-block__control">
+        {{
+          form.select2({
+            'class': 'form__group--medium',
+            'id': 'guid-' ~ random(),
+            'label': 'Choose return value',
+            'show-label': false,
+            'placeholder': 'Choose return value',
+            'options': [
+              {
+                'label': 'Value one',
+                'value': 'value1'
+              },
+              {
+                'label': 'Value two',
+                'value': 'value2'
+              }
+            ]
+          })
+        }}
+      </div>
+    </div>
+  </fieldset>
+
+</div><!-- /.rules-container -->
+```
+
+## Interactions
+
+Currently, there is no associated JavaScript component to enable interactions for the rules user interface.
