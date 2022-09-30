@@ -61,7 +61,7 @@ describe('RepeaterPreviewService', () => {
             };
             const row = repeaterPreviewService.create(state, headings, 666);
 
-            expect($(row).find('[data-repeater-preview-update-id]')).to.have.length.of(Object.keys(state).length);
+            expect($(row).find('[data-repeater-preview-update-id]')).to.have.lengthOf(Object.keys(state).length);
 
             // Expect each preview to contain the corresponding value property from the state
             $(row).find('[data-repeater-preview-update-id]').each((index, element) => {
@@ -76,7 +76,7 @@ describe('RepeaterPreviewService', () => {
             };
             const row = repeaterPreviewService.create(state, headings, root);
 
-            expect($(row).find('[data-repeater-preview-update-id]')).to.have.length.of(Object.keys(state).length);
+            expect($(row).find('[data-repeater-preview-update-id]')).to.have.lengthOf(Object.keys(state).length);
 
             // Expect each preview to contain the empty placeholder
             $(row).find('[data-repeater-preview-update-id]').each((index, element) => {

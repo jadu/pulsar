@@ -67,20 +67,20 @@ describe('UniqueIdService', () => {
         it('should create unique IDs for each for/id pair', () => {
             uniqueIdServive.uniquifyFors($root[0]);
 
-            expect($root.find('[for="foo_100"]')).to.have.length.of(1);
-            expect($root.find('[id="foo_100"]')).to.have.length.of(1);
+            expect($root.find('[for="foo_100"]')).to.have.lengthOf(1);
+            expect($root.find('[id="foo_100"]')).to.have.lengthOf(1);
 
-            expect($root.find('[for="foo_101"]')).to.have.length.of(1);
-            expect($root.find('[id="foo_101"]')).to.have.length.of(1);
+            expect($root.find('[for="foo_101"]')).to.have.lengthOf(1);
+            expect($root.find('[id="foo_101"]')).to.have.lengthOf(1);
 
-            expect($root.find('[for="foo_102"]')).to.have.length.of(1);
-            expect($root.find('[id="foo_102"]')).to.have.length.of(1);
+            expect($root.find('[for="foo_102"]')).to.have.lengthOf(1);
+            expect($root.find('[id="foo_102"]')).to.have.lengthOf(1);
         });
 
         it('should ignore for elements that do not have corresponding IDs', () => {
             uniqueIdServive.uniquifyFors($root[0]);
 
-            expect($root.find('[for="no_id_on_page"]')).to.have.length.of(1);
+            expect($root.find('[for="no_id_on_page"]')).to.have.lengthOf(1);
         });
     });
 
@@ -94,9 +94,9 @@ describe('UniqueIdService', () => {
         it('should create unique IDs for each for/id pair', () => {
             uniqueIdServive.uniquifyIds($root[0]);
 
-            expect($root.find('[id="foo_100"]')).to.have.length.of(1);
-            expect($root.find('[id="foo_101"]')).to.have.length.of(1);
-            expect($root.find('[id="foo_102"]')).to.have.length.of(1);
+            expect($root.find('[id="foo_100"]')).to.have.lengthOf(1);
+            expect($root.find('[id="foo_101"]')).to.have.lengthOf(1);
+            expect($root.find('[id="foo_102"]')).to.have.lengthOf(1);
         });
     });
 

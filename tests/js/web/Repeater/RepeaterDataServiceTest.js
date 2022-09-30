@@ -52,7 +52,7 @@ describe('RepeaterDataService', () => {
             inputCloneServiceStub.clone.returns(clonedInput);
             repeaterDataService.create(group, 666);
 
-            expect(data.children).to.have.length.of(1);
+            expect(data.children).to.have.lengthOf(1);
             expect(data.firstElementChild.getAttribute('data-repeater-saved-data-id')).to.equal('666');
             expect(clonedInput.getAttribute('name')).to.equal('test_input');
             expect(clonedInput.className).to.equal('u-display-none');
