@@ -24,6 +24,6 @@ jobs:
       with:
         node-version: "16"
         cache: 'npm'
-    - run: npm install
+    - run: npm install --prefer-online
     - run: npm run build --if-present
     - run: npm test
