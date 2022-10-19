@@ -16,12 +16,15 @@ module.exports = function(grunt) {
                     'dist/js/bundle.js': ['js/index.js']
                 },
                 options: {
+                    plugin: [
+                        [require('esmify')]
+                    ],
                     browserifyOptions: {
                         standalone: 'pulsar',
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['env'] } ],
                         ['aliasify', { global: true }]
                     ]
                 }
@@ -31,11 +34,14 @@ module.exports = function(grunt) {
                     'dist/js/lexicon-bundle.js': ['js/lexicon/lexicon-index.js']
                 },
                 options: {
+                    plugin: [
+                        [require('esmify')]
+                    ],
                     browserifyOptions: {
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['env'] } ],
                         ['aliasify', { global: true }]
                     ]
                 }
@@ -45,11 +51,14 @@ module.exports = function(grunt) {
                     'dist/js/bundle.js': ['js/index.js']
                 },
                 options: {
+                    plugin: [
+                        [require('esmify')]
+                    ],
                     browserifyOptions: {
                         standalone: 'pulsar'
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['env'] } ],
                         ['aliasify', { global: true }],
                         'uglifyify'
                     ]
@@ -61,12 +70,15 @@ module.exports = function(grunt) {
                     'dist/js/browser.test.js': ['tests/harness/browser.js']
                 },
                 options: {
+                    plugin: [
+                        [require('esmify')]
+                    ],
                     browserifyOptions: {
                         standalone: 'pulsar',
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['env'] } ],
                         ['aliasify', { global: true }],
                         ['require-globify']
                     ]

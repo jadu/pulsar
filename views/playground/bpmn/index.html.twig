@@ -1,0 +1,54 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+{% set parentTitle = 'My Awesome Case Type' %}
+{% set heading = 'Designer (beta)' %}
+
+{% set tab_blank %}
+    {% include '/playground/bpmn/blank.html.twig' %}
+{% endset %}
+
+{% set tab_designer %}
+    {% include '/playground/bpmn/designer.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "general",
+            "label" : "General",
+            "src"   : tab_blank,
+        },
+        {
+            "id"    : "designer",
+            "label" : "Designer (beta)",
+            "src"   : tab_designer,
+            "active": true
+        },
+        {
+            "id"    : "status",
+            "label" : "Statuses",
+            "src"   : tab_blank,
+        },
+        {
+            "id"    : "transitions",
+            "label" : "Transitions",
+            "src"   : tab_blank,
+        },
+        {
+            "id"    : "forms",
+            "label" : "Forms",
+            "src"   : tab_blank,
+        },
+        {
+            "id"    : "emails",
+            "label" : "Emails",
+            "src"   : tab_blank,
+        },
+        {
+            "id"    : "rules",
+            "label" : "Rules",
+            "src"   : tab_blank,
+        }
+    ]
+%}

@@ -1,0 +1,78 @@
+.bpmn {
+    outline: 1px dashed #ccc;
+    height: 800px;
+
+    // Attempt to position the minimap controls outside of the canvas
+    .djs-container {
+        // overflow: visible;
+    }
+
+    .djs-palette {
+        // left: 0;
+        // top: 0;
+    }
+
+    // .djs-minimap {
+    //     border: 1px solid;
+    //     padding-bottom: 8px;
+    //     padding-top: 9px;
+    //     top: -50px;
+    //     right: 0;
+    // }
+
+    .djs-context-pad,
+    .djs-popup {
+        background-color: white;
+        border-radius: 0;
+        box-shadow: 0 0 0 $shadow-small color(background, shadow);
+
+        [class*=icon-] {
+            display: block;
+            font-family: $font-family-regular;
+            font-weight: normal;
+        }
+
+        // Size of prepended icons in popup lists
+        .entry::before {
+            font-size: $font-size-xlarge;
+        }
+    }
+
+    .djs-context-pad {
+        [class*=icon-] {
+            display: inline-block;
+        }
+
+        .entry {
+            margin: .25em;
+        }
+    }
+
+    .rule {
+        background-color: #fff95f;
+        border: 2px solid #000;
+        border-radius: 5px;
+        display: flex;
+        min-width: 30px;
+        padding: 0 .2em;
+        position: relative;
+        right: 15px;
+        top: -15px;
+        text-align: center;
+
+        i {
+            font-size: 18px;
+            margin: 0 2px;
+            position: relative;
+        }
+
+        .icon-envelope {
+            top: -1px;
+        }
+
+        .icon-robot {
+            font-weight: 400;
+            top: -2px;
+        }
+    }
+}

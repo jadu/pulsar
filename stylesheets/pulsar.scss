@@ -19,6 +19,8 @@ $ie-version: 12 !default;
 @import '../node_modules/normalize.css/normalize';
 @import '../node_modules/tippy.js/dist/tippy';
 @import '../node_modules/pulsar-date-picker/src/scss/pulsar-date-picker';
+@import '../node_modules/diagram-js-minimap/assets/diagram-js-minimap';
+
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
@@ -90,6 +92,7 @@ $font-path: '../fonts/';
 @import 'component.autosave';
 @import 'component.badges';
 @import 'component.block-list';
+@import 'component.bpmn';
 @import 'component.breadcrumb';
 @import 'component.buttons';
 @import 'component.button-groups';

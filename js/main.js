@@ -36,6 +36,7 @@
     pulsar.modalFocusService = new pulsar.ModalFocusService();
     pulsar.modalListener = new pulsar.ModalListener(pulsar.modalFocusService);
     pulsar.tabEnhancements = new pulsar.TabEnhancements(document);
+    pulsar.workflowDesigner = new pulsar.WorkflowDesigner();
 
     $(function () {
         pulsar.button.init();
@@ -61,6 +62,7 @@
         pulsar.tooltipListener.init();
         pulsar.modalListener.listen($html);
         pulsar.datePicker.init($html);
+        pulsar.workflowDesigner.init($html);
 
         // jsTree
         $('#container').jstree({
