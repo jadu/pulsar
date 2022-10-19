@@ -19,6 +19,11 @@ class WorkflowDesigner {
             ],
             keyboard: {
                 bindTo: window
+            },
+            overlays: {
+              defaults: {
+                scale: false
+              }
             }
         });
 
@@ -57,7 +62,13 @@ class WorkflowDesigner {
           var overlays = bpmnModeler.get('overlays');
 
           // zoom to fit full viewport
-          // canvas.zoom('fit-viewport');
+          canvas.zoom('fit-viewport');
+
+
+
+          var overlayRuleHtml = $('<div class="rule"><i class="icon-robot-astromech"></i></div>');
+          var overlayMailHtml = $('<div class="rule"><i class="icon-envelope"></i></div>');
+          var overlayRuleMailHtml = $('<div class="rule"><i class="icon-robot-astromech"></i> <i class="icon-envelope"></i></div>');
 
           // attach an overlay to a node
           overlays.add('Activity_0bk8zez', 'note', {
@@ -65,7 +76,7 @@ class WorkflowDesigner {
               top: 0,
               right: 0
             },
-            html: '<div class="rule"><i class="icon-robot"></i></div>'
+            html: overlayRuleHtml
           });
 
           overlays.add('Activity_05ifs99', 'note', {
@@ -73,7 +84,7 @@ class WorkflowDesigner {
               top: 0,
               right: 0
             },
-            html: '<div class="rule"><i class="icon-envelope"></i></div>'
+            html: overlayMailHtml
           });
 
           overlays.add('Activity_09k2p7c', 'note', {
@@ -81,10 +92,9 @@ class WorkflowDesigner {
               top: 0,
               right: 0
             },
-            html: '<div class="rule"><i class="icon-robot"></i> <i class="icon-envelope"></i></div>'
+            html: overlayRuleMailHtml
           });
-          // add marker
-        //   canvas.addMarker('SCAN_OK', 'needs-discussion');
+
         } catch (err) {
 
           console.error('could not import BPMN 2.0 diagram', err);

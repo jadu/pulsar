@@ -48,6 +48,19 @@
         }
     }
 
+    .djs-minimap {
+        border: 1px solid color(black);
+
+        .toggle::before {
+            content: '\f279';
+            font-family: $font-family-icons;
+        }
+
+        &.open .toggle::before {
+            content: '\f00d';
+        }
+    }
+
     .rule {
         background-color: #fff95f;
         border: 2px solid #000;
@@ -61,18 +74,17 @@
         text-align: center;
 
         i {
-            font-size: 18px;
+            font-size: 19px;
             margin: 0 2px;
             position: relative;
         }
 
         .icon-envelope {
-            top: -1px;
+            // top: -1px;
         }
 
-        .icon-robot {
-            font-weight: 400;
-            top: -2px;
+        .icon-robot-astromech {
+            font-weight: 200;
         }
     }
 }
