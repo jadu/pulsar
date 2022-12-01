@@ -1,0 +1,193 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%
+    set reportdata = {
+        'columns': [
+            { 'title': 'Content title' },
+            { 'title': 'Type' },
+            { 'title': 'Created'},
+        ],
+        'data': [
+            {
+                'Title': html.link({'label': 'My awesome document title', 'href': '#'}),
+                'Type': 'document',
+                'Created': '01/02/2016 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Will usage in widgets be caught?', 'href': '#'}),
+                'Type': 'homepage',
+                'Created': '01/02/2016 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Will images be reported in supplements', 'href': '#'}),
+                'Type': 'supplement',
+                'Created': '01/02/2016 12:34',
+            },
+            {
+                'Title': html.link({'label': 'News articles', 'href': '#'}),
+                'Type': 'news',
+                'Created': '01/02/2016 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Events too', 'href': '#'}),
+                'Type': 'event',
+                'Created': '01/02/2016 12:34',
+            }
+        ]
+    }
+%}
+
+{%- block actions_left -%}
+{%- endblock -%}
+
+{%- block actions_right -%}
+{%- endblock -%}
+
+{% block tab_settings %}
+
+        <img loading="lazy" src="https://picsum.photos/300/200?random=a" class="card-img u-margin-bottom">
+
+        {# <div class="u-float-left u-margin-bottom--large">
+        {{
+            html.button_dropdown({
+                'label': 'Actions',
+                'items': [
+                    html.link({ 'label': html.icon('pencil') ~ 'Edit image', 'href': '#foo' }),
+                    html.divider(),
+                    html.link({ 'label': html.icon('file-magnifying-glass') ~ 'Image usage report', 'href': '#foo' }),
+                    html.link({ 'label': html.icon('shuffle') ~ 'Replace image', 'href': '#bar' }),
+                    html.link({ 'label': html.icon('magnifying-glass') ~ 'Search for identical images', 'href': '#bar' }),
+                    html.divider(),
+                    html.link({ 'label': html.icon('times') ~ 'Check usage and Delete', 'href': '#bar', 'class': 'link--danger' })
+                ]
+            })
+        }}
+        </div>
+        <div class="u-float-right u-margin-bottom">
+        
+        {{ 
+            html.button({
+                'label': 'Edit',
+                'data-toggle': 'modal',
+                'data-target': '#editModal',
+                'class': 'btn--primary'
+            })
+        }}
+
+        </div> #}
+
+        <dl class="metadata u-clear-both">
+            <dt class="metadata__key">File name</dt>
+            <dd class="metadata__value">really_long_image_name_that_needs_handling.jpg</dd>
+            <dt class="metadata__key">Description</dt>
+            <dd class="metadata__value">A really nice description of the image contents</dd>
+            <dt class="metadata__key">Caption</dt>
+            <dd class="metadata__value">Feels like caption should be set when adding content to a document to explain the context</dd>
+            <dt class="metadata__key">Alt text</dt>
+            <dd class="metadata__value">A really nice description of the image contents</dd>
+        </dl>
+        <hr />
+        <dl class="metadata u-clear-both">
+            <dt class="metadata__key">File size</dt>
+            <dd class="metadata__value">1.2 Gb</dd>
+            <dt class="metadata__key">File type</dt>
+            <dd class="metadata__value">image/jpeg</dd>
+            <dt class="metadata__key">Dimensions</dt>
+            <dd class="metadata__value">1234 x 5678 px</dd>
+            <dt class="metadata__key">DPI</dt>
+            <dd class="metadata__value">300 {{ html.icon('triangle-exclamation', {'class': 'text--warning'}) }}</dd>
+        </dl>
+
+        <dl class="metadata">
+            <dt class="metadata__key">Tags</dt>
+            <dd class="metadata__value">
+        {{
+            html.label({
+                'label': 'Alpha',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        {{
+            html.label({
+                'label': 'Bravo',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        {{
+            html.label({
+                'label': 'Charlie',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        {{
+            html.label({
+                'label': 'Antidisestablishmentarianism',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        {{
+            html.label({
+                'label': 'Delta',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        </dd>
+        </dl>
+
+        {# <hr /> #}
+{# 
+        {{
+            html.button({
+                'label': 'Check Usage and Delete',
+                'class': 'btn--danger'
+            })
+        }} #}
+
+{% endblock tab_settings %}
+
+{%
+    set data = {
+        "Type" : ".jpg",
+        "Size" : "1.23 GB"
+    }
+%}
+
+{% block tab_content %}
+
+<div class="report">
+
+    <div class="report__query u-margin-top-none">
+        Show me {{ html.label({ 'label': 'content using really_long_image_name_that_needs_handling.jpg', 'class': 'label--primary' }) }}
+        {# {{
+            html.button({
+                'label': html.icon('pencil', { 'label': 'Edit query' }),
+                'class': 'btn--naked'
+            })
+        }} #}
+    </div>
+
+    <div class="report__data u-padding-top-none">
+    
+        {{
+            html.datatable({
+                'data-order': '[[ 3, "desc" ]]',
+                'overflow': 'collapse',
+                'data': reportdata,
+                'caption': 'A list of content owned by Paul Stanton',
+            })
+        }}
+
+    </div>
+</div>
+
+{% endblock tab_content %}

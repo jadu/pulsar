@@ -31,6 +31,7 @@
     font-size: $font-size-large;
     line-height: 1em;
     margin: 0 0 1em;
+    word-break: break-all;
 }
 
 .card__body {
@@ -87,6 +88,95 @@
 
         .card-img + .card__body {
             border-color: color($state);
+        }
+    }
+}
+
+// .cards-flex {
+//     align-content: flex-start;
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 20px;
+//     // justify-content: space-between;
+
+//     .card {
+//         flex: 1 1 0px;
+//         width: 200px;
+//     }
+// }
+
+.cards-flex {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    margin: -10px;
+    transition: 2s;
+
+    .card {
+        margin: 10px;
+    }
+}
+
+.cards-flex--small {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.cards-flex--medium {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.cards-flex--large {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+a.card {
+    color: color(text);
+    text-decoration: none;
+}
+
+.card.is-selected {
+    background-color: color(background, selected);
+    border: 2px solid color(primary);
+}
+
+#cropper-source {
+    display: block;
+    /* This rule is very important, please don't ignore this */
+    min-width: 100%;
+}
+
+.cropper-view-box {
+    border: 2px dashed #fff;
+}
+
+.cropper-line {
+    background-color: #000;
+}
+
+.viewmode-toggles {
+    display: none;
+    position: absolute;
+    top: 12px;
+    right: 19px;
+
+    @include respond-min($screen-medium) {
+        display: inline-block;
+    }
+
+    .control__label + .controls {
+        width: 100%;
+    }
+
+    .controls > .control__label {
+        background: none;
+    }
+
+    .form__button-group .form__control:checked + .control__label,
+    .form__button-group .form__control:checked + .control__label:hover {
+        background-color: darken(color(white), 10%);
+        color: color(text);
+
+        &::after {
+            background-color: color(text);
         }
     }
 }

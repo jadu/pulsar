@@ -1,0 +1,446 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+{%- endblock -%}
+
+{%- block actions_right -%}
+<div class="form__group form__group--full">
+    <div class="controls">
+        <div class="input-group has-btn-appended">
+            <select id="guid-961923431" class="form__control select" aria-labelledby="images-sort">
+                <option value="">Date uploaded (newest first)</option>
+                <option value="">Date uploaded (oldest first)</option>
+                <option value="">File name (A-Z)</option>
+                <option value="">File name (Z-A)</option>
+                <option value="colour_red">File size (largest first)</option>
+                <option value="colour_blue">File size (smallest first)</option>
+            </select>
+            <span class="input-group-btn">
+                <button id="images-sort" class="btn btn--outline">Sort</button>
+            </span>
+        </div>
+    </div>
+</div>
+{%- endblock -%}
+
+{% block tab_settings %}
+
+        <img loading="lazy" src="https://picsum.photos/300/200?random=a" class="card-img u-margin-bottom">
+        
+        <div class="u-float-left u-margin-bottom--large">
+        {{
+            html.button_dropdown({
+                'label': 'Actions',
+                'items': [
+                    html.link({ 'label': html.icon('pencil') ~ 'Edit image', 'href': '#foo' }),
+                    html.divider(),
+                    html.link({ 'label': html.icon('file-magnifying-glass') ~ 'Image usage report', 'data-toggle': 'modal', 'data-target': '#reportModal' }),
+                    html.link({ 'label': html.icon('shuffle') ~ 'Replace image', 'href': '#bar' }),
+                    html.link({ 'label': html.icon('magnifying-glass') ~ 'Search for identical images', 'href': '#bar' }),
+                    html.divider(),
+                    html.link({ 'label': html.icon('times') ~ 'Check usage and Delete', 'href': '#bar', 'class': 'link--danger' })
+                ]
+            })
+        }}
+        </div>
+        <div class="u-float-right u-margin-bottom">
+        
+        {{ 
+            html.button({
+                'label': 'Edit',
+                'data-toggle': 'modal',
+                'data-target': '#editModal',
+                'class': 'btn--primary'
+            })
+        }}
+
+        </div>
+
+        <dl class="metadata u-clear-both">
+            <dt class="metadata__key">File name</dt>
+            <dd class="metadata__value">really_long_image_name_that_needs_handling.jpg</dd>
+            <dt class="metadata__key">Description</dt>
+            <dd class="metadata__value">A really nice description of the image contents</dd>
+            <dt class="metadata__key">Caption</dt>
+            <dd class="metadata__value">Feels like caption should be set when adding content to a document to explain the context</dd>
+            <dt class="metadata__key">Alt text</dt>
+            <dd class="metadata__value">A really nice description of the image contents</dd>
+        </dl>
+        <hr />
+        <dl class="metadata u-clear-both">
+            <dt class="metadata__key">File size</dt>
+            <dd class="metadata__value">1.2 Gb</dd>
+            <dt class="metadata__key">File type</dt>
+            <dd class="metadata__value">image/jpeg</dd>
+            <dt class="metadata__key">Dimensions</dt>
+            <dd class="metadata__value">1234 x 5678 px</dd>
+            <dt class="metadata__key">DPI</dt>
+            <dd class="metadata__value">300 {{ html.icon('triangle-exclamation', {'class': 'text--warning'}) }}</dd>
+        </dl>
+
+        <dl class="metadata">
+            <dt class="metadata__key">Tags</dt>
+            <dd class="metadata__value">
+        {{
+            html.label({
+                'label': 'Alpha',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        {{
+            html.label({
+                'label': 'Bravo',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        {{
+            html.label({
+                'label': 'Charlie',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        {{
+            html.label({
+                'label': 'Antidisestablishmentarianism',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        {{
+            html.label({
+                'label': 'Delta',
+                'removable': false,
+                'class': 'u-margin-bottom'
+            })
+        }}
+
+        </dd>
+        </dl>
+
+        <hr />
+
+        {{
+            html.button({
+                'label': 'Check Usage and Delete',
+                'class': 'btn--danger'
+            })
+        }}
+
+{% endblock tab_settings %}
+
+{%
+    set data = {
+        "Type" : ".jpg",
+        "Size" : "1.23 GB"
+    }
+%}
+
+{% block tab_content %}
+
+<div class="viewmode-toggles">
+    {{
+    form.button_group({
+        'label': 'Grid size',
+        'show-label': false,
+        'items': [
+            {
+                'id': 'responsive-small',
+                'label': html.icon('sharp icon-grid-5'),
+                'name': 'responsive-toggles',
+                'data-responsive-toggle': 'small',
+                'checked': true
+            },
+            {
+                'id': 'responsive-medium',
+                'label': html.icon('sharp icon-grid-3'),
+                'name': 'responsive-toggles',
+                'data-responsive-toggle': 'medium',
+            },
+            {
+                'id': 'responsive-large',
+                'label': html.icon('sharp icon-grid-2'),
+                'name': 'responsive-toggles',
+                'data-responsive-toggle': 'large'
+            }
+        ]
+    })
+}}
+</div>
+
+<div id="js-cards-grid" class="cards-flex">
+    <a class="card is-selected">
+        <img loading="lazy" src="https://picsum.photos/300/200?random=a" class="card-img">
+        <div class="card__body">
+            <small class="u-truncate u-margin-bottom-none">really_long_image_name_that_needs_handling.jpg</small>
+            <small class="u-truncate u-margin-bottom-none"><strong>1.23GB</strong> <span class="muted">image/jpeg</span></small>
+        </div>
+    </a>
+{% for i in 1..39 %}
+    <a class="card">
+        <img loading="lazy" src="https://picsum.photos/300/200?random={{ i }}" class="card-img">
+        <div class="card__body">
+            <small class="u-truncate u-margin-bottom-none">really_long_image_name_that_needs_handling.jpg</small>
+            <small class="u-truncate u-margin-bottom-none"><strong>1.23GB</strong> <span class="muted">image/jpeg</span></small>
+        </div>
+    </a>
+{% endfor %}
+</div>
+
+<nav aria-label="Table pagination" class="pagination u-margin-top--large">
+  <ul class="pull-left">
+    <li class="selected"><a href="#1" aria-current="true" aria-label="Current page, page 1">1</a></li>
+    <li><a href="#" aria-label="page 2">2</a></li>
+    <li><a href="#" aria-label="page 3">3</a></li>
+    <li><a href="#" aria-label="page 4">4</a></li>
+    <li><a href="#" aria-label="page 5">5</a></li>
+    <li><a href="#" aria-label="next page">Next</a></li>
+    <li><a href="#" aria-label="last page">Last</a></li>
+  </ul>
+</nav>
+
+<div class="modal modal--large" id="editModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="mdoal-description">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <form>
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal__title" id="modal-title">Edit Image</h1>
+                </div>
+                <div class="modal__body">
+                    <p>If this image is in use, changes made here will be reflected within live content immediately.</p>
+
+                    <div class="cropper-wrapper u-margin-bottom--large">
+                        <img id="cropper-source" src="https://picsum.photos/300/200?random=a">
+                    </div>
+
+                    {{
+                        html.button_group({
+                            'class': 'u-margin-bottom--large',
+                            'buttons': [
+                                html.button({
+                                    'label': html.icon('move', {
+                                    'label': 'Text align: center' 
+                                    }) ~ ' Move' 
+                                }),
+                                html.button({
+                                    'label': html.icon('crop', {
+                                    'label': 'Text align: center' 
+                                    })  ~ ' Crop'
+                                }),
+                                html.button({
+                                    'label': html.icon('arrow-up', {
+                                    'label': 'Text align: center' 
+                                    }) 
+                                }),
+                                html.button({
+                                    'label': html.icon('arrow-down', {
+                                    'label': 'Text align: left' 
+                                    }) 
+                                }),
+                                html.button({
+                                    'label': html.icon('arrow-left', {
+                                    'label': 'Text align: center' 
+                                    }) 
+                                }),
+                                html.button({
+                                    'label': html.icon('arrow-right', {
+                                    'label': 'Text align: left' 
+                                    }) 
+                                }),
+                                html.button({
+                                    'label': html.icon('magnifying-glass-minus', {
+                                    'label': 'Text align: center' 
+                                    }) 
+                                }),
+                                html.button({
+                                    'label': html.icon('magnifying-glass-plus', {
+                                    'label': 'Text align: left' 
+                                    }) 
+                                }),
+                                html.button({
+                                    'label': html.icon('rotate-left', {
+                                    'label': 'Text align: left' 
+                                    }) 
+                                }),
+                                html.button({
+                                    'label': html.icon('rotate-right', {
+                                    'label': 'Text align: center' 
+                                    }) 
+                                }),
+                                html.button({
+                                    'label': html.icon('times', {
+                                    'label': 'Text align: center' 
+                                    }) ~ ' Reset'
+                                })
+                            ]
+                        })
+                    }}
+
+                    <hr />
+
+                    {{ form.fieldset_start({ 'legend': 'Image details' }) }}
+
+                        {{
+                            form.text({
+                                'label': 'File name',
+                                'id': 'file-name',
+                                'class': 'form__group--full',
+                                'required': true,
+                                'value': 'really_long_image_name_that_needs_handling.jpg'
+                            })
+                        }}
+
+                        {{
+                            form.textarea({
+                                'label': 'Description',
+                                'id': 'description',
+                                'class': 'form__group--full',
+                                'value': 'A really nice description of the image contents',
+                                'help': 'Only visible to administrators'
+                            })
+                        }}
+
+                        {{
+                            form.textarea({
+                                'label': 'Caption',
+                                'id': 'caption',
+                                'class': 'form__group--full',
+                                'value': 'Feels like caption should be set when adding content to a document to explain the context',
+                                'help': 'May be displayed below the image on your website, depending on your site template'
+                            })
+                        }}
+
+                        {{
+                            form.textarea({
+                                'label': 'Alt text',
+                                'id': 'alt',
+                                'class': 'form__group--full',
+                                'value': 'A really nice description of the image contents',
+                                'help': 'Available to search engines and assistive technology. Explain the appearance or function of this image in relation to the content'
+                            })
+                        }}
+
+                        {{
+                            form.textarea({
+                                'label': 'Tags',
+                                'id': 'tags',
+                                'class': 'form__group--full',
+                                'value': 'alpha, bravo, charlie, delta, antidisestablishmentarianism',
+                                'help': 'Separate tags by commas. Used to help find images in the control center'
+                            })
+                        }}
+
+                    {{ form.fieldset_end() }}
+
+                </div>
+                <div class="modal__footer">
+                    <button type="submit" class="btn btn--primary">Save Changes</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+{%
+    set reportdata = {
+        'columns': [
+            { 'title': 'Content title' },
+            { 'title': 'Type' },
+            { 'title': 'Created'},
+        ],
+        'data': [
+            {
+                'Title': html.link({'label': 'My awesome document title', 'href': '#'}),
+                'Type': 'document',
+                'Created': '01/02/2016 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Will usage in widgets be caught?', 'href': '#'}),
+                'Type': 'homepage',
+                'Created': '01/02/2016 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Will images be reported in supplements', 'href': '#'}),
+                'Type': 'supplement',
+                'Created': '01/02/2016 12:34',
+            },
+            {
+                'Title': html.link({'label': 'News articles', 'href': '#'}),
+                'Type': 'news',
+                'Created': '01/02/2016 12:34',
+            },
+            {
+                'Title': html.link({'label': 'Events too', 'href': '#'}),
+                'Type': 'event',
+                'Created': '01/02/2016 12:34',
+            }
+        ]
+    }
+%}
+
+<div class="modal modal--large" id="reportModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="mdoal-description">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <form>
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close modal dialog"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal__title" id="modal-title">Image Usage Report</h1>
+                </div>
+                <div class="modal__body">
+                    <div class="report">
+
+                        <div class="report__query u-margin-top-none">
+                            Show me {{ html.label({ 'label': 'content using really_long_image_name_that_needs_handling.jpg', 'class': 'label--primary' }) }}
+                            {# {{
+                                html.button({
+                                    'label': html.icon('pencil', { 'label': 'Edit query' }),
+                                    'class': 'btn--naked'
+                                })
+                            }} #}
+                        </div>
+
+                        <div class="report__data u-padding-top-none">
+                        
+                            {{
+                                html.datatable({
+                                    'data-order': '[[ 3, "desc" ]]',
+                                    'data': reportdata,
+                                    'caption': 'A list of content owned by Paul Stanton',
+                                })
+                            }}
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal__footer">
+                    <button type="submit" class="btn btn--primary">Close</button>
+                </div>
+            </form>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<script type="text/javascript">
+    $('body').on('click', '[data-responsive-toggle]', function() {
+        $('#js-cards-grid').removeClass('cards-flex--small cards-flex--medium cards-flex--large').addClass('cards-flex--' + $(this).data('responsive-toggle'));
+
+        $('[data-responsive-toggle]').removeClass('is-selected');
+        $(this).addClass('is-selected');
+    });
+</script>
+
+{% endblock tab_content %}

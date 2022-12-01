@@ -303,6 +303,15 @@ p.success {
     word-break: break-all !important;
 }
 
+%u-truncate,
+.u-truncate {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
 %u-vertical-align-top,
 .u-vertical-align-top {
     vertical-align: top !important;

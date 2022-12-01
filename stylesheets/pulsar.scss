@@ -19,6 +19,7 @@ $ie-version: 12 !default;
 @import '../node_modules/normalize.css/normalize';
 @import '../node_modules/tippy.js/dist/tippy';
 @import '../node_modules/pulsar-date-picker/src/scss/pulsar-date-picker';
+@import '../node_modules/cropperjs/dist/cropper';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)

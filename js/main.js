@@ -20,6 +20,7 @@
     pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, window.History);
     pulsar.pulsarSortable = new pulsar.PulsarSortableComponent($html, window);
     pulsar.signIn = new pulsar.SignInComponent($html);
+    pulsar.imageManagement = new pulsar.ImageManagementComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.focusManagementService = new pulsar.FocusManagementService();
@@ -48,6 +49,7 @@
         pulsar.pulsarSortable.init();
         pulsar.pulsarUI.init();
         pulsar.signIn.init();
+        pulsar.imageManagement.init();
         pulsar.masterSwitch.init();
         pulsar.modulePermissions.init();
         pulsar.navMain.init();
