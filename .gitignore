@@ -37,3 +37,4 @@ pulsar.zip
 /ngrok
 /.vagrant
 /phpunit
+.phpunit.result.cache
