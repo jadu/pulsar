@@ -1,0 +1,185 @@
+---
+id: label
+title: Label
+sidebar_label: Label
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Provide extra contextual meaning to things, like stateful information.
+
+<div className="d-example">
+  <span className="label">New</span>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.label({
+        'label': 'New'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+  <span className="label">New</span>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| label | string | The text to display within the label |
+| removable | bool | Displays a remove button at the end of the label |
+
+## Mime type icons
+
+The icon helper can take a standard mime type string to make it easier to illustrate certain file types.
+
+<div className="d-example">
+  <i className="icon-file-word-o"><span className="hide">Microsoft Word</span></i>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.icon('application/msword', {
+        'label': 'Microsoft Word'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<i className="icon-file-word-o"><span className="hide">Microsoft Word</span></i>
+```
+
+</TabItem>
+</Tabs>
+
+## Accessibility
+
+You should not rely on colour alone to convey meaning. This will ensure you're meeting the requirements for WCAG at AA level. Make sure your text labels are descriptive, or add additional context with a visually hidden label.
+
+<div className="d-guidelines">
+  <div className="d-guidelines__block d-guidelines__block--do">
+  <div className="d-guidelines-preview">
+    <span className="label label--success">online</span> <span className="label label--danger">offline</span>
+  </div>
+  <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> use a descriptive text label</div></div>
+  <div className="d-guidelines__block d-guidelines__block--not">
+    <div className="d-guidelines-preview">
+      <span className="label label--success">online</span> <span className="label label--danger">online</span>
+    </div>
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> rely on colour to convey meaning</div></div>
+</div>
+
+## Linked labels
+
+A label can be used as the `label` for a link. Be careful using link labels as they don’t offer the same visual affordances as regular links or buttons, and avoid using link labels and non-link labels in close proximity.
+
+:::warning
+Be careful using link labels as they don’t offer the same visual affordances as regular links or buttons, and avoid using link labels and non-link labels in close proximity.
+:::
+
+
+<div className="d-example">
+  <a href="#example"><span className="label">My Label</span></a>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.link({
+        'label': html.label({ 'label': 'My Label' }),
+        'href': '#example'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<a href="#example"><span className="label">My Label</span></a>
+```
+
+</TabItem>
+</Tabs>
+
+## Removable labels
+
+Adding the `removable` option to the Twig helper adds `data-action="remove" data-action-target="this"` attributes to the markup, which can use used as a hook for your own javascript.
+
+<div className="d-example">
+  <span className="label label--removable"><span className="label__text">My Label</span><button type="button" data-action="remove" data-action-target="this" className="btn remove-button"><i className="icon-remove-sign"><span className="hide">Remove My Label</span></i></button></span>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.label({
+        'label': 'My Label',
+        'removable': true
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<span class="label label--removable"><span class="label__text">My Label</span><button type="button" data-action="remove" data-action-target="this" class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove My Label</span></i></button></span>
+```
+
+</TabItem>
+</Tabs>

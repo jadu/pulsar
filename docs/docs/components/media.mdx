@@ -1,0 +1,245 @@
+---
+id: media
+title: Media
+sidebar_label: Media
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The media object is, typically, an image on the left with descriptive content on the right. They can be used standalone, stacked, or as part of other components like block lists.
+
+<div className="d-example">
+  <div className="media">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/48px-Octicons-mark-github.svg.png" alt="GitHub logo" className="media__image" />
+    <div className="media__body">
+      <p>Title</p>
+      <span className="small-type">Description</span>
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.media({
+    'image': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/48px-Octicons-mark-github.svg.png',
+    'image_alt': 'GitHub logo',
+    'title': 'Title',
+    'description': 'Description'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="media">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/48px-Octicons-mark-github.svg.png" alt="GitHub logo" class="media__image" />
+  <div class="media__body">
+    <p>Title</p>
+    <span class="small-type">Description</span>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| actions | html/twig | A button or indicator to display in the top right hand corner of the media object |
+| description | string | Short descriptive text to display underneath the title |
+| href | string | If the `type` is set to `link` you must provide the `href` |
+| icon | string | Icon name (following conventions in the icon helper) to display on the left hand side as an alternative to the image |
+| icon_colour | string | The text colour to use for the `icon`, useful for branding |
+| image | string | URL for hte image to display on the right hand side |
+| image_alt | string | Alt attribute for the image, required for accessibility reasons |
+| title | string | The main title for this object |
+| type | string | Markup scheme to use, can be either `div` (default) or `link` |
+
+## Icons instead of images
+
+Supply an icon instead of image to choose from the hundreds of icons available within Pulsar. Use in conjunction with the optional `icon_colour` to improve how they look or to maintain branding for brand icons.
+
+<div className="d-example">
+  <div className="media">
+    <i style={{color: '#e52d27'}} aria-hidden="true" className="icon-youtube media__image"></i>
+    <div className="media__body">
+      <p>YouTube</p>
+      <span className="small-type">Upload video to YouTube</span>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.loading({
+    'type': 'block'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="media">
+  <i style={{color: '#e52d27'}} aria-hidden="true" class="icon-youtube-square media__image"></i>
+  <div class="media__body">
+    <p>YouTube</p>
+    <span class="small-type">Upload video to YouTube</span>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Optional action
+
+You can place an action such as a button or status indicator depending on the needs of your user interface.
+
+<div className="d-example">
+<div className="media">
+  <i style={{color: '#0084b4'}} aria-hidden="true" className="icon-twitter media__image"></i>
+  <div className="media__body">
+    <span className="pull-right">
+      <button data-tippy-content="Remove this item" data-tippy-placement="right" type="button" data-action="remove" data-action-target="#example"  className="btn  remove-button"><i className="icon-remove-sign"><span className="hide">Remove</span></i></button>
+    </span>
+    <p>Twitter</p>
+    <span className="small-type">Automatically push content to your timeline</span>
+  </div>
+</div>
+<div className="media">
+  <i style={{color: '#0084b4'}} aria-hidden="true" className="icon-twitter media__image"></i>
+  <div className="media__body">
+    <span className="pull-right">
+      <button  className="btn btn--small btn--outline">disconnect</button>
+    </span>
+    <p>Twitter</p>
+    <span className="small-type">Automatically push content to your timeline</span>
+  </div>
+</div>
+<div className="media">
+  <i style={{color: '#0084b4'}} aria-hidden="true" className="icon-twitter media__image"></i>
+  <div className="media__body">
+    <span className="pull-right">
+      <span data-tippy-placement="top" data-tippy-content="online"  className="status is-online">
+        <span className="hide">online</span>
+      </span>
+    </span>
+    <p>Twitter</p>
+    <span className="small-type">Automatically push content to your timeline</span>
+  </div>
+</div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.media({
+        'icon': 'twitter-square',
+        'icon_colour': '#0084b4',
+        'title': 'Twitter',
+        'description': 'Automatically push content to your timeline',
+        'action': html.remove_button({ 'target': '#example' })
+    })
+}}
+
+{{
+    html.media({
+        'icon': 'twitter-square',
+        'icon_colour': '#0084b4',
+        'title': 'Twitter',
+        'description': 'Automatically push content to your timeline',
+        'action': html.button({ 'label': 'disconnect', 'class': 'btn--small btn--outline' })
+    })
+}}
+
+{{
+    html.media({
+        'icon': 'twitter-square',
+        'icon_colour': '#0084b4',
+        'title': 'Twitter',
+        'description': 'Automatically push content to your timeline',
+        'action': html.status('online')
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="media">
+  <i style={{color: '#0084b4'}} aria-hidden="true" class="icon-twitter-square media__image"></i>
+  <div class="media__body">
+    <span class="pull-right">
+      <button data-tippy-content="Remove this item" data-tippy-placement="right" type="button" data-action="remove" data-action-target="#example"  class="btn  remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button>
+    </span>
+    <p>Twitter</p>
+    <span class="small-type">Automatically push content to your timeline</span>
+  </div>
+</div>
+<div class="media">
+  <i style={{color: '#0084b4'}} aria-hidden="true" class="icon-twitter-square media__image"></i>
+  <div class="media__body">
+    <span class="pull-right">
+      <button  class="btn btn--small btn--outline">disconnect</button>
+    </span>
+    <p>Twitter</p>
+    <span class="small-type">Automatically push content to your timeline</span>
+  </div>
+</div>
+<div class="media">
+  <i style={{color: '#0084b4'}} aria-hidden="true" class="icon-twitter-square media__image"></i>
+  <div class="media__body">
+    <span class="pull-right">
+      <span data-tippy-placement="top" data-tippy-content="online"  class="status is-online">
+        <span class="hide">online</span>
+      </span>
+    </span>
+    <p>Twitter</p>
+    <span class="small-type">Automatically push content to your timeline</span>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>

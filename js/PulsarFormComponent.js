@@ -1,7 +1,8 @@
 'use strict';
 
 var $ = require('jquery'),
-    TimePickerComponent = require('./TimePickerComponent');
+    TimePickerComponent = require('./TimePickerComponent'),
+    InputLength = require('input-length');
 
 require('pikaday'),
 require('pikaday/plugins/pikaday.jquery');
@@ -11,6 +12,7 @@ require('select2')();
 function PulsarFormComponent(html) {
     this.$html = html;
     this.timePickerComponent = new TimePickerComponent();
+    this.inputLength = new InputLength(this.$html);
 }
 
 PulsarFormComponent.prototype.init = function () {
@@ -33,6 +35,9 @@ PulsarFormComponent.prototype.init = function () {
 
     // Toggle switches
     component.initToggleSwitches();
+
+    // Maxlength counters
+    component.initMaxlengthCounters();
 }
 
 /**
@@ -52,6 +57,16 @@ PulsarFormComponent.prototype.refresh = function () {
 
     // Time picker
     this.initTimePickers();
+}
+
+/**
+ * Initiate a visual counter on inputs with a maxlength
+ */
+PulsarFormComponent.prototype.initMaxlengthCounters = function () {
+    this.inputLength.init({
+        targetSelector: '[data-maxlength]',
+        baseClass: 'help-block'
+    });
 }
 
 /**

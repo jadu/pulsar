@@ -15,11 +15,10 @@
 // Be specific to our use-case in order to override styles
 .btn.sp-replacer {
     background: color(background);
-    border: 0;
+    border: 1px solid color(border);
     color: color(text);
-    height: 46px;
+    height: $input-height-base;
     margin-left: 6px;
-    // padding: 8px 14px 6px;
     position: relative;
     vertical-align: top;
     width: 48px;
@@ -31,9 +30,8 @@
 
     .sp-preview {
         border: 0;
-        border-radius: 4px;
+        border-radius: $border-radius;
         bottom: 1px;
-        // height: 32px;
         left: 1px;
         height: auto;
         margin-right: 0;
@@ -41,7 +39,6 @@
         position: absolute;
         right: 1px;
         top: 1px;
-        // width: 32px;
         width: auto;
     }
 }
@@ -94,7 +91,7 @@
     margin: 0;
     background-color: #fff;
     border: 1px solid color(border);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 0 0 $shadow-small color(background, shadow);
     background-clip: padding-box;
 }
 
@@ -122,15 +119,16 @@
     &:hover {
         -webkit-appearance: none;
         background: transparent;
+        background-color: color(background);
         border: 0;
-        border-radius: 4px;
+        border-bottom-style: solid;
+        border-radius: $border-radius;
+        box-shadow: 0 2px 0 #c5c5c5;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        color: inherit;
+        color: color(text);
         cursor: pointer;
         display: inline-block;
-        vertical-align: baseline;
-        zoom: 1;
         font-size: 14px;
         font-weight: normal;
         line-height: normal;
@@ -143,15 +141,9 @@
         -ms-user-select: none;
         -webkit-user-select: none;
         user-select: none;
-        // vertical-align: bottom;
+        vertical-align: baseline;
         white-space: nowrap;
-
-        border-bottom-style: solid;
-
-        background-color: color(background);
-        box-shadow: 0 2px 0 #c5c5c5;
-        color: color(text);
-        position: relative;
+        zoom: 1;
     }
 
     &:hover {

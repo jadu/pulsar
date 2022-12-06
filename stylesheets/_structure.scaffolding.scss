@@ -8,7 +8,7 @@ body {
 }
 
 body {
-  background-color: color(white);
+  background-color: color(background, backdrop);
   font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: $line-height-base;
@@ -40,9 +40,12 @@ body {
 a {
   color: color(link);
   cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 
   &:hover {
     color: color(link, hover);
+    text-decoration-thickness: 2px;
   }
 
   &:focus {

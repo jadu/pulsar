@@ -18,9 +18,17 @@ h3,
 h4,
 h5,
 h6 {
+    font-family: $font-family-heading-light;
     font-weight: normal;
     line-height: 1em;
     margin: 0 0 1em;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-regular;
 }
 
 p {

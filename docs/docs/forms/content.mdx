@@ -1,0 +1,65 @@
+---
+id: content
+title: Content
+sidebar_label: Content
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generates a paragraph of text where an input would normally be positioned within a form while still allowing a regular form label to illustrate it.
+
+Useful for presenting non-editable information within a form where you’d prefer not to use a disabled input.
+
+<div className="d-example">
+  <div className="form__group">
+    <span className="control__label">It’s the remix to ignition</span>
+    <div className="controls">
+      <p>Hot and fresh out the kitchen</p>
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.content({
+    'label': 'It’s the remix to ignition',
+    'value': 'Hot and fresh out the kitchen'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <span class="control__label">It’s the remix to ignition</span>
+  <div class="controls">
+    <p>Hot and fresh out the kitchen</p>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| raw | bool | <p>If `true`, Instead of wrapping the value in a `<p>`, just render the value/helper instead (default: `false`).</p><p>Using `true` will also prevent any options that would normally be added to the paragraph from being used</p> |

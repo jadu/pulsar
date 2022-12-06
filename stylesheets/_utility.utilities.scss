@@ -5,12 +5,14 @@
  */
 
 %u-float-left,
- .u-float-left {
+.u-float-left,
+.pull-left {
      float: left !important;
 }
 
 %u-float-right,
-.u-float-right {
+.u-float-right,
+.pull-right {
     float: right !important;
 }
 
@@ -401,9 +403,6 @@ p.success {
  */
 
 .no-results {
-    background-color: color(gray, off-white);
-    background-image: url($image-path + 'stripes.png');
-    background-repeat: repeat;
     margin: 0 auto;
     padding: 1em 0;
     text-align: center;

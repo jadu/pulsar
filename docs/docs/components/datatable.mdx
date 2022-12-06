@@ -1,0 +1,389 @@
+---
+id: datatable
+title: Datatable
+sidebar_label: Datatable
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Datatables use the datatables.net plugin to provide a nice amount of functionality to your data. Pulsar’s configuration includes plugins to make them responsive. Where possible you should refer to the official [datatable documentation](https://datatables.net/).
+
+## Basic styling
+
+For more information about basic table styles and layout options, refer to the table component.
+
+## Dependencies
+
+There are javascript and sass dependencies that need to be included in your products.
+
+:::note
+Check [Pulsar’s package.json](https://github.com/jadu/pulsar/blob/develop/package.json) file for the current recommended version of these packages you should use
+:::
+
+```json title="package.json"
+"dependencies": {
+  "datatables.net": "^1.11.5",
+  "datatables.net-buttons": "^1.7.0",
+  "datatables.net-buttons-dt": "^1.7.0",
+  "datatables.net-dt": "^1.11.5",
+  "datatables.net-responsive": "^2.2.9",
+  "datatables.net-responsive-dt": "^2.2.9",
+  "datatables.net-select": "^1.3.4",
+  "datatables.net-select-dt": "^1.3.4",
+}
+```
+
+```scss title="pulsar.scss"
+@import '/path/to/bundles/pulsar/stylesheets/_component.tables';
+@import '/path/to/bundles/pulsar/stylesheets/_component.datatables';
+```
+
+## Configuration
+
+The datatable plugin is called on any table containing the `.datatable` class. Pulsar has a core configuration within `pulsarUIComponent`, but there may be times when you need to create your own custom config.
+
+### Example usage
+
+<div className="d-example">
+  <table data-order="[[ 3, &quot;desc&quot; ]]" data-overflow="scroll" className="table datatable table--full table--horizontal">
+    <thead>
+      <tr>
+        <th className="table-selection" data-orderable="false">
+          <input type="checkbox" className="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+        </th>
+        <th>Title</th>
+        <th>Owner</th>
+        <th>Modified</th>
+        <th data-orderable="false" className="u-text-align-center u-shrink-to-fit">Live</th>
+        <th data-orderable="false" className="u-text-align-center u-shrink-to-fit">Visible</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="table-selection">
+          <input type="checkbox" className="form__control checkbox js-select" aria-label="Select row" />
+        </td>
+        <td>The Terminator</td>
+        <td>James Cameron</td>
+        <td>1991-07-01 12:34</td>
+        <td data-order="Live" className="u-text-align-center"><i title="Live" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-check-circle status--icon is-online"></i></td>
+        <td data-order="Visible" className="u-text-align-center"><i title="Not visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-times-rectangle status--icon is-offline"></i></td>
+      </tr>
+      <tr>
+        <td className="table-selection">
+          <input type="checkbox" className="form__control checkbox js-select" aria-label="Select row" />
+        </td>
+        <td>Conan the Barbarian</td>
+        <td>John Millius</td>
+        <td>1982-04-02 12:34</td>
+        <td data-order="Live" className="u-text-align-center"><i title="Not live" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-times-rectangle status--icon is-offline"></i></td>
+        <td data-order="Visible" className="u-text-align-center"><i title="Visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-check-circle status--icon is-online"></i></td>
+      </tr>
+      <tr>
+        <td className="table-selection">
+          <input type="checkbox" className="form__control checkbox js-select" aria-label="Select row" />
+        </td>
+        <td>Predator</td>
+        <td>John McTiernan</td>
+        <td>1988-01-01 12:34</td>
+        <td data-order="Live" className="u-text-align-center"><i title="Live" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-check-circle status--icon is-online"></i></td>
+        <td data-order="Visible" className="u-text-align-center"><i title="Visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-check-circle status--icon is-online"></i></td>
+      </tr>
+      <tr>
+        <td className="table-selection">
+          <input type="checkbox" className="form__control checkbox js-select" aria-label="Select row" />
+        </td>
+        <td>Commando</td>
+        <td>Mark L. Lester</td>
+        <td>1986-02-21 12:34</td>
+        <td data-order="Live" className="u-text-align-center"><i title="Live" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-check-circle status--icon is-online"></i></td>
+        <td data-order="Visible" className="u-text-align-center"><i title="Visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-check-circle status--icon is-online"></i></td>
+      </tr>
+      <tr>
+        <td className="table-selection">
+          <input type="checkbox" className="form__control checkbox js-select" aria-label="Select row" />
+        </td>
+        <td>Terminator Genisys</td>
+        <td>Alan Taylor</td>
+        <td>2015-06-25 12:34</td>
+        <td data-order="Live" className="u-text-align-center"><i title="Live" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-check-circle status--icon is-online"></i></td>
+        <td data-order="Visible" className="u-text-align-center"><i title="Visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" className="icon-check-circle status--icon is-online"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', }
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{% 
+  set data = {
+    'columns': [
+      { 'title': 'Title' },
+      { 'title': 'Owner' },
+      { 'title': 'Modified' },
+      {
+        'title': 'Live',
+        'attrs': {
+          'data-orderable': 'false',
+          'class': 'u-text-align-center u-shrink-to-fit'
+        }
+      },
+      {
+        'title': 'Visible',
+        'attrs': {
+          'data-orderable': 'false',
+          'class': 'u-text-align-center u-shrink-to-fit'
+        }
+      }
+    ],
+    'data': [
+      {
+        'Title': 'The Terminator',
+        'Owner': 'James Cameron',
+        'Modified': '1991-07-01 12:34',
+        'Live': true,
+        'Visible': false 
+      },
+      {
+        'Title': 'Conan the Barbarian',
+        'Owner': 'John Millius',
+        'Modified': '1982-04-02 12:34',
+        'Live': false,
+        'Visible': true 
+      },
+      {
+        'Title': 'Predator',
+        'Owner': 'John McTiernan',
+        'Modified': '1988-01-01 12:34',
+        'Live': true,
+        'Visible': true
+      },
+      {
+        'Title': 'Commando',
+        'Owner': 'Mark L. Lester',
+        'Modified': '1986-02-21 12:34',
+        'Live': true,
+        'Visible': true
+      },
+      {
+        'Title': 'Terminator Genisys',
+        'Owner': 'Alan Taylor',
+        'Modified': '2015-06-25 12:34',
+        'Live': true,
+        'Visible': true
+      }
+    ]
+  }
+%}
+{{
+  html.datatable({
+    'class': 'table--full table--horizontal',
+    'data-order': '[[ 3, "desc" ]]',
+    'data': data
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<table data-order="[[ 3, &quot;desc&quot; ]]" data-overflow="scroll" class="table datatable table--full table--horizontal">
+  <thead>
+    <tr>
+      <th class="table-selection" data-orderable="false">
+        <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+      </th>
+      <th>Title</th>
+      <th>Owner</th>
+      <th>Modified</th>
+      <th data-orderable="false" class="u-text-align-center u-shrink-to-fit">Live</th>
+      <th data-orderable="false" class="u-text-align-center u-shrink-to-fit">Visible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="table-selection">
+        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+      </td>
+      <td>The Terminator</td>
+      <td>James Cameron</td>
+      <td>1991-07-01 12:34</td>
+      <td data-order="Live" class="u-text-align-center"><i title="Live" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-online"></i></td>
+      <td data-order="Visible" class="u-text-align-center"><i title="Not visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-times-rectangle status--icon is-offline"></i></td>
+    </tr>
+    <tr>
+      <td class="table-selection">
+        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+      </td>
+      <td>Conan the Barbarian</td>
+      <td>John Millius</td>
+      <td>1982-04-02 12:34</td>
+      <td data-order="Live" class="u-text-align-center"><i title="Not live" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-times-rectangle status--icon is-offline"></i></td>
+      <td data-order="Visible" class="u-text-align-center"><i title="Visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-online"></i></td>
+    </tr>
+    <tr>
+      <td class="table-selection">
+        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+      </td>
+      <td>Predator</td>
+      <td>John McTiernan</td>
+      <td>1988-01-01 12:34</td>
+      <td data-order="Live" class="u-text-align-center"><i title="Live" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-online"></i></td>
+      <td data-order="Visible" class="u-text-align-center"><i title="Visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-online"></i></td>
+    </tr>
+    <tr>
+      <td class="table-selection">
+        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+      </td>
+      <td>Commando</td>
+      <td>Mark L. Lester</td>
+      <td>1986-02-21 12:34</td>
+      <td data-order="Live" class="u-text-align-center"><i title="Live" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-online"></i></td>
+      <td data-order="Visible" class="u-text-align-center"><i title="Visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-online"></i></td>
+    </tr>
+    <tr>
+      <td class="table-selection">
+        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+      </td>
+      <td>Terminator Genisys</td>
+      <td>Alan Taylor</td>
+      <td>2015-06-25 12:34</td>
+      <td data-order="Live" class="u-text-align-center"><i title="Live" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-online"></i></td>
+      <td data-order="Visible" class="u-text-align-center"><i title="Visible" data-placement="top" data-toggle="tooltips" aria-hidden="true" class="icon-check-circle status--icon is-online"></i></td>
+    </tr>
+  </tbody>
+</table>
+```
+
+</TabItem>
+</Tabs>
+
+## Horizontal scrolling
+
+By adding the `.table--horizontal` class, when the table is unable to shrink any futher, as the viewport continues to shrink it will overflow horizontally and be viewable by scrolling, or manipulating the horizontal scrollbar.
+
+```twig {3}
+{{
+  html.datatable({
+    'class': 'table--full table--horizontal',
+    'data-order': '[[ 3, "desc" ]]',
+    'data': data
+  })
+}}
+```
+
+## Disable row selection
+
+Datatables allow selection of rows by default, this behaviour can be disabled through the data-selection attribute. This will not display the column of checkboxes.
+
+```twig {5}
+{{
+  html.datatable({
+    'class': 'table--full',
+    'data-order': '[[ 3, "desc" ]]',
+    'data-select': false,
+    'data': data
+  })
+}}
+```
+
+## Set initial column order
+
+You can specify how the data should be sorted on initial load by supplying the `data-order` attribute, if you’re using the row selection checkboxes remember that these will affect which column index you supply.
+
+For example, to sort our [example table](#example-usage) by title, this the column 1 (zero indexed).
+
+```twig {4}
+{{
+  html.datatable({
+    'class': 'table--full table--horizontal',
+    'data-order': '[[ 1, "asc" ]]',
+    'data': data
+  })
+}}
+```
+
+## Disable column ordering
+
+Some columns don’t need to allow ordering, such as an actions column where the data is the same for each row.
+
+Add the `data-orderable="false"` to any `thead > th` or `thead > td` that you do not wish to be sorted. If you're using the helper you need to pass this through the columns.attrs attribute for the column.
+
+This example disables column ordering on the 'Live' and 'Visible' columns.
+
+```twig {10,17}
+{% 
+    set data = {
+        'columns': [
+            { 'title': 'Title' },
+            { 'title': 'Owner' },
+            { 'title': 'Modified' },
+            {
+                'title': 'Live',
+                'attrs': {
+                    'data-orderable': 'false',
+                    'class': 'u-text-align-center u-shrink-to-fit'
+                }
+            },
+            {
+                'title': 'Visible',
+                'attrs': {
+                    'data-orderable': 'false',
+                    'class': 'u-text-align-center u-shrink-to-fit'
+                }
+            }
+        ],
+        'data': [ ... ]
+    }
+%}
+```
+
+### Ordering date/time columns
+
+To allow proper ordering of dates, use the `data-order` attribute to supply a `yyyy-mm-dd hh:mm` formatted string, this will be used when ordering the column.
+
+:::caution 
+It's currently not possible to do this using the html.datatable() helper.
+:::
+
+```html
+<td data-order="1982-04-02 12:00">02/04/1982 12:34pm</td>
+```
+
+## No results
+
+### Default message
+
+If a table has nothing to display we provide a helpful message to the user so they understand why nothing is shown. If they have the relevant permissions to add something to this table, you should provide a call to action.
+
+The message will be shown automatically if the table body contains no rows.
+
+<div className="d-example">
+  <table data-order="[[ 3, &quot;desc&quot; ]]" data-overflow="scroll" className="table datatable table--full table--horizontal">
+    <thead>
+        <tr>
+          <th className="table-selection" data-orderable="false">
+            <input type="checkbox" className="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+          </th>
+          <th>Title</th>
+          <th>Owner</th>
+          <th>Modified</th>
+          <th data-orderable="false" className="u-text-align-center u-shrink-to-fit">Live</th>
+          <th data-orderable="false" className="u-text-align-center u-shrink-to-fit">Visible</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>

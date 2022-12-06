@@ -1,6 +1,6 @@
 .actionsbar {
-    margin-bottom: 16px;
-    min-height: 32px;
+    margin-bottom: ($margin-large-vertical * 2);
+    min-height: 38px;
 
     .float--left {
         float: none;
@@ -52,13 +52,10 @@
         }
 
         // Undo button group styling when buttons collapse into full width mode
-        > .btn:not(:first-of-type):not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button),
-        > .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):first-of-type {
+        > .btn {
             @include respond-max($screen-smaller) {
-                border-left: 0;
                 border-radius: $border-radius;
                 border-right: 0;
-                margin-left: 0;
             }
         }
 
@@ -69,7 +66,6 @@
             @include respond-min($screen-smaller) {
                 border-bottom-right-radius: 0;
                 border-top-right-radius: 0;
-                border-right: 1px solid color(base, dark);
             }
 
             &:not(:last-child) .btn.dropdown__toggle {
@@ -89,7 +85,6 @@
             @include respond-min($screen-smaller) {
                 border-bottom-left-radius: 0;
                 border-top-left-radius: 0;
-                border-left: 1px solid color(base, dark);
             }
 
             &:not(:first-child) .btn.dropdown__toggle {

@@ -1,11 +1,11 @@
 .main-search {
     border: 1px solid $input-border;
-    border-radius: 4px;
+    border-radius: $border-radius;
     display: block;
     flex: 1 1 100%;
     flex-grow: 1;
-    height: 32px;
-    margin-bottom: 10px;
+    height: 38px;
+    margin-bottom: 12px;
     position: relative;
 
     @include respond-min($screen-tablet) {
@@ -47,7 +47,7 @@ input.main-search__field {
     box-sizing: border-box;
     color: #555;
     display: block;
-    height: 32px;
+    height: 38px;
     padding: 8.5px;
     position: relative;
     width: 100%;
@@ -78,7 +78,7 @@ input.main-search__field::-ms-clear {
     padding: 1px 8px 0;
     position: absolute;
     right: 0;
-    top: 5px;
+    top: 8px;
     z-index: 3;
 
     @include respond-min($screen-tablet) {

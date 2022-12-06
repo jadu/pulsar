@@ -1,0 +1,319 @@
+---
+id: button-group
+title: Button Group
+sidebar_label: Button Group
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Group a series of related buttons together on a single line. Great for creating toolbars.
+
+
+## Basic usage
+
+<div className="d-example">
+  <fieldset className="form__group form__button-group">
+    <legend className="control__label">Button group</legend>
+    <div className="controls btn__group">
+      <input id="guid-1599941972" name="foo-1" checked type="radio" className="form__control radio" />
+      <label htmlFor="guid-1599941972" className="control__label">Foo</label>
+      <input id="guid-286245278" name="foo-1" type="radio" className="form__control radio" />
+      <label htmlFor="guid-286245278" className="control__label">Bar</label>
+      <input id="guid-1648801838" name="foo-1" type="radio" className="form__control radio" />
+      <label htmlFor="guid-1648801838" className="control__label">Baz</label>
+    </div>
+  </fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.button_group({
+    'label': 'Button group',
+    'items': [
+      {
+        'id': 'guid-' ~ random(),
+        'label': 'Foo',
+        'name': 'foo-1',
+        'checked': true
+      },
+      {
+        'id': 'guid-' ~ random(),
+        'label': 'Bar',
+        'name': 'foo-1'
+      },
+      {
+        'id': 'guid-' ~ random(),
+        'label': 'Baz',
+        'name': 'foo-1'
+      }
+    ]
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset class="form__group form__button-group">
+  <legend class="control__label">Button group</legend>
+  <div class="controls btn__group">
+    <input id="guid-1599941972" name="foo-1" checked type="radio" class="form__control radio" />
+    <label for="guid-1599941972" class="control__label">Foo</label>
+    <input id="guid-286245278" name="foo-1" type="radio" class="form__control radio" />
+    <label for="guid-286245278" class="control__label">Bar</label>
+    <input id="guid-1648801838" name="foo-1" type="radio" class="form__control radio" />
+    <label for="guid-1648801838"  class="control__label">Baz</label>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| items | array | An array of options to pass to the helper specified by `type` |
+| type | string | The type of input to create, can be `radio` (default), `checkbox` or `button` |
+
+## Single choice (radio)
+
+<div className="d-example">
+  <fieldset className="form__group form__button-group">
+    <legend className="control__label">Button group</legend>
+    <div className="controls btn__group">
+      <input id="guid-491239517" name="foo-2" checked type="radio" className="form__control radio" />
+      <label htmlFor="guid-491239517" className="control__label">Foo</label>
+      <input id="guid-330632027" name="foo-2" type="radio" className="form__control radio" />
+      <label htmlFor="guid-330632027" className="control__label">Bar</label>
+      <input id="guid-1953900902" name="foo-2" type="radio" className="form__control radio" />
+      <label htmlFor="guid-1953900902" className="control__label">Baz</label>
+    </div>
+  </fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    form.button_group({
+        'label': 'Button group',
+        'items': [
+            {
+                'id': 'guid-' ~ random(),
+                'label': 'Foo',
+                'name': 'foo-2',
+                'checked': true
+            },
+            {
+                'id': 'guid-' ~ random(),
+                'label': 'Bar',
+                'name': 'foo-2'
+            },
+            {
+                'id': 'guid-' ~ random(),
+                'label': 'Baz',
+                'name': 'foo-2'
+            }
+        ]
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset class="form__group form__button-group">
+  <legend class="control__label">Button group</legend>
+  <div class="controls btn__group">
+    <input id="guid-491239517" name="foo-2" checked type="radio" class="form__control radio" />
+    <label for="guid-491239517" class="control__label">Foo</label>
+    <input id="guid-330632027" name="foo-2" type="radio" class="form__control radio" />
+    <label for="guid-330632027" class="control__label">Bar</label>
+    <input id="guid-1953900902" name="foo-2" type="radio" class="form__control radio" />
+    <label for="guid-1953900902"  class="control__label">Baz</label>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+## Multiple choice (checkbox)
+
+<div className="d-example">
+  <fieldset className="form__group form__button-group">
+    <legend className="control__label">Button group</legend>
+    <div className="controls btn__group">
+      <input id="guid-2014096593" name="foo-3" defaultChecked type="checkbox" className="form__control checkbox" />
+      <label htmlFor="guid-2014096593" className="control__label">Foo</label>
+      <input id="guid-1902797094" name="foo-3" type="checkbox" className="form__control checkbox" />
+      <label htmlFor="guid-1902797094" className="control__label">Bar</label>
+      <input id="guid-1621410707" name="foo-3" type="checkbox" className="form__control checkbox" />
+      <label htmlFor="guid-1621410707" className="control__label">Baz</label>
+    </div>
+  </fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    form.button_group({
+        'label': 'Button group',
+        'type': 'checkbox',
+        'items': [
+            {
+                'id': 'guid-' ~ random(),
+                'label': 'Foo',
+                'name': 'foo-3',
+                'checked': true
+            },
+            {
+                'id': 'guid-' ~ random(),
+                'label': 'Bar',
+                'name': 'foo-3'
+            },
+            {
+                'id': 'guid-' ~ random(),
+                'label': 'Baz',
+                'name': 'foo-3'
+            }
+        ]
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset class="form__group form__button-group">
+  <legend class="control__label">Button group</legend>
+  <div class="controls btn__group">
+    <input id="guid-2014096593" name="foo-3" checked type="checkbox" class="form__control checkbox" />
+    <label for="guid-2014096593" class="control__label">Foo</label>
+    <input id="guid-1902797094" name="foo-3" type="checkbox" class="form__control checkbox" />
+    <label for="guid-1902797094" class="control__label">Bar</label>
+    <input id="guid-1621410707" name="foo-3" type="checkbox" class="form__control checkbox" />
+    <label for="guid-1621410707" class="control__label">Baz</label>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
+
+## Using icons
+
+<div className="d-example">
+  <fieldset className="form__group form__button-group">
+    <legend className="control__label">Alignment</legend>
+    <div className="controls btn__group">
+      <input id="align-left" name="alignment" checked type="radio" className="form__control radio" />
+      <label htmlFor="align-left" className="control__label"><i aria-hidden="true" className="icon-align-left"></i></label>
+      <input id="align-center" name="alignment" type="radio" className="form__control radio" />
+      <label htmlFor="align-center" className="control__label"><i aria-hidden="true" className="icon-align-center"></i></label>
+      <input id="align-right" name="alignment" type="radio" className="form__control radio" />
+      <label htmlFor="align-right" className="control__label"><i aria-hidden="true" className="icon-align-right"></i></label>
+      <input id="justify" name="alignment" type="radio" className="form__control radio" />
+      <label htmlFor="justify" className="control__label"><i aria-hidden="true" className="icon-align-justify"></i></label>
+    </div>
+  </fieldset>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    form.button_group({
+        'label': 'Alignment',
+        'type': 'radio',
+        'items': [
+            {
+                'id': 'align-left',
+                'label': html.icon('align-left'),
+                'name': 'alignment',
+                'checked': true
+            },
+            {
+                'id': 'align-center',
+                'label': html.icon('align-center'),
+                'name': 'alignment',
+            },
+            {
+                'id': 'align-right',
+                'label': html.icon('align-right'),
+                'name': 'alignment',
+            },
+            {
+                'id': 'justify',
+                'label': html.icon('align-justify'),
+                'name': 'alignment',
+            }
+        ]
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<fieldset class="form__group form__button-group">
+  <legend class="control__label">Alignment</legend>
+  <div class="controls btn__group">
+    <input id="align-left" name="alignment" checked type="radio" class="form__control radio" />
+    <label for="align-left" class="control__label"><i aria-hidden="true" class="icon-align-left"></i></label>
+    <input id="align-center" name="alignment" type="radio" class="form__control radio" />
+    <label for="align-center" class="control__label"><i aria-hidden="true" class="icon-align-center"></i></label>
+    <input id="align-right" name="alignment" type="radio" class="form__control radio" />
+    <label for="align-right" class="control__label"><i aria-hidden="true" class="icon-align-right"></i></label>
+    <input id="justify" name="alignment" type="radio" class="form__control radio" />
+    <label for="justify" class="control__label"><i aria-hidden="true" class="icon-align-justify"></i></label>
+  </div>
+</fieldset>
+```
+
+</TabItem>
+</Tabs>
