@@ -38,3 +38,4 @@ pulsar.zip
 /.vagrant
 /phpunit
 .phpunit.result.cache
+.phpunit.result.cache
