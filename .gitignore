@@ -39,3 +39,4 @@ pulsar.zip
 /phpunit
 /docs
 .phpunit.result.cache
+*.cache
