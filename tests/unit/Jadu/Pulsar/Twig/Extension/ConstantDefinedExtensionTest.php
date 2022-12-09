@@ -7,7 +7,7 @@ use Twig_Loader_Array;
 
 class ConstantDefinedExtensionTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->ext = new ConstantDefinedExtension();
     }
