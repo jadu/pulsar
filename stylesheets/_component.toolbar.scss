@@ -1,6 +1,5 @@
-@import 'component.labels';
-
 .toolbar {
+    background-color: color(white);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -12,10 +11,10 @@
 }
 
 .toolbar-actions {
-    flex-grow: 1;
     display: flex;
+    flex: 1 1 auto;
     justify-content: flex-end;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .toolbar-actions .dropdown {
@@ -30,41 +29,17 @@
         margin-left: 0;
     }
 
-    .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
-        border: 1px solid $input-border;
-        border-width: 1px;
-        padding-bottom: 6px;
-        padding-top: 6px;
+    .btn {
         width: 100%;
+    }
+
+    [class*=icon-] {
+        font-size: 18px;
+        vertical-align: middle;
 
         @include respond-min($screen-desktop) {
-            padding-bottom: 7px;
-            padding-top: 7px;
-        }
-
-        &:hover {
-            background-color: color(background, light) !important;
-            margin-bottom: 0;
-            transform: none;
-        }
-
-        &:focus {
-            @include pulsar-outline-button-focused;
-            border-width: 1px;
-        }
-
-        i {
-            font-size: 18px;
-            vertical-align: middle;
-
-            @include respond-min($screen-desktop) {
-                font-size: 14px;
-                vertical-align: baseline;
-            }
-        }
-
-        > .caret {
-            border-top-color: color(text);
+            font-size: 14px;
+            vertical-align: baseline;
         }
     }
 
@@ -83,9 +58,6 @@
     }
 
     .dropdown__menu {
-        border-top: 2px solid $input-border;
-        top: 40px;
-
         .media {
             line-height: 24px;
             padding: 10px;
@@ -106,17 +78,6 @@
     &:nth-child(n+3) .dropdown__menu {
         left: auto;
         right: 0;
-    }
-}
-
-.toolbar-actions .toolbar-action--icon .btn:not(.btn--naked):not(.remove-button):not(.edit-button):not(.remove-button):last-of-type {
-    line-height: 16px;
-    padding-bottom: 6px;
-    padding-top: 6px;
-
-    i {
-        font-size: 18px;
-        vertical-align: middle;
     }
 }
 

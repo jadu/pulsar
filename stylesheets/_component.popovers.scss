@@ -16,7 +16,7 @@
   -webkit-bg-clip: padding-box;
      -moz-bg-clip: padding;
   background-clip: padding-box;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, .15);
+  box-shadow: 0 0 0 $shadow-small color(background, shadow);
 
   // Overrides for proper insertion
   white-space: normal;

@@ -14,7 +14,7 @@ build:
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Homebrew...${HR}\n"
-	yes '' | ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Ansible...${HR}\n"

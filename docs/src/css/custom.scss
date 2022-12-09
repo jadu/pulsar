@@ -1,0 +1,301 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+* Any CSS included here will be global. The classic template
+* bundles Infima by default. Infima is a CSS framework designed to
+* work well for content-centric websites.
+*/
+
+$ie-version: 12 !default;
+$image-path: '../../../images/' !default;
+
+$margin-bottom: 1.125 * 1rem;
+
+$font-family-light:   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-regular: 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading: 'code_pro_bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading-light: 'code_pro_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-icons:   'Font Awesome 6 Pro';
+$font-family-brands:  'Font Awesome 6 Brands';
+
+// Font awesome
+$fa-font-path: '/static/fonts/fontawesome-pro/webfonts';
+$fa-css-prefix: 'icon';
+
+@import '/static/fonts/fontawesome-pro/scss/fontawesome';
+@import '/static/fonts/fontawesome-pro/scss/regular';
+@import '/static/fonts/fontawesome-pro/scss/solid';
+@import '/static/fonts/fontawesome-pro/scss/brands';
+@import '/static/fonts/fontawesome-pro/scss/v4-shims';
+
+// $font-path: '../../../';
+// @import '../../../fonts/config.fonts';
+
+.d-example,
+.d-example-inline,
+.d-guidelines {
+    @import '../../../stylesheets/deprecated.icons';
+
+    // Mixins
+    @import '../../../stylesheets/mixin.border-radius';
+    @import '../../../stylesheets/mixin.clear-fix';
+    @import '../../../stylesheets/mixin.content-box';
+    @import '../../../stylesheets/mixin.css-arrow';
+    @import '../../../stylesheets/mixin.hide-text';
+    @import '../../../stylesheets/mixin.inline-block';
+    @import '../../../stylesheets/mixin.label-variant';
+    @import '../../../stylesheets/mixin.media-queries';
+    @import '../../../stylesheets/mixin.mixins-to-organise';
+    @import '../../../stylesheets/mixin.responsive-utilities';
+    @import '../../../stylesheets/mixin.word-wrap';
+    @import '../../../stylesheets/mixin.focus';
+
+    // Config
+    @import '../../../stylesheets/config.variables';
+    @import '../../../stylesheets/config.branding';
+
+    @import '../../../stylesheets/structure.grid';
+    @import '../../../stylesheets/structure.columns';
+
+
+    // Functions
+    @import '../../../stylesheets/function.math';
+    @import '../../../stylesheets/function.color-luminance';
+    @import '../../../stylesheets/function.pick-best-color';
+    @import '../../../stylesheets/function.color';
+
+    // Base colour palette
+    @import '../../../stylesheets/palette.base';
+    @import '../../../stylesheets/config.theme';
+    @import '../../../stylesheets/deprecated.styles';
+
+    // Apply palette to components
+    @import '../../../stylesheets/config.theme';
+
+    // Structure
+    @import '../../../stylesheets/structure.grid';
+    @import '../../../stylesheets/structure.columns';
+    @import '../../../stylesheets/structure.scaffolding';
+    @import '../../../stylesheets/structure.forms';
+
+    @import '../../../stylesheets/component.actionsbar';
+    @import '../../../stylesheets/component.autosave';
+    @import '../../../stylesheets/component.badges';
+    @import '../../../stylesheets/component.block-list';
+    @import '../../../stylesheets/component.breadcrumb';
+    @import '../../../stylesheets/component.button-groups';
+    @import '../../../stylesheets/component.buttons';
+    @import '../../../stylesheets/component.calendar';
+    @import '../../../stylesheets/component.cards';
+    @import '../../../stylesheets/component.colorpicker';
+    @import '../../../stylesheets/component.close';
+    @import '../../../stylesheets/component.datepicker';
+    @import '../../../stylesheets/component.daterange';
+    @import '../../../stylesheets/component.dropdowns';
+    @import '../../../stylesheets/component.editor';
+    
+    @import '../../../stylesheets/component.error-summary';
+    @import '../../../stylesheets/component.filterbar';
+    @import '../../../stylesheets/component.flash';
+    // @import '../../../stylesheets/component.footer';
+    @import '../../../stylesheets/component.forms';
+    @import '../../../stylesheets/component.choice';
+    // @import '../../../stylesheets/component.greeter';
+    @import '../../../stylesheets/component.icons';
+    @import '../../../stylesheets/component.input-groups';
+    @import '../../../stylesheets/component.labels';
+    @import '../../../stylesheets/component.lists';
+    @import '../../../stylesheets/component.loading';
+    @import '../../../stylesheets/component.login';
+    @import '../../../stylesheets/component.masterswitch';
+    @import '../../../stylesheets/component.message';
+    @import '../../../stylesheets/component.metadata';
+    @import '../../../stylesheets/component.modals';
+    // @import '../../../stylesheets/component.navigation';
+    @import '../../../stylesheets/component.nav-list';
+    @import '../../../stylesheets/component.navbars';
+    @import '../../../stylesheets/component.notifications';
+    @import '../../../stylesheets/component.pagination';
+    @import '../../../stylesheets/component.panels';
+    @import '../../../stylesheets/component.piano';
+    @import '../../../stylesheets/component.popovers';
+    @import '../../../stylesheets/component.progress-bars';
+    @import '../../../stylesheets/component.progress-lists';
+    @import '../../../stylesheets/component.range-slider';
+    
+    @import '../../../stylesheets/component.remove-button';
+    @import '../../../stylesheets/component.ribbon';
+    @import '../../../stylesheets/component.rules';
+    @import '../../../stylesheets/component.search';
+    @import '../../../stylesheets/component.select2';
+    @import '../../../stylesheets/component.settings';
+    // @import '../../../stylesheets/component.signin';
+    
+    @import '../../../stylesheets/component.slider';
+    @import '../../../stylesheets/component.status';
+    @import '../../../stylesheets/component.tab-help';
+    @import '../../../stylesheets/component.tab-panel';
+    @import '../../../stylesheets/component.tables';
+    @import '../../../stylesheets/component.table-detail';
+    @import '../../../stylesheets/component.timeline';
+    @import '../../../stylesheets/component.timepicker';
+    @import '../../../stylesheets/component.datatables';
+    @import '../../../stylesheets/component.toggle-switch';
+    @import '../../../stylesheets/component.toolbar';
+    @import '../../../stylesheets/component.tooltips';
+    //@import '../../../stylesheets/component.jstree';
+    @import '../../../stylesheets/component.dropzone';
+    @import '../../../stylesheets/component.repeater';
+    @import '../../../stylesheets/component.edit-button';
+    
+    @import '../../../stylesheets/objects/_object.media';
+    // Utilities
+    @import '../../../stylesheets/utility.utilities';
+    @import '../../../stylesheets/utility.grid';
+}
+
+:root{
+    --ifm-global-shadow-lw: none;
+
+    --jadu-purple: #3e4994;
+
+    --ifm-background-surface-color: var(--jadu-purple);
+    --ifm-navbar-link-color: #fff;
+    --ifm-navbar-link-hover-color: #fff;
+
+    --ifm-menu-color-active: var(--jadu-purple);
+
+    --ifm-heading-color: var(--jadu-purple);
+
+    --ifm-card-background-color: #fff;
+    --ifm-container-width: 1300px;
+
+    --ifm-table-border-width: 0;
+
+    --ifm-alert-color: #000;
+}
+
+body {
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+}
+
+.hero--primary {
+    --ifm-hero-background-color: #fff;
+    --ifm-hero-text-color: var(--ifm-font-color-base);
+
+    padding: 2rem 0 1rem;
+}
+
+.hero__title {
+    margin-bottom: 0;
+}
+
+.admonition h5 {
+    color: var(--ifm-alert-color);
+}
+
+.d-example {
+    border: 1px solid #ccc;
+    margin-bottom: $margin-bottom;
+    padding: 1em;
+    width: 100%;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: unset;
+    }
+
+    ul, ol {
+        padding-left: 0;
+    }
+
+    li + li {
+        margin-top: 0;
+    }
+}
+
+.d-guidelines {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 24px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.d-guidelines__block {
+    width: 49%;
+}
+
+.d-guidelines-preview {
+    // background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    margin-bottom: .75em;
+    padding: 1em;
+}
+
+.d-guidelines-label__title {
+    font-style: normal;
+}
+
+.d-guidelines__block--do {
+    .d-guidelines-label {
+        border-top: 5px solid #81bd44;
+    }
+    
+    .d-guidelines-label__title {
+        color: #81bd44;
+    }
+}
+
+.d-guidelines__block--not {
+    .d-guidelines-label {
+        border-top: 5px solid #bd4444;
+    }
+    
+    .d-guidelines-label__title {
+        color: #bd4444;
+    }
+}
+
+.u-float-left {
+    float: left;
+}
+
+.docusaurus-highlight-code-line {
+    background-color: rgb(72, 77, 91);
+    display: block;
+    margin: 0 calc(-1 * var(--ifm-pre-padding));
+    padding: 0 var(--ifm-pre-padding);
+}
+
+table {
+    display: table;
+}
+
+table:not(.table) {
+  display: table;
+
+  th {
+    background-color: var(--jadu-purple);
+    border: 1px solid var(--jadu-purple);
+    color: #fff;
+  }
+
+  td {
+    border: 1px solid #ccc;
+  }
+}
+
+html[data-theme='dark'] {
+    --ifm-heading-color: white;
+
+    .d-example .control__label {
+        color: white;
+    }
+
+    table:not(.table) th {
+        background-color: black;
+    }
+}

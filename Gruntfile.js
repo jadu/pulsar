@@ -1,3 +1,6 @@
+// const Fiber = require('fibers');
+const sass = require('dart-sass');
+
 module.exports = function(grunt) {
 
     'use strict';
@@ -85,7 +88,8 @@ module.exports = function(grunt) {
         sass: {
             dev: {
                 options: {
-                    outputStyle: 'nested',
+                    implementation: sass,
+                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -99,6 +103,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
+                    implementation: sass,
+                    // fiber: Fiber,
                     outputStyle: 'compressed'
                 },
                 files: [{
@@ -113,7 +119,8 @@ module.exports = function(grunt) {
             },
             lexicon: {
                 options: {
-                    outputStyle: 'nested',
+                    implementation: sass,
+                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -245,7 +252,7 @@ module.exports = function(grunt) {
         bump: {
             options: {
                 updateConfigs: ['pkg'],
-                files: ['pulsar.json', 'package.json', 'composer.json', 'bower.json', 'VERSION'],
+                files: ['pulsar.json', 'package.json', 'VERSION'],
                 commit: true,
                 commitMessage: 'Release v%VERSION%',
                 commitFiles: ['-a'],
@@ -288,7 +295,7 @@ module.exports = function(grunt) {
                 }
             },
             cms: {
-                src: 'images/favicons/src/favicon-cms.svg',
+                src: 'images/branding/jadu-central-logomark.svg',
                 dest: 'images/favicons/cms',
                 options: {
                     iconsPath: '/jadu/bundles/pulsar/images/favicons/cms/',
@@ -321,7 +328,7 @@ module.exports = function(grunt) {
                 }
             },
             xfp: {
-                src: 'images/favicons/src/favicon-xfp.svg',
+                src: 'images/branding/jadu-central-logomark.svg',
                 dest: 'images/favicons/xfp',
                 options: {
                     iconsPath: '/images/favicons/xfp/',
@@ -354,7 +361,7 @@ module.exports = function(grunt) {
                 }
             },
             cxm: {
-                src: 'images/favicons/src/favicon-cxm.svg',
+                src: 'images/branding/jadu-connect-logomark.svg',
                 dest: 'images/favicons/cxm',
                 options: {
                     iconsPath: '/images/favicons/cxm/',

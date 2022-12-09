@@ -12,7 +12,7 @@
   }
 
   .nav-item {
-    // max-width: $nav-primary-item-width;
+    font-family: $font-family-light;
 
     @include respond-max($screen-tablet-max) {
       font-size: $font-size-medium;

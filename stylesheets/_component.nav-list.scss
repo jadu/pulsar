@@ -14,10 +14,10 @@
 }
 
 .nav-item--header {
-	border-bottom: 1px solid $nav-color-light;
-	color: #fff;
+	border-bottom: 1px solid color(white);
+	color: color(white);
 	display: block;
-	font-family: $font-family-light;
+	font-family: $font-family-heading-light;
 	font-size: 1.2em;
 	margin-bottom: 24px;
 
@@ -27,7 +27,7 @@
 }
 
 .nav-link {
-	color: #fff;
+	color: color(white);
 	display: block;
 	line-height: 1.5em;
 	padding: 6px;
@@ -36,6 +36,6 @@
 
 	&:hover,
 	.is-active & {
-		color: #fff;
+		color: color(white);
 	}
 }

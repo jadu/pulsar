@@ -4,11 +4,39 @@
     margin: 0 0 ($line-height-base / 2);
     width: 100%;
 
+    ol {
+        margin: 0;
+    }
+
+    li {
+        display: inline;
+        list-style-type: none;
+        margin-right: 5px;
+
+        &::after {
+            content: '/';
+            margin-left: 5px;
+        }
+
+        &:last-child::after {
+            content: '';
+        }
+    }
+
     a {
         color: color(gray, dark); // must be AA 4.5:1
+        text-decoration: none;
 
         &:hover {
-            color: color(link, hover);
+            color: color(gray, dark);
+        }
+
+        &[href] {
+            text-decoration: underline;
+
+            &:hover {
+                color: color(link, hover);
+            }
         }
 
         &:focus {

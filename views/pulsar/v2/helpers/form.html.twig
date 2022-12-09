@@ -1012,7 +1012,7 @@ class   | string | A space separated list of class names
 {% macro end(options) %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% spaceless %}
-    
+
     {% if options.actions is defined %}
         <div{{
             attributes(options
@@ -1080,13 +1080,13 @@ value  | string, array  | The string, or array of strings to render inside the e
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {% for error in errors %}
                 <span class="help-block is-error" id="{{ attribute(options.error_ids, loop.index0) }}">
-                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                    {{ html.icon('warning-sign') }} <span class="hide">Error:</span> {{ error|raw -}}
                 </span>
             {% endfor %}
         {% else %}
             {% for error in errors %}
                 <span class="help-block is-error">
-                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                    {{ html.icon('warning-sign') }} <span class="hide">Error:</span> {{ error|raw -}}
                 </span>
             {% endfor %}
         {% endif %}
@@ -2237,10 +2237,14 @@ of the element.
 
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
+append      | string | Text or markup to include after the input element
+append_type | string | Use only when appending a button. `button` is the only valid value
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
+prepend     | string | Text or markup to include before the input element
+prepend_type| string | Use only when prepending a button. `button`is the only valid value
 required    | bool   | Visually indicates that the field must be completed
 show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
@@ -2270,10 +2274,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error error_ids help help_id id label required show-label'),
+            'parent': options|only('append append_type bare class error error_ids help help_id id label prepend prepend_type required show-label'),
             'inputs': [
                 elem.textarea(options
-                    |exclude('bare class error guidance guidance-container help label show-label')
+                    |exclude('append_type bare class error guidance guidance-container help label prepend_type show-label')
                     |merge({'class': 'textarea'})
                 )
             ]
@@ -2498,9 +2502,9 @@ actions-column-text     | string | The text content of the actions column header
                     <thead class="repeater__preview-headings">
                         <tr>
                             {% for heading in options.headings %}
-                                <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
+                                <th scope="col" data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
                             {% endfor %}
-                            <th rowspan="1" colspan="1" class="shrink-to-fit">{{ options['actions-column-text']|default('Actions') }}</th>
+                            <th scope="col" rowspan="1" colspan="1" class="shrink-to-fit">{{ options['actions-column-text']|default('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="repeater__preview-data" data-repeater-preview-root>

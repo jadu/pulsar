@@ -114,7 +114,7 @@ describe('RepeaterComponent', () => {
         it('should remove input name attributes in the "new group" form', () => {
             repeaterComponent.init();
 
-            expect($html.find('[name]')).to.have.length.of(0);
+            expect($html.find('[name]')).to.have.lengthOf(0);
         });
 
         it('should set maxItems to infinity if the maxItems attribute is not set', () => {
@@ -225,7 +225,7 @@ describe('RepeaterComponent', () => {
         it('should create the preview element', () => {
             repeaterComponent.handleSaveGroup(event);
 
-            expect($html.find('#preview')).to.have.length.of(1);
+            expect($html.find('#preview')).to.have.lengthOf(1);
         });
 
         it('should set the colspan and preview ID on the preview element', () => {
@@ -243,7 +243,7 @@ describe('RepeaterComponent', () => {
         it('should append the preview UI to the preview element', () => {
             repeaterComponent.handleSaveGroup(event);
 
-            expect($html.find('#preview').find('[data-repeater-preview-ui]')).to.have.length.of(2);
+            expect($html.find('#preview').find('[data-repeater-preview-ui]')).to.have.lengthOf(2);
         });
 
         it('should create the saved representation of the "new group"', () => {
@@ -255,7 +255,7 @@ describe('RepeaterComponent', () => {
         it('should create an "edit group" form', () => {
             repeaterComponent.handleSaveGroup(event);
 
-            expect($html.find('[data-repeater-edit-id]')).to.have.length.of(1);
+            expect($html.find('[data-repeater-edit-id]')).to.have.lengthOf(1);
         });
 
         it('should remove the empty placeholder', () => {
@@ -441,7 +441,7 @@ describe('RepeaterComponent', () => {
         it('should remove the "add group" attribute from the cloned group', () => {
             repeaterComponent.addGroupToRepeater($group[0]);
 
-            expect($preview.find('[data-repeater-new-group]')).to.have.length.of(0);
+            expect($preview.find('[data-repeater-new-group]')).to.have.lengthOf(0);
         });
 
         it('should add the edit group after the corresponding preview', () => {
@@ -517,7 +517,7 @@ describe('RepeaterComponent', () => {
             const $editGroup = $(repeaterComponent.createEditEntryGroup());
 
             expect($editGroup.find('input').length).to.equal(1);
-            expect($editGroup.find(`[data-repeater-edit-id="0"]`).find('[name]')).to.have.length.of(0);
+            expect($editGroup.find(`[data-repeater-edit-id="0"]`).find('[name]')).to.have.lengthOf(0);
         });
     });
 

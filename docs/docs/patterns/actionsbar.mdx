@@ -1,0 +1,67 @@
+---
+id: actionsbar
+title: Actions Bar
+sidebar_label: Actions Bar
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The actions bar is a component within a tab which is split into left/right sides and contains important controls for a given user interface.
+
+:::tip
+The actions bar is optional and can be omitted if the UI doesn't require an actions menu or primary actions.
+:::
+
+<div className="d-example">
+  <section className="actionsbar" aria-label="page actions">
+    <div className="float--left">
+      <div className="btn__group dropdown">
+        <button aria-haspopup="true" aria-expanded="false" aria-controls="guid-339142024" data-toggle="dropdown" className="btn dropdown__toggle bulk-actions" control-id="ControlID-8">Actions<span aria-label="0 rows selected" style={{display: 'none'}} className="badge label--primary js-bulk-actions-badge">0</span>&nbsp;<span className="caret"></span></button>
+        <ul id="guid-339142024" className="dropdown__menu pull-left">
+          <li><a href="#"><i aria-hidden="true" className="icon-plus"></i>&nbsp;New Thing</a></li>
+          <li><a href="#" data-ui="show-filter-bar"><i aria-hidden="true" className="icon-filter"></i>&nbsp;New filter</a></li>
+          <li><span className="divider"></span></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-copy"></i>&nbsp;Make a copy</a></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-user"></i>&nbsp;Change owner</a></li>
+          <li><span className="divider"></span></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-check-circle"></i>&nbsp;Make live</a></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-times-rectangle"></i>&nbsp;Take offline</a></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-eye-open"></i>&nbsp;Make visible</a></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="disabled"><i aria-hidden="true" className="icon-eye-slash"></i>&nbsp;Make invisible</a></li>
+          <li><span className="divider"></span></li>
+          <li data-toggle="tooltips" data-placement="right" data-container="body" title="" data-original-title="Select one or more items to perform this bulk action"><a href="#" data-bulk-action="" className="link--danger disabled"><i aria-hidden="true" className="icon-times"></i>&nbsp;Delete</a></li>
+        </ul>
+      </div>
+    </div>
+    <div className="float--right">
+      <button className="btn btn--primary" control-id="ControlID-9">New Thing</button>
+    </div>
+  </section>
+</div>
+
+## Layout blocks
+
+In order to use the layout blocks, the tab UI in question must extend the tab component template.
+
+```twig
+{{% extends '@pulsar/pulsar/components/tab.html.twig' %}}
+
+{%- block actions_left -%}
+  {{ html.actions_menu({ ... }) }}
+{%- endblock -%};
+
+{%- block actions_right -%}
+  {{ html.button({ ... }) }}
+{%- endblock -%}
+
+{% block tab_content %}
+  {# Regular tab content goes here #}
+{% endblock %}
+```
+
+There are two blocks that you can populate with actions: `actions_left` and `actions_right`. You probably guessed these are normally on either side of the screen but on mobile devices they’re stacked vertically, with the left block appearing above the right and buttons expanding to take up the full width of the screen.
+
+The `actions_left` block will typically contain only the `html.actions_menu` dropdown helper, detailed below.
+
+The `actions_right` block will typically contain [buttons](/docs/components/button) illustrating the primary action(s) for a given UI, but may also use [button groups](/docs/components/button-group) and/or [dropdown buttons](/docs/components/dropdown-button) if suitable.

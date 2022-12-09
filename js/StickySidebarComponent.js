@@ -6,7 +6,7 @@ class StickySidebarComponent {
 
     /**
      * StickySidebarComponent
-     * @constructor 
+     * @constructor
      * @param {object} window - window object
      * @param {jQuery} $html - jQuery wrapper of the html node
      */
@@ -17,8 +17,8 @@ class StickySidebarComponent {
 
     /**
      * Initialise component
-     * 
-     * Should be fired on page load, checks for required options, performs an 
+     *
+     * Should be fired on page load, checks for required options, performs an
      * initial sticky calculation and binds to resize & scroll events
      */
     init () {
@@ -36,27 +36,37 @@ class StickySidebarComponent {
 
     /**
      * Sticky calculation
-     * 
-     * If content is taller than settings, and the viewport has been scrolled 
-     * enough then add the required sticky class to the container, and remove it
-     * if no longer required
+     *
+     * Add the required sticky class to the container, and remove it if scrolled up
      */
     sticky () {
         const $container = this.$html.find('.tab__container.has-settings .tab__inner');
+        const $header = $container.children('.tab__header');
+        const $settings = $container.find('.tab__settings');
+        const hasClass = $container.hasClass('is-sticky');
 
-        if (!$container.length) {
+        if (!$settings.length) {
             return;
         }
 
-        const isContentTallerThanContent = this.$html.find('.tab__container.has-settings .tab__content').outerHeight() > this.$html.find('.tab__container.has-settings .tab__settings').outerHeight();
-        const hasScrolledPastContainer = $(this.window).scrollTop() > $container.offset().top;
+        const scrollTop = $(this.window).scrollTop();
+        const sidebarOffset = Math.floor($container.offset().top + ($header.length > 0 ? $header.outerHeight() : 0));
 
-        if (isContentTallerThanContent && hasScrolledPastContainer) {
-            $container.addClass('is-sticky');
+        const hasScrolledPastContainer = scrollTop >= sidebarOffset;
+
+        if (hasScrolledPastContainer) {
+            if (!hasClass) {
+                $container.addClass('is-sticky');
+            }
         } else {
-            $container.removeClass('is-sticky');
+            if (hasClass) {
+                // Ensure when re-stickying that the content is scrolled to the top
+                $settings.scrollTop(0);
+
+                $container.removeClass('is-sticky');
+            }
         }
-        
+
     }
 }
 

@@ -1,6 +1,24 @@
 // Ensure selected Pulsar radio controls aren't clipped
 .form-choice {
     overflow: visible;
+
+    // When using checkbox/radios, push down the controls so the control label
+    // and the first input label sit on the same baseline
+    .controls > .control__label:first-child {
+        margin-top: 8px;
+    }
+
+    // Don't use the above margin on choice blocks, but avoid using :not
+    &.choice--block .controls > .control__label:first-child {
+        margin-top: 0;
+    }
+}
+
+// disabled checkbox/radio inputs within a choice helper should have their label
+// look visually disabled too (the main label for the entire choice still uses
+// normal text colour)
+.is-disabled + .form-choice__label {
+    opacity: .4;
 }
 
 // Align form-choice to grid

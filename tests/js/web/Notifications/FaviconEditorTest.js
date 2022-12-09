@@ -102,7 +102,7 @@ describe('FaviconEditor', () => {
 
             faviconEditor.addCircleNotification('red')
                 .then((data) => {
-                    expect(data).to.be.truthy;
+                    expect(data).to.be.ok;
                     done();
                 })
                 .catch(done);

@@ -21,6 +21,7 @@ $piano-bg: #fafafa;
         height: 83vh;
         margin-bottom: 0;
         overflow-x: hidden;
+        padding-bottom: 40vh;
         width: 30%;
     }
 
@@ -97,6 +98,10 @@ $piano-bg: #fafafa;
     clear: both;
     padding: $padding-base;
 
+    .nav-inline {
+        margin: 0 0 0 -20px;
+    }
+
     .is-selected & {
         margin-top: $margin-base;
 
@@ -104,7 +109,7 @@ $piano-bg: #fafafa;
             height: 100%;
             margin-top: 0;
             overflow-y: auto;
-            padding: $padding-base 0 0;
+            padding: $padding-base 0 40vh;
             position: absolute;
             right: 10px;
             top: 10px;
@@ -147,6 +152,11 @@ $piano-bg: #fafafa;
             font-weight: 400;
             margin-bottom: $margin-base * 2;
         }
+    }
+
+    // Stop focus state of submit buttons being cropped by overflow
+    .form__actions--flush {
+        padding-left: 2px;
     }
 }
 

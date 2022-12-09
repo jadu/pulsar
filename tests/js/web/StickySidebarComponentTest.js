@@ -14,7 +14,7 @@ describe('StickySidebarComponent', () => {
         $window = $('<div></div>');
         window = $window[0];
         $body = $('body');
-        
+
 		$layoutHTML = $(
             '<div class="tab__container has-settings">' +
 			'	<div class="tab__inner">' +
@@ -39,7 +39,7 @@ describe('StickySidebarComponent', () => {
                 componentWithoutHTML.init($body);
             }).to.throw('$html must be passed to StickySidebarComponent');
         });
-        
+
         it('should throw an error if window isn’t passed to the component', () => {
 			componentWithoutWindow = new StickySidebarComponent($body, undefined);
 
@@ -56,9 +56,9 @@ describe('StickySidebarComponent', () => {
             expect(stickySidebarComponent.sticky()).to.be.undefined;
         });
     });
-    
+
     describe('when content is taller than settings', () => {
-        beforeEach(function() {    
+        beforeEach(function() {
             $body.find('.tab__settings').outerHeight(100);
             $body.find('.tab__content').outerHeight(200);
             stickySidebarComponent = new StickySidebarComponent($body, window);
@@ -81,5 +81,11 @@ describe('StickySidebarComponent', () => {
             $($window[0]).trigger('scroll');
             expect($body.find('.tab__inner').hasClass('is-sticky')).to.be.true;
         });
+
+        it('should remove the is-sticky class when above the tab', () => {
+            $body.find('.tab__inner').addClass('is-sticky');
+            stickySidebarComponent.sticky();
+            expect($body.find('.tab__inner').hasClass('is-sticky')).to.be.false;
+        })
     });
 });

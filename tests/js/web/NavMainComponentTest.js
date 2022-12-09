@@ -13,7 +13,7 @@ describe('NavMainComponent', function () {
         this.$html = $('html');
         this.$body = $('body');
         this.$window = $('<div></div>');
-        this.$window.height(150);
+        this.$window.height(140);
         this.window = this.$window[0];
         this.window.matchMedia = sinon.stub();
 
