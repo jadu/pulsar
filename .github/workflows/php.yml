@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.1']
+        php-versions: ['7.1', '7.2', '7.3', '7.4', '8.1']
 
     steps:
     - uses: actions/checkout@v2
@@ -43,8 +43,20 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+    # - name: Install dependencies
+    #   run: composer install --prefer-dist --no-progress
+
+    - name: "PHP 7.1"
+      if: "${{ matrix.php-versions }} == 7.1"
+      run: composer require --dev --with-all-dependencies --no-install phpunit/phpunit 6.0
+    - name: "PHP 7.2"
+      if: "${{ matrix.php-versions }} == 7.2"
+      run: composer require --dev --with-all-dependencies --no-install phpunit/phpunit 8.0
+    - name: "PHP >7.3"
+      if: "${{ matrix.php-versions }} >= 7.3"
+      run: composer require --dev --with-all-dependencies --no-install phpunit/phpunit
+    - run: composer install
+    - run: ./vendor/bin/phpunit
 
     - name: PHPUnit tests
       uses: php-actions/phpunit@v3
