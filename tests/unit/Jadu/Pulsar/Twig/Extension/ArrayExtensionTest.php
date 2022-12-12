@@ -7,7 +7,8 @@ class ArrayExtensionTest extends \PHPUnit\Framework\TestCase
 	public function setUp(): void
 	{
 		parent::setUp();
-		$this->env = new \Twig_Environment();
+		$this->loader = new \Twig_Loader_Filesystem();
+		$this->env = new \Twig_Environment($this->loader);
 		$this->ext = new ArrayExtension(array());
 		$this->data = array('slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true, 'class' => 'wrapper');
 	}
