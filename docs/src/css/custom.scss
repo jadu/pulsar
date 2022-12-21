@@ -27,8 +27,39 @@ $fa-css-prefix: 'icon';
 @import '/static/fonts/fontawesome-pro/scss/brands';
 @import '/static/fonts/fontawesome-pro/scss/v4-shims';
 
-// $font-path: '../../../';
-// @import '../../../fonts/config.fonts';
+// $font-path: '/static/fonts/';
+@font-face {
+  font-family: 'proxima_novalight';
+  src: url('/static/fonts/proxima_nova/proximanova-light.woff2') format('woff2'),
+       url('/static/fonts/proxima_nova/proximanova-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_nova_rgregular';
+  src: url('/static/fonts/proxima_nova/proximanova-regular.woff2') format('woff2'),
+       url('/static/fonts/proxima_nova/proximanova-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'code_pro_bold';
+  src: url('/static/fonts/code_pro/code_pro_bold_lc-webfont.woff2') format('woff2'),
+       url('/static/fonts/code_pro/code_pro_bold_lc-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'code_pro_regular';
+  src: url('/static/fonts/code_pro/code_pro_lc-webfont.woff2') format('woff2'),
+       url('/static/fonts/code_pro/code_pro_lc-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 .d-example,
 .d-example-inline,
@@ -53,10 +84,6 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/config.variables';
     @import '../../../stylesheets/config.branding';
 
-    @import '../../../stylesheets/structure.grid';
-    @import '../../../stylesheets/structure.columns';
-
-
     // Functions
     @import '../../../stylesheets/function.math';
     @import '../../../stylesheets/function.color-luminance';
@@ -67,9 +94,6 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/palette.base';
     @import '../../../stylesheets/config.theme';
     @import '../../../stylesheets/deprecated.styles';
-
-    // Apply palette to components
-    @import '../../../stylesheets/config.theme';
 
     // Structure
     @import '../../../stylesheets/structure.grid';

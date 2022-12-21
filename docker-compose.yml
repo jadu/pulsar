@@ -4,6 +4,6 @@ services:
         image: php:7.2-apache
         working_dir: /var/www/html
         volumes:
-          - ./:/var/www/html/:cached        
+          - ./:/var/www/html/:cached
         ports:
           - 9000:80
