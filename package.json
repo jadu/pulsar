@@ -70,7 +70,7 @@
     "jsdom-global": "^2.1.1",
     "matchdep": "^1.0.1",
     "minifyify": "^6.3.0",
-    "mocha": "^2.4.5",
+    "mocha": "^10.2.0",
     "mochify": "^9.2.0",
     "mochify-istanbul": "^2.4.2",
     "require-globify": "^1.4.1",
