@@ -199,6 +199,12 @@ th.sorting_disabled:hover {
     }
 }
 
+.table-responsive.table-responsive {
+    background-color: color(background);
+    padding: 0;
+    vertical-align: middle;
+}
+
 // scss-lint:disable SelectorFormat
 .dataTables_wrapper {
     position: relative;
@@ -282,7 +288,6 @@ th.sorting_disabled:hover {
     background: transparent;
     border: 0;
     box-sizing: border-box;
-    color: color(jadu-purple);
     cursor: pointer;
     display: none;
     font-size: $font-size-large;
