@@ -1,0 +1,60 @@
+---
+id: range
+title: Range
+sidebar_label: Range
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generates a range slider input.
+
+<div className="d-example">
+  <div className="form__group form-range">
+    <label htmlFor="range-1" className="control__label">My label</label>
+    <div className="controls">
+      <input id="range-1" name="range-1" type="range" className="form__control" />
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.range({
+    'label': 'My label',
+    'id': 'range-1',
+    'name': 'range-1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group form-range">
+  <label for="range-1" class="control__label">My label</label>
+  <div class="controls">
+    <input id="range-1" name="range-1" type="range" class="form__control" />
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options.

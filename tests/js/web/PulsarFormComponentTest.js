@@ -343,7 +343,7 @@ describe('PulsarFormComponent', function() {
         it('should initiate the date pickers', function () {
             this.pulsarForm.refresh();
 
-            expect($.fn.pikaday).to.have.been.called4times;
+            expect($.fn.pikaday).to.have.been.called;
         });
 
         it('should initiate time pickers', function () {

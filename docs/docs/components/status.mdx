@@ -1,0 +1,79 @@
+---
+id: status
+title: Status
+sidebar_label: Status
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Displays a small visual indication of state; helpful when used within table cells or piano list keys to avoid the need for a user to check many items individually to determine their state.
+
+Status indicators should ideally have some text which indicates their context. For example, they could be sat next to a text label called ‘Active’, or within a table column entitled ‘Online’. Try not to rely on this indicator alone.
+
+<div className="d-example">
+  <p><span data-tippy-placement="top" data-tippy-content="online" className="status is-online"><span className="hide">online</span></span> Online</p>
+  <p><i data-tippy-placement="top" data-tippy-content="online" className="icon-check-circle status--icon is-online"><span className="hide">online</span></i> Online with icon</p>
+  <p><span data-tippy-placement="top" data-tippy-content="offline" className="status is-offline"><span className="hide">offline</span></span> Offline</p>
+  <p><i data-tippy-placement="top" data-tippy-content="offline" className="icon-times-rectangle status--icon is-offline"><span className="hide">offline</span></i> Offline with icon</p>
+  <p><span data-tippy-placement="top" data-tippy-content="inactive" className="status is-inactive"><span className="hide">inactive</span></span> I am inactive</p>
+</div>
+
+## Basic usage
+
+:::tip
+The examples here are laid out using paragraphs, usually you will be using the status component inline with existing elements so you don’t need to copy the paragraphs.
+:::
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+<p>{{ html.status('online') }} Online</p>
+<p>{{ html.status('online', { icon: true }) }} Online with icon</p>
+<p>{{ html.status('offline') }} Offline</p>
+<p>{{ html.status('offline', { icon: true }) }} Offline with icon</p>
+<p>{{ html.status('inactive') }} I am inactive</p>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<p><span data-tippy-placement="top" data-tippy-content="online"  class="status is-online"><span class="hide">online</span></span> Online</p>
+<p><i data-tippy-placement="top" data-tippy-content="online"  class="icon-check-circle status--icon is-online"><span class="hide">online</span></i> Online with icon</p>
+<p><span data-tippy-placement="top" data-tippy-content="offline"  class="status is-offline"><span class="hide">offline</span></span> Offline</p>
+<p><i data-tippy-placement="top" data-tippy-content="offline"  class="icon-times-rectangle status--icon is-offline"><span class="hide">offline</span></i> Offline with icon</p>
+<p><span data-tippy-placement="top" data-tippy-content="inactive"  class="status is-inactive"><span class="hide">inactive</span></span> I am inactive</p>
+```
+
+</TabItem>
+</Tabs>
+
+## States
+
+* online (default)
+* offline
+* active
+* inactive
+
+Some states are simply synonyms of each other, the choice of verb will be defined by the context in which it is to be used.
+
+The ‘state’ will be used for both the title attribute, and for the stateful class name.
+
+```html
+<span class="status is-online" title="online"></span>
+```
+
+## Accessibility
+
+You may notice ‘offline’ uses a square instead of a circle, this is to visually distinguish it from the green ‘online’ status for red/green colourblind users as colour alone isn’t a reliable indicator of status. The title attribute is also added which is displayed on hover and for screen readers.
+
+ > …ensure that all users can access information that is conveyed by color differences, that is, by the use of color where each color has a meaning assigned to it. If the information is conveyed through color differences in an image (or other non-text format), the color may not be seen by users with color deficiencies. In this case, providing the information conveyed with color through another visual means ensures users who cannot see color can still perceive the information. [WCAG 2.0 Guideline 1.4.1](http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html)
