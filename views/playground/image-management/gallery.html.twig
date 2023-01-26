@@ -220,68 +220,104 @@
                         <img id="cropper-source" src="https://picsum.photos/300/200?random=a">
                     </div>
 
+                    <section class="actionsbar" aria-label="page actions">
+                    <div class="float--left">
+
+                    {{
+                        form.button_group({
+                            'class': 'u-margin-bottom--large js-cropper-dragmode',
+                            'label': 'Drag mode',
+                            'show-label': false,
+                            'items': [
+                                {
+                                    'id': 'crop',
+                                    'data-method': 'setDragMode',
+                                    'data-option': 'crop',
+                                    'label': html.icon('crop')  ~ ' Crop',
+                                    'name': 'dragMode',
+                                    'checked': true
+                                },
+                                {
+                                    'id': 'move',
+                                    'data-method': 'setDragMode',
+                                    'data-option': 'move',
+                                    'label': html.icon('move') ~ ' Move',
+                                    'name': 'dragMode'
+                                }
+                            ]
+                        })
+                    }}
+
+                    </div>
+                    <div class="float--right">
                     {{
                         html.button_group({
-                            'class': 'u-margin-bottom--large',
+                            'class': 'u-margin-bottom--large js-cropper-controls',
                             'buttons': [
                                 html.button({
-                                    'label': html.icon('move', {
-                                    'label': 'Text align: center' 
-                                    }) ~ ' Move' 
+                                    'data-method': 'move',
+                                    'data-option': '0',
+                                    'data-second-option': '-10',
+                                    'title': 'Move Up',
+                                    'label': html.icon('arrow-up') 
                                 }),
                                 html.button({
-                                    'label': html.icon('crop', {
-                                    'label': 'Text align: center' 
-                                    })  ~ ' Crop'
-                                }),
-                                html.button({
-                                    'label': html.icon('arrow-up', {
-                                    'label': 'Text align: center' 
-                                    }) 
-                                }),
-                                html.button({
+                                    'data-method': 'move',
+                                    'data-option': '0',
+                                    'data-second-option': '10',
+                                    'title': 'Move Down',
                                     'label': html.icon('arrow-down', {
                                     'label': 'Text align: left' 
                                     }) 
                                 }),
                                 html.button({
-                                    'label': html.icon('arrow-left', {
-                                    'label': 'Text align: center' 
-                                    }) 
+                                    'data-method': 'move',
+                                    'data-option': '-10',
+                                    'data-second-option': '0',
+                                    'title': 'Move Left',
+                                    'label': html.icon('arrow-left') 
                                 }),
                                 html.button({
-                                    'label': html.icon('arrow-right', {
-                                    'label': 'Text align: left' 
-                                    }) 
+                                    'data-method': 'move',
+                                    'data-option': '10',
+                                    'data-second-option': '0',
+                                    'title': 'Move Right',
+                                    'label': html.icon('arrow-right') 
                                 }),
                                 html.button({
-                                    'label': html.icon('magnifying-glass-minus', {
-                                    'label': 'Text align: center' 
-                                    }) 
+                                    'data-method': 'zoom',
+                                    'data-option': '-0.1',
+                                    'title': 'Zoom Out',
+                                    'label': html.icon('magnifying-glass-minus')
                                 }),
                                 html.button({
-                                    'label': html.icon('magnifying-glass-plus', {
-                                    'label': 'Text align: left' 
-                                    }) 
+                                    'data-method': 'zoom',
+                                    'data-option': '0.1',
+                                    'title': 'Zoom Out',
+                                    'label': html.icon('magnifying-glass-plus') 
                                 }),
                                 html.button({
-                                    'label': html.icon('rotate-left', {
-                                    'label': 'Text align: left' 
-                                    }) 
+                                    'data-method': 'rotate',
+                                    'data-option': '-90',
+                                    'title': 'Rotate Left',
+                                    'label': html.icon('rotate-left') 
                                 }),
                                 html.button({
-                                    'label': html.icon('rotate-right', {
-                                    'label': 'Text align: center' 
-                                    }) 
+                                    'data-method': 'rotate',
+                                    'data-option': '90',
+                                    'title': 'Rotate Right',
+                                    'label': html.icon('rotate-right') 
                                 }),
                                 html.button({
-                                    'label': html.icon('times', {
-                                    'label': 'Text align: center' 
-                                    }) ~ ' Reset'
+                                    'data-method': 'reset',
+                                    'title': 'Reset',
+                                    'label': html.icon('times') ~ ' Reset'
                                 })
                             ]
                         })
                     }}
+                    </div>
+                    </section>
 
                     <hr />
 
@@ -292,7 +328,7 @@
                                 'label': 'File name',
                                 'id': 'file-name',
                                 'class': 'form__group--full',
-                                'required': true,
+                                'disabled': true,
                                 'value': 'really_long_image_name_that_needs_handling.jpg'
                             })
                         }}
@@ -440,7 +476,7 @@
 
         $('[data-responsive-toggle]').removeClass('is-selected');
         $(this).addClass('is-selected');
-    });
+});
 </script>
 
 {% endblock tab_content %}
