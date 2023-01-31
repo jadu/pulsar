@@ -44,7 +44,7 @@ describe('NavMainComponent', function () {
                        </li>
                    </ul>
                </div>
-               <div class="nav-secondary nav-flyout" id="aria-secondary-nav">
+               <div class="nav-secondary nav-flyout" id="aria-secondary-nav" tabindex="0" aria-hidden="true">
                    <div class="nav-controls">
                        <button class="nav-controls__close" data-nav-action="close">x</button>
                    </div>
@@ -67,7 +67,7 @@ describe('NavMainComponent', function () {
                        </ul>
                    </div>
                </div>
-               <div class="nav-tertiary nav-flyout" id="aria-tertiary-nav">
+               <div class="nav-tertiary nav-flyout" id="aria-tertiary-nav" tabindex="0" aria-hidden="true">
                    <div class="nav-controls">
                        <button class="nav-controls__close" data-nav-action="close">x</button>
                    </div>
@@ -88,7 +88,7 @@ describe('NavMainComponent', function () {
                        </ul>
                    </div>
                </div>
-               <div class="nav-quaternary nav-flyout" id="aria-quaternary-nav">
+               <div class="nav-quaternary nav-flyout" id="aria-quaternary-nav" tabindex="0" aria-hidden="true">
                    <div class="nav-controls">
                        <button class="nav-controls__close-ltr" data-nav-action="close">x</button>
                    </div>
@@ -363,6 +363,10 @@ describe('NavMainComponent', function () {
             expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.true;
         });
 
+        it('should remove the aria-hidden attribute from the secondary container', function () {
+            expect(this.$html.find('.nav-secondary').attr('aria-hidden')).to.be.equal('false');
+        });
+
         it('should change aria-expanded false to true on the clicked link', function () {
             expect(this.$linkOne.attr('aria-expanded')).to.be.equal('true');
         });
@@ -462,6 +466,10 @@ describe('NavMainComponent', function () {
             expect(this.$linkOne.attr('aria-expanded')).to.be.equal('false');
         });
 
+        it('should set aria-hidden attribute to true for the secondary container', function () {
+            expect(this.$html.find('.nav-secondary').attr('aria-hidden')).to.be.equal('true');
+        });
+
         it('should remove the highlight from that sections primary nav item', function () {
             expect(this.$html.find('.nav-primary .nav-link').hasClass('is-active')).to.be.false;
         });
@@ -484,6 +492,18 @@ describe('NavMainComponent', function () {
 
         it('should close all sub navigations', function () {
             expect(this.$html.find('.nav-main div').hasClass('is-open')).to.be.false;
+        });
+
+        it('should set aria-hidden attribute to true for the secondary container', function () {
+            expect(this.$html.find('.nav-secondary').attr('aria-hidden')).to.be.equal('true');
+        });
+
+        it('should set aria-hidden attribute to true for the tertiary container', function () {
+            expect(this.$html.find('.nav-tertiary').attr('aria-hidden')).to.be.equal('true');
+        });
+
+        it('should set aria-hidden attribute to true for the quaternary container', function () {
+            expect(this.$html.find('.nav-quaternary').attr('aria-hidden')).to.be.equal('true');
         });
     });
 
@@ -526,6 +546,14 @@ describe('NavMainComponent', function () {
             this.$moreIconLink.trigger(this.clickEvent);
 
             expect(this.$html.find('.nav-tertiary').hasClass('is-open')).to.be.true;
+        });
+
+        it('should set aria-hidden attribute to true for the secondary container', function () {
+            expect(this.$html.find('.nav-secondary').attr('aria-hidden')).to.be.equal('true');
+        });
+
+        it('should set aria-hidden attribute to false for the tertiary container', function () {
+            expect(this.$html.find('.nav-tertiary').attr('aria-hidden')).to.be.equal('true');
         });
 
         it('should add the is-active class to nav-tertiary nav-list', function () {
@@ -609,6 +637,10 @@ describe('NavMainComponent', function () {
 
             it('should change the clicked links aria-expanded to true', function () {
                 expect(this.$tertiaryLink.attr('aria-expanded')).to.be.equal('true');
+            });
+
+            it('should set aria-hidden attribute to false for the quaternary container', function () {
+                expect(this.$html.find('.nav-quaternary').attr('aria-hidden')).to.be.equal('false');
             });
 
             it('should focus the quaternary nav close button', function () {

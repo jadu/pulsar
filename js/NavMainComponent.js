@@ -223,6 +223,9 @@ NavMainComponent.prototype.openSecondaryNav = function ($triggeringElement, even
     component.$navPrimary.find('.is-active').removeClass('is-active');
     component.$navPrimary.find('[href="' + target + '"], [data-target="' + target + '"]').addClass('is-active');
 
+    // Manage scrollable attributes
+    component.$navSecondary.attr('aria-hidden', 'false');
+
     // Manage focus
     component.focusManagementService.storeElement($triggeringElement);
     component.focusManagementService.focusFirstFocusableElement(component.$navSecondary);
@@ -243,6 +246,9 @@ NavMainComponent.prototype.openQuaternaryNav = function (target, $trigger) {
 
     // Show the target nav-list in the opened nav
     component.$navQuaternary.find('[data-nav="' + target + '"]').addClass('is-active');
+
+    // Manage scrollable attributes
+    component.$navQuaternary.attr('aria-hidden', 'false');
 
     // Manage focus
     component.focusManagementService.storeElement($trigger);
@@ -287,7 +293,8 @@ NavMainComponent.prototype.closeSecondaryNav = function (action) {
 
     component.$navMain.removeClass('is-open');
     component.$navMain.find('[aria-expanded=true]').attr( 'aria-expanded', 'false');
-    component.$navSecondary.removeClass('is-open');
+
+    component.$navSecondary.removeClass('is-open').attr('aria-hidden', 'true');
     component.$primaryNavLinks.removeClass('is-active');
     component.$navMain.find('.nav-item.is-active').removeClass('is-active');
     component.$navSecondary.find('.nav-list').removeClass('is-active');
@@ -318,7 +325,9 @@ NavMainComponent.prototype.closeSecondaryNav = function (action) {
 NavMainComponent.prototype.closeTertiaryNav = function () {
     var component = this;
 
-    component.$navTertiary.removeClass('is-open');
+    component.$navTertiary.removeClass('is-open')
+        .attr('aria-hidden', 'true');
+
     component.$navTertiary.find('.nav-list').removeClass('is-active');
 
     component.$navMain.find('[aria-expanded=true]')
@@ -337,6 +346,9 @@ NavMainComponent.prototype.closeQuaternaryNav = function (action) {
     component.$navQuaternary.removeClass('is-open');
     component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
     component.$navTertiary.find('[aria-expanded=true]').attr('aria-expanded', 'false');
+
+    // Manage scrollable attributes
+    component.$navQuaternary.attr('aria-hidden', 'true');
 
     if (action === undefined) {
         return;
@@ -552,8 +564,8 @@ NavMainComponent.prototype.moreIconClickHandler = function ($moreLink) {
     // If tertiary nav is already open
     if (component.$navTertiary.find('.nav-list').hasClass('is-active')) {
         $moreLink.attr('aria-expanded', 'false');
-        component.$navTertiary.removeClass('is-open');
-        component.$navQuaternary.removeClass('is-open');
+        component.$navTertiary.removeClass('is-open').attr('aria-hidden', 'true');
+        component.$navQuaternary.removeClass('is-open').attr('aria-hidden', 'true');
         component.$navTertiary.find('.nav-list').removeClass('is-active');
         component.$navQuaternary.find('.nav-list').removeClass('is-active');
     } else {
@@ -561,7 +573,7 @@ NavMainComponent.prototype.moreIconClickHandler = function ($moreLink) {
 
         // Open $navTertiary
         component.$navTertiary.find('.nav-list').addClass('is-active');
-        component.$navTertiary.addClass('is-open');
+        component.$navTertiary.addClass('is-open').attr('aria-hidden', 'false');
 
         // Manage focus
         component.focusManagementService.storeElement($moreLink);
