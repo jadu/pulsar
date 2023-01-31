@@ -325,9 +325,7 @@ NavMainComponent.prototype.closeSecondaryNav = function (action) {
 NavMainComponent.prototype.closeTertiaryNav = function () {
     var component = this;
 
-    component.$navTertiary.removeClass('is-open')
-        .attr('aria-hidden', 'true');
-
+    component.$navTertiary.removeClass('is-open').attr('aria-hidden', 'true');
     component.$navTertiary.find('.nav-list').removeClass('is-active');
 
     component.$navMain.find('[aria-expanded=true]')
