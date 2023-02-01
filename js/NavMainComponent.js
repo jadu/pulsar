@@ -341,12 +341,9 @@ NavMainComponent.prototype.closeTertiaryNav = function () {
 NavMainComponent.prototype.closeQuaternaryNav = function (action) {
     var component = this;
 
-    component.$navQuaternary.removeClass('is-open');
+    component.$navQuaternary.removeClass('is-open').attr('aria-hidden', 'true');
     component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
     component.$navTertiary.find('[aria-expanded=true]').attr('aria-expanded', 'false');
-
-    // Manage scrollable attributes
-    component.$navQuaternary.attr('aria-hidden', 'true');
 
     if (action === undefined) {
         return;
