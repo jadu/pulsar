@@ -786,7 +786,8 @@ fieldset.form__group {
             vertical-align: top;
         }
 
-        .form__control {
+        .form__control,
+        .select2 {
             margin-top: 5px;
 
             @include respond-min($screen-small) {
