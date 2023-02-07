@@ -51,6 +51,10 @@
     -webkit-font-smoothing: antialiased;
 }
 
+.icon-light {
+    font-weight: 400;
+}
+
 // Map Font Awesome 4 names to their FA5 variant
 // scss-lint:disable all
 .icon-android::before                   { font-family: $font-family-brands; } // android
