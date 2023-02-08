@@ -236,6 +236,10 @@ PulsarFormComponent.prototype.initSelect2 = function (target) {
             return $('<span>' + data.text + '</span>');
         }
 
+        if ($this.attr('data-search') == 'false') {
+            config.minimumResultsForSearch = 'Infinity';
+        }
+
         if ($this.data('html')) {
             config.templateResult = formatOption;
             config.templateSelection = formatOption;
