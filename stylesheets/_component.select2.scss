@@ -448,6 +448,10 @@
     background-color: color(primary);
     color: color(white);
 
+    [class*=icon-] {
+        color: color(white);
+    }
+
     &:focus {
         outline: none;
     }
