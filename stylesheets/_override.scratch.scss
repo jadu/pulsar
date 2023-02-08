@@ -1,0 +1,107 @@
+
+.widget-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .widgetDropper {
+        background-color: #fff;
+        box-shadow: inset 0 0 0 1px #bebebe;
+        border-radius: 4px;
+        list-style-type: none;
+        margin-bottom: 6px;
+        padding: 12px;
+        position: relative;
+        width: 100%;
+
+        &.is-selected {
+            background-color: color(info, light);
+        }
+
+        &::after {
+            background-image: url("/jadu/bundles/pulsar/images/grab-handle.svg");
+            background-repeat: no-repeat;
+            content: '';
+            cursor: move;
+            cursor: grab;
+            cursor: -webkit-grab;
+            display: block;
+            height: 16px;
+            position: absolute;
+            right: 5px;
+            top: 16px;
+            width: 12px;
+            z-index: 0;
+        }
+
+        &:focus {
+            background-color: color(background, focus);
+            border-radius: 0;
+            box-shadow: none;
+            color: color(black);
+            outline: 2px solid color(black);
+        }
+    }
+}
+
+
+.widget-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .widgetDropper {
+        background-color: #fff;
+        box-shadow: inset 0 0 0 1px #bebebe;
+        border-radius: 4px;
+        list-style-type: none;
+        margin-bottom: 6px;
+        padding: 12px;
+        position: relative;
+        width: 100%;
+
+        &.is-selected {
+            background-color: color(info, light);
+        }
+
+        &::after {
+            background-image: url("/jadu/bundles/pulsar/images/grab-handle.svg");
+            background-repeat: no-repeat;
+            content: '';
+            cursor: move;
+            cursor: grab;
+            cursor: -webkit-grab;
+            display: block;
+            height: 16px;
+            position: absolute;
+            right: 5px;
+            top: 16px;
+            width: 12px;
+            z-index: 0;
+        }
+
+        &:focus {
+            background-color: color(background, focus);
+            border-radius: 0;
+            box-shadow: none;
+            color: color(black);
+            outline: 2px solid color(black);
+        }
+    }
+}
+
+.settings-section__divider {
+    background-color: color(background, backdrop);
+    height: 18px;
+    margin: 20px -20px;
+}
+
+.settings-section {
+    position: relative;
+}
+
+.settings-section__toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
