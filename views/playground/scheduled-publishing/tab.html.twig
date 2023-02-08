@@ -1,0 +1,838 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Edit form',
+                        'href': '/edit',
+                        'icon': 'pencil'
+                    }
+                ],
+                [
+                    {
+                        'label': 'View CXM case',
+                        'href': '/cxm',
+                        'icon': 'arrow-right'
+                    },
+                    {
+                        'label': 'View payments',
+                        'href': '/paybridge',
+                        'icon': 'credit-card'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Download PDF',
+                        'href': '/download-pdf',
+                        'icon': 'file-pdf-o'
+                    },
+                    {
+                        'label': 'Export archive',
+                        'href': '/download-archive',
+                        'icon': 'file-archive-o'
+                    },
+                    {
+                        'label': 'Print',
+                        'href': '/print',
+                        'icon': 'print'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'View CXM Case',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{# {% block tab_header %}
+    Tab header goes here
+{% endblock tab_header %} #}
+
+{% block tab_settings %}
+
+    <div class="settings-section">
+
+    {{ html.icon('chevron-down', {'class': 'settings-section__toggle'}) }}
+    {{ form.fieldset_start({ 'legend': 'Publishing' }) }}
+    {{
+        form.compound({
+            'id': 'guid-' ~ random(),
+            'class': 'form__group--flush',
+            'inputs': [
+                {
+                    'class': 'form__control-col--6',
+                    'label': 'Live status',
+                    'id': random(),
+                    'show-label': false,
+                    'type': 'select2',
+                    'data-html': 'true',
+                    'data-search': 'false',
+                    'options': [
+                        {
+                            'label': html.icon('circle-check', {'class': 'text--success'}) ~ ' Live',
+                            'value': 'live'
+                        },
+                        {
+                            'label': html.icon('square-xmark', {'class': 'text--danger'}) ~ ' Offline',
+                            'value': 'offline'
+                        }
+                    ]
+                },
+                {
+                    'class': 'form__control-col--6',
+                    'label': 'Visibility',
+                    'id': random(),
+                    'show-label': false,
+                    'type': 'select2',
+                    'data-html': 'true',
+                    'data-search': 'false',
+                    'options': [
+                        {
+                            'label': html.icon('circle-check', {'class': 'text--success'}) ~ ' Visible',
+                            'value': 'visible'
+                        },
+                        {
+                            'label': html.icon('square-xmark', {'class': 'text--danger'}) ~ ' Invisible',
+                            'value': 'invisible',
+                            'selected': true
+                        }
+                    ]
+                }
+            ]
+            
+        })
+    }}
+    
+        {{
+            html.button({
+                'label': 'Assign Categories'
+            })
+        }}
+
+        {{
+            html.button({
+                'label': 'Assign Metadata'
+            })
+        }}
+
+    {{ form.fieldset_end() }}
+    </div>
+    <div class="settings-section settings-section--stacked u-padding-top-none">
+        {{ html.icon('chevron-down', {'class': 'settings-section__toggle'}) }}
+        {{ form.fieldset_start({ 'legend': 'Schedule' }) }}
+
+            {{
+                form.select({
+                    'label': 'Publish',
+                    'id': 'guid-' ~ random(),
+                    'prepend': html.icon('calendar-clock', {'class': 'icon-light icon-large'}),
+                    'options': [
+                        {
+                            'label': 'Immediately on Approval',
+                            'value': 'value1'
+                        },
+                        {
+                            'label': 'On Date',
+                            'value': 'value2'
+                        }
+                    ]
+                })
+            }}
+
+            {{
+                form.select({
+                    'label': 'Expire',
+                    'id': 'guid-' ~ random(),
+                    'prepend': html.icon('calendar-xmark', {'class': 'icon-light icon-large'}),
+                    'options': [
+                        {
+                            'label': 'Never',
+                            'value': 'value1'
+                        },
+                        {
+                            'label': 'On Date',
+                            'value': 'value2'
+                        }
+                    ]
+                })
+            }}
+
+            {{
+                form.select({
+                    'label': 'Review',
+                    'id': 'guid-' ~ random(),
+                    'prepend': html.icon('calendar-circle-user', {'class': 'icon-light icon-large'}),
+                    'options': [
+                        {
+                            'label': 'Follow default schedule (preferred)',
+                            'value': 'value1'
+                        },
+                        {
+                            'label': 'Never',
+                            'value': 'value2'
+                        },
+                        {
+                            'label': 'On date',
+                            'value': 'value2'
+                        },
+                        {
+                            'label': '3 months after publish date',
+                            'value': 'value2'
+                        },
+                        {
+                            'label': '6 months after publish date',
+                            'value': 'value2'
+                        },
+                        {
+                            'label': '12 months after publish date',
+                            'value': 'value2'
+                        }
+                    ]
+                })
+            }}
+
+            {{
+                form.compound({
+                    'id': 'guid-' ~ random(),
+                    'class': 'form__group--flush form__group--top',
+                    'label': 'Review Date',
+                    'inputs': [
+                        {
+                            'class': 'form__control-col--4',
+                            'label': 'Publish Date',
+                            'id': random(),
+                            'type': 'date',
+                            'show-label': false
+                        },
+                        {
+                            'class': 'form__control-col--4',
+                            'label': 'Time',
+                            'id': random(),
+                            'type': 'time',
+                            'show-label': false
+                        }
+                    ]
+                    
+                })
+            }}
+
+        {{ form.fieldset_end() }}
+    </div>
+    
+    <div class="settings-section settings-section--stacked">
+    {{ html.icon('chevron-down', {'class': 'settings-section__toggle'}) }}
+        <h1 class="settings-section__heading">Widgets</h1>
+
+        <div class="form__group form__group--full u-margin-bottom--large">
+            <label for="filter" class="hide">Filter widgets</label>
+            <div class="controls">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon icon-magnifying-glass" aria-hidden="true"></i></span>
+                    <input id="filter" type="search" class="form__control js-filter" placeholder="Start typing to filter widgets">
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div id="widgetFarm">
+            <ul class="widget-list" data-filter="">
+                <span class="text--danger" data-filter-message="" style="display: none;"><i aria-hidden="true" class="icon-info-sign"></i> No widgets found for current filter</span>
+                <li class="widgetDropper" id="NjE" tabindex="0" data-filter-name="content">
+                        Content
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowNjE" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowNjE"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MzIx" tabindex="0" data-filter-name="councillor search">
+                        Councillor search
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMzIx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMzIx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MzMx" tabindex="0" data-filter-name="custom content">
+                        Custom Content
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMzMx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMzMx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MjYx" tabindex="0" data-filter-name="directory search">
+                        Directory search
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMjYx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMjYx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="NDE" tabindex="0" data-filter-name="documents">
+                        Documents
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowNDE" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowNDE"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="Mjcx" tabindex="0" data-filter-name="esri map">
+                        ESRI Map
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMjcx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMjcx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MTgx" tabindex="0" data-filter-name="events calendar">
+                        Events calendar
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMTgx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMTgx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="Mjkx" tabindex="0" data-filter-name="external feed">
+                        External feed
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMjkx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMjkx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="Mjgx" tabindex="0" data-filter-name="gallery">
+                        Gallery
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMjgx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMjgx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MTcx" tabindex="0" data-filter-name="homepage banner">
+                        Homepage banner
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMTcx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMTcx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MjE" tabindex="0" data-filter-name="image">
+                        Image
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMjE" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMjE"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MTQx" tabindex="0" data-filter-name="latest news">
+                        Latest news
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMTQx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMTQx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MTUx" tabindex="0" data-filter-name="middle adverts">
+                        Middle adverts
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMTUx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMTUx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MjUx" tabindex="0" data-filter-name="multimedia">
+                        Multimedia
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMjUx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMjUx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MjMx" tabindex="0" data-filter-name="navigation">
+                        Navigation
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMjMx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMjMx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MjQx" tabindex="0" data-filter-name="opinion poll">
+                        Opinion poll
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMjQx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMjQx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MTYx" tabindex="0" data-filter-name="right adverts">
+                        Right adverts
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMTYx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMTYx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MzAx" tabindex="0" data-filter-name="site map">
+                        Site map
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMzAx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMzAx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MzE" tabindex="0" data-filter-name="sub-category links">
+                        Sub-category links
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMzE" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMzE"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MzEx" tabindex="0" data-filter-name="website statistics">
+                        Website statistics
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMzEx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMzEx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MTEx" tabindex="0" data-filter-name="what's new on site">
+                        What's new on site
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMTEx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMTEx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                                                                                                                                        <li class="widgetDropper" id="MTMx" tabindex="0" data-filter-name="what's on">
+                        What's on
+                        <div class="widgetActions">
+                            <div class="form__group form__group--full page-type-item__choices form__group--top form__group--flush js-addRowTarget">
+                                <label for="addToRowMTMx" class="control__label hide">Add to row</label>
+                                <div class="controls">
+                                    <select class="form__control select js-widgetActions-rows" id="addToRowMTMx"><option value="group1">Row 1</option><option value="group2">Row 2</option><option value="group3">Row 3</option><option value="group4">Row 4</option><option value="group5">Row 5</option></select>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary js-addToRow">Add</button>
+                            <button class="btn btn--naked js-cancelAddToRow">Cancel</button>
+                        </div>
+                    </li>
+                </ul>
+        </div>
+    </div>
+
+{% endblock tab_settings %}
+
+{% block tab_content %}
+        {{
+            form.text({
+                'id': 'guid-' ~ random(),
+                'label': 'Text',
+            })
+        }}
+
+        {{
+            form.textarea({
+                'id': 'guid-' ~ random(),
+                'label': 'Textarea'
+            })
+        }}
+
+        {{
+            form.password({
+                'id': 'guid-' ~ random(),
+                'label': 'Password',
+            })
+        }}
+
+        {{
+            form.date({
+                'data-pulsar-datepicker': 'true',
+                'id': 'guid-' ~ random(),
+                'label': 'Date',
+            })
+        }}
+
+        {{
+            form.time({
+                'id': 'guid-' ~ random(),
+                'label': 'Time'
+            })
+        }}
+
+        {{
+            form.file({
+                'id': 'guid-' ~ random(),
+                'label': 'File'
+            })
+        }}
+
+        {{
+            form.color({
+                'id': 'guid-' ~ random(),
+                'label': 'Color'
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'Select',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.select2({
+                'label': 'Select2',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Value one',
+                        'value': 'value1'
+                    },
+                    {
+                        'label': 'Value two',
+                        'value': 'value2'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.compound({
+                'label': 'Compound',
+                'id': 'guid-' ~ random(),
+                'inputs': [
+                    {
+
+                        'label': 'Value',
+                        'id': 'guid-' ~ random(),
+                        'maxlength': '3',
+                        'show-label': false,
+                        'type': 'text'
+                    },
+                    {
+                        'label': 'Unit of time',
+                        'id': 'guid-' ~ random(),
+                        'show-label': false,
+                        'type': 'select',
+                        'options': [
+                            {
+                                'label': 'Seconds',
+                                'value': 'sec'
+                            },
+                            {
+                                'label': 'Minutes',
+                                'value': 'min'
+                            }
+                        ]
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'id': 'guid-' ~ random(),
+                'label': 'Toggle switch'
+            })
+        }}
+
+        {{
+            form.range({
+                'id': 'guid-' ~ random(),
+                'label': 'Range'
+            })
+        }}
+
+        {{ form.fieldset_start({ 'legend': 'Legend' }) }}
+
+        {{
+            form.checkbox({
+                'id': 'guid-' ~ random(),
+                'label': 'Checkbox'
+            })
+        }}
+
+        {{
+            form.radio({
+                'id': 'guid-' ~ random(),
+                'label': 'Radio'
+            })
+        }}
+
+        {{
+            form.checkbox_inline({
+                'id': 'guid-' ~ random(),
+                'label': 'Checkbox inline'
+            })
+        }}
+
+        {{
+            form.radio_inline({
+                'id': 'guid-' ~ random(),
+                'label': 'Radio inline'
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice checkbox',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Checkbox One',
+                        'value': 'one',
+                        'name': 'one',
+                        'checked': true
+                    },
+                    {
+                        'label': 'Checkbox Two',
+                        'value': 'two',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Checkbox Three',
+                        'value': 'three',
+                        'name': 'one'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice radio',
+                'multiple': true,
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Radio One',
+                        'value': 'one',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Radio Two',
+                        'value': 'two',
+                        'name': 'one'
+                    },
+                    {
+                        'label': 'Radio Three',
+                        'value': 'three',
+                        'name': 'one'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Choice as select2',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': 'Select2 One',
+                        'value': 'one',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Two',
+                        'value': 'two',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Three',
+                        'value': 'three',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Four',
+                        'value': 'four',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Five',
+                        'value': 'five',
+                        'name': 'three'
+                    },
+                    {
+                        'label': 'Select2 Six',
+                        'value': 'six',
+                        'name': 'three'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'class': 'choice--block',
+                'label': 'Choice block radios',
+                'id': 'guid-' ~ random(),
+                'options': [
+                    {
+                        'label': html.icon('bold') ~ ' Bold',
+                        'value': 'bold',
+                        'name': 'five'
+                    },
+                    {
+                        'label': html.icon('italic') ~ ' Italic',
+                        'value': 'italic',
+                        'name': 'five',
+                        'checked': true
+                    },
+                    {
+                        'label': html.icon('underline') ~ ' Underline',
+                        'value': 'underline',
+                        'name': 'five'
+                    },
+                ]
+            })
+        }}
+
+        {{ form.fieldset_end() }}
+
+        {{
+            form.end({
+                'actions': [
+                    html.button({
+                        'label': 'Save',
+                        'class': 'btn--primary',
+                        'type': 'submit'
+                    }),
+                    html.button({
+                        'label': 'Cancel',
+                        'class': 'btn--naked'
+                    })
+                ]
+            })
+        }}
+
+{% endblock tab_content %}

@@ -1,0 +1,19 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set parentTitle = 'parentTitle' %}
+{% set heading = 'heading' %}
+
+{% set tab_one %}
+    {% include '/playground/scheduled-publishing/tab.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "responses",
+            "label" : "Form responses",
+            "src"   : tab_one,
+            "active": true
+        }
+    ]
+%}
