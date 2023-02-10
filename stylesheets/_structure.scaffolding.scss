@@ -27,10 +27,6 @@ body {
   position: relative;
   width: 100%;
 
-  @include respond-min($screen-small) {
-    padding: 0 0 $footer-height;
-  }
-
   @include ie-lte(8) {
     overflow: visible;
   }

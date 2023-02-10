@@ -13,14 +13,14 @@
     height: $footer-height;
     left: 0;
     padding: $footer-padding-vertical $gutter-width;
-    position: static;
+    position: relative;
     right: 0;
     transform: none;
     transition: transform 500ms ease;
     z-index: $zindex-footer;
 
     @include respond-min($screen-tablet) {
-        position: fixed;
+
     }
 
     @include respond-min($screen-desktop) {
