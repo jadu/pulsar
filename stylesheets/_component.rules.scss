@@ -66,7 +66,7 @@
     z-index: 1000;
 
     @include respond-min($screen-tablet) {
-        display: table;
+        // display: table;
         padding: 0 15px 0 0;
     }
 }
@@ -105,11 +105,12 @@
     @include respond-min($screen-tablet) {
         border-right: 1px solid #d1d1d1;
         border: 0;
-        display: table-cell;
+        bottom: 0;
         height: 100%;
-        padding: 0 10px;
+        padding: 12px 0 10px;
+        position: absolute;
+        top: 0;
         text-align: center;
-        vertical-align: middle;
         width: 95px;
     }
 }
@@ -551,11 +552,7 @@ td.table__form .rules + .form__group:last-of-type {
         color: color(white);
         font-family: $font-family-regular;
         font-size: $font-size-large;
-        padding: .5em;
-
-        @include respond-min($screen-tablet) {
-            padding: 0;
-        }
+        // padding: .5em;
     }
 
     .rule-block__heading {
@@ -668,10 +665,15 @@ td.table__form .rules + .form__group:last-of-type {
 
         .rule-block__header {
             background-color: $rule-color-return;
+            padding-top: 16px;
 
             @include respond-min($screen-tablet) {
                 border-bottom-left-radius: 14px;
             }
+        }
+
+        p {
+            margin-bottom: 14px;
         }
     }
 
@@ -699,7 +701,7 @@ td.table__form .rules + .form__group:last-of-type {
         margin-top: .5em;
 
         @include respond-min($screen-tablet) {
-            display: table-cell;
+            // display: table-cell;
             padding-top: .5em;
         }
     }
@@ -741,7 +743,7 @@ td.table__form .rules + .form__group:last-of-type {
 
 .rules-container--spaced {
     .rule-block__controls {
-        margin-left: $padding-base;
+        margin-left: 95px;
     }
 
     .rule-block + .rule-block {

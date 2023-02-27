@@ -73,74 +73,78 @@
 
     <div id="rule-form-container" class="rules-container rules-container--v2 rules-container--spaced rules-container--linear">
 
-        <div class="rule-block rule-block--if">
+        <div class="rule-block rule-block--if" id="step0">
             <div class="rule-block__header">
-                <span class="rule-block__heading">Step 1</span>
+                <span id="aria-heading[0]" class="rule-block__heading">Step 1</span>
             </div>
             <div class="rule-block__controls">
-                <h2 class="u-margin-bottom">Admin group: Administrators</h2>
-                <p class="u-margin-bottom-small">This workflow will be used when content created by these admins is sent for approval</p>
-
-                <div class="u-margin-bottom--large">
-                    <span class="label label--primary label--large">Sarah Backhouse <button class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button></span>
-                    <span class="label label--primary label--large">Paul Stanton <button class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button></span>
-                    <span class="label label--primary label--large">James Jacobs <button class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button></span>
-                </div>
-                
-                <div class="form__group form__group--large u-margin-bottom-none">
-                    <label for="select-1" class="control__label hide">Choose Administrator</label>
+                <h3 id="aria-title[0]" class="u-margin-bottom">Content Authors</h3>
+                <fieldset id="workflow-step-0" class="form__group form__group--top form__group--flush form__group--compound">
+                    <legend class="control__label" id="workflow-step-0[label]">This workflow will be used when content is created by these administrators</legend>
                     <div class="controls">
-                        <div class="input-group has-btn-appended">
-                            <select id="select-1" class="form__control select js-select2">
-                                <option value="">Choose admin</option>
-                                <option value="colour_red">Red</option>
-                                <option value="colour_blue">Blue</option>
-                            </select>
-                            <span class="input-group-btn">
-                                <button class="btn u-margin-bottom">Add Admin</button>
-                            </span>
-                        </div>
+                        <label for="privilege-level[0]" class="control__label hide">Privilege level</label>
+                        <select id="privilege-level[0]" aria-labelledby="aria-heading[0] aria-title[0]" class="form__control select js-select2 js-privilege-level privilege-level-select">
+                            <option value="1">
+                                Administrator (1)
+                            </option>
+                            <option value="2">
+                                Webmaster (2)
+                            </option>
+                        </select>
+
+                        <label for="workflow-level-admins[0]" class="control__label hide">Choose administrators</label>
+                        <select id="workflow-level-admins[0]" class="form__control js-select2 js-workflow-admins-select2 administrator-select" multiple="">
+                            <option value="1">Admin</option>
+                        </select>
                     </div>
-                </div>
+
+                    <input type="hidden" name="stepLevelIDs[]" id="stepLevelIDs[0]" value="0">
+                    <input type="hidden" name="stepPositions[]" value="0">
+                </fieldset>
             </div>
         </div>
 
-        <div class="rule-block rule-block--and">
+        <div class="rule-block rule-block--and" id="step1">
             <div class="rule-block__header">
                 <span class="rule-block__heading">Step 2</span>
             </div>
             <div class="rule-block__controls">
-                <h2 class="u-margin-bottom">Request approval from: Webmasters</h2>
-                <p class="u-margin-bottom-small">These admins will be asked to review and approve the content</p>
-
-                <div class="u-margin-bottom--large">
-                    <span class="label label--primary label--large">Suraj Kika <button class="btn remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button></span>
+                <div class="row-actions">
+                    <button type="button" class="btn row-action js-move-up" disabled=""><i class="icon-arrow-circle-up"><span class="hide">Move up</span></i></button><!--
+                    --><button type="button" class="btn row-action js-move-down" disabled=""><i class="icon-arrow-circle-down"><span class="hide">Move down</span></i></button><!--
+                    --><button type="button" class="btn remove-button js-remove-step"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button>
                 </div>
-                
-                <div class="form__group form__group--large u-margin-bottom-none">
-                    <label for="select-1" class="control__label hide">Choose Administrator</label>
+
+                <h3 class="u-margin-bottom">Reviewers</h3>
+                <fieldset id="workflow-step-1" class="form__group form__group--top form__group--flush form__group--compound">
+                    <legend class="control__label" id="workflow-step-1[label]">When content is submitted by the previous step, these admins will be asked for approval</legend>
                     <div class="controls">
-                        <div class="input-group has-btn-appended">
-                            <select id="select-1" class="form__control select js-select2">
-                                <option value="">Choose admin</option>
-                                <option value="colour_red">Red</option>
-                                <option value="colour_blue">Blue</option>
-                            </select>
-                            <span class="input-group-btn">
-                                <button class="btn u-margin-bottom">Add Admin</button>
-                            </span>
-                        </div>
+                        <label for="privilege-level[1]" class="control__label hide">Privilege level</label>
+                        <select id="privilege-level[1]" class="form__control select js-select2 js-privilege-level privilege-level-select" onchange="updateAvailableAdminsAfterLevelSelect(1); return false;" tabindex="-1" aria-hidden="true">
+                            <option value="1">
+                                Administrator (1)
+                            </option>
+                            <option value="2">
+                                Webmaster (2)
+                            </option>
+                        </select>
+
+                        <label for="workflow-level-admins[1]" class="control__label hide">Choose administrators</label>
+                        <select id="workflow-level-admins[1]" class="form__control js-select2 js-workflow-admins-select2 administrator-select" data-placeholder="-1" multiple="" tabindex="-1" aria-hidden="true">
+                            <option value="2">bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname</option>
+                            <option value="3">Charlie bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname bravo really longname </option>
+                        </select>
                     </div>
-                </div>
 
+                    <input type="hidden" name="stepLevelIDs[]" id="stepLevelIDs[1]" value="2">
+                    <input type="hidden" name="stepPositions[]" value="1">
+                </fieldset>
             </div>
-
-            <button data-action="remove" data-placement="left" data-toggle="tooltips" class="remove__control" title="Remove this item"><i class="icon-remove-sign"><span class="hide">Remove this item</span></i></button>
         </div>
 
         <div class="rule-links">
             <div class="rule-link rule-link--and">
-                <button class="btn" aria-label="Add a new step">add step</button>
+                <button type="button" class="btn js-add-step" data-step="2">add step</button>
             </div>
         </div>
 
@@ -149,11 +153,12 @@
                 <span class="rule-block__heading">End</span>
             </div>
             <div class="rule-block__controls">
-                <p class="u-margin-top-large u-margin-bottom--large">If approved, content can then be published. Any further changes will require re-approval.</p>
+                <p class="">If approved, content can then be published. Any further changes will require re-approval.</p>
             </div>
         </div>
-
     </div>
+
+    <br />
 
     <div class="form__actions form__actions--flush u-margin-top-large">
         <button type="submit" class="btn btn--primary">Save</button>
