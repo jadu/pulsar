@@ -20,7 +20,7 @@
     .remove-button {
         position: absolute;
         right: 5px;
-        top: 5px;
+        top: 2px;
 
         @include respond-min($screen-tablet) {
             top: 10px;
@@ -66,7 +66,6 @@
     z-index: 1000;
 
     @include respond-min($screen-tablet) {
-        // display: table;
         padding: 0 15px 0 0;
     }
 }
@@ -101,6 +100,7 @@
     background: #f5f5f5;
     border-bottom: 1px solid #d1d1d1;
     display: block;
+    padding-left: $padding-base-horizontal;
 
     @include respond-min($screen-tablet) {
         border-right: 1px solid #d1d1d1;
@@ -552,7 +552,6 @@ td.table__form .rules + .form__group:last-of-type {
         color: color(white);
         font-family: $font-family-regular;
         font-size: $font-size-large;
-        // padding: .5em;
     }
 
     .rule-block__heading {
@@ -665,10 +664,11 @@ td.table__form .rules + .form__group:last-of-type {
 
         .rule-block__header {
             background-color: $rule-color-return;
-            padding-top: 16px;
+            padding-top: 0;
 
             @include respond-min($screen-tablet) {
                 border-bottom-left-radius: 14px;
+                padding-top: 16px;
             }
         }
 
@@ -701,7 +701,6 @@ td.table__form .rules + .form__group:last-of-type {
         margin-top: .5em;
 
         @include respond-min($screen-tablet) {
-            // display: table-cell;
             padding-top: .5em;
         }
     }
@@ -743,7 +742,11 @@ td.table__form .rules + .form__group:last-of-type {
 
 .rules-container--spaced {
     .rule-block__controls {
-        margin-left: 95px;
+        margin-left: 0;
+
+        @include respond-min($screen-tablet) {
+            margin-left: 95px;
+        }
     }
 
     .rule-block + .rule-block {
