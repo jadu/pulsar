@@ -44,8 +44,9 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: PHPUnit tests
-      uses: php-actions/phpunit@9.5.0
+      uses: php-actions/phpunit@v3
       with:
         configuration: phpunit.xml.dist
         memory_limit: 256M
+        version: '9.5.0'
         php_version: '7.4'
