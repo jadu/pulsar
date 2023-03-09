@@ -48,4 +48,5 @@ jobs:
       with:
         configuration: phpunit.xml.dist
         memory_limit: 256M
+        version: '9.5.0'
         php_version: '7.4'
