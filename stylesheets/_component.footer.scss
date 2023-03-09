@@ -19,10 +19,6 @@
     transition: transform 500ms ease;
     z-index: $zindex-footer;
 
-    @include respond-min($screen-tablet) {
-
-    }
-
     @include respond-min($screen-desktop) {
         left: $nav-primary-width;
     }
