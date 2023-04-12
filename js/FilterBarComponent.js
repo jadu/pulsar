@@ -28,7 +28,7 @@ FilterBarComponent.prototype.init = function () {
         showFilterBar(component, $filterbar);
         populateFilterList($filterbar);
         showAddFilterPopover($filterbar);
-        showHideTruncation(component, $filterbar);
+        showHideTruncation(component);
         addFilter($filterbar);
         removeFilter($filterbar);
         clearAllFilters($filterbar);
