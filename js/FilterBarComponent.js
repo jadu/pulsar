@@ -28,6 +28,7 @@ FilterBarComponent.prototype.init = function () {
         showFilterBar(component, $filterbar);
         populateFilterList($filterbar);
         showAddFilterPopover($filterbar);
+        showHideTruncation(component, $filterbar);
         addFilter($filterbar);
         removeFilter($filterbar);
         clearAllFilters($filterbar);
@@ -499,7 +500,17 @@ function populateFilterList ($filterbar) {
         }
 
         if (filterValue !== '' && filterValue !== null && filterValue.length !== 0) {
-            $labelContainer.prepend('<span class="label label--large label--inverse label--removable" data-filter-id="' + _.escape(filterId) + '"><span class="label__text">' + _.escape(filterLabel) + _.escape(filterValue) + '</span><button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ _.escape(filterId) +'"><i class="icon-remove-sign"><span class="hide">Remove '+ _.escape(initalLabelText) +' filter</span></i></button></span>');
+
+            let value;
+
+            if (filterValue.length >= 40) {
+                value = '<span class="label__truncate--visible">' + _.escape(filterValue).substr(0, 40) + ' <button class="btn btn--small btn--white btn--outline" data-ui="filter-expand" aria-label="Show more: '+_.escape(initalLabelText)+'">more</button></span><span class="label__truncate--invisible u-display-none">' + _.escape(filterValue).substr(41) + ' <button class="btn btn--small btn--white btn--outline" data-ui="filter-collapse" class="u-display-none" aria-label="Show less: '+_.escape(initalLabelText)+'">less</button></span>';
+            }
+            else {
+                value = _.escape(filterValue);
+            }
+
+            $labelContainer.prepend('<span class="label label--large label--inverse label--removable" data-filter-id="'+ _.escape(filterId) +'"><span class="label__text">'+ _.escape(filterLabel) + value +'</span><button type="button" data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ _.escape(filterId) +'"><i class="icon-remove-sign"><span class="hide">Remove '+ _.escape(initalLabelText) +' filter</span></i></button></span>');
 
             // Keep track of how many filters have already been applied
             hiddenFormGroups++;
@@ -522,6 +533,28 @@ function populateFilterList ($filterbar) {
         if ($formGroups.length === hiddenFormGroups) {
             $addFilterButton.addClass('u-display-none');
         }
+    });
+}
+
+function showHideTruncation (component) {
+    component.$html.on('click', '[data-ui="filter-expand"]', function(e) {
+        e.preventDefault();
+
+        let $target = $(this).closest('.label__text');
+
+        $target.find('.label__truncate--invisible').removeClass('u-display-none');
+        $target.find('[data-ui="filter-expand"]').addClass('u-display-none');
+        $target.find('[data-ui="filter-collapse"]').removeClass('u-display-none').trigger('focus');
+    });
+
+    component.$html.on('click', '[data-ui="filter-collapse"]', function(e) {
+        e.preventDefault();
+
+        let $target = $(this).closest('.label__text');
+
+        $target.find('.label__truncate--invisible').addClass('u-display-none');
+        $target.find('[data-ui="filter-collapse"]').addClass('u-display-none');
+        $target.find('[data-ui="filter-expand"]').removeClass('u-display-none').trigger('focus');
     });
 }
 

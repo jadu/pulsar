@@ -40,7 +40,7 @@
             float: right;
 
             @include respond-min($screen-tablet) {
-                float: none;
+                // float: none;
             }
         }
     }
@@ -124,6 +124,23 @@
         display: table-cell;
         padding-right: 9em;
         vertical-align: top;
+    }
+
+    .label {
+        padding-right: 28px;
+        position: relative;
+        word-break: normal;
+        word-wrap: break-word;
+    }
+
+    .label__truncate--invisible {
+        white-space: normal;
+    }
+
+    .remove-button {
+        position: absolute;
+        right: 0;
+        top: 4px;
     }
 }
 
