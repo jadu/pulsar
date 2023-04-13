@@ -88,7 +88,7 @@
     "datatables.net-dt": "^1.13.3",
     "datatables.net-responsive": "^2.2.9",
     "datatables.net-responsive-dt": "^2.2.9",
-    "datatables.net-select": "^1.6.0",
+    "datatables.net-select": "^1.6.1",
     "datatables.net-select-dt": "^1.6.0",
     "input-length": "^1.0.1",
     "jquery": "^3.6.0",
