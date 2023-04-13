@@ -45,12 +45,12 @@ describe('FilterBarComponent', function () {
 			'					<input id="inStock" type="checkbox" class="form__control checkbox">' +
 			'				</div>' +
 			'			</div>' +
-            '		</fieldset>' +
-            '		<div class="form__actions">' +
-            '			<button type="submit" class="btn btn--primary js-submit-disable">Save</button>' +
-            '			<a href="#" class="btn btn--naked" data-ui="clear-all-filters">Clear</a>' +
-            '		</div>' +
-       		'	</form>' +
+			'		</fieldset>' +
+			'		<div class="form__actions">' +
+			'			<button type="submit" class="btn btn--primary js-submit-disable">Save</button>' +
+			'			<a href="#" class="btn btn--naked" data-ui="clear-all-filters">Clear</a>' +
+			'		</div>' +
+			'	</form>' +
 			'</div>'
 		).appendTo(this.$body);
 
@@ -62,9 +62,9 @@ describe('FilterBarComponent', function () {
 
 	afterEach(function () {
 		this.$body.empty();
-    });
+	});
 
-    describe('On init', function() {
+	describe('On init', function() {
 
 		beforeEach(function() {
 			this.filterBar.init();
@@ -203,19 +203,19 @@ describe('FilterBarComponent', function () {
 			this.filterBar.init();
 
 			this.$container.append(
-	            '<div class="popover">' +
-	            '	<ul class="filter-bar__list">' +
-	            '		<li>' +
-	            '    		<a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="inStock" data-filter-title="In Stock">In Stock</a>' +
-	            '		</li>' +
-	            '		<li>' +
-	            '    		<a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="colour" data-filter-title="Colour">Colour</a>' +
-	            '		</li>' +
-	            '	</ul>' +
-	            '</div>'
-	        );
+				'<div class="popover">' +
+				'	<ul class="filter-bar__list">' +
+				'		<li>' +
+				'			<a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="inStock" data-filter-title="In Stock">In Stock</a>' +
+				'		</li>' +
+				'		<li>' +
+				'			<a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="colour" data-filter-title="Colour">Colour</a>' +
+				'		</li>' +
+				'	</ul>' +
+				'</div>'
+			);
 
-	        this.$showFilterListButton = this.$container.find('[data-ui="show-filter-list"]');
+			this.$showFilterListButton = this.$container.find('[data-ui="show-filter-list"]');
 		});
 
 		it('should prevent the default behavior', function () {
@@ -240,7 +240,7 @@ describe('FilterBarComponent', function () {
 		describe('If the filter field type is a checkbox', function() {
 
 			beforeEach(function() {
-		        this.$popoverFilterLink = this.$container.find('.filter-bar__list [data-filter-id="inStock"]');
+				this.$popoverFilterLink = this.$container.find('.filter-bar__list [data-filter-id="inStock"]');
 			});
 
 			it('should add a label to the filter bar for the clicked filter', function () {
@@ -509,7 +509,7 @@ describe('FilterBarComponent', function () {
 			this.clickEvent2 = $.Event('click');
 			this.resetForm = sinon.spy();
 			this.$form = this.$container.find('form');
-        	this.$form[0].reset = this.resetForm;
+			this.$form[0].reset = this.resetForm;
 
 			this.filterBar.init();
 
