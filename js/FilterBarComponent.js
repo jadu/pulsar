@@ -504,7 +504,7 @@ function populateFilterList ($filterbar) {
             let value;
 
             if (filterValue.length >= 40) {
-                value = '<span class="label__truncate--visible">' + _.escape(filterValue).substr(0, 40) + ' <button class="btn btn--small btn--white btn--outline" data-ui="filter-expand" aria-label="Show more: '+_.escape(initalLabelText)+'">more</button></span><span class="label__truncate--invisible u-display-none">' + _.escape(filterValue).substr(41) + ' <button class="btn btn--small btn--white btn--outline" data-ui="filter-collapse" class="u-display-none" aria-label="Show less: '+_.escape(initalLabelText)+'">less</button></span>';
+                value = '<span class="label__truncate--visible">' + _.escape(filterValue).substr(0, 40).trimEnd() + ' <button class="btn btn--small btn--white btn--outline" data-ui="filter-expand" aria-label="Show more: '+_.escape(initalLabelText)+'">more</button></span><span class="label__truncate--invisible u-display-none">' + _.escape(filterValue).substr(40).trimStart() + ' <button class="btn btn--small btn--white btn--outline" data-ui="filter-collapse" class="u-display-none" aria-label="Show less: '+_.escape(initalLabelText)+'">less</button></span>';
             }
             else {
                 value = _.escape(filterValue);

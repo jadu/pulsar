@@ -30,6 +30,7 @@ describe('FilterBarComponent', function () {
 			'						<option value="small">Small</option>' +
 			'						<option value="medium">Medium</option>' +
 			'						<option value="large">Large</option>' +
+			'						<option value="long">Really long option which should trigger the expanding behaviour</option>' +
 			'					</select>' +
 			'				</div>' +
 			'			</div>' +
@@ -544,6 +545,18 @@ describe('FilterBarComponent', function () {
 
 		it('should reset the form', function () {
 			expect(this.resetForm).to.have.been.called;
+		});
+	});
+
+	describe('when a filter form has a long value on page load', function() {
+		beforeEach(function() {
+			this.$container.find('#size').val('long');
+		});
+
+		it('truncate the label at 40 characters', function () {
+			this.filterBar.init();
+
+			expect(this.$container.find('span[data-filter-id="size"] .label__text').html()).to.be.equal('Size: <span class="label__truncate--visible">Really long option which should trigger <button class="btn btn--small btn--white btn--outline" data-ui="filter-expand" aria-label="Show more: Size">more</button></span><span class="label__truncate--invisible u-display-none">the expanding behaviour <button class="btn btn--small btn--white btn--outline" data-ui="filter-collapse" aria-label="Show less: Size">less</button></span>');
 		});
 	});
 
