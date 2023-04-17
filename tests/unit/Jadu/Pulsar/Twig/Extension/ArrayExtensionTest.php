@@ -4,6 +4,11 @@ namespace Jadu\Pulsar\Twig\Extension;
 
 class ArrayExtensionTest extends \PHPUnit\Framework\TestCase
 {
+	public $loader;
+	public $env;
+	public $ext;
+	public $data;
+
 	public function setUp(): void
 	{
 		parent::setUp();
