@@ -51,5 +51,4 @@ jobs:
       with:
         configuration: phpunit.xml.dist
         memory_limit: 256M
-        version: '10.1.0'
         php_version: ${{ matrix.php-versions }}
