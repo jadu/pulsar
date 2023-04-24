@@ -4,6 +4,9 @@ namespace Jadu\Pulsar\Twig\Extension;
 
 class ConfigExtensionTest extends \PHPUnit\Framework\TestCase
 {
+    public $config;
+    public $ext;
+
     public function setUp(): void
     {
         parent::setUp();

@@ -4,7 +4,9 @@ namespace Jadu\Pulsar\Twig\Extension;
 
 class AttributeParserExtensionTest extends \PHPUnit\Framework\TestCase
 {
-   public function setUp(): void
+    public $ext;
+
+    public function setUp(): void
     {
         parent::setUp();
         $this->ext = new AttributeParserExtension(array());

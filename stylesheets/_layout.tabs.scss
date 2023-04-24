@@ -1,6 +1,5 @@
 .content-main {
     display: table;
-    min-height: 100%;
     padding: 0 $gutter-width;
     position: relative;
     table-layout: fixed; // needed to make datatable overflow work at small widths
@@ -41,7 +40,6 @@
     display: table;
     height: 100%;
     left: 0;
-    padding-bottom: 24px; // make sure content clears the footer
     position: relative;
     transform: none;
     transition: transform 500ms ease;

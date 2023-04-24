@@ -126,20 +126,16 @@
                 {% if parentTitle is defined and parentTitle is not empty %}
                     <span class="main-title">{{ parentTitle }}</span>
                 {% endif %}
-
-                {% set _ribbon = '' %}
-                {% set _ribbon = block('ribbon') %}
-
             </header>
 
             <div class="content-main">
                 <div class="tabs__content">
                     {% block header_actions %}{% endblock %}
-                    {% if _ribbon is not empty %}
+                    {% if block('ribbon') is defined %}
                         {% block ribbon_content %}
                             <div class="ribbon-wrapper">
                                 <section class="ribbon" aria-label="content summary">
-                                    {{ _ribbon|raw }}
+                                    {{ block('ribbon') }}
                                 </section>
                             </div>
                         {% endblock %}
