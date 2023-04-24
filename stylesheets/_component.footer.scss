@@ -22,7 +22,7 @@
 
     @include respond-min($screen-desktop) {
         left: $nav-primary-width;
-        width: calc(100% - $nav-primary-width);
+        width: calc(100% - #{$nav-primary-width});
     }
 
     .open-nav & {
@@ -30,7 +30,7 @@
             left: $nav-primary-width;
             -webkit-transform: none;
             transform: none;
-            width: calc(100% - $nav-primary-width);
+            width: calc(100% - #{$nav-primary-width});
         }
     }
 
@@ -39,7 +39,7 @@
             left: $nav-primary-width;
             -webkit-transform: none;
             transform: none;
-            width: calc(100% - $nav-primary-width);
+            width: calc(100% - #{$nav-primary-width});
         }
     }
 
