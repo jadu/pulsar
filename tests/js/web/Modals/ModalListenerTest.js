@@ -76,7 +76,7 @@ describe('ModalListener', () => {
             it('should not trap focus if the trigger is disabled', () => {
                 doClickOnDisabledTrigger();
 
-                expect(modalFocusService.trapFocus).to.have.been.notCalled;
+                expect(modalFocusService.trapFocus).to.not.have.been.called;
             });
 
             describe('when the modal is closed', () => {

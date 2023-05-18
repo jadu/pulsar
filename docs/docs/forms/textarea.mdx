@@ -1,0 +1,117 @@
+---
+id: textarea
+title: Textarea
+sidebar_label: Textarea
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generates a textarea with options to control the number of rows (the height) of the element as well as additional help and guidance information.
+
+:::info
+A textarea will default to two rows in height to differentiate themselves from regular text inputs.
+:::
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-1002650137" className="control__label">My label</label>
+    <div className="controls">
+      <textarea id="guid-1002650137" name="textarea-1" className="form__control textarea"></textarea>
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.textarea({
+    'label': 'My label',
+    'id': 'guid-' ~ random(),
+    'name': 'textarea-1'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-1002650137" class="control__label">My label</label>
+  <div class="controls">
+    <textarea id="guid-1002650137" name="textarea-1" class="form__control textarea"></textarea>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options. The following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| rows | integer | The number of horizontal rows of text used to control the height of the input (default 2) |
+
+## Rows
+
+The height of a textarea can be increased by defining a number of `rows` that suits your expected input. If you expect a lot of content, provide more rows.
+
+<div className="d-example">
+  <div className="form__group">
+    <label htmlFor="guid-1729276651" className="control__label">My label</label>
+    <div className="controls">
+      <textarea id="guid-1729276651" name="textarea-3" rows="5" className="form__control textarea"></textarea>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig {6}
+{{
+  form.textarea({
+    'label': 'My label',
+    'id': 'guid-' ~ random(),
+    'name': 'textarea-3',
+    'rows': 5
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div class="form__group">
+  <label for="guid-1729276651" class="control__label">My label</label>
+  <div class="controls">
+    <textarea id="guid-1729276651" name="textarea-3" rows="5" class="form__control textarea"></textarea>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>

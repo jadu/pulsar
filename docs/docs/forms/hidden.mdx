@@ -1,0 +1,48 @@
+---
+id: hidden
+title: Hidden
+sidebar_label: Hidden
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Generates a hidden text input which can be used to store non user-editable data.
+
+All presentational markup and classes will be removed from this input to prevent it from affecting the form layout. There is no need to supply a label.
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  form.hidden({
+    'id': 'hidden-1',
+    'name': 'hidden-1',
+    'value': 'horcrux'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<input id="hidden-1" name="hidden-1" value="horcrux" type="hidden" />
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options.

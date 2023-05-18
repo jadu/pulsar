@@ -1,0 +1,142 @@
+---
+id: badge
+title: Badge
+sidebar_label: Badge
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Badges can be used to highlight new or unread items, Limited usage is recommended, mainly for displaying numeric values in combination with other data to provide context. Do not use in place of labels, or any other similar element.
+
+<div className="d-example">
+  <span className="badge">123</span>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+    html.badge({
+        'label': '123'
+    })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Badge>123</Badge>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<span class="badge">123</span>
+```
+
+</TabItem>
+</Tabs>
+
+## Accessibility
+
+Badges strongly rely on the context in which they’re presented to properly communicate what the badge means. You should not rely on colour alone to indicate what a badge means.
+
+Ideally, treat badges as a secondary piece of information, which is visually associated with an obvious text label, or a screenreader friendly label.
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.button({
+    'label': 'Notifications ' ~
+      html.badge({
+        'label': '7'
+      })
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Button>
+  Notifications <Badge>7</Badge>
+</Button>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<button class="btn">Notifications <span class="badge">7</span></button>
+```
+
+</TabItem>
+</Tabs>
+
+### Screenreader friendly labels
+
+Badges may be confusing to users of screen readers and other assistive technologies where they may not be able to rely on visual cues or positioning to judge the context of the numbers.
+
+Unless an associated text label is close enough to make it clear what the badge is counting, such as ‘Notifications (8)’, consider adding additional information with a visually hidden label.
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'React', value: 'react', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.badge({
+    'label': '7 <span class="hide">unread items</span>',
+    'class': 'badge--danger'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+<Badge>7 <span className="hide">unread items</span></Badge>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<span class="badge badge--danger">7 <span class="hide">unread items</span></span>
+```
+
+</TabItem>
+</Tabs>

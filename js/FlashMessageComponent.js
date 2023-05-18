@@ -10,7 +10,7 @@ function FlashMessageComponent(html) {
 FlashMessageComponent.prototype.init = function () {
 
     var component = this,
-        prototype = '<div class="flash flash--default"><button class="close" data-dismiss="flash"><i class="icon-remove"></i></button></div>';
+        prototype = '<div class="flash flash--default"><button class="close" data-dismiss="flash"><i class="icon-remove"><span class="hide">Close</span></i></button></div>';
 
     component.$container = this.$html.find('.js-flash-container');
     component.$flashes = this.$html.find('.flash');
