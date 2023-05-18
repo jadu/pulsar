@@ -1,4 +1,6 @@
-<h2>Buttons</h2>
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+<h2>Normal buttons</h2>
+
 <table class="table lex-table">
     <thead>
         <tr>
@@ -153,6 +155,5 @@
             <td>{{ html.button({ 'label': 'Button', 'class': 'btn--white btn--small btn--naked'}) }}</td>
             <td>{{ html.button({ 'label': 'Button', 'class': 'btn--white btn--small btn--naked is-disabled'}) }}</td>
         </tr>
-        
     </tbody>
 </table>
