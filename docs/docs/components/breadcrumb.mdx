@@ -11,7 +11,17 @@ A basic helper to render a list of breadcrumb links. A view should set a `breadc
 
 <div className="d-example">
   <nav className="breadcrumb" aria-label="breadcrumbs">
-    <a href="#foo">foo</a> / <a href="#bar">bar</a> / <a href="#baz" aria-current="page">baz</a>
+     <ol>
+        <li>
+            <a href="#foo">foo</a>
+        </li>
+        <li>
+            <a href="#bar">bar</a>
+        </li>
+        <li>
+            <a href="#baz" aria-current="page">baz</a>
+        </li>
+    </ol>
   </nav>
 </div>
 
@@ -43,12 +53,24 @@ A basic helper to render a list of breadcrumb links. A view should set a `breadc
 <TabItem value="html">
 
 ```html
-<nav class="breadcrumb" aria-label="breadcrumbs">
-  <a href="#foo">foo</a> /
-  <a href="#bar">bar</a> /
-  <a href="#baz" aria-current="page">baz</a>
+<nav aria-label="breadcrumbs">
+    <ol>
+        <li>
+            <a href="#foo">foo</a>
+        </li>
+        <li>
+            <a href="#bar">bar</a>
+        </li>
+        <li>
+            <a href="#baz" aria-current="page">baz</a>
+        </li>
+    </ol>
 </nav>
 ```
 
 </TabItem>
 </Tabs>
+
+## Accessibility
+
+Refer to the [Jadu Accessibility Guidelines (internal)](http://accessibility-guide.ntn.jadu.net/components/breadcrumbs/) for detailed guidance on the accessibility requirements of this component.

@@ -4,6 +4,8 @@ namespace Jadu\Pulsar\Twig\Extension;
 
 class RelativeTimeExtensionTest extends \PHPUnit\Framework\TestCase
 {
+    public $ext;
+
     public function setUp(): void
     {
         parent::setUp();
