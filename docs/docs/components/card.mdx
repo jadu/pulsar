@@ -1,0 +1,256 @@
+---
+id: card
+title: Card
+sidebar_label: Card
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Cards are a flexible container for standout content with a range of configurable options for headers and footers, images and calls to action. 
+
+Cards can be sized and arranged using the common grid classes and respond well at small screen widths.
+
+<div className="d-example">
+  <div className="card">
+    <div className="card__body">
+        <h3 className="card__title">Card Title</h3>
+        <p>This is the card body, it should be helpful and descriptive.</p>
+        <a href="#cta" className="btn btn--primary">Call to Action</a>
+    </div>
+  </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="html"
+  values={[
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+
+<TabItem value="html">
+
+```html
+<div class="card">
+  <div class="card__body">
+    <h1 class="card__title">Card Title</h1>
+    <p>This is the card body, it should be helpful and descriptive.</p>
+    <a href="#cta" class="btn btn--primary">Call to Action</a>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Card components
+### Body
+
+At its most basic, a card can contain just a body.
+
+<div className="d-example">
+  <div className="card">
+    <div className="card__body">
+      <p>This is the card body, it should be helpful and descriptive.</p>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="html"
+  values={[
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+
+<TabItem value="html">
+
+```html
+<div class="card">
+  <div class="card__body">
+    <p>This is the card body, it should be helpful and descriptive.</p>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+### Headers and footers
+
+Add an optional header and/or footer within a card, you can choose whether or not to also include a card title.
+
+:::tip
+The card header can use any heading level or a regular inline element like `span` but it will maintain the same text size, you should choose the most appropriate element to mark up your header based on the context of your UI
+:::
+
+<div className="d-example">
+  <div className="card">
+    <div className="card__header">
+        <h3 className="card__heading">Card Heading</h3>
+    </div>
+    <div className="card__body">
+        <p>This is the card body, it should be helpful and descriptive.</p>
+        <a href="#cta-one" className="card-link">Card link</a>
+        <a href="#cta-two" className="card-link">Another link</a>
+    </div>
+    <div className="card__footer muted">
+        <p>Card footer</p>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="html"
+  values={[
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+
+<TabItem value="html">
+
+```html
+<div class="card">
+  <div class="card__header">
+    <h1 class="card__heading">Card Heading</h1>
+  </div>
+  <div class="card__body">
+    <p>This is the card body, it should be helpful and descriptive.</p>
+    <a href="#cta-one" class="card-link">Card link</a>
+    <a href="#cta-two" class="card-link">Another link</a>
+  </div>
+  <div class="card__footer muted">
+    <p>Card footer</p>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+### Titles, text and links
+
+A card can contain a `.card__title` using a heading element within the body. Like headers you should use the most approriate element based on your context.
+
+Links using the `.card-link` class will be spaced apart slightly.
+
+<div className="d-example">
+  <div className="card">
+    <div className="card__body">
+      <h3 className="card__title">Card Title</h3>
+      <p>This is the card body, it should be helpful and descriptive.</p>
+      <a href="#cta-one" className="card-link">Card link</a>
+      <a href="#cta-two" className="card-link">Another link</a>
+    </div>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="html"
+  values={[
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+
+<TabItem value="html">
+
+```html
+<div class="card">
+  <div class="card__body">
+    <h1 class="card__title">Card Title</h1>
+    <p>This is the card body, it should be helpful and descriptive.</p>
+    <a href="#cta-one" class="card-link">Card link</a>
+    <a href="#cta-two" class="card-link">Another link</a>
+  </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+### Images
+
+Images can be added to the top of a card, they will be automatically made to respond to the card width.
+
+Use `.card--full-bleed` on the `.card` to make the image cover the default border of the card.
+
+<div className="d-example u-float-left">
+  <div className="g-row">
+    
+<div className="card g-col g-col--8 g-col--first">
+  <img src="http://via.placeholder.com/600x250/ebebeb/000000?text=image" className="card-img" />
+  <div className="card__body">
+    <h1 className="card__title">Normal</h1>
+    <p>The image will be contained within the cards default border.</p>
+    <a href="#cta-one" className="card-link">Card link</a>
+    <a href="#cta-two" className="card-link">Another link</a>
+  </div>
+</div>
+
+<div className="card card--full-bleed g-col g-col--8">
+  <img src="http://via.placeholder.com/600x250/ebebeb/000000?text=image" className="card-img" />
+  <div className="card__body">
+    <h1 className="card__title">Full bleed</h1>
+    <p>This card uses <code>.card--full-bleed</code>, the difference is subtle.</p>
+    <a href="#cta-one" className="card-link">Card link</a>
+    <a href="#cta-two" className="card-link">Another link</a>
+  </div>
+</div>
+    
+  </div>
+</div>
+
+## Grid sizing
+
+Cards will be 100% width by default and can be modified using grid classes. Use `.g-row` divs to organise cards into rows until we get fancier with flexbox.
+
+Apply a grid width to a card with `class="card g-col--6"` (where `6` is the number of columns).
+
+<div className="d-example u-float-left">
+  <div className="g-row">
+
+<div className="card g-col g-col--6 g-col--first">
+    <div className="card__body">
+        <h3 className="card__title">Card Title</h3>
+        <p>This card uses six columns</p>
+        <a href="#cta" className="btn btn--primary">Call to Action</a>
+    </div>
+</div>
+
+<div className="card g-col g-col--10">
+    <div className="card__body">
+        <h3 className="card__title">Card Title</h3>
+        <p>This card uses 10 columns</p>
+        <a href="#cta" className="btn btn--primary">Call to Action</a>
+    </div>
+</div>
+
+  </div>
+</div>
+
+## Centering card contents
+
+Use `class="card u-text-align-center"` to make an entire card centered.
+
+<div className="d-example">
+<div className="card u-text-align-center">
+  <div className="card__header">
+    <p className="card__heading">Card Heading</p>
+  </div>
+  <div className="card__body">
+    <h1 className="card__title">Card Title</h1>
+    <p>This is the card body, it should be helpful and descriptive.</p>
+    <a href="#cta-one" className="card-link">Card link</a>
+    <a href="#cta-two" className="card-link">Another link</a>
+  </div>
+  <div className="card__footer muted">
+    <p>Card footer</p>
+  </div>
+</div>
+</div>

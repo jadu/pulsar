@@ -1,0 +1,136 @@
+---
+id: tooltips
+title: Tooltips
+sidebar_label: Tooltips
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Add floating labels that appear on hover or focus to provide supplemental or descriptive information.
+
+Apply a Tooltip to an element by adding `data-tippy-content="your tooltip text"`. Tooltips should only be added to elements that can gain focus (buttons, links and form controls).
+
+:::info
+These new WCAG 2.1 compliant tooltips were introduced in Pulsar 11. Details on the previous version which did not meet WCAG 2.1 are available on request.
+:::
+
+<div className="d-example">
+  <a href="#myLink" data-tippy-content="A wild tooltip appears!">Hover over me</a>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.link({
+    'href': '#myLink',
+    'label': 'Hover over me',
+    'data-tippy-content': 'A wild tooltip appears!'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<a href="#myLink" data-tippy-content="A wild tooltip appears!">Hover over me</a>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Default | Description |
+| ------ | ---- | ------- | ----------- |
+| `data-tippy-allowHTML` | boolean | false | Parse the tooltip content as HTML instead of plain text. Avoid doing this if your tooltip may contain user-supplied content as this could be used to create an XSS security vulnerability |
+| `data-tippy-appendTo` | string | body | Appends the popover to a specific element. Example: `body`. By default, tooltips are appended to the `body` element to prevent overflow issues |
+| `data-tippy-placement` | string | top | Where to place the popover, can be `top`, `bottom`, `left`, `right`. If a Tooltip cannot fit within its desired placement, it will instead display in the opposite position if there is not enough space |
+
+As Tooltips use the Tippy.js library, additional configuration options can be found in the [Tippy.js documentation](https://atomiks.github.io/tippyjs/all-props/) though these should generally not be needed. If other options not listed above are used, care should be taken to ensure none of the default Pulsar options that help Tooltips meet WCAG 2.1 are overridden (such as the `interactive` option).
+
+## Placement
+
+By default Tooltips display above the triggering element. If there isn't enough space, it will instead display in the opposite position (below the triggering element). You can change the default placement by using the `data-tippy-placement` attribute. Choose the most appropriate placement to fit your UI, try to avoid the tooltip from obscuring important things when it appears.
+
+<div className="d-example">
+  <div className="u-text-align-center">
+    <button type="button" className="btn btn-default" data-tippy-content="Tooltip on left" data-tippy-placement="left">Tooltip on left</button>&nbsp; <button type="button" className="btn btn-default" data-tippy-content="Tooltip on top">Tooltip on top</button>&nbsp; <button type="button" className="btn btn-default" data-tippy-content="Tooltip on bottom" data-tippy-placement="bottom">Tooltip on bottom</button>&nbsp; <button type="button" className="btn btn-default" data-tippy-content="Tooltip on right" data-tippy-placement="right">Tooltip on right</button>
+    </div>
+</div>
+
+## Tooltips on disabled elements
+
+If an element is disabled, you will need to use a wrapper element (`<span>` or `<div>`) made focuseable with `tabindex="0"`, and attach the tooltip to that element. Elements with the disabled attribute aren't interactive, meaning users cannot focus, hover, or click them to trigger a Tooltip.
+
+:::danger
+The tooltip will not be read by screenreaders and therefore this pattern should be avoided.
+:::
+
+<div className="d-example">
+  <div data-tippy-content="Can’t touch this" tabIndex="0" className="u-display-inline-block">
+    <button disabled className="btn is-disabled">Disabled Button</button>
+  </div>
+</div>
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+<div data-tippy-content="Can’t touch this" tabindex="0" class="u-display-inline-block">
+  {{ 
+    html.button({
+      "label": "Disabled Button",
+      "disabled": true
+    })
+  }}
+</div>
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<div data-tippy-content="Can’t touch this" tabindex="0" class="u-display-inline-block">
+  <button disabled class="btn is-disabled">Disabled Button</button>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Accessibility
+
+Tooltips should only be applied to natively focusable elements. Although you can make any element focusable with the `tabindex="0"` attribute this would add potentially confusing tab stops on non-interactive elements for keyboard users and is not recommended (the exception to this is for wrappers around disabled elements, which mimics the previously available keyboard focus on disabled elements).
+
+Tooltips generated using the methods detailed above meet the requirements of [WCAG 2.1 1.4.13: Content on Hover or Focus](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html), namely:
+
+<dl>
+  <dt>Dismissible</dt>
+  <dd>Tooltips can be dismissed with the <code>ESC</code> key</dd>
+  <dt>Hoverable</dt>
+  <dd>Tooltip content can be hovered without the tooltip disappearing</dd>
+  <dt>Persistent</dt>
+  <dd>Tooltips are shown until the hover or focus trigger is removed or the user dismisses it with the <code>ESC</code> key</dd>
+</dl>

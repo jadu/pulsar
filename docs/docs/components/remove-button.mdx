@@ -1,0 +1,61 @@
+---
+id: remove-button
+title: Remove Button
+sidebar_label: Remove Button
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Used by other helpers to add consistenly styled button to indicate an object can be removed. 
+
+<div className="d-example">
+  <button data-tippy-content="Remove this item" data-tippy-placement="right" type="button" data-action="remove" data-action-target="#itemToRemove" className="btn remove-button"><i className="icon-remove-sign"><span className="hide">Remove</span></i></button>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="twig"
+  values={[
+    { label: 'Twig', value: 'twig', },
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="twig">
+
+```twig
+{{
+  html.remove_button({
+    'target': '#itemToRemove'
+  })
+}}
+```
+
+</TabItem>
+<TabItem value="html">
+
+```html
+<button data-tippy-content="Remove this item" data-tippy-placement="right" type="button" data-action="remove" data-action-target="#itemToRemove" class="btn  remove-button"><i class="icon-remove-sign"><span class="hide">Remove</span></i></button>
+```
+
+</TabItem>
+</Tabs>
+
+## Helper options
+
+You can configure this helper using the common helper options, the following options are specific to this helper.
+
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| target | string | Selector of the item to be removed, will be turned into the `data-action-target` attribute |
+| type | string | Type of button to create, can be `button` (default), `link`, `input` or `submit` |
+
+## JavaScript hooks
+
+The following attributes are added to the button, you can use these in your own JavaScript methods when removing items.
+
+```html
+data-action="remove" data-action-target="#itemToRemove"
+```

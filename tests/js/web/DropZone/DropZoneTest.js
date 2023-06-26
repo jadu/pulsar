@@ -242,7 +242,7 @@ describe('DropZone', () => {
         it('set the data transfer flag to false if we cannot get a length', () => {
             dropZone.supportsDataTransfer = true;
             dropZone.handleWindowEnter(event);
-            expect(dropZone.supportsDataTransfer).to.equal.false;
+            expect(dropZone.supportsDataTransfer).to.be.false;
         });
 
         // partial stub
