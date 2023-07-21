@@ -19,14 +19,17 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['8.1']
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup PHP with PECL extension
+    - name: PHP ${{ matrix.php-versions }}
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: ${{ matrix.php-versions }}
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -48,4 +51,5 @@ jobs:
       with:
         configuration: phpunit.xml.dist
         memory_limit: 256M
-        php_version: '7.4'
+        version: '9.5.10'
+        php_version: ${{ matrix.php-versions }}
