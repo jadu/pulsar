@@ -1,0 +1,32 @@
+.accordion {
+  margin: 0;
+  padding: 0;
+}
+
+.accordion__trigger {
+  background: none;
+  border: 0;
+  color: color(text);
+  cursor: pointer;
+  left: 0;
+  outline: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+
+  &:hover + .accordion__title {
+    text-decoration: underline;
+  }
+}
+
+
+
+.accordion__panel {
+  margin: 0;
+  position: relative;
+}
+
+/* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
+.accordion__panel[hidden] {
+  display: none;
+}

@@ -25,6 +25,7 @@ var $                     = require('jquery'),
     dt_responsive = require('datatables.net-responsive')(window, $),
     dt_select     = require('datatables.net-select')(window, $),
 
+    AccordionComponent = require('./AccordionComponent'),
     ButtonComponent = require('./ButtonComponent'),
     DropdownButtonComponent = require('./DropdownButtonComponent'),
     DisableUiComponent = require('./DisableUiComponent'),
@@ -55,6 +56,7 @@ var $                     = require('jquery'),
 require('jstree');
 
 module.exports = {
+    AccordionComponent,
     ButtonComponent,
     DropdownButtonComponent,
     DropZoneComponentFactory,

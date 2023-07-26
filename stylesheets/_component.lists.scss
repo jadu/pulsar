@@ -60,3 +60,21 @@
         }
     }
 }
+
+.dl--horizontal {
+    display: grid;
+    grid-template-columns: 33% auto;
+
+    dt {
+        grid-column: 1;
+    }
+
+    dd {
+        grid-column: 2;
+    }
+
+    dd + dt,
+    dt:not(:first-child) + dd {
+        margin-top: .75em;
+    }
+}

@@ -1,4 +1,6 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
 {%- block actions_left -%}
     {{
@@ -60,177 +62,159 @@
 
 {% block tab_settings %}
 
-    <div class="settings-section">
-
-    {{ html.icon('chevron-down', {'class': 'settings-section__toggle'}) }}
-    {{ form.fieldset_start({ 'legend': 'Publishing' }) }}
-    {{
-        form.compound({
-            'id': 'guid-' ~ random(),
-            'class': 'form__group--flush',
-            'inputs': [
-                {
-                    'class': 'form__control-col--6',
-                    'label': 'Live status',
-                    'id': random(),
-                    'show-label': false,
-                    'type': 'select2',
-                    'data-html': 'true',
-                    'data-search': 'false',
-                    'options': [
-                        {
-                            'label': html.icon('circle-check', {'class': 'text--success'}) ~ ' Live',
-                            'value': 'live'
-                        },
-                        {
-                            'label': html.icon('square-xmark', {'class': 'text--danger'}) ~ ' Offline',
-                            'value': 'offline'
-                        }
-                    ]
-                },
-                {
-                    'class': 'form__control-col--6',
-                    'label': 'Visibility',
-                    'id': random(),
-                    'show-label': false,
-                    'type': 'select2',
-                    'data-html': 'true',
-                    'data-search': 'false',
-                    'options': [
-                        {
-                            'label': html.icon('circle-check', {'class': 'text--success'}) ~ ' Visible',
-                            'value': 'visible'
-                        },
-                        {
-                            'label': html.icon('square-xmark', {'class': 'text--danger'}) ~ ' Invisible',
-                            'value': 'invisible',
-                            'selected': true
-                        }
-                    ]
-                }
-            ]
-            
-        })
-    }}
-    
-        {{
-            html.button({
-                'label': 'Assign Categories'
-            })
-        }}
-
-        {{
-            html.button({
-                'label': 'Assign Metadata'
-            })
-        }}
-
-    {{ form.fieldset_end() }}
+<div id="accordionGroup" class="accordion">
+    <div class="settings-section accordion__panel">
+        <button type="button" aria-expanded="true" class="accordion__trigger" aria-controls="sect1" id="accordion1id">{{ html.icon('chevron-down', {'class': 'accordion__icon'}) }}</button>
+        <h2 class="accordion__title" id="accordion1title">Properties</h2>
+        <div id="sect1" role="region" aria-labelledby="accordion1title" class="accordion__content">
+            <dl class="dl--horizontal u-margin-bottom-none">
+                <dt>Status</dt>
+                <dd>
+                    {{ 
+                        html.label({ 
+                            'label': html.icon('check-circle') ~ ' Live',
+                            'class': 'label--success'
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': 'View live',
+                            'href': '#',
+                            'class': 'u-float-right'
+                        })
+                    }}
+                </dd>
+                
+                <dt>Page owner</dt>
+                <dd>Paul Stanton</dd>
+                
+                <dt>Created</dt>
+                <dd>4th July 2023 12:34</dd>
+                
+                <dt>Modified</dt>
+                <dd>
+                    5th July 2023 14:34
+                </dd>
+                <dd>
+                    {{
+                        html.link({
+                            'label': 'Preview changes',
+                            'href': '#'
+                        })
+                    }}
+                </dd>
+                
+                <dt>Categories</dt>
+                <dd>
+                    <ul class="u-margin-bottom-none">
+                        <li>Advice and Benefits</li>
+                        <li>Environment</li>
+                    </ul>
+                </dd>
+                <dd>
+                    {{
+                        html.link({
+                            'label': 'Manage categories',
+                            'href': '#'
+                        })
+                    }}
+                </dd>
+                
+                <dt>Keywords</dt>
+                <dd>Here, There, Everywhere</dd>
+                
+                <dt>Description</dt>
+                <dd>There description will have a lot of text and we will likely need to truncate</dd>
+                
+                <dt>URL</dt>
+                <dd>/advice-and-benefits/page-title</dd>
+                <dd>
+                    {{
+                        html.link({
+                            'label': 'Edit URL',
+                            'href': '#'
+                        })
+                    }}
+                </dd>
+            </dl>
+        </div>
     </div>
-    <div class="settings-section settings-section--stacked u-padding-top-none">
-        {{ html.icon('chevron-down', {'class': 'settings-section__toggle'}) }}
-        {{ form.fieldset_start({ 'legend': 'Schedule' }) }}
 
-            {{
-                form.select({
-                    'label': 'Publish',
-                    'id': 'guid-' ~ random(),
-                    'prepend': html.icon('calendar-clock', {'class': 'icon-light icon-large'}),
-                    'options': [
-                        {
-                            'label': 'Immediately on Approval',
-                            'value': 'value1'
-                        },
-                        {
-                            'label': 'On Date',
-                            'value': 'value2'
-                        }
-                    ]
-                })
-            }}
-
-            {{
-                form.select({
-                    'label': 'Expire',
-                    'id': 'guid-' ~ random(),
-                    'prepend': html.icon('calendar-xmark', {'class': 'icon-light icon-large'}),
-                    'options': [
-                        {
-                            'label': 'Never',
-                            'value': 'value1'
-                        },
-                        {
-                            'label': 'On Date',
-                            'value': 'value2'
-                        }
-                    ]
-                })
-            }}
-
-            {{
-                form.select({
-                    'label': 'Review',
-                    'id': 'guid-' ~ random(),
-                    'prepend': html.icon('calendar-circle-user', {'class': 'icon-light icon-large'}),
-                    'options': [
-                        {
-                            'label': 'Follow default schedule (preferred)',
-                            'value': 'value1'
-                        },
-                        {
-                            'label': 'Never',
-                            'value': 'value2'
-                        },
-                        {
-                            'label': 'On date',
-                            'value': 'value2'
-                        },
-                        {
-                            'label': '3 months after publish date',
-                            'value': 'value2'
-                        },
-                        {
-                            'label': '6 months after publish date',
-                            'value': 'value2'
-                        },
-                        {
-                            'label': '12 months after publish date',
-                            'value': 'value2'
-                        }
-                    ]
-                })
-            }}
-
-            {{
-                form.compound({
-                    'id': 'guid-' ~ random(),
-                    'class': 'form__group--flush form__group--top',
-                    'label': 'Review Date',
-                    'inputs': [
-                        {
-                            'class': 'form__control-col--4',
-                            'label': 'Publish Date',
-                            'id': random(),
-                            'type': 'date',
-                            'show-label': false
-                        },
-                        {
-                            'class': 'form__control-col--4',
-                            'label': 'Time',
-                            'id': random(),
-                            'type': 'time',
-                            'show-label': false
-                        }
-                    ]
-                    
-                })
-            }}
-
-        {{ form.fieldset_end() }}
+    <div class="accordion__panel settings-section settings-section--stacked u-padding-top-none">
+        <button type="button" class="accordion__trigger" aria-controls="sect2" id="accordion2id">{{ html.icon('chevron-down', {'class': 'accordion__icon'}) }}</button>
+            <h2 class="accordion__title" id="accordion2title">Publishing History</h2>
+            <div id="sect2" role="region" aria-labelledby="accordion2title" class="accordion__content">
+            <dl class="dl--horizontal u-margin-bottom-none">
+                <dt>Last approved</dt>
+                <dd>12th February 2023</dd>
+                <dd>
+                    {{
+                        html.link({
+                            'label': 'Compare versions',
+                            'href': '#'
+                        })
+                    }}
+                </dd>
+                <dd>
+                    {{
+                        html.link({
+                            'label': 'View content history',
+                            'href': '#'
+                        })
+                    }}
+                </dd>
+                
+                <dt>Publishing schedule</dt>
+                <dd>Make live on 1st April 2023 13:40</dd>
+                <dd>Take offline on 5th April 2023 00:00</dd>
+                <dd>
+                    {{
+                        html.link({
+                            'label': 'Manage',
+                            'href': '#'
+                        })
+                    }}
+                </dd>
+            </dl>
+        </div>
     </div>
-    
+
+    <div class="accordion__panel settings-section settings-section--stacked u-padding-top-none">
+        <button type="button" class="accordion__trigger" aria-controls="sect3" id="accordion3id">{{ html.icon('chevron-down', {'class': 'accordion__icon'}) }}</button>
+            <h2 class="accordion__title" id="accordion3title">Content Review</h2>
+            <div id="sect3" role="region" aria-labelledby="accordion3title" class="accordion__content">
+
+            <dl class="dl--horizontal u-margin-bottom-none">
+                <dt>Reviewers</dt>
+                <dd>{{ html.label({'label': 'W'}) }} Sarah Backhouse</dd>
+                <dd>{{ html.label({'label': 'W'}) }} Longname Longnamerson</dd>
+                <dd>
+                    {{
+                        html.link({
+                            'label': 'Add reviewer',
+                            'href': '#'
+                        })
+                    }}
+                </dd>
+                
+                <dt>Last reviewed</dt>
+                <dd>4th July 2023 12:34</dd>
+
+                <dt>Schedule</dt>
+                <dd>Every 6 months</dd>
+                <dd>
+                    {{
+                        html.link({
+                            'label': 'Manage',
+                            'href': '#'
+                        })
+                    }}
+                </dd>
+            </dl>
+        </div>
+    </div>{#
     <div class="settings-section settings-section--stacked">
-    {{ html.icon('chevron-down', {'class': 'settings-section__toggle'}) }}
+        {{ html.icon('chevron-down', {'class': 'accordion__icon'}) }}
         <h1 class="settings-section__heading">Widgets</h1>
 
         <div class="form__group form__group--full u-margin-bottom--large">
@@ -536,7 +520,8 @@
                     </li>
                 </ul>
         </div>
-    </div>
+    </div> #}
+</div>
 
 {% endblock tab_settings %}
 
