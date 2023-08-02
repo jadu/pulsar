@@ -1,7 +1,6 @@
 var $ = require('jquery');
 
 require('jquery-placeholder');
-
 function SignInComponent(html) {
 	this.$html = html;
 }
@@ -40,8 +39,6 @@ SignInComponent.prototype.init = function () {
 	component.animationEnd = 'webkitAnimationEnd oanimationend oAnimationEnd msAnimationEnd animationend';
 	component.transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
 	component.twoStepAttempt = 0;
-
-	component.motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
 
 	// Polyfill placeholder behaviour in oldIE
 	this.$html.find('input').placeholder();
