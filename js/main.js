@@ -49,7 +49,7 @@
         pulsar.pulsarSortable.init();
         pulsar.pulsarUI.init();
         pulsar.signIn.init();
-        pulsar.imageManagement.init();
+        // pulsar.imageManagement.init();
         pulsar.masterSwitch.init();
         pulsar.modulePermissions.init();
         pulsar.navMain.init();

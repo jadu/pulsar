@@ -5,23 +5,12 @@
 {%- endblock -%}
 
 {%- block actions_right -%}
-<div class="form__group form__group--full">
-    <div class="controls">
-        <div class="input-group has-btn-appended">
-            <select id="guid-961923431" class="form__control select" aria-labelledby="images-sort">
-                <option value="">Date uploaded (newest first)</option>
-                <option value="">Date uploaded (oldest first)</option>
-                <option value="">File name (A-Z)</option>
-                <option value="">File name (Z-A)</option>
-                <option value="colour_red">File size (largest first)</option>
-                <option value="colour_blue">File size (smallest first)</option>
-            </select>
-            <span class="input-group-btn">
-                <button id="images-sort" class="btn btn--outline">Sort</button>
-            </span>
-        </div>
-    </div>
-</div>
+{{
+    html.button({
+        'label': 'Create',
+        'class': 'btn--primary'
+    })
+}}
 {%- endblock -%}
 
 {% block tab_settings %}
@@ -146,52 +135,63 @@
 {% block tab_content %}
 
 <div class="viewmode-toggles">
+
     {{
-    form.button_group({
-        'label': 'Grid size',
-        'show-label': false,
-        'items': [
-            {
-                'id': 'responsive-small',
-                'label': html.icon('sharp icon-grid-5'),
-                'name': 'responsive-toggles',
-                'data-responsive-toggle': 'small',
-                'checked': true
-            },
-            {
-                'id': 'responsive-medium',
-                'label': html.icon('sharp icon-grid-3'),
-                'name': 'responsive-toggles',
-                'data-responsive-toggle': 'medium',
-            },
-            {
-                'id': 'responsive-large',
-                'label': html.icon('sharp icon-grid-2'),
-                'name': 'responsive-toggles',
-                'data-responsive-toggle': 'large'
-            }
-        ]
-    })
-}}
+        form.button_group({
+            'label': 'Grid size',
+            'show-label': false,
+            'items': [
+                {
+                    'id': 'responsive-small',
+                    'label': html.icon('sharp icon-grid-5'),
+                    'name': 'responsive-toggles',
+                    'data-responsive-toggle': 'small',
+                    'checked': true
+                },
+                {
+                    'id': 'responsive-medium',
+                    'label': html.icon('sharp icon-grid-3'),
+                    'name': 'responsive-toggles',
+                    'data-responsive-toggle': 'medium',
+                },
+                {
+                    'id': 'responsive-large',
+                    'label': html.icon('sharp icon-grid-2'),
+                    'name': 'responsive-toggles',
+                    'data-responsive-toggle': 'large'
+                }
+            ]
+        })
+    }}
+    {{
+        html.button_dropdown({
+            'label': html.icon('sort-numeric-asc') ~ ' <span class="viewmode-sort-label">Newest first</span>',
+            'placement': 'right',
+            'items': [
+                html.link({ 'label': html.icon('sort-numeric-asc') ~ 'Newest first', 'href': '#foo' }),
+                html.link({ 'label': html.icon('sort-numeric-desc') ~ 'Oldest first', 'href': '#foo' }),
+                html.divider(),
+                html.link({ 'label': html.icon('sort-alpha-asc') ~ 'Name (A-Z)', 'href': '#foo' }),
+                html.link({ 'label': html.icon('sort-alpha-desc') ~ 'Name (Z-A)', 'href': '#foo' }),
+                html.divider(),
+                html.link({ 'label': html.icon('sort-amount-asc') ~ 'Largest first', 'href': '#foo' }),
+                html.link({ 'label': html.icon('sort-amount-desc') ~ 'Smallest first', 'href': '#foo' }),
+            ]
+        })
+    }}
+
 </div>
 
-<div id="js-cards-grid" class="cards-flex">
-    <a class="card is-selected">
-        <img loading="lazy" src="https://picsum.photos/300/200?random=a" class="card-img">
-        <div class="card__body">
-            <small class="u-truncate u-margin-bottom-none">really_long_image_name_that_needs_handling.jpg</small>
-            <small class="u-truncate u-margin-bottom-none"><strong>1.23GB</strong> <span class="muted">image/jpeg</span></small>
-        </div>
-    </a>
+<div id="js-cards-grid" class="cards-flex hide">
 {% for i in 1..39 %}
     <a class="card">
-        <img loading="lazy" src="https://picsum.photos/300/200?random={{ i }}" class="card-img">
+        <img loading="lazy" src="https://picsum.photos/{{ random(200, 500) }}/{{ random(200, 500) }}?random=a" class="card-img">
         <div class="card__body">
             <small class="u-truncate u-margin-bottom-none">really_long_image_name_that_needs_handling.jpg</small>
             <small class="u-truncate u-margin-bottom-none"><strong>1.23GB</strong> <span class="muted">image/jpeg</span></small>
         </div>
     </a>
-{% endfor %}
+{% endfor %} 
 </div>
 
 <nav aria-label="Table pagination" class="pagination u-margin-top--large">
@@ -206,7 +206,7 @@
   </ul>
 </nav>
 
-<div class="modal modal--large" id="editModal" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="mdoal-description">
+<div class="modal modal--large show" id="editModal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="mdoal-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <form>
@@ -329,8 +329,23 @@
                                 'label': 'File name',
                                 'id': 'file-name',
                                 'class': 'form__group--full',
-                                'disabled': true,
-                                'value': 'really_long_image_name_that_needs_handling.jpg'
+                                'readonly': true,
+                                'value': 'really_long_image_name_that_needs_handling.jpg',
+                                'append': html.button({ 
+                                    'label': 'Replace Image',
+                                    'data-action': 'toggle',
+                                    'data-action-target': '#new-image'
+                                }),
+                                'append_type': 'button'
+                            })
+                        }}
+
+                        {{
+                            form.file({
+                                'label': 'Replacement image',
+                                'id': 'new-image',
+                                'help': 'Will replace all instances of this image on your website<br />Can be a .gif, .png, .jpeg, or .jpg image',
+                                'class': 'form__group--full hide'
                             })
                         }}
 
@@ -478,6 +493,42 @@
         $('[data-responsive-toggle]').removeClass('is-selected');
         $(this).addClass('is-selected');
 });
+
+var $image = $('#cropper-source');
+
+console.log($image);
+
+$image.cropper({
+  aspectRatio: 16 / 9,
+  crop: function(event) {
+    console.log(event.detail.x);
+    console.log(event.detail.y);
+    console.log(event.detail.width);
+    console.log(event.detail.height);
+    console.log(event.detail.rotate);
+    console.log(event.detail.scaleX);
+    console.log(event.detail.scaleY);
+  }
+});
+
+$('body').on('click', '[data-action=toggle]', function(e) {
+    e.preventDefault();
+    var $toggle = $(this),
+        $target = $($toggle.data('action-target')).parents('.form__group');
+
+    if ($target.hasClass('hide')) {
+        $target.removeClass('hide');
+        $toggle.text('Cancel');
+    } else {
+        $target.addClass('hide');
+        $toggle.text('Replace Image');
+    }
+});
+
+// Get the Cropper.js instance after initialized
+var cropper = $image.data('cropper');
+
+console.log(cropper);
 </script>
 
 {% endblock tab_content %}

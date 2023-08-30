@@ -1,0 +1,207 @@
+
+.cards-flex {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    margin: -10px;
+    transition: 2s;
+  }
+  
+  .cards-flex .card {
+    margin: 10px;
+    padding-bottom: 70px;
+    position: relative;
+  }
+  
+  .cards-flex .card:hover {
+    transform: scale(1.1);
+    transition-duration: .15s;
+  }
+  
+  .cards-flex .card-img {
+    width: 100%;
+    height: 100%;
+    max-height: 100px;
+    object-fit: contain;
+    object-position: 50% 0;
+   }
+  
+  .cards-flex .card__body {
+    background-color: white;
+    border: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+  
+  .cards-flex--small {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .cards-flex--small .card-img {
+    max-height: 100px;
+  }
+  
+  .cards-flex--medium {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .cards-flex--medium .card-img {
+    max-height: 200px;
+  }
+  
+  .cards-flex--large {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+
+  .cards-flex--large .card-img {
+    max-height: 300px;
+  }
+  
+  a.card {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .card.is-selected {
+    background-color: #edeef7;
+    border: 2px solid #3e4994;
+  }
+  
+  #cropper-source {
+    display: block;
+    /* This rule is very important, please don't ignore this */
+    min-width: 100%;
+  }
+  
+  .cropper-view-box {
+    border: 2px dashed #fff;
+  }
+  
+  .cropper-line {
+    background-color: #000;
+  }
+  
+  .viewmode-toggles {
+    display: none;
+    position: absolute;
+    top: 12px;
+    right: 19px;
+  }
+  
+  .viewmode-sort-label {
+    display: none;
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .viewmode-sort-label {
+      display: inline;
+      padding-left: 5px;
+    }
+  }
+  
+  @media screen and (min-width: 992px) {
+    .viewmode-toggles {
+        display: inline-block;
+    }
+  }
+  
+  .viewmode-toggles .control__label + .controls {
+    width: 100%;
+  }
+  
+  .viewmode-toggles .controls > .control__label {
+    background: none;
+  }
+  
+  .viewmode-toggles .form__button-group .form__control:checked + .control__label,
+  .viewmode-toggles .form__button-group .form__control:checked + .control__label:hover {
+    background-color: #e6e6e6;
+    color: #000;
+  }
+  
+  .viewmode-toggles .form__button-group .form__control:checked + .control__label::after,
+  .viewmode-toggles .form__button-group .form__control:checked + .control__label:hover::after {
+    background-color: #000;
+  }
+  
+  .viewmode-toggles .icon-square {
+    font-weight: 400;
+  }
+  
+  @media screen and (min-width: 480px) {
+    .metadata__key {
+        width: 27%;
+    }
+  }
+  
+  @media screen and (min-width: 480px) {
+    .metadata__value {
+        width: 70%;
+    }
+  }
+  
+  .u-truncate {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  .viewmode-toggles .btn__group,
+  .viewmode-toggles .form__group {
+      display: inline-flex;
+      width: auto;
+  }
+  
+  .pagination-length {
+    display: block;
+    float: none;
+    font-family: 12px;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+  }
+  
+  @media screen and (min-width: 767px) {
+    .pagination-length {
+      display: inline-block;
+      float: right;
+      margin: 5px 0 10px;
+      text-align: left;
+      width: auto;
+    }
+  }
+  
+  .pagination-length select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 49%, #000 49%), linear-gradient(135deg, #000 49%, transparent 49%), linear-gradient(to right, #efefef, #efefef);
+    background-position: calc(100% - 10px) calc(1em - 2px), calc(100% - 5px) calc(1em - 2px), 100% 0;
+    background-size: 5px 5px, 5px 5px, 22px 100%;
+    background-repeat: no-repeat;
+    border: 1px solid #7e7e7e;
+    border-radius: 0;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 30px 0 12px;
+  }
+  
+  .pagination-length select::-ms-expand {
+    display: none;
+  }
+  
+  @media screen and (-ms-high-contrast: active) {
+    .pagination-length select::-ms-expand {
+      display: block;
+    }
+  }
+  
+  .pagination-length select:focus {
+    border-color: #1e1e1e;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 2px #1e1e1e;
+    outline: 3px solid #fd0;
+    outline-offset: 0;
+  }
+  
