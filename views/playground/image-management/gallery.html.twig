@@ -163,6 +163,24 @@
             ]
         })
     }}
+
+    {{
+        html.button_dropdown({
+            'label': html.icon('calendar') ~ ' <span class="viewmode-sort-label">All time</span>',
+            'placement': 'left',
+            'items': [
+                html.link({ 'label': html.icon('calendar') ~ 'All time', 'href': '#foo' }),
+                html.divider(),
+                html.link({ 'label': html.icon('calendar') ~ 'Last 24 hours', 'href': '#foo' }),
+                html.link({ 'label': html.icon('calendar') ~ 'Last 48 hours', 'href': '#foo' }),
+                html.link({ 'label': html.icon('calendar') ~ 'Last 7 days', 'href': '#foo' }),
+                html.link({ 'label': html.icon('calendar') ~ 'Last 30 days', 'href': '#foo' }),
+                html.link({ 'label': html.icon('calendar') ~ 'Last 6 months', 'href': '#foo' }),
+                html.link({ 'label': html.icon('calendar') ~ 'Last 12 months', 'href': '#foo' }),
+            ]
+        })
+    }}
+
     {{
         html.button_dropdown({
             'label': html.icon('sort-numeric-asc') ~ ' <span class="viewmode-sort-label">Newest first</span>',
