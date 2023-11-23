@@ -90,7 +90,7 @@
     "datatables.net-select": "^1.6.2",
     "datatables.net-select-dt": "^1.6.2",
     "input-length": "^1.0.1",
-    "jquery": "^3.6.4",
+    "jquery": "^3.7.1",
     "jquery-countdown": "^2.2.0",
     "jquery-placeholder": "^2.3.1",
     "jquery-sticky": "^1.0.4",
