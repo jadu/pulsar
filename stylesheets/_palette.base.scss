@@ -217,8 +217,8 @@ $palette-states: (
             text:  darken($color-primary, 10)
         ),
         success: (
-            base:  lighten($color-success, 20),
-            alt:   pick_best_color(lighten($color-success, 20), ($color-text-light, $color-text-dark)),
+            base:  lighten($color-success, 25),
+            alt:   pick_best_color(lighten($color-success, 25), ($color-text-light, $color-text-dark)),
             light: lighten($color-success, 55),
             dark:  darken($color-success, 5),
             text:  lighten($color-success, 25),

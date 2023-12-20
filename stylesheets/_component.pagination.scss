@@ -1,6 +1,6 @@
 .pagination {
   @include clear-fix;
-  background-color: color(white);
+  background-color: color(background);
 
   // We assume pagination will always sit underneath an element, and that
   // element may or may not be floated
@@ -32,8 +32,8 @@
   li.selected {
     > a,
     > span {
-      background-color: darken(color(white), 10%);
-      color: color(text);
+      background-color: color(background, selected);
+      color: color(text, alt);
     }
 
     > a:focus {
@@ -51,7 +51,7 @@
 
   li:not(.is-disabled) {
     > a:hover {
-      background-color: darken(color(white), 5%);
+      background-color: darken(color(background), 5%);
       color: color(text);
     }
 

@@ -387,7 +387,8 @@ th.sorting_disabled:hover {
     }
 
     .paginate_button.current {
-        background-color: darken(color(white), 10%);
+        background-color: color(background, selected);
+        color: color(text);
 
         &:focus {
             @include pulsar-pagination-focused;
