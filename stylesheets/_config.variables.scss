@@ -19,6 +19,10 @@ $font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', 
 $background-gradient:                 url('../images/branding/central-gradient.svg');
 $signin-gradient:                     url('../images/branding/central-gradient-large.svg');
 
+@if $theme == 'darkside' {
+  $background-gradient: none;
+}
+
 // -----------------------------------------------------------------------------
 //  Typographic grid
 // -----------------------------------------------------------------------------

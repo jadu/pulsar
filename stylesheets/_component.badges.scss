@@ -32,7 +32,7 @@
         @if $state != 'base' {
             &.label--#{'' + $state} .badge {
                 background-color: $state-color !important;
-                color: pick_best_color($state-color, (#fff, color(text))) !important;
+                color: $state-color-alt !important;
             }
         }
     }
@@ -75,7 +75,7 @@ a.list-group-item.active > .badge,
         .badge--#{'' + $state},
         %badge--#{'' + $state} {
             background-color: $state-color;
-            color: pick_best_color($state-color, (#fff, color(text))) !important;
+            color: $state-color-alt !important;
 
             &.badge--outline {
                 border-color: $state-color;

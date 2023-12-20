@@ -6,7 +6,7 @@ fieldset {
 }
 
 .form {
-    background-color: color(white);
+    background-color: color(background);
 
     fieldset {
         padding: 22px 0;
@@ -333,7 +333,8 @@ fieldset {
 // default (mobile first) width should be 100%
 .form__control {
     @include placeholder(color(text, placeholder));
-    background-color: #fafafa;
+    background-color: color(background, light);
+    color: color(text);
     width: 100%;
 }
 
@@ -430,55 +431,55 @@ fieldset {
 
 .form__group:not(.form__group--partial-state) {
   &.has-changed {
-    @include form__group-validation($state-info-text, color(info, dark), $state-info-bg);
+    @include form__group-validation(color(info, text), color(info), color(info, background));
   }
 
   &.has-warning {
-    @include form__group-validation($state-warning-text, color(warning), $state-warning-bg);
+    @include form__group-validation(color(warning, text), color(warning), color(warning, background));
   }
 
   &.has-error {
-    @include form__group-validation($state-danger-text, color(danger), $state-danger-bg);
+    @include form__group-validation(color(danger, text), color(danger), color(danger, background));
   }
 
   &.has-success {
-    @include form__group-validation($state-success-text, color(success), $state-success-bg);
+    @include form__group-validation(color(success, text), color(success), color(success, background));
   }
 }
 
 .form__group--partial-state {
     &.has-changed {
-        @include form__group-partial-validation($state-info-text, color(info, dark));
+        @include form__group-partial-validation(color(info, text), color(info));
     }
 
     &.has-warning {
-        @include form__group-partial-validation($state-warning-text, color(warning));
+        @include form__group-partial-validation(color(warning, text), color(warning));
     }
 
     &.has-error {
-        @include form__group-partial-validation($state-danger-text, color(danger));
+        @include form__group-partial-validation(color(danger, text), color(danger));
     }
 
     &.has-success {
-        @include form__group-partial-validation($state-success-text, color(success));
+        @include form__group-partial-validation(color(success, text), color(success));
     }
 }
 
 .form__control {
     &.has-changed {
-        @include form__control-validation($state-info-text, color(info, dark), $state-info-bg);
+        @include form__control-validation(color(info, text), color(info), color(info, background));
     }
 
     &.has-warning {
-        @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
+        @include form__control-validation(color(warning, text), color(warning), color(warning, background));
     }
 
     &.has-error {
-        @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+        @include form__control-validation(color(danger, text), color(danger), color(danger, background));
     }
 
     &.has-success {
-        @include form__control-validation($state-success-text, color(success), $state-success-bg);
+        @include form__control-validation(color(success, text), color(success), color(success, background));
     }
 }
 
@@ -509,7 +510,7 @@ fieldset {
     .controls > .control__label {
         @extend %btn;
         border-right: 1px solid;
-        border-right-color: #fff;
+        border-right-color: color(background);
     }
 
     // Hide the inputs which drive the button group behaviour
@@ -582,7 +583,7 @@ fieldset {
 .form__control.checkbox.checkbox,
 .form__control.radio.radio {
     appearance: none;
-    background-color: #fafafa;
+    background-color: color(background);
     border: 1px solid color(border);
     height: 22px;
     overflow: hidden;
@@ -636,7 +637,7 @@ fieldset {
     }
 
     &:checked::before {
-        background-color: color(black);
+        background-color: color(text);
         border-radius: 12px;
         content: '';
         display: block;
@@ -738,7 +739,6 @@ fieldset {
 
 .form__group {
     .table tbody {
-        background-color: #fafafa;
         border-top: 1px solid color(border);
     }
 

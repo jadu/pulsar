@@ -5,6 +5,7 @@
 {% set cssPath  = base_path ~ 'css/' %}
 {% set imgPath  = base_path ~ 'images/' %}
 {% set jsPath   = base_path ~ 'js/' %}
+{% set pulsarTheme = (theme is defined and theme is not empty) ? theme : 'base' %}
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -36,7 +37,7 @@
     <meta name="msapplication-config" content="{{ imgPath }}favicons/cms/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
+    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-' ~ pulsarTheme ~ '.css' }}" />
     <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'lexicon.css' }}" />
 
     <script
@@ -101,6 +102,10 @@
                                 html.link({
                                     "label": html.icon('user') ~ " My details",
                                     "href": "#"
+                                }),
+                                html.link({
+                                    "label": html.icon('space-station-moon-construction') ~ " The dark side",
+                                    "href": "?theme=base"
                                 }),
                                 html.link({
                                     "label": html.icon('key') ~ " Change password",

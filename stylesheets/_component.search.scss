@@ -45,7 +45,7 @@ input.main-search__field {
     background-color: transparent;
     border: 0;
     box-sizing: border-box;
-    color: #555;
+    color: color(text);
     display: block;
     height: 38px;
     padding: 8.5px;
@@ -59,7 +59,7 @@ input.main-search__field {
     }
 
     &::-webkit-input-placeholder {
-        color: #555;
+        color: color(text, placeholder);
     }
 
     &:focus {
@@ -74,7 +74,7 @@ input.main-search__field::-ms-clear {
 .main-search__submit {
     background: none;
     border: 0;
-    color: #555;
+    color: color(text);
     padding: 1px 8px 0;
     position: absolute;
     right: 0;

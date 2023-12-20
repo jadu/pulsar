@@ -9,7 +9,7 @@
 
 .parent-title,
 .main-title {
-    color: color(jadu-purple);
+    color: color(text, heading);
     font-family: $font-family-heading;
     font-size: 1.5em;
     line-height: 32px;
@@ -128,7 +128,7 @@
 }
 
 .tab__content {
-    background-color: color(white);
+    background-color: color(background);
     margin-bottom: ($margin-large-vertical * 2);
     padding: 15px $gutter-width $gutter-width;
     width: auto;

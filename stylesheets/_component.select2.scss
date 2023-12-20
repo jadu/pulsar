@@ -78,7 +78,7 @@
 }
 
 .select2-dropdown {
-    background-color: white;
+    background-color: color(background);
     border: 1px solid $input-border;
     border-radius: 0;
     box-shadow: 0 0 0 $shadow-small color(background, shadow);
@@ -175,7 +175,7 @@
 }
 
 .select2-container--default .select2-selection--single {
-    background-color: #fafafa;
+    background-color: color(background, light);
     border: 1px solid $input-border;
     border-radius: $border-radius;
 }

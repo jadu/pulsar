@@ -8,7 +8,20 @@
     &:checked + .toggle-switch-label {
         background-color: color(success);
         border-color: transparent;
-        color: color(white);
+        color: color(success, alt);
+
+        @if $theme == 'darkside' {
+            background-color: color(white);
+            color: color(text);
+
+            &::before {
+                background-color: color(text, alt);
+            }
+
+            &::after {
+                color: color(text, alt);
+            }
+        }
 
         &::before {
             left: 50%;
@@ -25,7 +38,7 @@
         }
 
         &::after {
-            color: color(white);
+            color: inherit;
             opacity: 0;
         }
     }
@@ -48,10 +61,10 @@
 
 .toggle-switch-label {
     background-clip: padding-box;
-    background-color: color(grey);
+    background-color: color(background, dark);
     border-color: transparent;
     border-radius: 1.5em;
-    color: color(white);
+    color: color(text);
     cursor: pointer;
     display: inline-block;
     font-size: 2em;

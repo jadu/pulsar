@@ -54,7 +54,7 @@
   padding: 5px 0;
   margin: $shadow-small 0 0; // override default ul
   list-style: none;
-  background-color: $dropdown-bg;
+  background-color: color(background);
   box-shadow: 0 0 0 $shadow-small color(background, shadow);
   background-clip: padding-box;
 
@@ -88,7 +88,7 @@
     box-shadow: none;
     border-radius: 0;
     clear: both;
-    color: $dropdown-link-color;
+    color: color(text);
     display: block;
     font-weight: normal;
     line-height: $line-height-base;
@@ -116,7 +116,7 @@
   &.active {
     background-color: $dropdown-link-hover-bg;
     box-shadow: 0;
-    color: $dropdown-link-hover-color;
+    color: color(text, alt);
     text-decoration: none;
     transform: none;
   }
@@ -134,7 +134,7 @@
   &,
   &:hover {
     background-color: $dropdown-link-active-bg;
-    color: $dropdown-link-active-color;
+    color: color(text, alt);
     text-decoration: none;
     outline: 0;
   }

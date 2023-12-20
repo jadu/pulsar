@@ -36,12 +36,16 @@ $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
 $twig->addExtension(new Twig_Extension_Debug());
 
+$twig->addGlobal('theme', 'darkside');
+if (isset($_GET['theme'])) {
+	$twig->addGlobal('theme', $_GET['theme']);
+}
+
 if (strstr($_SERVER['PATH_INFO'], '.html.twig')) {
     $template = $twig->loadTemplate($_SERVER['PATH_INFO']);
 } else {
     $template = $twig->loadTemplate($_SERVER['PATH_INFO'] . '/index.html.twig');
 }
 
-// define('theme', 'projector');
 
 print $template->render(array());

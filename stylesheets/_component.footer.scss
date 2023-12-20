@@ -6,7 +6,7 @@
     -webkit-transform: none;
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
-    background-color: color(white);
+    background-color: color(background, light);
     border-top: $border-width solid color(gray, lightest);
     bottom: 0;
     font-size: $font-size-small;
@@ -69,4 +69,8 @@
     margin-right: 2px;
     text-indent: -9999px;
     width: $branding-footer-width;
+
+    @if $theme == 'darkside' {
+        filter: invert(100%);
+    }
 }

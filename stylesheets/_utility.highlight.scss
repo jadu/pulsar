@@ -1,8 +1,8 @@
 .hljs {
   display: block;
   overflow-x: auto;
-  background: #f8f8f8;
-  color: #4d4d4c;
+  background: color(background, light);
+  color: color(text);
   padding: .5em;
   -webkit-text-size-adjust: none;
 }

@@ -38,10 +38,10 @@
 .status--icon {
     &.is-active,
     &.is-online {
-        color: color(success);
+        color: color(success, text);
     }
 
     &.is-offline {
-        color: color(danger);
+        color: color(danger, text);
     }
 }

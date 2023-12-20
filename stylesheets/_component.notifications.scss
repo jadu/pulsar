@@ -48,7 +48,7 @@
 
     // Disable default button is-active styles
     &.is-active {
-        background-color: color(white);
+        background-color: color(background);
         color: color(text);
     }
 

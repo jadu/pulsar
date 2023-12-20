@@ -90,6 +90,11 @@
                 border-color: $state-color;
                 color: color($state, dark);
 
+                @if $theme == 'darkside' {
+                    border-color: $state-color;
+                    color: color($state, light);
+                }
+
                 &:hover {
                     background-color: $state-color;
                     color: $state-color-alt;

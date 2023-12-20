@@ -4,7 +4,7 @@
 
     .btn {
         border-right: 1px solid;
-        border-right-color: #fff;
+        border-right-color: color(background);
 
         // Restore expected borders for solo outline buttons only
         &.btn--outline:only-of-type {
@@ -35,7 +35,7 @@
         font-family: $font-family-regular;
 
         &::after {
-            background-color: color(white);
+            background-color: color(background);
             bottom: 4px;
             content: '';
             display: block;

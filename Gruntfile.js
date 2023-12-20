@@ -85,11 +85,29 @@ module.exports = function(grunt) {
             }
         },
 
+        header: {
+            base: {
+                options: {
+                    text: "$theme: 'base';"
+                },
+                files: {
+                    'stylesheets/pulsar-base.scss': 'stylesheets/pulsar.scss',
+                }
+            },
+            darkside: {
+                options: {
+                    text: "$theme: 'darkside';"
+                },
+                files: {
+                    'stylesheets/pulsar-darkside.scss': 'stylesheets/pulsar.scss',
+                }
+            }
+        },
+
         sass: {
             dev: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -104,7 +122,6 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     outputStyle: 'compressed'
                 },
                 files: [{
@@ -120,7 +137,6 @@ module.exports = function(grunt) {
             lexicon: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -133,7 +149,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
+        
         autoprefixer: {
             dev: {
                 options: {
@@ -143,7 +159,7 @@ module.exports = function(grunt) {
                 src:    'css/*.css'
             }
         },
-
+        
         scsslint: {
             allFiles: [
                 'stylesheets/**/*.scss',
@@ -153,7 +169,7 @@ module.exports = function(grunt) {
                 colorizeOutput: true
             },
         },
-
+        
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
@@ -176,14 +192,14 @@ module.exports = function(grunt) {
                 tasks: ['browserify:browserTests']
             }
         },
-
+        
         jshint: {
             options: {
-            jshintrc: '.jshintrc'
+                jshintrc: '.jshintrc'
             },
             all: ['js/**/*.js']
         },
-
+        
         mocha: {
             test: {
                 src: ['tests/**/*.html'],
@@ -193,7 +209,7 @@ module.exports = function(grunt) {
                 }
             },
         },
-
+        
         uglify: {
             concat: {
                 options: {
@@ -203,8 +219,8 @@ module.exports = function(grunt) {
                 files: {
                     'dist/js/<%= pkg.name %>.js': ['js/**/*.js']
                 }
-                },
-                minify: {
+            },
+            minify: {
                 options: {
                     banner: '<%= pkg.banner %>',
                     compress: true,
@@ -215,17 +231,17 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        
         asciify: {
             banner:{
-            text: '<%= pkg.name %>',
-            options: {
-                font: 'univers',
-                log: true
-            }
+                text: '<%= pkg.name %>',
+                options: {
+                    font: 'univers',
+                    log: true
+                }
             },
         },
-
+        
         copy: {
             dist: {
                 files: [{
@@ -242,13 +258,13 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
+        
         clean: {
             dist: ['dist'],
             favicons: ['views/pulsar/components/favicons-*.html'],
             smoketest: ['tmp/failures/*']
         },
-
+        
         bump: {
             options: {
                 updateConfigs: ['pkg'],
@@ -262,7 +278,7 @@ module.exports = function(grunt) {
                 pushTo: 'origin'
             }
         },
-
+        
         exec: {
             phantomcss: {
                 cmd: 'phantomjs tests/css/testsuite.js'
@@ -286,7 +302,7 @@ module.exports = function(grunt) {
                 cmd: 'git update-index --skip-worktree fonts/_config.fonts.scss'
             }
         },
-
+        
         realFavicon: {
             options: {
                 settings: {
@@ -460,7 +476,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        
         compress: {
             dist: {
                 options: {
@@ -473,7 +489,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
+        
         browserSync: {
             files: [
                 'css/*',
@@ -486,12 +502,12 @@ module.exports = function(grunt) {
                 reloadOnRestart: true,
                 watchTask: true
             }
-	    }
-
+        }
+        
     });
-
+    
     grunt.config.set('leadingIndent.indentation', 'spaces');
-
+    
     grunt.config.set('leadingIndent.files', {
         src : [
             'css/**/*',
@@ -502,9 +518,10 @@ module.exports = function(grunt) {
             'views/**/*'
         ]
     });
-
+    
     grunt.registerTask('default', [
         'copy',
+        'header',
         'scsslint',
         'sass:dev',
         'sass:lexicon',
@@ -514,13 +531,13 @@ module.exports = function(grunt) {
         'browserSync',
         'watch'
     ]);
-
+    
     grunt.registerTask('post-merge', [
         'exec:fixProximaNova',
         'sass:dev',
         'browserify'
     ]);
-
+    
     grunt.registerTask('build', [
         'scsslint',
         'sass:dist',
@@ -529,7 +546,7 @@ module.exports = function(grunt) {
         'copy:dist',
         'compress'
     ]);
-
+    
     grunt.registerTask('deploy', [
         'sass:dist',
         'autoprefixer',
@@ -537,12 +554,12 @@ module.exports = function(grunt) {
         'copy:dist',
         'compress'
     ]);
-
+    
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'
     ]);
-
+    
     grunt.registerTask('update', [
         'exec:updateComposer',
         'exec:updateBrew',
@@ -550,17 +567,17 @@ module.exports = function(grunt) {
         'exec:updateGems',
         'exec:updateNpm'
     ]);
-
+    
     grunt.registerTask('javascript:tests', [
         'browserify:browserTests',
     ]);
-
+    
     grunt.registerTask('javascript:tests:watch', [
         'browserify:browserTests',
         'watch:tests'
     ]);
-
+    
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
+    
 };

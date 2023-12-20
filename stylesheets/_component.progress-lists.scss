@@ -36,10 +36,10 @@
 
         @include respond-min($screen-tablet) {
             @include css-arrow(23px, right, $progress-bg);
-            border-right: 3px solid color(white);
+            border-right: 3px solid color(background);
 
             &::before {
-                border-left-color: color(white);
+                border-left-color: color(background);
                 border-width: 27px;
                 margin-left: 0;
                 margin-top: -27px;
@@ -86,7 +86,7 @@
 
     &:hover {
         background-color: $progress-bg-hover;
-        color: color(black);
+        color: color(text);
 
         &::after {
             border-top-color: $progress-bg-hover;
@@ -111,11 +111,11 @@
         }
 
         .progress-list__label {
-            color: color(black);
+            color: color(text);
         }
 
         .badge {
-            color: color(black) !important;
+            color: color(text) !important;
         }
     }
 }
@@ -123,7 +123,7 @@
 .progress-list__label {
     @include word-break-all;
 
-    color: color(black);
+    color: color(text);
     display: inline-block;
     position: relative;
     text-align: left;
@@ -208,7 +208,7 @@
     }
 
     .badge {
-        color: color(white) !important;
+        color: color(text, alt) !important;
     }
 
     .progress-list__label {

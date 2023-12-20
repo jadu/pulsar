@@ -8,6 +8,7 @@
 @include ie-lte(8) {
     html,
     body {
+        color: color(text);
         font-family: $font-family-fallback;
     }
 }

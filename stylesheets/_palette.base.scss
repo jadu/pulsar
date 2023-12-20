@@ -1,3 +1,57 @@
+@use 'sass:color';
+
+$color-brand-blue: hsl(232, 46, 83);
+$color-brand-green: hsl(84, 65, 44);
+$color-brand-pink: hsl(346, 67, 59);
+$color-brand-purple: hsl(232, 41, 41);
+$color-brand-red: hsl(360, 75, 43);
+$color-brand-teal: hsl(170, 42, 53);
+
+// BASE MONOCHROMES
+$color-mono: hsl(0, 0, 0);
+
+$color-mono-0: lighten($color-mono, 0%);
+$color-mono-10: lighten($color-mono, 10%);
+$color-mono-20: lighten($color-mono, 20%);
+$color-mono-30: lighten($color-mono, 30%);
+$color-mono-40: lighten($color-mono, 40%);
+$color-mono-50: lighten($color-mono, 50%);
+$color-mono-60: lighten($color-mono, 60%);
+$color-mono-70: lighten($color-mono, 70%);
+$color-mono-80: lighten($color-mono, 80%);
+$color-mono-90: lighten($color-mono, 90%);
+$color-mono-100: lighten($color-mono, 100%);
+
+// STATES
+$color-base: $color-mono-80;
+$color-primary: $color-brand-purple;
+$color-success: hsl(141, 50, 32);
+$color-warning: hsl(30, 75, 67);
+$color-danger: hsl(6, 55, 46);
+$color-info: $color-brand-blue; // was pale
+
+@if $theme == 'darkside' {
+    $color-primary: #fff;
+
+    $color-mono: hsl(232, 24, 20);
+
+    $color-mono-0: lighten($color-mono, 100%);
+    $color-mono-10: lighten($color-mono, 90%);
+    $color-mono-20: lighten($color-mono, 80%);
+    $color-mono-30: lighten($color-mono, 70%);
+    $color-mono-40: lighten($color-mono, 60%);
+    $color-mono-50: lighten($color-mono, 50%);
+    $color-mono-60: lighten($color-mono, 40%);
+    $color-mono-70: lighten($color-mono, 30%);
+    $color-mono-80: lighten($color-mono, 20%);
+    $color-mono-90: lighten($color-mono, 10%);
+    $color-mono-100: lighten($color-mono, 0%);
+}
+
+// TEXT
+$color-text-light: $color-mono-80;
+$color-text-dark: $color-mono-10;
+
 /* -------------------------------------------------------------------------- *\
     Base palettes
 
@@ -10,61 +64,61 @@
 
 $palette-branding: (
     jadu-purple: (
-        darkest:    darken(#3e4994, 10%),
-        dark:       darken(#3e4994, 7.5%),
-        base:       #3e4994,
-        light:      rgb(86, 96, 173),
-        pale:       rgb(104, 113, 183)
+        darkest:    darken($color-brand-purple, 20%),
+        dark:       darken($color-brand-purple, 10%),
+        base:       $color-brand-purple,
+        light:      lighten($color-brand-purple, 20%),
+        pale:       lighten($color-brand-purple, 30%)
     ),
     jadu-red: (
-        darkest:     rgb(115, 19, 19),
-        dark:        rgb(154, 23, 23),
-        base:        rgb(192, 28, 29),
-        light:       rgb(218, 32, 33),
-        pale:        rgb(231, 58, 34)
+        darkest:    darken($color-brand-red, 20%),
+        dark:       darken($color-brand-red, 10%),
+        base:       $color-brand-red,
+        light:      lighten($color-brand-red, 20%),
+        pale:       lighten($color-brand-red, 30%)
     ),
     jadu-blue: (
-        darkest:     darken(#c1c6e8, 10%),
-        dark:        darken(#c1c6e8, 5%),
-        base:        #c1c6e8,
-        light:       lighten(#c1c6e8, 5%),
-        pale:        lighten(#c1c6e8, 10%)
+        darkest:    darken($color-brand-blue, 20%),
+        dark:       darken($color-brand-blue, 10%),
+        base:       $color-brand-blue,
+        light:      lighten($color-brand-blue, 5%),
+        pale:       lighten($color-brand-blue, 10%)
     ),
     jadu-green: (
-        darkest:     rgb(81, 116, 35),
-        dark:        rgb(107, 156, 47),
-        base:        rgb(128, 186, 39),
-        light:       rgb(164, 200, 88),
-        pale:        rgb(189, 214, 134)
+        darkest:    darken($color-brand-green, 20%),
+        dark:       darken($color-brand-green, 10%),
+        base:       $color-brand-green,
+        light:      lighten($color-brand-green, 20%),
+        pale:       lighten($color-brand-green, 30%)
     ),
     jadu-teal: (
-        darkest:     rgb(51, 115, 104),
-        dark:        rgb(69, 154, 140),
-        base:        rgb(84, 185, 169),
-        light:       rgb(134, 201, 191),
-        pale:        rgb(140, 210, 202)
+        darkest:    darken($color-brand-teal, 20%),
+        dark:       darken($color-brand-teal, 10%),
+        base:       $color-brand-teal,
+        light:      lighten($color-brand-teal, 20%),
+        pale:       lighten($color-brand-teal, 30%)
     ),
     jadu-pink: (
-        darkest:     rgb(137, 50, 71),
-        dark:        rgb(183, 67, 95),
-        base:        rgb(220, 81, 114),
-        light:       rgb(224, 105, 133),
-        pale:        rgb(239, 180, 195)
+        darkest:    darken($color-brand-pink, 20%),
+        dark:       darken($color-brand-pink, 10%),
+        base:       $color-brand-pink,
+        light:      lighten($color-brand-pink, 20%),
+        pale:       lighten($color-brand-pink, 30%)
     )
 );
 
 $palette-monochromes: (
-    white: (base:   rgb(255, 255, 255)),
-    black: (base:   rgb(30, 30, 30)),
+    white: (base:   #c9c9c9), // immutable
+    black: (base:   #1b2127), // immutable
     gray:  (
-        darker:      rgb(62, 62, 62),
-        dark:        rgb(95, 95, 95),
-        dull:        rgb(110, 110, 110),
-        base:        rgb(126, 126, 126),
-        light:       rgb(157, 157, 157),
-        lighter:     rgb(190, 190, 190),
-        lightest:    rgb(222, 222, 222),
-        off-white:   rgb(239, 239, 239)
+        darker:      $color-mono-20,
+        dark:        $color-mono-30,
+        dull:        $color-mono-40,
+        base:        $color-mono-50,
+        light:       $color-mono-60,
+        lighter:     $color-mono-70,
+        lightest:    $color-mono-80,
+        off-white:   $color-mono-90
     )
 );
 
@@ -73,67 +127,153 @@ $palette-monochromes: (
 
     The colour and its alternate MUST meet WCAG 2.0 AA compliance for contrast
 \* -------------------------------------------------------------------------- */
-
 $palette-states: (
     base: (
-        base:  map-get(map-get($palette-monochromes, gray), lightest),
-        alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), lightest), (#fff, #000)),
-        light: lighten(map-get(map-get($palette-monochromes, gray), lightest), 5),
-        dark:  map-get(map-get($palette-monochromes, gray), darker)
+        base:  $color-mono-80,
+        alt:   pick_best_color($color-mono-80, ($color-text-light, $color-text-dark)),
+        light: $color-mono-90,
+        dark:  $color-mono-30,
+        text:  $color-mono-10
     ),
     primary: (
-        base:  map-get(map-get($palette-branding, jadu-purple), base),
-        alt:   #fff,
-        light: map-get(map-get($palette-branding, jadu-purple), light),
-        dark:  map-get(map-get($palette-branding, jadu-purple), dark)
+        base:  $color-primary,
+        alt:   pick_best_color($color-primary, ($color-text-light, $color-text-dark)),
+        light: lighten($color-primary, 20),
+        dark:  darken($color-primary, 10),
+        text:  darken($color-primary, 10)
     ),
     success: (
-        base:  #297c46,
-        alt:   pick_best_color(#297c46, (#fff, #000)),
-        light: lighten(#297c46, 55),
-        dark:  darken(#297c46, 5)
+        base:  $color-success,
+        alt:   pick_best_color($color-success, ($color-text-light, $color-text-dark)),
+        light: lighten($color-success, 55),
+        dark:  darken($color-success, 5),
+        text:  darken($color-success, 5),
+        background: #dff0d8
     ),
     warning: (
-        base:  #eaa96a,
-        alt:   pick_best_color(#eaa96a, (#fff, #000)),
-        light: lighten(#eaa96a, 25),
-        dark:  darken(#eaa96a, 35)
+        base:  $color-warning,
+        alt:   pick_best_color($color-warning, ($color-text-light, $color-text-dark)),
+        light: lighten($color-warning, 25),
+        dark:  darken($color-warning, 35),
+        text:  darken($color-warning, 35),
+        background: #fcf8e3
     ),
     danger: (
-        base:  #b64135,
-        alt:   pick_best_color(#b64135, (#fff, #000)),
-        light: lighten(#b64135, 40),
-        dark:  darken(#b64135, 5)
+        base:  $color-danger,
+        alt:   pick_best_color($color-danger, ($color-text-light, $color-text-dark)),
+        light: lighten($color-danger, 40),
+        dark:  darken($color-danger, 5),
+        text:  darken($color-danger, 5),
+        background: #faefef
     ),
     info: (
-        base:  map-get(map-get($palette-branding, jadu-blue), pale),
-        alt:   pick_best_color(map-get(map-get($palette-branding, jadu-blue), pale), (#fff, #000)),
-        light: lighten(map-get(map-get($palette-branding, jadu-blue), pale), 15),
-        dark:  darken(map-get(map-get($palette-branding, jadu-blue), pale), 40)
+        base:  $color-info,
+        alt:   pick_best_color($color-info, ($color-text-light, $color-text-dark)),
+        light: lighten($color-info, 15),
+        dark:  darken($color-info, 40),
+        text:  darken($color-info, 40),
+        background: #d9edf7
     ),
     inverse: (
-        base:  map-get(map-get($palette-monochromes, gray), darker),
-        alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000)),
-        light: lighten(map-get(map-get($palette-monochromes, gray), darker), 60),
-        dark:  map-get(map-get($palette-monochromes, gray), darker)
+        base:  $color-mono-0,
+        alt:   pick_best_color($color-mono-0, ($color-text-light, $color-text-dark)),
+        light: lighten($color-mono-0, 60),
+        dark:  $color-mono-20,
+        text:  $color-mono-20
     ),
     white: (
         base:  #fff,
-        alt:   map-get(map-get($palette-monochromes, gray), darker),
+        alt:   #000,
         light: #fff,
-        dark:  map-get(map-get($palette-monochromes, gray), off-white)
+        dark:  #ccc,
+        text:  #fff
     ),
     new: (
-        base:  #f0f5fd,
-        alt:   #000,
-        light: lighten(#f0f5fd, 5),
-        dark:  darken(#f0f5fd, 5)
+        base:  $color-info,
+        alt:   $color-text-dark,
+        light: map-get(map-get($palette-branding, jadu-blue), light),
+        dark:  map-get(map-get($palette-branding, jadu-blue), dark)
     ),
     sorting: (
-        base: #ffffec,
+        base: $color-text-light,
         dark: darken(#ffc, 50)
     )
 );
+
+@if $theme == 'darkside' {
+    $palette-states: (
+        base: (
+            base:  $color-mono-70,
+            alt:   pick_best_color($color-mono-70, ($color-text-light, $color-text-dark)),
+            light: $color-mono-90,
+            dark:  $color-mono-30,
+            text:  $color-mono-10
+        ),
+        primary: (
+            base:  $color-primary,
+            alt:   pick_best_color($color-primary, ($color-text-light, $color-text-dark)),
+            light: lighten($color-primary, 20),
+            dark:  darken($color-primary, 10),
+            text:  darken($color-primary, 10)
+        ),
+        success: (
+            base:  lighten($color-success, 20),
+            alt:   pick_best_color(lighten($color-success, 20), ($color-text-light, $color-text-dark)),
+            light: lighten($color-success, 55),
+            dark:  darken($color-success, 5),
+            text:  lighten($color-success, 25),
+            background: $color-mono-90
+        ),
+        warning: (
+            base:  $color-warning,
+            alt:   pick_best_color($color-warning, ($color-text-light, #000)),
+            light: lighten($color-warning, 25),
+            dark:  darken($color-warning, 35),
+            text:  lighten($color-warning, 5),
+            background: $color-mono-90
+        ),
+        danger: (
+            base:  lighten($color-danger, 30),
+            alt:   pick_best_color($color-danger, ($color-text-light, $color-text-dark)),
+            light: lighten($color-danger, 40),
+            dark:  darken($color-danger, 5),
+            text:  lighten($color-danger, 30),
+            background: $color-mono-90
+        ),
+        info: (
+            base:  lighten($color-info, 40),
+            alt:   pick_best_color($color-info, ($color-text-light, $color-text-dark)),
+            light: lighten($color-info, 15),
+            dark:  darken($color-info, 40),
+            text:  lighten($color-info, 40),
+            background: $color-mono-90
+        ),
+        inverse: (
+            base:  $color-mono-0,
+            alt:   pick_best_color($color-mono-0, ($color-text-light, $color-text-dark)),
+            light: lighten($color-mono-0, 60),
+            dark:  $color-mono-20,
+            text:  $color-mono-20
+        ),
+        white: (
+            base:  #fff,
+            alt:   #000,
+            light: #fff,
+            dark:  #ccc,
+            text:  #fff
+        ),
+        new: (
+            base:  $color-info,
+            alt:   $color-text-dark,
+            light: map-get(map-get($palette-branding, jadu-blue), light),
+            dark:  map-get(map-get($palette-branding, jadu-blue), dark)
+        ),
+        sorting: (
+            base: $color-text-light,
+            dark: darken(#ffc, 50)
+        )
+    );
+}
 
 /* -------------------------------------------------------------------------- *\
     Combined States
@@ -164,29 +304,31 @@ $state-colors:
 
 $palette-alias: (
     text: (
-        base:     #000,
-        help:     map-get(map-get($palette-monochromes, gray), dull),
-        light:    map-get(map-get($palette-monochromes, gray), dull),
-        disabled: map-get(map-get($palette-monochromes, gray), lighter),
+        base:     $color-text-dark,
+        alt:      $color-text-light,
+        heading:  $color-primary,
+        help:     $color-mono-40,
+        light:    $color-mono-40,
+        disabled: $color-mono-70,
         placeholder: #737373
     ),
     link: (
-        base:     map-get(map-get($palette-branding, jadu-purple), base), // WCAG 5.1 AA compliant
+        base:     $color-primary, // WCAG 5.1 AA compliant
         dark:     darken(#22759f, 5),
-        hover:    #000,
+        hover:    $color-mono-0,
         focus:    darken(#22759f, 15),
-        inverse:  #fff,
-        inverse-hover: darken(#fff, 10%),
-        disabled:  map-get(map-get($palette-monochromes, gray), lighter)
+        inverse:  $color-mono-100,
+        inverse-hover: darken($color-mono-100, 10%),
+        disabled:  $color-mono-70
     ),
     border: (
-        base:      map-get(map-get($palette-monochromes, gray), base),
+        base:      $color-mono-50,
         focus:     #fd0
     ),
     background: (
-        base:      map-get(map-get($palette-monochromes, gray), off-white),
-        dark:      map-get(map-get($palette-monochromes, gray), lightest),
-        light:     lighten(map-get(map-get($palette-monochromes, gray), off-white), 2.1),
+        base:      $color-mono-100,
+        dark:      $color-mono-70,
+        light:     lighten($color-mono-90, 5),
         backdrop:rgba(62, 73, 148, .2),
         selected:  #edeef7,
         focus:     #fd0,
@@ -194,4 +336,38 @@ $palette-alias: (
     ),
 );
 
-
+@if $theme == 'darkside' {
+    $palette-alias: (
+        text: (
+            base:     $color-text-dark,
+            alt:      $color-text-light,
+            heading:  $color-mono-10,
+            help:     $color-mono-40,
+            light:    $color-mono-40,
+            disabled: $color-mono-70,
+            placeholder: $color-mono-40
+        ),
+        link: (
+            base:     hsl(227, 89, 86),
+            dark:     darken(hsl(227, 89, 86), 5),
+            hover:    darken(hsl(227, 89, 86), 5),
+            focus:    darken(#22759f, 15),
+            inverse:  $color-mono-90,
+            inverse-hover: $color-mono-100,
+            disabled:  $color-mono-70
+        ),
+        border: (
+            base:      $color-mono-50,
+            focus:     #fd0
+        ),
+        background: (
+            base:      $color-mono-90,
+            dark:      $color-mono-80,
+            light:     lighten($color-mono-90, 2.1),
+            backdrop:  $color-mono,
+            selected:  $color-mono-80,
+            focus:     #fd0,
+            shadow:    $color-mono
+        )
+    );
+}
