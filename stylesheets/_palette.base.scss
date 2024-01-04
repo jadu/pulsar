@@ -32,6 +32,10 @@ $color-info: $color-brand-blue; // was pale
 
 @if $theme == 'darkside' {
     $color-primary: #fff;
+    $color-success: hsl(95, 43, 67);
+    $color-warning: hsl(21, 79, 70);
+    $color-danger: hsl(358, 67, 70);
+    $color-info: hsl(222, 73, 74);
 
     $color-mono: hsl(232, 24, 20);
 
@@ -54,12 +58,6 @@ $color-text-dark: $color-mono-10;
 
 /* -------------------------------------------------------------------------- *\
     Base palettes
-
-    Defines what value a specific named colour should be. Used in conjunction
-    with _config.theme.scss to defined how specific Jadu control centre elements
-    should be styled in regards to colour.
-
-    These colours are defined in the Jadu Brand Guidelines (version 4)
 \* -------------------------------------------------------------------------- */
 
 $palette-branding: (
@@ -204,53 +202,53 @@ $palette-states: (
     $palette-states: (
         base: (
             base:  $color-mono-70,
-            alt:   pick_best_color($color-mono-70, ($color-text-light, $color-text-dark)),
+            alt:   pick_best_color($color-mono-70, (#fff, #000)),
             light: $color-mono-90,
             dark:  $color-mono-30,
             text:  $color-mono-10
         ),
         primary: (
             base:  $color-primary,
-            alt:   pick_best_color($color-primary, ($color-text-light, $color-text-dark)),
+            alt:   pick_best_color($color-primary, (#fff, #000)),
             light: lighten($color-primary, 20),
             dark:  darken($color-primary, 10),
             text:  darken($color-primary, 10)
         ),
         success: (
-            base:  lighten($color-success, 25),
-            alt:   pick_best_color(lighten($color-success, 25), ($color-text-light, $color-text-dark)),
+            base:  $color-success,
+            alt:   pick_best_color(lighten($color-success, 25), (#fff, #000)),
             light: lighten($color-success, 55),
-            dark:  darken($color-success, 5),
+            dark:  darken($color-success, 10),
             text:  lighten($color-success, 25),
             background: $color-mono-90
         ),
         warning: (
             base:  $color-warning,
-            alt:   pick_best_color($color-warning, ($color-text-light, #000)),
+            alt:   pick_best_color($color-warning, (#fff, #000)),
             light: lighten($color-warning, 25),
-            dark:  darken($color-warning, 35),
+            dark:  darken($color-warning, 10),
             text:  lighten($color-warning, 5),
             background: $color-mono-90
         ),
         danger: (
-            base:  lighten($color-danger, 30),
-            alt:   pick_best_color($color-danger, ($color-text-light, $color-text-dark)),
+            base:  $color-danger,
+            alt:   pick_best_color($color-danger, (#fff, #000)),
             light: lighten($color-danger, 40),
-            dark:  darken($color-danger, 5),
+            dark:  darken($color-danger, 10),
             text:  lighten($color-danger, 30),
             background: $color-mono-90
         ),
         info: (
-            base:  lighten($color-info, 40),
-            alt:   pick_best_color($color-info, ($color-text-light, $color-text-dark)),
+            base:  $color-info,
+            alt:   pick_best_color($color-info, (#fff, #000)),
             light: lighten($color-info, 15),
-            dark:  darken($color-info, 40),
+            dark:  darken($color-info, 10),
             text:  lighten($color-info, 40),
             background: $color-mono-90
         ),
         inverse: (
             base:  $color-mono-0,
-            alt:   pick_best_color($color-mono-0, ($color-text-light, $color-text-dark)),
+            alt:   pick_best_color($color-mono-0, (#fff, #000)),
             light: lighten($color-mono-0, 60),
             dark:  $color-mono-20,
             text:  $color-mono-20

@@ -58,7 +58,7 @@
 // Actual modal
 .modal__content {
     position: relative;
-    background-color: $modal-content-bg;
+    background-color: color(background);
     box-shadow: 0 0 0 $shadow-large color(background, shadow);
     background-clip: padding-box;
     // Remove focus outline from opened modal
