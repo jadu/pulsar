@@ -346,9 +346,9 @@ $palette-alias: (
             placeholder: $color-mono-40
         ),
         link: (
-            base:     hsl(227, 89, 86),
-            dark:     darken(hsl(227, 89, 86), 5),
-            hover:    darken(hsl(227, 89, 86), 5),
+            base:     hsl(217, 90, 75),
+            dark:     darken(hsl(217, 90, 75), 5),
+            hover:    darken(hsl(217, 90, 75), 5),
             focus:    darken(#22759f, 15),
             inverse:  $color-mono-90,
             inverse-hover: $color-mono-100,
