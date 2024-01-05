@@ -365,7 +365,7 @@ $palette-alias: (
             backdrop:  $color-mono,
             selected:  $color-mono-80,
             focus:     #fd0,
-            shadow:    $color-mono
+            shadow:    rgba(0, 0, 0, .3)
         )
     );
 }
