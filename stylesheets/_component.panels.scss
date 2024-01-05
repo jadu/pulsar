@@ -114,6 +114,10 @@
             a:focus {
                 color: color(black);
             }
+
+            .btn {
+                border-color: $state-color-alt;
+            }
         }
     }
 }
