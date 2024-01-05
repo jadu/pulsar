@@ -210,7 +210,7 @@ $palette-states: (
         primary: (
             base:  $color-primary,
             alt:   pick_best_color($color-primary, (#fff, #000)),
-            light: lighten($color-primary, 20),
+            light: lighten($color-primary, 0),
             dark:  darken($color-primary, 10),
             text:  darken($color-primary, 10)
         ),
@@ -219,7 +219,7 @@ $palette-states: (
             alt:   pick_best_color(lighten($color-success, 25), (#fff, #000)),
             light: lighten($color-success, 55),
             dark:  darken($color-success, 10),
-            text:  lighten($color-success, 25),
+            text:  $color-success,
             background: $color-mono-90
         ),
         warning: (
@@ -227,7 +227,7 @@ $palette-states: (
             alt:   pick_best_color($color-warning, (#fff, #000)),
             light: lighten($color-warning, 25),
             dark:  darken($color-warning, 10),
-            text:  lighten($color-warning, 5),
+            text:  lighten($color-warning, 10),
             background: $color-mono-90
         ),
         danger: (
@@ -235,7 +235,7 @@ $palette-states: (
             alt:   pick_best_color($color-danger, (#fff, #000)),
             light: lighten($color-danger, 40),
             dark:  darken($color-danger, 10),
-            text:  lighten($color-danger, 30),
+            text:  lighten($color-danger, 11),
             background: $color-mono-90
         ),
         info: (
