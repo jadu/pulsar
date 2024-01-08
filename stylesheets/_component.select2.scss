@@ -404,7 +404,8 @@
 }
 
 .select2-container--default .select2-results__option[data-selected=true] {
-    background-color: #ddd;
+    background-color: color(background, selected);
+    color: #000;
 
     &:focus {
         outline: none;
