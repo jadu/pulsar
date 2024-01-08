@@ -58,7 +58,7 @@
 }
 
 .rule-block {
-    background: color(white);
+    background: color(background);
     border: 1px solid #d1d1d1;
     padding: 0;
     position: relative;
@@ -569,6 +569,7 @@ td.table__form .rules + .form__group:last-of-type {
         border-color: $rule-color-if;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
+        color: pick_best_color(lighten($rule-color-if, 41), (#fff, #000));
 
         .rule-block__header {
             background-color: $rule-color-if;
@@ -617,6 +618,7 @@ td.table__form .rules + .form__group:last-of-type {
     .rule-block--and {
         background-color: lighten($rule-color-and, 20);
         border-color: darken($rule-color-and, 10);
+        color: pick_best_color(lighten($rule-color-and, 20), (#fff, #000));
         margin-top: 0;
 
         .rule-block__header {
@@ -645,6 +647,7 @@ td.table__form .rules + .form__group:last-of-type {
     .rule-block--else {
         background-color: lighten($rule-color-if, 30);
         border-color: $rule-color-if;
+        color: pick_best_color(lighten($rule-color-if, 30), (#fff, #000));
 
         .rule-block__header {
             background-color: $rule-color-if;
@@ -665,6 +668,7 @@ td.table__form .rules + .form__group:last-of-type {
         border-color: $rule-color-return;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
+        color: pick_best_color(lighten($rule-color-return, 40), (#fff, #000));
 
         .rule-block__header {
             background-color: $rule-color-return;
@@ -679,12 +683,13 @@ td.table__form .rules + .form__group:last-of-type {
         background-color: color(gray, off-white);
         border-color: color(gray, dark);
         border-radius: 15px;
+        color: pick_best_color(color(gray, off-white), (#fff, #000));
 
         .rule-block__header {
             background-color: color(gray, dark);
             border-top-left-radius: 14px;
             border-top-right-radius: 14px;
-            color: color(white);
+            color: pick_best_color(color(gray, dark), (#fff, #000));
 
             @include respond-min($screen-small) {
                 border-top-left-radius: 14px;
