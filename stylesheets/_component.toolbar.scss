@@ -58,6 +58,10 @@
     }
 
     .dropdown__menu {
+        a {
+            color: color(text);
+        }
+
         .media {
             line-height: 24px;
             padding: 10px;
