@@ -240,7 +240,7 @@
 }
 
 .select2-container--default .select2-selection--multiple {
-    background-color: #fafafa;
+    background-color: color(background, light);
     border: 1px solid $input-border;
     border-radius: $border-radius;
     cursor: text;
