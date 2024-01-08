@@ -46,6 +46,9 @@
 				text-align: left;
 			}
 
+			&:focus {
+				color: #000;
+			}
 		}
 
 		> li > a > i {
@@ -119,6 +122,10 @@
 			> a {
 				background-color: inherit;
 				color: color(text, alt);
+
+				&:focus {
+					color: #000;
+				}
 			}
 		}
 	}
