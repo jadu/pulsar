@@ -581,6 +581,10 @@ td.table__form .rules + .form__group:last-of-type {
             }
         }
 
+        .control__label {
+            color: pick_best_color(lighten($rule-color-if, 41), (#fff, #000));
+        }
+
         .remove-control {
             color: color(white);
 
@@ -625,6 +629,10 @@ td.table__form .rules + .form__group:last-of-type {
             background-color: $rule-color-and;
             color: color(black);
         }
+
+        .control__label {
+            color: pick_best_color(lighten($rule-color-and, 20), (#fff, #000));
+        }
     }
 
     .rule-block--or {
@@ -653,6 +661,10 @@ td.table__form .rules + .form__group:last-of-type {
             background-color: $rule-color-if;
         }
 
+        .control__label {
+            color: pick_best_color(lighten($rule-color-if, 30), (#fff, #000));
+        }
+
         + .rule-block--return {
             margin-left: 30px;
             width: calc(100% - 30px);
@@ -677,6 +689,10 @@ td.table__form .rules + .form__group:last-of-type {
                 border-bottom-left-radius: 14px;
             }
         }
+
+        .control__label {
+            color: pick_best_color(lighten($rule-color-return, 40), (#fff, #000));
+        }
     }
 
     .rule-block--else-return {
@@ -696,6 +712,10 @@ td.table__form .rules + .form__group:last-of-type {
                 border-top-right-radius: 0;
                 border-bottom-left-radius: 14px;
                 width: 120px;
+            }
+
+            .control__label {
+                color: pick_best_color(color(gray, dark), (#fff, #000));
             }
         }
     }
