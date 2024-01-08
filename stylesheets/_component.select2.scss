@@ -404,7 +404,7 @@
 }
 
 .select2-container--default .select2-results__option[data-selected=true] {
-    background-color: color(background, selected);
+    background-color: #ddd;
     color: #000;
 
     &:focus {
@@ -447,7 +447,7 @@
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
     background-color: color(primary);
-    color: color(white);
+    color: pick_best_color(color(primary), (#fff, #000));
 
     &:focus {
         outline: none;
