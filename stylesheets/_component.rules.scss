@@ -447,6 +447,7 @@ td.table__form .rules + .form__group:last-of-type {
 
         .btn {
             background-color: lighten($rule-color-or, 25);
+            color: pick_best_color(lighten($rule-color-or, 25), (#fff, #000));
 
             &:focus {
                 background-color: color(background, focus);
@@ -480,6 +481,7 @@ td.table__form .rules + .form__group:last-of-type {
 
         .btn {
             background-color: lighten($rule-color-and, 20);
+            color: pick_best_color(lighten($rule-color-and, 20), (#fff, #000));
 
             &:focus {
                 background-color: color(background, focus);
@@ -508,6 +510,7 @@ td.table__form .rules + .form__group:last-of-type {
 
         .btn {
             background-color: lighten($rule-color-if, 40);
+            color: pick_best_color(lighten($rule-color-if, 40), (#fff, #000));
             margin-left: 30px;
             min-width: 76px;
 
