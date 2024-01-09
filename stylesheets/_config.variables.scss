@@ -265,3 +265,8 @@ $zindex-modal:                        3000 !default;
 
 $signin-bg-color:          rgba(255, 255, 255, .9);
 $signin-bg-color-fallback: #fff;
+
+@if $theme == 'darkside' {
+  $signin-bg-color:          hsla(232, 24, 20, .9);
+  $signin-bg-color-fallback: hsl(232, 24, 20);
+}

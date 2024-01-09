@@ -28,7 +28,7 @@
         text-decoration: none;
 
         &:hover {
-            color: color(text);
+            color: color(gray, dark);
         }
 
         &[href] {

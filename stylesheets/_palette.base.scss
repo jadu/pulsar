@@ -364,7 +364,7 @@ $palette-alias: (
             light:     lighten($color-mono-90, 2.1),
             backdrop:  $color-mono,
             selected:  $color-mono-80,
-            disabled:  $color-mono-70,
+            disabled:  $color-mono-70 ,
             focus:     #fd0,
             shadow:    rgba(0, 0, 0, .3)
         )

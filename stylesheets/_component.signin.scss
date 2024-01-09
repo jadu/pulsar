@@ -329,7 +329,7 @@ $signin-panel-mobile-width:	300px;
 
 .signin__input,
 .signin .form__control.form__control {
-    background-color: none;
+    background-color: $signin-bg-color-fallback;
     border: 0;
     color: color(text) !important;
     display: inline-block;
@@ -337,6 +337,10 @@ $signin-panel-mobile-width:	300px;
     line-height: 48px;
     margin: 0 auto 1em;
     outline: 2px solid rgba(0, 0, 0, .5);
+
+    @if $theme == 'darkside' {
+        outline-color: rgba(255, 255, 255, .5);
+    }
 
     &:not(.select) {
         padding: .5em;
@@ -421,7 +425,7 @@ $signin-panel-mobile-width:	300px;
 }
 
 .signin__alt {
-    background-color: color(white);
+    background-color: $signin-bg-color-fallback;
     border-radius: 20px;
     display: block;
     margin-top: 1em;
