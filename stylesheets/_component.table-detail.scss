@@ -1,7 +1,7 @@
 .table-detail {
     -webkit-transform: translateX(100%);
     background: color(background);
-    border-left: 1px solid $modal-header-border-color;
+    border-left: 1px solid color(border);
     bottom: 0;
     display: none;
     height: 100%;
@@ -52,7 +52,7 @@
 }
 
 .table-detail__header {
-    border-bottom: 1px solid $modal-header-border-color;
+    border-bottom: 1px solid color(border);
     padding: $modal-title-padding;
 }
 

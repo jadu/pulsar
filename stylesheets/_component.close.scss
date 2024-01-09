@@ -3,11 +3,11 @@
   font-size: 2em;
   font-weight: bold;
   line-height: $line-height-base;
-  color: color(grey, dark);
+  color: color(text);
   text-decoration: none;
 
   &:hover {
-    color: color(black);
+    color: color(text, light);
     cursor: pointer;
   }
 
