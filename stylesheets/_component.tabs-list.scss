@@ -12,7 +12,7 @@
 
 .tab-item--header {
 	border-bottom: 1px solid color(gray);
-	color: darken($text-color, 10);
+	color: darken(color(text), 10);
 	display: block;
 	font-size: 1.2em;
 	line-height: 47px;
@@ -23,7 +23,7 @@
 }
 
 .tab-link {
-	color: $text-color;
+	color: color(text);
 	display: block;
 	line-height: 2.25em;
 	padding-left: 5px;
