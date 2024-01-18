@@ -32,7 +32,7 @@
 
 	&:hover,
 	.is-active & {
-		color: $black;
+		color: color(black);
 	}
 
 }
