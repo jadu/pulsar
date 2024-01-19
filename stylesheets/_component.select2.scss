@@ -274,7 +274,7 @@
     border-radius: $border-radius;
     border-width: 0;
     box-sizing: content-box;
-    color: color(black);
+    color: color(text);
     display: inline-block;
     float: left;
     font-weight: 500;
@@ -305,7 +305,7 @@
     float: right;
 
     @include ie-lte(9) {
-        color: color(black);
+        color: color(text);
         float: none;
         font-size: 18px;
         line-height: 20px;
@@ -313,7 +313,7 @@
     }
 
     &:after {
-        color: color(black);
+        color: color(text);
         content: '\f057';
         font-family: $font-family-icons;
         font-weight: 900;
@@ -372,6 +372,7 @@
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
+    background-color: $input-bg;
     border: 1px solid $input-border;
 }
 
@@ -607,7 +608,7 @@
 }
 
 .select2-container--classic .select2-selection--multiple .select2-selection__choice__remove {
-    color: #888;
+    color: color(text, help);
     cursor: pointer;
     display: inline-block;
     font-weight: bold;

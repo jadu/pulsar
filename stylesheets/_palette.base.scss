@@ -128,21 +128,21 @@ $palette-monochromes: (
 $palette-states: (
     base: (
         base:  $color-mono-80,
-        alt:   pick_best_color($color-mono-80, ($color-text-light, $color-text-dark)),
+        alt:   pick_best_color($color-mono-80, (#fff, #000)),
         light: $color-mono-90,
         dark:  $color-mono-30,
         text:  $color-mono-10
     ),
     primary: (
         base:  $color-primary,
-        alt:   pick_best_color($color-primary, ($color-text-light, $color-text-dark)),
+        alt:   pick_best_color($color-primary, (#fff, #000)),
         light: lighten($color-primary, 20),
         dark:  darken($color-primary, 10),
         text:  darken($color-primary, 10)
     ),
     success: (
         base:  $color-success,
-        alt:   pick_best_color($color-success, ($color-text-light, $color-text-dark)),
+        alt:   pick_best_color($color-success, (#fff, #000)),
         light: lighten($color-success, 55),
         dark:  darken($color-success, 5),
         text:  darken($color-success, 5),
@@ -150,7 +150,7 @@ $palette-states: (
     ),
     warning: (
         base:  $color-warning,
-        alt:   pick_best_color($color-warning, ($color-text-light, $color-text-dark)),
+        alt:   pick_best_color($color-warning, (#fff, #000)),
         light: lighten($color-warning, 25),
         dark:  darken($color-warning, 35),
         text:  darken($color-warning, 35),
@@ -158,7 +158,7 @@ $palette-states: (
     ),
     danger: (
         base:  $color-danger,
-        alt:   pick_best_color($color-danger, ($color-text-light, $color-text-dark)),
+        alt:   pick_best_color($color-danger, (#fff, #000)),
         light: lighten($color-danger, 40),
         dark:  darken($color-danger, 5),
         text:  darken($color-danger, 5),
@@ -166,7 +166,7 @@ $palette-states: (
     ),
     info: (
         base:  $color-info,
-        alt:   pick_best_color($color-info, ($color-text-light, $color-text-dark)),
+        alt:   pick_best_color($color-info, (#fff, #000)),
         light: lighten($color-info, 15),
         dark:  darken($color-info, 40),
         text:  darken($color-info, 40),
@@ -174,7 +174,7 @@ $palette-states: (
     ),
     inverse: (
         base:  $color-mono-0,
-        alt:   pick_best_color($color-mono-0, ($color-text-light, $color-text-dark)),
+        alt:   pick_best_color($color-mono-0, (#fff, #000)),
         light: lighten($color-mono-0, 60),
         dark:  $color-mono-20,
         text:  $color-mono-20
