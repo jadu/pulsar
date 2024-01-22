@@ -372,7 +372,7 @@
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
-    background-color: $input-bg;
+    background-color: color(background, light);
     border: 1px solid $input-border;
 }
 
