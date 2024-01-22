@@ -28,6 +28,10 @@
     box-shadow: 0 2px 0 color(black);
     color: color(black) !important;
     outline: none;
+
+    > [class^="icon-"] {
+        color: color(black) !important;
+    }
 }
 
 @mixin pulsar-input-focused {
