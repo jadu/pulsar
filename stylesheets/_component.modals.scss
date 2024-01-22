@@ -139,11 +139,11 @@
 .modal--danger {
     .modal__header {
         background-color: color(danger);
-        color: color(white);
+        color: color(danger, alt);
     }
 
     .close {
-        color: color(white);
+        color: color(danger, alt);
     }
 }
 
