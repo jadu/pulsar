@@ -149,7 +149,7 @@
     color: color(success, alt);
 
     .badge {
-        color: color(white) !important;
+        color: color(success, alt) !important;
     }
 
     .progress-list__label {
@@ -208,7 +208,7 @@
     }
 
     .badge {
-        color: color(text, alt) !important;
+        color: color(primary, alt) !important;
     }
 
     .progress-list__label {

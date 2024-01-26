@@ -1,0 +1,108 @@
+// scss-lint:disable SpaceAfterComma
+
+// MONOCHROMES
+$color-mono:                hsl(232, 24, 20);
+$color-mono-0:              lighten($color-mono, 100%);
+$color-mono-10:             lighten($color-mono, 90%);
+$color-mono-20:             lighten($color-mono, 80%);
+$color-mono-30:             lighten($color-mono, 70%);
+$color-mono-40:             lighten($color-mono, 60%);
+$color-mono-50:             lighten($color-mono, 50%);
+$color-mono-60:             lighten($color-mono, 40%);
+$color-mono-70:             lighten($color-mono, 30%);
+$color-mono-80:             lighten($color-mono, 20%);
+$color-mono-90:             lighten($color-mono, 10%);
+$color-mono-100:            lighten($color-mono, 0%);
+
+// BASE STATESS
+$color-primary:             #fff;
+$color-success:             hsl(95,  43, 67);
+$color-warning:             hsl(21,  79, 70);
+$color-danger:              hsl(358, 67, 70);
+$color-info:                hsl(222, 73, 74);
+$color-inverse:             $color-mono-0;
+$color-new:                 $color-info;
+
+// STATE VARIANTS
+$color-state-base-base:     $color-mono-70;
+$color-state-base-alt:      pick_best_color($color-state-base-base, (#fff, #000));
+$color-state-base-light:    $color-mono-50;
+$color-state-base-dark:     $color-mono-80;
+$color-state-base-text:     $color-mono-10;
+
+$color-state-primary-base:  $color-primary;
+$color-state-primary-alt:   pick_best_color($color-state-primary-base, (#fff, #000));
+$color-state-primary-light: $color-state-primary-base;
+$color-state-primary-dark:  darken($color-state-primary-base, 10);
+$color-state-primary-text:  $color-state-primary-base;
+
+$color-state-success-base:  $color-success;
+$color-state-success-alt:   pick_best_color($color-state-success-base, (#fff, #000));
+$color-state-success-light: lighten($color-state-success-base, 5);
+$color-state-success-dark:  darken($color-state-success-base, 10);
+$color-state-success-text:  $color-state-success-base;
+$color-state-success-background: $color-mono-90;
+
+$color-state-warning-base:  $color-warning;
+$color-state-warning-alt:   pick_best_color($color-state-warning-base, (#fff, #000));
+$color-state-warning-light: lighten($color-state-warning-base, 5);
+$color-state-warning-dark:  darken($color-state-warning-base, 10);
+$color-state-warning-text:  $color-state-warning-base;
+$color-state-warning-background: $color-mono-90;
+
+$color-state-danger-base:   $color-danger;
+$color-state-danger-alt:    pick_best_color($color-state-danger-base, (#fff, #000));
+$color-state-danger-light:  lighten($color-state-danger-base, 5);
+$color-state-danger-dark:   darken($color-state-danger-base, 20);
+$color-state-danger-text:   lighten($color-state-danger-base, 6);
+$color-state-danger-background: $color-mono-90;
+
+$color-state-info-base:     $color-info;
+$color-state-info-alt:      pick_best_color($color-state-info-base, (#fff, #000));
+$color-state-info-light:    lighten($color-state-info-base, 15);
+$color-state-info-dark:     darken($color-state-info-base, 10);
+$color-state-info-text:     lighten($color-state-info-base, 2);
+$color-state-info-background: $color-mono-90;
+
+$color-state-inverse-base:  $color-inverse;
+$color-state-inverse-alt:   pick_best_color($color-state-inverse-base, (#fff, #000));
+$color-state-inverse-light: lighten($color-state-inverse-base, 60);
+$color-state-inverse-dark:  $color-mono-20;
+$color-state-inverse-text:  $color-mono-20;
+
+$color-state-white-base:    $color-white;
+$color-state-white-alt:     pick_best_color($color-state-white-base, (#fff, #000));
+$color-state-white-light:   lighten($color-state-white-base, 55);
+$color-state-white-dark:    darken($color-state-white-base, 5);
+$color-state-white-text:    darken($color-state-white-base, 5);
+
+// BACKGROUNDS
+$color-background-base:     $color-mono-90;
+$color-background-dark:     $color-mono-80;
+$color-background-light:    lighten($color-mono-90, 2.1);
+$color-background-backdrop: $color-mono-100;
+$color-background-selected: $color-mono-80;
+$color-background-shadow:   $color-mono-100;
+
+// BORDERS
+$color-border-base:         $color-mono-50;
+$color-border-focus:        $color-focus-highlight;
+
+// TEXT
+$color-text-base:           $color-mono-0;
+$color-text-alt:            $color-mono-90;
+$color-text-heading:        $color-mono-10;
+$color-text-help:           $color-mono-40;
+$color-text-light:          $color-mono-40;
+$color-text-disabled:       $color-mono-20;
+$color-text-placeholder:    $color-mono-40;
+
+// LINKS
+$color-link-base:           hsl(217, 90, 75);
+$color-link-dark:           darken($color-link-base, 5);
+$color-link-hover:          $color-link-dark;
+$color-link-focus:          darken($color-link-base, 15);
+$color-link-inverse:        $color-mono-90;
+$color-link-inverse-hover:  $color-mono-100;
+
+// scss-lint:enable SpaceAfterComma

@@ -15,7 +15,7 @@
     }
 
     &.btn--naked {
-        color: color($state, dark);
+        color: color($state, text);
     }
 }
 
@@ -88,7 +88,7 @@
         @if $state != 'base' {
             &.btn--#{'' + $state} {
                 border-color: $state-color;
-                color: color($state, dark);
+                color: color($state, text);
 
                 @if $theme == 'darkside' {
                     border-color: $state-color;

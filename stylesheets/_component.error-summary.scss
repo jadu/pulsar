@@ -31,7 +31,15 @@
 .error-summary__list-link {
     color: color(danger);
 
+    @if $theme == 'darkside' {
+        color: color(danger, dark);
+    }
+
     &:hover {
         color: color(danger);
+
+        @if $theme == 'darkside' {
+            color: color(danger, dark);
+        }
     }
 }

@@ -1,0 +1,224 @@
+// scss-lint:disable SpaceAfterComma
+
+/* -------------------------------------------------------------------------- *\
+    THERE SHOULD BE NO DIRECT COLOUR ASSIGNMENTS MADE IN THIS PARTIAL
+
+    MAPS ARE CREATED FROM EXISTING TOKENS SET IN THE _palette.theme.scss files
+    THEN COMBINED AND MADE AVAILABLE THROUGH THE color() FUNCTION
+\* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- *\
+    Monochromes
+    Usage: color(grey, light);
+\* -------------------------------------------------------------------------- */
+
+$palette-monochromes: (
+    white: (base:   $color-white),
+    black: (base:   $color-black),
+    gray:  (
+        darker:     $color-mono-20,
+        dark:       $color-mono-30,
+        dull:       $color-mono-40,
+        base:       $color-mono-50,
+        light:      $color-mono-60,
+        lighter:    $color-mono-70,
+        lightest:   $color-mono-80,
+        off-white:  $color-mono-90
+    )
+);
+
+/* -------------------------------------------------------------------------- *\
+    States
+    The colour and its alternate MUST meet WCAG 2.0 AA compliance for contrast
+\* -------------------------------------------------------------------------- */
+
+$palette-states: (
+    base: (
+        base:       $color-state-base-base,
+        alt:        $color-state-base-alt,
+        light:      $color-state-base-light,
+        dark:       $color-state-base-dark,
+        text:       $color-state-base-text
+    ),
+    primary: (
+        base:       $color-state-primary-base,
+        alt:        $color-state-primary-alt,
+        light:      $color-state-primary-light,
+        dark:       $color-state-primary-dark,
+        text:       $color-state-primary-text
+    ),
+    success: (
+        base:       $color-state-success-base,
+        alt:        $color-state-success-alt,
+        light:      $color-state-success-light,
+        dark:       $color-state-success-dark,
+        text:       $color-state-success-text,
+        background: $color-state-success-background
+    ),
+    warning: (
+        base:       $color-state-warning-base,
+        alt:        $color-state-warning-alt,
+        light:      $color-state-warning-light,
+        dark:       $color-state-warning-dark,
+        text:       $color-state-warning-text,
+        background: $color-state-warning-background
+    ),
+    danger: (
+        base:       $color-state-danger-base,
+        alt:        $color-state-danger-alt,
+        light:      $color-state-danger-light,
+        dark:       $color-state-danger-dark,
+        text:       $color-state-danger-text,
+        background: $color-state-danger-background
+    ),
+    info: (
+        base:       $color-state-info-base,
+        alt:        $color-state-info-alt,
+        light:      $color-state-info-light,
+        dark:       $color-state-info-dark,
+        text:       $color-state-info-text,
+        background: $color-state-info-background
+    ),
+    inverse: (
+        base:       $color-state-inverse-base,
+        alt:        $color-state-inverse-alt,
+        light:      $color-state-inverse-light,
+        dark:       $color-state-inverse-dark,
+        text:       $color-state-inverse-text
+    ),
+    white: (
+        base:       $color-state-white-base,
+        alt:        $color-state-white-alt,
+        light:      $color-state-white-light,
+        dark:       $color-state-white-dark,
+        text:       $color-state-white-text
+    ),
+    new: (
+        base:       $color-state-new-base,
+        alt:        $color-state-new-alt,
+        light:      $color-state-new-light,
+        dark:       $color-state-new-dark,
+        text:       $color-state-new-text
+    ),
+    sorting: (
+        base:       $color-state-sorting-base,
+        dark:       $color-state-sorting-dark
+    ),
+);
+
+/* -------------------------------------------------------------------------- *\
+    Combined States
+    Programatically build state variation styles by looping this map
+\* -------------------------------------------------------------------------- */
+
+$state-colors:
+    (base,      map-get(map-get($palette-states, base),    base),
+                map-get(map-get($palette-states, base),    alt)),
+    (primary,   map-get(map-get($palette-states, primary), base),
+                map-get(map-get($palette-states, primary), alt)),
+    (success,   map-get(map-get($palette-states, success), base),
+                map-get(map-get($palette-states, success), alt)),
+    (warning,   map-get(map-get($palette-states, warning), base),
+                map-get(map-get($palette-states, warning), alt)),
+    (danger,    map-get(map-get($palette-states, danger),  base),
+                map-get(map-get($palette-states, danger),  alt)),
+    (info,      map-get(map-get($palette-states, info),    base),
+                map-get(map-get($palette-states, info),    alt)),
+    (inverse,   map-get(map-get($palette-states, inverse), base),
+                map-get(map-get($palette-states, inverse), alt)),
+    (white,   map-get(map-get($palette-states, white), base),
+                map-get(map-get($palette-states, white), alt)),
+    (new,       map-get(map-get($palette-states, new),     base),
+                map-get(map-get($palette-states, new),     alt));
+
+/* -------------------------------------------------------------------------- *\
+    Aliases
+    Made available in the color() function for consistency
+\* -------------------------------------------------------------------------- */
+
+$palette-alias: (
+    text: (
+        base:       $color-text-base,
+        alt:        $color-text-alt,
+        heading:    $color-text-heading,
+        help:       $color-text-help,
+        light:      $color-text-alt,
+        disabled:   $color-text-disabled,
+        placeholder:$color-text-placeholder
+    ),
+    link: (
+        base:       $color-link-base,
+        dark:       $color-link-dark,
+        hover:      $color-link-hover,
+        focus:      $color-link-focus,
+        inverse:    $color-link-inverse,
+        inverse-hover: $color-link-inverse-hover,
+        disabled:   $color-link-disabled,
+    ),
+    border: (
+        base:       $color-border-base,
+        focus:      $color-border-focus
+    ),
+    background: (
+        base:       $color-background-base,
+        dark:       $color-background-dark,
+        light:      $color-background-light,
+        backdrop:   $color-background-backdrop,
+        selected:   $color-background-selected,
+        disabled:   $color-background-disabled,
+        focus:      $color-background-focus,
+        shadow:     $color-background-shadow
+    )
+);
+
+/* -------------------------------------------------------------------------- *\
+    Branding
+    Colours defined in the Jadu Brand Guidelines
+\* -------------------------------------------------------------------------- */
+
+$palette-branding: (
+    jadu-purple: (
+        darkest:    darken($color-brand-purple, 20%),
+        dark:       darken($color-brand-purple, 10%),
+        base:       $color-brand-purple,
+        light:      lighten($color-brand-purple, 20%),
+        pale:       lighten($color-brand-purple, 30%)
+    ),
+    jadu-red: (
+        darkest:    darken($color-brand-red, 20%),
+        dark:       darken($color-brand-red, 10%),
+        base:       $color-brand-red,
+        light:      lighten($color-brand-red, 20%),
+        pale:       lighten($color-brand-red, 30%)
+    ),
+    jadu-blue: (
+        darkest:    darken($color-brand-blue, 20%),
+        dark:       darken($color-brand-blue, 10%),
+        base:       $color-brand-blue,
+        light:      lighten($color-brand-blue, 5%),
+        pale:       lighten($color-brand-blue, 10%)
+    ),
+    jadu-green: (
+        darkest:    darken($color-brand-green, 20%),
+        dark:       darken($color-brand-green, 10%),
+        base:       $color-brand-green,
+        light:      lighten($color-brand-green, 20%),
+        pale:       lighten($color-brand-green, 30%)
+    ),
+    jadu-teal: (
+        darkest:    darken($color-brand-teal, 20%),
+        dark:       darken($color-brand-teal, 10%),
+        base:       $color-brand-teal,
+        light:      lighten($color-brand-teal, 20%),
+        pale:       lighten($color-brand-teal, 30%)
+    ),
+    jadu-pink: (
+        darkest:    darken($color-brand-pink, 20%),
+        dark:       darken($color-brand-pink, 10%),
+        base:       $color-brand-pink,
+        light:      lighten($color-brand-pink, 20%),
+        pale:       lighten($color-brand-pink, 30%)
+    )
+);
+
+// scss-lint:enable SpaceAfterComma

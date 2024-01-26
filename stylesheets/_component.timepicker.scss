@@ -65,8 +65,8 @@
 li.ui-timepicker-selected,
 .ui-timepicker-list li:hover,
 .ui-timepicker-list .ui-timepicker-selected:hover {
-    background: color(primary);
-    color: color(white);
+    background: color(background, selected);
+    color: color(text);
 }
 
 li.ui-timepicker-selected .ui-timepicker-duration,

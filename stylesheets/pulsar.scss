@@ -52,6 +52,7 @@ $font-path: '../fonts/';
 
 // Base colour palette
 @import 'palette.base';
+@import 'palette.maps';
 
 // Apply palette to components
 @import 'config.theme';
