@@ -122,12 +122,12 @@
 }
 
 .timeline-content {
-    background: color(white);
-    border: 1px solid color(gray, lightest);
+    background: color(background, light);
+    border: 1px solid color(border);
     padding: 1em;
 
     @include respond-min($screen-tablet) {
-        border: 1px solid color(gray, lightest);
+        border: 1px solid color(border);
         margin-left: 70px;
         margin-top: $padding-base;
         position: relative;
@@ -145,7 +145,7 @@
 
         &::after {
             border-color: transparent;
-            border-right-color: color(white);
+            border-right-color: color(background, light);
             border-width: 7px;
             margin-top: -7px;
         }
