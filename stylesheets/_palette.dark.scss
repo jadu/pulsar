@@ -40,7 +40,7 @@ $color-state-success-base:  $color-success;
 $color-state-success-alt:   pick_best_color($color-state-success-base, (#fff, #000));
 $color-state-success-light: lighten($color-state-success-base, 5);
 $color-state-success-dark:  darken($color-state-success-base, 10);
-$color-state-success-text:  $color-state-success-base;`
+$color-state-success-text:  $color-state-success-base;
 $color-state-success-background: $color-mono-90;
 
 $color-state-warning-base:  $color-warning;
