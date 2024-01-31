@@ -46,6 +46,11 @@ $danger-to-text-color: black;
 
 .is-new {
     background-color: color(new) !important;
+    color: color(new, alt);
+
+    a {
+        color: color(new, alt) !important;
+    }
 }
 
 .is-bold {
