@@ -7,7 +7,8 @@
   text-decoration: none;
 
   &:hover {
-    color: color(text, light);
+    color: color(text);
+    transform: scale(1.2);
     cursor: pointer;
   }
 
