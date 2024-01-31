@@ -40,7 +40,7 @@ $color-state-success-base:  $color-success;
 $color-state-success-alt:   pick_best_color($color-state-success-base, (#fff, #000));
 $color-state-success-light: lighten($color-state-success-base, 5);
 $color-state-success-dark:  darken($color-state-success-base, 10);
-$color-state-success-text:  $color-state-success-base;
+$color-state-success-text:  $color-state-success-base;`
 $color-state-success-background: $color-mono-90;
 
 $color-state-warning-base:  $color-warning;
@@ -82,7 +82,8 @@ $color-background-dark:     $color-mono-80;
 $color-background-light:    lighten($color-mono-90, 2.1);
 $color-background-backdrop: $color-mono-100;
 $color-background-selected: $color-mono-80;
-$color-background-shadow:   rgba($color-mono-100, .8);
+$color-background-disabled: $color-mono-70;
+$color-background-shadow:   rgba($color-mono-100, .9);
 
 // BORDERS
 $color-border-base:         $color-mono-50;
