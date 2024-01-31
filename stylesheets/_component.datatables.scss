@@ -235,7 +235,7 @@ th.sorting_disabled:hover {
     }
 
     ::-webkit-search-cancel-button {
-        @if $theme == 'darkside' {
+        @if $theme == 'dark' {
             filter: invert(100%);
         }
     }

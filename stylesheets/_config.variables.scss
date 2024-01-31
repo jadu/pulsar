@@ -19,7 +19,7 @@ $font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', 
 $background-gradient:                 url('../images/branding/central-gradient.svg');
 $signin-gradient:                     url('../images/branding/central-gradient-large.svg');
 
-@if $theme == 'darkside' {
+@if $theme == 'dark' {
   $background-gradient: none;
 }
 
@@ -266,7 +266,7 @@ $zindex-modal:                        3000 !default;
 $signin-bg-color:          rgba(255, 255, 255, .9);
 $signin-bg-color-fallback: #fff;
 
-@if $theme == 'darkside' {
+@if $theme == 'dark' {
   $signin-bg-color:          hsla(232, 24, 20, .9);
   $signin-bg-color-fallback: hsl(232, 24, 20);
 }

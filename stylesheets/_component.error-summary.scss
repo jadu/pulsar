@@ -31,14 +31,14 @@
 .error-summary__list-link {
     color: color(danger);
 
-    @if $theme == 'darkside' {
+    @if $theme == 'dark' {
         color: color(danger, dark);
     }
 
     &:hover {
         color: color(danger);
 
-        @if $theme == 'darkside' {
+        @if $theme == 'dark' {
             color: color(danger, dark);
         }
     }

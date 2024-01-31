@@ -94,7 +94,7 @@ module.exports = function(grunt) {
                     'stylesheets/pulsar-base.scss': 'stylesheets/pulsar.scss',
                 }
             },
-            dark: {
+            @if $theme == 'dark': {
                 options: {
                     text: "$theme: 'dark';"
                 },

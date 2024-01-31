@@ -338,7 +338,7 @@ $signin-panel-mobile-width:	300px;
     margin: 0 auto 1em;
     outline: 2px solid rgba(0, 0, 0, .5);
 
-    @if $theme == 'darkside' {
+    @if $theme == 'dark' {
         outline-color: rgba(255, 255, 255, .5);
     }
 

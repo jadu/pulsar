@@ -82,7 +82,7 @@
     bottom: 0;
     left: 0;
     z-index: ($zindex-modal - 10);
-    background-color: $modal-backdrop-bg;
+    background-color: color(background, shadow);
 
     // Fade for backdrop
     &.fade { background-color: none; }

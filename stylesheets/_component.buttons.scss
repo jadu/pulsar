@@ -90,7 +90,7 @@
                 border-color: $state-color;
                 color: color($state, text);
 
-                @if $theme == 'darkside' {
+                @if $theme == 'dark' {
                     border-color: $state-color;
                     color: color($state, light);
                 }

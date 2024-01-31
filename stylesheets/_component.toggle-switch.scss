@@ -10,7 +10,7 @@
         border-color: transparent;
         color: color(success, alt);
 
-        @if $theme == 'darkside' {
+        @if $theme == 'dark' {
             background-color: color(white);
             color: color(text);
 

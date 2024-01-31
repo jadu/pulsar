@@ -82,7 +82,7 @@ $color-background-dark:     $color-mono-80;
 $color-background-light:    lighten($color-mono-90, 2.1);
 $color-background-backdrop: $color-mono-100;
 $color-background-selected: $color-mono-80;
-$color-background-shadow:   $color-mono-100;
+$color-background-shadow:   rgba($color-mono-100, .8);
 
 // BORDERS
 $color-border-base:         $color-mono-50;

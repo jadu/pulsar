@@ -78,7 +78,7 @@
     &__item.is-active {
         box-shadow: inset 0 -4px 0 0 color(primary);
 
-        @if $theme == 'darkside' {
+        @if $theme == 'dark' {
             box-shadow: inset 0 -4px 0 0 color(white);
         }
     }
