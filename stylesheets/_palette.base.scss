@@ -46,12 +46,14 @@ $color-state-base-alt:      pick_best_color($color-state-base-base, (#fff, #000)
 $color-state-base-light:    $color-mono-80;
 $color-state-base-dark:     $color-mono-30;
 $color-state-base-text:     $color-mono-10;
+$color-state-base-background: $color-mono-90;
 
 $color-state-primary-base:  $color-primary;
 $color-state-primary-alt:   pick_best_color($color-state-primary-base, (#fff, #000));
 $color-state-primary-light: lighten($color-state-primary-base, 20);
 $color-state-primary-dark:  darken($color-state-primary-base, 10);
 $color-state-primary-text:  darken($color-state-primary-base, 10);
+$color-state-primary-background: lighten($color-state-primary-base, 50);
 
 $color-state-success-base:  $color-success;
 $color-state-success-alt:   pick_best_color($color-state-success-base, (#fff, #000));
@@ -86,12 +88,14 @@ $color-state-inverse-alt:   pick_best_color($color-state-inverse-base, (#fff, #0
 $color-state-inverse-light: lighten($color-state-inverse-base, 60);
 $color-state-inverse-dark:  $color-mono-20;
 $color-state-inverse-text:  $color-mono-20;
+$color-state-inverse-background: $color-mono-90;
 
 $color-state-white-base:  $color-white;
 $color-state-white-alt:   pick_best_color($color-state-white-base, (#fff, #000));
 $color-state-white-light: lighten($color-state-white-base, 55);
 $color-state-white-dark:  darken($color-state-white-base, 5);
 $color-state-white-text:  darken($color-state-white-base, 5);
+$color-state-white-background: $color-white;
 
 $color-state-new-base:  $color-new;
 $color-state-new-alt:   pick_best_color($color-state-new-base, (#fff, #000));

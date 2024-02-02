@@ -38,14 +38,16 @@ $palette-states: (
         alt:        $color-state-base-alt,
         light:      $color-state-base-light,
         dark:       $color-state-base-dark,
-        text:       $color-state-base-text
+        text:       $color-state-base-text,
+        background: $color-state-base-background
     ),
     primary: (
         base:       $color-state-primary-base,
         alt:        $color-state-primary-alt,
         light:      $color-state-primary-light,
         dark:       $color-state-primary-dark,
-        text:       $color-state-primary-text
+        text:       $color-state-primary-text,
+        background: $color-state-primary-background
     ),
     success: (
         base:       $color-state-success-base,
@@ -84,14 +86,16 @@ $palette-states: (
         alt:        $color-state-inverse-alt,
         light:      $color-state-inverse-light,
         dark:       $color-state-inverse-dark,
-        text:       $color-state-inverse-text
+        text:       $color-state-inverse-text,
+        background: $color-state-inverse-background
     ),
     white: (
         base:       $color-state-white-base,
         alt:        $color-state-white-alt,
         light:      $color-state-white-light,
         dark:       $color-state-white-dark,
-        text:       $color-state-white-text
+        text:       $color-state-white-text,
+        background: $color-state-white-background
     ),
     new: (
         base:       $color-state-new-base,

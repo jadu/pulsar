@@ -5,6 +5,7 @@
 * work well for content-centric websites.
 */
 
+$theme: 'base' !default;
 $ie-version: 12 !default;
 $image-path: '../../../images/' !default;
 
@@ -60,7 +61,6 @@ $fa-css-prefix: 'icon';
   font-style: normal;
 }
 
-
 .d-example,
 .d-example-inline,
 .d-guidelines {
@@ -92,6 +92,7 @@ $fa-css-prefix: 'icon';
 
     // Base colour palette
     @import '../../../stylesheets/palette.base';
+    @import '../../../stylesheets/palette.maps';
     @import '../../../stylesheets/config.theme';
     @import '../../../stylesheets/deprecated.styles';
 
@@ -179,18 +180,16 @@ $fa-css-prefix: 'icon';
     .swatch {
         @each $name, $palette in $colors {
             @each $variant, $value in $palette {
-                @if $variant != 'alt' {
-                    &--#{'' + $name}-#{$variant} .swatch__chip {
-                        background-color: color($name, $variant);
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                        display: inline-block;
-                        height: 20px;
-                        margin-right: 5px;
-                        color: pick_best_color(color($name, $variant), (#fff, #000));
-                        vertical-align: middle;
-                        width: 20px;
-                    }
+                &--#{'' + $name}-#{$variant} .swatch__chip {
+                    background-color: color($name, $variant);
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    display: inline-block;
+                    height: 20px;
+                    margin-right: 5px;
+                    color: pick_best_color(color($name, $variant), (#fff, #000));
+                    vertical-align: middle;
+                    width: 100%;
                 }
             }
         }
