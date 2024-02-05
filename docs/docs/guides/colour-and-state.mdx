@@ -16,11 +16,11 @@ When designing your user interface you must ensure that the colour of any text a
 
 ## Palettes
 
-There are two colour palattes in Pulsar, a base palette `_palette.base.scss` which provides the default 'light' mode, and a dark mode variant `_palette.dark.scss` which is currently in beta.
+There are two colour palattes in Pulsar, a base palette [`_palette.base.scss`](https://github.com/jadu/pulsar/blob/darkside/stylesheets/_palette.base.scss) which provides the default 'light' mode, and a dark mode variant [`_palette.dark.scss`](https://github.com/jadu/pulsar/blob/darkside/stylesheets/_palette.dark.scss) which is currently in beta.
 
 The base palette is a requirement, and the dark palatte overrides the colour variables as necessary. Two final stylesheets are compiled to facilitate easy switching between themes by the software. Dark mode cannot compile without the base palette.
 
-The palattes define a collection of colour tokens which are then passed to the maps defined in `_palette.maps.scss` and made available by the color() function to all subsequent stylesheets.
+The palattes define a collection of colour tokens which are then passed to the maps defined in [`_palette.maps.scss`](https://github.com/jadu/pulsar/blob/darkside/stylesheets/_palette.maps.scss) and made available by the color() function to all subsequent stylesheets.
 
 ### Fetching palette colours
 
@@ -334,7 +334,17 @@ Black and White are exempted and remain immutably black and white. You should no
       <td>Text</td>
       <td><span className="swatch__chip"></span><code>color(text)</code></td>
       <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(text)</code></td>
-    </tr>  
+    </tr>
+    <tr className="swatch swatch--text-alt">
+      <td>Text Alt</td>
+      <td><span className="swatch__chip"></span><code>color(text, alt)</code></td>
+      <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(text, alt)</code></td>
+    </tr>
+    <tr className="swatch swatch--text-heading">
+      <td>Heading Text</td>
+      <td><span className="swatch__chip"></span><code>color(text, heading)</code></td>
+      <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(text, heading)</code></td>
+    </tr>
     <tr className="swatch swatch--text-help">
       <td>Help text</td>
       <td><span className="swatch__chip"></span><code>color(text, help)</code></td>
@@ -416,7 +426,7 @@ Black and White are exempted and remain immutably black and white. You should no
       <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(background)</code></td>
     </tr>
     <tr className="swatch swatch--background-dark">
-      <td>Dark background Dark</td>
+      <td>Dark background</td>
       <td><span className="swatch__chip"></span><code>color(background, dark)</code></td>
       <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(background, dark)</code></td>
     </tr>
@@ -425,10 +435,20 @@ Black and White are exempted and remain immutably black and white. You should no
       <td><span className="swatch__chip"></span><code>color(background, light)</code></td>
       <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(background, light)</code></td>
     </tr>
+    <tr className="swatch swatch--background-backdrop">
+      <td>Backdrop background (behind modals)</td>
+      <td><span className="swatch__chip"></span><code>color(background, backdrop)</code></td>
+      <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(background, backdrop)</code></td>
+    </tr>
     <tr className="swatch swatch--background-selected">
       <td>Selected background</td>
       <td><span className="swatch__chip"></span><code>color(background, selected)</code></td>
       <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(background, selected)</code></td>
+    </tr>
+    <tr className="swatch swatch--background-disabled">
+      <td>Disabled background</td>
+      <td><span className="swatch__chip"></span><code>color(background, disabled)</code></td>
+      <td class="bg--dark"><span className="swatch__chip swatch__chip--dark"></span><code>color(background, disabled)</code></td>
     </tr>
     <tr className="swatch swatch--background-focus">
       <td>Focus background</td>
@@ -451,7 +471,7 @@ Never rely on colour alone, the language you use is more important than the colo
 Colour should be used where possible to visually reinforce the action or state that you are presenting to the user.
 
 * <span className="d-example-inline"><span className="label">grey</span></span> indicates benign or neutral actions/states
-* <span className="d-example-inline"><span className="label label--primary">blue</span></span> indicates the primary action for a given screen and should be used sparingly, ideally once per UI
+* <span className="d-example-inline"><span className="label label--primary">purple</span></span> indicates the primary action for a given screen and should be used sparingly, ideally once per UI
 * <span className="d-example-inline"><span className="label label--success">green</span></span> indicates positive or successful actions/states
 * <span className="d-example-inline"><span className="label label--danger">red</span></span> indicates negative or destructive actions/states
 * <span className="d-example-inline"><span className="label label--inverse">black</span></span> indicates blocking or restrictive actions/states
