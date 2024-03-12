@@ -1,0 +1,53 @@
+$info-from-bg-color: lighten(color(info), 30);
+$info-to-bg-color: transparent;
+$info-from-text-color: darken(color(info), 30);
+$info-to-text-color: black;
+
+$danger-from-bg-color: lighten(color(danger), 30);
+$danger-to-bg-color: transparent;
+$danger-from-text-color: darken(color(danger), 30);
+$danger-to-text-color: black;
+
+.warning:not(.form__group) {
+    background: rgba(255, 137, 9, .8) !important;
+}
+
+.has-success:not(.form__group) {
+    background-color: lighten(color(success), 50) !important;
+
+    a {
+        color: color(link, dark);
+    }
+}
+
+.has-warning:not(.form__group) {
+    background-color: lighten(color(warning), 20) !important;
+
+    a {
+        color: color(link, dark);
+    }
+}
+
+.has-error:not(.form__group),
+.has-danger:not(.form__group) {
+    background-color: color(danger, light) !important;
+
+    a {
+        color: color(link, dark);
+    }
+}
+
+@each $state, $state-color, $state-color-alt in $state-colors {
+    %text--#{'' + $state},
+    .text--#{'' + $state} {
+        color: $state-color;
+    }
+}
+
+.is-new {
+    background-color: color(new) !important;
+}
+
+.is-bold {
+    font-family: $font-family-regular;
+}

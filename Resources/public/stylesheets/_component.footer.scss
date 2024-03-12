@@ -1,0 +1,72 @@
+.footer {
+    -ms-transform: none;
+    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: none;
+    -webkit-transform: none;
+    -webkit-transition: -webkit-transform 500ms ease;
+    backface-visibility: hidden;
+    background-color: color(white);
+    border-top: $border-width solid color(gray, lightest);
+    bottom: 0;
+    font-size: $font-size-small;
+    height: $footer-height;
+    left: 0;
+    padding: $footer-padding-vertical $gutter-width;
+    position: static;
+    right: 0;
+    transform: none;
+    transition: transform 500ms ease;
+    z-index: $zindex-footer;
+
+    @include respond-min($screen-tablet) {
+        position: fixed;
+    }
+
+    @include respond-min($screen-desktop) {
+        left: $nav-primary-width;
+    }
+
+    .open-nav & {
+        @include respond-min($screen-desktop) {
+            left: $nav-primary-width;
+            -webkit-transform: none;
+            transform: none;
+        }
+
+        @include ie-lte(9) {
+            left: $nav-primary-width;
+        }
+    }
+
+    .open-help & {
+        @include respond-min($screen-desktop) {
+            left: $nav-primary-width;
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+
+    a {
+        color: color(gray, darker);
+        line-height: 16px;
+        padding: 0;
+        text-decoration: none;
+
+        &:hover {
+            color: color(link);
+        }
+    }
+}
+
+.branding-footer {
+    background: url($branding-footer), linear-gradient(transparent, transparent);
+    background-size: $branding-footer-width $branding-footer-height;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: $branding-footer-height;
+    margin-right: 2px;
+    text-indent: -9999px;
+    width: $branding-footer-width;
+}

@@ -1,0 +1,244 @@
+.content-main {
+    display: table;
+    min-height: 100%;
+    padding: 0 $gutter-width;
+    position: relative;
+    table-layout: fixed; // needed to make datatable overflow work at small widths
+    width: 100%;
+}
+
+.parent-title,
+.main-title {
+    color: color(jadu-purple);
+    font-family: $font-family-heading;
+    font-size: 1.5em;
+    line-height: 32px;
+    width: 100%;
+}
+
+.main-title {
+    font-size: 1.75em;
+    margin-bottom: 13px;
+}
+
+.sub-title {
+    display: inline-block;
+    margin-bottom: 0;
+
+    &::before {
+        content: '/ ';
+        margin-left: 10px;
+        width: 20px;
+        display: inline-block;
+    }
+}
+
+.inner-wrapper {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: none;
+    -webkit-transition: -webkit-transform 500ms ease;
+    backface-visibility: hidden;
+    display: table;
+    height: 100%;
+    left: 0;
+    padding-bottom: 24px; // make sure content clears the footer
+    position: relative;
+    transform: none;
+    transition: transform 500ms ease;
+    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        display: table-row;
+        left: auto;
+        position: static;
+    }
+}
+
+.open-nav .inner-wrapper {
+    -webkit-transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
+
+    @include respond-min($screen-desktop) {
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: none;
+        -webkit-transition: -webkit-transform 500ms ease;
+        backface-visibility: hidden;
+        transform: none;
+        transition: transform 500ms ease;
+        width: 100%;
+    }
+
+    @include prefers-reduced-motion() {
+        left: $nav-primary-width;
+        transform: none;
+    }
+
+    .lt-ie10 & {
+        left: $nav-primary-width;
+    }
+}
+
+.open-help .inner-wrapper {
+    -webkit-transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
+
+    @include respond-min($screen-desktop) {
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: none;
+        -webkit-transition: -webkit-transform 500ms ease;
+        backface-visibility: hidden;
+        transform: none;
+        transition: transform 500ms ease;
+        width: 100%;
+    }
+
+    @include prefers-reduced-motion() {
+        left: -300px;
+        transform: none;
+        transition: none;
+    }
+}
+
+.lt-ie10.open-help .inner-wrapper {
+    left: -300px;
+}
+
+.lt-ie10 .open-nav .inner-wrapper {
+    left: $nav-primary-width;
+}
+
+.tabs__content {
+    height: 100%;
+    vertical-align: top;
+    width: 100%;
+
+    // show/hide tab panes
+    .tab__pane {
+        display: none;
+
+        &.is-active {
+            display: block;
+        }
+    }
+}
+
+.tab__pane {
+    margin-top: ($margin-large-vertical * 2);
+    width: 100%;
+}
+
+.tab__content {
+    background-color: color(white);
+    margin-bottom: ($margin-large-vertical * 2);
+    padding: 15px $gutter-width $gutter-width;
+    width: auto;
+}
+
+.tab__inner {
+    padding-bottom: 48px;
+    position: relative;
+    width: 100%;
+}
+
+.tab__main {
+    overflow: hidden;
+    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        border-right: 1px solid color(gray);
+        padding-right: $gutter-width;
+        width: auto;
+    }
+}
+
+.tabs {
+    display: inline-block;
+    height: 100%;
+    margin-bottom: 3.2em;
+    position: relative;
+    width: 100%;
+}
+
+.tabs__list > li > a[data-show="#new-tab"] {
+    @extend .muted;
+    text-align: center;
+
+    &:hover {
+        color: color(gray, dark);
+    }
+}
+
+.tabs__list .new {
+    background-color: color(primary);
+    border-bottom: 0;
+    height: $line-height-base * 1.75;
+
+    input {
+        background-color: color(primary);
+        border: 0;
+        outline: none;
+        color: color(white);
+        line-height: 1.75em;
+        margin: 4px 0 0 5%;
+        width: 90%;
+
+        &::selection {
+            background: white;
+        }
+    }
+}
+
+.tab__container {
+    float: none;
+    height: 100%;
+}
+
+.tab__container {
+    .tab__inner {
+        float: none;
+        height: 100%;
+        vertical-align: top;
+        width: 100%;
+    }
+
+    .tab__content {
+        display: table-cell;
+        float: left;
+        vertical-align: top;
+        width: 100%;
+    }
+
+    .tab__sidebar {
+        @include col-span-width(3);
+        display: none;
+        height: 100%;
+        vertical-align: top;
+
+        @include respond-min($screen-desktop) {
+          display: table-cell;
+          float: right;
+        }
+
+        h2 {
+            font-family: $font-family-heading-light;
+            font-size: 1rem;
+            font-weight: normal;
+            line-height: $line-height-base;
+            margin: 0 0 $margin-large-vertical;
+        }
+
+        a {
+            color: color(text);
+        }
+
+        .no-js & {
+          display: table-cell;
+        }
+    }
+}
+
+.tab__container.has-sidebar .tab__content {
+    @include respond-min($screen-desktop) {
+        @include col-span-width(9);
+    }
+}

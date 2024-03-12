@@ -1,0 +1,13 @@
+/**
+ * Adds browser prefixed `box-sizing: content-box;` rules
+ *
+ * @example scss
+ * .some-class {
+ *     @include content-box;
+ * }
+ */
+@mixin content-box {
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}

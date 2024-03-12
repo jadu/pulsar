@@ -1,0 +1,21 @@
+.form__group .editor {
+    @include inline-block;
+    min-width: 75%;
+}
+
+.editor {
+    .btn:active:not(:disabled),
+    .btn:focus:not(:disabled) {
+        box-shadow: none;
+    }
+
+    .btn:hover:not(:disabled) {
+        box-shadow: none;
+        background-image: none;
+    }
+
+    .note-editor,
+    .note-toolbar {
+        border-color: $input-border;
+    }
+}

@@ -1,0 +1,114 @@
+@mixin sortable-handle {
+    color: color(black);
+    content: '\f0c9';
+    font-family: $font-family-icons;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 900;
+    left: 10px;
+    position: absolute;
+    text-rendering: auto;
+    top: 10px;
+    -webkit-font-smoothing: antialiased;
+}
+
+@mixin sortable-success {
+    color: color(success, dark);
+    font-family: $font-family-icons;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 900;
+    left: 10px;
+    position: absolute;
+    text-rendering: auto;
+    top: 10px;
+    -webkit-font-smoothing: antialiased;
+}
+
+div.is-sortable {
+    .ui-sortable-handle {
+        background-color: color(background, light);
+        margin-bottom: 4px;
+        padding: 10px 10px 10px 50px;
+        position: relative;
+
+        &:hover {
+            background-color: color(background);
+
+            &::before {
+                color: color(primary, dark);
+            }
+        }
+
+        &,
+        .control__label {
+            @include cursor('grab');
+        }
+
+        &::before {
+            @include sortable-handle;
+        }
+
+        &.form__group::before {
+            top: 22px;
+        }
+    }
+}
+
+div.is-sorting {
+    background-color: color(sorting);
+    outline: 1px dashed color(sorting, dark);
+    display: block;
+    margin-bottom: 4px;
+
+    &::before {
+        display: none;
+    }
+}
+
+
+.table.is-sortable {
+    tr > th:first-of-type,
+    tr > td:first-of-type {
+        padding-left: 50px;
+    }
+
+    .ui-sortable-handle > td:first-of-type {
+        @include cursor('grab');
+        position: relative;
+
+        &::before {
+            @include sortable-handle;
+        }
+
+        &:hover {
+            &::before {
+                color: color(primary, dark);
+            }
+        }
+    }
+
+    .has-success > td:first-of-type::before {
+        color: color(success, dark);
+        content: '\f058';
+    }
+
+    .ui-sortable-helper {
+        display: table;
+    }
+
+    .is-sorting {
+        background-color: color(sorting);
+    }
+
+    .sortable__count {
+        color: color(black);
+        font-family: $font-family-regular;
+        left: 30px;
+        position: absolute;
+    }
+}
+
+.is-dragging {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}

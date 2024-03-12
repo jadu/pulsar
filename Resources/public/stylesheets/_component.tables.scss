@@ -1,0 +1,367 @@
+.table {
+    border-collapse: collapse;
+    margin-bottom: 24px;
+
+    caption {
+        display: table-caption;
+        padding-bottom: $padding-large-vertical;
+        text-align: left;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-bottom: 0;
+        }
+    }
+
+    a > .icon {
+        color: color(black);
+    }
+
+    tbody > tr:hover {
+        background-color: color(background, light);
+    }
+
+    tr {
+        vertical-align: top;
+    }
+
+    tr.selected td,
+    tr.is-selected td {
+        background-color: color(background, selected);
+    }
+
+    tr.is-disabled td:not(.table-row__actions) {
+        &,
+        & > * {
+            color: color(text, disabled);
+        }
+    }
+
+    tr.u-no-border > td {
+        border-bottom: 0;
+    }
+
+    tr.fade {
+        animation-name: fade-row-to-white !important;
+        animation-delay: 1s;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+    }
+
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        tr.has-#{'' + $state} {
+            background-color: color($state, light) !important;
+
+            &:hover {
+                background-color: darken(color($state, light), 2) !important;
+            }
+        }
+    }
+
+    .no-results {
+        padding: 2em 0;
+        text-align: center;
+
+        // Stop no-results from inheriting bold text from th
+        &.no-results {
+            font-family: $font-family-light;
+        }
+    }
+
+    th {
+        text-align: left;
+    }
+
+    th,
+    td {
+        border-bottom: 1px solid color(border);
+        padding: 11px 10px 12px;
+
+        &.centered {
+            @include respond-min($screen-tablet) {
+                text-align: center;
+            }
+        }
+
+        &.shrink-to-fit,
+        &.u-shrink-to-fit {
+            @include respond-min($screen-tablet) {
+                width: 1px;
+            }
+        }
+
+        &.no-wrap,
+        &.u-no-wrap {
+            @extend %u-no-wrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    th,
+    thead td {
+        background-color: color(background, light);
+        border-top: 1px solid color(border);
+        font-family: $font-family-regular;
+        font-weight: normal;
+        vertical-align: bottom;
+    }
+
+    td .status--icon {
+        font-size: 1.25em;
+        vertical-align: text-bottom;
+    }
+
+    td.table__actions {
+        @include respond-min($screen-desktop) {
+            border-bottom: 0;
+        }
+    }
+
+    td.table-row__actions {
+        text-align: right;
+
+        .btn {
+            box-shadow: none;
+            top: 0;
+            height: 24px;
+            width: 24px;
+        }
+
+        a > i {
+            color: color(text);
+        }
+    }
+}
+
+.table--white-bg {
+    background-color: white;
+}
+
+.table--contrast {
+    thead {
+        background-color: color(grey, off-white);
+    }
+
+    tbody {
+        background-color: lighten(color(grey, off-white), 4);
+    }
+}
+
+// Added by javascript, allows the table to scroll horizontally at narrow
+// viewports
+.table-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+
+    .table {
+        margin-bottom: 0;
+    }
+}
+
+.table-action {
+    display: inline-block;
+    margin-right: 5px;
+
+    &:last-child {
+        border-right: 0;
+        margin-right: 0;
+        padding-right: 0;
+    }
+}
+
+.table--full {
+    max-width: 100%;
+    width: 100%;
+}
+
+.table--fixed {
+    table-layout: fixed;
+
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+tr.table__form,
+td.table__form {
+    padding: 10px 10px 24px 20px;
+    white-space: normal;
+
+    form {
+        background-color: transparent;
+    }
+
+    fieldset {
+        margin-top: 6px;
+    }
+
+    .legend {
+        border-bottom: 1px solid color(border);
+        line-height: 25px;
+        margin-bottom: 24px;
+    }
+
+    .form__group:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .edit-button,
+    .remove-button {
+        padding: 5px;
+    }
+
+    .close {
+        width: 25px;
+        margin-left: 10px;
+    }
+}
+
+td.table__form,
+.table__form td {
+    background-color: color(background, light);
+
+    .help-block {
+        color: color(text);
+    }
+}
+
+// Map deprecated table styles to this one -------------------------------------
+
+.table--datagrid {
+    @extend .table;
+    width: 100%;
+}
+
+.datagrid--fixed {
+    @extend .table--fixed;
+}
+
+@keyframes fade-row-to-white {
+    from {
+        background-color: inherit;
+    }
+
+    to {
+        background-color: #fff;
+    }
+}
+
+td.row__actions {
+    width: 10px;
+}
+
+.table--horizontal {
+    width: 100%;
+
+    th,
+    td {
+        white-space: nowrap;
+
+        // Maintain expected behaviour of flush inputs
+        .form__group--flush {
+            white-space: normal;
+        }
+    }
+}
+
+.row--final td {
+    border-top: 2px solid color(border);
+    border-bottom: 2px solid color(border);
+}
+
+.table--overflow-left,
+.table--overflow-right {
+    &.table-container {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 7px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: color(background, light);
+            border-bottom: 1px solid color(border);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: color(grey, lightest);
+            border-bottom: 1px solid color(border);
+        }
+    }
+}
+
+.table--overflow-left {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(270deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%);
+}
+
+.table--overflow-right {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(90deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%);
+}
+
+.table--overflow-right.table--overflow-left {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(90deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%),
+                linear-gradient(270deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%);
+}
+
+.sticky-scrollbar {
+    bottom: 0;
+    height: 30px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: fixed;
+    z-index: $zindex-sticky;
+
+    @include respond-min($screen-tablet) {
+        bottom: $footer-height;
+    }
+}
+
+.sticky-scrollbar__inner {
+    border: 1px solid color(white);
+    opacity: .01;
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar {
+    -webkit-appearance: none;
+    -webkit-overflow-scrolling: touch;
+    background: color(background, light);
+    width: 7px;
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-track,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-track {
+    background: color(background, light);
+    border-bottom: 1px solid color(border);
+    border-top: 1px solid color(border);
+
+    @include respond-min($screen-tablet) {
+        border-bottom: 0;
+    }
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-thumb,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-thumb {
+    background: color(grey, lightest);
+    border-bottom: 1px solid color(border);
+    border-top: 1px solid color(border);
+
+    @include respond-min($screen-tablet) {
+        border-bottom: 0;
+    }
+}

@@ -1,0 +1,129 @@
+/**
+ * -----------------------------------------------------------------------------
+ *  _type.scss
+ * -----------------------------------------------------------------------------
+ */
+
+// Stop fonts being too thin in IE8
+@include ie-lte(8) {
+    html,
+    body {
+        font-family: $font-family-fallback;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-heading-light;
+    font-weight: normal;
+    line-height: 1em;
+    margin: 0 0 1em;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-regular;
+}
+
+p {
+    margin: 0 0 ($line-height-base / $line-height-small);
+
+    @include respond-min($screen-phone) {
+        margin-bottom: $line-height-base;
+    }
+}
+
+ul,
+ol {
+    list-style-position: inside;
+    margin: 0 0 $line-height-base;
+    padding: 0;
+
+    li {
+        display: list-item;
+    }
+}
+
+dl {
+    margin: 0 0 $line-height-base;
+}
+
+dd {
+    margin-left: 1em;
+}
+
+code,
+pre,
+kbd {
+    font-size: $font-size-medium;
+}
+
+hr {
+    border: 1px solid color(border);
+    border-bottom: 0;
+    margin-bottom: 24px;
+}
+
+b,
+strong,
+dt {
+    font-family: $font-family-regular;
+    font-weight: normal;
+
+    // IE8 doesn't use Proxima Nova, so use regular bold variant of fallback stack
+    @include ie-lte(8) {
+        font-weight: bold;
+    }
+}
+
+// normalize-css needs updating to 7.0.0, for now we'll use this
+abbr[title] {
+    text-decoration: none;
+}
+
+.monospace {
+    font-family: $font-family-monospace;
+
+    em {
+        font-style: normal;
+        margin-right: 3px;
+    }
+}
+
+// Horizontal layout (like forms)
+.dl-horizontal {
+    dt {
+        @include text-overflow();
+        float: left;
+        width: ($component-offset - 20);
+        clear: left;
+        text-align: right;
+    }
+
+    dd {
+        @include clear-fix; // Clear the floated `dt` if an empty `dd` is present
+        margin-left: $component-offset;
+    }
+}
+
+.small-type {
+    font-size: .85em;
+}
+
+.medium-type {
+    @include respond-min(1500px) {
+        font-size: 1.5em;
+    }
+}
+
+.large-type {
+    @include respond-min($screen-tablet) {
+        font-size: 2em;
+    }
+}
