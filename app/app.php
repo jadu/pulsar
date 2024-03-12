@@ -42,6 +42,8 @@ if (strstr($_SERVER['PATH_INFO'], '.html.twig')) {
     $template = $twig->loadTemplate($_SERVER['PATH_INFO'] . '/index.html.twig');
 }
 
-// define('theme', 'projector');
+// Show deprecations
+// $deprecations = new \Twig\Util\DeprecationCollector($twig);
+// print_r($deprecations->collectDir($templateDir));
 
 print $template->render(array());
