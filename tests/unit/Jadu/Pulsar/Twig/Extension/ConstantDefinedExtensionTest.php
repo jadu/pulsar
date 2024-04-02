@@ -2,8 +2,8 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-use Twig_Environment;
-use Twig_Loader_Array;
+use \Twig\Environment;
+use Twig\Loader\ArrayLoader;
 
 class ConstantDefinedExtensionTest extends \PHPUnit\Framework\TestCase
 {
@@ -21,11 +21,11 @@ class ConstantDefinedExtensionTest extends \PHPUnit\Framework\TestCase
 
     public function testConstantDefinedFunction()
     {
-        $loader = new Twig_Loader_Array(array(
+        $loader = new \Twig\Loader\ArrayLoader(array(
             'index.html' => '{% if constant_defined("FOO") %}true{% endif %}',
         ));
 
-        $twig = new Twig_Environment($loader);
+        $twig = new \Twig\Environment($loader);
         $twig->addExtension(new ConstantDefinedExtension());
 
         define('FOO', true);

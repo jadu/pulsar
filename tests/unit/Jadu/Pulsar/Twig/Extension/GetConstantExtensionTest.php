@@ -2,8 +2,8 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-use Twig_Environment;
-use Twig_Loader_Array;
+use \Twig\Environment;
+use \Twig\Loader\ArrayLoader;
 
 class GetConstantExtensionTest extends \PHPUnit\Framework\TestCase
 {
@@ -27,11 +27,11 @@ class GetConstantExtensionTest extends \PHPUnit\Framework\TestCase
 
     public function testGetConstantFunction()
     {
-        $loader = new Twig_Loader_Array(array(
+        $loader = new \Twig\Loader\ArrayLoader(array(
             'index.html' => '{{ get_constant("STRING") }}',
         ));
 
-        $twig = new Twig_Environment($loader);
+        $twig = new \Twig\Environment($loader);
         $twig->addExtension(new GetConstantExtension());
 
         $this->assertEquals('foo', $twig->render('index.html'));
