@@ -170,7 +170,7 @@ $piano-bg: #fafafa;
     border-radius: 50%;
     float: left;
     height: 25px;
-    margin-bottom: $margin-base / 2;
+    margin-bottom: calc($margin-base / 2);
     margin-right: $margin-base;
     width: 25px;
 }

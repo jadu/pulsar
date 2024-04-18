@@ -10,7 +10,7 @@ $gutter_pc:     .5;
  * @param  {bool} $important:  false     If true, adds the !important declaration
  */
 @mixin col-span($num, $force: false, $gutter: false, $columns: $columns, $important: false) {
-    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    $one_col: (100% - calc(($gutter_pc * ($columns - 1)) / $columns));
     $span_width: floor(($one_col * ($num)) + ($gutter_pc * ($num - 1)));
 
     @if $gutter == true {
@@ -52,7 +52,7 @@ $gutter_pc:     .5;
  * @param  {bool} $important:  false     If true, adds the !important declaration
  */
 @mixin col-span-width($num, $columns: $columns, $important: false) {
-    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    $one_col: (100% - calc(($gutter_pc * ($columns - 1)) / $columns));
     $span_width: floor(($one_col * ($num)) + ($gutter_pc * ($num - 1)));
 
     @if $important == false {
@@ -65,18 +65,18 @@ $gutter_pc:     .5;
 
 // indent an element by a given number of columns
 @mixin push($num) {
-    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    $one_col: (100% - calc(($gutter_pc * ($columns - 1)) / $columns));
     margin-left: ($one_col * $num) + ($gutter_pc * ($num));
 }
 
 @mixin shrink($num) {
-    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    $one_col: (100% - calc(($gutter_pc * ($columns - 1)) / $columns));
     width: (100% - (($one_col * $num) + ($gutter_pc * ($num))));
 }
 
 // indent an element using padding-left by a given number of columns
 @mixin push-padding($num) {
-    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    $one_col: (100% - calc(($gutter_pc * ($columns - 1)) / $columns));
     padding-left: ($one_col * $num) + ($gutter_pc * ($num));
 }
 
