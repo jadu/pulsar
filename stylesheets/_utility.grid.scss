@@ -17,7 +17,7 @@
     }
 
     @include respond-min($screen-tablet) {
-        margin-left: percentage($gutter_pc / 100);
+        margin-left: calc($gutter_pc / 100);
     }
 
 }

@@ -1,10 +1,10 @@
 // Constructor
 .flash {
-    padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
+    padding: calc(calc($line-height-base / $line-height-small) / 2) $gutter-width;
     width: 100%;
 
     @include respond-min($screen-phone) {
-        padding: ($line-height-base / 2) $gutter-width;
+        padding: calc($line-height-base / 2) $gutter-width;
     }
 
     @include respond-min($screen-desktop) {
@@ -17,10 +17,10 @@
     }
 
     i {
-        margin: 0 ($gutter-width / 4) 0 0;
+        margin: 0 calc($gutter-width / 4) 0 0;
 
         @include respond-min($screen-phone) {
-            margin-right: $gutter-width / 2;
+            margin-right: calc($gutter-width / 2);
         }
     }
 }
@@ -87,13 +87,13 @@
         color: inherit;
         float: right;
         font-size: 1em;
-        margin-left: $gutter-width / 4;
+        margin-left: calc($gutter-width / 4);
         margin-right: -$gutter-width;
         opacity: .9;
         text-decoration: none;
 
         @include respond-min($screen-phone) {
-            margin-left: $gutter-width / 2;
+            margin-left: calc($gutter-width / 2);
         }
 
         &:hover {
@@ -114,7 +114,7 @@
 .flash-container {
     clear: both;
     flex: 1 1 100%;
-    margin: 0 -20px ($line-height-base / 2) -19px;
+    margin: 0 -20px calc($line-height-base / 2) -19px;
     z-index: $zindex-flash;
 
     &:empty {
