@@ -1,0 +1,12 @@
+.box {
+    background-color: color(background, light);
+    padding: $padding-base;
+}
+
+.box--rounded {
+    border-radius: $border-radius;
+}
+
+.box--naked {
+    background-color: color(white);
+}

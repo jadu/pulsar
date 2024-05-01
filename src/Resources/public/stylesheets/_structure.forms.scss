@@ -1,0 +1,190 @@
+/**
+ * Controls the principle layout of Pulsar form elements and pays very little
+ * notice to how they're styled.
+ *
+ * We rely heavily on table and table-cell layouts which (in lieu of flexbox)
+ * give us great, predictable, cross browser columnar layouts.
+ */
+
+// each 'block' of a form, usually consisting of a label and one or more inputs
+.form__group {
+    margin-bottom: .5em;
+    width: 100%;
+
+    // the main label, usually placed in the left hand column
+    > .control__label,
+    span.control__label {
+        @include col-span($form-label-cols);
+        word-wrap: break-word;
+    }
+
+    .help-block {
+        margin: .675em 0 0; // magic number for top
+    }
+
+    .help-block ~ .help-block {
+        margin-top: 0;
+    }
+}
+
+// all labels, regardless of their placement
+.control__label,
+.controls {
+    display: inline-block;
+    vertical-align: top;
+}
+
+// stop .hide class adding -1px margin which misaligns form groups with
+// hidden labels
+.control__label.hide {
+    margin: 0;
+}
+
+// the container around one or more form inputs
+.controls {
+    @include col-span($form-control-cols + $form-label-cols, false, false);
+    position: relative;
+
+    // stack inputs by default
+    > .form__control,
+    > .control__label {
+        display: block; // test this moar!
+    }
+}
+
+// Add a gutter between form labels and controls
+.control__label + .controls {
+    @include col-span($form-control-cols, false);
+}
+
+// Tight spacing to bring related controls closer together
+.form__group.form__group--tight {
+    margin-bottom: $margin-base-vertical;
+}
+
+// inputs can be aligned next to each other if required
+.form__group--inline > .controls {
+
+    // override regular stacked styling
+    > .form__control,
+    > .control__label,
+    &:first-child > .control__label {
+        clear: none;
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    // inline radio/checkboxes need spacing apart slightly
+    > .control__label:not(:first-of-type) {
+        margin-left: 10px;
+    }
+}
+
+// make sure labels next to radio/checkboxes have some space to breathe
+.control__label > .form__control {
+    margin-right: 10px;
+}
+
+// radio/checkboxes before labels
+// .control__label--left {
+//     text-align: right;
+
+//     > .form__control {
+//         float: right;
+//         margin-left: 15px;
+//         margin-right: 0;
+//     }
+// }
+
+.form__group--top {
+    > .control__label,
+    > span.control__label {
+        @include col-span(12);
+    }
+
+    > .control__label,
+    .controls {
+        display: block;
+    }
+
+    .controls {
+        @include respond-min($screen-tablet) {
+            @include push($form-label-cols);
+        }
+    }
+}
+
+// // control group inside first column (normally used for control labels)
+// .controls:first-child {
+//     @include col-span($form-label-cols);
+//     display: table;
+
+//     > .control__label--left {
+//         clear: right;
+//         float: right;
+//     }
+// }
+
+.form__group--indent {
+    @include respond-min($screen-tablet) {
+        @include push($form-label-cols);
+    }
+}
+
+.form__group--flush {
+    margin-left: 0;
+
+    .controls {
+        margin-left: 0;
+        width: 100%;
+
+        &::before {
+            display: none;
+        }
+    }
+}
+
+// at narrow viewports, forms collapse into a single column view
+@include respond-max($screen-smaller) {
+    .form__group {
+        > .control__label,
+        > .controls {
+            display: block;
+            min-width: 100%;
+            width: 100%;
+        }
+
+        .controls:first-child {
+            min-width: 100%;
+        }
+
+        .controls::before {
+            display: none;
+        }
+
+        .help-block {
+            margin-left: 0;
+        }
+    }
+
+    .form__group.form-choice > .control__label {
+        display: inline-block;
+    }
+}
+
+.fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    .legend {
+        margin: 0 0 .5em -20px;
+        padding: 0 20px;
+    }
+}
+
+// nested form groups underneath a normal form control, such as XFPs 'use a value from a previous action' pattern
+.form__group > .controls > .form__group {
+    margin: .675em 0; // magic number to replicate help-block positioning
+}

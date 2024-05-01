@@ -1,8 +1,10 @@
 <?php
 
 namespace Jadu\Pulsar\Twig\Extension;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class HelperOptionsModifierExtension extends \Twig_Extension
+class HelperOptionsModifierExtension extends AbstractExtension
 {
     /**
      * Name of this extension
@@ -22,7 +24,7 @@ class HelperOptionsModifierExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('modify_options', array($this, 'modifyOptions'))
+            new TwigFunction('modify_options', array($this, 'modifyOptions'))
         );
     }
 

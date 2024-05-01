@@ -1,0 +1,13 @@
+.repeater__group {
+    display: none;
+
+    td {
+        white-space: normal;
+    }
+}
+
+.repeater__group-actions {
+    margin-top: $line-height-base;
+    padding: $line-height-base 0 0;
+}
+

@@ -133,7 +133,7 @@
 
 .input-group-btn:first-child > .btn,
 .input-group-btn:first-child > .btn__group {
-    margin-right: $margin-base-horizontal / 2;
+    margin-right: calc($margin-base-horizontal / 2);
 }
 
 .input-group:not(.has-btn-prepended) .form__control:not(:first-child),
@@ -149,7 +149,7 @@
 
 .input-group-btn > .btn,
 .input-group-btn > .btn__group {
-    margin-left: $margin-base-horizontal / 2;
+    margin-left: calc($margin-base-horizontal / 2);
 }
 
 // Button input groups

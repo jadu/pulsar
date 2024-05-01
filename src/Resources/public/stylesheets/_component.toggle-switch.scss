@@ -1,0 +1,125 @@
+.toggle-switch {
+    @extend %hide;
+
+    @include ie-lte(8) {
+        @extend %show;
+    }
+
+    &:checked + .toggle-switch-label {
+        background-color: color(success);
+        border-color: transparent;
+        color: color(white);
+
+        &::before {
+            left: 50%;
+            right: 0%;
+        }
+    }
+
+    &:indeterminate + .toggle-switch-label {
+        background-color: color(warning);
+
+        &::before {
+            left: 25%;
+            right: 25%;
+        }
+
+        &::after {
+            color: color(white);
+            opacity: 0;
+        }
+    }
+
+    &:focus + .toggle-switch-label {
+        @include pulsar-toggle-focused;
+    }
+
+    &.toggle-switch--large + .toggle-switch-label {
+        height: 2em;
+        width: 4em;
+
+        &::after {
+            font-size: 32px;
+            left: 15px;
+            letter-spacing: 32px;
+        }
+    }
+}
+
+.toggle-switch-label {
+    background-clip: padding-box;
+    background-color: color(grey);
+    border-color: transparent;
+    border-radius: 1.5em;
+    color: color(white);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2em;
+    height: 1em;
+    position: relative;
+    transition: left .4s, right .4s;
+    vertical-align: middle;
+    width: 2em;
+
+    @include ie-lte(8) {
+        display: none !important;
+    }
+
+    &::before {
+        background-clip: padding-box;
+        background-color: color(white);
+        border-radius: 100%;
+        border: .125em solid transparent;
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: absolute;
+        right: 50%;
+        top: 0;
+        transition: .3s;
+        z-index: 2;
+    }
+
+    &::after {
+        color: color(white);
+        content: '\f00c \f00d';
+        font-family: $font-family-icons;
+        font-weight: 900;
+        font-size: $font-size-base;
+        left: 10px;
+        letter-spacing: 14.4px; // Magic number - for correct alignment
+        line-height: 2;
+        position: absolute;
+        top: 0;
+        transition: .3s;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+// State class overrides to make sure internal 'icon' doesn't inherit the state
+// colour styling as they look terrible and don't meet AA.
+// .double.chained control__label is required to override inherited styles
+.has-changed,
+.has-success,
+.has-warning,
+.has-info,
+.has-error,
+.has-danger {
+    .toggle-switch-label.control__label.control__label {
+        color: color(white);
+    }
+}
+
+.toggle-switch.is-disabled + .toggle-switch-label {
+    opacity: .5;
+}
+
+.toggle-switch-wrapper-label {
+    display: block;
+
+    .control__label {
+        padding-top: 11px;
+        padding-right: 10px;
+    }
+}

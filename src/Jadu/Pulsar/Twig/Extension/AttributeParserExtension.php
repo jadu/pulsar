@@ -1,6 +1,9 @@
 <?php
 
 namespace Jadu\Pulsar\Twig\Extension;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Attribute parser
@@ -10,7 +13,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  *
  * Unit tests: tests/unit/AttribuetParserExtensionTest.php
  */
-class AttributeParserExtension extends \Twig_Extension
+class AttributeParserExtension extends AbstractExtension
 {
     /**
      * Get the name of this extension
@@ -30,7 +33,7 @@ class AttributeParserExtension extends \Twig_Extension
     public function getFilters()
     {
         $filters = array(
-            new \Twig_SimpleFilter(
+            new TwigFilter(
                 'defaults',
                 array($this, 'defaultAttributes'),
                 array('is_safe' => array('html'))
@@ -47,7 +50,7 @@ class AttributeParserExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'attributes',
                 array($this, 'parseAttributes'),
                 array('is_safe' => array('html'))

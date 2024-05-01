@@ -101,7 +101,7 @@
 
 %u-margin-right-small,
 .u-margin-right-small {
-    margin-right: $margin-base / 2 !important;
+    margin-right: calc($margin-base / 2) !important;
 }
 
 /**

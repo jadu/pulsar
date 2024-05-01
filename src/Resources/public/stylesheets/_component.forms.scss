@@ -1,0 +1,845 @@
+fieldset {
+    border: 0;
+    margin: 0;
+    min-width: auto;
+    padding: 0;
+}
+
+.form {
+    background-color: color(white);
+
+    fieldset {
+        padding: 22px 0;
+
+        legend {
+            border-bottom: 1px solid color(border);
+            display: block;
+            font-size: $font-size-xlarge;
+            line-height: $line-height-base;
+            margin-bottom: 15px;
+            padding: 0 $gutter-width 0 0;
+            position: relative;
+            width: 100%;
+        }
+    }
+
+    .form__group--inline .form__control {
+        max-width: none;
+        width: auto;
+    }
+}
+
+.form--standalone {
+    padding: 0 20px 20px;
+}
+
+.form__group {
+    margin-bottom: 24px;
+}
+
+.form__group--compact .form__control {
+    height: 38px;
+    line-height: 38px;
+}
+
+.form__group--compact .input-group-addon {
+    line-height: 36px;
+}
+
+.modal .form__group {
+    padding: 0;
+}
+
+.form__control {
+    appearance: none;
+    border-radius: $input-border-radius;
+    height: $input-height-base;
+    line-height: $input-height-base;
+    padding: 0 0 0 $padding-base-horizontal;
+
+    @include respond-min($screen-tablet) {
+        .has-changed &.file,
+        .has-success &.file,
+        .has-warning &.file,
+        .has-error &.file {
+            padding: 14px 10px 13px;
+        }
+    }
+
+    &[type="color"],
+    &[type="date"],
+    &[type="email"],
+    &[type="month"],
+    &[type="number"],
+    &[type="password"],
+    &[type="search"],
+    &[type="tel"],
+    &[type="text"],
+    &[type="time"],
+    &[type="url"],
+    &[type="week"] {
+        border: 1px solid $input-border;
+    }
+
+    &[type="search"] {
+        box-sizing: border-box;
+    }
+
+    &.checkbox,
+    &.radio {
+        border-radius: 0;
+        height: auto;
+        padding: 0;
+        vertical-align: baseline;
+        width: auto;
+
+        @include ie-lte(9) {
+            border: 0;
+        }
+    }
+
+    &.textarea {
+        border: 1px solid $input-border;
+        height: auto;
+        line-height: $line-height-base;
+        min-height: 68px;
+        padding-top: 11px;
+        padding-bottom: 11px;
+        resize: vertical;
+    }
+
+    &.select {
+        appearance: none;
+        background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, color(gray, off-white), color(gray, off-white));
+        background-position: calc(100% - 10px) calc(1em + 5px), calc(100% - 5px) calc(1em + 5px), 100% 0;
+        background-size: 5px 5px, 5px 5px, 22px 100%;
+        background-repeat: no-repeat;
+        border: 1px solid $input-border;
+        color: color(text);
+        padding: 0 22px 0 $padding-base-horizontal;
+
+        @media screen and (-ms-high-contrast: active) {
+            padding-right: 0;
+        }
+
+        @include ie-lte(8) {
+            height: 24px;
+        }
+
+        // select arrows can't be hidden in IE8 & 9, so reset to default styles
+        @include ie-lte(9) {
+            background-image: none;
+            padding-right: 0;
+        }
+
+        // remove the arrow in IE10 & 11, modern browsers are taken care of
+        // by the `appearance` property
+        &::-ms-expand {
+            display: none;
+
+            @media screen and (-ms-high-contrast: active) {
+                display: block;
+            }
+        }
+    }
+
+    &.file {
+        background: none;
+        border: 1px solid transparent;
+        height: auto;
+        line-height: normal;
+        padding: 0;
+
+        @include respond-min($screen-tablet) {
+            padding: 8px 0;
+        }
+
+        @include ie-lte(9) {
+            border: 1px solid $input-border;
+            border-radius: 0;
+        }
+
+        &:focus {
+            @include pulsar-input-focused;
+
+            padding-left: 5px;
+        }
+
+        &.is-disabled {
+            background-color: color(white);
+            color: color(text, disabled);
+        }
+    }
+
+    // IE8 - position text in the middle of inputs
+    @at-root {
+        input[type="color"]#{&},
+        input[type="date"]#{&},
+        input[type="email"]#{&},
+        input[type="month"]#{&},
+        input[type="number"]#{&},
+        input[type="password"]#{&},
+        input[type="search"]#{&},
+        input[type="tel"]#{&},
+        input[type="text"]#{&},
+        input[type="time"]#{&},
+        input[type="url"]#{&},
+        input[type="week"]#{&} {
+            @include ie-lte(8) {
+                line-height: 48px;
+            }
+        }
+    }
+
+    // IE8 - fix widths of inputs and add border/padding
+    @at-root {
+        .form__group input[type="color"]#{&},
+        .form__group input[type="date"]#{&},
+        .form__group input[type="email"]#{&},
+        .form__group input[type="month"]#{&},
+        .form__group input[type="number"]#{&},
+        .form__group input[type="password"]#{&},
+        .form__group input[type="search"]#{&},
+        .form__group input[type="tel"]#{&},
+        .form__group input[type="text"]#{&} ,
+        .form__group input[type="time"]#{&},
+        .form__group input[type="url"]#{&},
+        .form__group input[type="week"]#{&},
+        .form__group select#{&},
+        .form__group textarea#{&} {
+            @include ie-lte(8) {
+                border: 1px solid $input-border;
+                max-width: 100%;
+                padding: 0 0 0 $padding-base-horizontal;
+                width: 300px;
+            }
+        }
+    }
+
+    // IE8 - fix widths of inputs on form__group--full
+    @at-root {
+        .form__group--full input[type="color"]#{&},
+        .form__group--full input[type="date"]#{&},
+        .form__group--full input[type="email"]#{&},
+        .form__group--full input[type="month"]#{&},
+        .form__group--full input[type="number"]#{&},
+        .form__group--full input[type="password"]#{&},
+        .form__group--full input[type="search"]#{&},
+        .form__group--full input[type="tel"]#{&},
+        .form__group--full input[type="text"]#{&} ,
+        .form__group--full input[type="time"]#{&},
+        .form__group--full input[type="url"]#{&},
+        .form__group--full input[type="week"]#{&},
+        .form__group--full select#{&},
+        .form__group--full textarea#{&} {
+            @include ie-lte(8) {
+                 width: 100%;
+            }
+        }
+    }
+
+    // Disabled and read-only inputs
+    // Note: HTML5 says that inputs under a fieldset > legend:first-child won't be
+    // disabled if the fieldset is disabled. Due to implementation difficulty,
+    // we don't honor that edge case; we style them as disabled anyway.
+    &[disabled],
+    &[readonly],
+    fieldset[disabled] & {
+        cursor: not-allowed;
+        color: color(text); // Required for cross-browser consistency
+        background-color: $input-bg-disabled;
+    }
+
+    &:focus {
+        @include pulsar-input-focused;
+
+        z-index: 1;
+    }
+}
+
+.form__link {
+    height: $input-height-base;
+    line-height: $input-height-base;
+}
+
+.form__group > .control__label {
+    color: color(text);
+    padding-top: 11px;
+    padding-right: 10px;
+
+    // hidden labels need to maintain their position and not break the flow of
+    // the form elements
+    &.hide {
+        position: relative;
+    }
+}
+
+.form__group--top {
+    > .control__label {
+        margin-bottom: .5em;
+    }
+
+    .controls > .form__control {
+        display: inline-block;
+    }
+}
+
+.legend {
+    font-family: $font-family-heading-light;
+    font-size: $font-size-large;
+    margin-bottom: .5em;
+}
+
+.form__actions {
+    border-top: 1px solid color(border);
+    min-height: 60px;
+    padding: $line-height-base 0;
+    position: relative;
+
+    @include respond-min($screen-tablet) {
+        @include push-padding(2.87); // magic number to align form actions with form grid
+    }
+
+    .btn {
+        margin-right: 4px;
+    }
+}
+
+.form__actions--flush {
+    padding-left: 0;
+}
+
+.modal .form__actions {
+    border-top: 0;
+    min-height: 37px;
+    padding: 0;
+}
+
+.checkbox-group,
+.radio-group {
+    .control__label {
+        padding-top: 0;
+    }
+
+    &.form__group--indent .controls {
+        width: 100%;
+    }
+}
+
+.controls > .toggle-switch-label {
+    margin-top: $padding-small-vertical;
+}
+
+// default (mobile first) width should be 100%
+.form__control {
+    @include placeholder(color(text, placeholder));
+    background-color: #fafafa;
+    width: 100%;
+}
+
+@include respond-min($screen-tablet) {
+
+// if no label is provided, the width of form__control will be calculated
+// based on the full 12 column grid
+// * flush form groups also use the 12 column grid
+
+    // default width
+    .form__group .form__control,
+    .form__group .form__control + .select2,
+    .form__group--flush > .control__label + .controls > .form__control {
+        @include col-span-width(4, 12);
+    }
+
+    // column variations
+    @for $i from 1 through 12 {
+        .form__control-col--#{$i}.form__control,
+        .form__control-col--#{$i} .form__control,
+        .form__control-col--#{$i} .form__control + .select2,
+        .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
+            @include col-span-width($i, 12);
+        }
+    }
+
+// if a (3 col) label is provided, the width of form__control will be calculated
+// based on the remaining 9 column grid
+
+    // default width
+    .control__label + .controls > .form__control:not(.checkbox):not(.radio),
+    .control__label + .controls > .form__control:not(.checkbox):not(.radio) + .select2 {
+        @include col-span-width(4, 9);
+    }
+
+    // column variations
+    @for $i from 1 through 9 {
+        .control__label + .controls > .form__control:not(.checkbox):not(.radio).form__control-col--#{$i},
+        .form__control-col--#{$i} .control__label + .controls > .form__control,
+        .form__control-col--#{$i} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
+        .form__control-col--#{$i} .control__label + .controls > .form__control:not(.checkbox):not(.radio) + .select2 {
+            @include col-span-width($i, 9);
+        }
+    }
+
+    @each $variant, $width in $input-widths {
+
+        // 1. allow input-specific widths for fine-grained control
+        // 2. allow a class on the main group to control the width of it's controls
+        .form__group--#{$variant}.form__group--#{$variant} .form__control:not(.checkbox):not(.radio),
+        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
+        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control + .select2 {
+            width: #{$width};
+        }
+    }
+
+    // input-groups default
+    .form__group .input-group {
+        @include col-span-width(4, 9);
+    }
+
+    // input-groups column variations
+    @for $i from 1 through 9 {
+        .form__group.form__control-col--#{$i} .input-group {
+            @include col-span-width($i, 9);
+        }
+    }
+
+    // input-groups legacy sizes
+    @each $variant, $width in $input-widths {
+        .form__group.form__group--#{$variant} .input-group {
+            width: #{$width};
+        }
+    }
+}
+
+.form__group.form__group .input-group .select2.select2,
+.form__group.form__group .input-group .form__control.form__control {
+    flex: 1 1 auto;
+    overflow: hidden;
+    width: 1%; // needed to stop overflow, when option has a long string on < desktop
+
+    @include ie-lte(9) {
+        width: 100%;
+    }
+}
+
+// Allow focus outline to show when select2 focused
+.form__group.form__group .input-group .select2.select2-container.select2-container--focus {
+    overflow: visible;
+}
+
+// validation
+
+.form__group:not(.form__group--partial-state) {
+  &.has-changed {
+    @include form__group-validation($state-info-text, color(info, dark), $state-info-bg);
+  }
+
+  &.has-warning {
+    @include form__group-validation($state-warning-text, color(warning), $state-warning-bg);
+  }
+
+  &.has-error {
+    @include form__group-validation($state-danger-text, color(danger), $state-danger-bg);
+  }
+
+  &.has-success {
+    @include form__group-validation($state-success-text, color(success), $state-success-bg);
+  }
+}
+
+.form__group--partial-state {
+    &.has-changed {
+        @include form__group-partial-validation($state-info-text, color(info, dark));
+    }
+
+    &.has-warning {
+        @include form__group-partial-validation($state-warning-text, color(warning));
+    }
+
+    &.has-error {
+        @include form__group-partial-validation($state-danger-text, color(danger));
+    }
+
+    &.has-success {
+        @include form__group-partial-validation($state-success-text, color(success));
+    }
+}
+
+.form__control {
+    &.has-changed {
+        @include form__control-validation($state-info-text, color(info, dark), $state-info-bg);
+    }
+
+    &.has-warning {
+        @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
+    }
+
+    &.has-error {
+        @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+    }
+
+    &.has-success {
+        @include form__control-validation($state-success-text, color(success), $state-success-bg);
+    }
+}
+
+.help-block {
+    clear: both;
+    color: color(text, help);
+    display: block;
+    font-size: $font-size-base;
+    white-space: normal;
+}
+
+// if a control label is in the help block (like a bare input) it doesn't need
+// the extra padding
+.help-block > .control__label {
+    padding: 0;
+}
+
+// if help block is next to the main label, space it appropriately
+.form__group > .control__label + .help-block {
+    margin: -.5em 0 .5em;
+}
+
+.form__button-group {
+    > .control__label {
+        padding-top: 3px;
+    }
+
+    .controls > .control__label {
+        @extend %btn;
+        border-right: 1px solid;
+        border-right-color: #fff;
+    }
+
+    // Hide the inputs which drive the button group behaviour
+    .form__control.form__control,
+    .form__control.form__control.checkbox,
+    .form__control.form__control.radio {
+        left: -9999px;
+        position: absolute;
+        top: 0;
+    }
+
+    // Selected state
+    .form__control:checked + .control__label,
+    .form__control:checked + .control__label:hover {
+        background-color: color(primary);
+        color: color(primary, alt);
+        font-family: $font-family-regular;
+    }
+
+    // Visible indicator to not rely on colour alone
+    .form__control:checked + .control__label::after {
+        background-color: color(white);
+        bottom: 4px;
+        content: '';
+        display: block;
+        height: 2px;
+        position: absolute;
+        width: auto;
+        right: 5px;
+        left: 5px;
+        border-radius: 3px;
+    }
+
+    // Make sure focused buttons aren't overlapped by subsequent children
+    .form__control:focus + .control__label,
+    .form__control:focus + .control__label:hover {
+        @include pulsar-button-focused;
+        z-index: 1;
+    }
+
+    .form__control:focus + .control__label::after {
+        background-color: color(black);
+    }
+}
+
+// Loading spinner (mainly for select/select2 elements)
+.form__control + .loading {
+  left: 310px;
+}
+
+// Paragraph as first child of .controls, assuming absence of a proper input
+.controls > p:first-child {
+    margin-bottom: 0;
+    min-height: 44px;
+    padding-top: 12px;
+}
+
+.required-indicator {
+    display: inline-block;
+    font-size: 1.2em;
+    text-align: center;
+    width: 10px;
+}
+
+.form__group.form-checkbox .form__control.checkbox,
+.form__group.form-radio .form__control.radio {
+    // margin-top: 17px;
+}
+
+.form__control.checkbox.checkbox,
+.form__control.radio.radio {
+    appearance: none;
+    background-color: #fafafa;
+    border: 1px solid color(border);
+    height: 22px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: text-bottom;
+    width: 22px;
+
+    .controls {
+        padding: 12px 0 16px;
+    }
+
+    &[disabled],
+    &[readonly] {
+        cursor: not-allowed;
+        background-color: $input-bg-disabled;
+    }
+}
+
+.form__control.checkbox {
+    &::before {
+        content: '';
+        font-family: $font-family-icons;
+        font-weight: 900;
+        height: 20px;
+        left: 2px;
+        position: absolute;
+        top: -14px;
+    }
+
+    &:focus {
+        @include pulsar-checkbox-focused;
+    }
+
+    &:checked::before {
+        color: color(text);
+        content: '\f00c';
+    }
+
+    &:indeterminate::before {
+        color: color(text);
+        content: '\f068';
+        left: 3.5px;
+    }
+}
+
+.form__control.radio {
+    border-radius: $border-radius-large;
+
+    &:focus {
+        @include pulsar-radio-focused;
+    }
+
+    &:checked::before {
+        background-color: color(black);
+        border-radius: 12px;
+        content: '';
+        display: block;
+        height: 12px;
+        margin: 4px auto;
+        width: 12px;
+    }
+}
+
+.form-radio .radio,
+.form-checkbox .checkbox {
+    top: 11px;
+}
+
+.form-radio .help-block,
+.form-checkbox .help-block {
+    position: relative;
+    top: .675em; // magic number for top
+}
+
+// Make sure checkboxes and radios reduce the label's clickable area to the
+// width of the label only
+.form-checkbox-inline,
+.form-radio-inline {
+    > .controls {
+        margin-left: 0; // remove gutter
+        width: 100%;
+    }
+
+    &.form__group--indent .controls {
+        @include respond-min($screen-tablet) {
+            @include shrink($form-label-cols);
+        }
+    }
+
+    > .controls > .control__label {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+.form__indent {
+    @include respond-min($screen-tablet) {
+        margin-left: 25%;
+        margin-right: $gutter-width;
+
+        p {
+            margin-left: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+.form-range .form__control {
+    @extend %range-slider;
+}
+
+.form-range > .controls .form__control {
+    background-color: transparent;
+    height: 48px;
+    padding: 0;
+
+    @include ie-lte(9) {
+        background-color: #fafafa;
+        border: 1px solid $input-border;
+        border-radius: $input-border-radius;
+        height: $input-height-base;
+        line-height: $input-height-base;
+        padding: 0 0 0 $padding-base-horizontal;
+
+        &:focus {
+            border: 1px solid color(black);
+            box-shadow: 0 0 0 1px color(black);
+            outline: 3px solid color(border, focus);
+            outline-offset: 2px;
+        }
+    }
+}
+
+.form-range .input-group-addon:first-child,
+.form-range .input-group-addon:last-child {
+    border: 1px solid color(border);
+    border-radius: $border-radius;
+}
+
+.form-range .input-group .form__control {
+    padding-left: 0;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .input-group-addon + .form__control {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .form__control:last-child {
+    padding-right: 0;
+}
+
+.form__group {
+    .table tbody {
+        background-color: #fafafa;
+        border-top: 1px solid color(border);
+    }
+
+    .table-container {
+        margin-bottom: .5em;
+    }
+}
+
+// undo default fieldset padding
+fieldset.form__group--compound {
+    padding: 0;
+}
+
+// undo fieldset styling when fieldset/legend used for form__group and control__label
+fieldset.form__group {
+    padding: 0;
+
+    > legend.control__label {
+        border-bottom: 0;
+        float: left; // as we can't use inline-block
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    > .controls {
+        clear: left;
+    }
+}
+
+.form__group--compound {
+    > .control__label {
+        @include respond-max($screen-small) {
+            margin-bottom: 0;
+        }
+    }
+
+    > .controls {
+        // override regular stacked styling
+        > .form__control,
+        > .control__label,
+        &:first-child > .control__label {
+            clear: none;
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+        }
+
+        .form__control {
+            margin-top: 5px;
+
+            @include respond-min($screen-small) {
+                margin-right: 10px;
+                margin-top: 0;
+            }
+        }
+
+        // inline radio/checkboxes need spacing apart slightly
+        > .control__label:not(:first-of-type) {
+            margin-left: 10px;
+        }
+    }
+}
+
+// Used in CXM mappings
+.icon--align-with-fields {
+    display: block;
+    font-size: $font-size-xlarge;
+    line-height: $line-height-large;
+    text-align: center;
+}
+
+// CK editor focus styles. Plugin used in all products. Chained for specificity bump.
+// scss-lint:disable SelectorFormat
+.cke_chrome.cke_chrome {
+    box-shadow: none;
+}
+
+.cke_focus.cke_focus {
+    border: 3px solid color(black);
+    border-radius: 0;
+    outline: 3px solid color(border, focus);
+    outline-offset: 0;
+}
+
+// maxlength counter
+.inputLength__label {
+    background-color: color(grey, lightest);
+    border-radius: $border-radius-small;
+    color: color(text);
+    display: inline-block;
+    min-width: 25px;
+    padding: 2px 5px 0;
+    text-align: center;
+}
+
+.inputLength--warn > .inputLength__label {
+    background-color: color(warning);
+    color: color(warning, alt);
+}
+
+.inputLength--stop > .inputLength__label {
+    background-color: color(danger);
+    color: color(danger, alt);
+}

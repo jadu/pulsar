@@ -1,0 +1,754 @@
+.rules {
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+        background: color(gray, lightest);
+        content: '';
+        height: 85%;
+        left: 55px;
+        position: absolute;
+        top: 1em;
+        width: 4px;
+        z-index: 1;
+
+        @include respond-min($screen-tablet) {
+            left: 65px;
+        }
+    }
+
+    .remove-button {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+
+        @include respond-min($screen-tablet) {
+            top: 10px;
+            right: 10px;
+        }
+    }
+
+    [href].conditional-block__link--when {
+        color: color(primary, dark);
+    }
+
+    [href].conditional-block__link--and,
+    [href].conditional-block__link--or {
+        color: color(gray, dark);
+    }
+
+    [href].conditional-block__link--then {
+        color: color(success, dark);
+    }
+
+    .rule-block__control {
+        vertical-align: top;
+    }
+}
+
+// Sibling rule-block-wrapper was a rule prior to the helpers being written
+// rules__step--indented is the new rule for helpers, double chained to override fieldset specificity
+.rule-block-wrapper ~ .rule-block-wrapper,
+.rules__step.rule--indented {
+    margin-top: -2px;
+}
+
+.rules__step.rule--indented .rule-block-wrapper {
+    margin-left: 20px;
+}
+
+.rule-block {
+    background: color(white);
+    border: 1px solid #d1d1d1;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+
+    @include respond-min($screen-tablet) {
+        display: table;
+        padding: 0 15px 0 0;
+    }
+}
+
+.rule-block--and,
+.rule-block--then {
+    margin-top: 24 - 6px; // 24px - 6px default fieldset margin
+}
+
+.rule-block--indented {
+    border-radius: 0;
+    margin-left: 2%;
+    width: 98%;
+}
+
+.rule-block--new {
+    animation-duration: 1s;
+    animation-name: blueFadeToWhite;
+
+    .rule-block {
+        animation-duration: 1s;
+        animation-name: blueFadeToWhite;
+    }
+
+    .rule-block__header {
+        animation-duration: 1s;
+        animation-name: blueFadeToGrey;
+    }
+}
+
+.rule-block__header {
+    background: #f5f5f5;
+    border-bottom: 1px solid #d1d1d1;
+    display: block;
+
+    @include respond-min($screen-tablet) {
+        border-right: 1px solid #d1d1d1;
+        border: 0;
+        display: table-cell;
+        height: 100%;
+        padding: 0 10px;
+        text-align: center;
+        vertical-align: middle;
+        width: 95px;
+    }
+}
+
+.rule-block__header--when {
+    box-shadow: inset 4px 0 0 0 color(primary, dark);
+    color: color(primary, dark);
+}
+
+.rule-block__header--then {
+    box-shadow: inset 4px 0 0 0 color(success, dark);
+    color: color(success, dark);
+}
+
+.rule-block__header--and,
+.rule-block__header--or {
+    box-shadow: inset 4px 0 0 0 color(gray, dark);
+    color: color(gray, dark);
+}
+
+.rule-block__heading {
+    display: inline-block;
+    font-size: 1.2em;
+    margin: 0;
+    padding: .5em 0 .5em .7em;
+    text-transform: capitalize;
+
+    @include respond-min($screen-tablet) {
+        padding: 1.3em 0;
+        text-align: center;
+    }
+}
+
+.rule-block__heading__icon {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.rule-block__controls {
+    margin: 1em;
+    padding-left: 1em;
+
+    @include respond-min($screen-tablet) {
+        margin: .6em 1.7em 0 .4em;
+    }
+}
+
+.rule-block__control {
+    display: block;
+    margin: 0 10px 10px;
+    vertical-align: bottom;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+        margin: 0 0 .5em .4em;
+    }
+
+    .control__label {
+        padding: 0;
+    }
+}
+
+.conditional-block {
+    position: relative;
+}
+
+.conditional-block--flush {
+    margin: 24px 0 0 58px;
+    position: relative;
+
+    @include respond-min($screen-tablet) {
+        margin: 24px 0 0 68px;
+    }
+
+    &::after {
+        color: color(gray, lightest);
+        content: '\f061';
+        font-family: $font-family-icons;
+        font-weight: 900;
+        font-size: $font-size-large;
+        left: 0;
+        position: absolute;
+        top: 7px;
+    }
+
+    .btn {
+        margin-left: 25px;
+    }
+
+}
+
+.conditional-block--indented {
+    margin: 0 0 24px 75px;
+    padding-top: 14px;
+    position: relative;
+
+    @include respond-min($screen-tablet) {
+        margin: 0 0 14px 80px;
+    }
+
+    &::before {
+        background: color(gray, lightest);
+        content: '';
+        height: 30px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 4px;
+        z-index: 1;
+    }
+
+    .btn {
+        margin-left: 25px;
+    }
+
+    &::after {
+        color: color(gray, lightest);
+        content: '\f061';
+        font-family: $font-family-icons;
+        font-weight: 900;
+        font-size: 19px;
+        left: 0;
+        position: absolute;
+        top: 17px;
+    }
+}
+
+.conditional-block__link {
+    border: 0;
+    font-size: 1.2em;
+
+    i {
+        color: color(gray, lightest);
+        display: inline-block;
+        margin-right: 5px;
+        text-decoration: none;
+    }
+
+    span {
+        text-decoration: underline;
+    }
+
+    &:focus i {
+        color: color(black);
+        position: relative;
+        z-index: 2;
+    }
+}
+
+// Double chained to override default fieldset styling
+fieldset.rules__step {
+    margin-top: 0;
+}
+
+.form fieldset.rules__step legend,
+.piano__item-content .form fieldset.rules__step,
+.piano__item-content form > fieldset .rules__step legend {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.piano__item-content .rules-container .form {
+    padding-top: 12px;
+}
+
+.piano__item-content .rules-container .modal__content .form {
+    padding-top: 0;
+}
+
+td.table__form .rules + .form__group:last-of-type {
+    margin-bottom: 20px;
+
+    @include respond-min($screen-tablet) {
+        margin-bottom: 10px;
+    }
+}
+
+.rules__step.has-error,
+.rule-block-wrapper.has-error {
+    .rule-block__header {
+        background-color: $state-danger-bg;
+        box-shadow: inset 4px 0 0 0 color(danger);
+    }
+
+    .rule-block__heading {
+        color: color(danger, dark);
+    }
+
+    .is-error {
+        color: color(danger);
+    }
+}
+
+.rule-block__control.has-error {
+
+    .control__label {
+        color: $state-danger-text;
+    }
+
+    .form__control,
+    .select2-container .select2-selection--multiple,
+    .select2-container--default .select2-selection--multiple, {
+        background-color: $state-danger-bg;
+        border-color: color(danger);
+    }
+}
+
+.rule__triggers__collection .remove-button:hover,
+.rule__conditions__container .remove-button:hover,
+.rule__actions__container .remove-button:hover {
+    vertical-align: middle;
+}
+
+// Change default form layout styling
+.rule-block__control {
+
+    .form__group {
+        display: block;
+        margin-bottom: 0;
+    }
+
+    .control__label {
+        display: block;
+        width: auto;
+    }
+}
+
+/**
+ * The following version 2 was developed to meet the needs of XFP conditional logic rules
+ */
+.rules-container--v2 {
+    $rule-color-if:     #3f8ccc;
+    $rule-color-and:    #f7d183;
+    $rule-color-or:     #9d7ee3;
+    $rule-color-return: #6aa17a;
+    $rule-color-help:   #b54745;
+
+    border-left: 4px solid color(gray, lightest);
+    padding-left: 20px;
+    position: relative;
+
+    &::before,
+    &::after {
+        background-color: color(white);
+        content: '';
+        display: block;
+        height: 23px;
+        left: -4px;
+        position: absolute;
+        width: 24px;
+
+        @include respond-min($screen-tablet) {
+            height: 35px;
+        }
+    }
+
+    &::before {
+        border-bottom: 4px solid color(gray, lightest);
+        top: 0;
+    }
+
+    &::after {
+        border-top: 4px solid color(gray, lightest);
+        bottom: 0;
+    }
+
+    &.rules-container--linear {
+        border-left: 0;
+        padding-left: 0;
+
+        &::before {
+            background-color: color(gray, lightest);
+            height: calc(100% - 10px);
+            left: 45px;
+            top: 5px;
+            width: 4px;
+        }
+
+        &::after {
+            display: none;
+        }
+
+        .rule-link--and {
+            margin-left: 45px;
+        }
+    }
+
+    .rule-link {
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        &::after {
+            color: color(gray, lightest);
+            content: '\f061';
+            font-family: $font-family-icons;
+            font-weight: 900;
+            font-size: 19px;
+            left: 0;
+            position: absolute;
+            top: 17px;
+        }
+
+        .btn {
+            border: 1px solid color(border);
+            border-radius: 5px;
+            display: inline-block;
+            margin-left: 25px;
+            min-width: 50px;
+            padding: 8px;
+            text-align: center;
+
+            &:hover {
+                background-color: color(background, light);
+            }
+        }
+    }
+
+    .rule-link--or {
+        &::before {
+            content: '';
+            display: inline-block;
+            border-left: 4px solid color(gray, lightest);
+            margin-right: -5px;
+            height: 45px;
+            position: absolute;
+            top: -14px;
+            width: 0;
+        }
+
+        &::after {
+            left: 3px;
+        }
+
+        .btn {
+            background-color: lighten($rule-color-or, 25);
+
+            &:focus {
+                background-color: color(background, focus);
+            }
+        }
+    }
+
+    .rule-block--if + .rule-links .rule-link--or,
+    .rule-block--and + .rule-links .rule-link--or,
+    .rule-block--else-if + .rule-links .rule-link--or {
+        border-left: 4px solid color(gray, lightest);
+        margin-left: 20px;
+        padding-left: 40px;
+
+        &::after {
+            left: 44px;
+        }
+    }
+
+    .rule-link--or + .rule-link--and {
+        padding-top: 0;
+
+        &::after {
+            top: 7px;
+        }
+    }
+
+    .rule-link--and {
+        border-left: 4px solid color(gray, lightest);
+        margin-left: 20px;
+
+        .btn {
+            background-color: lighten($rule-color-and, 20);
+
+            &:focus {
+                background-color: color(background, focus);
+            }
+        }
+    }
+
+    .rule-link--else-if {
+        margin-left: -20px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+
+        &::before {
+            border-top: 2px dashed color(gray, lightest);
+            content: '';
+            display: block;
+            height: 3px;
+            position: absolute;
+            top: 38px;
+            width: 100%;
+        }
+
+        &::after {
+            top: 27px;
+        }
+
+        .btn {
+            background-color: lighten($rule-color-if, 40);
+            margin-left: 30px;
+            min-width: 76px;
+
+            &:focus {
+                background-color: color(background, focus);
+            }
+        }
+    }
+
+    .rule-block + .rule-block,
+    .rule-block--indent > .rule-block {
+        margin-top: -1px;
+
+        // visually distinguish blocks close together
+        .rule-block__header {
+            border-top: 1px solid rgba(white, .5);
+        }
+    }
+
+    // first block, indented one spot
+    .rule-block + .rule-block--return,
+    .rule-block--if + .rule-block--or {
+        margin-left: 40px;
+        width: calc(100% - 40px);
+    }
+
+    .rule-block--indent > .rule-links,
+    .rule-block--indent > .rule-block--indent + .rule-links {
+        padding-left: 20px;
+    }
+
+    .rule-block--indent {
+        border-left: 4px solid color(gray, lightest);
+        margin-left: 20px;
+        padding-left: 20px;
+    }
+
+    .rule-block__header {
+        border: 0;
+        box-shadow: none;
+        color: color(white);
+        font-family: $font-family-regular;
+        font-size: $font-size-large;
+        padding: .5em;
+
+        @include respond-min($screen-tablet) {
+            padding: 0;
+        }
+    }
+
+    .rule-block__heading {
+        font-weight: bold;
+        padding: 0;
+    }
+
+    .rule-block--if,
+    .rule-block--else-if {
+        background-color: lighten($rule-color-if, 41);
+        border-color: $rule-color-if;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+
+        .rule-block__header {
+            background-color: $rule-color-if;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+
+            @include respond-min($screen-tablet) {
+                border-top-right-radius: 0;
+            }
+        }
+
+        .remove-control {
+            color: color(white);
+
+            @include respond-min($screen-tablet) {
+                color: color(text);
+            }
+        }
+    }
+
+    .rule-block--else-if {
+        &::after {
+            border-top: 4px solid color(gray, lightest);
+            content: '';
+            display: block;
+            height: 4px;
+            left: -25px;
+            position: absolute;
+            top: 35px;
+            width: 24px;
+        }
+
+        .rule-block__header {
+            border-top: 0;
+        }
+
+        .remove-button i {
+            color: color(white) !important;
+
+            @include respond-min($screen-tablet) {
+                color: color(text) !important;
+            }
+        }
+    }
+
+    .rule-block--and {
+        background-color: lighten($rule-color-and, 20);
+        border-color: darken($rule-color-and, 10);
+        margin-top: 0;
+
+        .rule-block__header {
+            background-color: $rule-color-and;
+            color: color(black);
+        }
+    }
+
+    .rule-block--or {
+        background-color: lighten($rule-color-or, 26);
+        border-color: $rule-color-or;
+
+        .rule-block__header {
+            background-color: $rule-color-or;
+        }
+
+        .remove-button i {
+            color: color(white) !important;
+
+            @include respond-min($screen-tablet) {
+                color: color(text) !important;
+            }
+        }
+    }
+
+    .rule-block--else {
+        background-color: lighten($rule-color-if, 30);
+        border-color: $rule-color-if;
+
+        .rule-block__header {
+            background-color: $rule-color-if;
+        }
+
+        + .rule-block--return {
+            margin-left: 30px;
+            width: calc(100% - 30px);
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    .rule-block--return {
+        background-color: lighten($rule-color-return, 40);
+        border-color: $rule-color-return;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+
+        .rule-block__header {
+            background-color: $rule-color-return;
+
+            @include respond-min($screen-tablet) {
+                border-bottom-left-radius: 14px;
+            }
+        }
+    }
+
+    .rule-block--else-return {
+        background-color: color(gray, off-white);
+        border-color: color(gray, dark);
+        border-radius: 15px;
+
+        .rule-block__header {
+            background-color: color(gray, dark);
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            color: color(white);
+
+            @include respond-min($screen-small) {
+                border-top-left-radius: 14px;
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 14px;
+                width: 120px;
+            }
+        }
+    }
+
+    .rule-block__controls {
+        margin-top: .5em;
+
+        @include respond-min($screen-tablet) {
+            display: table-cell;
+            padding-top: .5em;
+        }
+    }
+
+    // Fix alignment when help-blocks are present
+    .rule-block__control {
+        vertical-align: top;
+    }
+
+    .form__group:not(.form__group--partial-state).has-error .help-block {
+        color: $rule-color-help;
+    }
+
+    .remove-button {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+
+        @include respond-min($screen-tablet) {
+            top: 10px;
+            right: 10px;
+        }
+    }
+
+    // Make multiple select2 fit same height as single select2
+    .select2-container {
+        vertical-align: top;
+
+        .select2-search__field {
+            min-height: auto;
+            height: 33px;
+        }
+
+        .select2-selection--multiple {
+            min-height: 48px;
+        }
+    }
+}
+
+.rules-container--spaced {
+    .rule-block__controls {
+        margin-left: $padding-base;
+    }
+
+    .rule-block + .rule-block {
+        margin-top: $line-height-base;
+
+        .rule-block__header {
+            border-top: 0;
+        }
+    }
+}

@@ -1,0 +1,391 @@
+//
+// Dropdown menus
+// --------------------------------------------------
+
+
+// Dropdown arrow/caret
+// --------------------
+.caret {
+  @include inline-block;
+  color: inherit;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-top-color: $dropdown-caret-color;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  content: '';
+}
+
+// The dropdown wrapper (div)
+// --------------------------
+.dropdown {
+  position: relative;
+}
+
+// Make sure transparent trigger buttons sit over dropdown shadow
+.dropdown.open > .btn--outline {
+  background-color: color(primary);
+  border: 1px solid color(primary);
+  color: color(primary, alt);
+  z-index: $zindex-dropdown + 1;
+
+  .caret {
+    border-top-color: color(primary, alt);
+  }
+
+  &:focus .caret {
+    border-top-color: color(black);
+  }
+}
+
+// The dropdown menu (ul)
+// ----------------------
+.dropdown__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $zindex-dropdown;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: $shadow-small 0 0; // override default ul
+  list-style: none;
+  background-color: $dropdown-bg;
+  box-shadow: 0 0 0 $shadow-small color(background, shadow);
+  background-clip: padding-box;
+
+  // Aligns the dropdown menu to right
+  &.pull-right {
+    right: 0;
+    left: auto;
+  }
+
+  // Dividers (basically an hr) within the dropdown
+  .divider {
+    background-color: color(border);
+    display: block;
+    height: 1px;
+    margin: ($line-height-base / 4) 0;
+    min-width: 160px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  > li {
+    min-width: 160px;
+  }
+
+  // Links within the dropdown menu
+  > li > a,
+  > li > .btn,
+  > li > span {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    clear: both;
+    color: $dropdown-link-color;
+    display: block;
+    font-weight: normal;
+    line-height: $line-height-base;
+    padding: 4px 15px 2px 5px;
+    text-align: left;
+    text-decoration: none;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    width: 100%;
+
+    [class^="icon-"],
+    [class*=" icon-"] {
+      display: inline-block; // required for icons to adhere to the following rules
+      margin: 0 5px 0 2px;
+      text-align: center;
+      width: 23px;
+    }
+  }
+}
+
+// Hover/Focus state
+// -----------
+.dropdown__menu > li > a:not(.is-disabled),
+.dropdown__menu > li > .btn:not(.is-disabled) {
+  &:hover,
+  &.active {
+    background-color: $dropdown-link-hover-bg;
+    box-shadow: 0;
+    color: $dropdown-link-hover-color;
+    text-decoration: none;
+    transform: none;
+  }
+
+  &:focus {
+    @include pulsar-dropdown-item-focused;
+    color: color(black) !important;
+  }
+}
+
+// Active state
+// ------------
+.dropdown__menu > .active > a,
+.dropdown__menu > .active > .btn {
+  &,
+  &:hover {
+    background-color: $dropdown-link-active-bg;
+    color: $dropdown-link-active-color;
+    text-decoration: none;
+    outline: 0;
+  }
+}
+
+// Disabled state
+// --------------
+// Gray out text and ensure the hover/focus state remains gray
+.dropdown__menu > .disabled > a,
+.dropdown__menu > .disabled > .btn {
+  &,
+  &:hover,
+  &:focus {
+    color: color(gray, light);
+  }
+}
+// Nuke hover/focus effects
+.dropdown__menu > .disabled > a,
+.dropdown__menu > .disabled > .btn {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: transparent;
+    background-image: none; // Remove CSS gradient
+    // .reset-filter();
+    cursor: not-allowed;
+  }
+}
+
+// Open state for the dropdown
+// ---------------------------
+.open {
+  // Show the menu
+  > .dropdown__menu {
+    display: block;
+  }
+
+  // Remove the outline when :focus is triggered
+  > a,
+  > .btn {
+    outline: 0;
+  }
+}
+
+// Dropdown section headers
+// ---------------------------
+.dropdown-header {
+  display: block;
+  padding: 3px 20px;
+  // font-size: $font-size-small;
+  line-height: $line-height-base;
+  color: color(gray, light);
+}
+
+// Backdrop to catch body clicks on mobile, etc.
+// ---------------------------
+.dropdown-backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: $zindex-dropdown - 10;
+}
+
+// Right aligned dropdowns
+// ---------------------------
+.dropdown__menu--right + .dropdown__menu,
+.pull-right > .dropdown__menu {
+  right: 0;
+  left: auto;
+}
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+// ------------------------------------------------------
+// Just add .dropup after the standard .dropdown class and you're set, bro.
+// TODO: abstract this so that the navbar fixed styles are not placed here?
+.dropup,
+.navbar-fixed-bottom .dropdown {
+  // Reverse the caret
+  .caret {
+    border-top: 0;
+    border-bottom: 4px solid;
+    border-bottom-color: $dropdown-caret-color;
+    content: '';
+  }
+  // Different positioning for bottom up menu
+  .dropdown__menu {
+    top: auto;
+    bottom: 43px;
+    margin-bottom: 1px;
+  }
+}
+
+.dropdown__menu > li > a,
+.dropdown__menu > li > .btn {
+  &:hover > .badge {
+    @extend %badge--primary;
+    background-color: darken($dropdown-link-active-bg, 20%);
+  }
+
+  &.link--primary {
+    background-color: color(primary);
+    color: color(white) !important;
+
+    &:hover {
+      background-color: darken(color(primary), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
+    }
+
+    > .badge {
+      @extend %badge--primary;
+      background-color: darken($badge-primary-bg, 20%);
+    }
+  }
+
+  &.link--success {
+    background-color: color(success);
+    color: color(white) !important;
+
+    &:hover {
+      background-color: darken(color(success), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
+    }
+
+    > .badge {
+      @extend %badge--success;
+      background-color: darken($badge-success-bg, 20%);
+    }
+  }
+
+  &.link--warning {
+    background-color: color(warning);
+    color: color(white) !important;
+
+    &:hover {
+      background-color: darken(color(warning), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
+    }
+
+    > .badge {
+      @extend %badge--warning;
+      background-color: darken($badge-warning-bg, 20%);
+    }
+  }
+
+  &.link--info {
+    background-color: color(info);
+    color: color(white) !important;
+
+    &:hover {
+      background-color: darken(color(info), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
+    }
+
+    > .badge {
+      @extend %badge--info;
+      background-color: darken($badge-info-bg, 20%);
+    }
+  }
+
+  &.link--danger {
+    background-color: color(danger);
+    color: color(white);
+
+    &:hover {
+      background-color: darken(color(danger), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      background-color: color(background, focus) !important;
+      color: color(black) !important;
+    }
+
+    &.disabled {
+      background-color: color(danger, light);
+    }
+
+    > .badge {
+      @extend %badge--danger;
+      background-color: darken($badge-danger-bg, 20%);
+    }
+  }
+
+  &.link--inverse {
+    background-color: color(inverse);
+    color: color(white) !important;
+
+    &:hover {
+      background-color: darken(color(inverse), 5%);
+    }
+
+    &:focus {
+      @include pulsar-dropdown-item-focused;
+      color: color(black) !important;
+    }
+
+    > .badge {
+      @extend %badge--inverse;
+      background-color: darken($badge-inverse-bg, 20%);
+    }
+  }
+}
+
+.dropdown__menu .popover {
+  min-width: 300px;
+}
+
+.dropdown__menu > li > a > .progress,
+.dropdown__menu > li > .btn > .progress {
+  height: 3px;
+  margin-bottom: 0;
+
+  .progress-bar {
+    background-color: darken(color(primary), 15%);
+  }
+}
+
+.dropdown--medium ~ .dropdown__menu {
+    width: 300px;
+}
+
+.dropdown__title {
+    border-bottom: 1px solid color(border);
+    margin: 0;
+    padding-bottom: 4px;
+
+    .dropdown__title__text {
+        display: inline-block;
+        padding: 8px 8px 8px 18px;
+    }
+
+    .dropdown__title__btn {
+        float: right;
+        margin-right: 12px;
+    }
+}

@@ -1,0 +1,64 @@
+.padding {
+    padding: 10px;
+
+    &--large {
+        padding: 20px;
+    }
+}
+
+.padding-vertical {
+    padding: 10px 0;
+
+    &--large {
+        padding: 20px 0;
+    }
+}
+
+.padding-horizontal {
+    padding: 0 10px;
+
+    &--large {
+        padding: 0 20px;
+    }
+}
+
+.padding-right {
+    padding-right: 10px;
+
+    &--large {
+        padding-right: 20px;
+    }
+}
+
+.padding-left {
+    padding-left: 10px;
+
+    &--large {
+        padding-left: 20px;
+    }
+}
+
+.padding-top {
+    padding-top: 10px;
+
+    &--large {
+        padding-top: 20px;
+    }
+}
+
+.padding-bottom {
+    padding-bottom: 10px;
+
+    &--large {
+        padding-bottom: 20px;
+    }
+}
+
+.visibility-hidden {
+    visibility: hidden;
+
+    .lt-ie10 & {
+        display: none;
+    }
+}
+

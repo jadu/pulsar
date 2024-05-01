@@ -1,0 +1,52 @@
+$font-family-light:   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-regular: 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading: 'code_pro_bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-family-heading-light: 'code_pro_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+$font-family-icons:         'Font Awesome 6 Pro';
+$font-family-brands:        'Font Awesome 6 Brands';
+$font-family-icons-sharp:   'Font Awesome 6 Sharp';
+
+// Font awesome
+$fa-path: '../node_modules/@fortawesome/fontawesome-pro' !default;
+$fa-font-path: $fa-path + '/webfonts' !default;
+$fa-css-prefix: 'icon';
+
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/fontawesome';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/regular';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/solid';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/sharp-solid';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/brands';
+@import 'node_modules/@fortawesome/fontawesome-pro/scss/v4-shims';
+
+@font-face {
+  font-family: 'proxima_novalight';
+  src: url($font-path + 'proxima_nova/proximanova-light.woff2') format('woff2'),
+       url($font-path + 'proxima_nova/proximanova-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_nova_rgregular';
+  src: url($font-path + 'proxima_nova/proximanova-regular.woff2') format('woff2'),
+       url($font-path + 'proxima_nova/proximanova-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'code_pro_bold';
+  src: url($font-path + 'code_pro/code_pro_bold_lc-webfont.woff2') format('woff2'),
+       url($font-path + 'code_pro/code_pro_bold_lc-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'code_pro_regular';
+  src: url($font-path + 'code_pro/code_pro_lc-webfont.woff2') format('woff2'),
+       url($font-path + 'code_pro/code_pro_lc-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

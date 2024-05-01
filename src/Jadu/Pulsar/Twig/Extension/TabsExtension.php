@@ -1,8 +1,10 @@
 <?php
 
 namespace Jadu\Pulsar\Twig\Extension;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class TabsExtension extends \Twig_Extension
+class TabsExtension extends AbstractExtension
 {
     public function getName()
     {
@@ -12,7 +14,7 @@ class TabsExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('get_active_tab', array($this, 'getActiveParentTabID'))
+            new TwigFunction('get_active_tab', array($this, 'getActiveParentTabID'))
             );
     }
 

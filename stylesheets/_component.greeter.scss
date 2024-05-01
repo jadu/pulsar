@@ -205,7 +205,7 @@ $greeter-brand-bottom-height:           40px !default;
     &__hint {
         display: inline-block;
         margin: 0;
-        margin-left: $greeter-padding / 2;
+        margin-left: calc($greeter-padding / 2);
         margin-right: auto;
         opacity: 0;
         position: relative;
@@ -214,7 +214,7 @@ $greeter-brand-bottom-height:           40px !default;
         i { /* [9] */
             display: inline-block;
             font-size: 1.5em;
-            margin-right: ($greeter-padding / 2);
+            margin-right: calc($greeter-padding / 2);
             -webkit-animation-duration: 1s;
               animation-duration: 1s;
             -webkit-animation-fill-mode: both;

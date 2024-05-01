@@ -1,0 +1,39 @@
+.google-result {
+    font-family: arial, sans-serif;
+}
+
+.google-result__link,
+.google-result__cite,
+.google-result__description {
+    display: block;
+}
+
+.google-result__link {
+    font-size: 1.2em;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &,
+    &:link,
+    &:visited {
+        color: #1a0dab;
+    }
+}
+
+.google-result__cite {
+    color: #006621;
+    font-style: normal;
+    line-height: 1.1em;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.google-result__description {
+    color: #545454;
+    font-size: $font-size-small;
+    line-height: 1.4;
+    word-wrap: break-word;
+}

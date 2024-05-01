@@ -1,0 +1,40 @@
+.media,
+.media__body {
+  overflow: hidden;
+}
+
+// make sure link based media objects don't break the flow
+a.media {
+    display: block;
+    text-decoration: none;
+}
+
+.media__image {
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    width: 50px;
+
+    &[class^=icon] {
+        font-size: 50px;
+        width: 50px;
+    }
+}
+
+.media--small .media__image {
+    width: 24px;
+
+    &[class^=icon] {
+        font-size: 24px;
+    }
+}
+
+// only paragraphs in the middle of the body have a bottom margin
+.media__body p {
+    margin-bottom: 1em;
+
+    &:first-of-type,
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}

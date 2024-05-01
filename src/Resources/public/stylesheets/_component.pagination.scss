@@ -1,0 +1,73 @@
+.pagination {
+  @include clear-fix;
+  background-color: color(white);
+
+  // We assume pagination will always sit underneath an element, and that
+  // element may or may not be floated
+  clear: both;
+  font-size: $font-size-medium;
+
+  ul {
+    // float: left;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    @include inline-block;
+    list-style-type: none;
+  }
+
+  a,
+  span {
+    @include inline-block;
+    color: color(text);
+    font-family: $font-family-regular;
+    line-height: $line-height-base * 1.75;
+    padding: 0 $gutter-width;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  li.selected {
+    > a,
+    > span {
+      background-color: darken(color(white), 10%);
+      color: color(text);
+    }
+
+    > a:focus {
+      @include pulsar-pagination-focused;
+    }
+  }
+
+  li.is-disabled {
+    a,
+    span {
+      color: color(text, disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  li:not(.is-disabled) {
+    > a:hover {
+      background-color: darken(color(white), 5%);
+      color: color(text);
+    }
+
+    > a:focus {
+        @include pulsar-pagination-focused;
+    }
+  }
+
+  form {
+    color: color(gray);
+    float: right;
+    padding-top: 0;
+  }
+
+  select {
+    border: 0;
+    -webkit-appearance: none;
+  }
+}

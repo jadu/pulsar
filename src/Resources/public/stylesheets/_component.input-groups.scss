@@ -1,0 +1,215 @@
+//
+// Input groups
+// --------------------------------------------------
+
+// Base styles
+// -------------------------
+.input-group {
+    border-collapse: separate; // prevent input groups from inheriting border styles from table cells when placed within a table
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+
+    @include ie-lte(9) {
+        display: table;
+    }
+
+    // Undo padding and float of grid classes
+    &.col {
+        float: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form__control {
+        display: flex;
+
+        @include ie-lte(9) {
+            display: table-cell;
+            float: left;
+        }
+    }
+}
+
+// Use flexbox and fallback to table for IE9
+// -------------------------
+.input-group-addon,
+.input-group-btn,
+.input-group:not(.has-btn-prepended):not(.has-btn-appended) .form__control {
+    &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+    }
+}
+
+.input-group:not(.has-btn-prepended):not(.has-btn-appended) .input-group-addon ~ .select2-container--default .select2-selection {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group:not(.has-btn-prepended):not(.has-btn-appended) .select2.select2-container--default:not(:last-child) .select2-selection {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-addon {
+    align-items: center;
+    background-color: color(gray, off-white);
+    border: 1px solid $input-group-addon-border-color;
+    border-radius: $border-radius;
+    display: flex;
+    font-size: $font-size-base;
+    font-weight: normal;
+    line-height: $input-height-base - 2;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 $padding-base-horizontal;
+    text-align: center;
+    white-space: nowrap;
+
+    @include ie-lte(9) {
+        display: table-cell;
+        vertical-align: middle;
+        width: 1%;
+    }
+
+    // Nuke default margins from checkboxes and radios to vertically center within.
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-top: 0;
+    }
+}
+
+.input-group-btn {
+    position: relative;
+    white-space: nowrap;
+
+    @include ie-lte(9) {
+        display: table-cell;
+        vertical-align: middle;
+        width: 1%;
+    }
+}
+
+.input-group-btn > .btn {
+    position: relative;
+
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        &.btn--#{'' + $state}:not(.btn--naked) {
+            border-color: darken($state-color, 10);
+
+            &:hover {
+                background-color: darken($state-color, 10);
+            }
+        }
+    }
+}
+
+
+// Text input groups
+// -------------------------
+.input-group-btn .btn {
+    font-size: $font-size-base;
+    line-height: $input-height-base;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.input-group-addon + .form__control {
+    margin-left: 0;
+}
+
+// Reset rounded corners
+.input-group:not(.has-btn-appended) .form__control:not(:last-child),
+.input-group-addon:first-child,
+.input-group-btn:first-child > .dropdown-toggle {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-addon:first-child {
+    border-right: 0;
+    margin-right: -1px;
+}
+
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn__group {
+    margin-right: $margin-base-horizontal / 2;
+}
+
+.input-group:not(.has-btn-prepended) .form__control:not(:first-child),
+.input-group-addon:last-child,
+.input-group-btn:last-child > .dropdown-toggle {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group-addon:last-child {
+    border-left: 0;
+}
+
+.input-group-btn > .btn,
+.input-group-btn > .btn__group {
+    margin-left: $margin-base-horizontal / 2;
+}
+
+// Button input groups
+// -------------------------
+.input-group-btn {
+    position: relative;
+    white-space: nowrap;
+}
+
+.input-group-btn > .btn {
+    position: relative;
+
+    // Bring the "active" button to the front
+    &:hover,
+    &:active {
+        z-index: 2;
+    }
+}
+
+.input-group-addon > .btn {
+    top: -8px;
+
+    &:hover {
+        top: -7px;
+    }
+
+    &:active {
+        top: -6px;
+    }
+}
+
+.input-group.is-removable {
+    width: 100%;
+
+    .form__control {
+        border-radius: $border-radius;
+        display: inline-block;
+        vertical-align: baseline;
+    }
+
+    .remove-button {
+        line-height: 2em;
+    }
+
+}
+
+// guidance popovers for various configurations
+.input-group-with-guidance {
+    .form__control:first-child {
+        border-radius: $border-radius;
+    }
+
+    .form__control.checkbox,
+    .form__control.radio {
+        width: 20px;
+    }
+
+    .input-group-addon:not(.last-child) {
+        border-left-width: 0;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+    }
+}

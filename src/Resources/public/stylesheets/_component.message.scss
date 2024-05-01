@@ -1,0 +1,35 @@
+.message {
+    margin-bottom: 1em;
+    overflow: hidden;
+    padding-top: 1em;
+    width: 100%;
+
+    &:first-of-type {
+        padding-top: 0;
+    }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    &:not(:first-of-type) {
+        border-top: 1px solid #ccc;
+    }
+}
+
+.message__time {
+    float: right;
+}
+
+.message__sender {
+    font-family: $font-family-regular;
+}
+
+.message__body {
+    margin-top: 1em;
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+}
+

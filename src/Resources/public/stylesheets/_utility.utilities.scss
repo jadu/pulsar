@@ -1,0 +1,440 @@
+/**
+ * -----------------------------------------------------------------------------
+ * Size and position
+ * -----------------------------------------------------------------------------
+ */
+
+%u-float-left,
+.u-float-left,
+.pull-left {
+     float: left !important;
+}
+
+%u-float-right,
+.u-float-right,
+.pull-right {
+    float: right !important;
+}
+
+%u-float-none,
+.u-float-none {
+    float: none !important;
+}
+
+%u-clear-left,
+.u-clear-left {
+    clear: left !important;
+}
+
+%u-clear-right,
+.u-clear-right {
+    clear: right !important;
+}
+
+%u-clear-both,
+.u-clear-both {
+    clear: both !important;
+}
+
+%u-clear-none,
+.u-clear-none {
+    clear: none !important;
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * Margin and padding
+ * -----------------------------------------------------------------------------
+ */
+
+.double-top {
+    margin-top: 2em;
+}
+
+.margin-left {
+    margin-left: $gutter-width;
+}
+
+.margin-right {
+    margin-right: $gutter-width;
+}
+
+%u-margin-top,
+.u-margin-top {
+    margin-top: $margin-base !important;
+}
+
+%u-margin-top--large,
+.u-margin-top--large {
+    margin-top: $margin-base * 2 !important;
+}
+
+%u-margin-top-none,
+.u-margin-top-none {
+    margin-top: 0 !important;
+}
+
+%u-margin-bottom,
+.u-margin-bottom {
+    margin-bottom: $margin-base !important;
+}
+
+%u-margin-bottom--large,
+.u-margin-bottom--large {
+    margin-bottom: $margin-base * 2 !important;
+}
+
+%u-margin-bottom-none,
+.u-margin-bottom-none {
+    margin-bottom: 0 !important;
+}
+
+%u-padding-top-none,
+.u-padding-top-none {
+    padding-top: 0 !important;
+}
+
+%u-padding-bottom-none,
+.u-padding-bottom-none {
+    padding-bottom: 0 !important;
+}
+
+%u-margin-right-small,
+.u-margin-right-small {
+    margin-right: $margin-base / 2 !important;
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * Visibility
+ * -----------------------------------------------------------------------------
+ */
+
+ %hide,
+ .hide {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}
+
+ %show,
+ .show {
+    clip: auto !important;
+    display: inline-block !important;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    width: auto !important;
+}
+
+.visually-hidden {
+    display: none;
+}
+
+.u-visible-print {
+    display: none !important;
+
+    @media print {
+        display: block !important;
+    }
+
+    @at-root {
+        table#{&},
+        &.table {
+            @media print {
+                display: table !important;
+            }
+        }
+
+        tr#{&},
+        &.table__tr {
+            display: table-row !important;
+        }
+
+        td#{&},
+        &.table__td,
+        th#{&},
+        &.table__th {
+            display: table-cell !important;
+        }
+    }
+}
+
+.u-visible-print-inline {
+    display: none !important;
+
+    @media print {
+        display: inline !important;
+    }
+}
+
+.u-visible-print-inline-block {
+    display: none !important;
+
+    @media print {
+        display: inline-block !important;
+    }
+}
+
+.u-hidden-print {
+    @media print {
+        display: none !important;
+    }
+}
+
+.u-visible-on-phone {
+    @include visible-on-phone;
+}
+
+.u-visible-on-tablet {
+    @include visible-on-tablet;
+}
+
+.u-visible-on-desktop {
+    @include visible-on-desktop;
+}
+
+.u-hidden-on-phone {
+    @include hidden-on-phone;
+}
+
+.u-hidden-on-tablet {
+    @include hidden-on-tablet;
+}
+
+.u-hidden-on-desktop {
+    @include hidden-on-desktop;
+}
+
+.u-sr-visible-on-phone {
+    @include sr-visible-on-phone;
+}
+
+.u-sr-visible-on-tablet {
+    @include sr-visible-on-tablet;
+}
+
+.u-sr-visible-on-desktop {
+    @include sr-visible-on-desktop;
+}
+
+.u-sr-hidden-on-phone {
+    @include sr-hidden-on-phone;
+}
+
+.u-sr-hidden-on-tablet {
+    @include sr-hidden-on-tablet;
+}
+
+.u-sr-hidden-on-desktop {
+    @include sr-hidden-on-desktop;
+}
+
+%u-display-none,
+.u-display-none {
+    display: none !important;
+}
+
+%u-display-block,
+.u-display-block {
+    display: block !important;
+}
+
+%u-display-inline,
+.u-display-inline {
+    display: inline;
+}
+
+%u-display-inline-block,
+.u-display-inline-block {
+    display: inline-block !important;
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * Text and links
+ * -----------------------------------------------------------------------------
+ */
+
+.muted {
+    color: color(gray, dull);
+}
+
+p.success {
+    background: rgba(0, 153, 51, .8);
+    color: color(white);
+    padding: 5px;
+    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+
+    i {
+        margin: 0 4px;
+    }
+}
+
+// Removes default link styling
+.naked-link,
+.naked-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+// Prevent users from being able to select text (use with caution)
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+%u-no-wrap,
+.u-no-wrap {
+    white-space: nowrap !important;
+}
+
+%u-word-break,
+.u-word-break {
+    word-break: break-all !important;
+}
+
+%u-vertical-align-top,
+.u-vertical-align-top {
+    vertical-align: top !important;
+}
+
+%u-vertical-align-middle,
+.u-vertical-align-middle {
+    vertical-align: middle !important;
+}
+
+%u-vertical-align-bottom,
+.u-vertical-align-bottom {
+    vertical-align: bottom !important;
+}
+
+%u-vertical-align-baseline,
+.u-vertical-align-baseline {
+    vertical-align: baseline !important;
+}
+
+%u-text-align-left
+.u-text-align-left {
+    text-align: left !important;
+}
+
+%u-text-align-center,
+.u-text-align-center {
+    text-align: center !important;
+}
+
+%u-text-align-right,
+.u-text-align-right {
+    text-align: right !important;
+}
+
+%u-text-align-justify,
+.u-text-align-justify {
+    text-align: justify !important;
+}
+
+%u-font-size-small,
+.u-font-size-small {
+    font-size: $font-size-small !important;
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * Misc
+ * -----------------------------------------------------------------------------
+ */
+
+.show-baseline {
+    @include baseline-grid;
+}
+
+// Replicates <hr /> but with nicer spacing
+.divider {
+    border-top: 1px solid color(border);
+    display: block;
+    margin: 10px 0;
+}
+
+%u-cursor-not-allowed,
+.u-cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+
+%u-ui-disabled,
+.u-ui-disabled.u-ui-disabled {
+    @extend %u-cursor-not-allowed;
+
+    opacity: .25 !important;
+
+    a.is-disabled {
+        color: color(link);
+    }
+}
+
+%u-no-hover:hover,
+.u-no-hover.u-no-hover:hover {
+    background-color: inherit !important;
+}
+
+%u-no-border,
+.u-no-border {
+    border: 0 !important;
+}
+
+%u-width-auto,
+.u-width-auto {
+    width: auto !important;
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * No results
+ * -----------------------------------------------------------------------------
+ */
+
+.no-results {
+    margin: 0 auto;
+    padding: 1em 0;
+    text-align: center;
+    width: 80%;
+
+    @include respond-min($screen-desktop) {
+        width: 50%;
+    }
+}
+
+td.no-results {
+    margin: inherit;
+    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        width: 100%;
+    }
+}
+
+// Should span full width of content area
+.tab__content > .no-results,
+.tab__content *:not(table) .no-results {
+    width: 100%;
+}
+
+.controls > .no-results {
+    width: 100%;
+    margin: 0;
+    padding: 1px 0;
+}
+
+.no-results__message > p,
+.no-results__action {
+    margin: 12px 0;
+}

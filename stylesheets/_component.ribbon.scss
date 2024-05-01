@@ -74,16 +74,16 @@
     .label {
         font-size: 65%;
         letter-spacing: 0;
-        margin: ($gutter-width / 4) 0 ($gutter-width / 2) ($gutter-width / 4);
+        margin: calc($gutter-width / 4) 0 calc($gutter-width / 2) calc($gutter-width / 4);
         vertical-align: middle;
         word-break: break-all;
 
         @include respond-min($screen-tablet) {
-            padding: -.5em 0 0 $gutter-width / 2;
+            padding: -.5em 0 0 calc($gutter-width / 2);
         }
 
         + .label {
-            margin: ($gutter-width / 4) 0 ($gutter-width / 2);
+            margin: calc($gutter-width / 4) 0 calc($gutter-width / 2);
         }
     }
 

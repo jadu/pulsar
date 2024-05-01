@@ -124,7 +124,7 @@
 
     .loading-block__message {
         display: block;
-        margin-top: $line-height-base / 2;
+        margin-top: calc($line-height-base / 2);
     }
 }
 
@@ -138,7 +138,7 @@
         display: block;
         position: absolute;
         right: -10px;
-        top: $line-height-base / 2;
+        top: calc($line-height-base / 2);
     }
 }
 

@@ -1,0 +1,263 @@
+// -----------------------------------------------------------------------------
+//  Paths
+// -----------------------------------------------------------------------------
+
+$font-path:                           '../fonts/' !default;
+$image-path:                          '../images/' !default;
+$libs-path:                           '../libs/' !default;
+
+// -----------------------------------------------------------------------------
+//  Typefaces
+// -----------------------------------------------------------------------------
+
+$font-family-light:                   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-regular:                 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+$font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', monospace !default;
+
+$background-gradient:                 url('../images/branding/central-gradient.svg');
+$signin-gradient:                     url('../images/branding/central-gradient-large.svg');
+
+// -----------------------------------------------------------------------------
+//  Typographic grid
+// -----------------------------------------------------------------------------
+
+$font-family-base:                    $font-family-light !default;
+
+@include ie-lte(8) {
+  $font-family-base:                  $font-family-fallback !default;
+  $font-family-light:                 $font-family-fallback !default;
+  $font-family-regular:               $font-family-fallback !default;
+}
+
+$font-size-base:                      16px !default;
+$font-size-xxlarge:                   ceil($font-size-base * 2) !default;
+$font-size-xlarge:                    ceil($font-size-base * 1.5) !default;
+$font-size-large:                     18.66px !default; // Meet WCAG 2.1 criteria for 'large text'
+$font-size-medium:                    ceil($font-size-base * .85) !default;
+$font-size-small:                     ceil($font-size-base * .75) !default;
+
+$line-height-base:                    24px !default;
+$line-height-medium:                  ceil($line-height-base * 1.25) !default;
+$line-height-large:                   ceil($line-height-base * 2) !default;
+$line-height-small:                   1.5 !default;
+$line-height-computed:                $line-height-base !default;
+
+// -----------------------------------------------------------------------------
+//  Columnar grid
+// -----------------------------------------------------------------------------
+
+$gutter-width:                        20px !default;
+$component-offset:                    180px !default;
+$tab-column-width:                    200px !default;
+$tab-column-width-tablet:             133px !default;
+$tab-column-width-mobile:             250px !default;
+$sidebar-column-width:                200px !default;
+$sidebar-column-width-tablet:         133px !default;
+
+// -----------------------------------------------------------------------------
+//  Breakpoints
+// -----------------------------------------------------------------------------
+
+// Extra small screen / small mobile
+$screen-xsmall:                       480px !default;
+$screen-phone:                        $screen-xsmall !default;
+
+// Smaller screen / large mobile / tiny tablet
+$screen-smaller:                      600px !default;
+$screen-phablet:                      $screen-smaller !default;
+
+// Small screen / tablet
+$screen-small:                        767px !default;
+$screen-tablet:                       $screen-small !default;
+
+// Medium screen / desktop
+$screen-medium:                       992px !default;
+$screen-desktop:                      $screen-medium !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-small-max:                    ($screen-medium - 1) !default;
+$screen-tablet-max:                   $screen-small-max !default;
+
+// Large screen / wide desktop
+$screen-large:                        1200px !default;
+$screen-large-desktop:                $screen-large !default;
+
+// -----------------------------------------------------------------------------
+//  Buttons
+// -----------------------------------------------------------------------------
+
+$btn-border-radius: 0; // Just experimenting with 0 border for a while...
+
+// -----------------------------------------------------------------------------
+//  Borders
+// -----------------------------------------------------------------------------
+
+$border-width:                        1px !default;
+$border-radius:                       0 !default;
+$border-radius-small:                 4px !default;
+$border-radius-large:                 20px !default;
+
+// -----------------------------------------------------------------------------
+//  Shadows
+// -----------------------------------------------------------------------------
+
+$shadow-large:                        12px;
+$shadow-small:                        6px;
+$shadow-micro:                        3px;
+
+// -----------------------------------------------------------------------------
+//  Dropdowns
+// -----------------------------------------------------------------------------
+
+$dropdown-font-size:                  $font-size-medium !default;
+
+// -----------------------------------------------------------------------------
+//  Components
+// -----------------------------------------------------------------------------
+
+$margin-base:                        10px !default;
+$margin-base-vertical:               6px !default;
+$margin-base-horizontal:             12px !default;
+$margin-large-vertical:              10px !default;
+$margin-large-horizontal:            16px !default;
+$margin-small-vertical:              5px !default;
+$margin-small-horizontal:            10px !default;
+
+$padding-base:                        10px !default;
+$padding-base-vertical:               6px !default;
+$padding-base-horizontal:             12px !default;
+$padding-large-vertical:              10px !default;
+$padding-large-horizontal:            16px !default;
+$padding-small-vertical:              5px !default;
+$padding-small-horizontal:            10px !default;
+
+$padding-small-em:                    .5em !default;
+$padding-micro-em:                    .2em !default;
+
+// -----------------------------------------------------------------------------
+//  Layout
+// -----------------------------------------------------------------------------
+
+$footer-padding-vertical:             $padding-base-vertical;
+$footer-height:                       $line-height-base + ($footer-padding-vertical * 2) + $border-width;
+
+// -----------------------------------------------------------------------------
+//  Navigation
+// -----------------------------------------------------------------------------
+
+$nav-primary-width:                   85px;
+$nav-color-light:                    #3e4994; // must be AA 4.5:1
+$nav-color-dark:                      darken(#3e4994, 7.5%);
+$nav-color-darker:                    darken(#3e4994, 10%);
+
+// -----------------------------------------------------------------------------
+//  Forms
+// -----------------------------------------------------------------------------
+
+// $form-label-column-width:             200px !default;
+// $controls-width:                      30%;
+$controls-max-width:                  300px;
+$form-label-cols:                     3 !default;
+$form-control-cols:                   9 !default;
+$input-border-radius:                 $border-radius !default;
+$input-height-base:                   $line-height-base * 2 !default;
+
+@include ie-lte(7) {
+  $input-height-base:                 $line-height-base * 1.2 !default;
+}
+
+$input-height-large:                  (floor($font-size-large * 2) + ($padding-large-vertical * 2) + 2) !default;
+$input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
+
+$input-widths: (
+    mini:    50px,
+    small:   100px,
+    medium:  200px,
+    regular: 300px,
+    large:   400px,
+    xlarge:  500px,
+    full:    100%
+);
+
+// -----------------------------------------------------------------------------
+//  Modals
+// -----------------------------------------------------------------------------
+
+$modal-inner-padding:                 20px !default;
+$modal-title-padding:                 15px !default;
+$modal-title-line-height:             $line-height-base !default;
+$modal-content-bg:                    #fff !default;
+$modal-content-border-color:          rgba(0, 0, 0, .2) !default;
+$modal-content-fallback-border-color: #999 !default;
+$modal-backdrop-bg:                   #000 !default;
+$modal-header-border-color:           #e5e5e5 !default;
+$modal-footer-border-color:           $modal-header-border-color !default;
+$modal-width:                         70% !default;
+
+// -----------------------------------------------------------------------------
+//  Tables
+// -----------------------------------------------------------------------------
+
+$table-cell-padding:                  8px;
+$table-condensed-cell-padding:        5px;
+
+// -----------------------------------------------------------------------------
+//  Tooltips
+// -----------------------------------------------------------------------------
+
+$tooltip-max-width:                   200px !default;
+$tooltip-color:                       #fff !default;
+$tooltip-arrow-width:                 5px !default;
+
+// -----------------------------------------------------------------------------
+//  Toolbar
+// -----------------------------------------------------------------------------
+
+$toolbar-accent-height:               4px !default;
+
+$toolbar-height:                      64px !default; // including accent height
+$toolbar-height-small:                ($line-height-base * 2) !default; // including accent height
+$toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
+
+// -----------------------------------------------------------------------------
+//  Search
+// -----------------------------------------------------------------------------
+
+$search-border-radius:                0 !default;
+$search-form-height:                  $toolbar-height !default;
+$search-height:                       44px !default;
+$search-form-margin:                  ($search-form-height - $search-height - $toolbar-accent-height) / 2 0;
+$search-width:                        100% !default;
+$search-max-width:                    400px !default;
+
+// -----------------------------------------------------------------------------
+//  Popovers
+// -----------------------------------------------------------------------------
+
+$popover-max-width:                   276px !default;
+$popover-arrow-width:                 10px !default;
+$popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
+
+// -----------------------------------------------------------------------------
+//  Z-Index master list
+// -----------------------------------------------------------------------------
+
+$zindex-tour:                         1000 !default;
+$zindex-footer:                       1020 !default;
+$zindex-tooltip:                      1055 !default;
+$zindex-sticky:                       1060 !default;
+$zindex-flash:                        1064 !default;
+$zindex-dropdown:                     1065 !default;
+$zindex-nav-secondary:                1070 !default;
+$zindex-nav:                          1080 !default;
+$zindex-popover:                      1090 !default;
+$zindex-modal:                        3000 !default;
+
+// -----------------------------------------------------------------------------
+//  Signin
+// -----------------------------------------------------------------------------
+
+$signin-bg-color:          rgba(255, 255, 255, .9);
+$signin-bg-color-fallback: #fff;

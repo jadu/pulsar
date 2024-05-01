@@ -1,0 +1,58 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+* Any CSS included here will be global. The classic template
+* bundles Infima by default. Infima is a CSS framework designed to
+* work well for content-centric websites.
+*/
+
+$theme: 'dark' !default;
+
+.d-example,
+.d-example-inline,
+.d-guidelines {
+    @import '../../../stylesheets/mixin.media-queries';
+    @import '../../../stylesheets/mixin.mixins-to-organise';
+
+    // Functions
+    @import '../../../stylesheets/function.math';
+    @import '../../../stylesheets/function.color-luminance';
+    @import '../../../stylesheets/function.pick-best-color';
+    @import '../../../stylesheets/function.color';
+
+    // Config
+    @import '../../../stylesheets/config.variables';
+    @import '../../../stylesheets/config.branding';
+
+    // Functions
+    @import '../../../stylesheets/function.math';
+    @import '../../../stylesheets/function.color-luminance';
+    @import '../../../stylesheets/function.pick-best-color';
+    @import '../../../stylesheets/function.color';
+
+    // Base colour palette
+    @import '../../../stylesheets/palette.base';
+    @import '../../../stylesheets/palette.dark';
+    @import '../../../stylesheets/palette.maps';
+    @import '../../../stylesheets/config.theme';
+
+    .bg--dark {
+        background-color: color(background);
+
+        code {
+            background-color: color(background, light);
+            border-color: rgba(255, 255, 255, .2);
+            color: color(text);
+        }
+    }
+
+    .swatch {
+        @each $name, $palette in $colors {
+            @each $variant, $value in $palette {
+                &--#{'' + $name}-#{$variant} .swatch__chip--dark {
+                    background-color: color($name, $variant);
+                    color: pick_best_color(color($name, $variant), (#fff, #000));
+                }
+            }
+        }
+    }
+}

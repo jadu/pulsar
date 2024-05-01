@@ -1,0 +1,183 @@
+@import 'component.toolbar';
+
+.notifications {
+    position: static; // override default dropdown behaviour for small screens
+    z-index: $zindex-dropdown;
+
+    @include respond-min($screen-phone) {
+        position: relative; // restore default dropdown behaviour
+    }
+
+    .dropdown {
+        position: static;
+
+        @include respond-min($screen-phone) {
+            position: relative; // restore default dropdown behaviour
+        }
+    }
+
+    // double chained to override specificity of default remove button
+    .remove-button.remove-button {
+        padding: 3px 5px;
+    }
+}
+
+.notifications-container {
+    clear: both;
+    float: right;
+    left: 10px;
+    padding: 0; // reset .dropdown__menu defaults
+    position: absolute;
+    right: 10px;
+    width: auto;
+
+    @include respond-min($screen-phone) {
+        left: auto;
+        right: -160px;
+        width: 380px;
+    }
+}
+
+.notifications-toggle {
+    @extend %toolbar-icon;
+
+    // Fix an issue in CMS where legacy dropdowns create a duplicate caret in :before
+    &::before {
+        display: none;
+    }
+
+    // Disable default button is-active styles
+    &.is-active {
+        background-color: color(white);
+        color: color(text);
+    }
+
+    &.is-active::after {
+        display: none;
+    }
+
+    &.is-active:hover {
+        background-color: color(base);
+        color: color(base, alt);
+    }
+
+    // the red dot indicator
+    &.has-new::before {
+        background-color: color(danger);
+        border: 2px solid color(white);
+        border-radius: 10px;
+        content: '';
+        display: block;
+        position: absolute;
+        right: 44%;
+        top: 3px;
+        height: 10px;
+        width: 10px;
+
+        @include respond-min($screen-tablet) {
+            right: 35%;
+        }
+    }
+}
+
+.notifications-list {
+    float: left;
+    list-style: none;
+    margin-bottom: 0;
+    max-height: 300px;
+    max-height: 75vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.notifications__header {
+    border-bottom: 1px solid color(border);
+    float: left;
+    padding: 10px;
+    width: 100%;
+}
+
+.notifications-title {
+    display: inline-block;
+    line-height: 1.2em;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+.notifications-dismiss {
+    color: color(text);
+    display: inline-block;
+    float: right;
+    line-height: 1.75em;
+}
+
+.notification {
+    border-bottom: 1px solid color(border);
+    display: block;
+    float: left;
+    padding: 10px;
+    width: 100%;
+
+    &:hover {
+        background-color: color(background, light);
+    }
+
+    &.is-empty {
+        color: color(text, light);
+        text-align: center;
+
+        p {
+            margin-bottom: 0;
+        }
+
+        i {
+            font-size: 3em;
+        }
+    }
+
+    // prevent large images from cropping outside the container
+    img {
+        max-width: 100% !important;
+    }
+}
+
+.notification--last {
+    border-bottom: 0;
+}
+
+.notification__header {
+    align-items: start;
+    border-bottom: 1px solid color(gray, light);
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+
+    .notification__heading {
+        font-size: $font-size-medium;
+        flex-basis: 80%;
+        line-height: $line-height-base;
+        margin-bottom: 0;
+    }
+
+    .notification__dismiss {
+        margin-left: auto;
+    }
+
+    .notification__time {
+        flex-basis: 100%;
+    }
+}
+
+.notifications__footer {
+    background-color: color(gray, off-white);
+    border-top: 1px solid color(border);
+    clear: both;
+
+    .notifications-all {
+        display: block;
+        text-align: center;
+        line-height: 2em;
+    }
+}

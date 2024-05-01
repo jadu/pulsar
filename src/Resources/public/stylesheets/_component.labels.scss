@@ -1,0 +1,62 @@
+// Label constructor
+%label {
+    @include label-state-variant('base');
+    border-radius: $border-radius-small;
+    display: inline-block;
+    font-size: $font-size-medium;
+    padding: 0 $padding-small-em;
+    text-align: center;
+    text-transform: lowercase;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+// Base labels
+.label {
+    @extend %label;
+}
+
+// State variations
+@each $state, $state-color, $state-color-alt in $state-colors {
+    @if $state != 'base' {
+        .label--#{'' + $state} {
+            @include label-state-variant($state);
+        }
+    }
+}
+
+// Removable labels (labels with a remove button attached)
+.label--removable {
+    padding: 0;
+
+    .label__text {
+        padding: 0 $padding-small-em;
+        display: inline-block;
+    }
+
+    .btn.remove-button {
+        padding: .25em $padding-small-em ($padding-micro-em + .1);
+        background-color: rgba(0, 0, 0, .15);
+        border-radius: 0 $border-radius $border-radius 0;
+
+        &:focus,
+        &:focus:active {
+            @include pulsar-label-remove-button-focused;
+        }
+
+        &:active {
+            background-color: rgba(0, 0, 0, .2);
+        }
+    }
+}
+
+// Links with labels (not a recommended pattern but in use in a few places)
+a {
+    .label {
+        text-decoration: underline;
+    }
+
+    &:focus .label {
+        @include pulsar-link-label-focused;
+    }
+}

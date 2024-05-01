@@ -1,0 +1,38 @@
+// possibly redundant
+.sidebar__header {
+	border-bottom: 1px solid color(border);
+    line-height: 24px;
+    margin-bottom: 19px;
+    padding-bottom: 4px;
+	text-align: left;
+}
+
+.sidebar-link {
+	display: block;
+	margin-bottom: $line-height-base;
+	text-align: left;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.sidebar-link__label {
+	margin-right: 10px;
+	position: relative;
+	top: -2px;
+}
+
+.sidebar-icon {
+	color: color(gray, dark);
+	line-height: 20px;
+
+	.no-js & {
+		display: none;
+	}
+
+	.tab-help-container & {
+		color: color(white);
+	}
+}
