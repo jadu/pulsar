@@ -18,4 +18,4 @@ class TimePickerComponent {
     }
 }
 
-module.exports = TimePickerComponent;
+export default TimePickerComponent;
