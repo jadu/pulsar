@@ -8,7 +8,7 @@
         }
     },
     "require": {
-        "twig/twig": "^2.0"
+        "twig/twig": "^3.9"
     },
     "require-dev": {
         "symfony/yaml": "*"
