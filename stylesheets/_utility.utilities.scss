@@ -396,6 +396,26 @@ p.success {
     width: auto !important;
 }
 
+%u-border-top,
+.u-border-top {
+    border-top: 1px solid color(border) !important;
+}
+
+%u-border-right,
+.u-border-right {
+    border-right: 1px solid color(border) !important;
+}
+
+%u-border-bottom,
+.u-border-bottom {
+    border-bottom: 1px solid color(border) !important;
+}
+
+%u-border-left,
+.u-border-left {
+    border-left: 1px solid color(border) !important;
+}
+
 /**
  * -----------------------------------------------------------------------------
  * No results
