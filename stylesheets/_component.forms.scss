@@ -800,6 +800,11 @@ fieldset.form__group {
             margin-left: 10px;
         }
     }
+
+    .compound-label {
+        line-height: $input-height-base;
+        margin-right: 10px;
+    }
 }
 
 // Used in CXM mappings

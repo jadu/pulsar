@@ -90,3 +90,52 @@
         }
     }
 }
+
+.dateblock {
+    color: color(primary);
+    display: flex;
+    flex-direction: column;
+    margin-right: 1em;
+    padding-right: .75em;
+    text-align: center;
+    width: 70px;
+}
+
+.dateblock__day {
+    font-family: $font-family-heading;
+    font-size: $font-size-medium;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.dateblock__date {
+    font-family: $font-family-heading;
+    font-size: $font-size-xlarge;
+    width: 100%;
+}
+
+.dateblock__month {
+    font-family: $font-family-heading;
+    font-size: $font-size-medium;
+    width: 100%;
+}
+
+.card-booking {
+    margin-bottom: 1em;
+
+    .card__body {
+        display: flex;
+    }
+
+    .label {
+        height: $line-height-base;
+    }
+
+    .card-booking__block {
+        align-items: center;
+        column-gap: 1em;
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+    }
+}
