@@ -1,5 +1,5 @@
 // const Fiber = require('fibers');
-const sass = require('dart-sass');
+const sass = require('sass');
 
 module.exports = function(grunt) {
 

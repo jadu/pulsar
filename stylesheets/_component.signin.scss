@@ -189,7 +189,7 @@ $signin-panel-mobile-width:	300px;
     }
 
     p {
-        margin: ($line-height-base / 2) 0;
+        margin: calc($line-height-base / 2) 0;
     }
 
     hr {

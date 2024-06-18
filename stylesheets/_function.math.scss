@@ -25,7 +25,7 @@
   }
   @else if $exponent < 1 {
     @for $i from 0 through -$exponent {
-      $value: $value / $base;
+      $value: calc($value / $base);
     }
   }
 
@@ -37,7 +37,7 @@
   $x: 1;
 
   @for $i from 0 through $prec {
-    $x: 1 / $n * (($n - 1) * $x + ($num / pow($x, $n - 1)));
+    $x: 1 / $n * (($n - 1) * $x + $num / pow($x, $n - 1));
   }
 
   @return $x;

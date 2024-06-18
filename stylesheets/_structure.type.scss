@@ -32,7 +32,7 @@ h6 {
 }
 
 p {
-    margin: 0 0 ($line-height-base / $line-height-small);
+    margin: 0 0 calc($line-height-base / $line-height-small);
 
     @include respond-min($screen-phone) {
         margin-bottom: $line-height-base;
