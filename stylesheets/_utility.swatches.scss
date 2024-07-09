@@ -1,6 +1,6 @@
 .swatch {
     display: inline-block;
-    margin-bottom: $line-height-medium;
+    margin-bottom: 10px;
     width: 140px;
     vertical-align: top;
 
@@ -227,4 +227,34 @@
             top: 40px;
         }
     }
+}
+
+.swatch-css--primary .swatch__colour {
+    background-color: var(--color-state-primary);
+    color: var(--color-state-primary-alt);
+}
+
+.swatch-css--success .swatch__colour {
+    background-color: var(--color-state-success);
+    color: var(--color-state-success-alt);
+}
+
+.swatch-css--warning .swatch__colour {
+    background-color: var(--color-state-warning);
+    color: var(--color-state-warning-alt);
+}
+
+.swatch-css--danger .swatch__colour {
+    background-color: var(--color-state-danger);
+    color: var(--color-state-danger-alt);
+}
+
+.swatch-css--info .swatch__colour {
+    background-color: var(--color-state-info);
+    color: var(--color-state-info-alt);
+}
+
+.swatch-css--inverse .swatch__colour {
+    background-color: var(--color-state-inverse);
+    color: var(--color-state-inverse-alt);
 }

@@ -1,0 +1,89 @@
+@import 'palette.base';
+
+// scss-lint:disable SpaceAfterPropertyColon
+:root {
+    // FUNDAMENTALS
+    --color-white:               #{map-get(map-get($palette-monochromes, white), base)};
+    --color-black:               #{map-get(map-get($palette-monochromes, black), base)};
+
+    // MONOCHROMES
+    --color-gray-darker:         #{map-get(map-get($palette-monochromes, gray), darker)};
+    --color-gray-dark:           #{map-get(map-get($palette-monochromes, gray), dark)};
+    --color-gray-dull:           #{map-get(map-get($palette-monochromes, gray), dull)};
+    --color-gray-base:           #{map-get(map-get($palette-monochromes, gray), base)};
+    --color-gray-light:          #{map-get(map-get($palette-monochromes, gray), light)};
+    --color-gray-lighter:        #{map-get(map-get($palette-monochromes, gray), lighter)};
+    --color-gray-lightest:       #{map-get(map-get($palette-monochromes, gray), lightest)};
+    --color-gray-off-white:      #{map-get(map-get($palette-monochromes, gray), off-white)};
+
+    // STATES
+    --color-state-base:          #{map-get(map-get($palette-states, base), base)};
+    --color-state-base-alt:      #{map-get(map-get($palette-states, base), alt)};
+    --color-state-base-light:    #{map-get(map-get($palette-states, base), light)};
+    --color-state-base-dark:     #{map-get(map-get($palette-states, base), dark)};
+
+    --color-state-primary:       #{map-get(map-get($palette-states, primary), base)};
+    --color-state-primary-alt:   #{map-get(map-get($palette-states, primary), alt)};
+    --color-state-primary-light: #{map-get(map-get($palette-states, primary), light)};
+    --color-state-primary-dark:  #{map-get(map-get($palette-states, primary), dark)};
+
+    --color-state-success:       #{map-get(map-get($palette-states, success), base)};
+    --color-state-success-alt:   #{map-get(map-get($palette-states, success), alt)};
+    --color-state-success-light: #{map-get(map-get($palette-states, success), light)};
+    --color-state-success-dark:  #{map-get(map-get($palette-states, success), dark)};
+
+    --color-state-warning:       #{map-get(map-get($palette-states, warning), base)};
+    --color-state-warning-alt:   #{map-get(map-get($palette-states, warning), alt)};
+    --color-state-warning-light: #{map-get(map-get($palette-states, warning), light)};
+    --color-state-warning-dark:  #{map-get(map-get($palette-states, warning), dark)};
+
+    --color-state-danger:        #{map-get(map-get($palette-states, danger), base)};
+    --color-state-danger-alt:    #{map-get(map-get($palette-states, danger), alt)};
+    --color-state-danger-light:  #{map-get(map-get($palette-states, danger), light)};
+    --color-state-danger-dark:   #{map-get(map-get($palette-states, danger), dark)};
+
+    --color-state-info:          #{map-get(map-get($palette-states, info), base)};
+    --color-state-info-alt:      #{map-get(map-get($palette-states, info), alt)};
+    --color-state-info-light:    #{map-get(map-get($palette-states, info), light)};
+    --color-state-info-dark:     #{map-get(map-get($palette-states, info), dark)};
+
+    --color-state-inverse:       #{map-get(map-get($palette-states, inverse), base)};
+    --color-state-inverse-alt:   #{map-get(map-get($palette-states, inverse), alt)};
+    --color-state-inverse-light: #{map-get(map-get($palette-states, inverse), light)};
+    --color-state-inverse-dark:  #{map-get(map-get($palette-states, inverse), dark)};
+
+    --color-state-white:         #{map-get(map-get($palette-states, white), base)};
+    --color-state-white-alt:     #{map-get(map-get($palette-states, white), alt)};
+    --color-state-white-light:   #{map-get(map-get($palette-states, white), light)};
+    --color-state-white-dark:    #{map-get(map-get($palette-states, white), dark)};
+
+    // TEXT
+    --color-text:                #{map-get(map-get($palette-alias, text), base)};
+    --color-text-disabled:       #{map-get(map-get($palette-alias, text), disabled)};
+    --color-text-help:           #{map-get(map-get($palette-alias, text), help)};
+    --color-text-light:          #{map-get(map-get($palette-alias, text), light)};
+    --color-text-placeholder:    #{map-get(map-get($palette-alias, text), placeholder)};
+
+    // LINKS
+    --color-link:                #{map-get(map-get($palette-alias, link), base)};
+    --color-link-dark:           #{map-get(map-get($palette-alias, link), dark)};
+    --color-link-disabled:       #{map-get(map-get($palette-alias, link), disabled)};
+    --color-link-focus:          #{map-get(map-get($palette-alias, link), focus)};
+    --color-link-hover:          #{map-get(map-get($palette-alias, link), hover)};
+    --color-link-inverse:        #{map-get(map-get($palette-alias, link), inverse)};
+    --color-link-inverse-hover:  #{map-get(map-get($palette-alias, link), inverse-hover)};
+
+    // BACKGROUND
+    --color-background:          #{map-get(map-get($palette-alias, background), base)};
+    --color-background-backdrop: #{map-get(map-get($palette-alias, background), backdrop)};
+    --color-background-dark:     #{map-get(map-get($palette-alias, background), dark)};
+    --color-background-focus:    #{map-get(map-get($palette-alias, background), focus)};
+    --color-background-light:    #{map-get(map-get($palette-alias, background), light)};
+    --color-background-selected: #{map-get(map-get($palette-alias, background), selected)};
+    --color-background-shadow:   #{map-get(map-get($palette-alias, background), shadow)};
+
+    // BORDER
+    --color-border:              #{map-get(map-get($palette-alias, border), base)};
+    --color-border-focus:        #{map-get(map-get($palette-alias, border), focus)};
+}
+// scss-lint:enable SpaceAfterPropertyColon

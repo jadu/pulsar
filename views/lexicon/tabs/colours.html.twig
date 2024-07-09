@@ -39,7 +39,7 @@
 {%- endblock -%}
 
 {% block tab_content %}
-    <h2 class="heading">Standard 'state' colours</h2>
+    <h2 class="heading">Standard 'state' colours (Sass vars)</h2>
 
     <div class="swatch swatch--primary-base">
         <div class="swatch__colour">
@@ -92,6 +92,68 @@
     </div>
 
     <div class="swatch swatch--inverse-base">
+        <div class="swatch__colour">
+            <span class="swatch__text">inverse</span>
+        </div>
+        <div class="swatch__label">
+            <code>color(inverse)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <h2 class="heading">Standard 'state' colours (CSS vars)</h2>
+
+    <div class="swatch swatch-css--primary">
+        <div class="swatch__colour">
+            <span class="swatch__text">primary</span>
+        </div>
+        <div class="swatch__label">
+            <code>color(primary)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--info">
+        <div class="swatch__colour">
+            <span class="swatch__text">info</span>
+        </div>
+        <div class="swatch__label">
+            <code>color(info)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--success">
+        <div class="swatch__colour">
+            <span class="swatch__text">success</span>
+        </div>
+        <div class="swatch__label">
+            <code>color(success)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--warning">
+        <div class="swatch__colour">
+            <span class="swatch__text">warning</span>
+        </div>
+        <div class="swatch__label">
+            <code>color(warning)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--danger">
+        <div class="swatch__colour">
+            <span class="swatch__text">danger</span>
+        </div>
+        <div class="swatch__label">
+            <code>color(danger)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--inverse">
         <div class="swatch__colour">
             <span class="swatch__text">inverse</span>
         </div>
