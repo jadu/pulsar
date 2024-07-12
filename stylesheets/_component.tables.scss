@@ -18,7 +18,7 @@
     }
 
     a > .icon {
-        color: color(black);
+        color: var(--color-black);
     }
 
     tbody > tr:hover {
@@ -78,7 +78,7 @@
 
     th,
     td {
-        border-bottom: 1px solid color(border);
+        border-bottom: 1px solid var(--color-border);
         padding: 11px 10px 12px;
 
         &.centered {
@@ -105,7 +105,7 @@
     th,
     thead td {
         background-color: color(background, light);
-        border-top: 1px solid color(border);
+        border-top: 1px solid var(--color-border);
         font-family: $font-family-regular;
         font-weight: normal;
         vertical-align: bottom;
@@ -133,13 +133,13 @@
         }
 
         a > i {
-            color: color(text);
+            color: var(--color-text);
         }
     }
 }
 
 .table--white-bg {
-    background-color: white;
+    background-color: var(--color-white);
 }
 
 .table--contrast {
@@ -203,7 +203,7 @@ td.table__form {
     }
 
     .legend {
-        border-bottom: 1px solid color(border);
+        border-bottom: 1px solid var(--color-border);
         line-height: 25px;
         margin-bottom: 24px;
     }
@@ -228,7 +228,7 @@ td.table__form,
     background-color: color(background, light);
 
     .help-block {
-        color: color(text);
+        color: var(--color-text);
     }
 }
 
@@ -272,8 +272,8 @@ td.row__actions {
 }
 
 .row--final td {
-    border-top: 2px solid color(border);
-    border-bottom: 2px solid color(border);
+    border-top: 2px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
 }
 
 .table--overflow-left,
@@ -289,12 +289,12 @@ td.row__actions {
 
         &::-webkit-scrollbar-track {
             background-color: color(background, light);
-            border-bottom: 1px solid color(border);
+            border-bottom: 1px solid var(--color-border);
         }
 
         &::-webkit-scrollbar-thumb {
             background-color: color(grey, lightest);
-            border-bottom: 1px solid color(border);
+            border-bottom: 1px solid var(--color-border);
         }
     }
 }
@@ -332,7 +332,7 @@ td.row__actions {
 }
 
 .sticky-scrollbar__inner {
-    border: 1px solid color(white);
+    border: 1px solid var(--color-white);
     opacity: .01;
 }
 
@@ -347,8 +347,8 @@ td.row__actions {
 .table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-track,
 .table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-track {
     background: color(background, light);
-    border-bottom: 1px solid color(border);
-    border-top: 1px solid color(border);
+    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
 
     @include respond-min($screen-tablet) {
         border-bottom: 0;
@@ -358,8 +358,8 @@ td.row__actions {
 .table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-thumb,
 .table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-thumb {
     background: color(grey, lightest);
-    border-bottom: 1px solid color(border);
-    border-top: 1px solid color(border);
+    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
 
     @include respond-min($screen-tablet) {
         border-bottom: 0;

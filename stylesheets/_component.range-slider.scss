@@ -15,7 +15,7 @@
     &::-webkit-slider-thumb {
         margin-top: -7px;
         appearance: none;
-        background: color(primary);
+        background: var(--color-primary);
         border: 0;
         border-radius: 50%;
         cursor: grab;
@@ -24,12 +24,12 @@
         width: $gutter-width;
 
         &:hover {
-            background: color(primary);
+            background: var(--color-primary);
         }
     }
 
     &::-ms-thumb {
-        background: color(primary);
+        background: var(--color-primary);
         border: 0;
         border-radius: 50%;
         cursor: grab;
@@ -39,17 +39,17 @@
         width: $gutter-width;
 
         &:hover {
-            background: color(primary);
+            background: var(--color-primary);
         }
     }
 
     &:active::-ms-thumb {
-        background: color(primary);
+        background: var(--color-primary);
     }
 
     &::-moz-range-thumb {
         appearance: none;
-        background: color(primary);
+        background: var(--color-primary);
         border: 0;
         border-radius: 50%;
         cursor: grab;
@@ -58,17 +58,17 @@
         width: $gutter-width;
 
         &:hover {
-            background: color(primary);
+            background: var(--color-primary);
         }
     }
 
     &:active::-moz-range-thumb {
-        background: color(primary);
+        background: var(--color-primary);
     }
 
     // Slider track
     &::-webkit-slider-runnable-track {
-        background: color(gray, lightest);
+        background: var(--color-gray-lightest);
         border-radius: 5px;
         border: 1px solid $input-border;
         color: transparent;
@@ -77,7 +77,7 @@
     }
 
     &::-ms-track {
-        background: color(gray, lightest);
+        background: var(--color-gray-lightest);
         border-radius: 5px;
         border: 1px solid $input-border;
         color: transparent;
@@ -87,19 +87,19 @@
     }
 
     &::-ms-fill-lower {
-        background: color(gray, lightest);
+        background: var(--color-gray-lightest);
         border-radius: 5px;
         overflow: visible;
     }
 
     &::-ms-fill-upper {
-        background: color(gray, lightest);
+        background: var(--color-gray-lightest);
         border-radius: 5px;
         overflow: visible;
     }
 
     &::-moz-range-track {
-        background: color(gray, lightest);
+        background: var(--color-gray-lightest);
         border-radius: 5px;
         border: 1px solid $input-border;
         color: transparent;

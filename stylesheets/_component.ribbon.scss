@@ -12,7 +12,7 @@
 
 .ribbon {
     @include clear-fix;
-    background-color: color(gray, off-white);
+    background-color: var(--color-gray-off-white);
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
     color: #000;
@@ -47,7 +47,7 @@
 }
 
 .ribbon__owner {
-    background-color: color(gray, lightest);
+    background-color: var(--color-gray-lightest);
     border-bottom: 1px solid #ccc;
     font-size: 1.1em;
     padding: 10px;

@@ -175,7 +175,7 @@ $signin-panel-mobile-width:	300px;
     &--error {
         .loading--circle i {
             border: 1px solid rgba(0, 0, 0, .2);
-            border-top-color: color(white);
+            border-top-color: var(--color-white);
         }
     }
 
@@ -202,7 +202,7 @@ $signin-panel-mobile-width:	300px;
     }
 
     a:focus {
-        color: color(black);
+        color: var(--color-black);
     }
 
     .legend,
@@ -250,8 +250,8 @@ $signin-panel-mobile-width:	300px;
 
     .panel--danger,
     &.signin--error .signin__info {
-        border-bottom: 2px solid color(white) !important;
-        border-top: 2px solid color(white) !important;
+        border-bottom: 2px solid var(--color-white) !important;
+        border-top: 2px solid var(--color-white) !important;
         margin: 20px -30px;
 
         @include respond-min($screen-tablet) {
@@ -266,7 +266,7 @@ $signin-panel-mobile-width:	300px;
         .panel__body,
         span,
         i {
-            color: color(white) !important;
+            color: var(--color-white) !important;
         }
     }
 
@@ -276,7 +276,7 @@ $signin-panel-mobile-width:	300px;
     }
 
     .has-error {
-        background-color: color(white);
+        background-color: var(--color-white);
         padding: 0 20px;
         margin: 0 -30px;
         width: calc(100% + 60px);
@@ -289,7 +289,7 @@ $signin-panel-mobile-width:	300px;
 
         .btn {
             border: 0 !important;
-            color: color(black) !important;
+            color: var(--color-black) !important;
             outline: 2px solid color(danger);
         }
 
@@ -307,7 +307,7 @@ $signin-panel-mobile-width:	300px;
     }
 
     .has-error .help-block {
-        background-color: color(white);
+        background-color: var(--color-white);
         color: color(danger) !important;
         font-family: $font-family-regular;
         padding: 0 20px 1em;
@@ -331,7 +331,7 @@ $signin-panel-mobile-width:	300px;
 .signin .form__control.form__control {
     background-color: none;
     border: 0;
-    color: color(text) !important;
+    color: var(--color-text) !important;
     display: inline-block;
     height: 48px;
     line-height: 48px;
@@ -367,7 +367,7 @@ $signin-panel-mobile-width:	300px;
 
 .signin option,
 .signin .select2 * {
-    color: color(text) !important;
+    color: var(--color-text) !important;
 }
 
 .signin .select2-container {
@@ -421,7 +421,7 @@ $signin-panel-mobile-width:	300px;
 }
 
 .signin__alt {
-    background-color: color(white);
+    background-color: var(--color-white);
     border-radius: 20px;
     display: block;
     margin-top: 1em;
@@ -466,7 +466,7 @@ $signin-panel-mobile-width:	300px;
 }
 
 .signin__heading {
-    color: color(gray, darker);
+    color: var(--color-gray-darker);
     font-family: $font-family-heading;
     font-size: 1.5em;
     margin: 10px 30px 20px;

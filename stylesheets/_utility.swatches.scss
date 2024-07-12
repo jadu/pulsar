@@ -21,7 +21,7 @@
     }
 
     &__label {
-        color: color(gray, dark);
+        color: var(--color-gray-dark);
 
         code,
         span {
@@ -43,8 +43,34 @@
         }
     }
 
+    // @each $variant, $value in $palette-states {
+    //     @if $variant != 'alt' {
+    //         &-css--#{'' + $name}-#{$variant} .swatch__colour {
+    //             background-color: var(--color-#{$name});
+    //             color: var(--color-#{$name}-alt);
+    //         }
+    //     }
+    // }
+
+    @each $name, $color in $palette-states {
+        @each $variant, $value in $color {
+            &-css--#{'' + $name}-#{'' + $variant} .swatch__colour {
+                background-color: var(--color-#{'' + $name}-#{'' + $variant});
+                color: var(--color-#{$name}-alt);
+            }
+        }
+    }
+
+    @each $name, $color in $palette-monochromes {
+        @each $variant, $value in $color {
+            &-css--#{'' + $name}-#{'' + $variant} .swatch__colour {
+                background-color: var(--color-#{'' + $name}-#{'' + $variant});
+            }
+        }
+    }
+
     .swatch--white .swatch__color {
-        border: 1px solid color(gray, lighter);
+        border: 1px solid var(--color-gray-lighter);
     }
 
 }
@@ -80,7 +106,7 @@
 
     .branding-preview__primary {
         bottom: 0;
-        color: white;
+        color: var(--color-white);
         display: block;
         left: 0;
         position: absolute;
@@ -108,7 +134,7 @@
 
     .branding-preview__secondary {
         bottom: 0;
-        color: white;
+        color: var(--color-white);
         display: block;
         left: 30px;
         position: absolute;
@@ -212,7 +238,7 @@
 
     .branding-preview__primary {
         bottom: 20px;
-        color: white;
+        color: var(--color-white);
         display: block;
         left: 20px;
         position: absolute;
@@ -229,32 +255,69 @@
     }
 }
 
-.swatch-css--primary .swatch__colour {
-    background-color: var(--color-state-primary);
-    color: var(--color-state-primary-alt);
-}
+// .swatch-css--primary .swatch__colour {
+//     background-color: var(--color-state-primary);
+//     color: var(--color-state-primary-alt);
+// }
 
-.swatch-css--success .swatch__colour {
-    background-color: var(--color-state-success);
-    color: var(--color-state-success-alt);
-}
+// .swatch-css--success .swatch__colour {
+//     background-color: var(--color-state-success);
+//     color: var(--color-state-success-alt);
+// }
 
-.swatch-css--warning .swatch__colour {
-    background-color: var(--color-state-warning);
-    color: var(--color-state-warning-alt);
-}
+// .swatch-css--warning .swatch__colour {
+//     background-color: var(--color-state-warning);
+//     color: var(--color-state-warning-alt);
+// }
 
-.swatch-css--danger .swatch__colour {
-    background-color: var(--color-state-danger);
-    color: var(--color-state-danger-alt);
-}
+// .swatch-css--danger .swatch__colour {
+//     background-color: var(--color-state-danger);
+//     color: var(--color-state-danger-alt);
+// }
 
-.swatch-css--info .swatch__colour {
-    background-color: var(--color-state-info);
-    color: var(--color-state-info-alt);
-}
+// .swatch-css--info .swatch__colour {
+//     background-color: var(--color-state-info);
+//     color: var(--color-state-info-alt);
+// }
 
-.swatch-css--inverse .swatch__colour {
-    background-color: var(--color-state-inverse);
-    color: var(--color-state-inverse-alt);
-}
+// .swatch-css--inverse .swatch__colour {
+//     background-color: var(--color-state-inverse);
+//     color: var(--color-state-inverse-alt);
+// }
+
+
+// .swatch-css--black .swatch__colour {
+//     background-color: var(--color-black);
+// }
+
+// .swatch-css--gray-darker .swatch__colour {
+//     background-color: var(--color-gray-darker);
+// }
+
+// .swatch-css--gray-dark .swatch__colour {
+//     background-color: var(--color-gray-dark);
+// }
+
+// .swatch-css--gray-dull .swatch__colour {
+//     background-color: var(--color-gray-dull);
+// }
+
+// .swatch-css--gray .swatch__colour {
+//     background-color: var(--color-gray-base);
+// }
+
+// .swatch-css--gray-light .swatch__colour {
+//     background-color: var(--color-gray-light);
+// }
+
+// .swatch-css--gray-lighter .swatch__colour {
+//     background-color: var(--color-gray-lighter);
+// }
+
+// .swatch-css--gray-lightest .swatch__colour {
+//     background-color: var(--color-gray-lightest);
+// }
+
+// .swatch-css--gray-off-white .swatch__colour {
+//     background-color: var(--color-gray-off-white);
+// }

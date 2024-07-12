@@ -15,8 +15,8 @@
 // Be specific to our use-case in order to override styles
 .btn.sp-replacer {
     background: color(background);
-    border: 1px solid color(border);
-    color: color(text);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
     height: $input-height-base;
     margin-left: 6px;
     position: relative;
@@ -90,7 +90,7 @@
     padding: 5px 0;
     margin: 0;
     background-color: #fff;
-    border: 1px solid color(border);
+    border: 1px solid var(--color-border);
     box-shadow: 0 0 0 $shadow-small color(background, shadow);
     background-clip: padding-box;
 }
@@ -126,7 +126,7 @@
         box-shadow: 0 2px 0 #c5c5c5;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        color: color(text);
+        color: var(--color-text);
         cursor: pointer;
         display: inline-block;
         font-size: 14px;
@@ -148,7 +148,7 @@
 
     &:hover {
         box-shadow: 0 1px 0 #c5c5c5;
-        color: color(text);
+        color: var(--color-text);
         top: 1px;
     }
 }
@@ -180,7 +180,7 @@
 }
 
 .sp-replacer.sp-disabled {
-    color: color(text);
+    color: var(--color-text);
     cursor: not-allowed;
 
     .sp-preview-inner {

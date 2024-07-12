@@ -68,7 +68,7 @@
     }
 
     @include respond-min($screen-tablet) {
-        box-shadow: 0 0 0 4px color(white), inset 0 2px 0 rgba(#000, .08), 0 3px 0 4px rgba(#000, .05);
+        box-shadow: 0 0 0 4px var(--color-white), inset 0 2px 0 rgba(#000, .08), 0 3px 0 4px rgba(#000, .05);
         height: 40px;
         top: 0;
         width: 40px;
@@ -107,27 +107,27 @@
 
     &--user {
         background-color: color(jadu-green, darkest);
-        color: color(white);
+        color: var(--color-white);
     }
 
     &--admin {
         background-color: color(jadu-blue);
-        color: color(white);
+        color: var(--color-white);
     }
 
     &--system {
         background-color: color(jadu-blue);
-        color: color(white);
+        color: var(--color-white);
     }
 }
 
 .timeline-content {
-    background: color(white);
-    border: 1px solid color(gray, lightest);
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-lightest);
     padding: 1em;
 
     @include respond-min($screen-tablet) {
-        border: 1px solid color(gray, lightest);
+        border: 1px solid var(--color-gray-lightest);
         margin-left: 70px;
         margin-top: $padding-base;
         position: relative;
@@ -145,21 +145,21 @@
 
         &::after {
             border-color: transparent;
-            border-right-color: color(white);
+            border-right-color: var(--color-white);
             border-width: 7px;
             margin-top: -7px;
         }
 
         &::before {
             border-color: transparent;
-            border-right-color: color(gray, lightest);
+            border-right-color: var(--color-gray-lightest);
             border-width: 8px;
             margin-top: -8px;
         }
     }
 
     &__title {
-        color: color(gray, darker);
+        color: var(--color-gray-darker);
         display: inline-block;
         margin: 0 0 0 26px;
 
@@ -192,13 +192,13 @@
         }
 
         .avatar {
-            background-color: color(white);
+            background-color: var(--color-white);
             vertical-align: bottom;
         }
     }
 
     &__small {
-        color: color(gray, dark);
+        color: var(--color-gray-dark);
         display: inline-block;
         font-size: .7em;
 
@@ -258,7 +258,7 @@
     }
 
     &--user {
-        box-shadow: 0 3px 0 color(gray, lightest);
+        box-shadow: 0 3px 0 var(--color-gray-lightest);
     }
 }
 
@@ -268,5 +268,5 @@
 
 .timeline-content__text,
 .timeago {
-    color: color(black);
+    color: var(--color-black);
 }

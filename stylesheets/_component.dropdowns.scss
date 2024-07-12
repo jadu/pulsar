@@ -27,8 +27,8 @@
 
 // Make sure transparent trigger buttons sit over dropdown shadow
 .dropdown.open > .btn--outline {
-  background-color: color(primary);
-  border: 1px solid color(primary);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
   color: color(primary, alt);
   z-index: $zindex-dropdown + 1;
 
@@ -37,7 +37,7 @@
   }
 
   &:focus .caret {
-    border-top-color: color(black);
+    border-top-color: var(--color-black);
   }
 }
 
@@ -66,7 +66,7 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
-    background-color: color(border);
+    background-color: var(--color-border);
     display: block;
     height: 1px;
     margin: ($line-height-base / 4) 0;
@@ -123,7 +123,7 @@
 
   &:focus {
     @include pulsar-dropdown-item-focused;
-    color: color(black) !important;
+    color: var(--color-black) !important;
   }
 }
 
@@ -148,7 +148,7 @@
   &,
   &:hover,
   &:focus {
-    color: color(gray, light);
+    color: var(--color-gray-light);
   }
 }
 // Nuke hover/focus effects
@@ -186,7 +186,7 @@
   padding: 3px 20px;
   // font-size: $font-size-small;
   line-height: $line-height-base;
-  color: color(gray, light);
+  color: var(--color-gray-light);
 }
 
 // Backdrop to catch body clicks on mobile, etc.
@@ -237,16 +237,16 @@
   }
 
   &.link--primary {
-    background-color: color(primary);
-    color: color(white) !important;
+    background-color: var(--color-primary);
+    color: var(--color-white) !important;
 
     &:hover {
-      background-color: darken(color(primary), 5%);
+      background-color: darken(color(jadu-purple), 5%);
     }
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: color(black) !important;
+      color: var(--color-black) !important;
     }
 
     > .badge {
@@ -257,7 +257,7 @@
 
   &.link--success {
     background-color: color(success);
-    color: color(white) !important;
+    color: var(--color-white) !important;
 
     &:hover {
       background-color: darken(color(success), 5%);
@@ -265,7 +265,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: color(black) !important;
+      color: var(--color-black) !important;
     }
 
     > .badge {
@@ -276,7 +276,7 @@
 
   &.link--warning {
     background-color: color(warning);
-    color: color(white) !important;
+    color: var(--color-white) !important;
 
     &:hover {
       background-color: darken(color(warning), 5%);
@@ -284,7 +284,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: color(black) !important;
+      color: var(--color-black) !important;
     }
 
     > .badge {
@@ -295,7 +295,7 @@
 
   &.link--info {
     background-color: color(info);
-    color: color(white) !important;
+    color: var(--color-white) !important;
 
     &:hover {
       background-color: darken(color(info), 5%);
@@ -303,7 +303,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: color(black) !important;
+      color: var(--color-black) !important;
     }
 
     > .badge {
@@ -314,7 +314,7 @@
 
   &.link--danger {
     background-color: color(danger);
-    color: color(white);
+    color: var(--color-white);
 
     &:hover {
       background-color: darken(color(danger), 5%);
@@ -323,7 +323,7 @@
     &:focus {
       @include pulsar-dropdown-item-focused;
       background-color: color(background, focus) !important;
-      color: color(black) !important;
+      color: var(--color-black) !important;
     }
 
     &.disabled {
@@ -338,7 +338,7 @@
 
   &.link--inverse {
     background-color: color(inverse);
-    color: color(white) !important;
+    color: var(--color-white) !important;
 
     &:hover {
       background-color: darken(color(inverse), 5%);
@@ -346,7 +346,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: color(black) !important;
+      color: var(--color-black) !important;
     }
 
     > .badge {
@@ -375,7 +375,7 @@
 }
 
 .dropdown__title {
-    border-bottom: 1px solid color(border);
+    border-bottom: 1px solid var(--color-border);
     margin: 0;
     padding-bottom: 4px;
 

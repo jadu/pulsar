@@ -1,5 +1,5 @@
 @mixin sortable-handle {
-    color: color(black);
+    color: var(--color-black);
     content: '\f0c9';
     font-family: $font-family-icons;
     font-style: normal;
@@ -102,7 +102,7 @@ div.is-sorting {
     }
 
     .sortable__count {
-        color: color(black);
+        color: var(--color-black);
         font-family: $font-family-regular;
         left: 30px;
         position: absolute;

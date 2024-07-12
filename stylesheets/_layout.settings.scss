@@ -5,7 +5,7 @@
 .tab__settings {
     @include clear-fix(true);
 
-    background-color: color(white);
+    background-color: var(--color-white);
     margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
@@ -50,7 +50,7 @@
     }
 
     &:not(:last-child) {
-        border-bottom: 1px solid color(border);
+        border-bottom: 1px solid var(--color-border);
         padding-bottom: $line-height-base;
 
         @include respond-min($screen-medium) {
@@ -367,7 +367,7 @@
     }
 
     .tab__header {
-        background-color: color(white);
+        background-color: var(--color-white);
         flex-basis: 100%;
         margin: 0 0 $margin-large-vertical;
         padding: $padding-base;
@@ -382,11 +382,11 @@
 .content-header {
     @include clear-fix(true);
 
-    border-bottom: 1px solid color(border);
+    border-bottom: 1px solid var(--color-border);
     padding-top: $padding-base-vertical * 2;
 
     .is-fixed & {
-        background-color: color(white);
+        background-color: var(--color-white);
         position: fixed;
         top: 0;
         z-index: $zindex-sticky;

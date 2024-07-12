@@ -30,12 +30,12 @@
     }
 
     .is-active {
-        background-color: color(primary);
+        background-color: var(--color-primary);
         color: color(primary, alt);
         font-family: $font-family-regular;
 
         &::after {
-            background-color: color(white);
+            background-color: var(--color-white);
             bottom: 4px;
             content: '';
             display: block;

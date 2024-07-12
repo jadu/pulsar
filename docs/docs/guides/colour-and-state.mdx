@@ -70,7 +70,7 @@ pick_best_color(background, (foreground_1, foreground_2))
   <tbody>
     <tr>
       <td>Primary</td>
-      <td className="swatch swatch--primary-base"><span className="swatch__chip"></span><code>color(primary)</code></td>
+      <td className="swatch swatch--primary-base"><span className="swatch__chip"></span><code>var(--color-primary)</code></td>
       <td className="swatch swatch--primary-light"><span className="swatch__chip"></span><code>color(primary, light)</code></td>
       <td className="swatch swatch--primary-dark"><span className="swatch__chip"></span><code>color(primary, dark)</code></td>
     </tr>
@@ -106,7 +106,7 @@ pick_best_color(background, (foreground_1, foreground_2))
     </tr>
     <tr>
       <td>White</td>
-      <td className="swatch swatch--white-base"><span className="swatch__chip"></span><code>color(white)</code></td>
+      <td className="swatch swatch--white-base"><span className="swatch__chip"></span><code>var(--color-white)</code></td>
       <td className="swatch swatch--white-light"><span className="swatch__chip"></span><code>color(white, light)</code></td>
       <td className="swatch swatch--white-dark"><span className="swatch__chip"></span><code>color(white, dark)</code></td>
     </tr>
@@ -117,7 +117,7 @@ Base state colours have an `alt` variation that provides an accessible text colo
 
 ```scss
 .element {
-  background-color: color(primary);
+  background-color: var(--color-primary);
   color: color(primary, alt);
 }
 ```
@@ -136,7 +136,7 @@ Base state colours have an `alt` variation that provides an accessible text colo
     <tr className="swatch swatch--gray-lighter"><td>Lighter gray</td><td><span className="swatch__chip"></span><code>color(gray, lighter)</code></td></tr>
     <tr className="swatch swatch--gray-lightest"><td>Lightest gray</td><td><span className="swatch__chip"></span><code>color(gray, lightest)</code></td></tr>
     <tr className="swatch swatch--gray-off-white"><td>Off white</td><td><span className="swatch__chip"></span><code>color(gray, off-white)</code></td></tr>
-    <tr className="swatch swatch--white-base"><td>White</td><td><span className="swatch__chip"></span><code>color(white)</code></td></tr>
+    <tr className="swatch swatch--white-base"><td>White</td><td><span className="swatch__chip"></span><code>var(--color-white)</code></td></tr>
   </tbody>
 </table>
 
@@ -152,7 +152,7 @@ Base state colours have an `alt` variation that provides an accessible text colo
     <tr className="swatch swatch--text-light"><td>Light text</td><td><span className="swatch__chip"></span><code>color(text, light)</code></td></tr>
     <tr className="swatch swatch--text-disabled"><td>Disabled text</td><td><span className="swatch__chip"></span><code>color(text, disabled)</code></td></tr>
     <tr className="swatch swatch--text-placeholder"><td>Placeholder text</td><td><span className="swatch__chip"></span><code>color(text, placeholder)</code></td></tr>
-    <tr className="swatch swatch--link-base"><td>Link</td><td><span className="swatch__chip"></span><code>color(link)</code></td></tr>
+    <tr className="swatch swatch--link-base"><td>Link</td><td><span className="swatch__chip"></span><code>var(--color-link)</code></td></tr>
     <tr className="swatch swatch--link-dark"><td>Dark link</td><td><span className="swatch__chip"></span><code>color(link, dark)</code></td></tr>
     <tr className="swatch swatch--link-hover"><td>Hover link</td><td><span className="swatch__chip"></span><code>color(link, hover)</code></td></tr>
     <tr className="swatch swatch--link-focus"><td>Focus link</td><td><span className="swatch__chip"></span><code>color(link, focus)</code></td></tr>

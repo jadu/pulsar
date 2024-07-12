@@ -6,8 +6,8 @@
     -webkit-transform: none;
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
-    background-color: color(white);
-    border-top: $border-width solid color(gray, lightest);
+    background-color: var(--color-white);
+    border-top: $border-width solid var(--color-gray-lightest);
     bottom: 0;
     font-size: $font-size-small;
     height: $footer-height;
@@ -48,13 +48,13 @@
     }
 
     a {
-        color: color(gray, darker);
+        color: var(--color-gray-darker);
         line-height: 16px;
         padding: 0;
         text-decoration: none;
 
         &:hover {
-            color: color(link);
+            color: var(--color-link);
         }
     }
 }

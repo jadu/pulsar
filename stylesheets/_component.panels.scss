@@ -1,5 +1,5 @@
 .panel {
-    background-color: color(gray, lightest);
+    background-color: var(--color-gray-lightest);
     border-radius: $border-radius;
     margin: $line-height-base 0;
     position: relative;
@@ -82,7 +82,7 @@
 
 @each $state, $state-color, $state-color-alt in $state-colors {
     .panel--#{'' + $state} .remove-button > [class^="icon-"] {
-        color: color(white);
+        color: var(--color-white);
     }
 }
 
@@ -112,7 +112,7 @@
             }
 
             a:focus {
-                color: color(black);
+                color: var(--color-black);
             }
         }
     }

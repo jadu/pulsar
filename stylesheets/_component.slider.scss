@@ -21,7 +21,7 @@
 // .slider__back {
 //     background-color: color(jadu-blue);
 //     border-top-left-radius: $border-radius-large;
-//     color: color(white);
+//     color: var(--color-white);
 //     width: 100%;
 
 //     @include respond-min($screen-tablet) {
@@ -34,7 +34,7 @@
 // }
 
 // .slider__front {
-//     background-color: color(white);
+//     background-color: var(--color-white);
 //     border-bottom-right-radius: $border-radius-large;
 //     min-height: 300px;
 //     z-index: 1;
@@ -79,7 +79,7 @@
     }
 
     .legend {
-        border-bottom: 1px solid color(border);
+        border-bottom: 1px solid var(--color-border);
         line-height: $line-height-base;
         margin-bottom: 5px;
     }

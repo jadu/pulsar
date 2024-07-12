@@ -8,7 +8,7 @@
     &:checked + .toggle-switch-label {
         background-color: color(success);
         border-color: transparent;
-        color: color(white);
+        color: var(--color-white);
 
         &::before {
             left: 50%;
@@ -25,7 +25,7 @@
         }
 
         &::after {
-            color: color(white);
+            color: var(--color-white);
             opacity: 0;
         }
     }
@@ -51,7 +51,7 @@
     background-color: color(grey);
     border-color: transparent;
     border-radius: 1.5em;
-    color: color(white);
+    color: var(--color-white);
     cursor: pointer;
     display: inline-block;
     font-size: 2em;
@@ -67,7 +67,7 @@
 
     &::before {
         background-clip: padding-box;
-        background-color: color(white);
+        background-color: var(--color-white);
         border-radius: 100%;
         border: .125em solid transparent;
         bottom: 0;
@@ -81,7 +81,7 @@
     }
 
     &::after {
-        color: color(white);
+        color: var(--color-white);
         content: '\f00c \f00d';
         font-family: $font-family-icons;
         font-weight: 900;
@@ -107,7 +107,7 @@
 .has-error,
 .has-danger {
     .toggle-switch-label.control__label.control__label {
-        color: color(white);
+        color: var(--color-white);
     }
 }
 

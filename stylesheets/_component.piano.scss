@@ -1,7 +1,7 @@
 $piano-bg: #fafafa;
 
 .piano-wrapper {
-    background-color: color(white);
+    background-color: var(--color-white);
     border: 1px solid color(grey, lightest);
     position: relative;
 
@@ -39,7 +39,7 @@ $piano-bg: #fafafa;
 }
 
 .piano__item {
-    background-color: color(white);
+    background-color: var(--color-white);
     border-bottom: 1px solid color(grey, lightest);
     clear: both;
     overflow: hidden;
@@ -51,14 +51,14 @@ $piano-bg: #fafafa;
 
         @include respond-min($screen-desktop) {
             &:hover {
-                background: color(gray, off-white);
+                background: var(--color-gray-off-white);
             }
         }
     }
 }
 
 .piano__item.is-selected {
-    background-color: color(white);
+    background-color: var(--color-white);
 
     @include respond-min($screen-desktop) {
         background: color(new);
@@ -80,7 +80,7 @@ $piano-bg: #fafafa;
 }
 
 .piano__item-header {
-    color: color(text);
+    color: var(--color-text);
     vertical-align: top;
 
     .is-selected & {

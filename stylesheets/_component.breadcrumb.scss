@@ -1,6 +1,6 @@
 .breadcrumb {
     clear: both;
-    color: color(gray, dark); // must be AA 4.5:1
+    color: var(--color-gray-dark); // must be AA 4.5:1
     margin: 0 0 ($line-height-base / 2);
     width: 100%;
 
@@ -24,23 +24,23 @@
     }
 
     a {
-        color: color(gray, dark); // must be AA 4.5:1
+        color: var(--color-gray-dark); // must be AA 4.5:1
         text-decoration: none;
 
         &:hover {
-            color: color(gray, dark);
+            color: var(--color-gray-dark);
         }
 
         &[href] {
             text-decoration: underline;
 
             &:hover {
-                color: color(link, hover);
+                color: var(--color-link-hover);
             }
         }
 
         &:focus {
-            color: color(black);
+            color: var(--color-black);
         }
     }
 }

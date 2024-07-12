@@ -11,8 +11,8 @@
 
 .progress-list__item {
     background-color: $progress-bg;
-    border-bottom: 3px solid color(white);
-    color: color(black);
+    border-bottom: 3px solid var(--color-white);
+    color: var(--color-black);
     display: block;
     padding: .7em 0 .5em .5em;
     text-decoration: none;
@@ -29,17 +29,17 @@
         @include css-arrow(10px, bottom, $progress-bg);
 
         &::before {
-            border-top-color: color(white);
+            border-top-color: var(--color-white);
             border-width: 15px;
             margin-left: -15px;
         }
 
         @include respond-min($screen-tablet) {
             @include css-arrow(23px, right, $progress-bg);
-            border-right: 3px solid color(white);
+            border-right: 3px solid var(--color-white);
 
             &::before {
-                border-left-color: color(white);
+                border-left-color: var(--color-white);
                 border-width: 27px;
                 margin-left: 0;
                 margin-top: -27px;
@@ -86,7 +86,7 @@
 
     &:hover {
         background-color: $progress-bg-hover;
-        color: color(black);
+        color: var(--color-black);
 
         &::after {
             border-top-color: $progress-bg-hover;
@@ -102,7 +102,7 @@
         @include pulsar-progress-list-item-focused;
 
         &:not(:last-child)::after {
-            border-top-color: color(black);
+            border-top-color: var(--color-black);
 
             @include respond-min($screen-tablet) {
                 border-left-color: color(background, focus);
@@ -111,11 +111,11 @@
         }
 
         .progress-list__label {
-            color: color(black);
+            color: var(--color-black);
         }
 
         .badge {
-            color: color(black) !important;
+            color: var(--color-black) !important;
         }
     }
 }
@@ -123,7 +123,7 @@
 .progress-list__label {
     @include word-break-all;
 
-    color: color(black);
+    color: var(--color-black);
     display: inline-block;
     position: relative;
     text-align: left;
@@ -149,7 +149,7 @@
     color: color(success, alt);
 
     .badge {
-        color: color(white) !important;
+        color: var(--color-white) !important;
     }
 
     .progress-list__label {
@@ -181,14 +181,14 @@
 }
 
 .progress-list__item--current {
-    background-color: color(primary);
+    background-color: var(--color-primary);
     color: color(primary, alt);
 
     &:not(:last-child)::after { // can we reduce the speciity of this selector!
-        border-top-color: color(primary);
+        border-top-color: var(--color-primary);
 
         @include respond-min($screen-tablet) {
-            border-left-color: color(primary);
+            border-left-color: var(--color-primary);
             border-top-color: transparent;
         }
     }
@@ -208,7 +208,7 @@
     }
 
     .badge {
-        color: color(white) !important;
+        color: var(--color-white) !important;
     }
 
     .progress-list__label {

@@ -41,8 +41,8 @@
 }
 
 .nav-inline {
-    background-color: color(white);
-    border-bottom: 1px solid color(gray, light);
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-gray-light);
     -webkit-overflow-scrolling: touch;
     margin: 0 -20px;
     overflow-x: auto;
@@ -80,13 +80,13 @@
     }
 
     &__item.is-active > &__link {
-        color: color(black);
+        color: var(--color-black);
         font-family: $font-family-regular;
     }
 
     &__link {
         display: inline-block;
-        color: color(gray, light);
+        color: var(--color-gray-light);
         line-height: 46px;
         padding: 0 $gutter-width;
         text-decoration: none;
@@ -95,10 +95,10 @@
         &:focus,
         &:link,
         &:visited {
-            color: color(black);
+            color: var(--color-black);
 
             .caret {
-                border-top-color: color(black);
+                border-top-color: var(--color-black);
             }
         }
 
@@ -111,7 +111,7 @@
         }
 
         .caret {
-            border-top-color: color(gray, light);
+            border-top-color: var(--color-gray-light);
         }
     }
 
@@ -179,7 +179,7 @@
 }
 
 .mobile-menu-button {
-    background-color: color(white);
+    background-color: var(--color-white);
     border: 1px solid $nav-color-dark;
     border-radius: $border-radius;
     color: $nav-color-dark;
@@ -198,7 +198,7 @@
     &:hover,
     &.open {
         background: $nav-color-dark;
-        color: color(white);
+        color: var(--color-white);
     }
 
     &:focus {
@@ -222,7 +222,7 @@
 }
 
 .nav-link {
-    color: color(white);
+    color: var(--color-white);
     text-decoration: none;
 }
 
@@ -253,7 +253,7 @@
     .nav-link {
         background-color: transparent;
         border: 0;
-        color: color(white);
+        color: var(--color-white);
         display: block;
         font-family: $font-family-regular;
         font-size: .75em;
@@ -268,20 +268,20 @@
 
         &:hover {
             background-color: rgba(255, 255, 255, .2);
-            color: color(white);
+            color: var(--color-white);
         }
 
         &:focus {
             @include pulsar-link-focused;
 
             .nav-link__icon {
-                color: color(black);
+                color: var(--color-black);
             }
         }
     }
 
     .nav-link__icon {
-        color: color(white);
+        color: var(--color-white);
         display: block;
         font-size: 1.7em;
         margin-bottom: 7px;
@@ -377,7 +377,7 @@
 
         &:hover {
             background-color: rgba(255, 255, 255, .2);
-            color: color(white);
+            color: var(--color-white);
         }
 
         &:focus {
@@ -387,7 +387,7 @@
         }
 
         &:active {
-            background-color: color(white);
+            background-color: var(--color-white);
             box-shadow: none;
             color: $nav-color-dark;
             outline: none;
@@ -420,7 +420,7 @@
 }
 
 .nav-remove-search {
-    color: color(white);
+    color: var(--color-white);
     display: inline-block;
     margin-top: 6px;
     opacity: 0;
@@ -429,7 +429,7 @@
     vertical-align: top;
 
     &:hover {
-        color: color(white);
+        color: var(--color-white);
     }
 }
 
@@ -512,7 +512,7 @@
     background: none;
     border: 0;
     border-bottom-left-radius: $border-radius;
-    color: color(white);
+    color: var(--color-white);
     display: none;
     margin-left: auto;
     padding: 20px;
@@ -573,7 +573,7 @@
     }
 
     span {
-        color: color(white);
+        color: var(--color-white);
     }
 }
 

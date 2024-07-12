@@ -1,6 +1,6 @@
 .pagination {
   @include clear-fix;
-  background-color: color(white);
+  background-color: var(--color-white);
 
   // We assume pagination will always sit underneath an element, and that
   // element may or may not be floated
@@ -21,7 +21,7 @@
   a,
   span {
     @include inline-block;
-    color: color(text);
+    color: var(--color-text);
     font-family: $font-family-regular;
     line-height: $line-height-base * 1.75;
     padding: 0 $gutter-width;
@@ -33,7 +33,7 @@
     > a,
     > span {
       background-color: darken(color(white), 10%);
-      color: color(text);
+      color: var(--color-text);
     }
 
     > a:focus {
@@ -52,7 +52,7 @@
   li:not(.is-disabled) {
     > a:hover {
       background-color: darken(color(white), 5%);
-      color: color(text);
+      color: var(--color-text);
     }
 
     > a:focus {

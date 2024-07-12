@@ -10,8 +10,8 @@
 
 // Bar of progress
 .progress-bar {
-    background-color: color(primary);
-    color: color(white);
+    background-color: var(--color-primary);
+    color: var(--color-white);
     float: left;
     font-size: $font-size-small;
     height: 100%;

@@ -48,8 +48,8 @@
 
     // Disable default button is-active styles
     &.is-active {
-        background-color: color(white);
-        color: color(text);
+        background-color: var(--color-white);
+        color: var(--color-text);
     }
 
     &.is-active::after {
@@ -64,7 +64,7 @@
     // the red dot indicator
     &.has-new::before {
         background-color: color(danger);
-        border: 2px solid color(white);
+        border: 2px solid var(--color-white);
         border-radius: 10px;
         content: '';
         display: block;
@@ -92,7 +92,7 @@
 }
 
 .notifications__header {
-    border-bottom: 1px solid color(border);
+    border-bottom: 1px solid var(--color-border);
     float: left;
     padding: 10px;
     width: 100%;
@@ -106,14 +106,14 @@
 }
 
 .notifications-dismiss {
-    color: color(text);
+    color: var(--color-text);
     display: inline-block;
     float: right;
     line-height: 1.75em;
 }
 
 .notification {
-    border-bottom: 1px solid color(border);
+    border-bottom: 1px solid var(--color-border);
     display: block;
     float: left;
     padding: 10px;
@@ -148,7 +148,7 @@
 
 .notification__header {
     align-items: start;
-    border-bottom: 1px solid color(gray, light);
+    border-bottom: 1px solid var(--color-gray-light);
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 6px;
@@ -171,8 +171,8 @@
 }
 
 .notifications__footer {
-    background-color: color(gray, off-white);
-    border-top: 1px solid color(border);
+    background-color: var(--color-gray-off-white);
+    border-top: 1px solid var(--color-border);
     clear: both;
 
     .notifications-all {
