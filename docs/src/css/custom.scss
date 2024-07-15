@@ -174,7 +174,13 @@ $fa-css-prefix: 'icon';
     // Utilities
     @import '../../../stylesheets/utility.utilities';
     @import '../../../stylesheets/utility.grid';
+}
 
+@import '../../../stylesheets/vars.palette-base';
+
+.d-example,
+.d-example-inline,
+.d-guidelines {
     .swatch__chip {
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -214,8 +220,6 @@ $fa-css-prefix: 'icon';
         background-color: var(--color-bg-surface-3);
     }
 }
-
-@import '../../../stylesheets/vars.palette-base';
 
 :root{
     --ifm-global-shadow-lw: none;

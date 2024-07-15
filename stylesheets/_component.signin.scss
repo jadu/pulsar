@@ -6,7 +6,7 @@ $signin-panel-full-width:	460px;
 $signin-panel-mobile-width:	300px;
 
 .signin-backdrop {
-    background: #fff;
+    background: var(--color-bg-surface-0);
     background-image: url('../images/signin-backdrop.jpg');
     background-attachment: fixed;
     background-position: center center;
