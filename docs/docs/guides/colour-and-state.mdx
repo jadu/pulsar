@@ -16,41 +16,12 @@ When designing your user interface you must ensure that the colour of any text a
 
 ### Fetching palette colours
 
-Colour variables are defined in the `_palette.base.scss` file and can be used anywhere. You should aim to use the sass variables rather than hardcoded values where possible.
+CSS colour variables are defined in the `_vars.palette-base.scss` file and can be used anywhere. You should aim to use the CSS variables rather than hardcoded values where possible.
 
-Use the `color()` function to fetch a colour from the palette.
-
-```scss
-.element {
-  background-color: color(jadu-blue);
-}
-```
-
-Use the optional ‘tone’ argument to fetch a variation of a colour if available in the palette.
-
-```scss
-.element {
-  background-color: color(jadu-blue, light);
-}
-```
-
-### Picking the best text colour
-
-To make your life easier, you can use the `pick_best_colour()` sass function which accepts two options, a background colour, and an array of two possible text colours, usually black and white. The function measures both text colours against the background and will pick the one with the highest measured contrast.
-
-```scss title="Example usage"
-pick_best_color(background, (foreground_1, foreground_2))
-```
-
-```scss
-.hex-example {
-    background-color: #bada55;
-    color: pick_best_color(#bada55, (#fff, #000));
-}
-
-.palette-example {
-    background-color: color(gray, dark);
-    color: pick_best_color(color(gray, dark), (#fff, #000));
+```CSS
+.example {
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 ```
 
@@ -70,45 +41,39 @@ pick_best_color(background, (foreground_1, foreground_2))
   <tbody>
     <tr>
       <td>Primary</td>
-      <td className="swatch swatch--primary-base"><span className="swatch__chip"></span><code>var(--color-primary)</code></td>
-      <td className="swatch swatch--primary-light"><span className="swatch__chip"></span><code>color(primary, light)</code></td>
-      <td className="swatch swatch--primary-dark"><span className="swatch__chip"></span><code>color(primary, dark)</code></td>
+      <td className="swatch swatch--primary-base"><span className="swatch__chip"></span><code>--color-primary</code></td>
+      <td className="swatch swatch--primary-light"><span className="swatch__chip"></span><code>--color-primary-light</code></td>
+      <td className="swatch swatch--primary-dark"><span className="swatch__chip"></span><code>--color-primary-dark</code></td>
     </tr>
     <tr>
       <td>Info</td>
-      <td className="swatch swatch--info-base"><span className="swatch__chip"></span><code>color(info)</code></td>
-      <td className="swatch swatch--info-light"><span className="swatch__chip"></span><code>color(info, light)</code></td>
-      <td className="swatch swatch--info-dark"><span className="swatch__chip"></span><code>color(info, dark)</code></td>
+      <td className="swatch swatch--info-base"><span className="swatch__chip"></span><code>--color-info</code></td>
+      <td className="swatch swatch--info-light"><span className="swatch__chip"></span><code>--color-info-light</code></td>
+      <td className="swatch swatch--info-dark"><span className="swatch__chip"></span><code>--color-info-dark</code></td>
     </tr>
     <tr>
       <td>Success</td>
-      <td className="swatch swatch--success-base"><span className="swatch__chip"></span><code>color(success)</code></td>
-      <td className="swatch swatch--success-light"><span className="swatch__chip"></span><code>color(success, light)</code></td>
-      <td className="swatch swatch--success-dark"><span className="swatch__chip"></span><code>color(success, dark)</code></td>
+      <td className="swatch swatch--success-base"><span className="swatch__chip"></span><code>--color-success</code></td>
+      <td className="swatch swatch--success-light"><span className="swatch__chip"></span><code>--color-success-light</code></td>
+      <td className="swatch swatch--success-dark"><span className="swatch__chip"></span><code>--color-success-dark</code></td>
     </tr>
     <tr>
       <td>Warning</td>
-      <td className="swatch swatch--warning-base"><span className="swatch__chip"></span><code>color(warning)</code></td>
-      <td className="swatch swatch--warning-light"><span className="swatch__chip"></span><code>color(warning, light)</code></td>
-      <td className="swatch swatch--warning-dark"><span className="swatch__chip"></span><code>color(warning, dark)</code></td>
+      <td className="swatch swatch--warning-base"><span className="swatch__chip"></span><code>--color-warning</code></td>
+      <td className="swatch swatch--warning-light"><span className="swatch__chip"></span><code>--color-warning-light</code></td>
+      <td className="swatch swatch--warning-dark"><span className="swatch__chip"></span><code>--color-warning-dark</code></td>
     </tr>
     <tr>
       <td>Danger</td>
-      <td className="swatch swatch--danger-base"><span className="swatch__chip"></span><code>color(danger)</code></td>
-      <td className="swatch swatch--danger-light"><span className="swatch__chip"></span><code>color(danger, light)</code></td>
-      <td className="swatch swatch--danger-dark"><span className="swatch__chip"></span><code>color(danger, dark)</code></td>
+      <td className="swatch swatch--danger-base"><span className="swatch__chip"></span><code>--color-danger</code></td>
+      <td className="swatch swatch--danger-light"><span className="swatch__chip"></span><code>--color-danger-light</code></td>
+      <td className="swatch swatch--danger-dark"><span className="swatch__chip"></span><code>--color-danger-dark</code></td>
     </tr>
     <tr>
       <td>Inverse</td>
-      <td className="swatch swatch--inverse-base"><span className="swatch__chip"></span><code>color(inverse)</code></td>
-      <td className="swatch swatch--inverse-light"><span className="swatch__chip"></span><code>color(inverse, light)</code></td>
-      <td className="swatch swatch--inverse-dark"><span className="swatch__chip"></span><code>color(inverse, dark)</code></td>
-    </tr>
-    <tr>
-      <td>White</td>
-      <td className="swatch swatch--white-base"><span className="swatch__chip"></span><code>var(--color-white)</code></td>
-      <td className="swatch swatch--white-light"><span className="swatch__chip"></span><code>color(white, light)</code></td>
-      <td className="swatch swatch--white-dark"><span className="swatch__chip"></span><code>color(white, dark)</code></td>
+      <td className="swatch swatch--inverse-base"><span className="swatch__chip"></span><code>--color-inverse</code></td>
+      <td className="swatch swatch--inverse-light"><span className="swatch__chip"></span><code>--color-inverse-light</code></td>
+      <td className="swatch swatch--inverse-dark"><span className="swatch__chip"></span><code>--color-inverse-dark</code></td>
     </tr>
   </tbody>
 </table>
@@ -127,14 +92,14 @@ Base state colours have an `alt` variation that provides an accessible text colo
 <table className="d-example">
   <thead>
     <tr><th>Name</th><th>Base</th></tr></thead><tbody>
-    <tr className="swatch swatch--black-base"><td>Black</td><td><span className="swatch__chip"></span><code>color(black)</code></td></tr>
-    <tr className="swatch swatch--gray-darker"><td>Darker gray</td><td><span className="swatch__chip"></span><code>color(gray, darker)</code></td></tr>
-    <tr className="swatch swatch--gray-dark"><td>Dark gray</td><td><span className="swatch__chip"></span><code>color(gray, dark)</code></td></tr>
-    <tr className="swatch swatch--gray-dull"><td>Dull gray</td><td><span className="swatch__chip"></span><code>color(gray, dull)</code></td></tr>
-    <tr className="swatch swatch--gray-base"><td>Gray</td><td><span className="swatch__chip"></span><code>color(gray)</code></td></tr>
-    <tr className="swatch swatch--gray-light"><td>Light gray</td><td><span className="swatch__chip"></span><code>color(gray, light)</code></td></tr>
-    <tr className="swatch swatch--gray-lighter"><td>Lighter gray</td><td><span className="swatch__chip"></span><code>color(gray, lighter)</code></td></tr>
-    <tr className="swatch swatch--gray-lightest"><td>Lightest gray</td><td><span className="swatch__chip"></span><code>color(gray, lightest)</code></td></tr>
+    <tr className="swatch swatch--black-base"><td>Black</td><td><span className="swatch__chip"></span><code>--color-black</code></td></tr>
+    <tr className="swatch swatch--gray-darker"><td>Darker gray</td><td><span className="swatch__chip"></span><code>--color-gray-darker</code></td></tr>
+    <tr className="swatch swatch--gray-dark"><td>Dark gray</td><td><span className="swatch__chip"></span><code>--color-gray-dark</code></td></tr>
+    <tr className="swatch swatch--gray-dull"><td>Dull gray</td><td><span className="swatch__chip"></span><code>--color-gray-dull</code></td></tr>
+    <tr className="swatch swatch--gray-base"><td>Gray</td><td><span className="swatch__chip"></span><code>--color-gray\</code></td></tr>
+    <tr className="swatch swatch--gray-light"><td>Light gray</td><td><span className="swatch__chip"></span><code>--color-gray-light</code></td></tr>
+    <tr className="swatch swatch--gray-lighter"><td>Lighter gray</td><td><span className="swatch__chip"></span><code>--color-gray-lighter</code></td></tr>
+    <tr className="swatch swatch--gray-lightest"><td>Lightest gray</td><td><span className="swatch__chip"></span><code>--color-gray-lightest</code></td></tr>
     <tr className="swatch swatch--gray-off-white"><td>Off white</td><td><span className="swatch__chip"></span><code>color(gray, off-white)</code></td></tr>
     <tr className="swatch swatch--white-base"><td>White</td><td><span className="swatch__chip"></span><code>var(--color-white)</code></td></tr>
   </tbody>
@@ -147,18 +112,18 @@ Base state colours have an `alt` variation that provides an accessible text colo
     <tr><th>Name</th><th>Base</th></tr>
   </thead>
   <tbody>
-    <tr className="swatch swatch--text-base"><td>Text</td><td><span className="swatch__chip"></span><code>color(text)</code></td></tr>
-    <tr className="swatch swatch--text-help"><td>Help text</td><td><span className="swatch__chip"></span><code>color(text, help)</code></td></tr>
-    <tr className="swatch swatch--text-light"><td>Light text</td><td><span className="swatch__chip"></span><code>var(--color-text-light)</code></td></tr>
-    <tr className="swatch swatch--text-disabled"><td>Disabled text</td><td><span className="swatch__chip"></span><code>color(text, disabled)</code></td></tr>
-    <tr className="swatch swatch--text-placeholder"><td>Placeholder text</td><td><span className="swatch__chip"></span><code>color(text, placeholder)</code></td></tr>
-    <tr className="swatch swatch--link-base"><td>Link</td><td><span className="swatch__chip"></span><code>var(--color-link)</code></td></tr>
-    <tr className="swatch swatch--link-dark"><td>Dark link</td><td><span className="swatch__chip"></span><code>color(link, dark)</code></td></tr>
-    <tr className="swatch swatch--link-hover"><td>Hover link</td><td><span className="swatch__chip"></span><code>color(link, hover)</code></td></tr>
-    <tr className="swatch swatch--link-focus"><td>Focus link</td><td><span className="swatch__chip"></span><code>color(link, focus)</code></td></tr>
-    <tr className="swatch swatch--link-inverse"><td>Inverse link</td><td><span className="swatch__chip"></span><code>color(link, inverse)</code></td></tr>
-    <tr className="swatch swatch--link-inverse-hover"><td>Inverse hover link</td><td><span className="swatch__chip"></span><code>color(link, inverse-hover)</code></td></tr>
-    <tr className="swatch swatch--link-disabled"><td>Disabled link</td><td><span className="swatch__chip"></span><code>color(link, disabled)</code></td></tr>
+    <tr className="swatch swatch--text-base"><td>Text</td><td><span className="swatch__chip"></span><code>--color-text</code></td></tr>
+    <tr className="swatch swatch--text-help"><td>Help text</td><td><span className="swatch__chip"></span><code>--color-text-help</code></td></tr>
+    <tr className="swatch swatch--text-light"><td>Light text</td><td><span className="swatch__chip"></span><code>--color-text-light</code></td></tr>
+    <tr className="swatch swatch--text-disabled"><td>Disabled text</td><td><span className="swatch__chip"></span><code>--color-text-disabled</code></td></tr>
+    <tr className="swatch swatch--text-placeholder"><td>Placeholder text</td><td><span className="swatch__chip"></span><code>--color-text-placeholder</code></td></tr>
+    <tr className="swatch swatch--link-base"><td>Link</td><td><span className="swatch__chip"></span><code>--color-link</code></td></tr>
+    <tr className="swatch swatch--link-dark"><td>Dark link</td><td><span className="swatch__chip"></span><code>--color-link-dark</code></td></tr>
+    <tr className="swatch swatch--link-hover"><td>Hover link</td><td><span className="swatch__chip"></span><code>--color-link-hover</code></td></tr>
+    <tr className="swatch swatch--link-focus"><td>Focus link</td><td><span className="swatch__chip"></span><code>--color-link-focus</code></td></tr>
+    <tr className="swatch swatch--link-inverse"><td>Inverse link</td><td><span className="swatch__chip"></span><code>--color-link-inverse</code></td></tr>
+    <tr className="swatch swatch--link-inverse-hover"><td>Inverse hover link</td><td><span className="swatch__chip"></span><code>--color-link- inverse-hover</code></td></tr>
+    <tr className="swatch swatch--link-disabled"><td>Disabled link</td><td><span className="swatch__chip"></span><code>--color-link-disabled</code></td></tr>
   </tbody>
 </table>
 
@@ -169,13 +134,29 @@ Base state colours have an `alt` variation that provides an accessible text colo
     <tr><th>Name</th><th>Base</th></tr>
   </thead>
   <tbody>
-    <tr className="swatch swatch--border-base"><td>Border</td><td><span className="swatch__chip"></span><code>color(border)</code></td></tr>
-    <tr className="swatch swatch--border-focus"><td>Focus border</td><td><span className="swatch__chip"></span><code>color(border, focus)</code></td></tr>
-    <tr className="swatch swatch--background-base"><td>Background</td><td><span className="swatch__chip"></span><code>var(--color-bg-surface-1)</code></td></tr>
-    <tr className="swatch swatch--background-dark"><td>Dark background Dark</td><td><span className="swatch__chip"></span><code>color(background, dark)</code></td></tr>
-    <tr className="swatch swatch--background-light"><td>Light background</td><td><span className="swatch__chip"></span><code>var(--color-bg-light)</code></td></tr>
-    <tr className="swatch swatch--background-selected"><td>Selected background</td><td><span className="swatch__chip"></span><code>var(--color-bg-selected)</code></td></tr>
-    <tr className="swatch swatch--background-focus"><td>Focus background</td><td><span className="swatch__chip"></span><code>color(background, focus)</code></td></tr>
+    <tr className="swatch swatch--border-base"><td>Border</td><td><span className="swatch__chip"></span><code>--color-border</code></td></tr>
+    <tr className="swatch swatch--border-focus"><td>Focus border</td><td><span className="swatch__chip"></span><code>--color-border-focus</code></td></tr>
+    <tr className="swatch swatch--background-base"><td>Background</td><td><span className="swatch__chip"></span><code>--color-bg</code></td></tr>
+    <tr className="swatch swatch--background-dark"><td>Dark background Dark</td><td><span className="swatch__chip"></span><code>--color-bg-dark</code></td></tr>
+    <tr className="swatch swatch--background-light"><td>Light background</td><td><span className="swatch__chip"></span><code>--color-bg-light</code></td></tr>
+    <tr className="swatch swatch--background-selected"><td>Selected background</td><td><span className="swatch__chip"></span><code>--color-bg-selected</code></td></tr>
+    <tr className="swatch swatch--background-focus"><td>Focus background</td><td><span className="swatch__chip"></span><code>--color-bg-focus</code></td></tr>
+  </tbody>
+</table>
+
+#### Background levels
+
+These variables are designed to help you create a visually appealing and accessible design by gradually increasing contrast through different levels of background surfaces. This approach ensures a smooth transition between different UI elements, enhancing both usability and aesthetic appeal.
+
+<table className="d-example">
+  <thead>
+    <tr><th>Name</th><th>Base</th></tr>
+  </thead>
+  <tbody>
+    <tr className="swatch swatch--bg-surface-0"><td>Surface 0</td><td><span className="swatch__chip"></span><code>--color-bg-surface-0</code></td></tr>
+    <tr className="swatch swatch--bg-surface-1"><td>Surface 1</td><td><span className="swatch__chip"></span><code>--color-bg-surface-1</code></td></tr>
+    <tr className="swatch swatch--bg-surface-2"><td>Surface 2</td><td><span className="swatch__chip"></span><code>--color-bg-surface-2</code></td></tr>
+    <tr className="swatch swatch--bg-surface-3"><td>Surface 3</td><td><span className="swatch__chip"></span><code>--color-bg-surface-3</code></td></tr>
   </tbody>
 </table>
 
