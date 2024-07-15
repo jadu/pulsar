@@ -3,9 +3,7 @@
 // scss-lint:disable SpaceAfterPropertyColon
 :root {
     // FUNDAMENTALS
-    --color-white-base:          #{map-get(map-get($palette-monochromes, white), base)};
     --color-white:               #{map-get(map-get($palette-monochromes, white), base)};
-    --color-black-base:          #{map-get(map-get($palette-monochromes, black), base)};
     --color-black:               #{map-get(map-get($palette-monochromes, black), base)};
 
     // MONOCHROMES
