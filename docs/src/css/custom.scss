@@ -60,6 +60,10 @@ $fa-css-prefix: 'icon';
   font-style: normal;
 }
 
+@import '../../../stylesheets/palette.base';
+@import '../../../stylesheets/config.theme';
+@import '../../../stylesheets/vars.palette-base';
+
 .d-example,
 .d-example-inline,
 .d-guidelines {
@@ -90,8 +94,6 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/function.color';
 
     // Base colour palette
-    @import '../../../stylesheets/palette.base';
-    @import '../../../stylesheets/config.theme';
     @import '../../../stylesheets/deprecated.styles';
 
     // Structure
@@ -174,13 +176,7 @@ $fa-css-prefix: 'icon';
     // Utilities
     @import '../../../stylesheets/utility.utilities';
     @import '../../../stylesheets/utility.grid';
-}
 
-@import '../../../stylesheets/vars.palette-base';
-
-.d-example,
-.d-example-inline,
-.d-guidelines {
     .swatch__chip {
         border: 1px solid #ccc;
         border-radius: 5px;
