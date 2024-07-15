@@ -71,8 +71,8 @@
 // Outline button styles
 .btn--outline {
     background: none;
-    border: 1px solid color(base, alt);
-    color: color(base, alt);
+    border: 1px solid var(--color-base-alt);
+    color: var(--color-base-alt);
     padding-bottom: $padding-large-vertical - 2;
     padding-top: $padding-large-vertical - 1;
 

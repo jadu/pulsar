@@ -16,7 +16,7 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
     th {
-        background-color: var(--color-white);
+        background-color: var(--color-bg-surface-0);
 
         abbr {
             border-bottom: 0;
@@ -30,7 +30,7 @@
 
 .pika-single.is-bound {
     position: absolute;
-    box-shadow: 0 0 0 $shadow-small color(background, shadow);
+    box-shadow: 0 0 0 $shadow-small var(--color-bg-shadow);
 }
 
 .pika-title {

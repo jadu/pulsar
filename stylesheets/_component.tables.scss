@@ -18,11 +18,11 @@
     }
 
     a > .icon {
-        color: var(--color-black);
+        color: var(--color-text-full);
     }
 
     tbody > tr:hover {
-        background-color: color(background, light);
+        background-color: var(--color-bg-light);
     }
 
     tr {
@@ -31,13 +31,13 @@
 
     tr.selected td,
     tr.is-selected td {
-        background-color: color(background, selected);
+        background-color: var(--color-bg-selected);
     }
 
     tr.is-disabled td:not(.table-row__actions) {
         &,
         & > * {
-            color: color(text, disabled);
+            color: var(--color-text-disabled);
         }
     }
 
@@ -104,7 +104,7 @@
 
     th,
     thead td {
-        background-color: color(background, light);
+        background-color: var(--color-bg-surface-1);
         border-top: 1px solid var(--color-border);
         font-family: $font-family-regular;
         font-weight: normal;
@@ -139,7 +139,7 @@
 }
 
 .table--white-bg {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
 }
 
 .table--contrast {
@@ -225,7 +225,7 @@ td.table__form {
 
 td.table__form,
 .table__form td {
-    background-color: color(background, light);
+    background-color: var(--color-bg-light);
 
     .help-block {
         color: var(--color-text);
@@ -288,7 +288,7 @@ td.row__actions {
         }
 
         &::-webkit-scrollbar-track {
-            background-color: color(background, light);
+            background-color: var(--color-bg-light);
             border-bottom: 1px solid var(--color-border);
         }
 
@@ -340,13 +340,13 @@ td.row__actions {
 .table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar {
     -webkit-appearance: none;
     -webkit-overflow-scrolling: touch;
-    background: color(background, light);
+    background: var(--color-bg-light);
     width: 7px;
 }
 
 .table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-track,
 .table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-track {
-    background: color(background, light);
+    background: var(--color-bg-light);
     border-bottom: 1px solid var(--color-border);
     border-top: 1px solid var(--color-border);
 

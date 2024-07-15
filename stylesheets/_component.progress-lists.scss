@@ -12,7 +12,7 @@
 .progress-list__item {
     background-color: $progress-bg;
     border-bottom: 3px solid var(--color-white);
-    color: var(--color-black);
+    color: var(--color-text-full);
     display: block;
     padding: .7em 0 .5em .5em;
     text-decoration: none;
@@ -86,7 +86,7 @@
 
     &:hover {
         background-color: $progress-bg-hover;
-        color: var(--color-black);
+        color: var(--color-text-full);
 
         &::after {
             border-top-color: $progress-bg-hover;
@@ -111,11 +111,11 @@
         }
 
         .progress-list__label {
-            color: var(--color-black);
+            color: var(--color-text-full);
         }
 
         .badge {
-            color: var(--color-black) !important;
+            color: var(--color-text-full) !important;
         }
     }
 }
@@ -123,7 +123,7 @@
 .progress-list__label {
     @include word-break-all;
 
-    color: var(--color-black);
+    color: var(--color-text-full);
     display: inline-block;
     position: relative;
     text-align: left;
@@ -145,7 +145,7 @@
 }
 
 .progress-list__item--complete {
-    background-color: color(success);
+    background-color: var(--color-success);
     color: color(success, alt);
 
     .badge {
@@ -182,7 +182,7 @@
 
 .progress-list__item--current {
     background-color: var(--color-primary);
-    color: color(primary, alt);
+    color: var(--color-primary-alt);
 
     &:not(:last-child)::after { // can we reduce the speciity of this selector!
         border-top-color: var(--color-primary);
@@ -195,7 +195,7 @@
 
     &:hover {
         background-color: darken(color(primary), 2);
-        color: color(primary, alt);
+        color: var(--color-primary-alt);
 
         &::after {
             border-top-color: darken(color(primary), 2);
@@ -212,7 +212,7 @@
     }
 
     .progress-list__label {
-        color: color(primary, alt);
+        color: var(--color-primary-alt);
     }
 }
 

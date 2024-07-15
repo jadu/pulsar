@@ -118,7 +118,7 @@ Base state colours have an `alt` variation that provides an accessible text colo
 ```scss
 .element {
   background-color: var(--color-primary);
-  color: color(primary, alt);
+  color: var(--color-primary-alt);
 }
 ```
 
@@ -149,7 +149,7 @@ Base state colours have an `alt` variation that provides an accessible text colo
   <tbody>
     <tr className="swatch swatch--text-base"><td>Text</td><td><span className="swatch__chip"></span><code>color(text)</code></td></tr>
     <tr className="swatch swatch--text-help"><td>Help text</td><td><span className="swatch__chip"></span><code>color(text, help)</code></td></tr>
-    <tr className="swatch swatch--text-light"><td>Light text</td><td><span className="swatch__chip"></span><code>color(text, light)</code></td></tr>
+    <tr className="swatch swatch--text-light"><td>Light text</td><td><span className="swatch__chip"></span><code>var(--color-text-light)</code></td></tr>
     <tr className="swatch swatch--text-disabled"><td>Disabled text</td><td><span className="swatch__chip"></span><code>color(text, disabled)</code></td></tr>
     <tr className="swatch swatch--text-placeholder"><td>Placeholder text</td><td><span className="swatch__chip"></span><code>color(text, placeholder)</code></td></tr>
     <tr className="swatch swatch--link-base"><td>Link</td><td><span className="swatch__chip"></span><code>var(--color-link)</code></td></tr>
@@ -171,10 +171,10 @@ Base state colours have an `alt` variation that provides an accessible text colo
   <tbody>
     <tr className="swatch swatch--border-base"><td>Border</td><td><span className="swatch__chip"></span><code>color(border)</code></td></tr>
     <tr className="swatch swatch--border-focus"><td>Focus border</td><td><span className="swatch__chip"></span><code>color(border, focus)</code></td></tr>
-    <tr className="swatch swatch--background-base"><td>Background</td><td><span className="swatch__chip"></span><code>color(background)</code></td></tr>
+    <tr className="swatch swatch--background-base"><td>Background</td><td><span className="swatch__chip"></span><code>var(--color-bg-surface-1)</code></td></tr>
     <tr className="swatch swatch--background-dark"><td>Dark background Dark</td><td><span className="swatch__chip"></span><code>color(background, dark)</code></td></tr>
-    <tr className="swatch swatch--background-light"><td>Light background</td><td><span className="swatch__chip"></span><code>color(background, light)</code></td></tr>
-    <tr className="swatch swatch--background-selected"><td>Selected background</td><td><span className="swatch__chip"></span><code>color(background, selected)</code></td></tr>
+    <tr className="swatch swatch--background-light"><td>Light background</td><td><span className="swatch__chip"></span><code>var(--color-bg-light)</code></td></tr>
+    <tr className="swatch swatch--background-selected"><td>Selected background</td><td><span className="swatch__chip"></span><code>var(--color-bg-selected)</code></td></tr>
     <tr className="swatch swatch--background-focus"><td>Focus background</td><td><span className="swatch__chip"></span><code>color(background, focus)</code></td></tr>
   </tbody>
 </table>

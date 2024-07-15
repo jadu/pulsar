@@ -29,11 +29,11 @@
 .dropdown.open > .btn--outline {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
-  color: color(primary, alt);
+  color: var(--color-primary-alt);
   z-index: $zindex-dropdown + 1;
 
   .caret {
-    border-top-color: color(primary, alt);
+    border-top-color: var(--color-primary-alt);
   }
 
   &:focus .caret {
@@ -55,7 +55,7 @@
   margin: $shadow-small 0 0; // override default ul
   list-style: none;
   background-color: $dropdown-bg;
-  box-shadow: 0 0 0 $shadow-small color(background, shadow);
+  box-shadow: 0 0 0 $shadow-small var(--color-bg-shadow);
   background-clip: padding-box;
 
   // Aligns the dropdown menu to right
@@ -123,7 +123,7 @@
 
   &:focus {
     @include pulsar-dropdown-item-focused;
-    color: var(--color-black) !important;
+    color: var(--color-text-full) !important;
   }
 }
 
@@ -246,7 +246,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: var(--color-black) !important;
+      color: var(--color-text-full) !important;
     }
 
     > .badge {
@@ -256,7 +256,7 @@
   }
 
   &.link--success {
-    background-color: color(success);
+    background-color: var(--color-success);
     color: var(--color-white) !important;
 
     &:hover {
@@ -265,7 +265,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: var(--color-black) !important;
+      color: var(--color-text-full) !important;
     }
 
     > .badge {
@@ -275,7 +275,7 @@
   }
 
   &.link--warning {
-    background-color: color(warning);
+    background-color: var(--color-warning);
     color: var(--color-white) !important;
 
     &:hover {
@@ -284,7 +284,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: var(--color-black) !important;
+      color: var(--color-text-full) !important;
     }
 
     > .badge {
@@ -303,7 +303,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: var(--color-black) !important;
+      color: var(--color-text-full) !important;
     }
 
     > .badge {
@@ -313,7 +313,7 @@
   }
 
   &.link--danger {
-    background-color: color(danger);
+    background-color: var(--color-danger);
     color: var(--color-white);
 
     &:hover {
@@ -323,7 +323,7 @@
     &:focus {
       @include pulsar-dropdown-item-focused;
       background-color: color(background, focus) !important;
-      color: var(--color-black) !important;
+      color: var(--color-text-full) !important;
     }
 
     &.disabled {
@@ -346,7 +346,7 @@
 
     &:focus {
       @include pulsar-dropdown-item-focused;
-      color: var(--color-black) !important;
+      color: var(--color-text-full) !important;
     }
 
     > .badge {

@@ -192,7 +192,7 @@
         }
 
         .avatar {
-            background-color: var(--color-white);
+            background-color: var(--color-bg-surface-0);
             vertical-align: bottom;
         }
     }
@@ -268,5 +268,5 @@
 
 .timeline-content__text,
 .timeago {
-    color: var(--color-black);
+    color: var(--color-text-full);
 }

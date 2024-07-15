@@ -6,7 +6,7 @@
 }
 
 .dt-row-selected > td {
-    background-color: color(background, selected);
+    background-color: var(--color-bg-selected);
 
     // scss-lint:disable PseudoElement
     @include ie-lte(8) {
@@ -24,8 +24,8 @@
 
     a,
     a:link {
-        border-bottom-color: color(link, dark);
-        color: color(link, dark);
+        border-bottom-color: var(--color-link-dark);
+        color: var(--color-link-dark);
     }
 }
 
@@ -49,7 +49,7 @@
 .datatable .dt-row-selected {
     > .sorting_1,
     &:hover > td {
-        background-color: darken(color(background, selected), 3);
+        background-color: var(--color-bg-surface-1);
     }
 }
 // scss-lint:enable SelectorFormat
@@ -96,7 +96,7 @@ a.dt-button {
         &.sorting:hover,
         &.sorting_asc:hover,
         &.sorting_desc:hover {
-            background-color: color(background, dark);
+            background-color: var(--color-bg-surface-2);
             cursor: pointer;
 
             &::after {
@@ -122,7 +122,7 @@ a.dt-button {
 
         &.sorting::after {
             content: '\f0dc';
-            color: color(text, light);
+            color: var(--color-text-light);
             font-family: $font-family-icons;
             font-weight: 900;
         }
@@ -145,7 +145,7 @@ a.dt-button {
 
         &.sorting_asc,
         &.sorting_desc {
-            background-color: color(background, dark);
+            background-color: var(--color-bg-surface-2);
         }
     }
 
@@ -154,7 +154,7 @@ a.dt-button {
     }
 
     td.sorting_1 {
-        background-color: darken(#fff, 3);
+        background-color: var(--color-bg-surface-1);
     }
     // scss-lint:enable SelectorFormat
 }
@@ -165,7 +165,7 @@ a.dt-button {
 }
 
 .table-row-select {
-    color: color(grey);
+    color: var(--color-gray);
     cursor: pointer;
     font-size: $font-size-base;
     position: relative;
@@ -223,7 +223,7 @@ th.sorting_disabled:hover {
 
     [type="search"] {
         border: 1px solid var(--color-border);
-        color: black;
+        color: var(--color-text);
         border-radius: $border-radius;
         margin-left: 10px;
         padding: 5px;
@@ -302,7 +302,7 @@ th.sorting_disabled:hover {
     }
 
     &:hover {
-        color: var(--color-black);
+        color: var(--color-text-full);
     }
 
     .collapsed & {
@@ -340,7 +340,7 @@ th.sorting_disabled:hover {
 
 .DTTT_collection {
     opacity: 1;
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
     box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
 
     > .DTTT_button {
@@ -380,7 +380,7 @@ th.sorting_disabled:hover {
     }
 
     .paginate_button.current {
-        background-color: darken(color(white), 10%);
+        background-color: var(--color-bg-surface-2);
 
         &:focus {
             @include pulsar-pagination-focused;
@@ -410,8 +410,8 @@ th.sorting_disabled:hover {
         background-position: calc(100% - 10px) calc(1em - 2px), calc(100% - 5px) calc(1em - 2px), 100% 0;
         background-size: 5px 5px, 5px 5px, 22px 100%;
         background-repeat: no-repeat;
-        border: 1px solid $input-border;
-        border-radius: $input-border-radius;
+        border: 1px solid var(--color-border-input);
+        border-radius: var(--color-border-input)-radius;
         height: 32px;
         line-height: 32px;
         padding: 0 30px 0 $padding-base-horizontal;
@@ -448,7 +448,7 @@ th.sorting_disabled:hover {
         a {
             @include respond-max($screen-smaller) {
                 border-bottom: 0;
-                color: var(--color-black);
+                color: var(--color-text-full);
                 font-family: $font-family-regular;
             }
         }

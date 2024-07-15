@@ -10,38 +10,38 @@
 .status {
     &.is-active,
     &.is-online {
-        background-color: color(success);
+        background-color: var(--color-success);
         border-radius: 6px;
         color: color(success, alt);
     }
 
     &.is-offline {
-        background-color: color(danger);
+        background-color: var(--color-danger);
         border-radius: 2px;
         color: color(danger, alt);
     }
 
     &.is-warning {
-        background-color: color(warning);
+        background-color: var(--color-warning);
         border-radius: 6px;
         color: color(warning, alt);
     }
 
     &.is-inactive {
-        background-color: var(--color-white);
+        background-color: var(--color-bg-surface-0);
         border: 2px solid var(--color-border);
         border-radius: 6px;
-        color: var(--color-black);
+        color: var(--color-text-full);
     }
 }
 
 .status--icon {
     &.is-active,
     &.is-online {
-        color: color(success);
+        color: var(--color-success);
     }
 
     &.is-offline {
-        color: color(danger);
+        color: var(--color-danger);
     }
 }

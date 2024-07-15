@@ -5,7 +5,7 @@
 .tab__settings {
     @include clear-fix(true);
 
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
     margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
@@ -367,7 +367,7 @@
     }
 
     .tab__header {
-        background-color: var(--color-white);
+        background-color: var(--color-bg-surface-0);
         flex-basis: 100%;
         margin: 0 0 $margin-large-vertical;
         padding: $padding-base;
@@ -386,7 +386,7 @@
     padding-top: $padding-base-vertical * 2;
 
     .is-fixed & {
-        background-color: var(--color-white);
+        background-color: var(--color-bg-surface-0);
         position: fixed;
         top: 0;
         z-index: $zindex-sticky;

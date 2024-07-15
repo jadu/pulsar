@@ -58,8 +58,8 @@
 // Actual modal
 .modal__content {
     position: relative;
-    background-color: $modal-content-bg;
-    box-shadow: 0 0 0 $shadow-large color(background, shadow);
+    background-color: var(--color-bg-surface-0);
+    box-shadow: 0 0 0 $shadow-large var(--color-bg-shadow);
     background-clip: padding-box;
     // Remove focus outline from opened modal
     outline: none;
@@ -82,19 +82,19 @@
     bottom: 0;
     left: 0;
     z-index: ($zindex-modal - 10);
-    background-color: $modal-backdrop-bg;
+    background-color: var(--color-modal-backdrop);
 
     // Fade for backdrop
     &.fade { background-color: none; }
 
-    &.in { background-color: color(background, shadow); }
+    &.in { background-color: var(--color-bg-shadow); }
 }
 
 // Modal header
 // Top section of the modal w/ title and dismiss
 .modal__header {
     padding: $modal-title-padding;
-    border-bottom: 1px solid $modal-header-border-color;
+    border-bottom: 1px solid var(--color-border-light);
 }
 // Close icon
 .modal__header .close {
@@ -121,7 +121,7 @@
 // Footer (for actions)
 .modal__footer {
     @include clear-fix; // clear it in case folks use .pull-* classes on buttons
-    border-top: 1px solid $modal-footer-border-color;
+    border-top: 1px solid var(--color-border-light);
     clear: both;
     padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
 
@@ -227,7 +227,7 @@
 
     .close,
     .download {
-        color: color(gray) !important;
+        color: var(--color-gray) !important;
         font-size: 1.4em;
         transition: color .1s ease;
 
@@ -290,7 +290,7 @@
         }
 
         .modal__avatar {
-            background-color: var(--color-white);
+            background-color: var(--color-bg-surface-0);
             border-radius: 50%;
             height: 35px;
             left: 0;
@@ -321,7 +321,7 @@
     }
 
     .modal__body {
-        background-color: var(--color-gray-off-white);
+        background-color: var(--color-bg-surface-1);
         height: 100%;
     }
 
@@ -355,7 +355,7 @@
 }
 
 .modal__ribbon {
-    background-color: var(--color-gray-off-white);
-    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg-surface-1);
+    border-bottom: 1px solid var(--color-border-light);
     padding: $line-height-base 20px;
 }

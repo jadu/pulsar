@@ -253,7 +253,7 @@
     }
 
     &:focus i {
-        color: var(--color-black);
+        color: var(--color-text-full);
         position: relative;
         z-index: 2;
     }
@@ -292,7 +292,7 @@ td.table__form .rules + .form__group:last-of-type {
 .rule-block-wrapper.has-error {
     .rule-block__header {
         background-color: $state-danger-bg;
-        box-shadow: inset 4px 0 0 0 color(danger);
+        box-shadow: inset 4px 0 0 0 var(--color-danger);
     }
 
     .rule-block__heading {
@@ -300,7 +300,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .is-error {
-        color: color(danger);
+        color: var(--color-danger);
     }
 }
 
@@ -314,7 +314,7 @@ td.table__form .rules + .form__group:last-of-type {
     .select2-container .select2-selection--multiple,
     .select2-container--default .select2-selection--multiple, {
         background-color: $state-danger-bg;
-        border-color: color(danger);
+        border-color: var(--color-danger);
     }
 }
 
@@ -354,7 +354,7 @@ td.table__form .rules + .form__group:last-of-type {
 
     &::before,
     &::after {
-        background-color: var(--color-white);
+        background-color: var(--color-bg-surface-0);
         content: '';
         display: block;
         height: 23px;
@@ -424,7 +424,7 @@ td.table__form .rules + .form__group:last-of-type {
             text-align: center;
 
             &:hover {
-                background-color: color(background, light);
+                background-color: var(--color-bg-light);
             }
         }
     }
@@ -621,7 +621,7 @@ td.table__form .rules + .form__group:last-of-type {
 
         .rule-block__header {
             background-color: $rule-color-and;
-            color: var(--color-black);
+            color: var(--color-text-full);
         }
     }
 
@@ -676,7 +676,7 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block--else-return {
-        background-color: var(--color-gray-off-white);
+        background-color: var(--color-bg-surface-1);
         border-color: var(--color-gray-dark);
         border-radius: 15px;
 

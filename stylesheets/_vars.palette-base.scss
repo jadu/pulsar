@@ -99,6 +99,7 @@
     --color-bg:                  #{map-get(map-get($palette-alias, background), base)};
     --color-bg-alt:              rgb(126, 126, 126);
     --color-bg-backdrop:         #{map-get(map-get($palette-alias, background), backdrop)};
+    --color-bg-disabled:         #{map-get(map-get($palette-alias, background), backdrop)};
     --color-bg-dark:             #{map-get(map-get($palette-alias, background), dark)};
     --color-bg-focus:            #{map-get(map-get($palette-alias, background), focus)};
     --color-bg-input:            rgb(250, 250, 250);
@@ -109,7 +110,8 @@
 
     --color-bg-surface-0:        var(--color-white);
     --color-bg-surface-1:        var(--color-gray-off-white);
-    --color-bg-surface-2:        var(--color-bg);
+    --color-bg-surface-2:        var(--color-gray-lightest);
+    --color-bg-surface-3:        var(--color-gray-lighter);
 
     --color-bg-overlay-0:        var(--color-bg);
     --color-bg-overlay-1:        var(--color-bg);
@@ -118,10 +120,15 @@
     // BORDER
     --color-border:              #{map-get(map-get($palette-alias, border), base)};
     --color-border-focus:        #{map-get(map-get($palette-alias, border), focus)};
+    --color-border-input:        var(--color-border);
+    --color-border-light:        var(--color-gray-lighter);
 
     // LOADING SPINNER
     --color-loading-main:        var(--color-primary);
     --color-loading-cutout:      var(--color-bg-surface-0);
+
+    // MODALS
+    --color-modal-backdrop:      var(--color-black);
 
     // TABS
     --color-tabs-hover:          var(--color-gray-dark);

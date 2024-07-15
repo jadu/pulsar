@@ -72,7 +72,7 @@
     }
 
     .control__label.is-selected {
-        background-color: color(background, light);
+        background-color: var(--color-bg-light);
         box-shadow: inset 0 0 0 2px var(--color-black);
 
         @include ie-lte(8) {

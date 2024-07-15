@@ -75,7 +75,7 @@ $module-permissions-breakpoint: $screen-tablet;
 
 // Expanded module subpages / tabs
 .module .module-page.is-open {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
 
     .module-subpage {
         display: block;
@@ -171,7 +171,7 @@ $module-permissions-breakpoint: $screen-tablet;
     }
 
     &.is-disabled {
-        color: color(text, disabled);
+        color: var(--color-text-disabled);
         cursor: not-allowed;
     }
 }

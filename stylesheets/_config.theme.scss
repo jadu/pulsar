@@ -102,6 +102,7 @@ $progress-bg-hover:                   darken($progress-bg, 5%) !default;
 // -----------------------------------------------------------------------------
 
 $input-bg:                            #fff !default;
+$input-radius:                            0 !default;
 $input-bg-disabled:                   var(--color-gray-lightest) !default;
 $input-border:                        var(--color-border) !default;
 $input-border-focus:                  #66afe9 !default;

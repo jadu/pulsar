@@ -95,7 +95,7 @@ $greeter-brand-bottom-height:           40px !default;
 .greeter {
     background-image: $greeter-bg;
     background-position: -5px -5px;
-    box-shadow: 0 0 0 $shadow-large color(background, shadow);
+    box-shadow: 0 0 0 $shadow-large var(--color-bg-shadow);
     color: $greeter-text-color;
     min-height: $greeter-min-height;
     max-width: $greeter-width-max;

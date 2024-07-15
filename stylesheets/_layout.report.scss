@@ -1,5 +1,5 @@
 .ui-report.tab__pane {
-    // background-color: var(--color-gray-off-white);
+    // background-color: var(--color-bg-surface-1);
     // border-top: 1px solid var(--color-border);
     // height: 100%; // relies on the 100% height of .content-main
     // margin: -1px (-$gutter-width) 0;
@@ -9,7 +9,7 @@
 }
 
 .report {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
 
     &.is-loading > * {
         opacity: .3;
@@ -67,7 +67,7 @@
     width: 100%;
 
     &:hover {
-        background-color: color(background, light);
+        background-color: var(--color-bg-light);
     }
 
     &:last-child {
@@ -123,7 +123,7 @@
     position: absolute;
     right: 0;
     top: -30px;
-    background-color: color(background, light);
+    background-color: var(--color-bg-light);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
     border-top-left-radius: $border-radius-large;
     border-bottom-right-radius: $border-radius-large;

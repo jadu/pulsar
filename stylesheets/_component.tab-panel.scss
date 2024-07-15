@@ -1,6 +1,5 @@
 .tab-panel {
 
-
 	// Reset default tab layout styling
 	.tabs__list {
 		> li,
@@ -34,7 +33,7 @@
 
 		> li > a {
 			display: block;
-			color: black;
+			color: var(--color-text);
 			line-height: 1em;
 			padding: .5em 5px;
 			text-align: center;

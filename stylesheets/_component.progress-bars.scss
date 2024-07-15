@@ -24,16 +24,16 @@
 }
 
 .progress-bar--success {
-    background-color: color(success);
+    background-color: var(--color-success);
 }
 
 .progress-bar--warning {
-    background-color: color(warning);
+    background-color: var(--color-warning);
     color: color(warning, alt);
 }
 
 .progress-bar--danger {
-    background-color: color(danger);
+    background-color: var(--color-danger);
 }
 
 .progress-bar--compact {

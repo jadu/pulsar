@@ -41,7 +41,7 @@
 }
 
 .nav-inline {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
     border-bottom: 1px solid var(--color-gray-light);
     -webkit-overflow-scrolling: touch;
     margin: 0 -20px;
@@ -80,7 +80,7 @@
     }
 
     &__item.is-active > &__link {
-        color: var(--color-black);
+        color: var(--color-text-full);
         font-family: $font-family-regular;
     }
 
@@ -95,7 +95,7 @@
         &:focus,
         &:link,
         &:visited {
-            color: var(--color-black);
+            color: var(--color-text-full);
 
             .caret {
                 border-top-color: var(--color-black);
@@ -107,7 +107,7 @@
         }
 
         &.is-disabled {
-            color: color(text, disabled);
+            color: var(--color-text-disabled);
         }
 
         .caret {
@@ -179,7 +179,7 @@
 }
 
 .mobile-menu-button {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
     border: 1px solid $nav-color-dark;
     border-radius: $border-radius;
     color: $nav-color-dark;
@@ -275,7 +275,7 @@
             @include pulsar-link-focused;
 
             .nav-link__icon {
-                color: var(--color-black);
+                color: var(--color-text-full);
             }
         }
     }
@@ -337,7 +337,7 @@
     background-image: $background-gradient;
     background-position: right bottom;
     background-repeat: no-repeat;
-    box-shadow: $shadow-large 0 0 color(background, shadow);
+    box-shadow: $shadow-large 0 0 var(--color-bg-shadow);
     left: $nav-primary-width;
     margin-left: -320px;
     overflow-x: hidden;
@@ -387,7 +387,7 @@
         }
 
         &:active {
-            background-color: var(--color-white);
+            background-color: var(--color-bg-surface-0);
             box-shadow: none;
             color: $nav-color-dark;
             outline: none;

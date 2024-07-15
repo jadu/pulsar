@@ -10,7 +10,7 @@
 
     &,
     > a {
-        color: color(primary, alt);
+        color: var(--color-primary-alt);
         text-decoration: none;
     }
 
@@ -36,7 +36,7 @@
     }
 
     li::before {
-        background-color: color(background);
+        background-color: var(--color-bg-surface-1);
         border: 2px solid var(--color-border);
         border-radius: 50px;
         content: '';

@@ -251,7 +251,7 @@ $rich-list-item-text-selected-color:  var(--color-white) !default;
 
 
 .richer-list__items-container {
-  background-color: var(--color-gray-off-white); /* [5] */
+  background-color: var(--color-bg-surface-1); /* [5] */
   border-right: 1px solid $rich-list-border-color;
   vertical-align: top; /* [6] */
   width: percentage($rich-list_items-width-default);
@@ -297,7 +297,7 @@ $rich-list-item-text-selected-color:  var(--color-white) !default;
   }
 
   a { /* [13] */
-    color: var(--color-black);
+    color: var(--color-text-full);
     text-decoration: none;
   }
 
@@ -318,7 +318,7 @@ $rich-list-item-text-selected-color:  var(--color-white) !default;
 
 
 .richer-list__item-placeholder {
-  background-color: var(--color-gray-off-white);
+  background-color: var(--color-bg-surface-1);
   height: ($line-height-base * 1.8) * 3;
   text-align: center;
   vertical-align: inherit;
@@ -483,7 +483,7 @@ $rich-list-item-text-selected-color:  var(--color-white) !default;
 // -----------------------------------------------------------------------------
 
 .input-group-guidance {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
     border: 0;
     color: var(--color-text);
     font-size: $font-size-base;
@@ -501,7 +501,7 @@ $rich-list-item-text-selected-color:  var(--color-white) !default;
 }
 
 .tab__settings .input-group-guidance {
-    background-color: color(background);
+    background-color: var(--color-bg-surface-1);
 }
 
 div.is-sortable .input-group-guidance {

@@ -6,7 +6,7 @@
     }
 
     &:checked + .toggle-switch-label {
-        background-color: color(success);
+        background-color: var(--color-success);
         border-color: transparent;
         color: var(--color-white);
 
@@ -17,7 +17,7 @@
     }
 
     &:indeterminate + .toggle-switch-label {
-        background-color: color(warning);
+        background-color: var(--color-warning);
 
         &::before {
             left: 25%;
@@ -48,7 +48,7 @@
 
 .toggle-switch-label {
     background-clip: padding-box;
-    background-color: color(grey);
+    background-color: var(--color-gray);
     border-color: transparent;
     border-radius: 1.5em;
     color: var(--color-white);
@@ -67,7 +67,7 @@
 
     &::before {
         background-clip: padding-box;
-        background-color: var(--color-white);
+        background-color: var(--color-bg-surface-0);
         border-radius: 100%;
         border: .125em solid transparent;
         bottom: 0;

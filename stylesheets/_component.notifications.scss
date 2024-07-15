@@ -48,7 +48,7 @@
 
     // Disable default button is-active styles
     &.is-active {
-        background-color: var(--color-white);
+        background-color: var(--color-bg-surface-0);
         color: var(--color-text);
     }
 
@@ -58,12 +58,12 @@
 
     &.is-active:hover {
         background-color: color(base);
-        color: color(base, alt);
+        color: var(--color-base-alt);
     }
 
     // the red dot indicator
     &.has-new::before {
-        background-color: color(danger);
+        background-color: var(--color-danger);
         border: 2px solid var(--color-white);
         border-radius: 10px;
         content: '';
@@ -120,11 +120,11 @@
     width: 100%;
 
     &:hover {
-        background-color: color(background, light);
+        background-color: var(--color-bg-light);
     }
 
     &.is-empty {
-        color: color(text, light);
+        color: var(--color-text-light);
         text-align: center;
 
         p {
@@ -171,7 +171,7 @@
 }
 
 .notifications__footer {
-    background-color: var(--color-gray-off-white);
+    background-color: var(--color-bg-surface-1);
     border-top: 1px solid var(--color-border);
     clear: both;
 

@@ -9,7 +9,7 @@
 }
 
 .pulsar-datepicker.ui-datepicker {
-    box-shadow: 0 0 0 $shadow-small color(background, shadow);
+    box-shadow: 0 0 0 $shadow-small var(--color-bg-shadow);
 }
 
 .ui-datepicker-calendar {
@@ -17,7 +17,7 @@
 }
 
 .ui-datepicker-calendar td {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
     border: 1px solid var(--color-border);
     cursor: pointer;
     padding: 5px 0 30px;
@@ -26,7 +26,7 @@
     transition: background-color .1s ease-in-out;
 
     a {
-        color: #000;
+        color: var(--color-text);
         text-decoration: none;
     }
 
@@ -35,13 +35,13 @@
     }
 
     &.ui-datepicker-unselectable {
-        background-color: var(--color-gray-off-white);
-        color: color(text, disabled);
+        background-color: var(--color-bg-surface-1);
+        color: var(--color-text-disabled);
         cursor: not-allowed;
     }
 
     &.ui-datepicker-other-month {
-        background-color: var(--color-white);
+        background-color: var(--color-bg-surface-0);
         border: 0;
     }
 }
@@ -61,7 +61,7 @@
 
 .ui-datepicker-prev,
 .ui-datepicker-next {
-    color: var(--color-gray-light);
+    color: var(--color-text-light);
     font-size: .75em;
     text-transform: uppercase;
 }
@@ -92,7 +92,7 @@
     position: relative;
 
     &::after {
-        background-color: var(--color-gray-lighter);
+        background-color: var(--color-bg-surface-1);
         border-top-left-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
         bottom: 3px;
@@ -114,14 +114,14 @@
 
 .ui-datepicker-calendar td.ui-datepicker-current-day {
     background-color: var(--color-primary);
-    color: var(--color-white);
+    color: var(--color-primary-alt);
 
     a {
-        color: var(--color-white);
+        color: var(--color-primary-alt);
     }
 
     &.ui-datepicker-today::after {
-        background-color: var(--color-white);
+        background-color: var(--color-primary-alt);
         color: var(--color-primary);
     }
 }
@@ -141,7 +141,7 @@
 
 .slotpicker-slots__subheading {
     border-top: 1px solid var(--color-border);
-    color: var(--color-border);
+    color: var(--color-text);
     display: block;
     height: 42px;
     margin-top: 12px;

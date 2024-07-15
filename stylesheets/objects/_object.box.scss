@@ -1,5 +1,5 @@
 .box {
-    background-color: color(background, light);
+    background-color: var(--color-bg-light);
     padding: $padding-base;
 }
 
@@ -8,5 +8,5 @@
 }
 
 .box--naked {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-surface-0);
 }
