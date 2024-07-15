@@ -27,6 +27,10 @@ $fa-css-prefix: 'icon';
 @import '/static/fonts/fontawesome-pro/scss/brands';
 @import '/static/fonts/fontawesome-pro/scss/v4-shims';
 
+@import '../../../stylesheets/palette.base';
+@import '../../../stylesheets/config.theme';
+@import '../../../stylesheets/vars.palette-base';
+
 // $font-path: '/static/fonts/';
 @font-face {
   font-family: 'proxima_novalight';
@@ -59,10 +63,6 @@ $fa-css-prefix: 'icon';
   font-weight: normal;
   font-style: normal;
 }
-
-@import '../../../stylesheets/palette.base';
-@import '../../../stylesheets/config.theme';
-@import '../../../stylesheets/vars.palette-base';
 
 .d-example,
 .d-example-inline,
