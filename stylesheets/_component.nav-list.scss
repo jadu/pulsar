@@ -14,8 +14,8 @@
 }
 
 .nav-item--header {
-	border-bottom: 1px solid color(white);
-	color: color(white);
+	border-bottom: 1px solid var(--color-white);
+	color: var(--color-white);
 	display: block;
 	font-family: $font-family-heading-light;
 	font-size: 1.2em;
@@ -27,7 +27,7 @@
 }
 
 .nav-link {
-	color: color(white);
+	color: var(--color-white);
 	cursor: pointer;
 	display: block;
 	line-height: 1.5em;
@@ -37,6 +37,6 @@
 
 	&:hover,
 	.is-active & {
-		color: color(white);
+		color: var(--color-white);
 	}
 }

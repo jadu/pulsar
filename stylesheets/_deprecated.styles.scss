@@ -86,29 +86,29 @@ $jadu-green:                    color(jadu-green);
 $jadu-teal:                     color(jadu-teal);
 $jadu-red:                      color(jadu-red);
 $jadu-yellow:                   #fc3;
-$jadu-black:                    color(black);
-$jadu-copy-gray:                color(gray, dark);
+$jadu-black:                    var(--color-black);
+$jadu-copy-gray:                var(--color-gray-dark);
 
-$black:                         color(black);
+$black:                         var(--color-black);
 $blue:                          color(jadu-blue);
 $blue-light:                    color(jadu-blue, light);
-$gray-darker:                   color(gray, darker);
-$gray-dark:                     color(gray, dark);
+$gray-darker:                   var(--color-gray-darker);
+$gray-dark:                     var(--color-gray-dark);
 $gray:                          color(gray);
-$gray-light:                    color(gray, light);
-$gray-lighter:                  color(gray, lighter);
+$gray-light:                    var(--color-gray-light);
+$gray-lighter:                  var(--color-gray-lighter);
 $green:                         color(jadu-green);
-$off-white:                     color(gray, off-white);
-$white:                         color(white);
+$off-white:                     var(--color-gray-off-white);
+$white:                         var(--color-white);
 
 $accent-color:                  color(jadu-blue);
-$accent-color-alt:              color(white);
+$accent-color-alt:              var(--color-white);
 
-$text-color:                    color(text);
-$link-color:                    color(jadu-purple);
+$text-color:                    var(--color-text);
+$link-color:                    var(--color-brand-purple);
 $link-hover-color:              darken($blue, 20%);
-$inverse-link-color:            $white;
-$inverse-link-hover-color:      darken($white, 10%);
+$inverse-link-color:            #fff;
+$inverse-link-hover-color:      darken(#fff, 10%);
 
 $base-color:                    $gray;
 $primary-color:                 #1f7bb8;
@@ -197,10 +197,10 @@ $rich-list-items-width-xlarge:        .65 !default; // large screen
 
 // Colour
 $rich-list-border-color:              color(gray) !default;
-$rich-list-item-bg-color:             color(white) !default;
-$rich-list-item-bg-hover-color:       color(gray, lighter) !default;
+$rich-list-item-bg-color:             var(--color-white) !default;
+$rich-list-item-bg-hover-color:       var(--color-gray-lighter) !default;
 $rich-list-item-bg-selected-color:    color(jadu-blue) !default;
-$rich-list-item-text-selected-color:  color(white) !default;
+$rich-list-item-text-selected-color:  var(--color-white) !default;
 
 
 /* -------------------------------------------------------------------------- *\
@@ -251,7 +251,7 @@ $rich-list-item-text-selected-color:  color(white) !default;
 
 
 .richer-list__items-container {
-  background-color: color(gray, off-white); /* [5] */
+  background-color: var(--color-bg-surface-1); /* [5] */
   border-right: 1px solid $rich-list-border-color;
   vertical-align: top; /* [6] */
   width: percentage($rich-list_items-width-default);
@@ -297,7 +297,7 @@ $rich-list-item-text-selected-color:  color(white) !default;
   }
 
   a { /* [13] */
-    color: color(black);
+    color: var(--color-text-full);
     text-decoration: none;
   }
 
@@ -318,13 +318,13 @@ $rich-list-item-text-selected-color:  color(white) !default;
 
 
 .richer-list__item-placeholder {
-  background-color: color(gray, off-white);
+  background-color: var(--color-bg-surface-1);
   height: ($line-height-base * 1.8) * 3;
   text-align: center;
   vertical-align: inherit;
 
   a {
-    color: color(link);
+    color: var(--color-link);
   }
 
   &:hover a {
@@ -483,9 +483,9 @@ $rich-list-item-text-selected-color:  color(white) !default;
 // -----------------------------------------------------------------------------
 
 .input-group-guidance {
-    background-color: color(white);
+    background-color: var(--color-bg-surface-0);
     border: 0;
-    color: color(text);
+    color: var(--color-text);
     font-size: $font-size-base;
     font-weight: normal;
     line-height: 24px;
@@ -501,7 +501,7 @@ $rich-list-item-text-selected-color:  color(white) !default;
 }
 
 .tab__settings .input-group-guidance {
-    background-color: color(background);
+    background-color: var(--color-bg-surface-1);
 }
 
 div.is-sortable .input-group-guidance {
