@@ -39,14 +39,14 @@
 {%- endblock -%}
 
 {% block tab_content %}
-    <h2 class="heading">Standard 'state' colours</h2>
+    <h2 class="heading">Standard 'state' colours (Sass vars)</h2>
 
     <div class="swatch swatch--primary-base">
         <div class="swatch__colour">
             <span class="swatch__text">primary</span>
         </div>
         <div class="swatch__label">
-            <code>color(primary)</code>
+            <code>var(--color-primary)</code>
             <span>{{ html.icon('ok') }} AA Compliant</span>
         </div>
     </div>
@@ -101,10 +101,70 @@
         </div>
     </div>
 
-    <h2 class="heading">Monochrome</h2>
+    <h2 class="heading">Standard 'state' colours (CSS vars)</h2>
+
+    <div class="swatch swatch-css--primary-base">
+        <div class="swatch__colour">
+            <span class="swatch__text">primary</span>
+        </div>
+        <div class="swatch__label">
+            <code>var(--color-primary)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--info-base">
+        <div class="swatch__colour">
+            <span class="swatch__text">info</span>
+        </div>
+        <div class="swatch__label">
+            <code>var(--color-info)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--success-base">
+        <div class="swatch__colour">
+            <span class="swatch__text">success</span>
+        </div>
+        <div class="swatch__label">
+            <code>var(--color-success)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--warning-base">
+        <div class="swatch__colour">
+            <span class="swatch__text">warning</span>
+        </div>
+        <div class="swatch__label">
+            <code>var(--color-warning)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--danger-base">
+        <div class="swatch__colour">
+            <span class="swatch__text">danger</span>
+        </div>
+        <div class="swatch__label">
+            <code>var(--color-danger)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
+
+    <div class="swatch swatch-css--inverse-base">
+        <div class="swatch__colour">
+            <span class="swatch__text">inverse</span>
+        </div>
+        <div class="swatch__label">
+            <code>var(--color-inverse)</code>
+            <span>{{ html.icon('ok') }} AA Compliant</span>
+        </div>
+    </div>
 
     {%
-        set grays = {
+        set sass_grays = {
             "black-base": "black",
             "gray-darker": "gray, darker",
             "gray-dark": "gray, dark",
@@ -117,7 +177,8 @@
         }
     %}
 
-    {% for colour, address in grays %}
+    <h2 class="heading">Monochrome (Sass vars)</h2>
+    {% for colour, address in sass_grays %}
         <div class="swatch swatch--{{ colour }}">
             <div class="swatch__colour">
             </div>
@@ -127,7 +188,32 @@
         </div>
     {% endfor %}
 
-    <h2 class="heading">States</h2>
+    {%
+        set css_grays = {
+            "black-base": "black",
+            "gray-darker": "gray-darker",
+            "gray-dark": "gray-dark",
+            "gray-base": "gray",
+            "gray-light": "gray-light",
+            "gray-lighter": "gray-lighter",
+            "gray-lightest": "gray-lightest",
+            "gray-off-white": "gray-off-white",
+            "white-base": "white"
+        }
+    %}
+
+    <h2 class="heading">Monochrome (CSS vars)</h2>
+    {% for colour, address in css_grays %}
+        <div class="swatch swatch-css--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>var(--color-{{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+
+    <h2 class="heading">States (Sass vars)</h2>
 
     {%
         set states_base = {
@@ -146,7 +232,18 @@
             </div>
         </div>
     {% endfor %}
+
+    {% for colour, address in states_base %}
+        <div class="swatch swatch-css--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>var(--color-{{ colour }})</code>
+            </div>
+        </div>
+    {% endfor %}
 <br />
+
     {%
         set states_primary = {
             "primary-base": "primary, base",
@@ -161,6 +258,15 @@
             </div>
             <div class="swatch__label">
                 <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+    {% for colour, address in states_primary %}
+        <div class="swatch swatch-css--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>var(--color-{{ colour }})</code>
             </div>
         </div>
     {% endfor %}
@@ -182,6 +288,15 @@
             </div>
         </div>
     {% endfor %}
+    {% for colour, address in states_success %}
+        <div class="swatch swatch-css--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>var(--color-{{ colour }})</code>
+            </div>
+        </div>
+    {% endfor %}
 <br />
     {%
         set states_warning = {
@@ -197,6 +312,15 @@
             </div>
             <div class="swatch__label">
                 <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+    {% for colour, address in states_warning %}
+        <div class="swatch swatch-css--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>var(--color-{{ colour }})</code>
             </div>
         </div>
     {% endfor %}
@@ -218,6 +342,15 @@
             </div>
         </div>
     {% endfor %}
+    {% for colour, address in states_danger %}
+        <div class="swatch swatch-css--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>var(--color-{{ colour }})</code>
+            </div>
+        </div>
+    {% endfor %}
 <br />
     {%
         set states_info = {
@@ -236,6 +369,15 @@
             </div>
         </div>
     {% endfor %}
+    {% for colour, address in states_info %}
+        <div class="swatch swatch-css--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>var(--color-{{ colour }})</code>
+            </div>
+        </div>
+    {% endfor %}
 <br />
     {%
         set states_inverse = {
@@ -251,6 +393,15 @@
             </div>
             <div class="swatch__label">
                 <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+    {% for colour, address in states_inverse %}
+        <div class="swatch swatch-css--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>var(--color-{{ colour }})</code>
             </div>
         </div>
     {% endfor %}
