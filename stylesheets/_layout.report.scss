@@ -125,8 +125,6 @@
     top: -30px;
     background-color: var(--color-bg-light);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
-    border-top-left-radius: $border-radius-large;
-    border-bottom-right-radius: $border-radius-large;
     margin: 0 auto;
     padding: $gutter-width;
     text-align: center;
@@ -149,8 +147,6 @@
     width: 100%;
 
     @include respond-min($screen-desktop) {
-        border-bottom-right-radius: $border-radius-large / 2;
-        border-top-right-radius: $border-radius-large / 2;
         display: inline-block;
         float: left;
         margin-left: -20px;
