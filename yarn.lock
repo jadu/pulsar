@@ -5716,7 +5716,7 @@ datatables.net-responsive-dt@^2.5.0:
     datatables.net-responsive ">=2.4.1"
     jquery ">=1.7"
 
-datatables.net-responsive@^2.4.1, datatables.net-responsive@>=2.4.1:
+datatables.net-responsive@^2.5.0, datatables.net-responsive@>=2.4.1:
   version "2.5.0"
   resolved "https://registry.npmjs.org/datatables.net-responsive/-/datatables.net-responsive-2.5.0.tgz"
   integrity sha512-GL7DFiRl5qqrp5ql54Psz92xTGPR0rMcrO3hzNxMfvcfpRGL5zFNTvMpTUh59Erm6u1+KoX+j+Ig1ZD3r0iFsA==
