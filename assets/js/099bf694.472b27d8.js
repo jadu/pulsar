@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[540],{7128:e=>{e.exports=JSON.parse('{"title":"Guides","description":"Details of common Pulsar concepts.","slug":"/category/guides","permalink":"/pulsar/docs/category/guides","navigation":{"next":{"title":"Getting started","permalink":"/pulsar/docs/guides/getting-started"}}}')}}]);
