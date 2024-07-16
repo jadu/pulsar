@@ -1,0 +1,18 @@
+@function pick_best_color($base, $colors, $tolerance: 0) {
+  $contrast: color_contrast($base, nth($colors, 1));
+  $best: nth($colors, 1);
+
+  @for $i from 2 through length($colors) {
+    $current_contrast: color_contrast($base, nth($colors, $i));
+    @if ($current_contrast - $contrast > $tolerance) {
+      $contrast: color_contrast($base, nth($colors, $i));
+    $best: nth($colors, $i);
+    }
+  }
+
+  @if ($contrast < 3) {
+    @warn "Contrast ratio of #{$best} on #{$base} is pretty bad, just #{$contrast}";
+  }
+
+  @return $best;
+}

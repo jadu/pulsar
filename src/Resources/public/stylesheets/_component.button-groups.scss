@@ -1,0 +1,51 @@
+%btn__group,
+.btn__group, {
+    display: inline-block;
+
+    .btn {
+        border-right: 1px solid;
+        border-right-color: #fff;
+
+        // Restore expected borders for solo outline buttons only
+        &.btn--outline:only-of-type {
+            border-right: 1px solid;
+            // border-right-color: #fff;
+        }
+
+        // Make sure focused buttons aren't overlapped by subsequent children
+        &:focus {
+            border-right-color: color(background, focus);
+            z-index: 1;
+        }
+    }
+
+    .btn--outline {
+        border-right: 0;
+
+        &:focus,
+        &:last-of-type {
+            border-right: 1px solid;
+            border-right-color: inherit;
+        }
+    }
+
+    .is-active {
+        background-color: color(primary);
+        color: color(primary, alt);
+        font-family: $font-family-regular;
+
+        &::after {
+            background-color: color(white);
+            bottom: 4px;
+            content: '';
+            display: block;
+            height: 2px;
+            position: absolute;
+            width: auto;
+            right: 5px;
+            left: 5px;
+            border-radius: 3px;
+        }
+    }
+}
+

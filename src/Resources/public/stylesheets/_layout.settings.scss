@@ -1,0 +1,589 @@
+/**
+ * Settings column
+ */
+
+.tab__settings {
+    @include clear-fix(true);
+
+    background-color: color(white);
+    margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
+    padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
+
+    @include respond-min($screen-small) {
+        margin: 0 0 $margin-large-vertical;
+    }
+
+    @include respond-min($screen-medium) {
+        margin-right: 1%;
+        max-width: 370px;
+        min-width: 370px;
+        width: 25%;
+    }
+
+    .lt-ie9 & {
+        min-width: 0;
+        width: 35%;
+    }
+
+    .ie9 & {
+        display: block;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+/**
+ * Settings sections
+ */
+
+.settings-section {
+    &:not(.settings-section--primary) {
+        @include respond-min-max($screen-smaller, $screen-medium) {
+            float: left;
+            width: 100%;
+        }
+    }
+
+    &:not(:last-child) {
+        border-bottom: 1px solid color(border);
+        padding-bottom: $line-height-base;
+
+        @include respond-min($screen-medium) {
+            margin-bottom: $line-height-base;
+        }
+
+        @include respond-max($screen-smaller) {
+            margin-bottom: $line-height-base;
+        }
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.settings-section:not(.settings-section--primary) + .settings-section {
+    @include respond-min-max($screen-smaller, $screen-medium) {
+        padding-top: $line-height-base;
+    }
+}
+
+
+/**
+ * Settings section headings
+ */
+
+.settings-section__heading {
+    font-size: $font-size-large;
+}
+
+
+/**
+ * Settings section paragraphs
+ */
+
+.settings-section__heading + p,
+.settings-section p + p {
+    margin-top: $margin-base-vertical * 2 * -1;
+}
+
+
+/**
+ * Primary settings section
+ */
+
+.settings-section--primary {
+    width: 100%;
+
+    @include respond-min-max($screen-smaller, $screen-medium) {
+        float: left;
+        min-width: 200px;
+        width: 100%;
+    }
+
+    @include respond-max($screen-smaller) {
+        @include clear-fix(true);
+    }
+
+    &:not(:last-child) {
+        @include respond-min-max($screen-smaller, $screen-medium) {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+
+/**
+ * Primary settings section toggles
+ */
+
+.tab__settings .settings-section--primary .form__group--toggle {
+
+    @include respond-max($screen-medium) {
+        .controls {
+            float: left;
+        }
+
+        .control__label {
+            max-width: 100%;
+            padding-right: 0;
+        }
+    }
+}
+
+
+/**
+ * Primary settings section buttons
+ */
+
+.settings-section--primary .btn {
+    @include respond-max($screen-smaller) {
+        width: 25%;
+    }
+
+    @include respond-max($screen-xsmall) {
+        width: 40%;
+    }
+}
+
+.settings-section--primary .btn--primary {
+    @include respond-max($screen-smaller) {
+        float: left;
+        margin-left: 12.5%;
+    }
+
+    @include respond-max($screen-xsmall) {
+        margin-left: 5%;
+    }
+}
+
+.settings-section--primary .btn:not(.btn--primary) {
+    @include respond-max($screen-smaller) {
+        margin-right: 12.5%;
+    }
+
+    @include respond-max($screen-xsmall) {
+        margin-right: 5%;
+    }
+}
+
+
+/**
+ * Flash messages
+ */
+
+.tab__settings .flash {
+    margin: (($padding-large-vertical * 2) * -1) (($padding-small-horizontal * 2) * -1) ($padding-large-vertical * 2);
+    width: auto;
+}
+
+
+/**
+ * Forms
+ */
+
+.tab__settings .form {
+    background-color: transparent;
+}
+
+
+/**
+ * Form actions
+ */
+
+.tab__settings .form__actions {
+    padding-bottom: 0;
+}
+
+.tab__settings .form__actions .btn--danger:last-child {
+    margin-right: 0;
+}
+
+
+/**
+ * Form toggle switches
+ */
+
+.tab__settings .form__group--toggle span.control__label {
+    width: calc(100% - 4em);
+}
+
+.tab__settings .form__group--toggle {
+    > .control__label {
+        width: 100%;
+
+        @include respond-min($screen-small) {
+            max-width: 75%;
+            padding-right: 0;
+            width: auto;
+        }
+    }
+
+    .controls {
+        float: right;
+        width: 4em;
+    }
+}
+
+
+/**
+ * Form groups with labels adjacent to their controls
+ */
+
+.tab__settings .form__group:not(.form__group--flush):not(.form__group--toggle) > .control__label {
+    padding-right: $padding-small-horizontal * 2;
+    width: 40%;
+}
+
+.tab__settings .form__group:not(.form__group--flush):not(.form__group--toggle) .controls {
+    width: 60%;
+}
+
+
+/**
+ * Form groups with labels on top
+ */
+
+.tab__settings .form__group--top .control__label {
+    display: block;
+    margin-bottom: $margin-base-vertical;
+    padding-right: 0;
+    padding-top: 0;
+    width: 100%;
+}
+
+.tab__settings .form__group--top .controls::before {
+    display: none;
+}
+
+.tab__settings .form__group--top .controls > .form__control {
+    display: block;
+}
+
+.tab__settings .form__group--top .form__control:not(.checkbox):not(.radio) {
+    @include respond-min($screen-small) {
+        width: 100%;
+    }
+}
+
+
+/**
+ * Form groups without labels indented as per those with labels
+ */
+
+.tab__settings .form__group--indent {
+    margin-left: 0;
+    width: 100%;
+
+    &::before {
+        @include respond-min($screen-smaller) {
+            content: '';
+            display: table-cell;
+            width: 40%;
+        }
+    }
+}
+
+.tab__settings .form__group--indent .controls {
+    display: table-cell;
+}
+
+
+/**
+ * Form group labels padding adjustments for smaller views
+ */
+
+.tab__settings .form__group:not(.form__group--top):not(.form__group--toggle) > .control__label {
+    @include respond-max($screen-smaller) {
+        padding: 0 0 $padding-base-vertical;
+    }
+
+    @include respond-min-max($screen-smaller, $screen-medium) {
+        padding-right: $padding-small-horizontal;
+        width: 35%;
+    }
+}
+
+
+/**
+ * Form control file uploads alignment improvements
+ */
+
+.tab__settings .form__control.file {
+    height: $line-height-large;
+    padding-top: 14px;
+    width: 100%;
+
+    @include respond-min($screen-small) {
+        max-width: 100%;
+        width: $controls-max-width;
+    }
+}
+
+
+/**
+ * Content area
+ */
+
+.ie9 .tab__container.has-settings {
+    overflow-x: auto;
+}
+
+.tab__container.has-settings .tab__content {
+    @include respond-min($screen-medium) {
+        margin-bottom: $line-height-small;
+
+        .ie9 & {
+            padding-left: $padding-small-horizontal * 2;
+        }
+    }
+
+    @include respond-min($screen-medium) {
+        max-width: calc(99% - 370px);
+        width: 100%;
+
+        .ie9 & {
+            float: none;
+        }
+    }
+
+    .lt-ie9 & {
+        width: 64%;
+    }
+}
+
+.tab__container.has-settings .tab__inner {
+    @include respond-min($screen-desktop) {
+        align-items: flex-start;
+        align-content: flex-start;
+        display: flex;
+        flex-wrap: wrap; // to cater for presence of .tab__header
+    }
+
+    .tab__header {
+        background-color: color(white);
+        flex-basis: 100%;
+        margin: 0 0 $margin-large-vertical;
+        padding: $padding-base;
+        width: 100%;
+    }
+}
+
+/**
+ * Content header
+ */
+
+.content-header {
+    @include clear-fix(true);
+
+    border-bottom: 1px solid color(border);
+    padding-top: $padding-base-vertical * 2;
+
+    .is-fixed & {
+        background-color: color(white);
+        position: fixed;
+        top: 0;
+        z-index: $zindex-sticky;
+    }
+}
+
+
+/**
+ * Content heading
+ */
+
+.content-heading {
+    display: block;
+    line-height: $input-height-small;
+    margin-bottom: $margin-base-vertical * 2;
+}
+
+
+/**
+ * Content actions
+ */
+
+.content-actions {
+    float: right;
+    margin: 0 0 ($margin-base-vertical * 2) $margin-large-horizontal;
+}
+
+.content-actions__pages,
+.content-actions__buttons {
+    display: inline;
+}
+
+.content-actions__pages .form__group,
+.content-actions__pages .controls,
+.content-actions__pages .form__group .form__control:not(.checkbox):not(.radio):not(.file) {
+    display: inline;
+    width: auto;
+}
+
+.content-actions__pages .form__group {
+    margin: 0;
+    table-layout: auto;
+}
+
+.content-actions__pages .control__label {
+    display: inline;
+    padding: 0;
+    vertical-align: unset;
+    width: auto;
+}
+
+// Match height of inputs to the expected height of buttons
+.content-actions__pages .form__control {
+    height: 35px;
+    line-height: 35px;
+}
+
+// Adjust position of caret to match new height and set enough padding so page numbers look nicer
+.content-actions__pages .form__control.select {
+    background-position: calc(100% - 10px) calc(10px + 5px), calc(100% - 5px) calc(10px + 5px), 100% 0;
+    padding-right: 32px;
+}
+
+.content-actions__buttons {
+    margin-left: $padding-small-horizontal;
+}
+
+.content-actions__buttons .btn {
+    vertical-align: top;
+}
+
+/**
+ * Stacked inputs
+ */
+ .tab__settings .settings-section--stacked {
+
+    .form__group {
+        clear: both;
+    }
+
+    // Force labels to be stacked with the inputs below, except for checkbox/radio
+    .form__group:not(.form__group--flush):not(.form__group--toggle):not(.form-checkbox):not(.form-radio) {
+        margin-bottom: 12px;
+
+        @include ie(9) {
+            &.colorpicker .form__control {
+                width: calc(100% - 48px);
+            }
+        }
+
+        > .control__label {
+            padding-top: 0;
+        }
+
+        > .control__label,
+        .controls,
+        .form__control:not(.checkbox):not(.radio),
+        .form__control + .select2,
+        .input-group {
+            width: 100%;
+        }
+
+        .help-block {
+            margin: 0;
+        }
+    }
+
+    // Because the settings sidebar and the toggle switch controls are a fixed width, we're safe to use a fixed width here
+    .form__group--toggle {
+        .controls {
+            float: left;
+
+            @include respond-min($screen-medium) {
+                float: right;
+            }
+        }
+
+        .control__label {
+            margin-left: 10px;
+            width: 80%;
+
+            @include respond-min($screen-smaller) {
+                width: 125px;
+            }
+
+            @include respond-min($screen-medium) {
+                margin-left: 0;
+                width: 250px;
+            }
+        }
+    }
+
+    // Instead of stacking, keep checkbox on left edge
+    .form__group.form-checkbox,
+    .form__group.form-radio {
+        position: relative;
+
+        > .control__label {
+            min-width: 300px;
+            padding-left: 30px;
+            width: 300px;
+        }
+
+        .controls {
+            left: 0;
+            min-width: 20px;
+            position: absolute;
+            top: 1px;
+            width: 20px;
+        }
+    }
+
+    .form-checkbox,
+    .form-radio {
+        margin-bottom: 12px;
+
+        > .control__label {
+            padding-top: 0;
+        }
+
+        .checkbox,
+        .radio {
+            top: 0;
+        }
+    }
+
+    .form-choice > .controls {
+        margin-top: 0;
+    }
+
+    .form-choice > .controls > .control__label {
+        width: 100%;
+    }
+}
+
+/**
+ * Sticky sidebar
+ */
+
+@include respond-min($screen-medium) {
+    .tab__inner.is-sticky {
+        min-height: 100vh;
+        padding-bottom: 0;
+        margin-bottom: (-$footer-height);
+
+        .tab__content {
+            left: calc(370px + 1%);
+            position: relative;
+        }
+
+        .tab__settings {
+            -webkit-overflow-scrolling: touch;
+            max-width: 370px;
+            max-height: calc(100% - #{$footer-height});
+            overflow-y: auto;
+            position: fixed;
+            top: 0;
+        }
+    }
+}

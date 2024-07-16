@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: auto;
+}
+
+body {
+  background-color: color(background, backdrop);
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  margin: 0 0 ($line-height-base * 2);
+  overflow-x: hidden;
+  padding: 0;
+}
+
+.container {
+  clear: both;
+  display: table;
+  height: 100%;
+  // Allow any content to clear the fixed footer
+  margin: 0;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+
+  @include respond-min($screen-small) {
+    padding: 0 0 $footer-height;
+  }
+
+  @include ie-lte(8) {
+    overflow: visible;
+  }
+}
+
+// Links
+a {
+  color: color(link);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  &:hover {
+    color: color(link, hover);
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus {
+    @include pulsar-link-focused;
+  }
+
+  &.is-disabled,
+  &.disabled {
+    color: color(link, disabled);
+    cursor: not-allowed;
+  }
+}
+
+.skip-link {
+  background-color: color(white);
+  position: absolute;
+  left: -9999px;
+  padding: 10px;
+  text-align: left;
+  top: -9999px;
+  z-index: $zindex-popover;
+
+  &:focus {
+    display: block;
+    left: 0;
+    position: relative;
+    text-decoration: underline;
+    top: 0;
+    width: 100%;
+  }
+}

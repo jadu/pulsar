@@ -1,0 +1,108 @@
+---
+id: accordion
+title: Accordion
+sidebar_label: Accordion
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Show and hide sections of content.
+
+<div className="d-example">
+    <div id="accordionGroup" className="accordion">
+        <div className="accordion__panel">
+            <button type="button" aria-expanded="true" className="accordion__trigger" aria-controls="sect1" id="accordion1id" title="expand"></button>
+            <h2 className="accordion__title" id="accordion1title">Section One</h2>
+            <div id="sect1" role="region" aria-labelledby="accordion1title" className="accordion__content">
+                Content One
+            </div>
+        </div>
+        <div className="accordion__panel">
+            <button type="button" className="accordion__trigger" aria-controls="sect2" id="accordion2id"></button>
+            <h2 className="accordion__title" id="accordion2title">Section Two</h2>
+            <div id="sect2" role="region" aria-labelledby="accordion2title" className="accordion__content">
+                Content Two
+            </div>
+        </div>
+        <div className="accordion__panel">
+            <button type="button" className="accordion__trigger" aria-controls="sect3" id="accordion3id"></button>
+            <h2 className="accordion__title" id="accordion3title">Section Three</h2>
+            <div id="sect3" role="region" aria-labelledby="accordion3title" className="accordion__content">
+                Content Three
+            </div>
+        </div>
+    </div>
+</div>
+
+## Basic usage
+
+<Tabs
+  groupID="example"
+  defaultValue="html"
+  values={[
+    { label: 'HTML', value: 'html', },
+  ]
+}>
+<TabItem value="html">
+
+```html
+<div id="accordionGroup" className="accordion">
+    <div className="accordion__panel">
+        <button type="button" aria-expanded="true" className="accordion__trigger" aria-controls="sect1" id="accordion1id" title="expand"></button>
+        <h2 className="accordion__title" id="accordion1title">Section One</h2>
+        <div id="sect1" role="region" aria-labelledby="accordion1title" className="accordion__content">
+            Content One
+        </div>
+    </div>
+    <div className="accordion__panel">
+        <button type="button" className="accordion__trigger" aria-controls="sect2" id="accordion2id"></button>
+        <h2 className="accordion__title" id="accordion2title">Section Two</h2>
+        <div id="sect2" role="region" aria-labelledby="accordion2title" className="accordion__content">
+            Content Two
+        </div>
+    </div>
+    <div className="accordion__panel">
+        <button type="button" className="accordion__trigger" aria-controls="sect3" id="accordion3id"></button>
+        <h2 className="accordion__title" id="accordion3title">Section Three</h2>
+        <div id="sect3" role="region" aria-labelledby="accordion3title" className="accordion__content">
+            Content Three
+        </div>
+    </div>
+</div>
+```
+
+</TabItem>
+</Tabs>
+
+## Style variations
+
+### Bordered
+
+`.accordion--bordered`
+
+<div className="d-example">
+  <div id="accordionGroup" className="accordion accordion--bordered">
+      <div className="accordion__panel">
+          <button type="button" aria-expanded="true" className="accordion__trigger" aria-controls="sect4" id="accordion4id" title="expand"></button>
+          <h2 className="accordion__title" id="accordion1title">Section One</h2>
+          <div id="sect4" role="region" aria-labelledby="accordion4title" className="accordion__content">
+              <p>Content One</p>
+          </div>
+      </div>
+      <div className="accordion__panel">
+          <button type="button" className="accordion__trigger" aria-controls="sect5" id="accordion5id"></button>
+          <h2 className="accordion__title" id="accordion5title">Section Two</h2>
+          <div id="sect5" role="region" aria-labelledby="accordion5title" className="accordion__content">
+              <p>Content Two</p>
+          </div>
+      </div>
+      <div className="accordion__panel">
+          <button type="button" className="accordion__trigger" aria-controls="sect6" id="accordion6id"></button>
+          <h2 className="accordion__title" id="accordion6title">Section Three</h2>
+          <div id="sect6" role="region" aria-labelledby="accordion6title" className="accordion__content">
+              <p>Content Three</p>
+          </div>
+      </div>
+  </div>
+</div>

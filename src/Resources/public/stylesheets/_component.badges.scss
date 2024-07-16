@@ -1,0 +1,109 @@
+@import 'config.theme';
+
+// Base classes
+.badge,
+%badge {
+    @include inline-block;
+    background-color: $badge-bg;
+    border-radius: 10px;
+    color: color(text) !important;
+    font-size: $font-size-medium;
+    line-height: 1;
+    min-width: 25px;
+    padding: 3px 8px 1px 7px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+
+    @include ie-lte(7) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    // Empty labels/badges collapse
+    &:empty {
+        display: none;
+    }
+}
+
+// Inside labels
+.label {
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        @if $state != 'base' {
+            &.label--#{'' + $state} .badge {
+                background-color: $state-color !important;
+                color: pick_best_color($state-color, (#fff, color(text))) !important;
+            }
+        }
+    }
+
+    .badge {
+        color: color(white) !important;
+        font-size: 12px;
+        margin-bottom: -1px;
+        margin-top: -1px;
+        min-width: 20px;
+        padding-bottom: 1px;
+        padding-top: 1px;
+    }
+}
+
+// Hover state, but only for links
+a.badge {
+    &:hover,
+    &:focus {
+        color: $badge-link-hover-color;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
+
+// Account for counters in navs
+a.list-group-item.active > .badge,
+.nav-pills > .active > a > .badge {
+    color: $badge-active-color;
+    background-color: $badge-active-bg;
+}
+
+.nav-pills > li > a > .badge {
+    margin-left: 3px;
+}
+
+// Variations
+@each $state, $state-color, $state-color-alt in $state-colors {
+    @if $state != 'base' {
+        .badge--#{'' + $state},
+        %badge--#{'' + $state} {
+            background-color: $state-color;
+            color: pick_best_color($state-color, (#fff, color(text))) !important;
+
+            &.badge--outline {
+                border-color: $state-color;
+                color: $state-color !important;
+            }
+        }
+    }
+}
+
+.badge--round {
+    border-radius: 99px;
+    line-height: 1.25;
+}
+
+.badge--outline {
+    background-color: inherit;
+    border: 1px solid;
+
+    // Base warning colour does not meet AA when used as outline button, so
+    // we use the darker shade
+    &.badge--warning {
+        border-color: color(warning, dark);
+        color: color(warning, dark) !important;
+    }
+}
+
+.btn__group.dropdown {
+    span.badge {
+        margin: 0 5px;
+    }
+}

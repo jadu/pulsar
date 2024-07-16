@@ -240,6 +240,18 @@ module.exports = function(grunt) {
                     ],
                     dest: 'dist/'
                 }]
+            },
+            symfony: {
+                files: [{
+                    expand: true,
+                    cwd: '',
+                    src: [
+                        'fonts/**/*',
+                        'images/**/*',
+                        'stylesheets/**/*'
+                    ],
+                    dest: 'Resources/public/'
+                }]
             }
         },
 

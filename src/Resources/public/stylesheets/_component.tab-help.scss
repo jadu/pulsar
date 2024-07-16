@@ -1,0 +1,87 @@
+$nav-color-light: color(jadu-blue) !default;
+$nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
+
+.tab-help-container {
+    backface-visibility: hidden;
+    background: $nav-color-dark;
+    box-shadow: inset 4px 0 0 darken($nav-color-dark, 5%);
+    color: color(white);
+    display: table-cell;
+    height: 100%;
+    right: -600px;
+    position: absolute;
+    top: 0;
+    transform: translate3d(-100%, 0, 0);
+    vertical-align: top;
+    width: 300px;
+
+    .lt-ie10 & {
+        right: -300px;
+    }
+
+    .open-help & {
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        right: -300px;
+    }
+}
+
+// hide help button on mobile when no JS
+
+.tab-help {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    padding: 40px 20px 20px;
+    opacity: .7;
+    transition-delay: ease, 0s;
+    transform-origin: 50% 0%;
+    transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
+    transition: opacity 300ms 100ms ease, transform 400ms ease;
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
+
+    .open-help & {
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .heading {
+        margin-top: 10px;
+    }
+
+    a {
+        color: color(white);
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.show-page-help {
+    margin-bottom: $margin-large-vertical;
+
+    @include respond-min($screen-desktop) {
+        display: none;
+    }
+}
+
+.close-page-help {
+    background-color: transparent;
+    border: 0;
+    color: color(white);
+    font-size: $font-size-xlarge;
+    line-height: $font-size-xlarge;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 5px;
+    text-decoration: none;
+    top: 10px;
+
+    &:focus {
+        @include pulsar-button-focused;
+    }
+}

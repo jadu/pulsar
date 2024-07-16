@@ -1,0 +1,129 @@
+.main-search {
+    border: 1px solid $input-border;
+    border-radius: $border-radius;
+    display: block;
+    flex: 1 1 100%;
+    flex-grow: 1;
+    height: 38px;
+    margin-bottom: 12px;
+    position: relative;
+
+    @include respond-min($screen-tablet) {
+        flex-grow: 0;
+        max-width: 180px;
+    }
+}
+
+// Set margin and position of loading spinner when directly adjacent to the search button
+.main-search .loading {
+    height: 15px;
+    position: absolute;
+    right: -19px; // 15px width + 4px margin
+    top: 7px;
+    width: 15px;
+
+    @include respond-min($screen-tablet) {
+        height: 20px;
+        right: -30px;
+        width: 20px;
+    }
+}
+
+// Set size of loading spinner at viewpoints
+.main-search .loading i {
+    height: 15px;
+    width: 14px; // balance out the circle spinner
+
+    @include respond-min($screen-tablet) {
+        height: 20px;
+        width: 20px;
+    }
+}
+
+input.main-search__field {
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    box-sizing: border-box;
+    color: #555;
+    display: block;
+    height: 38px;
+    padding: 8.5px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+        width: 180px;
+    }
+
+    &::-webkit-input-placeholder {
+        color: #555;
+    }
+
+    &:focus {
+        @include pulsar-input-focused;
+    }
+}
+
+input.main-search__field::-ms-clear {
+    display: none;
+}
+
+.main-search__submit {
+    background: none;
+    border: 0;
+    color: #555;
+    padding: 1px 8px 0;
+    position: absolute;
+    right: 0;
+    top: 8px;
+    z-index: 3;
+
+    @include respond-min($screen-tablet) {
+        left: 149px; // magic number to accommodate focus style
+        right: auto;
+    }
+
+    &:focus {
+        @include pulsar-link-focused;
+        border-top-right-radius: $border-radius;
+    }
+}
+
+.main-search__extras {
+    background-color: #eee;
+    display: block;
+    font-size: 14px;
+    padding: 5px 12px;
+    text-align: left;
+    text-transform: lowercase;
+    vertical-align: baseline;
+    white-space: nowrap;
+
+    @include respond-min($screen-tablet) {
+        border-bottom-right-radius: 4px;
+        border-left: 1px solid #ccc;
+        border-top-right-radius: 4px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .js & {
+        display: none;
+    }
+
+    &.main-search__extras--show {
+        display: block;
+
+        @include respond-min($screen-tablet) {
+            display: inline-block;
+        }
+    }
+}
+
+.main-search__checkbox,
+.main-search__filter-label {
+    vertical-align: middle;
+}

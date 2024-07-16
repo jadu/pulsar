@@ -1,0 +1,126 @@
+// Variant constructor
+@mixin button-variant($state) {
+    background-color: color($state);
+    color: color($state, alt);
+
+    &:hover {
+        background-color: darken(color($state), 10);
+        color: color($state, alt);
+    }
+
+    &:disabled,
+    &.disabled,
+    &.is-disabled {
+        color: color($state, alt);
+    }
+
+    &.btn--naked {
+        color: color($state, dark);
+    }
+}
+
+// Button Constructor
+%btn {
+    @include button-variant('base');
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: normal;
+    padding: $padding-large-vertical $padding-large-vertical ($padding-large-vertical - 1);
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+// Base buttons
+.btn {
+    @extend %btn;
+    border: 0;
+
+    &:focus,
+    &:focus:hover {
+        @include pulsar-button-focused;
+    }
+
+    &:disabled,
+    &.disabled,
+    &.is-disabled {
+        opacity: .5;
+        pointer-events: none;
+    }
+
+    .icon,
+    [class*=icon-] {
+        font-size: 14px;
+    }
+}
+
+// State variations
+@each $state, $state-color, $state-color-alt in $state-colors {
+    @if $state != 'base' {
+        .btn--#{'' + $state} {
+            @include button-variant($state);
+        }
+    }
+}
+
+// Outline button styles
+.btn--outline {
+    background: none;
+    border: 1px solid color(base, alt);
+    color: color(base, alt);
+    padding-bottom: $padding-large-vertical - 2;
+    padding-top: $padding-large-vertical - 1;
+
+    // Double chain focus states to stop outline state variation overriding background colour
+    &.btn--outline:focus,
+    &.btn--outline:hover:focus {
+        @include pulsar-button-focused;
+        border-color: color(black);
+        box-shadow: 0 0 0 1px color(black);
+    }
+
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        @if $state != 'base' {
+            &.btn--#{'' + $state} {
+                border-color: $state-color;
+                color: color($state, dark);
+
+                &:hover {
+                    background-color: $state-color;
+                    color: $state-color-alt;
+                }
+
+                &:disabled,
+                &.disabled,
+                &.is-disabled {
+                    color: color($state, dark);
+                }
+            }
+        }
+    }
+}
+
+// Naked button styles
+.btn--naked {
+    background: none;
+    border: 0;
+
+    &:hover {
+        background: none;
+    }
+}
+
+// Small buttons
+.btn--small {
+    font-size: $font-size-medium;
+    padding: $padding-small-vertical $padding-small-vertical ($padding-small-vertical - 1);
+
+    &.btn--outline {
+        padding: ($padding-small-vertical - 1) $padding-small-vertical ($padding-small-vertical - 2);
+    }
+}

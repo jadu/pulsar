@@ -1,0 +1,40 @@
+.nav-item {
+    @include user-select(none);
+    display: inline-block;
+    position: relative;
+    font-size: 1.1em;
+    height: $toolbar-height;
+
+  @include respond-max($screen-phone) {
+    display: none;
+  }
+
+    > a {
+        color: $toolbar-link-color;
+        cursor: pointer;
+        display: table-cell;
+        height: $toolbar-internal-height;
+        width: 100%;
+        padding: 0 $gutter-width;
+        text-decoration: none;
+        vertical-align: middle;
+
+        &:hover {
+            background: $toolbar-bg-hover;
+            color: $toolbar-link-color-hover;
+        }
+    }
+
+    &.open > a {
+        background: $accent-color;
+        color: $accent-color-alt;
+        border-bottom: 3px solid $primary;
+    }
+}
+
+.subnav-container {
+    @extend .dropdown__menu;
+    // @extend .inverse;
+    top: 0;
+    left: 160px;
+}

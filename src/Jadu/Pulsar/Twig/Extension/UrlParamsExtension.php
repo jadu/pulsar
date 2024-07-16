@@ -1,6 +1,8 @@
 <?php
 
 namespace Jadu\Pulsar\Twig\Extension;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
 /**
  * Url Parameters
@@ -10,7 +12,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  *
  * Unit tests: tests/unit/UrlParamsExtensionTest.php
  */
-class UrlParamsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class UrlParamsExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * Query string parameters
@@ -28,7 +30,7 @@ class UrlParamsExtension extends \Twig_Extension implements \Twig_Extension_Glob
         return 'url_params_extension';
     }
 
-    public function getGlobals()
+    public function getGlobals() :array
     {
         return array(
             'active_tab' => $this->getActiveTab(),

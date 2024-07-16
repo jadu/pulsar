@@ -15,10 +15,10 @@ use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
 
-$loader = new Twig_Loader_Filesystem($templateDir);
+$loader = new \Twig\Loader\FilesystemLoader($templateDir);
 $loader->addPath($templateDir, 'pulsar');
 
-$twig = new Twig_Environment($loader,
+$twig = new \Twig\Environment($loader,
 	array(
 		'debug' => true,
 		'strict_variables' => true
@@ -34,12 +34,12 @@ $twig->addExtension(new GetConstantExtension());
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
-$twig->addExtension(new Twig_Extension_Debug());
+$twig->addExtension(new \Twig\Extension\DebugExtension());
 
 if (strstr($_SERVER['PATH_INFO'], '.html.twig')) {
-    $template = $twig->loadTemplate($_SERVER['PATH_INFO']);
+    $template = $twig->load($_SERVER['PATH_INFO']);
 } else {
-    $template = $twig->loadTemplate($_SERVER['PATH_INFO'] . '/index.html.twig');
+    $template = $twig->load($_SERVER['PATH_INFO'] . '/index.html.twig');
 }
 
 // Show deprecations

@@ -1,0 +1,135 @@
+.tab-panel {
+
+
+	// Reset default tab layout styling
+	.tabs__list {
+		> li,
+		> li > a {
+			background-color: none;
+			border: 0;
+			box-shadow: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		> li > a > i {
+			opacity: 1;
+		}
+	}
+
+	.tabs__content {
+		display: block;
+		padding: 0;
+		top: 0;
+	}
+
+	$width: 500px;
+
+	.tabs__list {
+		margin-bottom: 0;
+
+		> li {
+			vertical-align: top;
+		}
+
+		> li > a {
+			display: block;
+			color: black;
+			line-height: 1em;
+			padding: .5em 5px;
+			text-align: center;
+			text-decoration: none;
+			white-space: normal;
+
+			@include respond-min($screen-desktop) {
+				padding: .5em 2px .5em 15px;
+				text-align: left;
+			}
+
+		}
+
+		> li > a > i {
+			width: 1em;
+		}
+
+		[class^="icon-"],
+		[class*=" icon-"] {
+			display: none;
+
+			@include respond-min($screen-desktop) {
+				display: inline-block;
+			}
+		}
+	}
+
+	.tabs__list--horizontal {
+		display: table;
+		width: $width;
+
+		> li {
+			display: table-cell;
+		}
+	}
+
+	.tabs__list--horizontal {
+		display: table;
+		table-layout: fixed;
+	    width: $width;
+
+	    &.tabs__list--full {
+	        min-width: 100%;
+	        width: 100%;
+
+	        + .tabs__content {
+	        	clear: both;
+	        }
+	    }
+
+		> li {
+			display: table-cell;
+		}
+
+	}
+
+}
+
+
+.tab-panel--contrast {
+
+	> .tabs__list > li {
+		background-color: color(gray, lightest);
+
+        &:first-of-type {
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+        }
+
+        &:last-of-type {
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+
+		&:hover {
+			background-color: color(gray, lighter);
+		}
+
+		&.is-active {
+			background-color: color(primary);
+
+			> a {
+				background-color: inherit;
+				color: color(white);
+			}
+		}
+	}
+
+	> .tabs__list > li:not(:last-of-type) {
+		border-right: 2px solid color(white);
+	}
+
+	.tab__pane {
+		background-color: color(gray, lightest);
+		margin-top: 2px;
+		padding: 1em $gutter-width .1em;
+	}
+}

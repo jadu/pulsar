@@ -1,0 +1,340 @@
+@mixin baseline-grid {
+    $columns: 16;
+    // $column-color: rgba(200,0,0,.2);
+    $column-color: transparent;
+    $baseline-color: rgba(0, 0, 0, .2);
+
+    // These are all automatically calculated
+    $gutters: ($columns - 1);
+    $column-width: 200px;
+
+    background-image: -webkit-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
+                      -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
+    background-image: -moz-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
+                      -moz-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
+    background-image: -o-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
+                      -o-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
+    background-size: ($column-width + $gutter-width) 100%, 100% $line-height-base;
+    background-position: $gutter-width -5px; // Use to offset and center your grid
+}
+
+@mixin highlight-row($color) {
+    > td::before {
+        box-shadow: inset 4px 0 0 $color;
+    }
+
+    @include respond-min($screen-tablet) {
+        > td:first-of-type {
+            box-shadow: inset 4px 0 0 $color;
+        }
+    }
+
+    @include ie-lte(7) {
+        border-left: 4px solid $color !important;
+    }
+}
+
+
+// Text overflow
+// Requires inline-block or block for proper styling
+@mixin text-overflow() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin word-break-all() {
+    // Warning: Needed for oldIE support, but words are broken up letter-by-letter
+    word-break: break-all;
+
+    // Non standard for webkit
+    word-break: break-word;
+
+    // Fancy locale-aware hyphenation
+    hyphens: auto;
+}
+
+// Single side border-radius
+@mixin border-top-radius($radius) {
+    border-top-right-radius: $radius;
+    border-top-left-radius: $radius;
+}
+
+@mixin border-right-radius($radius) {
+    border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin border-bottom-radius($radius) {
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+
+@mixin border-left-radius($radius) {
+    border-bottom-left-radius: $radius;
+    border-top-left-radius: $radius;
+}
+
+// Webkit-style focus
+@mixin tab-focus() {
+    // Default
+    outline: thin dotted #333;
+    // Webkit
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+// Placeholder text
+@mixin placeholder($color: $input-color-placeholder) {
+    &::-moz-placeholder { // Firefox 19+
+        color: $color;
+        opacity: 1;
+    }
+
+    &:-ms-input-placeholder { // Internet Explorer 10+
+        color: $color;
+    }
+
+    &::-webkit-input-placeholder { // Safari and Chrome
+        color: $color;
+    }
+}
+
+// Form group validation states
+//
+// Used in _component.forms.scss to generate the form__group validation CSS for warnings, errors,
+// and successes.
+
+@mixin form__group-validation($text-color: #555, $border-color: #ccc, $background-color: #f5f5f5) {
+
+    // Color the label and help text
+    .help-block,
+    > .control__label {
+        color: $text-color;
+    }
+
+    .help-block.is-error {
+        font-family: $font-family-regular;
+    }
+
+    .help-block.is-error + .help-block:not(.is-error) {
+        color: color(text, help);
+        font-family: $font-family-base;
+    }
+
+    // Set the border and box shadow on specific inputs to match
+    .form__control {
+        background-color: $background-color;
+        border-color: $border-color;
+
+        &:focus {
+            @include pulsar-input-focused;
+        }
+
+        &::-webkit-input-placeholder { /* Webkit */
+            color: $text-color;
+        }
+
+        &:-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: $text-color;
+        }
+
+        &::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: $text-color;
+            opacity: 1;
+        }
+    }
+
+    .form__control.checkbox {
+        &:focus {
+            @include pulsar-checkbox-focused;
+        }
+    }
+
+    .form__control.radio {
+        &:focus {
+            @include pulsar-radio-focused;
+            border-radius: $border-radius-large; // Re-add border radius due to use of .not() in state styles
+        }
+    }
+
+    .form__control.select {
+        background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, darken($background-color, 10%), darken($background-color, 10%));
+
+        @include ie-lte(9) {
+            background-image: none;
+        }
+    }
+
+    // Set validation states also for addons
+    .input-group-addon {
+        color: $text-color;
+        background-color: $background-color;
+        border-color: $border-color;
+    }
+
+    .select2-selection {
+        background-color: $background-color;
+        background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, darken($background-color, 10%), darken($background-color, 10%));
+        border-color: $border-color;
+
+        .select2-selection__placeholder {
+            color: $text-color;
+        }
+
+        &.select2-selection--multiple .select2-search__field {
+            @include placeholder($text-color);
+        }
+    }
+}
+
+// Form group partial validation states
+//
+// Used in _component.forms.scss to generate partial form__group state styling. Child form__controls are not styled
+// and rely on them using there own state classes
+
+@mixin form__group-partial-validation($text-color: #555, $border-color: #ccc) {
+
+    // Color the label and help text
+    .help-block,
+    .control__label {
+        color: $text-color;
+    }
+
+    .help-block.is-error {
+        font-family: $font-family-regular;
+    }
+
+    // For backwards compatibility, a help block on it's own needs to match the
+    // state text colour for now (21/4/2016), but if it's a sibling of an error
+    // help block, then a standalone help block should be gray
+    .help-block.is-error + .help-block:not(.is-error) {
+        color: color(text, help);
+        font-family: $font-family-base;
+    }
+
+    // Set validation states also for addons
+    .select2-selection {
+        border-color: $border-color;
+    }
+}
+
+// Form control validation states
+//
+// Used in _component.forms.scss to generate the form__control validation CSS for warnings, errors,
+// and successes. Used when state styling needs applied directly to a form__control when it may not be within a form__group
+
+@mixin form__control-validation($text-color: #555, $border-color: #ccc, $background-color: #f5f5f5) {
+
+    // Set the border and box shadow on specific inputs to match
+    background-color: $background-color;
+    border-color: $border-color;
+
+    &::-webkit-input-placeholder { /* Webkit */
+        color: lighten($text-color, 20%);
+    }
+
+    &:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: lighten($text-color, 20%);
+    }
+
+    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: lighten($text-color, 20%);
+        opacity: 1;
+    }
+}
+
+// Form control focus state
+//
+// Generate a customized focus state and for any input with the specified color,
+// which defaults to the `$input-focus-border` variable.
+//
+// We highly encourage you to not customize the default value, but instead use
+// this to tweak colors on an as-needed basis. This aesthetic change is based on
+// WebKit's default styles, but applicable to a wider range of browsers. Its
+// usability and accessibility should be taken into account with any change.
+//
+// Example usage: change the default blue border and shadow to white for better
+// contrast against a dark gray background.
+
+@mixin form__control-focus($color: $input-border-focus) {
+    $color-rgba: rgba(red($color), green($color), blue($color), .6);
+
+    &:focus {
+        border-color: $color;
+        outline: 0;
+        box-shadow: "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #{$color-rgba}";
+    }
+}
+
+// Opacity
+@mixin opacity($opacity) {
+    @include ie-lte(8) {
+        $opacity-ie: ($opacity * 100);
+        filter: alpha(opacity=#{$opacity-ie});
+    }
+
+    @if ($is-ie == true and $ie-version > 8) or ($is-ie == false) {
+        opacity: $opacity;
+    }
+}
+
+// User select
+@mixin user-select($value: inherit) {
+    -webkit-touch-callout: $value;
+    -webkit-user-select: $value;
+    -khtml-user-select: $value;
+    -moz-user-select: $value;
+    -ms-user-select: $value;
+    user-select: $value;
+}
+
+// Add percentage of white to a color
+@function tint($color, $percent) {
+    @return mix(white, $color, $percent);
+}
+
+// Add percentage of black to a color
+@function shade($color, $percent) {
+    @return mix(black, $color, $percent);
+}
+
+// Usage:
+//
+//   div.columns {
+//     border: 1px solid;
+//
+//     @include ie-lte(8) {
+//       something to fix visual bugs in old IE
+//     }
+//     @include ie(6) {
+//       padding: 0;
+//     }
+//   }
+
+$is-ie: false !default;
+
+@mixin ie-lte($version) {
+    @if $is-ie {
+        @if $ie-version <= $version {
+            @content;
+        }
+    }
+}
+
+@mixin ie($version) {
+    @if $is-ie {
+        @if $ie-version == $version {
+            @content;
+        }
+    }
+}
+
+@mixin cursor($cursor) {
+    @if $cursor == 'grab' {
+        cursor: move; /* fallback if grab cursor is unsupported */
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+    }
+}

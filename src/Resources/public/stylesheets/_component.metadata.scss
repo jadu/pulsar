@@ -1,0 +1,33 @@
+.metadata {
+    margin-bottom: 0;
+    width: 100%;
+
+    &__key,
+    &__value {
+        display: block;
+        padding-bottom: $padding-small-vertical;
+        padding-top: $padding-small-vertical;
+        vertical-align: top;
+        word-break: break-word;
+
+        @include respond-min($screen-phone) {
+            display: inline-block;
+        }
+    }
+
+    &__key {
+        @include respond-min($screen-phone) {
+            padding-right: 2%;
+            width: 23%;
+        }
+    }
+
+    &__value {
+        margin-left: 0;
+
+        @include respond-min($screen-phone) {
+            width: 75%;
+        }
+    }
+}
+

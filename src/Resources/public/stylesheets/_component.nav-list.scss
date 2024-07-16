@@ -1,0 +1,42 @@
+.nav-list {
+	display: none;
+	list-style-type: none;
+	margin: 0 20px;
+
+	.is-open & {
+		margin-top: 0;
+		margin-bottom: 24px;
+	}
+
+	&.is-active {
+		display: block;
+	}
+}
+
+.nav-item--header {
+	border-bottom: 1px solid color(white);
+	color: color(white);
+	display: block;
+	font-family: $font-family-heading-light;
+	font-size: 1.2em;
+	margin-bottom: 24px;
+
+	&:not(:first-of-type) {
+		margin-top: $line-height-base;
+	}
+}
+
+.nav-link {
+	color: color(white);
+	cursor: pointer;
+	display: block;
+	line-height: 1.5em;
+	padding: 6px;
+	text-decoration: none;
+	width: 100%;
+
+	&:hover,
+	.is-active & {
+		color: color(white);
+	}
+}

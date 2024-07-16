@@ -1,0 +1,595 @@
+.nav-main {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    backface-visibility: hidden;
+    display: table-cell;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate3d(-100%, 0, 0);
+    vertical-align: top;
+    width: $nav-primary-width;
+    z-index: $zindex-nav;
+
+    @include respond-min($screen-desktop) {
+        left: auto;
+        position: static;
+        -webkit-transform: none;
+        transform: none;
+        -webkit-backface-visibility: visible;
+        backface-visibility: visible;
+        width: $nav-primary-width - 1;
+    }
+
+    .lt-ie10 & {
+        left: -($nav-primary-width);
+    }
+}
+
+.nav-primary,
+.nav-secondary,
+.nav-tertiary,
+.nav-quaternary {
+    display: inline-block;
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    position: relative;
+    vertical-align: top;
+}
+
+.nav-inline {
+    background-color: color(white);
+    border-bottom: 1px solid color(gray, light);
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: auto;
+
+    @include ie-lte(9) {
+        height: 49px;
+    }
+
+    &__list {
+        display: inline-block;
+        list-style: none;
+        margin: 0 0 0 $gutter-width;
+        min-width: calc(100% - #{$gutter-width});
+    }
+
+    &__item {
+        display: inline-block;
+        font-size: 1.1em;
+        margin-right: $padding-small-horizontal;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+
+        &:hover {
+            background-color: color(grey, off-white);
+        }
+    }
+
+    &__item.is-active {
+        box-shadow: inset 0 -4px 0 0 $nav-color-light;
+    }
+
+    &__item.is-active > &__link {
+        color: color(black);
+        font-family: $font-family-regular;
+    }
+
+    &__link {
+        display: inline-block;
+        color: color(gray, light);
+        line-height: 46px;
+        padding: 0 $gutter-width;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:link,
+        &:visited {
+            color: color(black);
+
+            .caret {
+                border-top-color: color(black);
+            }
+        }
+
+        &:focus {
+            @include pulsar-inline-nav-link-focused;
+        }
+
+        &.is-disabled {
+            color: color(text, disabled);
+        }
+
+        .caret {
+            border-top-color: color(gray, light);
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #efefef;
+        border-radius: 50px !important;
+    }
+
+    &::-webkit-scrollbar {
+        height: 6px;
+        background-color: #efefef;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 50px !important;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    .popover {
+        font-size: 14px;
+        padding: 5px 0;
+        margin: 0;
+        list-style: none;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border: 1px solid rgba(0, 0, 0, .15);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        background-clip: padding-box;
+        min-width: 160px;
+
+        .arrow {
+            display: none;
+        }
+
+        a {
+            display: block;
+            padding: 3px 15px 3px 10px;
+            clear: both;
+            font-weight: normal;
+            line-height: 24px;
+            color: #4d4d4d;
+            white-space: nowrap;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #1f7bb8;
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .popover-content {
+        padding: 0;
+
+        ul {
+            list-style: none;
+        }
+    }
+
+}
+
+.mobile-menu-button {
+    background-color: color(white);
+    border: 1px solid $nav-color-dark;
+    border-radius: $border-radius;
+    color: $nav-color-dark;
+    display: inline-block;
+    height: 38px;
+    line-height: normal;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    padding: 6px 14px;
+    text-decoration: none;
+
+    @include respond-min($screen-desktop) {
+        display: none;
+    }
+
+    &:hover,
+    &.open {
+        background: $nav-color-dark;
+        color: color(white);
+    }
+
+    &:focus {
+        border-width: 1px;
+    }
+}
+
+.nav-items {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    list-style-type: none;
+    font-family: $font-family-regular;
+}
+
+.nav-divider {
+    border-color: rgba(255, 255, 255, .2);
+    margin: 5px 0;
+}
+
+.nav-link {
+    color: color(white);
+    text-decoration: none;
+}
+
+.nav-primary {
+    background-color: #2f3248;
+    background-image: $background-gradient;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    box-shadow: inset (-$shadow-micro) 0 0 rgba(0, 0, 0, .2);
+    overflow-y: hidden;
+    text-align: center;
+    transition: box-shadow 100ms linear;
+    width: $nav-primary-width;
+    z-index: $zindex-nav;
+
+    @include respond-min($screen-desktop) {
+        position: fixed;
+    }
+
+    .is-open &::before {
+        background-image: none;
+    }
+
+    .is-active {
+        background-color: rgba(255, 255, 255, .2);
+    }
+
+    .nav-link {
+        background-color: transparent;
+        border: 0;
+        color: color(white);
+        display: block;
+        font-family: $font-family-regular;
+        font-size: .75em;
+        line-height: 1em;
+        max-width: $nav-primary-width;
+        min-height: 72px; // This is the optimal height for normal nav links with icon and one line text
+        min-width: $nav-primary-width;
+        padding: 16px 5px;
+        position: relative;
+        text-overflow: ellipsis;
+        transition: background-color 50ms linear, color 50ms linear, box-shadow 50ms linear, outline 50ms linear;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .2);
+            color: color(white);
+        }
+
+        &:focus {
+            @include pulsar-link-focused;
+
+            .nav-link__icon {
+                color: color(black);
+            }
+        }
+    }
+
+    .nav-link__icon {
+        color: color(white);
+        display: block;
+        font-size: 1.7em;
+        margin-bottom: 7px;
+        width: 100%;
+    }
+
+    .nav-link__image {
+        height: 18px;
+        margin-bottom: 7px;
+        width: 18px;
+    }
+
+    .nav-link__label {
+        display: block;
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+    .nav-items,
+    .jadu-branding {
+        -webkit-transform-origin: 50% 0%;
+        -webkit-transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
+        -webkit-transition-delay: ease, 0s;
+        -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
+        transform-origin: 50% 0%;
+        transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
+        transition: transform 500ms ease;
+
+        @include prefers-reduced-motion() {
+            transition: none;
+            transform: none;
+        }
+
+        @include respond-min($screen-desktop) {
+            -webkit-transform: none;
+            transform: none;
+            transition: all 0s ease 0s;
+            -webkit-transition: all 0s ease 0s;
+        }
+
+        .open-nav & {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+}
+
+.nav-secondary,
+.nav-tertiary,
+.nav-quaternary {
+    background-attachment: scroll;
+    background-color: #2f3248;
+    background-image: $background-gradient;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    box-shadow: $shadow-large 0 0 color(background, shadow);
+    left: $nav-primary-width;
+    margin-left: -320px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    transition: margin-left 100ms ease-in-out;
+    width: 245px;
+    z-index: $zindex-nav-secondary;
+
+    @include respond-min($screen-desktop) {
+        position: fixed;
+    }
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
+
+    // cope with presence of scrollbars in IE
+    @include ie-lte(10) {
+        width: 280px;
+    }
+
+    .nav-container {
+        display: none;
+    }
+
+    .nav-container.is-active {
+        display: block;
+        margin: 0 20px;
+    }
+
+    .nav-link {
+        background-color: transparent;
+        border: 0;
+        text-align: left;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .2);
+            color: color(white);
+        }
+
+        &:focus {
+            @include pulsar-link-focused;
+            position: relative;
+            z-index: $zindex-nav-secondary + 1;
+        }
+
+        &:active {
+            background-color: color(white);
+            box-shadow: none;
+            color: $nav-color-dark;
+            outline: none;
+        }
+    }
+}
+
+.nav-tertiary {
+    @include ie-lte(9) {
+        box-sizing: content-box;
+    }
+
+    .nav-link {
+        span {
+            margin-left: 10px;
+        }
+    }
+}
+
+.nav-quaternary {
+    background-color: $nav-color-darker;
+    left: $nav-primary-width + 3px; // Extra 3px for smooth overlapping style
+    margin-left: 242px;
+    transition: all 100ms linear;
+    width: 0;
+
+    @include prefers-reduced-motion() {
+        transition: none;
+    }
+}
+
+.nav-remove-search {
+    color: color(white);
+    display: inline-block;
+    margin-top: 6px;
+    opacity: 0;
+    text-decoration: none;
+    transition: opacity 50ms linear;
+    vertical-align: top;
+
+    &:hover {
+        color: color(white);
+    }
+}
+
+.nav-secondary.is-open,
+.nav-tertiary.is-open,
+.nav-quaternary.is-open {
+    margin-left: 0;
+}
+
+.nav-quaternary.is-open {
+    width: 242px;
+
+    @include ie-lte(9) {
+        box-sizing: content-box;
+        width: 277px;
+    }
+}
+
+.jadu-branding {
+    display: block;
+    padding: 0 0 10px;
+    text-decoration: none;
+
+    &.is-active {
+        background: none;
+    }
+
+    &:focus {
+        .jadu-logomark {
+            filter: grayscale(1);
+        }
+
+        .jadu-wordmark {
+            filter: invert(100);
+        }
+    }
+}
+
+.nav-search {
+    display: none;
+
+    @include respond-min($screen-tablet) {
+        clear: right;
+        display: block;
+        margin-left: 20px;
+        margin-top: 19px;
+        position: relative;
+    }
+}
+
+.nav-search__field {
+    background-color: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: $border-radius;
+    color: #555;
+    padding: 8.5px;
+    width: 192px;
+
+    &::-webkit-input-placeholder {
+        color: #555;
+    }
+}
+
+.nav-search__submit {
+    background: none;
+    border: 0;
+    color: #555;
+    position: absolute;
+    left: 180px;
+    top: 3px;
+}
+
+.nav-controls {
+    display: flex;
+}
+
+.nav-controls__close,
+.nav-controls__close-ltr {
+    appearance: none;
+    background: none;
+    border: 0;
+    border-bottom-left-radius: $border-radius;
+    color: color(white);
+    display: none;
+    margin-left: auto;
+    padding: 20px;
+    text-align: right;
+    text-decoration: none;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .2);
+    }
+
+    &:hover i::before,
+    &:focus i::before {
+        content: '\f0a8';
+    }
+
+    &:focus {
+        @include pulsar-link-focused;
+    }
+
+    .nav-secondary.is-open &,
+    .nav-tertiary.is-open &,
+    .nav-quaternary.is-open & {
+        display: block;
+    }
+}
+
+.nav-controls__close-ltr {
+    &:hover i::before,
+    &:focus i::before {
+        content: '';
+    }
+}
+
+.ui {
+    display: table;
+    height: 100%;
+}
+
+.main {
+    display: table-cell;
+}
+
+.jadu-logomark {
+    background: url($branding-navigation);
+    background-size: $branding-navigation-width $branding-navigation-height;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: $branding-navigation-height;
+    margin-top: 5px;
+    text-align: center;
+    width: $branding-navigation-width;
+
+    // Support transparent PNG background images in IE8
+    @include ie-lte(8) {
+        filter: progid:DXImageTransform.Microsoft.gradient(
+            startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
+        );
+    }
+
+    span {
+        color: color(white);
+    }
+}
+
+.jadu-wordmark {
+    background: url($branding-wordmark);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    filter: invert(0);
+    height: $branding-wordmark-height;
+    text-indent: -999px;
+}
+
+// IE8 fix for issue with open mobile nav being cut off
+.lt-ie9 .open-nav > .container {
+    display: table-cell;
+    height: 100%;
+}
