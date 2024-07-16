@@ -1,23 +1,23 @@
 {% macro addon(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
     {{- value -}}
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro caret(visible) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if visible is defined and visible != 0 and visible != null %}
         &nbsp;<span class="caret"></span>
     {% endif  %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro class(default, options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% set classes = [] %}
 
     {%
@@ -31,52 +31,54 @@
 
     class="{{ classes|join(' ')|trim }}"
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro checked(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         checked="{{ value }}"
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro data(attributes) %}
-{% spaceless %}
-    {% for key, value in attributes if value is not empty %}
-        {% if key == 'checked' %}
-            checked
-        {% else %}
-            data-{{ key }}="{{ value }}"
-        {% endif %}
-    {% endfor %}
-{% endspaceless %}
+{% apply spaceless %}
+    {% if value is not empty %}
+        {% for key, value in attributes %}
+            {% if key == 'checked' %}
+                checked
+            {% else %}
+                data-{{ key }}="{{ value }}"
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro for(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         for="{{ value }}"
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro form(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         form="{{ value }}"
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro href(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is null %}
         {% set href = '#missing-href-attribute' %}
     {% else %}
@@ -84,75 +86,75 @@
     {% endif %}
 
     href="{{ href }}"
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro id(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         id="{{ value }}"
     {% endif  %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro label(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         label="{{ value }}"
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro multiple(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         multiple="{{ value }}"
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro name(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         name="{{ value }}"
     {% endif  %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro placeholder(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         placeholder="{{ value }}"
     {% endif  %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro required(required) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if required %}
         &nbsp;<span aria-hidden="true" class="required-indicator" data-tippy-content="required">*</span>
     {% endif  %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro type(value) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if value is not empty %}
         type="{{ value }}"
     {% endif  %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro value(value) %}
-{% spaceless %}
+{% apply spaceless %}
     value="{{ value|default }}"
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
