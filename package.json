@@ -103,7 +103,7 @@
     "pulsar-date-picker": "^1.0.0",
     "select2": "github:jadu/selectWoo#jadu-1.1.5",
     "spectrum-colorpicker": "^1.8.1",
-    "timepicker": "^1.13.18",
+    "timepicker": "^1.14.1",
     "tippy.js": "^5.2.1"
   }
 }
