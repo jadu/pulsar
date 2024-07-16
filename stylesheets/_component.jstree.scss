@@ -10,7 +10,7 @@
 }
 
 .jstree-default {
-    background-color: color(gray, off-white);
+    background-color: var(--color-bg-surface-1);
     max-height: 450px;
     overflow: auto;
     padding: 20px 20px 0;
@@ -190,7 +190,7 @@
     color: black;
     white-space: nowrap;
     line-height: 2.4em;
-    text-shadow: 1px 1px 0 color(white);
+    text-shadow: 1px 1px 0 var(--color-white);
     border-radius: 1px;
 }
 
@@ -218,7 +218,7 @@
 
 .vakata-context .vakata-context-separator > a,
 .vakata-context .vakata-context-separator > a:hover {
-    background: white;
+    background: var(--color-white);
     border: 0;
     border-top: 1px solid #e2e3e3;
     height: 1px;
@@ -261,7 +261,7 @@
     display: inline-block;
     width: 1px;
     height: 2.4em;
-    background: color(white);
+    background: var(--color-white);
     margin: 0 .5em 0 0;
     border-left: 1px solid #e2e3e3;
 }
@@ -305,7 +305,7 @@
 
 .vakata-context-rtl li > a .vakata-contextmenu-sep {
     margin: 0 0 0 .5em;
-    border-left-color: color(white);
+    border-left-color: var(--color-white);
     background: #e2e3e3;
 }
 
@@ -1134,7 +1134,7 @@
 .jstree-default-responsive .jstree-anchor {
     font-weight: bold;
     font-size: 1.1em;
-    text-shadow: 1px 1px color(white);
+    text-shadow: 1px 1px var(--color-white);
 }
 
 .jstree-default-responsive > .jstree-striped {

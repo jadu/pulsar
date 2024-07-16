@@ -7,7 +7,7 @@
 
     [class^="icon-"],
     [class*=" icon-"] {
-        color: color(black);
+        color: var(--color-text-full);
         font-size: 1.2em;
         vertical-align: middle;
     }

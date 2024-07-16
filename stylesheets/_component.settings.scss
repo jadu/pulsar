@@ -1,5 +1,5 @@
 .settings {
-  background-color: #fff;
+  background-color: var(--color-bg-surface-0);
   display: block;
   width: 250px;
 }
@@ -89,7 +89,7 @@
 
 .setting__icon {
   > i::before {
-    color: color(gray);
+    color: var(--color-gray);
   }
 
   &.is-enabled > i::before {
