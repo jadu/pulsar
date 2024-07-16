@@ -19,7 +19,7 @@
         border-radius: $border-radius-small * 2;
         box-sizing: border-box;
         display: block;
-        margin-bottom: $gutter-width / 2;
+        margin-bottom: calc($gutter-width / 2);
         overflow-wrap: break-word;
         padding-bottom: 6px;
         padding-top: 7px;
@@ -92,7 +92,7 @@
 
         > .form__actions {
             border: 0;
-            margin-bottom: $gutter-width / 2;
+            margin-bottom: calc($gutter-width / 2);
             margin-top: 40px;
             min-height: 0;
             padding: 0;
@@ -106,7 +106,7 @@
 
             > .btn {
                 display: block;
-                margin-top: $gutter-width / 2;
+                margin-top: calc($gutter-width / 2);
                 width: 100%;
 
                 @include respond-min($screen-tablet) {
@@ -149,7 +149,7 @@
 
     @include respond-min($screen-tablet) {
         display: inline-block;
-        margin-bottom: $gutter-width / 2;
+        margin-bottom: calc($gutter-width / 2);
         width: auto;
     }
 }

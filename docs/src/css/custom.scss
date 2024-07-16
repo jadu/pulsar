@@ -27,6 +27,10 @@ $fa-css-prefix: 'icon';
 @import '/static/fonts/fontawesome-pro/scss/brands';
 @import '/static/fonts/fontawesome-pro/scss/v4-shims';
 
+@import '../../../stylesheets/palette.base';
+@import '../../../stylesheets/config.theme';
+@import '../../../stylesheets/vars.palette-base';
+
 // $font-path: '/static/fonts/';
 @font-face {
   font-family: 'proxima_novalight';
@@ -60,7 +64,6 @@ $fa-css-prefix: 'icon';
   font-style: normal;
 }
 
-
 .d-example,
 .d-example-inline,
 .d-guidelines {
@@ -91,8 +94,6 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/function.color';
 
     // Base colour palette
-    @import '../../../stylesheets/palette.base';
-    @import '../../../stylesheets/config.theme';
     @import '../../../stylesheets/deprecated.styles';
 
     // Structure
@@ -176,24 +177,43 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/utility.utilities';
     @import '../../../stylesheets/utility.grid';
 
+    .swatch__chip {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: inline-block;
+        height: 20px;
+        margin-right: 5px;
+        vertical-align: middle;
+        width: 20px;
+    }
+
     .swatch {
         @each $name, $palette in $colors {
             @each $variant, $value in $palette {
                 @if $variant != 'alt' {
                     &--#{'' + $name}-#{$variant} .swatch__chip {
                         background-color: color($name, $variant);
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                        display: inline-block;
-                        height: 20px;
-                        margin-right: 5px;
                         color: pick_best_color(color($name, $variant), (#fff, #000));
-                        vertical-align: middle;
-                        width: 20px;
                     }
                 }
             }
         }
+    }
+
+    .swatch--bg-surface-0 .swatch__chip {
+        background-color: var(--color-bg-surface-0);
+    }
+    
+    .swatch--bg-surface-1 .swatch__chip {
+        background-color: var(--color-bg-surface-1);
+    }
+    
+    .swatch--bg-surface-2 .swatch__chip {
+        background-color: var(--color-bg-surface-2);
+    }
+    
+    .swatch--bg-surface-3 .swatch__chip {
+        background-color: var(--color-bg-surface-3);
     }
 }
 

@@ -71,8 +71,8 @@
 // Outline button styles
 .btn--outline {
     background: none;
-    border: 1px solid color(base, alt);
-    color: color(base, alt);
+    border: 1px solid var(--color-base-alt);
+    color: var(--color-base-alt);
     padding-bottom: $padding-large-vertical - 2;
     padding-top: $padding-large-vertical - 1;
 
@@ -80,8 +80,8 @@
     &.btn--outline:focus,
     &.btn--outline:hover:focus {
         @include pulsar-button-focused;
-        border-color: color(black);
-        box-shadow: 0 0 0 1px color(black);
+        border-color: var(--color-black);
+        box-shadow: 0 0 0 1px var(--color-black);
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
