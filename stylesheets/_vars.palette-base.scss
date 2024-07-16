@@ -1,0 +1,143 @@
+@import 'palette.base';
+
+// scss-lint:disable SpaceAfterPropertyColon
+:root {
+    // FUNDAMENTALS
+    --color-white:               #{map-get(map-get($palette-monochromes, white), base)};
+    --color-black:               #{map-get(map-get($palette-monochromes, black), base)};
+
+    // MONOCHROMES
+    --color-gray-darker:         #{map-get(map-get($palette-monochromes, gray), darker)};
+    --color-gray-dark:           #{map-get(map-get($palette-monochromes, gray), dark)};
+    --color-gray-dull:           #{map-get(map-get($palette-monochromes, gray), dull)};
+    --color-gray:                #{map-get(map-get($palette-monochromes, gray), base)};
+    --color-gray-base:           #{map-get(map-get($palette-monochromes, gray), base)};
+    --color-gray-light:          #{map-get(map-get($palette-monochromes, gray), light)};
+    --color-gray-lighter:        #{map-get(map-get($palette-monochromes, gray), lighter)};
+    --color-gray-lightest:       #{map-get(map-get($palette-monochromes, gray), lightest)};
+    --color-gray-off-white:      #{map-get(map-get($palette-monochromes, gray), off-white)};
+
+    // BRANDING
+    --color-brand-purple:        #{map-get(map-get($palette-branding, jadu-purple), base)};
+    --color-brand-red:           #{map-get(map-get($palette-branding, jadu-red), base)};
+    --color-brand-blue:          #{map-get(map-get($palette-branding, jadu-blue), base)};
+    --color-brand-green:         #{map-get(map-get($palette-branding, jadu-green), base)};
+    --color-brand-teal:          #{map-get(map-get($palette-branding, jadu-teal), base)};
+    --color-brand-pink:          #{map-get(map-get($palette-branding, jadu-pink), base)};
+
+    // STATES
+    --color-base:                #{map-get(map-get($palette-states, base), base)};
+    --color-base-base:           #{map-get(map-get($palette-states, base), base)};
+    --color-base-alt:            #{map-get(map-get($palette-states, base), alt)};
+    --color-base-light:          #{map-get(map-get($palette-states, base), light)};
+    --color-base-dark:           #{map-get(map-get($palette-states, base), dark)};
+
+    --color-primary:             #{map-get(map-get($palette-states, primary), base)};
+    --color-primary-base:        #{map-get(map-get($palette-states, primary), base)};
+    --color-primary-alt:         #{map-get(map-get($palette-states, primary), alt)};
+    --color-primary-light:       #{map-get(map-get($palette-states, primary), light)};
+    --color-primary-dark:        #{map-get(map-get($palette-states, primary), dark)};
+
+    --color-success:             #{map-get(map-get($palette-states, success), base)};
+    --color-success-base:        #{map-get(map-get($palette-states, success), base)};
+    --color-success-alt:         #{map-get(map-get($palette-states, success), alt)};
+    --color-success-light:       #{map-get(map-get($palette-states, success), light)};
+    --color-success-dark:        #{map-get(map-get($palette-states, success), dark)};
+
+    --color-warning:             #{map-get(map-get($palette-states, warning), base)};
+    --color-warning-base:        #{map-get(map-get($palette-states, warning), base)};
+    --color-warning-alt:         #{map-get(map-get($palette-states, warning), alt)};
+    --color-warning-light:       #{map-get(map-get($palette-states, warning), light)};
+    --color-warning-dark:        #{map-get(map-get($palette-states, warning), dark)};
+
+    --color-danger:              #{map-get(map-get($palette-states, danger), base)};
+    --color-danger-base:         #{map-get(map-get($palette-states, danger), base)};
+    --color-danger-alt:          #{map-get(map-get($palette-states, danger), alt)};
+    --color-danger-light:        #{map-get(map-get($palette-states, danger), light)};
+    --color-danger-dark:         #{map-get(map-get($palette-states, danger), dark)};
+
+    --color-info:                #{map-get(map-get($palette-states, info), base)};
+    --color-info-base:           #{map-get(map-get($palette-states, info), base)};
+    --color-info-alt:            #{map-get(map-get($palette-states, info), alt)};
+    --color-info-light:          #{map-get(map-get($palette-states, info), light)};
+    --color-info-dark:           #{map-get(map-get($palette-states, info), dark)};
+
+    --color-inverse:             #{map-get(map-get($palette-states, inverse), base)};
+    --color-inverse-base:        #{map-get(map-get($palette-states, inverse), base)};
+    --color-inverse-alt:         #{map-get(map-get($palette-states, inverse), alt)};
+    --color-inverse-light:       #{map-get(map-get($palette-states, inverse), light)};
+    --color-inverse-dark:        #{map-get(map-get($palette-states, inverse), dark)};
+
+    --color-white-base:          #{map-get(map-get($palette-states, white), base)};
+    --color-white-alt:           #{map-get(map-get($palette-states, white), alt)};
+    --color-white-light:         #{map-get(map-get($palette-states, white), light)};
+    --color-white-dark:          #{map-get(map-get($palette-states, white), dark)};
+
+    // TEXT
+    --color-text:                #{map-get(map-get($palette-alias, text), base)};
+    --color-text-alt:            var(--color-white);
+    --color-text-disabled:       #{map-get(map-get($palette-alias, text), disabled)};
+    --color-text-focus:          var(--color-black);
+    --color-text-full:           var(--color-black);
+    --color-text-heading:        var(--color-primary);
+    --color-text-help:           #{map-get(map-get($palette-alias, text), help)};
+    --color-text-light:          #{map-get(map-get($palette-alias, text), light)};
+    --color-text-placeholder:    #{map-get(map-get($palette-alias, text), placeholder)};
+
+    // LINKS
+    --color-link:                #{map-get(map-get($palette-alias, link), base)};
+    --color-link-dark:           #{map-get(map-get($palette-alias, link), dark)};
+    --color-link-disabled:       #{map-get(map-get($palette-alias, link), disabled)};
+    --color-link-focus:          #{map-get(map-get($palette-alias, link), focus)};
+    --color-link-hover:          #{map-get(map-get($palette-alias, link), hover)};
+    --color-link-inverse:        #{map-get(map-get($palette-alias, link), inverse)};
+    --color-link-inverse-hover:  #{map-get(map-get($palette-alias, link), inverse-hover)};
+
+    // BACKGROUND
+    --color-bg:                  #{map-get(map-get($palette-alias, background), base)};
+    --color-bg-alt:              rgb(126, 126, 126);
+    --color-bg-backdrop:         #{map-get(map-get($palette-alias, background), backdrop)};
+    --color-bg-disabled:         #{map-get(map-get($palette-alias, background), backdrop)};
+    --color-bg-dark:             #{map-get(map-get($palette-alias, background), dark)};
+    --color-bg-focus:            #{map-get(map-get($palette-alias, background), focus)};
+    --color-bg-input:            rgb(250, 250, 250);
+    --color-bg-light:            #{map-get(map-get($palette-alias, background), light)};
+    --color-bg-selected:         #{map-get(map-get($palette-alias, background), selected)};
+    --color-bg-signin:           rgba(255, 255, 255, .9);
+    --color-bg-shadow:           #{map-get(map-get($palette-alias, background), shadow)};
+
+    --color-bg-surface-0:        var(--color-white);
+    --color-bg-surface-1:        var(--color-gray-off-white);
+    --color-bg-surface-2:        var(--color-gray-lightest);
+    --color-bg-surface-3:        var(--color-gray-lighter);
+
+    --color-bg-overlay-0:        var(--color-bg);
+    --color-bg-overlay-1:        var(--color-bg);
+    --color-bg-overlay-2:        var(--color-bg);
+
+    // BORDER
+    --color-border:              #{map-get(map-get($palette-alias, border), base)};
+    --color-border-focus:        #{map-get(map-get($palette-alias, border), focus)};
+    --color-border-input:        var(--color-border);
+    --color-border-light:        var(--color-gray-lighter);
+
+    // LOADING SPINNER
+    --color-loading-main:        var(--color-primary);
+    --color-loading-cutout:      var(--color-bg-surface-0);
+
+    // MODALS
+    --color-modal-backdrop:      var(--color-black);
+
+    // TABS
+    --color-tabs-hover:          var(--color-gray-dark);
+
+    // TABLES
+    --color-table-border:        var(--color-border);
+
+    // WORKFLOW BACKGROUNDS
+    --color-workflow-if:         #e4eff8;
+    --color-workflow-and:        #fdf5e3;
+    --color-workflow-or:         #f0ebfb;
+    --color-workflow-return:     #e7f0ea;
+}
+// scss-lint:enable SpaceAfterPropertyColon

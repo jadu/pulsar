@@ -31,3 +31,14 @@
     }
 }
 
+.metadata--full {
+    .metadata__key {
+        padding-bottom: 0;
+        width: 100%;
+    }
+
+    .metadata__value {
+        padding-bottom: $padding-large-vertical * 2;
+        width: 100%;
+    }
+}
