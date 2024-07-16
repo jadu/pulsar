@@ -1,13 +1,13 @@
 .error-summary {
-    background-color: color(white);
-    border: 5px solid color(danger);
-    color: color(text);
+    background-color: var(--color-bg-surface-0);
+    border: 5px solid var(--color-danger);
+    color: var(--color-text);
     font-family: $font-family-regular;
     margin-bottom: $margin-base * 2;
     padding: $padding-base * 1.5;
 
     &:focus {
-        outline: 3px solid color(border, focus);
+        outline: 3px solid var(--color-border-focus);
     }
 }
 
@@ -29,9 +29,9 @@
 }
 
 .error-summary__list-link {
-    color: color(danger);
+    color: var(--color-danger);
 
     &:hover {
-        color: color(danger);
+        color: var(--color-danger);
     }
 }

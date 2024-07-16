@@ -262,12 +262,12 @@
  */
 
 .muted {
-    color: color(gray, dull);
+    color: var(--color-gray-dull);
 }
 
 p.success {
     background: rgba(0, 153, 51, .8);
-    color: color(white);
+    color: var(--color-white);
     padding: 5px;
     text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
@@ -360,7 +360,7 @@ p.success {
 
 // Replicates <hr /> but with nicer spacing
 .divider {
-    border-top: 1px solid color(border);
+    border-top: 1px solid var(--color-border);
     display: block;
     margin: 10px 0;
 }
@@ -377,7 +377,7 @@ p.success {
     opacity: .25 !important;
 
     a.is-disabled {
-        color: color(link);
+        color: var(--color-link);
     }
 }
 
@@ -394,6 +394,26 @@ p.success {
 %u-width-auto,
 .u-width-auto {
     width: auto !important;
+}
+
+%u-border-top,
+.u-border-top {
+    border-top: 1px solid color(border) !important;
+}
+
+%u-border-right,
+.u-border-right {
+    border-right: 1px solid color(border) !important;
+}
+
+%u-border-bottom,
+.u-border-bottom {
+    border-bottom: 1px solid color(border) !important;
+}
+
+%u-border-left,
+.u-border-left {
+    border-left: 1px solid color(border) !important;
 }
 
 /**
