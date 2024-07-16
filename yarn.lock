@@ -5692,15 +5692,15 @@ datatables.net-buttons@^1.7.1, datatables.net-buttons@1.7.1:
     datatables.net "^1.10.15"
     jquery ">=1.7"
 
-datatables.net-dt@^1.10.15, datatables.net-dt@^1.13.0, datatables.net-dt@^1.13.4, datatables.net-dt@>=1.12.1:
-  version "1.13.4"
-  resolved "https://registry.npmjs.org/datatables.net-dt/-/datatables.net-dt-1.13.4.tgz"
-  integrity sha512-QAvuEej/qKSiaSmSeDQ36wWO72XzFGKkd0jdiqbp+2FHAAzIk+ffsqQAwylystMoBSiO0zlcdaqHoAPa5Dy7Pg==
+datatables.net-dt@^1.10.15, datatables.net-dt@^1.13.0, datatables.net-dt@^1.13.6, datatables.net-dt@>=1.12.1:
+  version "1.13.11"
+  resolved "https://registry.npmjs.org/datatables.net-dt/-/datatables.net-dt-1.13.11.tgz"
+  integrity sha512-4GpS4OFLwIMfhb5UdJh6bEnh0E52jIJOlx7KLKs1pSce/xpHjvcmucbUWNaEndQIpHXtIxmVPoqcDB0ZbiVB+A==
   dependencies:
-    datatables.net ">=1.12.1"
-    jquery ">=1.7"
+    datatables.net "1.13.11"
+    jquery "1.8 - 4"
 
-datatables.net-responsive-dt@^2.4.1:
+datatables.net-responsive-dt@^2.5.0:
   version "2.5.1"
   resolved "https://registry.npmjs.org/datatables.net-responsive-dt/-/datatables.net-responsive-dt-2.5.1.tgz"
   integrity sha512-suFoSSb2v3Lj7B4aoSxdyVfRPYb89WtyxCdH46HkE9mFZ9sJoicazsTKOwpWdwxZ+JT3vae0b7bKM2lOpwYxFw==
@@ -5709,7 +5709,7 @@ datatables.net-responsive-dt@^2.4.1:
     datatables.net-responsive "2.5.1"
     jquery ">=1.7"
 
-datatables.net-responsive@^2.4.1, datatables.net-responsive@2.5.1:
+datatables.net-responsive@^2.5.0, datatables.net-responsive@2.5.1:
   version "2.5.1"
   resolved "https://registry.npmjs.org/datatables.net-responsive/-/datatables.net-responsive-2.5.1.tgz"
   integrity sha512-hyJb2faIzEWUX5Yn4HOSq/6NNB9SXDVbI4OU9ny+XU/2ghZEz4676spOgzpDHTdWvCfM+t1mbUsT70fDiTTr9w==
@@ -5734,12 +5734,12 @@ datatables.net-select@^1.6.2, datatables.net-select@>=1.4.0:
     datatables.net ">=1.12.1"
     jquery ">=1.7"
 
-datatables.net@^1.10.15, datatables.net@^1.13.0, datatables.net@^1.13.4, datatables.net@>=1.12.1:
-  version "1.13.4"
-  resolved "https://registry.npmjs.org/datatables.net/-/datatables.net-1.13.4.tgz"
-  integrity sha512-yzhArTOB6tPO2QFKm1z3hA4vabtt2hRvgw8XLsT1xqEirinfGYqWDiWXlkTPTaJv2e7gG+Kf985sXkzBFlGrGQ==
+datatables.net@^1.10.15, datatables.net@^1.13.0, datatables.net@^1.13.4, datatables.net@>=1.12.1, datatables.net@1.13.11:
+  version "1.13.11"
+  resolved "https://registry.npmjs.org/datatables.net/-/datatables.net-1.13.11.tgz"
+  integrity sha512-AE6RkMXziRaqzPcu/pl3SJXeRa6fmXQG/fVjuRESujvkzqDCYEeKTTpPMuVJSGYJpPi32WGSphVNNY1G4nSN/g==
   dependencies:
-    jquery ">=1.7"
+    jquery "1.8 - 4"
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -9320,7 +9320,7 @@ jquery-ui@^1.12.1, jquery-ui@^1.13.1:
   dependencies:
     jquery ">=1.8.0 <4.0.0"
 
-jquery@*, jquery@^3.4.1, jquery@^3.5.0, jquery@^3.5.1, jquery@^3.6.4, jquery@>=1.7, "jquery@>=1.8.0 <4.0.0":
+jquery@*, jquery@^3.4.1, jquery@^3.5.0, jquery@^3.5.1, jquery@^3.7.1, jquery@>=1.7, "jquery@>=1.8.0 <4.0.0", "jquery@1.8 - 4":
   version "3.7.1"
   resolved "https://registry.npmjs.org/jquery/-/jquery-3.7.1.tgz"
   integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
@@ -14428,10 +14428,10 @@ thunky@^1.0.2:
   resolved "https://registry.npmjs.org/thunky/-/thunky-1.1.0.tgz"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
 
-timepicker@^1.13.18:
-  version "1.13.18"
-  resolved "https://registry.npmjs.org/timepicker/-/timepicker-1.13.18.tgz"
-  integrity sha512-3y9FjZ3pOhgK/Ada8yr7u7j3QkCxYOGXXjbfoGnaKd0E9qg2VX9cELZtxu21LGr9pOzuhh5qvoVp4gYZ+hcQmQ==
+timepicker@^1.14.1:
+  version "1.14.1"
+  resolved "https://registry.npmjs.org/timepicker/-/timepicker-1.14.1.tgz"
+  integrity sha512-sNy0zVRacCNQ2bo4NLAG3+AX9ARxmH5IMqwZva9rzzFMJcfKfEnGzmDG7gMYeN5gbM76bzfZbld5WiWcshAUrw==
   dependencies:
     jquery "^3.5.1"
 
