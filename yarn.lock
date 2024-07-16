@@ -5707,7 +5707,7 @@ datatables.net-dt@^1.10.15, datatables.net-dt@^1.13.6, datatables.net-dt@>=1.12.
     datatables.net "1.13.11"
     jquery "1.8 - 4"
 
-datatables.net-responsive-dt@^2.4.1:
+datatables.net-responsive-dt@^2.5.0:
   version "2.5.0"
   resolved "https://registry.npmjs.org/datatables.net-responsive-dt/-/datatables.net-responsive-dt-2.5.0.tgz"
   integrity sha512-u0oHqG1LLrFj+cBVYpyOO03nECUJJim4EovKhdQtB2g8X0fbH7jWvLAOdDFvyIzktCYWScObqR8uUEtm6J9O6Q==
@@ -13244,6 +13244,7 @@ select-hose@^2.0.0:
 "select2@github:jadu/selectWoo#jadu-1.1.5":
   version "1.0.1"
   resolved "git+ssh://git@github.com/jadu/selectWoo.git#7f3f008432eadd1a2b42f21037f185783fab11fc"
+  integrity sha512-LFkg3R/QjPdI5ygfTsOIxEm16DC3PfVYMk3sduKg9YKPESkhPbAFLaawfLU0uu/SV2KoeJWMkjB833MSzuR4zA==
   dependencies:
     almond "~0.3.1"
     jquery-mousewheel "~3.1.13"
