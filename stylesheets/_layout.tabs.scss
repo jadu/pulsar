@@ -9,7 +9,7 @@
 
 .parent-title,
 .main-title {
-    color: color(jadu-purple);
+    color: var(--color-text-heading);
     font-family: $font-family-heading;
     font-size: 1.5em;
     line-height: 32px;
@@ -128,7 +128,7 @@
 }
 
 .tab__content {
-    background-color: color(white);
+    background-color: var(--color-bg-surface-0);
     margin-bottom: ($margin-large-vertical * 2);
     padding: 15px $gutter-width $gutter-width;
     width: auto;
@@ -145,7 +145,7 @@
     width: 100%;
 
     @include respond-min($screen-desktop) {
-        border-right: 1px solid color(gray);
+        border-right: 1px solid var(--color-border);
         padding-right: $gutter-width;
         width: auto;
     }
@@ -164,26 +164,26 @@
     text-align: center;
 
     &:hover {
-        color: color(gray, dark);
+        color: var(--color-tabs-hover);
     }
 }
 
 .tabs__list .new {
-    background-color: color(primary);
+    background-color: var(--color-primary);
     border-bottom: 0;
     height: $line-height-base * 1.75;
 
     input {
-        background-color: color(primary);
+        background-color: var(--color-primary);
         border: 0;
         outline: none;
-        color: color(white);
+        color: var(--color-white);
         line-height: 1.75em;
         margin: 4px 0 0 5%;
         width: 90%;
 
         &::selection {
-            background: white;
+            background: var(--color-white);
         }
     }
 }
@@ -228,7 +228,7 @@
         }
 
         a {
-            color: color(text);
+            color: var(--color-text);
         }
 
         .no-js & {
