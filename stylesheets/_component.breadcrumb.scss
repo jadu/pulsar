@@ -1,7 +1,8 @@
 .breadcrumb {
     clear: both;
-    color: color(gray, dark); // must be AA 4.5:1
-    margin: 0 0 calc($line-height-base / 2);
+    color: var(--color-text);
+    margin: 0 0 ($line-height-base / 2);
+
     width: 100%;
 
     ol {
@@ -24,23 +25,23 @@
     }
 
     a {
-        color: color(gray, dark); // must be AA 4.5:1
+        color: var(--color-text);
         text-decoration: none;
 
         &:hover {
-            color: color(gray, dark);
+            color: var(--color-text-dark);
         }
 
         &[href] {
             text-decoration: underline;
 
             &:hover {
-                color: color(link, hover);
+                color: var(--color-link-hover);
             }
         }
 
         &:focus {
-            color: color(black);
+            color: var(--color-text-full);
         }
     }
 }
