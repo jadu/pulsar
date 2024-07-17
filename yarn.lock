@@ -2315,10 +2315,10 @@ browserify-rsa@^4.0.0, browserify-rsa@^4.0.1:
     bn.js "^5.0.0"
     randombytes "^2.0.1"
 
-browserify-shim@^3.8.9:
-  version "3.8.15"
-  resolved "https://registry.npmjs.org/browserify-shim/-/browserify-shim-3.8.15.tgz"
-  integrity sha512-wACWQv56oVuxIID3JHFg2SCk40grlWUVX1QKKH14czQXE84WCOmbydcGKYt/IQZTGbBBzH+4uWr3wNNQRnak3Q==
+browserify-shim@^3.8.16:
+  version "3.8.16"
+  resolved "https://registry.yarnpkg.com/browserify-shim/-/browserify-shim-3.8.16.tgz#f65a77d0e249ae9001f9fa31bbae4360be18e467"
+  integrity sha512-+Ap0xOKUC5Hz8sdUROxCJHgzA5IeU7pgUquCdlbBxyxkexzU4kpU6u1TsIvnFJcdx1bxO902J08AEjbMqDbA3g==
   dependencies:
     exposify "~0.5.0"
     mothership "~0.3.0"
