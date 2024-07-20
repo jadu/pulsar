@@ -82,7 +82,7 @@
     "datatables.net-responsive": "^2.5.0",
     "datatables.net-responsive-dt": "^2.5.0",
     "datatables.net-select": "^1.6.2",
-    "datatables.net-select-dt": "^1.6.2",
+    "datatables.net-select-dt": "^1.7.1",
     "input-length": "^1.0.1",
     "jquery": "^3.7.1",
     "jquery-countdown": "^2.2.0",
