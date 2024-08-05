@@ -91,7 +91,7 @@
     "jquery-ui": "^1.13.3",
     "jstree": "^3.3.16",
     "lodash": "^4.17.21",
-    "moment": "^2.29.2",
+    "moment": "^2.30.1",
     "normalize.css": "^8.0.1",
     "pikaday": "^1.8.2",
     "pulsar-date-picker": "^1.0.0",
