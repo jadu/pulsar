@@ -2,6 +2,11 @@
 id: toggle-switch
 title: Toggle switch
 sidebar_label: Toggle switch
+products:
+  supported:
+    - Central CMS
+    - Central Forms
+    - Connect
 ---
 
 import Tabs from '@theme/Tabs';
@@ -29,8 +34,8 @@ An alternative presentation for a checkbox, providing a more obvious visual indi
   values={[
     { label: 'Twig', value: 'twig', },
     { label: 'HTML', value: 'html', },
-  ]
-}>
+  ]}
+>
 <TabItem value="twig">
 
 ```twig
@@ -200,49 +205,65 @@ Toggle switch labels should:
 
 <div className="d-guidelines">
   <div className="d-guidelines__block d-guidelines__block--do">
-  <div className="d-guidelines-preview">
-    <div className="form__group form__group--toggle">
-      <label className="toggle-switch-wrapper-label" htmlFor="guid-1105218033">
-        <span className="control__label">Enable integration</span>
-        <span className="controls">
-          <input id="guid-1105218033" name="toggle-a1" type="checkbox" className="form__control toggle-switch" />
-          <span className="toggle-switch-label"></span>
-        </span>
-      </label>
-    </div>
-    <div className="form__group form__group--toggle">
-      <label className="toggle-switch-wrapper-label" htmlFor="guid-13936864">
-        <span className="control__label">Enable integration</span>
-        <span className="controls">
-          <input id="guid-13936864" name="toggle-a2" defaultChecked type="checkbox" className="form__control toggle-switch" />
-          <span className="toggle-switch-label"></span>
-        </span>
-      </label>
-    </div>
-  </div>
-  <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> keep the label consistent, to indicate state</div></div>
-  <div className="d-guidelines__block d-guidelines__block--not">
+
     <div className="d-guidelines-preview">
+      
       <div className="form__group form__group--toggle">
-      <label className="toggle-switch-wrapper-label" htmlFor="guid-1105218031">
-        <span className="control__label">Enable integration</span>
-        <span className="controls">
-          <input id="guid-1105218033" name="toggle-a3" type="checkbox" className="form__control toggle-switch" />
-          <span className="toggle-switch-label"></span>
-        </span>
-      </label>
+        <label className="toggle-switch-wrapper-label" htmlFor="guid-1105218033">
+          <span className="control__label">Enable integration</span>
+          <span className="controls">
+            <input id="guid-1105218033" name="toggle-a1" type="checkbox" className="form__control toggle-switch" />
+            <span className="toggle-switch-label"></span>
+          </span> 
+        </label>
+      </div>
+      
+      <div className="form__group form__group--toggle">
+        <label className="toggle-switch-wrapper-label" htmlFor="guid-13936864">
+          <span className="control__label">Enable integration</span>
+          <span className="controls">
+            <input id="guid-13936864" name="toggle-a2" defaultChecked type="checkbox" className="form__control toggle-switch" />
+            <span className="toggle-switch-label"></span>
+          </span>
+        </label>
+      </div>
+
     </div>
-    <div className="form__group form__group--toggle">
-      <label className="toggle-switch-wrapper-label" htmlFor="guid-13936862">
-        <span className="control__label">Disable integration</span>
-        <span className="controls">
-          <input id="guid-13936864" name="toggle-a4" defaultChecked type="checkbox" className="form__control toggle-switch" />
-          <span className="toggle-switch-label"></span>
-        </span>
-      </label>
+    
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> keep the label consistent, to indicate state</div>
+
+  </div>
+  
+  <div className="d-guidelines__block d-guidelines__block--not">
+
+    <div className="d-guidelines-preview">
+
+      <div className="form__group form__group--toggle">
+        <label className="toggle-switch-wrapper-label" htmlFor="guid-1105218031">
+          <span className="control__label">Enable integration</span>
+          <span className="controls">
+            <input id="guid-1105218033" name="toggle-a3" type="checkbox" className="form__control toggle-switch" />
+            <span className="toggle-switch-label"></span>
+          </span>
+        </label>
+      </div>
+
+      <div className="form__group form__group--toggle">
+        <label className="toggle-switch-wrapper-label" htmlFor="guid-13936862">
+          <span className="control__label">Disable integration</span>
+          <span className="controls">
+            <input id="guid-13936864" name="toggle-a4" defaultChecked type="checkbox" className="form__control toggle-switch" />
+            <span className="toggle-switch-label"></span>
+          </span>
+        </label>
+      </div>
+
     </div>
-    </div>
-    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> change the label to indicate the action that will be performed</div></div>
+  
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> change the label to indicate the action that will be performed</div>
+
+  </div>
+
 </div>
 
 ### Help text

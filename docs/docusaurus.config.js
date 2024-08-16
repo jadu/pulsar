@@ -1,8 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -15,13 +14,9 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'jadu',
   projectName: 'pulsar',
 
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -48,13 +43,13 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       colorMode: {
         defaultMode: 'light',
-        disableSwitch: true
+        disableSwitch: false
       },
       prism: {
+        theme: prismThemes.dracula,
         additionalLanguages: ['twig']
       },
       navbar: {
@@ -76,10 +71,6 @@ const config = {
             position: 'right',
           },
         ],
-      },
-      prism: {
-        theme: darkCodeTheme,
-        darkTheme: darkCodeTheme
       }
     }),
 };
