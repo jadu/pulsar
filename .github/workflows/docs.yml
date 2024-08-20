@@ -26,6 +26,8 @@ jobs:
           cd docs
           npm install
           npm run build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v4
@@ -34,4 +36,3 @@ jobs:
           build_dir: docs/build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
