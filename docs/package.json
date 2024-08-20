@@ -21,7 +21,6 @@
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
-    "@fortawesome/react-fontawesome": "^0.2.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
     "docusaurus-plugin-sass": "^0.2.5",
