@@ -2,16 +2,19 @@
 id: label
 title: Label
 sidebar_label: Label
+products:
+  supported:
+    - Central CMS
+    - Central Forms
+    - Connect
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 Provide extra contextual meaning to things, like stateful information.
 
 <div className="d-example">
   <span className="label">New</span>
 </div>
+
 
 ## Basic usage
 
@@ -94,15 +97,18 @@ You should not rely on colour alone to convey meaning. This will ensure you're m
 
 <div className="d-guidelines">
   <div className="d-guidelines__block d-guidelines__block--do">
-  <div className="d-guidelines-preview">
-    <span className="label label--success">online</span> <span className="label label--danger">offline</span>
+    <div className="d-guidelines-preview">
+      <span className="label label--success">online</span> <span className="label label--danger">offline</span>
+    </div>
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> use a descriptive text label</div>
   </div>
-  <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> use a descriptive text label</div></div>
+  
   <div className="d-guidelines__block d-guidelines__block--not">
     <div className="d-guidelines-preview">
       <span className="label label--success">online</span> <span className="label label--danger">online</span>
     </div>
-    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> rely on colour to convey meaning</div></div>
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> rely on colour to convey meaning</div>
+  </div>
 </div>
 
 ## Linked labels
