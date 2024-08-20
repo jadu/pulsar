@@ -262,9 +262,10 @@ $fa-css-prefix: 'icon';
 //     font-size: 16px;
 // }
 
-// table {
-//     width: 100%;
-// }
+table {
+    display: table;
+    width: 100%;
+}
 
 // .hero--primary {
 //     --ifm-hero-background-color: #fff;
