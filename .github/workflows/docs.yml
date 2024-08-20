@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - develop
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+    paths:
+      - 'docs/**'  # Only trigger on changes in the /docs directory
 
 jobs:
   build:
@@ -22,13 +22,16 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        working-directory: ./docs  # Set the working directory to /docs
+
       - name: Build website
         run: yarn build
+        working-directory: ./docs  # Set the working directory to /docs
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: docs/build  # Adjust the path to the build directory within /docs
 
   deploy:
     name: Deploy to GitHub Pages
