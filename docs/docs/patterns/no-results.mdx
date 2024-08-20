@@ -9,8 +9,16 @@ products:
     - Connect
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 When an interface needs to list items you should provide a helpful fallback message for when no results are found. If the user has the relevant permissions to create or add one of these items, you should provide a call to action to help them along their way.
 

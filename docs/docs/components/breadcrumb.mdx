@@ -9,8 +9,16 @@ products:
     - Connect
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 A basic helper to render a list of breadcrumb links. A view should set a `breadcrumbs` object which will then be rendered by the base template.
 
