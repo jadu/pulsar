@@ -52,6 +52,11 @@ const config = {
     ],
   ],
 
+  scripts: [
+    'js/bundle.js',
+    'js/main.js',
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -93,7 +98,7 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Jadu Ltd. Built with Docusaurus.`,
       },
       prism: {
-        theme: prismThemes.github,
+        theme: prismThemes.dracula,
         darkTheme: prismThemes.dracula,
       },
     }),
