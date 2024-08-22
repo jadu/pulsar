@@ -21,6 +21,8 @@ $font-family-brands:  'Font Awesome 6 Brands';
 $fa-font-path: '/static/fonts/fontawesome-free-6.0.0-web/webfonts';
 $fa-css-prefix: 'icon';
 
+@use '../../../stylesheets/function.color' as colorFunctions;
+
 @import '/static/fonts/fontawesome-free-6.0.0-web/scss/fontawesome';
 @import '/static/fonts/fontawesome-free-6.0.0-web/scss/regular';
 @import '/static/fonts/fontawesome-free-6.0.0-web/scss/solid';
@@ -33,9 +35,6 @@ $fa-css-prefix: 'icon';
 
 // Functions
 @import '../../../stylesheets/function.math';
-@import '../../../stylesheets/function.color-luminance';
-@import '../../../stylesheets/function.pick-best-color';
-@import '../../../stylesheets/function.color';
 
 // $font-path: '/static/fonts/';
 @font-face {
@@ -227,7 +226,9 @@ $fa-css-prefix: 'icon';
     --ifm-color-primary-light: #dd3b40;
     --ifm-color-primary-lighter: #de464b;
     --ifm-color-primary-lightest: #e4666a;
-    
+
+    --docusaurus-highlighted-code-line-bg: #f19d9e;
+
     .theme-doc-sidebar-container {
         background-color: var(--ifm-navbar-background-color);
     }
@@ -238,58 +239,29 @@ $fa-css-prefix: 'icon';
     --ifm-menu-color: #000;
 }
 
-//     // --ifm-global-shadow-lw: none;
-
-//     // --jadu-purple: #3e4994;
-
-//     // --ifm-background-surface-color: var(--jadu-purple);
-//     // --ifm-navbar-link-color: #fff;
-//     // --ifm-navbar-link-hover-color: #fff;
-
-//     // --ifm-menu-color-active: var(--jadu-purple);
-
-//     // --ifm-heading-color: var(--jadu-purple);
-
-//     // --ifm-card-background-color: #fff;
-//     // --ifm-container-width: 1300px;
-
-//     // --ifm-table-border-width: 0;
-
-//     // --ifm-alert-color: #000;
-// }
-
-// body {
-//     font-size: 16px;
-// }
+main {
+    --ifm-tabs-padding-vertical: 5px;
+    --ifm-tabs-padding-horizontal: 10px;
+}
 
 table {
     display: table;
     width: 100%;
 }
 
-// .hero--primary {
-//     --ifm-hero-background-color: #fff;
-//     --ifm-hero-text-color: var(--ifm-font-color-base);
-
-//     padding: 2rem 0 1rem;
-// }
-
-// .hero__title {
-//     margin-bottom: 0;
-// }
-
-// .admonition h5 {
-//     color: var(--ifm-alert-color);
-// }
-
 .d-example {
-    border: 1px solid #ccc;
+    border: 1px dashed #ccc;
     margin-bottom: 1em;
     padding: 1em;
     width: 100%;
 
+    * {
+        all: revert;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         color: unset;
+        font-weight: normal;
     }
 
     ul, ol {
@@ -314,10 +286,13 @@ table {
 }
 
 .d-guidelines-preview {
-    // background-color: #f5f5f5;
     border: 1px solid #ccc;
     margin-bottom: .75em;
     padding: 1em;
+
+    > p {
+        margin: 0;
+    }
 }
 
 .d-guidelines-label__title {
@@ -343,47 +318,6 @@ table {
         color: #bd4444;
     }
 }
-
-// .u-float-left {
-//     float: left;
-// }
-
-// .docusaurus-highlight-code-line {
-//     background-color: rgb(72, 77, 91);
-//     display: block;
-//     margin: 0 calc(-1 * var(--ifm-pre-padding));
-//     padding: 0 var(--ifm-pre-padding);
-// }
-
-// table {
-//     display: table;
-// }
-
-// table:not(.table) {
-//   display: table;
-
-//   th {
-//     background-color: var(--jadu-purple);
-//     border: 1px solid var(--jadu-purple);
-//     color: #fff;
-//   }
-
-//   td {
-//     border: 1px solid #ccc;
-//   }
-// }
-
-// html[data-theme='dark'] {
-//     --ifm-heading-color: white;
-
-//     .d-example .control__label {
-//         color: white;
-//     }
-
-//     table:not(.table) th {
-//         background-color: black;
-//     }
-// }
 
 .product-support {
     ul {

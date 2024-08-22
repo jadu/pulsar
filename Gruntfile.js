@@ -511,7 +511,6 @@ module.exports = function(grunt) {
         'autoprefixer',
         'browserify:dev',
         'browserify:lexicon',
-        'browserSync',
         'watch'
     ]);
 
