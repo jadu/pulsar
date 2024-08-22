@@ -17,6 +17,7 @@ const config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/pulsar/',
+  staticDirectories: ['static'],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -53,8 +54,8 @@ const config = {
   ],
 
   scripts: [
-    'js/bundle.js',
-    'js/main.js',
+    'js/pulsar.js',
+    'js/pulsar-index.js',
   ],
 
   themeConfig:
