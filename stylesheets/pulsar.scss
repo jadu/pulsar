@@ -14,6 +14,8 @@
 
 $ie-version: 12 !default;
 
+@use 'function.color' as colorFunctions;
+
 // Third party plugins
 // scss-lint:disable all
 @import '../node_modules/normalize.css/normalize';
@@ -45,9 +47,6 @@ $font-path: '../../../fonts/';
 
 // Functions
 @import 'function.math';
-@import 'function.color-luminance';
-@import 'function.pick-best-color';
-@import 'function.color';
 
 // Base colour palette
 @import 'palette.base';

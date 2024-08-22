@@ -1,6 +1,7 @@
 .card {
     border: 1px solid var(--color-border);
     border-radius: $border-radius;
+    display: block;
     margin-bottom: $line-height-base;
 
     @include respond-min($screen-small) {
