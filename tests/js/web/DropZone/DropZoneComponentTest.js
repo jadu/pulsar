@@ -153,6 +153,12 @@ describe('DropZoneComponent', () => {
 
             const rawFile = new File(['Lorem ipsum dolor'], 'example.txt', { type: 'text/plain' });
             const dataTransfer = new DataTransfer();
+            //add any pre-existing files to the dataTransfer object
+            for (let i = 0; i < $fileInput[0].files.length; i++) {
+                const preExistingFile = $fileInput[0].files[i];
+                dataTransfer.items.add(preExistingFile);
+            }
+            //add our "new" file to the dataTransfer object
             dataTransfer.items.add(rawFile);
             $fileInput[0].files = dataTransfer.files;
 
