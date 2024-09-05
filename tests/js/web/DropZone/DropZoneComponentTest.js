@@ -148,6 +148,19 @@ describe('DropZoneComponent', () => {
             expect($fileInput.val()).to.equal('');
         });
 
+        it('should retain the input node files on change', () => {
+            const change = new Event('change');
+
+            const rawFile = new File(['Lorem ipsum dolor'], 'example.txt', { type: 'text/plain' });
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(rawFile);
+            $fileInput[0].files = dataTransfer.files;
+
+            dropZoneComponent.processInputNode($fileInput[0], 0, options.showInputNode);
+            $fileInput[0].dispatchEvent(change);
+            expect($fileInput[0].files).to.equal(dataTransfer.files);
+        });
+
         it('should not hide the input if specified in options', () => {
             const options = { showInputNode: true, inputNodeId: 'fileInput' };
             const display = $fileInput.css('display');
