@@ -145,21 +145,7 @@ describe('FaviconEditor', () => {
                 faviconEditor = new FaviconEditor($root[0]);
                 faviconEditor.init();
 
-                // Override serializer to return raw image data, we cannot use the default
-                // canvas.toDataURL(...) here as the png compression is different when
-                // in the browser / headless test environments
-                faviconEditor.setSerializer((canvas, ctx) => {
-                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    const debugCvs = document.createElement('canvas');
-                    const debugCtx = debugCvs.getContext('2d');
-
-                    debugCtx.width = canvas.width;
-                    debugCtx.height = canvas.height;
-                    debugCtx.putImageData(imageData, 0, 0);
-                    actual = debugCvs.toDataURL('image/png');
-
-                    return [...imageData.data];
-                });
+                canvas.toDataURL('image/png');
 
                 faviconEditor.addCircleNotification('red', 5)
                     .then((data) => {
