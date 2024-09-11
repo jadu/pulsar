@@ -12,15 +12,12 @@
     "docs"
   ],
   "scripts": {
-    "start": "docker-compose up -d && grunt",
-    "start:docs": "yarn workspace docs docusaurus start",
+    "start": "docker compose up -d && grunt",
+    "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
+    "test": "npm run test:headless",
     "build:tests": "grunt javascript:tests",
     "build:tests:watch": "grunt javascript:tests:watch",
-    "build:docs": "yarn workspace docs docusaurus build",
-    "coverage": "PUPPETEER_ARGS='--no-sandbox' PUPPETEER_EXECUTABLE_PATH=$(which chromium) mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
-    "deploy:docs": "yarn workspace docs docusaurus deploy",
-    "test": "npm run test:headless",
-    "test:headless": "PUPPETEER_ARGS='--no-sandbox' PUPPETEER_EXECUTABLE_PATH=$(which chromium) mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
+    "test:headless": "mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
     "test:browser": "npm run build:tests && open ./tests/js/web/index.html",
     "test:browser:watch": "npm run build:tests:watch"
   },
