@@ -149,22 +149,46 @@ describe('DropZoneComponent', () => {
         });
 
         it('should retain the input node files on change', () => {
+            // we need to explicitly set type="file" here. Originally it is configured as type="text" presumably to avoid the same security issue explained below
+            $fileInput = $('<input type="file" id="fileInput" value="foo">');
             const change = new Event('change');
-
-            const rawFile = new File(['Lorem ipsum dolor'], 'example.txt', { type: 'text/plain' });
-            const dataTransfer = new DataTransfer();
-            //add any pre-existing files to the dataTransfer object
-            for (let i = 0; i < $fileInput[0].files.length; i++) {
-                const preExistingFile = $fileInput[0].files[i];
-                dataTransfer.items.add(preExistingFile);
+            const getDTFileList = (fileInput, ...appendFiles) => {
+                const dataTransfer = new DataTransfer();
+                if (fileInput.files && fileInput.files.length > 0) {
+                    // add all our File objects to prepopulate the DataTransfer
+                    for (let i = 0; i < fileInput.files.length; i++) {
+                        dataTransfer.items.add(fileInput.files[i]);
+                    }
+                }
+                appendFiles.forEach((appendFile)=>{
+                    dataTransfer.items.add(appendFile);
+                });
+                return dataTransfer.files;
             }
-            //add our "new" file to the dataTransfer object
-            dataTransfer.items.add(rawFile);
-            $fileInput[0].files = dataTransfer.files;
+            /**
+             * There is actually no way to programatically add a File object to Input.files other than to duplicate the DataTransfer process...
+             * This is due to strict browser security measures. Yes it is a bit of a hack, but there are simply no other options for initalising our input.
+             * Feel free to refactor this should a future version of ES add this functionality in some way.
+             */
+            const file = new File(['Lorem ipsum dolor'], 'example.txt', { type: 'text/plain' });
+            $fileInput[0].files = getDTFileList($fileInput[0], file);
 
+            let rawFiles = [];
+            for (let i = 0; i < $fileInput[0].files.length; i++) {
+                $fileInput[0].files[i]
+                rawFiles.push({'raw': $fileInput[0].files[i]})
+            }
+
+            instanceManager.getFiles.returns(rawFiles);
             dropZoneComponent.processInputNode($fileInput[0], 0, options.showInputNode);
             $fileInput[0].dispatchEvent(change);
-            expect($fileInput[0].files).to.equal(dataTransfer.files);
+            //debugger;
+            const dataTransferFile = getDTFileList($fileInput[0])[0];
+            const inputFile = $fileInput[0].files[0];
+            expect(inputFile.name).to.equal(dataTransferFile.name);
+            expect(inputFile.lastModified).to.equal(dataTransferFile.lastModified);
+            expect(inputFile.size).to.equal(dataTransferFile.size);
+            expect(inputFile.type).to.equal(dataTransferFile.type);
         });
 
         it('should not hide the input if specified in options', () => {
