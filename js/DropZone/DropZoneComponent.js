@@ -141,10 +141,17 @@ class DropZoneComponent {
 
             let rawFiles = this.instanceManager.getFiles(id);
             const dataTransfer = new DataTransfer();
+            let wasFile = false;
             for (let i = 0; i < rawFiles.length; i++) {
-                dataTransfer.items.add(rawFiles[i].raw);
+                if (rawFiles[i].raw instanceof File){
+                    dataTransfer.items.add(rawFiles[i].raw);
+                    wasFile = true;
+                }
             }
-            input.files = dataTransfer.files;
+            if (wasFile){
+                // this guard exists as some js tests do not provide a file type as the input value.
+                input.files = dataTransfer.files;
+            }
         });
 
         // visually hide input - this should ideally be done in the CSS also to prevent a
