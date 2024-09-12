@@ -67,7 +67,7 @@
 }
 
 .daterangepicker .ranges label {
-    color: color(gray, darker);
+    color: var(--color-gray-darker);
     display: block;
     font-size: 11px;
     font-weight: normal;
@@ -76,7 +76,7 @@
     margin-bottom: 2px;
     margin-left: 0;
     text-align: left;
-    text-shadow: color(white) 1px 1px 0;
+    text-shadow: var(--color-white) 1px 1px 0;
     text-transform: uppercase;
 }
 
@@ -85,10 +85,10 @@
 }
 
 .daterangepicker .ranges .input-mini {
-    background-color: color(gray, off-white);
+    background-color: var(--color-bg-surface-1);
     border-radius: $border-radius;
-    border: 1px solid color(gray, lightest);
-    color: color(gray, darker);
+    border: 1px solid var(--color-gray-lightest);
+    color: var(--color-gray-darker);
     display: block;
     font-size: 11px;
     height: 30px;
@@ -106,9 +106,9 @@
 }
 
 .daterangepicker .ranges li {
-    background: color(gray, off-white);
+    background: var(--color-gray-off-white);
     border-radius: 5px;
-    border: 1px solid color(gray, off-white);
+    border: 1px solid var(--color-gray-off-white);
     color: color(primary, dark);
     cursor: pointer;
     font-size: 13px;
@@ -118,15 +118,15 @@
 
 .daterangepicker .ranges li.active,
 .daterangepicker .ranges li:hover {
-    background: color(primary);
-    border: 1px solid color(primary);
-    color: color(white);
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: var(--color-white);
 }
 
 .daterangepicker .calendar-date {
-    background: color(white);
+    background: var(--color-white);
     border-radius: $border-radius;
-    border: 1px solid color(gray, lightest);
+    border: 1px solid var(--color-gray-lightest);
     padding: 4px;
 }
 
@@ -157,9 +157,9 @@
 // scss-lint:enable SelectorFormat
 
 .daterangepicker .input-mini {
-    border: 1px solid color(gray, lightest);
+    border: 1px solid var(--color-gray-lightest);
     border-radius: $border-radius;
-    color: color(gray, darker);
+    color: var(--color-gray-darker);
     font-size: 14px;
     height: 30px;
     line-height: 30px;
@@ -214,27 +214,27 @@
 }
 
 .daterangepicker td.off {
-    color: color(gray, light);
+    color: var(--color-gray-light);
 }
 
 .daterangepicker td.disabled {
-    color: color(gray, light);
+    color: var(--color-gray-light);
 }
 
 .daterangepicker td.available:hover,
 .daterangepicker th.available:hover {
-    background: color(gray, off-white);
+    background: var(--color-gray-off-white);
 }
 
 .daterangepicker td.active,
 .daterangepicker td.active:hover {
-    background-color: color(primary);
-    color: color(white);
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .daterangepicker td.week,
 .daterangepicker th.week {
-    color: color(gray, lightest);
+    color: var(--color-gray-lightest);
     font-size: 80%;
 }
 
@@ -274,7 +274,7 @@
 .daterangepicker::after {
     top: -6px;
     border-right: 6px solid transparent;
-    border-bottom: 6px solid color(white);
+    border-bottom: 6px solid var(--color-white);
     border-left: 6px solid transparent;
 }
 
@@ -282,7 +282,7 @@
     top: -7px;
     border-right: 7px solid transparent;
     border-left: 7px solid transparent;
-    border-bottom: 7px solid color(gray, lightest);
+    border-bottom: 7px solid var(--color-gray-lightest);
 }
 
 .daterangepicker.opensleft::after {

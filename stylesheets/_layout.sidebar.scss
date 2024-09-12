@@ -1,6 +1,6 @@
 // possibly redundant
 .sidebar__header {
-	border-bottom: 1px solid color(border);
+	border-bottom: 1px solid var(--color-border);
     line-height: 24px;
     margin-bottom: 19px;
     padding-bottom: 4px;
@@ -25,7 +25,7 @@
 }
 
 .sidebar-icon {
-	color: color(gray, dark);
+	color: var(--color-gray-dark);
 	line-height: 20px;
 
 	.no-js & {
@@ -33,6 +33,6 @@
 	}
 
 	.tab-help-container & {
-		color: color(white);
+		color: var(--color-white);
 	}
 }
