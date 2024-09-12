@@ -60,3 +60,20 @@
         }
     }
 }
+
+.dl--grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    width: 100%;
+
+    dt {
+        width: 3%;
+    }
+
+    dd {
+        margin: 0;
+        flex-grow: 1;
+        width: 47%;
+    }
+}
