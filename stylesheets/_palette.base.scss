@@ -77,7 +77,7 @@ $palette-monochromes: (
 $palette-states: (
     base: (
         base:  map-get(map-get($palette-monochromes, gray), lightest),
-        alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), lightest), (#fff, #000)),
+        alt:   #000,
         light: lighten(map-get(map-get($palette-monochromes, gray), lightest), 5),
         dark:  map-get(map-get($palette-monochromes, gray), darker)
     ),
@@ -89,31 +89,31 @@ $palette-states: (
     ),
     success: (
         base:  #297c46,
-        alt:   pick_best_color(#297c46, (#fff, #000)),
+        alt:   #fff,
         light: lighten(#297c46, 55),
         dark:  darken(#297c46, 5)
     ),
     warning: (
         base:  #eaa96a,
-        alt:   pick_best_color(#eaa96a, (#fff, #000)),
+        alt:   #000,
         light: lighten(#eaa96a, 25),
         dark:  darken(#eaa96a, 35)
     ),
     danger: (
         base:  #b64135,
-        alt:   pick_best_color(#b64135, (#fff, #000)),
+        alt:   #fff,
         light: lighten(#b64135, 40),
         dark:  darken(#b64135, 5)
     ),
     info: (
         base:  map-get(map-get($palette-branding, jadu-blue), pale),
-        alt:   pick_best_color(map-get(map-get($palette-branding, jadu-blue), pale), (#fff, #000)),
+        alt:   #000,
         light: lighten(map-get(map-get($palette-branding, jadu-blue), pale), 15),
         dark:  darken(map-get(map-get($palette-branding, jadu-blue), pale), 40)
     ),
     inverse: (
         base:  map-get(map-get($palette-monochromes, gray), darker),
-        alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000)),
+        alt:   #fff,
         light: lighten(map-get(map-get($palette-monochromes, gray), darker), 60),
         dark:  map-get(map-get($palette-monochromes, gray), darker)
     ),
