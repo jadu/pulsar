@@ -36,7 +36,7 @@ value       | string | Specifies the value of the input
 
 #}
 {% macro input(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.naked is not defined or options.naked != true %}
@@ -62,7 +62,7 @@ value       | string | Specifies the value of the input
 
     <input{{ attributes(options|exclude('append bare has_error help_id input_placement prepend naked')) }} />
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -96,7 +96,7 @@ name    | string | The name of this control
 #}
 {% macro label(options) %}
 
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% set labelVisibilityClass = '' %}
@@ -126,7 +126,7 @@ name    | string | The name of this control
         </{{ tag }}>
     {% endif %}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -157,7 +157,7 @@ value   | string | Specifies the value of the paragraph
 
 #}
 {% macro paragraph(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.value is not empty %}
@@ -166,7 +166,7 @@ value   | string | Specifies the value of the paragraph
         </p>
     {% endif %}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -203,7 +203,7 @@ value       | string | Specifies the value of the input
 
 #}
 {% macro select(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {# Build aria-described string of guids for help blocks and errors #}
@@ -300,7 +300,7 @@ value       | string | Specifies the value of the input
 
     </select>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -337,7 +337,7 @@ value       | string | Specifies the value of the input
 
 #}
 {% macro select2(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as elem %}
 
     {% if options.label is defined and options.label is not empty %}
@@ -356,7 +356,7 @@ value       | string | Specifies the value of the input
 
     {{ elem.select(options|merge({'class': 'select js-select2'})|exclude('placeholder') ) }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -391,7 +391,7 @@ value       | string  | Specifies the value of the input
 
 #}
 {% macro textarea(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {# Build aria-described string of guids for help blocks and errors #}
@@ -427,5 +427,5 @@ value       | string  | Specifies the value of the input
     {%- endif -%}
     </textarea>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}

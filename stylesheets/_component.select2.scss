@@ -78,10 +78,10 @@
 }
 
 .select2-dropdown {
-    background-color: white;
-    border: 1px solid $input-border;
+    background-color: var(--color-bg-surface-0);
+    border: 1px solid var(--color-border-input);
     border-radius: 0;
-    box-shadow: 0 0 0 $shadow-small color(background, shadow);
+    box-shadow: 0 0 0 $shadow-small var(--color-bg-shadow);
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -176,7 +176,7 @@
 
 .select2-container--default .select2-selection--single {
     background-color: #fafafa;
-    border: 1px solid $input-border;
+    border: 1px solid var(--color-border-input);
     border-radius: $border-radius;
 }
 
@@ -241,7 +241,7 @@
 
 .select2-container--default .select2-selection--multiple {
     background-color: #fafafa;
-    border: 1px solid $input-border;
+    border: 1px solid var(--color-border-input);
     border-radius: $border-radius;
     cursor: text;
 }
@@ -269,12 +269,12 @@
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    background-color: color(gray, lightest);
-    border-color: color(gray, lightest);
+    background-color: var(--color-gray-lightest);
+    border-color: var(--color-gray-lightest);
     border-radius: $border-radius;
     border-width: 0;
     box-sizing: content-box;
-    color: color(black);
+    color: var(--color-text-full);
     display: inline-block;
     float: left;
     font-weight: 500;
@@ -299,13 +299,13 @@
 
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-    color: color(gray, lightest);
+    color: var(--color-gray-lightest);
     cursor: pointer;
     display: inline-block;
     float: right;
 
     @include ie-lte(9) {
-        color: color(black);
+        color: var(--color-text-full);
         float: none;
         font-size: 18px;
         line-height: 20px;
@@ -313,7 +313,7 @@
     }
 
     &:after {
-        color: color(black);
+        color: var(--color-text-full);
         content: '\f057';
         font-family: $font-family-icons;
         font-weight: 900;
@@ -372,7 +372,7 @@
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
-    border: 1px solid $input-border;
+    border: 1px solid var(--color-border-input);
 }
 
 .select2-container--default .select2-search--inline .select2-search__field {
@@ -445,8 +445,8 @@
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: color(primary);
-    color: color(white);
+    background-color: var(--color-primary);
+    color: var(--color-white);
 
     &:focus {
         outline: none;
@@ -461,7 +461,7 @@
 
 .select2-container--classic .select2-selection--single {
     background-color: #f7f7f7;
-    border: 1px solid $input-border;
+    border: 1px solid var(--color-border-input);
     border-radius: $border-radius;
     outline: 0;
     background-image: -webkit-linear-gradient(top, white 50%, #eee 100%);
@@ -494,7 +494,7 @@
 .select2-container--classic .select2-selection--single .select2-selection__arrow {
     background-color: #ddd;
     border: 0;
-    border-left: 1px solid $input-border;
+    border-left: 1px solid var(--color-border-input);
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     height: 26px;
@@ -528,7 +528,7 @@
 
 .select2-container--classic[dir="rtl"] .select2-selection--single .select2-selection__arrow {
     border: 0;
-    border-right: 1px solid $input-border;
+    border-right: 1px solid var(--color-border-input);
     border-radius: 0;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -573,8 +573,8 @@
 }
 
 .select2-container--classic .select2-selection--multiple {
-    background-color: white;
-    border: 1px solid $input-border;
+    background-color: var(--color-bg-surface-0);
+    border: 1px solid var(--color-border-input);
     border-radius: $border-radius;
     cursor: text;
     outline: 0;
@@ -596,7 +596,7 @@
 
 .select2-container--classic .select2-selection--multiple .select2-selection__choice {
     background-color: #e4e4e4;
-    border: 1px solid $input-border;
+    border: 1px solid var(--color-border-input);
     border-radius: $border-radius;
     cursor: default;
     float: left;
@@ -648,7 +648,7 @@
 }
 
 .select2-container--classic .select2-search--dropdown .select2-search__field {
-    border: 1px solid $input-border;
+    border: 1px solid var(--color-border-input);
     outline: 0;
 }
 
@@ -658,7 +658,7 @@
 }
 
 .select2-container--classic .select2-dropdown {
-    background-color: white;
+    background-color: var(--color-bg-surface-0);
     border: 1px solid transparent;
 }
 
@@ -684,8 +684,8 @@
 }
 
 .select2-container--classic .select2-results__option--highlighted[aria-selected] {
-    background-color: color(primary);
-    color: color(white);
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .select2-container--classic .select2-results__group {
@@ -712,7 +712,7 @@ span.select2-selection.select2-selection--single {
 }
 
 .select2-selection {
-    background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, color(gray, off-white), color(gray, off-white));
+    background-image: linear-gradient(45deg, transparent 49%, var(--color-text) 49%), linear-gradient(135deg, var(--color-text) 49%, transparent 49%), linear-gradient(to right, var(--color-gray-off-white), var(--color-gray-off-white));
     background-position: calc(100% - 10px) calc(1em + 5px), calc(100% - 5px) calc(1em + 5px), 100% 0;
     background-size: 5px 5px, 5px 5px, 22px 100%;
     background-repeat: no-repeat;

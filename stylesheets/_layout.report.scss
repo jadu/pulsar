@@ -1,6 +1,6 @@
 .ui-report.tab__pane {
-    // background-color: color(gray, off-white);
-    // border-top: 1px solid color(border);
+    // background-color: var(--color-bg-surface-1);
+    // border-top: 1px solid var(--color-border);
     // height: 100%; // relies on the 100% height of .content-main
     // margin: -1px (-$gutter-width) 0;
     // overflow: auto; // stop chart container breaking grey background colour
@@ -9,7 +9,7 @@
 }
 
 .report {
-    background-color: color(white);
+    background-color: var(--color-bg-surface-0);
 
     &.is-loading > * {
         opacity: .3;
@@ -61,13 +61,13 @@
 }
 
 .schedule {
-    border-bottom: 1px solid color(border);
+    border-bottom: 1px solid var(--color-border);
     display: table;
     padding: 5px 10px 10px 20px;
     width: 100%;
 
     &:hover {
-        background-color: color(background, light);
+        background-color: var(--color-bg-light);
     }
 
     &:last-child {
@@ -91,7 +91,7 @@
 }
 
 .schedule__detail {
-    color: color(gray, dark);
+    color: var(--color-gray-dark);
     float: left;
     display: table;
     table-layout: fixed;
@@ -123,10 +123,8 @@
     position: absolute;
     right: 0;
     top: -30px;
-    background-color: color(background, light);
+    background-color: var(--color-bg-light);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
-    border-top-left-radius: $border-radius-large;
-    border-bottom-right-radius: $border-radius-large;
     margin: 0 auto;
     padding: $gutter-width;
     text-align: center;
@@ -149,8 +147,6 @@
     width: 100%;
 
     @include respond-min($screen-desktop) {
-        border-bottom-right-radius: $border-radius-large / 2;
-        border-top-right-radius: $border-radius-large / 2;
         display: inline-block;
         float: left;
         margin-left: -20px;

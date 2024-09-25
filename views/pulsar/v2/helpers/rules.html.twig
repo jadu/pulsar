@@ -1,5 +1,5 @@
 {% macro block_when(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as rule %}
 
     {% if options['show_and'] is not defined or options['show_and'] != false %}
@@ -16,11 +16,11 @@
             })
         )
     }}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 {% macro block_and(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as rule %}
 
     {% if options['show_and'] is not defined or options['show_and'] != false %}
@@ -37,11 +37,11 @@
             })
         )
     }}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 {% macro block_or(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as rule %}
 
     {% if options['show_and'] is not defined or options['show_and'] != false %}
@@ -58,11 +58,11 @@
             })
         )
     }}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 {% macro block_then(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as rule %}
 
     {% if options['show_and'] is not defined or options['show_and'] != false %}
@@ -79,13 +79,13 @@
             })
         )
     }}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro block(options) %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-{% spaceless %}
+{% apply spaceless %}
 
     {% set ruleClass = 'rules__step' %}
 
@@ -143,5 +143,5 @@
             {% endif %}
         </div>
     </fieldset>
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}

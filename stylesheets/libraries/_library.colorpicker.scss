@@ -88,7 +88,7 @@ License: MIT
     left: 50%;
     cursor: pointer;
     border: 1px solid black;
-    background: white;
+    background: var(--color-white);
     opacity: .8;
 }
 .sp-alpha {
@@ -262,7 +262,7 @@ License: MIT
     left: -1px;
     right: -1px;
     border: 1px solid #000;
-    background: white;
+    background: var(--color-white);
     opacity: .8;
 }
 

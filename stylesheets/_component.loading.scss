@@ -81,8 +81,8 @@
 }
 
 .loading i {
-    border: 1px solid color(primary);
-    border-top-color: color(white);
+    border: 1px solid var(--color-primary);
+    border-top-color: var(--color-white);
     border-radius: 50%;
     -webkit-animation: spin 400ms infinite linear;
     -moz-animation: spin 400ms infinite linear;
@@ -124,7 +124,7 @@
 
     .loading-block__message {
         display: block;
-        margin-top: $line-height-base / 2;
+        margin-top: calc($line-height-base / 2);
     }
 }
 
@@ -138,7 +138,7 @@
         display: block;
         position: absolute;
         right: -10px;
-        top: $line-height-base / 2;
+        top: calc($line-height-base / 2);
     }
 }
 

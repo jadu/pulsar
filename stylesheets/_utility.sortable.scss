@@ -1,5 +1,5 @@
 @mixin sortable-handle {
-    color: color(black);
+    color: var(--color-text-full);
     content: '\f0c9';
     font-family: $font-family-icons;
     font-style: normal;
@@ -27,13 +27,13 @@
 
 div.is-sortable {
     .ui-sortable-handle {
-        background-color: color(background, light);
+        background-color: var(--color-bg-light);
         margin-bottom: 4px;
         padding: 10px 10px 10px 50px;
         position: relative;
 
         &:hover {
-            background-color: color(background);
+            background-color: var(--color-bg-surface-1);
 
             &::before {
                 color: color(primary, dark);
@@ -102,7 +102,7 @@ div.is-sorting {
     }
 
     .sortable__count {
-        color: color(black);
+        color: var(--color-text-full);
         font-family: $font-family-regular;
         left: 30px;
         position: absolute;
