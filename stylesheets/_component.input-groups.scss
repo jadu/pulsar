@@ -53,7 +53,7 @@
 
 .input-group-addon {
     align-items: center;
-    background-color: color(gray, off-white);
+    background-color: var(--color-bg-surface-1);
     border: 1px solid $input-group-addon-border-color;
     border-radius: $border-radius;
     display: flex;
@@ -133,7 +133,7 @@
 
 .input-group-btn:first-child > .btn,
 .input-group-btn:first-child > .btn__group {
-    margin-right: $margin-base-horizontal / 2;
+    margin-right: calc($margin-base-horizontal / 2);
 }
 
 .input-group:not(.has-btn-prepended) .form__control:not(:first-child),
@@ -149,7 +149,7 @@
 
 .input-group-btn > .btn,
 .input-group-btn > .btn__group {
-    margin-left: $margin-base-horizontal / 2;
+    margin-left: calc($margin-base-horizontal / 2);
 }
 
 // Button input groups

@@ -1,6 +1,6 @@
 .swatch {
     display: inline-block;
-    margin-bottom: $line-height-medium;
+    margin-bottom: 10px;
     width: 140px;
     vertical-align: top;
 
@@ -21,7 +21,7 @@
     }
 
     &__label {
-        color: color(gray, dark);
+        color: var(--color-gray-dark);
 
         code,
         span {
@@ -43,8 +43,34 @@
         }
     }
 
+    // @each $variant, $value in $palette-states {
+    //     @if $variant != 'alt' {
+    //         &-css--#{'' + $name}-#{$variant} .swatch__colour {
+    //             background-color: var(--color-#{$name});
+    //             color: var(--color-#{$name}-alt);
+    //         }
+    //     }
+    // }
+
+    @each $name, $color in $palette-states {
+        @each $variant, $value in $color {
+            &-css--#{'' + $name}-#{'' + $variant} .swatch__colour {
+                background-color: var(--color-#{'' + $name}-#{'' + $variant});
+                color: var(--color-#{$name}-alt);
+            }
+        }
+    }
+
+    @each $name, $color in $palette-monochromes {
+        @each $variant, $value in $color {
+            &-css--#{'' + $name}-#{'' + $variant} .swatch__colour {
+                background-color: var(--color-#{'' + $name}-#{'' + $variant});
+            }
+        }
+    }
+
     .swatch--white .swatch__color {
-        border: 1px solid color(gray, lighter);
+        border: 1px solid var(--color-gray-lighter);
     }
 
 }
@@ -80,7 +106,7 @@
 
     .branding-preview__primary {
         bottom: 0;
-        color: white;
+        color: var(--color-white);
         display: block;
         left: 0;
         position: absolute;
@@ -108,7 +134,7 @@
 
     .branding-preview__secondary {
         bottom: 0;
-        color: white;
+        color: var(--color-white);
         display: block;
         left: 30px;
         position: absolute;
@@ -212,7 +238,7 @@
 
     .branding-preview__primary {
         bottom: 20px;
-        color: white;
+        color: var(--color-white);
         display: block;
         left: 20px;
         position: absolute;
@@ -228,3 +254,4 @@
         }
     }
 }
+

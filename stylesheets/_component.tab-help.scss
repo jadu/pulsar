@@ -5,7 +5,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     backface-visibility: hidden;
     background: $nav-color-dark;
     box-shadow: inset 4px 0 0 darken($nav-color-dark, 5%);
-    color: color(white);
+    color: var(--color-white);
     display: table-cell;
     height: 100%;
     right: -600px;
@@ -53,7 +53,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     a {
-        color: color(white);
+        color: var(--color-white);
 
         &:hover {
             text-decoration: none;
@@ -72,7 +72,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 .close-page-help {
     background-color: transparent;
     border: 0;
-    color: color(white);
+    color: var(--color-white);
     font-size: $font-size-xlarge;
     line-height: $font-size-xlarge;
     margin-bottom: 10px;

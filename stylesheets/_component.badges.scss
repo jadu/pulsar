@@ -6,7 +6,7 @@
     @include inline-block;
     background-color: $badge-bg;
     border-radius: 10px;
-    color: color(text) !important;
+    color: var(--color-text) !important;
     font-size: $font-size-medium;
     line-height: 1;
     min-width: 25px;
@@ -38,7 +38,7 @@
     }
 
     .badge {
-        color: color(white) !important;
+        color: var(--color-white) !important;
         font-size: 12px;
         margin-bottom: -1px;
         margin-top: -1px;

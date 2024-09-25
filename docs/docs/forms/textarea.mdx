@@ -2,10 +2,23 @@
 id: textarea
 title: Textarea
 sidebar_label: Textarea
+products:
+  supported:
+    - Central CMS
+    - Central Forms
+    - Connect
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 Generates a textarea with options to control the number of rows (the height) of the element as well as additional help and guidance information.
 
@@ -65,6 +78,7 @@ You can configure this helper using the common helper options. The following opt
 
 | Option | Type | Description |
 | ------ | ---- | ----------- |
+| readonly | bool | Adds `readonly` attribute and uses a dashed outline to indicate lack of interaction |
 | rows | integer | The number of horizontal rows of text used to control the height of the input (default 2) |
 
 ## Rows

@@ -1,6 +1,5 @@
 .tab-panel {
 
-
 	// Reset default tab layout styling
 	.tabs__list {
 		> li,
@@ -34,7 +33,7 @@
 
 		> li > a {
 			display: block;
-			color: black;
+			color: var(--color-text);
 			line-height: 1em;
 			padding: .5em 5px;
 			text-align: center;
@@ -97,7 +96,7 @@
 .tab-panel--contrast {
 
 	> .tabs__list > li {
-		background-color: color(gray, lightest);
+		background-color: var(--color-gray-lightest);
 
         &:first-of-type {
             border-top-left-radius: $border-radius;
@@ -110,25 +109,25 @@
         }
 
 		&:hover {
-			background-color: color(gray, lighter);
+			background-color: var(--color-gray-lighter);
 		}
 
 		&.is-active {
-			background-color: color(primary);
+			background-color: var(--color-primary);
 
 			> a {
 				background-color: inherit;
-				color: color(white);
+				color: var(--color-white);
 			}
 		}
 	}
 
 	> .tabs__list > li:not(:last-of-type) {
-		border-right: 2px solid color(white);
+		border-right: 2px solid var(--color-white);
 	}
 
 	.tab__pane {
-		background-color: color(gray, lightest);
+		background-color: var(--color-gray-lightest);
 		margin-top: 2px;
 		padding: 1em $gutter-width .1em;
 	}

@@ -7,7 +7,7 @@
 
     [class^="icon-"],
     [class*=" icon-"] {
-        color: color(black);
+        color: var(--color-text-full);
         font-size: 1.2em;
         vertical-align: middle;
     }
@@ -31,7 +31,7 @@ a + .edit-button {
 }
 
 .btn__group > .edit-button {
-    padding: 0 ($padding-base-horizontal / 2);
+    padding: 0 calc($padding-base-horizontal / 2);
 }
 
 .btn__group .btn + .edit-button {
