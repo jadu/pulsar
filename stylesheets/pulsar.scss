@@ -22,7 +22,7 @@ $ie-version: 12 !default;
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
-$font-path: '../fonts/';
+$font-path: '../../../fonts/';
 @import '../fonts/config.fonts';
 
 // Mixins
@@ -51,6 +51,7 @@ $font-path: '../fonts/';
 
 // Base colour palette
 @import 'palette.base';
+@import 'vars.palette-base';
 
 // Apply palette to components
 @import 'config.theme';

@@ -2,10 +2,23 @@
 id: button
 title: Button
 sidebar_label: Button
+products:
+  supported:
+    - Central CMS
+    - Central Forms
+    - Connect
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 Pulsar buttons are an all purpose user interface element allowing users to perform actions, submit forms and progress through transactions.
 
@@ -77,15 +90,17 @@ Other recommendations for labelling your buttons include:
 
 <div className="d-guidelines">
   <div className="d-guidelines__block d-guidelines__block--do">
-  <div className="d-guidelines-preview">
-    <button className="btn btn--primary">New Document</button>
-  </div>
-  <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> use title case</div></div>
-  <div className="d-guidelines__block d-guidelines__block--not">
     <div className="d-guidelines-preview">
-      <button className="btn btn--primary">New document</button> <button className="btn btn--danger">DELETE</button>
+      <button className="btn btn--primary">New Document</button>
     </div>
-    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> use sentence case or all caps</div></div>
+    <div className="d-guidelines-label"><em className="d-guidelines-label__title">Do</em> use title case</div>
+    <div className="d-guidelines__block d-guidelines__block--not">
+      <div className="d-guidelines-preview">
+        <button className="btn btn--primary">New document</button> <button className="btn btn--danger">DELETE</button>
+      </div>
+      <div className="d-guidelines-label"><em className="d-guidelines-label__title">Don’t</em> use sentence case or all caps</div>
+    </div>
+  </div>
 </div>
 
 <div className="d-guidelines">

@@ -1,14 +1,14 @@
-/* stylelint-disable docusaurus/copyright-header */
-/**
-* Any CSS included here will be global. The classic template
-* bundles Infima by default. Infima is a CSS framework designed to
-* work well for content-centric websites.
-*/
+// /* stylelint-disable docusaurus/copyright-header */
+// /**
+// * Any CSS included here will be global. The classic template
+// * bundles Infima by default. Infima is a CSS framework designed to
+// * work well for content-centric websites.
+// */
 
 $ie-version: 12 !default;
 $image-path: '../../../images/' !default;
 
-$margin-bottom: 1.125 * 1rem;
+// $margin-bottom: 1.125 * 1rem;
 
 $font-family-light:   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $font-family-regular: 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -26,6 +26,16 @@ $fa-css-prefix: 'icon';
 @import '/static/fonts/fontawesome-pro/scss/solid';
 @import '/static/fonts/fontawesome-pro/scss/brands';
 @import '/static/fonts/fontawesome-pro/scss/v4-shims';
+
+@import '../../../stylesheets/palette.base';
+@import '../../../stylesheets/config.theme';
+@import '../../../stylesheets/vars.palette-base';
+
+// Functions
+@import '../../../stylesheets/function.math';
+@import '../../../stylesheets/function.color-luminance';
+@import '../../../stylesheets/function.pick-best-color';
+@import '../../../stylesheets/function.color';
 
 // $font-path: '/static/fonts/';
 @font-face {
@@ -58,8 +68,7 @@ $fa-css-prefix: 'icon';
        url('/static/fonts/code_pro/code_pro_lc-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-}
-
+} 
 
 .d-example,
 .d-example-inline,
@@ -84,15 +93,7 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/config.variables';
     @import '../../../stylesheets/config.branding';
 
-    // Functions
-    @import '../../../stylesheets/function.math';
-    @import '../../../stylesheets/function.color-luminance';
-    @import '../../../stylesheets/function.pick-best-color';
-    @import '../../../stylesheets/function.color';
-
     // Base colour palette
-    @import '../../../stylesheets/palette.base';
-    @import '../../../stylesheets/config.theme';
     @import '../../../stylesheets/deprecated.styles';
 
     // Structure
@@ -176,74 +177,113 @@ $fa-css-prefix: 'icon';
     @import '../../../stylesheets/utility.utilities';
     @import '../../../stylesheets/utility.grid';
 
+    .swatch__chip {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: inline-block;
+        height: 20px;
+        margin-right: 5px;
+        vertical-align: middle;
+        width: 20px;
+    }
+
     .swatch {
         @each $name, $palette in $colors {
             @each $variant, $value in $palette {
                 @if $variant != 'alt' {
                     &--#{'' + $name}-#{$variant} .swatch__chip {
                         background-color: color($name, $variant);
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                        display: inline-block;
-                        height: 20px;
-                        margin-right: 5px;
                         color: pick_best_color(color($name, $variant), (#fff, #000));
-                        vertical-align: middle;
-                        width: 20px;
                     }
                 }
             }
         }
     }
+
+    .swatch--bg-surface-0 .swatch__chip {
+        background-color: var(--color-bg-surface-0);
+    }
+    
+    .swatch--bg-surface-1 .swatch__chip {
+        background-color: var(--color-bg-surface-1);
+    }
+    
+    .swatch--bg-surface-2 .swatch__chip {
+        background-color: var(--color-bg-surface-2);
+    }
+    
+    .swatch--bg-surface-3 .swatch__chip {
+        background-color: var(--color-bg-surface-3);
+    }
 }
 
-:root{
-    --ifm-global-shadow-lw: none;
+:root {
+    --ifm-navbar-shadow: 0 0 1px #999;
 
-    --jadu-purple: #3e4994;
-
-    --ifm-background-surface-color: var(--jadu-purple);
-    --ifm-navbar-link-color: #fff;
-    --ifm-navbar-link-hover-color: #fff;
-
-    --ifm-menu-color-active: var(--jadu-purple);
-
-    --ifm-heading-color: var(--jadu-purple);
-
-    --ifm-card-background-color: #fff;
-    --ifm-container-width: 1300px;
-
-    --ifm-table-border-width: 0;
-
-    --ifm-alert-color: #000;
+    --ifm-color-primary: #d8262c;
+    --ifm-color-primary-dark: #c22228;
+    --ifm-color-primary-darker: #b82025;
+    --ifm-color-primary-darkest: #971b1f;
+    --ifm-color-primary-light: #dd3b40;
+    --ifm-color-primary-lighter: #de464b;
+    --ifm-color-primary-lightest: #e4666a;
+    
+    .theme-doc-sidebar-container {
+        background-color: var(--ifm-navbar-background-color);
+    }
 }
 
-body {
-    font-size: 16px;
+[data-theme="light"] {
+    --ifm-navbar-background-color: #f5f9ff;
+    --ifm-menu-color: #000;
 }
 
-table {
-    width: 100%;
-}
+//     // --ifm-global-shadow-lw: none;
 
-.hero--primary {
-    --ifm-hero-background-color: #fff;
-    --ifm-hero-text-color: var(--ifm-font-color-base);
+//     // --jadu-purple: #3e4994;
 
-    padding: 2rem 0 1rem;
-}
+//     // --ifm-background-surface-color: var(--jadu-purple);
+//     // --ifm-navbar-link-color: #fff;
+//     // --ifm-navbar-link-hover-color: #fff;
 
-.hero__title {
-    margin-bottom: 0;
-}
+//     // --ifm-menu-color-active: var(--jadu-purple);
 
-.admonition h5 {
-    color: var(--ifm-alert-color);
-}
+//     // --ifm-heading-color: var(--jadu-purple);
+
+//     // --ifm-card-background-color: #fff;
+//     // --ifm-container-width: 1300px;
+
+//     // --ifm-table-border-width: 0;
+
+//     // --ifm-alert-color: #000;
+// }
+
+// body {
+//     font-size: 16px;
+// }
+
+// table {
+//     width: 100%;
+// }
+
+// .hero--primary {
+//     --ifm-hero-background-color: #fff;
+//     --ifm-hero-text-color: var(--ifm-font-color-base);
+
+//     padding: 2rem 0 1rem;
+// }
+
+// .hero__title {
+//     margin-bottom: 0;
+// }
+
+// .admonition h5 {
+//     color: var(--ifm-alert-color);
+// }
 
 .d-example {
     border: 1px solid #ccc;
-    margin-bottom: $margin-bottom;
+    margin-bottom: 1em;
     padding: 1em;
     width: 100%;
 
@@ -303,43 +343,76 @@ table {
     }
 }
 
-.u-float-left {
-    float: left;
-}
+// .u-float-left {
+//     float: left;
+// }
 
-.docusaurus-highlight-code-line {
-    background-color: rgb(72, 77, 91);
-    display: block;
-    margin: 0 calc(-1 * var(--ifm-pre-padding));
-    padding: 0 var(--ifm-pre-padding);
-}
+// .docusaurus-highlight-code-line {
+//     background-color: rgb(72, 77, 91);
+//     display: block;
+//     margin: 0 calc(-1 * var(--ifm-pre-padding));
+//     padding: 0 var(--ifm-pre-padding);
+// }
 
-table {
-    display: table;
-}
+// table {
+//     display: table;
+// }
 
-table:not(.table) {
-  display: table;
+// table:not(.table) {
+//   display: table;
 
-  th {
-    background-color: var(--jadu-purple);
-    border: 1px solid var(--jadu-purple);
-    color: #fff;
-  }
+//   th {
+//     background-color: var(--jadu-purple);
+//     border: 1px solid var(--jadu-purple);
+//     color: #fff;
+//   }
 
-  td {
-    border: 1px solid #ccc;
-  }
-}
+//   td {
+//     border: 1px solid #ccc;
+//   }
+// }
 
-html[data-theme='dark'] {
-    --ifm-heading-color: white;
+// html[data-theme='dark'] {
+//     --ifm-heading-color: white;
 
-    .d-example .control__label {
-        color: white;
+//     .d-example .control__label {
+//         color: white;
+//     }
+
+//     table:not(.table) th {
+//         background-color: black;
+//     }
+// }
+
+.product-support {
+    ul {
+        list-style-type: none;
+        padding: 0;
     }
 
-    table:not(.table) th {
-        background-color: black;
+    li {
+        border: 1px solid #ccc;
+        border-radius: 50px;
+        display: inline-block;
+        margin-right: .5em;
+        padding: 0 .5em 0 .3em;
+    }
+}
+
+li.product-support--supported {
+    background-color: var(--ifm-color-success-contrast-background);
+    border-color: var(--ifm-color-success-lightest);
+
+    > svg {
+        color: var(--ifm-color-success-dark);
+    }
+}
+
+li.product-support--unsupported {
+    background-color: var(--ifm-color-danger-contrast-background);
+    border-color: var(--ifm-color-danger-lightest);
+
+    > svg {
+        color: var(--ifm-color-danger-dark);
     }
 }

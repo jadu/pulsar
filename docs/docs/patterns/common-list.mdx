@@ -2,10 +2,23 @@
 id: common-list
 title: Common List
 sidebar_label: Common List
----
+products:
+  supported:
+    - Central CMS
+    - Central Forms
+    - Connect
+----
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 The common list user interface pattern is the most frequent pattern used to display a paginated collection of ‘Things’, with related actions which can manipulate that collection.
 

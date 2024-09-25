@@ -16,6 +16,6 @@
 
     .note-editor,
     .note-toolbar {
-        border-color: $input-border;
+        border-color: var(--color-border-input);
     }
 }

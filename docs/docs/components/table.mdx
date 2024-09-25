@@ -2,10 +2,23 @@
 id: table
 title: Table
 sidebar_label: Table
+products:
+  supported:
+    - Central CMS
+    - Central Forms
+    - Connect
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 Tables (and the more interactive datatables) allow the presentation of tabular data. For the table layout pattern, you’ll likely want to use a datatable instead of a basic table.
 
