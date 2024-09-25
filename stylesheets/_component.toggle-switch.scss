@@ -6,9 +6,9 @@
     }
 
     &:checked + .toggle-switch-label {
-        background-color: color(success);
+        background-color: var(--color-success);
         border-color: transparent;
-        color: color(white);
+        color: var(--color-white);
 
         &::before {
             left: 50%;
@@ -17,7 +17,7 @@
     }
 
     &:indeterminate + .toggle-switch-label {
-        background-color: color(warning);
+        background-color: var(--color-warning);
 
         &::before {
             left: 25%;
@@ -25,7 +25,7 @@
         }
 
         &::after {
-            color: color(white);
+            color: var(--color-white);
             opacity: 0;
         }
     }
@@ -48,10 +48,10 @@
 
 .toggle-switch-label {
     background-clip: padding-box;
-    background-color: color(grey);
+    background-color: var(--color-gray);
     border-color: transparent;
     border-radius: 1.5em;
-    color: color(white);
+    color: var(--color-white);
     cursor: pointer;
     display: inline-block;
     font-size: 2em;
@@ -67,7 +67,7 @@
 
     &::before {
         background-clip: padding-box;
-        background-color: color(white);
+        background-color: var(--color-bg-surface-0);
         border-radius: 100%;
         border: .125em solid transparent;
         bottom: 0;
@@ -81,7 +81,7 @@
     }
 
     &::after {
-        color: color(white);
+        color: var(--color-white);
         content: '\f00c \f00d';
         font-family: $font-family-icons;
         font-weight: 900;
@@ -107,7 +107,7 @@
 .has-error,
 .has-danger {
     .toggle-switch-label.control__label.control__label {
-        color: color(white);
+        color: var(--color-white);
     }
 }
 

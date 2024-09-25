@@ -2,10 +2,23 @@
 id: no-results
 title: No results
 sidebar_label: No results
+products:
+  supported:
+    - Central CMS
+    - Central Forms
+    - Connect
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 When an interface needs to list items you should provide a helpful fallback message for when no results are found. If the user has the relevant permissions to create or add one of these items, you should provide a call to action to help them along their way.
 
@@ -29,7 +42,7 @@ A generic component to use wherever suitable, can be used within an empty tab if
 You should still display the column titles in the table header, this helps to inform the user about what kind of data is normally present in the table.
 
 :::tip Using no-results with DataTables
-If you’re using datatables instead of plain HTML tables you simply need to have a table with no rows in the body and this message will be displayed automatically. Check the [datatable documentation](/docs/components/datatable#no-results) for more information on how to customise this message.
+If you’re using datatables instead of plain HTML tables you simply need to have a table with no rows in the body and this message will be displayed automatically. Check the [datatable documentation](/components/datatable#no-results) for more information on how to customise this message.
 :::
 
 <div className="d-example">

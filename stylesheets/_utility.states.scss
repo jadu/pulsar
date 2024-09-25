@@ -16,7 +16,7 @@ $danger-to-text-color: black;
     background-color: lighten(color(success), 50) !important;
 
     a {
-        color: color(link, dark);
+        color: var(--color-link-dark);
     }
 }
 
@@ -24,7 +24,7 @@ $danger-to-text-color: black;
     background-color: lighten(color(warning), 20) !important;
 
     a {
-        color: color(link, dark);
+        color: var(--color-link-dark);
     }
 }
 
@@ -33,7 +33,7 @@ $danger-to-text-color: black;
     background-color: color(danger, light) !important;
 
     a {
-        color: color(link, dark);
+        color: var(--color-link-dark);
     }
 }
 

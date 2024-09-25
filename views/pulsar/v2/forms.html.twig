@@ -120,7 +120,7 @@
 
 {# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
 {% block form_row %}
-    {% spaceless %}
+    {% apply spaceless %}
         <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}">
             {{ form_label(form) }}
             <div class="controls">
@@ -195,7 +195,7 @@
                 {% endif %}
             </div>
         </div>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock form_row %}
 
 {% block button_row %}
@@ -222,18 +222,18 @@
 {% endblock form_start %}
 
 {% block form_errors %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% for error in errors %}
             <p class="help-block">
                 {{ error.message }}
             </p>
         {% endfor %}
-    {% endspaceless %}
+    {% endapply %}
 {% endblock form_errors %}
 
 {# Used when form_row is used to generate a group of compound fields, such as a group of check boxes #}
 {% block form_rows %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% for child in form %}
             <label class="control__label">
                 {{ form_widget(child, {attr: attr}) }}
@@ -244,14 +244,14 @@
                 {% endif %}
             </label>
         {% endfor %}
-    {% endspaceless %}
+    {% endapply %}
 {% endblock form_rows %}
 
 {# Used when form_row is used to generate a group of repeated fields, such as 2 text inputs #}
 {% block form_rows_repeated %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% for child in form %}
             {{ form_row(child, {attr: repeated_attr is defined ? repeated_attr : {}}) }}
         {% endfor %}
-    {% endspaceless %}
+    {% endapply %}
 {% endblock form_rows_repeated %}
