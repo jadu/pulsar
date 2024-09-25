@@ -48,8 +48,8 @@ $greeter-bg:                            url($image-path + 'branding/central-gree
 $greeter-bg-color:                      color(jadu-purple) !default;
 $greeter-bg-color-lighter:              color(jadu-purple, light) !default;
 $greeter-bg-color-darker:               darken($greeter-bg-color, 3) !default;
-$greeter-text-color:                    color(white) !default;
-$greeter-text-color-alt:                color(black) !default;
+$greeter-text-color:                    var(--color-white) !default;
+$greeter-text-color-alt:                var(--color-black) !default;
 $greeter-link-underline-color:          $greeter-bg-color-lighter !default;
 $greeter-button-bg-color:               darken(color(jadu-purple), 6) !default;
 $greeter-button-bg-color-hover:         darken($greeter-button-bg-color, 8) !default;
@@ -95,7 +95,7 @@ $greeter-brand-bottom-height:           40px !default;
 .greeter {
     background-image: $greeter-bg;
     background-position: -5px -5px;
-    box-shadow: 0 0 0 $shadow-large color(background, shadow);
+    box-shadow: 0 0 0 $shadow-large var(--color-bg-shadow);
     color: $greeter-text-color;
     min-height: $greeter-min-height;
     max-width: $greeter-width-max;
@@ -126,7 +126,7 @@ $greeter-brand-bottom-height:           40px !default;
         }
 
         strong {
-            border: 2px solid color(white);
+            border: 2px solid var(--color-white);
             border-radius: 20px;
             display: inline-block;
             height: 25px;
@@ -184,7 +184,7 @@ $greeter-brand-bottom-height:           40px !default;
 
     &__textarea {
         border: 0; /* [3] */
-        box-shadow: inset 0 3px 0 color(gray, lighter);
+        box-shadow: inset 0 3px 0 var(--color-gray-lighter);
         max-width: ($greeter-width-max - ($greeter-padding * 2)); /* [4] */
         max-height: 16em;
         min-height: 8em; /* [5] */
@@ -205,7 +205,7 @@ $greeter-brand-bottom-height:           40px !default;
     &__hint {
         display: inline-block;
         margin: 0;
-        margin-left: $greeter-padding / 2;
+        margin-left: calc($greeter-padding / 2);
         margin-right: auto;
         opacity: 0;
         position: relative;
@@ -214,7 +214,7 @@ $greeter-brand-bottom-height:           40px !default;
         i { /* [9] */
             display: inline-block;
             font-size: 1.5em;
-            margin-right: ($greeter-padding / 2);
+            margin-right: calc($greeter-padding / 2);
             -webkit-animation-duration: 1s;
               animation-duration: 1s;
             -webkit-animation-fill-mode: both;
@@ -231,7 +231,7 @@ $greeter-brand-bottom-height:           40px !default;
         border: 0;
         border-bottom: $greeter-button-border-width solid $greeter-button-border-color;
         border-radius: $border-radius;
-        color: color(white);
+        color: var(--color-white);
         font-size: $greeter-font-size-small;
         line-height: 1em;
         padding: 10px 10px 7px;

@@ -259,6 +259,15 @@
             'placeholder': 'Placeholder'
         })
     }}
+    {{
+        form.text({
+            'id': 'guid-' ~ random(),
+            'label': '"readonly": true',
+            'readonly': true,
+            'help': 'Can you read me, over?',
+            'value': 'value'
+        })
+    }}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
@@ -435,6 +444,16 @@
             'label': 'Prepended &amp; Appended',
             'append': '.00',
             'prepend': '£'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'guid-' ~ random(),
+            'label': 'Prepended &amp; Appended &amp Readonly',
+            'append': '.00',
+            'prepend': '£',
+            'readonly': true
         })
     }}
 

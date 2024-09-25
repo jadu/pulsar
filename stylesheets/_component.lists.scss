@@ -3,19 +3,19 @@
 }
 
 .list--naked li.is-active {
-    background-color: color(primary);
+    background-color: var(--color-primary);
     border-radius: $border-radius;
     margin-left: -5px;
     padding-left: 5px;
 
     &,
     > a {
-        color: color(primary, alt);
+        color: var(--color-primary-alt);
         text-decoration: none;
     }
 
     > a:focus {
-        color: color(text);
+        color: var(--color-text);
     }
 }
 
@@ -26,7 +26,7 @@
 }
 
 .list--timeline {
-    border-left: 2px solid color(border);
+    border-left: 2px solid var(--color-border);
     list-style: none;
 
     li {
@@ -36,8 +36,8 @@
     }
 
     li::before {
-        background-color: color(background);
-        border: 2px solid color(border);
+        background-color: var(--color-bg-surface-1);
+        border: 2px solid var(--color-border);
         border-radius: 50px;
         content: '';
         display: block;
@@ -56,7 +56,7 @@
         font-family: $font-family-regular;
 
         &::before {
-            border-color: color(primary);
+            border-color: var(--color-primary);
         }
     }
 }

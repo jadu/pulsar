@@ -6,7 +6,7 @@ $signin-panel-full-width:	460px;
 $signin-panel-mobile-width:	300px;
 
 .signin-backdrop {
-    background: #fff;
+    background: var(--color-bg-surface-0);
     background-image: url('../images/signin-backdrop.jpg');
     background-attachment: fixed;
     background-position: center center;
@@ -175,7 +175,7 @@ $signin-panel-mobile-width:	300px;
     &--error {
         .loading--circle i {
             border: 1px solid rgba(0, 0, 0, .2);
-            border-top-color: color(white);
+            border-top-color: var(--color-white);
         }
     }
 
@@ -189,7 +189,7 @@ $signin-panel-mobile-width:	300px;
     }
 
     p {
-        margin: ($line-height-base / 2) 0;
+        margin: calc($line-height-base / 2) 0;
     }
 
     hr {
@@ -202,7 +202,7 @@ $signin-panel-mobile-width:	300px;
     }
 
     a:focus {
-        color: color(black);
+        color: var(--color-text-full);
     }
 
     .legend,
@@ -250,8 +250,8 @@ $signin-panel-mobile-width:	300px;
 
     .panel--danger,
     &.signin--error .signin__info {
-        border-bottom: 2px solid color(white) !important;
-        border-top: 2px solid color(white) !important;
+        border-bottom: 2px solid var(--color-white) !important;
+        border-top: 2px solid var(--color-white) !important;
         margin: 20px -30px;
 
         @include respond-min($screen-tablet) {
@@ -266,7 +266,7 @@ $signin-panel-mobile-width:	300px;
         .panel__body,
         span,
         i {
-            color: color(white) !important;
+            color: var(--color-white) !important;
         }
     }
 
@@ -276,7 +276,7 @@ $signin-panel-mobile-width:	300px;
     }
 
     .has-error {
-        background-color: color(white);
+        background-color: var(--color-bg-surface-0);
         padding: 0 20px;
         margin: 0 -30px;
         width: calc(100% + 60px);
@@ -289,8 +289,8 @@ $signin-panel-mobile-width:	300px;
 
         .btn {
             border: 0 !important;
-            color: color(black) !important;
-            outline: 2px solid color(danger);
+            color: var(--color-text-full) !important;
+            outline: 2px solid var(--color-danger);
         }
 
         .btn--naked {
@@ -298,17 +298,17 @@ $signin-panel-mobile-width:	300px;
         }
 
         .control__label {
-            color: color(danger) !important;
+            color: var(--color-danger) !important;
         }
 
         .form__control.form__control {
-            outline: 2px solid color(danger);
+            outline: 2px solid var(--color-danger);
         }
     }
 
     .has-error .help-block {
-        background-color: color(white);
-        color: color(danger) !important;
+        background-color: var(--color-bg-surface-0);
+        color: var(--color-danger) !important;
         font-family: $font-family-regular;
         padding: 0 20px 1em;
         margin: 0 -20px;
@@ -319,7 +319,7 @@ $signin-panel-mobile-width:	300px;
         }
 
         i {
-            color: color(danger) !important;
+            color: var(--color-danger) !important;
             font-size: 1.5em;
             margin-right: .25em;
             vertical-align: text-bottom;
@@ -331,7 +331,7 @@ $signin-panel-mobile-width:	300px;
 .signin .form__control.form__control {
     background-color: none;
     border: 0;
-    color: color(text) !important;
+    color: var(--color-text) !important;
     display: inline-block;
     height: 48px;
     line-height: 48px;
@@ -367,7 +367,7 @@ $signin-panel-mobile-width:	300px;
 
 .signin option,
 .signin .select2 * {
-    color: color(text) !important;
+    color: var(--color-text) !important;
 }
 
 .signin .select2-container {
@@ -421,7 +421,7 @@ $signin-panel-mobile-width:	300px;
 }
 
 .signin__alt {
-    background-color: color(white);
+    background-color: var(--color-bg-surface-0);
     border-radius: 20px;
     display: block;
     margin-top: 1em;
@@ -466,7 +466,7 @@ $signin-panel-mobile-width:	300px;
 }
 
 .signin__heading {
-    color: color(gray, darker);
+    color: var(--color-gray-darker);
     font-family: $font-family-heading;
     font-size: 1.5em;
     margin: 10px 30px 20px;
@@ -559,7 +559,7 @@ $signin-panel-mobile-width:	300px;
 
     .signin--error &::before {
         content: '\f06a';
-        color: color(danger);
+        color: var(--color-danger);
     }
 
     .active-success .signin-success & {

@@ -4,8 +4,16 @@ title: Radio
 sidebar_label: Radio
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 Generates a radio input field. There are various different options available to control the position of the radio and labels.
 
@@ -80,8 +88,7 @@ The `form.radio_inline()` helper creates a `<label>` element with the radio plac
 <div className="d-example">
   <div className="form__group form-radio-inline">
     <div className="controls">
-      <label htmlFor="guid-762536768" className="control__label">
-        <input id="guid-762536768" name="radio-3" type="radio" className="form__control radio" />Standard left aligned</label>
+      <label htmlFor="guid-762536768" className="control__label"><input id="guid-762536768" name="radio-3" type="radio" className="form__control radio" />Standard left aligned</label>
     </div>
   </div>
 
