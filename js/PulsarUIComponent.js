@@ -86,7 +86,7 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
                 className: 'control',
                 orderable: false,
                 searchable: false,
-                targets: 0
+                targets: -1
             }
         ];
     }
