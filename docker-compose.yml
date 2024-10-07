@@ -1,9 +1,11 @@
 version: '2'
 services:
-    web:
-        image: php:8.1-apache
-        working_dir: /var/www/html
-        volumes:
-          - ./:/var/www/html/:cached
-        ports:
-          - 9000:80
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html/:cached
+    ports:
+      - 9000:80
