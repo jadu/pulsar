@@ -12,11 +12,11 @@ $fa-path: '../fonts/fontawesome-pro-6.4.2-web' !default;
 $fa-font-path: $fa-path + '/webfonts' !default;
 $fa-css-prefix: 'icon';
 
-@import '../fonts/fontawesome-pro-6.4.2-web/scss/fontawesome';
-@import '../fonts/fontawesome-pro-6.4.2-web/scss/regular';
-@import '../fonts/fontawesome-pro-6.4.2-web/scss/solid';
-@import '../fonts/fontawesome-pro-6.4.2-web/scss/brands';
-@import '../fonts/fontawesome-pro-6.4.2-web/scss/v4-shims';
+@import 'fontawesome-pro-6.4.2-web/scss/fontawesome';
+@import 'fontawesome-pro-6.4.2-web/scss/regular';
+@import 'fontawesome-pro-6.4.2-web/scss/solid';
+@import 'fontawesome-pro-6.4.2-web/scss/brands';
+@import 'fontawesome-pro-6.4.2-web/scss/v4-shims';
 
 @font-face {
   font-family: 'proxima_novalight';
