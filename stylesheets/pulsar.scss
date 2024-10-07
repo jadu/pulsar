@@ -23,7 +23,7 @@ $ie-version: 12 !default;
 
 // Proxima Nova (requires license)
 $font-path: '../fonts/';
-// @import '../fonts/config.fonts';
+@import '../fonts/config.fonts';
 
 // Mixins
 @import 'mixin.border-radius';

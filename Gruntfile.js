@@ -89,8 +89,11 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
-                    sourceMap: true
+                    sourceMap: true,
+                    includePaths: [
+                      'stylesheets',
+                      'node_modules/@fortawesome/fontawesome-pro/scss'
+                    ]
                 },
                 files: [{
                     cwd:    'stylesheets/',
@@ -104,8 +107,11 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
-                    outputStyle: 'compressed'
+                    outputStyle: 'compressed',
+                    includePaths: [
+                      'stylesheets',
+                      'node_modules/@fortawesome/fontawesome-pro/scss'
+                    ]
                 },
                 files: [{
                     cwd:    'stylesheets/',
@@ -120,8 +126,11 @@ module.exports = function(grunt) {
             lexicon: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
-                    sourceMap: true
+                    sourceMap: true,
+                    includePaths: [
+                      'stylesheets',
+                      'node_modules/@fortawesome/fontawesome-pro/scss'
+                    ]
                 },
                 files: [{
                     cwd: 'stylesheets/lexicon/',
