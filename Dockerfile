@@ -25,9 +25,11 @@ RUN composer install --no-dev
 # Install NPM dependencies securely using Docker build secrets
 RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install --include=dev
 
+# Install global grunt
+RUN npm install -g grunt-cli
+
 # Build JS
 RUN grunt browserify
 
 # Build CSS
 RUN grunt sass
-
