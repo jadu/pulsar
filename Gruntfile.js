@@ -531,12 +531,10 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'scsslint',
+        'copy:dist',
         'sass:dist',
         'autoprefixer',
         'browserify:dist',
-        'copy:dist',
-        'compress'
     ]);
 
     grunt.registerTask('deploy', [
