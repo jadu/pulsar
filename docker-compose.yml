@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
       secrets:
-        -
+        - npmrc
     working_dir: /var/www/html
     ports:
       - 9000:80
