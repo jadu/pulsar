@@ -19,9 +19,11 @@
 /css
 pulsar.zip
 /shots
-/fonts
 /docs/node_modules
 /docs/.docusaurus
+
+fonts/*
+!fonts/_config.fonts.scss
 
 /.csscomb.json
 /validation-status.json
