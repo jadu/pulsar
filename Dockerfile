@@ -26,4 +26,4 @@ RUN composer install --no-dev
 RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install
 
 # Command to run when the container starts
-CMD npm start
+CMD start
