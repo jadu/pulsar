@@ -23,7 +23,7 @@ COPY . /var/www/html
 RUN composer install --no-dev
 
 # Install NPM dependencies securely using Docker build secrets
-RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install --include=dev
 
 # Build JS
 RUN grunt browserify
