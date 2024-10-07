@@ -24,6 +24,3 @@ RUN composer install --no-dev
 
 # Install NPM dependencies securely using Docker build secrets
 RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install
-
-# Command to run when the container starts
-CMD ["npm", "run", "start"]
