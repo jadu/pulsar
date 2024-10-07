@@ -16,14 +16,14 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
 # Set the working directory
 WORKDIR /var/www/html
 
+# Install Composer dependencies
+RUN composer install --no-dev
+
+# Install NPM dependencies
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install
+
 # Copy the application files into the container
 COPY . /var/www/html
 
-# Use user's NPM credentials
-COPY ~/.npmrc /root/.npmrc
-
-# Install Composer and npm dependencies
-RUN composer install --no-dev && npm install
-
 # Command to run when the container starts
-CMD ["php", "-a"]
+CMD npm start
