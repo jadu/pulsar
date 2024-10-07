@@ -29,7 +29,7 @@ RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install --include=dev
 RUN npm install -g grunt-cli
 
 # Copy relevant files to webroot
-RUN grunt sass
+RUN grunt copy
 
 # Build JS
 RUN grunt browserify
