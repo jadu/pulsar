@@ -19,6 +19,9 @@ WORKDIR /var/www/html
 # Copy the application files into the container
 COPY . /var/www/html
 
+# Use user's NPM credentials
+COPY ~/.npmrc /root/.npmrc
+
 # Install Composer and npm dependencies
 RUN composer install --no-dev && npm install
 
