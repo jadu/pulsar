@@ -22,8 +22,8 @@ COPY . /var/www/html
 # Install Composer dependencies
 RUN composer install --no-dev
 
-# Install NPM dependencies
-RUN npm install
+# Install NPM dependencies securely using Docker build secrets
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install
 
 # Build JS
 RUN grunt browserify
@@ -31,5 +31,3 @@ RUN grunt browserify
 # Build CSS
 RUN grunt sass
 
-# Install NPM dependencies securely using Docker build secrets
-RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install
