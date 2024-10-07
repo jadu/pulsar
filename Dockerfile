@@ -16,14 +16,14 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
 # Set the working directory
 WORKDIR /var/www/html
 
+# Copy the application files into the container
+COPY . /var/www/html
+
 # Install Composer dependencies
 RUN composer install --no-dev
 
 # Install NPM dependencies
 RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install
-
-# Copy the application files into the container
-COPY . /var/www/html
 
 # Command to run when the container starts
 CMD npm start
