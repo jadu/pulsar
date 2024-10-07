@@ -19,13 +19,10 @@ WORKDIR /var/www/html
 # Copy the application files into the container
 COPY . /var/www/html
 
-# Copy the .npmrc file containing the auth token
-COPY .npmrc /root/.npmrc
-
 # Install Composer dependencies
 RUN composer install --no-dev
 
-# Install NPM dependencies
+# Install NPM dependencies securely using Docker build secrets
 RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm install
 
 # Command to run when the container starts

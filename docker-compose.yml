@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      secrets:
+        - npmrc
     working_dir: /var/www/html
     volumes:
       - ./:/var/www/html/:cached
@@ -11,4 +13,4 @@ services:
       - 9000:80
 secrets:
   npmrc:
-    file: /root/.npmrc
+    file: ~/.npmrc
