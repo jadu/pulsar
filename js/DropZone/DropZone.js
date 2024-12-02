@@ -114,7 +114,7 @@ export default class DropZone {
             const dataTransfer = new DataTransfer();
             let wasFile = false;
             for (let i = 0; i < this.files.length; i++) {
-                if (this.files[i].raw instanceof File){
+                if (this.files[i] && this.files[i].raw instanceof File){
                     dataTransfer.items.add(this.files[i].raw);
                     wasFile = true;
                 }
