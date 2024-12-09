@@ -109,6 +109,20 @@ export default class DropZone {
         if (valid) {
             // add processed files to file store
             this.files = [...this.files, ...processedFiles];
+
+            //We need to manually update the datatransfer.files object as it is not updated by the browser due to security reasons
+            const dataTransfer = new DataTransfer();
+            let wasFile = false;
+            for (let i = 0; i < this.files.length; i++) {
+                if (this.files[i] && this.files[i].raw instanceof File){
+                    dataTransfer.items.add(this.files[i].raw);
+                    wasFile = true;
+                }
+            }
+            if (wasFile){
+                // this guard exists as some js tests do not provide a file type as the input value.
+                document.getElementById(this.options.inputNodeId).files = dataTransfer.files;
+            }
         }
 
         // fire dropped callback
