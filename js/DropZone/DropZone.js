@@ -119,7 +119,7 @@ export default class DropZone {
                     wasFile = true;
                 }
             }
-            if (wasFile){
+            if (wasFile && this.options.inputNodeId){
                 // this guard exists as some js tests do not provide a file type as the input value.
                 document.getElementById(this.options.inputNodeId).files = dataTransfer.files;
             }
