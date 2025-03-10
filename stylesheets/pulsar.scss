@@ -14,6 +14,8 @@
 
 $ie-version: 12 !default;
 
+@use 'function.color' as colorFunctions;
+
 // Third party plugins
 // scss-lint:disable all
 @import '../node_modules/normalize.css/normalize';
@@ -22,7 +24,7 @@ $ie-version: 12 !default;
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
-$font-path: '../fonts/';
+$font-path: '../../../fonts/';
 @import '../fonts/config.fonts';
 
 // Mixins
@@ -45,12 +47,10 @@ $font-path: '../fonts/';
 
 // Functions
 @import 'function.math';
-@import 'function.color-luminance';
-@import 'function.pick-best-color';
-@import 'function.color';
 
 // Base colour palette
 @import 'palette.base';
+@import 'vars.palette-base';
 
 // Apply palette to components
 @import 'config.theme';

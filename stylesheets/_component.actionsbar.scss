@@ -98,23 +98,23 @@
         }
 
         .btn--inverse {
-            border-left: 1px solid color(gray, darker);
-            border-right: 1px solid color(gray, darker);
+            border-left: 1px solid var(--color-gray-darker);
+            border-right: 1px solid var(--color-gray-darker);
 
             &:first-child:not(:last-child):not(.dropdown__toggle) {
                 @include respond-min($screen-smaller) {
-                    border-right: 1px solid color(gray, darker);
+                    border-right: 1px solid var(--color-gray-darker);
                 }
             }
 
             &:last-child:not(:first-child) {
                 @include respond-min($screen-smaller) {
-                    border-left: 1px solid color(gray, darker);
+                    border-left: 1px solid var(--color-gray-darker);
                 }
             }
 
             .caret {
-                border-top: 4px solid color(white);
+                border-top: 4px solid var(--color-white);
             }
         }
 

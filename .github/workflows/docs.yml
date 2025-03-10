@@ -1,36 +1,59 @@
-name: deploy-docusaurus
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [develop]
+    branches:
+      - develop
+    paths:
+      - 'docs/**'  # Only trigger on changes in the /docs directory
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  publish:
+  build:
+    name: Build Docusaurus
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Check out repo
-        uses: actions/checkout@v3
-      # Node is required for npm
-      - name: Set up Node
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
         with:
-          node-version: "16"
-      # Install and build Docusaurus website
-      - name: Build Docusaurus website
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install dependencies
         run: |
-          cd docs
-          npm install
-          npm run build
-      - name: Deploy to GitHub Pages
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v3
+          npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+          npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_TOKEN }}"
+          yarn install --frozen-lockfile
+        working-directory: ./docs  # Set the working directory to /docs
+
+      - name: Build website
+        run: yarn build
+        working-directory: ./docs  # Set the working directory to /docs
+
+      - name: Upload Build Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          target_branch: gh-pages
-          build_dir: docs/build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: docs/build  # Adjust the path to the build directory within /docs
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

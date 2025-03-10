@@ -6,13 +6,13 @@ fieldset {
 }
 
 .form {
-    background-color: color(white);
+    background-color: var(--color-bg-surface-0);
 
     fieldset {
         padding: 22px 0;
 
         legend {
-            border-bottom: 1px solid color(border);
+            border-bottom: 1px solid var(--color-border);
             display: block;
             font-size: $font-size-xlarge;
             line-height: $line-height-base;
@@ -52,7 +52,7 @@ fieldset {
 
 .form__control {
     appearance: none;
-    border-radius: $input-border-radius;
+    border-radius: $input-radius;
     height: $input-height-base;
     line-height: $input-height-base;
     padding: 0 0 0 $padding-base-horizontal;
@@ -78,7 +78,7 @@ fieldset {
     &[type="time"],
     &[type="url"],
     &[type="week"] {
-        border: 1px solid $input-border;
+        border: 1px solid var(--color-border-input);
     }
 
     &[type="search"] {
@@ -99,7 +99,7 @@ fieldset {
     }
 
     &.textarea {
-        border: 1px solid $input-border;
+        border: 1px solid var(--color-border-input);
         height: auto;
         line-height: $line-height-base;
         min-height: 68px;
@@ -110,12 +110,12 @@ fieldset {
 
     &.select {
         appearance: none;
-        background-image: linear-gradient(45deg, transparent 49%, color(text) 49%), linear-gradient(135deg, color(text) 49%, transparent 49%), linear-gradient(to right, color(gray, off-white), color(gray, off-white));
+        background-image: linear-gradient(45deg, transparent 49%, var(--color-text) 49%), linear-gradient(135deg, var(--color-text) 49%, transparent 49%), linear-gradient(to right, var(--color-gray-off-white), var(--color-gray-off-white));
         background-position: calc(100% - 10px) calc(1em + 5px), calc(100% - 5px) calc(1em + 5px), 100% 0;
         background-size: 5px 5px, 5px 5px, 22px 100%;
         background-repeat: no-repeat;
-        border: 1px solid $input-border;
-        color: color(text);
+        border: 1px solid var(--color-border-input);
+        color: var(--color-text);
         padding: 0 22px 0 $padding-base-horizontal;
 
         @media screen and (-ms-high-contrast: active) {
@@ -155,7 +155,7 @@ fieldset {
         }
 
         @include ie-lte(9) {
-            border: 1px solid $input-border;
+            border: 1px solid var(--color-border-input);
             border-radius: 0;
         }
 
@@ -166,8 +166,8 @@ fieldset {
         }
 
         &.is-disabled {
-            background-color: color(white);
-            color: color(text, disabled);
+            background-color: var(--color-bg-surface-0);
+            color: var(--color-text-disabled);
         }
     }
 
@@ -208,7 +208,7 @@ fieldset {
         .form__group select#{&},
         .form__group textarea#{&} {
             @include ie-lte(8) {
-                border: 1px solid $input-border;
+                border: 1px solid var(--color-border-input);
                 max-width: 100%;
                 padding: 0 0 0 $padding-base-horizontal;
                 width: 300px;
@@ -243,16 +243,21 @@ fieldset {
     // disabled if the fieldset is disabled. Due to implementation difficulty,
     // we don't honor that edge case; we style them as disabled anyway.
     &[disabled],
-    &[readonly],
     fieldset[disabled] & {
         cursor: not-allowed;
-        color: color(text); // Required for cross-browser consistency
+        color: var(--color-text); // Required for cross-browser consistency
         background-color: $input-bg-disabled;
+    }
+
+    &[readonly] {
+        border-style: dashed;
+        cursor: not-allowed;
     }
 
     &:focus {
         @include pulsar-input-focused;
 
+        border-style: solid;
         z-index: 1;
     }
 }
@@ -263,7 +268,7 @@ fieldset {
 }
 
 .form__group > .control__label {
-    color: color(text);
+    color: var(--color-text);
     padding-top: 11px;
     padding-right: 10px;
 
@@ -291,7 +296,7 @@ fieldset {
 }
 
 .form__actions {
-    border-top: 1px solid color(border);
+    border-top: 1px solid var(--color-border);
     min-height: 60px;
     padding: $line-height-base 0;
     position: relative;
@@ -438,7 +443,7 @@ fieldset {
   }
 
   &.has-error {
-    @include form__group-validation($state-danger-text, color(danger), $state-danger-bg);
+    @include form__group-validation($state-danger-text, var(--color-danger), $state-danger-bg);
   }
 
   &.has-success {
@@ -456,7 +461,7 @@ fieldset {
     }
 
     &.has-error {
-        @include form__group-partial-validation($state-danger-text, color(danger));
+        @include form__group-partial-validation($state-danger-text, var(--color-danger));
     }
 
     &.has-success {
@@ -474,7 +479,7 @@ fieldset {
     }
 
     &.has-error {
-        @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+        @include form__control-validation($state-danger-text, var(--color-danger), $state-danger-bg);
     }
 
     &.has-success {
@@ -524,14 +529,14 @@ fieldset {
     // Selected state
     .form__control:checked + .control__label,
     .form__control:checked + .control__label:hover {
-        background-color: color(primary);
-        color: color(primary, alt);
+        background-color: var(--color-primary);
+        color: var(--color-primary-alt);
         font-family: $font-family-regular;
     }
 
     // Visible indicator to not rely on colour alone
     .form__control:checked + .control__label::after {
-        background-color: color(white);
+        background-color: var(--color-bg-surface-0);
         bottom: 4px;
         content: '';
         display: block;
@@ -551,7 +556,7 @@ fieldset {
     }
 
     .form__control:focus + .control__label::after {
-        background-color: color(black);
+        background-color: var(--color-black);
     }
 }
 
@@ -583,7 +588,7 @@ fieldset {
 .form__control.radio.radio {
     appearance: none;
     background-color: #fafafa;
-    border: 1px solid color(border);
+    border: 1px solid var(--color-border);
     height: 22px;
     overflow: hidden;
     position: relative;
@@ -617,12 +622,12 @@ fieldset {
     }
 
     &:checked::before {
-        color: color(text);
+        color: var(--color-text);
         content: '\f00c';
     }
 
     &:indeterminate::before {
-        color: color(text);
+        color: var(--color-text);
         content: '\f068';
         left: 3.5px;
     }
@@ -636,7 +641,7 @@ fieldset {
     }
 
     &:checked::before {
-        background-color: color(black);
+        background-color: var(--color-black);
         border-radius: 12px;
         content: '';
         display: block;
@@ -701,16 +706,16 @@ fieldset {
 
     @include ie-lte(9) {
         background-color: #fafafa;
-        border: 1px solid $input-border;
-        border-radius: $input-border-radius;
+        border: 1px solid var(--color-border-input);
+        border-radius: var(--color-border-input)-radius;
         height: $input-height-base;
         line-height: $input-height-base;
         padding: 0 0 0 $padding-base-horizontal;
 
         &:focus {
-            border: 1px solid color(black);
-            box-shadow: 0 0 0 1px color(black);
-            outline: 3px solid color(border, focus);
+            border: 1px solid var(--color-black);
+            box-shadow: 0 0 0 1px var(--color-black);
+            outline: 3px solid var(--color-border-focus);
             outline-offset: 2px;
         }
     }
@@ -718,7 +723,7 @@ fieldset {
 
 .form-range .input-group-addon:first-child,
 .form-range .input-group-addon:last-child {
-    border: 1px solid color(border);
+    border: 1px solid var(--color-border-input);
     border-radius: $border-radius;
 }
 
@@ -739,7 +744,7 @@ fieldset {
 .form__group {
     .table tbody {
         background-color: #fafafa;
-        border-top: 1px solid color(border);
+        border-top: 1px solid var(--color-border);
     }
 
     .table-container {
@@ -822,9 +827,9 @@ fieldset.form__group {
 }
 
 .cke_focus.cke_focus {
-    border: 3px solid color(black);
+    border: 3px solid var(--color-black);
     border-radius: 0;
-    outline: 3px solid color(border, focus);
+    outline: 3px solid var(--color-border-focus);
     outline-offset: 0;
 }
 
@@ -832,7 +837,7 @@ fieldset.form__group {
 .inputLength__label {
     background-color: color(grey, lightest);
     border-radius: $border-radius-small;
-    color: color(text);
+    color: var(--color-text);
     display: inline-block;
     min-width: 25px;
     padding: 2px 5px 0;
@@ -840,11 +845,11 @@ fieldset.form__group {
 }
 
 .inputLength--warn > .inputLength__label {
-    background-color: color(warning);
+    background-color: var(--color-warning);
     color: color(warning, alt);
 }
 
 .inputLength--stop > .inputLength__label {
-    background-color: color(danger);
+    background-color: var(--color-danger);
     color: color(danger, alt);
 }
