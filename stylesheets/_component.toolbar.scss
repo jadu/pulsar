@@ -1,5 +1,5 @@
 .toolbar {
-    background-color: color(white);
+    background-color: var(--color-bg-surface-0);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -63,7 +63,7 @@
             padding: 10px;
 
             &:hover {
-                background-color: color(background, light);
+                background-color: var(--color-bg-light);
             }
         }
     }

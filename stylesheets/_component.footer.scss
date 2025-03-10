@@ -6,25 +6,23 @@
     -webkit-transform: none;
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
-    background-color: color(white);
-    border-top: $border-width solid color(gray, lightest);
+    background-color: var(--color-bg-surface-0);
+    border-top: $border-width solid var(--color-gray-lightest);
     bottom: 0;
     font-size: $font-size-small;
     height: $footer-height;
     left: 0;
     padding: $footer-padding-vertical $gutter-width;
-    position: static;
+    position: relative;
     right: 0;
     transform: none;
     transition: transform 500ms ease;
+    width: 100%;
     z-index: $zindex-footer;
-
-    @include respond-min($screen-tablet) {
-        position: fixed;
-    }
 
     @include respond-min($screen-desktop) {
         left: $nav-primary-width;
+        width: calc(100% - #{$nav-primary-width});
     }
 
     .open-nav & {
@@ -32,10 +30,7 @@
             left: $nav-primary-width;
             -webkit-transform: none;
             transform: none;
-        }
-
-        @include ie-lte(9) {
-            left: $nav-primary-width;
+            width: calc(100% - #{$nav-primary-width});
         }
     }
 
@@ -44,17 +39,18 @@
             left: $nav-primary-width;
             -webkit-transform: none;
             transform: none;
+            width: calc(100% - #{$nav-primary-width});
         }
     }
 
     a {
-        color: color(gray, darker);
+        color: var(--color-gray-darker);
         line-height: 16px;
         padding: 0;
         text-decoration: none;
 
         &:hover {
-            color: color(link);
+            color: var(--color-link);
         }
     }
 }

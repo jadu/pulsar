@@ -47,7 +47,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro actions_menu(items) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
     {% set actions = [] %}
@@ -99,7 +99,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -128,7 +128,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro badge(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <span{{
@@ -142,7 +142,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         {{- options.label|default|raw -}}
     </span>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -193,7 +193,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro block_list(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as html %}
 
     {% set mainTag = 'ul' %}
@@ -242,7 +242,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {% endif %}
     </{{ mainTag }}>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -275,7 +275,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro button(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -328,7 +328,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
         </button>
 
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -364,7 +364,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro button_group(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <div{{
@@ -380,7 +380,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
         {% endfor %}
     </div>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -430,7 +430,7 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
 
 #}
 {% macro button_dropdown(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -469,7 +469,7 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
         }}
     </div>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -506,7 +506,7 @@ data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro countdown(options) %}
-{% spaceless %}
+{% apply spaceless %}
 
     {%
         set options = options|default({})|merge({
@@ -526,7 +526,7 @@ data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
         {{- options.label|default|raw -}}
     </span>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -557,13 +557,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro div(options) %}
-{% spaceless %}
+{% apply spaceless %}
 
     <div{{ attributes(options|exclude('value')) }}>
         {{- options.value|raw -}}
     </div>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -581,9 +581,9 @@ Used in html.dropdown to insert lines between items.
 
 #}
 {% macro divider() %}
-{% spaceless %}
+{% apply spaceless %}
     <span class="divider"></span>
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -617,7 +617,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro edit_button(options) %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% import _self as html %}
         {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -637,7 +637,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
             )
         }}
 
-    {% endspaceless %}
+    {% endapply %}
 {% endmacro %}
 
 {# -----------------------------------------------------------------------------
@@ -666,7 +666,7 @@ class  | string | CSS classes, space separated
 
 #}
 {% macro icon(icon_name, options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% set mime_types = {
@@ -719,7 +719,7 @@ class  | string | CSS classes, space separated
         )
     }}>{{ label|default|raw }}</i>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -751,7 +751,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro label(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -786,7 +786,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             }}
         {% endif %}
     </span>
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -865,7 +865,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro list(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% set list_type = options.type|default('ul') %}
@@ -891,7 +891,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     </{{ list_type }}>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -928,7 +928,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro link_list(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% set items = [] %}
@@ -955,7 +955,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -986,14 +986,14 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro li(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <li{{ attributes(options|exclude('value')) }}>
         {{- options.value|raw -}}
     </li>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1025,7 +1025,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro loading(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% set type = 'inline' %}
@@ -1056,7 +1056,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     </div>
     {% endif %}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1101,7 +1101,7 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro media(options) %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% spaceless %}
+{% apply spaceless %}
 
     {% set type = 'div' %}
     {% if options.type is defined and options.type == 'link' %}
@@ -1134,7 +1134,7 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
         </div>
     </{{ type }}>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1170,7 +1170,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro metadata(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <dl{{
@@ -1189,7 +1189,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {% endfor %}
     </dl>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1225,7 +1225,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro panel(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -1274,7 +1274,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
         {% endif %}
     </{{ tag }}>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1308,7 +1308,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro progress(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <div class="progress">
@@ -1338,7 +1338,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
         </div>
     </div>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1373,7 +1373,7 @@ label     | string | SR friendly hidden label
 
 #}
 {% macro remove_button(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -1399,7 +1399,7 @@ label     | string | SR friendly hidden label
         )
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1447,7 +1447,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro status(state, options) %}
 {% import _self as html %}
-{% spaceless %}
+{% apply spaceless %}
 
 {% if options.title is not defined %}
     {% set options = options|default({})|merge({ 'title': state|default('active') }) %}
@@ -1492,7 +1492,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {% endif %}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1527,7 +1527,7 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
     {% set files = options['data-dropzone-max-files'] is defined ? options['data-dropzone-max-files'] : '5' %}
     {% set state = options['data-dropzone-passive']|default('false') == 'true' ? 'passive' : 'idle' %}
     {% set idle = options['data-dropzone-idle-html']|default('your files here or <button class="dropzone__browse btn" aria-label="Browse files to upload">Browse Files</button>') %}
-    {% spaceless %}
+    {% apply spaceless %}
         <div{{ attributes(options|defaults(
             {
                 'class': 'dropzone dropzone--' ~ state ~ ' dropzone--files-' ~ files
@@ -1547,7 +1547,7 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
                 {{ options['data-helper-content']|default('Helper content')|raw }}
             </p>
         </div>
-    {% endspaceless %}
+    {% endapply %}
 {% endmacro %}
 
 {# -----------------------------------------------------------------------------

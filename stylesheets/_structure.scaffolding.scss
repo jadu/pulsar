@@ -8,7 +8,7 @@ body {
 }
 
 body {
-  background-color: color(background, backdrop);
+  background-color: var(--color-bg-backdrop);
   font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: $line-height-base;
@@ -27,10 +27,6 @@ body {
   position: relative;
   width: 100%;
 
-  @include respond-min($screen-small) {
-    padding: 0 0 $footer-height;
-  }
-
   @include ie-lte(8) {
     overflow: visible;
   }
@@ -38,13 +34,13 @@ body {
 
 // Links
 a {
-  color: color(link);
+  color: var(--color-link);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 2px;
 
   &:hover {
-    color: color(link, hover);
+    color: var(--color-link-hover);
     text-decoration-thickness: 2px;
   }
 
@@ -54,13 +50,13 @@ a {
 
   &.is-disabled,
   &.disabled {
-    color: color(link, disabled);
+    color: var(--color-link-disabled);
     cursor: not-allowed;
   }
 }
 
 .skip-link {
-  background-color: color(white);
+  background-color: var(--color-bg-surface-0);
   position: absolute;
   left: -9999px;
   padding: 10px;

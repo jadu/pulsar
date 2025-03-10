@@ -2,10 +2,23 @@
 id: actionsbar
 title: Actions Bar
 sidebar_label: Actions Bar
+products:
+  supported:
+    - Central CMS
+    - Central Forms
+    - Connect
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<div className="product-support">
+  <strong>Supported products</strong>
+  <ul>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central CMS</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Forms</li>
+    <li className="product-support--supported"><FontAwesomeIcon icon="fa-solid fa-check-circle" /> Central Connect</li>
+  </ul>
+</div>
+
+----
 
 The actions bar is a component within a tab which is split into left/right sides and contains important controls for a given user interface.
 
@@ -64,4 +77,4 @@ There are two blocks that you can populate with actions: `actions_left` and `act
 
 The `actions_left` block will typically contain only the `html.actions_menu` dropdown helper, detailed below.
 
-The `actions_right` block will typically contain [buttons](/docs/components/button) illustrating the primary action(s) for a given UI, but may also use [button groups](/docs/components/button-group) and/or [dropdown buttons](/docs/components/dropdown-button) if suitable.
+The `actions_right` block will typically contain [buttons](/components/button) illustrating the primary action(s) for a given UI, but may also use [button groups](/components/button-group) and/or [dropdown buttons](/components/dropdown-button) if suitable.
