@@ -22,7 +22,7 @@ $colors: merge-maps(
 //  Badges
 // -----------------------------------------------------------------------------
 
-$badge-bg:                      color(gray, lighter) !default;
+$badge-bg:                      var(--color-gray-lighter) !default;
 
 $badge-primary-bg:              color(primary) !default;
 $badge-primary-bg-darker:       darken($badge-primary-bg, 20%) !default;
@@ -58,12 +58,12 @@ $badge-link-hover-color:        #fff !default;
 // -----------------------------------------------------------------------------
 
 $dropdown-bg:                    #fff !default;
-$dropdown-border:                color(black) !default;
-$dropdown-fallback-border:       color(black) !default;
-$dropdown-divider-bg:            color(black) !default;
+$dropdown-border:                var(--color-black) !default;
+$dropdown-fallback-border:       var(--color-black) !default;
+$dropdown-divider-bg:            var(--color-black) !default;
 $dropdown-link-active-color:     #fff !default;
-$dropdown-link-active-bg:        color(primary) !default;
-$dropdown-link-color:            color(gray, dark) !default;
+$dropdown-link-active-bg:        color(jadu-purple) !default;
+$dropdown-link-color:            var(--color-gray-dark) !default;
 $dropdown-link-hover-color:      #fff !default;
 $dropdown-link-hover-bg:         $dropdown-link-active-bg !default;
 $dropdown-caret-color:           inherit !default;
@@ -73,8 +73,8 @@ $dropdown-caret-color:           inherit !default;
 // -----------------------------------------------------------------------------
 
 $table-bg:                       transparent !default;
-$table-bg-accent:                color(gray, light) !default;
-$table-bg-hover:                 color(gray, lighter) !default;
+$table-bg-accent:                var(--color-gray-light) !default;
+$table-bg-hover:                 var(--color-gray-lighter) !default;
 $table-bg-active:                $table-bg-hover !default;
 $table-border-color:             color(gray) !default;
 
@@ -83,11 +83,11 @@ $table-border-color:             color(gray) !default;
 // -----------------------------------------------------------------------------
 
 $popover-bg:                          #fff !default;
-$popover-border-color:                color(gray, light) !default;
+$popover-border-color:                var(--color-gray-light) !default;
 $popover-fallback-border-color:       color(gray) !default;
 $popover-title-bg:                    #fff !default;
 $popover-arrow-color:                 #fff !default;
-$popover-arrow-outer-color:           color(gray, lighter) !default;
+$popover-arrow-outer-color:           var(--color-gray-lighter) !default;
 $popover-arrow-outer-fallback-color:  color(gray) !default;
 
 // -----------------------------------------------------------------------------
@@ -102,11 +102,12 @@ $progress-bg-hover:                   darken($progress-bg, 5%) !default;
 // -----------------------------------------------------------------------------
 
 $input-bg:                            #fff !default;
-$input-bg-disabled:                   color(gray, lightest) !default;
-$input-border:                        color(border) !default;
+$input-radius:                            0 !default;
+$input-bg-disabled:                   var(--color-gray-lightest) !default;
+$input-border:                        var(--color-border) !default;
 $input-border-focus:                  #66afe9 !default;
 $input-color-placeholder:             color(text, placeholder) !default;
-$legend-border-color:                 color(border) !default;
+$legend-border-color:                 var(--color-border) !default;
 $input-group-addon-border-color:      $input-border !default;
 
 $state-warning-text:             #a65e17 !default; // AA compliant on white & warning bg

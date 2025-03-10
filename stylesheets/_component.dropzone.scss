@@ -3,7 +3,7 @@
  */
 
 .dropzone {
-    border: 2px dashed color(border);
+    border: 2px dashed var(--color-border);
     border-radius: $border-radius;
     color: color(text, base);
     padding: 1.25em;
@@ -44,7 +44,7 @@ $dropzone-thumb-size: 4em;
  */
 
 .dropzone__icon {
-    color: color(gray, dark);
+    color: var(--color-gray-dark);
     font-size: 4em;
     text-align: center;
 }
@@ -97,7 +97,7 @@ $dropzone-icon-rotation: 30deg;
 }
 
 .dropzone__help {
-    color: color(text);
+    color: var(--color-text);
     display: inline-block;
     margin-bottom: 0;
     margin-top: 0;
@@ -120,7 +120,7 @@ $dropzone-icon-rotation: 30deg;
 }
 
 .dropzone__error {
-    color: color(danger);
+    color: var(--color-danger);
     font-family: $font-family-regular;
     line-height: 1.2;
     margin: 0;
@@ -153,7 +153,7 @@ $dropzone-icon-rotation: 30deg;
 
 .dropzone__file-inner {
     align-items: center;
-    background-color: color(gray, off-white);
+    background-color: var(--color-bg-surface-1);
     border-radius: $border-radius;
     display: flex;
     flex-grow: 1;
@@ -164,7 +164,7 @@ $dropzone-icon-rotation: 30deg;
 }
 
 .dropzone__close {
-    color: color(gray);
+    color: var(--color-gray);
     cursor: pointer;
     padding: $dropzone-file-size;
     position: absolute;
@@ -172,13 +172,13 @@ $dropzone-icon-rotation: 30deg;
     top: 0;
 
     &:hover {
-        color: color(danger);
+        color: var(--color-danger);
     }
 }
 
 .dropzone__thumbnail {
     border-radius: $border-radius;
-    color: color(grey);
+    color: var(--color-gray);
     height: $dropzone-thumb-size;
     text-align: center;
     width: $dropzone-thumb-size;
@@ -208,7 +208,7 @@ $dropzone-icon-rotation: 30deg;
 .dropzone__type {
     font-size: .75em;
     line-height: 1;
-    margin-bottom: $dropzone-file-size / 2;
+    margin-bottom: calc($dropzone-file-size / 2);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -250,15 +250,15 @@ $dropzone-icon-rotation: 30deg;
 
 .dropzone-window-active {
     .dropzone:not(.dropzone--passive) {
-        border: 2px solid color(primary);
-        color: color(primary);
+        border: 2px solid var(--color-primary);
+        color: var(--color-primary);
 
         .dropzone__help {
-            color: color(primary);
+            color: var(--color-primary);
         }
 
         .dropzone__icon {
-            color: color(primary);
+            color: var(--color-primary);
         }
 
         .dropzone__icon--left {
@@ -298,7 +298,7 @@ $dropzone-icon-rotation: 30deg;
 
 .dropzone-error {
     .dropzone:not(.dropzone--passive) {
-        border: 2px solid color(danger);
+        border: 2px solid var(--color-danger);
         color: color(text, base);
 
         .dropzone__help {
