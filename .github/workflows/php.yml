@@ -32,6 +32,7 @@ jobs:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, intl
         coverage: none
+        tools: composer:v2, phpunit:9.6.15
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -48,10 +49,27 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    # Run PHPUnit directly instead of using the action which might use an outdated cache action
+    # Run PHPUnit tests with fallback options
     - name: PHPUnit tests
       run: |
-        echo "::group::PHPUnit Version"
-        ./vendor/bin/phpunit --version
+        echo "::group::PHPUnit Setup"
+        # Check if phpunit exists in vendor
+        if [ -f "./vendor/bin/phpunit" ]; then
+          PHPUNIT_CMD="./vendor/bin/phpunit"
+        # Check if phpunit is available globally via tools
+        elif command -v phpunit &> /dev/null; then
+          PHPUNIT_CMD="phpunit"
+        else
+          echo "PHPUnit not found. Installing phpunit/phpunit:^9.6 directly..."
+          composer require --dev phpunit/phpunit:^9.6 --prefer-dist --no-progress
+          PHPUNIT_CMD="./vendor/bin/phpunit"
+        fi
+        echo "Using PHPUnit command: $PHPUNIT_CMD"
         echo "::endgroup::"
-        ./vendor/bin/phpunit --configuration phpunit.xml.dist --memory-limit=256M
+        
+        # Run the tests
+        echo "::group::PHPUnit Version"
+        $PHPUNIT_CMD --version
+        echo "::endgroup::"
+        
+        $PHPUNIT_CMD --configuration phpunit.xml.dist --memory-limit=256M
