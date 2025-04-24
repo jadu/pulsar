@@ -49,10 +49,20 @@ jobs:
     - name: Install Chrome
       run: |
         sudo apt update
-        sudo apt install -y chromium-browser xvfb
+        sudo apt install -y chromium-browser
+    
+    - name: Create Puppeteer config
+      run: |
+        mkdir -p ~/.config/puppeteer
+        echo '{"args":["--no-sandbox","--disable-setuid-sandbox"]}' > ~/.config/puppeteer/config.json
+    
+    - name: Start Xvfb
+      run: |
+        Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+        echo "export DISPLAY=:99" >> $GITHUB_ENV
     
     - name: Run tests
-      run: xvfb-run -a npm run test:ci
+      run: npm run test:ci
       
     - name: Upload test artifacts
       if: always()
