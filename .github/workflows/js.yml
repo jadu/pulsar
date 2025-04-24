@@ -95,7 +95,7 @@ jobs:
         echo "Using Chrome at: $CHROME_BIN"
         
         # Run headless tests with custom mochify options
-        mochify \
+        npx mochify \
           --reporter spec \
           --transform [ babelify ] \
           --consolify=false \
