@@ -56,15 +56,20 @@ jobs:
         sudo mkdir -p /var/lib/chrome-sandbox
         sudo chown root:root /var/lib/chrome-sandbox
         sudo chmod 4755 /var/lib/chrome-sandbox
+        # Create a wrapper script to launch Chrome with flags
+        echo '#!/bin/bash' > chrome-launcher.sh
+        echo 'chromium-browser --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --disable-accelerated-2d-canvas --no-first-run --no-zygote --disable-gpu "$@"' >> chrome-launcher.sh
+        chmod +x chrome-launcher.sh
         echo "::endgroup::"
     
     - name: Run tests
       run: npm test
       env:
-        CHROME_BIN: chromium-browser
-        CHROMIUM_FLAGS: "--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --disable-accelerated-2d-canvas --no-first-run --no-zygote --disable-gpu"
+        # Tell Puppeteer/mochify to use our launcher script
+        CHROME_BIN: ${{ github.workspace }}/chrome-launcher.sh
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
-        PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium-browser"
+        # Set Node options to increase memory limit if needed
+        NODE_OPTIONS: "--max-old-space-size=4096"
         
     - name: Upload test artifacts
       if: always()
