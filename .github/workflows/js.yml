@@ -49,29 +49,16 @@ jobs:
     - name: Build
       run: npm run build --if-present
     
-    - name: Configure Chrome for headless testing
+    - name: Install Chrome dependencies
       run: |
-        # Set environment variables for Chrome
-        echo 'export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true' >> $GITHUB_ENV
-        echo 'export CHROME_BIN=/usr/bin/google-chrome' >> $GITHUB_ENV
-        
-        # Install Chrome and its dependencies
-        # Uses apt install instead of apt-get and avoids specifying every dependency
         sudo apt update
         sudo apt install -y google-chrome-stable xvfb
-        
-        # Create a simple wrapper script for running tests with proper flags
-        cat > run-tests.sh << EOF
-        #!/bin/bash
-        NODE_OPTIONS="--max-old-space-size=4096" xvfb-run -a npm test
-        EOF
-        chmod +x run-tests.sh
     
     - name: Run tests
-      run: ./run-tests.sh
+      run: xvfb-run -a npm test
       env:
-        # Pass required Chrome flags through environment variables
-        CHROMIUM_FLAGS: "--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage"
+        CHROME_BIN: /usr/bin/google-chrome
+        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
       
     - name: Upload test artifacts
       if: always()
