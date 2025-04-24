@@ -54,11 +54,20 @@ jobs:
         sudo apt update
         sudo apt install -y google-chrome-stable xvfb
     
+    - name: Create Puppeteer configuration
+      run: |
+        mkdir -p ~/.config/puppeteer
+        echo '{"args":["--no-sandbox","--disable-setuid-sandbox","--disable-dev-shm-usage"]}' > ~/.config/puppeteer/config.json
+        # Force mochify to use system Chrome
+        echo "export PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome" >> $GITHUB_ENV
+    
     - name: Run tests
-      run: xvfb-run -a npm test
+      run: xvfb-run -a npm run test:ci
       env:
-        CHROME_BIN: /usr/bin/google-chrome
+        NODE_OPTIONS: "--max-old-space-size=4096"
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+        CHROME_BIN: /usr/bin/google-chrome
+        CHROME_PATH: /usr/bin/google-chrome
       
     - name: Upload test artifacts
       if: always()
