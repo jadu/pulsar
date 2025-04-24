@@ -8,29 +8,38 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  build:
+  test:
+    name: Node.js ${{ matrix.node-version }} Test
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
     strategy:
-       matrix:
-         node-version: [18, 20]
+      fail-fast: false
+      matrix:
+        node-version: [18, 20]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+        
+    - name: Setup Node.js ${{ matrix.node-version }}
+      id: setup-node
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
-    # The local testing-friendly version of the FontAwesome token check
-    - name: Setup FontAwesome if token exists
+    - name: Setup FontAwesome credentials
       if: env.FONTAWESOME_TOKEN != ''
-      run: npm config set '//npm.fontawesome.com/:_authToken' "${{ env.FONTAWESOME_TOKEN }}"
+      run: npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_TOKEN }}"
       env:
         FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
     
@@ -40,22 +49,30 @@ jobs:
     - name: Build
       run: npm run build --if-present
     
-    # Configure Chrome for headless testing in containers
-    - name: Configure Chrome sandbox
+    - name: Configure Chrome for headless testing
       run: |
-        # Create required directories
+        echo "::group::Chrome Sandbox Configuration"
+        echo "Setting up Chrome sandbox for containerized tests"
         sudo mkdir -p /var/lib/chrome-sandbox
-        # Set permissions
         sudo chown root:root /var/lib/chrome-sandbox
-        # Apply proper permissions
         sudo chmod 4755 /var/lib/chrome-sandbox
+        echo "::endgroup::"
     
-    - name: Test
+    - name: Run tests
       run: npm test
       env:
         CHROME_BIN: chromium-browser
-        # Allow running Chrome without sandbox in CI environment
         CHROMIUM_FLAGS: "--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --disable-accelerated-2d-canvas --no-first-run --no-zygote --disable-gpu"
-        # Additional environment variables for Puppeteer/Chrome
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
         PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium-browser"
+        
+    - name: Upload test artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: js-test-results-node-${{ matrix.node-version }}
+        path: |
+          ./coverage/
+          ./tests/js/web/index.html
+        if-no-files-found: ignore
+        retention-days: 7
