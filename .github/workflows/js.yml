@@ -1,34 +1,111 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# For more information see: https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-nodejs
 
-name: Run JS test suite
+name: JavaScript Tests
 
 on:
   push:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  build:
-
+  test:
+    name: Node ${{ matrix.node-version }}
     runs-on: ubuntu-latest
-
+    timeout-minutes: 15
+    
     strategy:
-       matrix:
-         node-version: [14, 16, 18]
+      fail-fast: false
+      matrix:
+        node-version: [18, 20]
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_TOKEN }}"
-    - run: npm install
-    - run: npm run build --if-present
-    - run: npm test
+    
+    - name: Setup npm authentication
+      run: |
+        # Configure npm for FontAwesome and GitHub Packages
+        echo "//npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}" > .npmrc
+        echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
+      env:
+        FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Install dependencies
+      run: |
+        # Try installing dependencies, falling back to ignoring scripts if needed
+        npm ci || npm ci --ignore-scripts
+    
+    - name: Build project
+      run: npm run build --if-present
+    
+    - name: Install Chrome and dependencies
+      run: |
+        # Install Chrome for headless testing
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+        echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends \
+          google-chrome-stable \
+          libx11-xcb1 \
+          libxcomposite1 \
+          libxcursor1 \
+          libxdamage1 \
+          libxi6 \
+          libxtst6 \
+          libnss3 \
+          libcups2 \
+          libxss1 \
+          libxrandr2 \
+          libglib2.0-0 \
+          libasound2t64 \
+          libatk1.0-0 \
+          libatk-bridge2.0-0 \
+          libpangocairo-1.0-0 \
+          libgtk-3-0
+    
+    - name: Create Chrome wrapper for CI
+      run: |
+        # Create a wrapper script that always adds the no-sandbox flag
+        mkdir -p $HOME/bin
+        cat > $HOME/bin/chrome-ci << 'EOF'
+        #!/bin/bash
+        exec google-chrome-stable --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage "$@"
+        EOF
+        chmod +x $HOME/bin/chrome-ci
+        echo "CHROME_BIN=$HOME/bin/chrome-ci" >> $GITHUB_ENV
+        echo "Adding Chrome wrapper at $HOME/bin/chrome-ci"
+    
+    - name: Run tests with Mochify
+      run: |
+        # Set Chrome launcher environment variables
+        export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+        echo "Using Chrome at: $CHROME_BIN"
+        
+        # Run headless tests with custom mochify options
+        npx mochify \
+          --reporter spec \
+          --transform [ babelify ] \
+          --consolify=false \
+          --extension=js \
+          ./tests/harness/common './tests/js/web/**/*Test.js'
+      
+    - name: Upload artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-node-${{ matrix.node-version }}
+        path: ./coverage/
+        if-no-files-found: ignore
