@@ -1,5 +1,5 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# For more information see: https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-nodejs
 
 name: Run JS test suite
 
@@ -27,11 +27,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 1
-        
+      
     - name: Setup Node.js ${{ matrix.node-version }}
-      id: setup-node
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
@@ -49,33 +46,13 @@ jobs:
     - name: Build
       run: npm run build --if-present
     
-    - name: Create Chrome wrapper
+    - name: Install Chrome
       run: |
-        # Install Chrome
         sudo apt update
-        sudo apt install -y google-chrome-stable xvfb
-
-        # Create wrapper script that forces no-sandbox
-        sudo tee /usr/local/bin/chrome-for-tests <<-'CHROME'
-        #!/bin/bash
-        # This script will be used instead of the actual Chrome binary
-        # It passes the --no-sandbox flag to Chrome regardless of how it's called
-        exec /usr/bin/google-chrome --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage "$@"
-        CHROME
-        
-        # Make executable
-        sudo chmod +x /usr/local/bin/chrome-for-tests
-        
-        # Link as 'google-chrome' in a directory that takes precedence in PATH
-        mkdir -p $HOME/bin
-        ln -s /usr/local/bin/chrome-for-tests $HOME/bin/google-chrome
-        echo "$HOME/bin" >> $GITHUB_PATH
-        
+        sudo apt install -y chromium-browser xvfb
+    
     - name: Run tests
       run: xvfb-run -a npm run test:ci
-      env:
-        NODE_OPTIONS: "--max-old-space-size=4096"
-        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
       
     - name: Upload test artifacts
       if: always()
