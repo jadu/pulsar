@@ -76,14 +76,31 @@ jobs:
           libpangocairo-1.0-0 \
           libgtk-3-0
     
+    - name: Create Chrome wrapper for CI
+      run: |
+        # Create a wrapper script that always adds the no-sandbox flag
+        mkdir -p $HOME/bin
+        cat > $HOME/bin/chrome-ci << 'EOF'
+        #!/bin/bash
+        exec google-chrome-stable --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage "$@"
+        EOF
+        chmod +x $HOME/bin/chrome-ci
+        echo "CHROME_BIN=$HOME/bin/chrome-ci" >> $GITHUB_ENV
+        echo "Adding Chrome wrapper at $HOME/bin/chrome-ci"
+    
     - name: Run tests with Mochify
       run: |
-        # Set Chrome environment variables
-        export CHROME_BIN=$(which google-chrome-stable)
+        # Set Chrome launcher environment variables
         export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+        echo "Using Chrome at: $CHROME_BIN"
         
-        # Run headless tests using the project's existing script
-        npm run test:headless
+        # Run headless tests with custom mochify options
+        mochify \
+          --reporter spec \
+          --transform [ babelify ] \
+          --consolify=false \
+          --extension=js \
+          ./tests/harness/common './tests/js/web/**/*Test.js'
       
     - name: Upload artifacts
       if: always()
