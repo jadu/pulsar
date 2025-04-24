@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-nodejs
 
-name: Run JS test suite
+name: JavaScript Tests
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   test:
-    name: Node.js ${{ matrix.node-version }} Test
+    name: Node ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     
@@ -25,7 +25,7 @@ jobs:
         node-version: [18, 20]
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v4
       
     - name: Setup Node.js ${{ matrix.node-version }}
@@ -34,47 +34,51 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
-    - name: Setup FontAwesome credentials
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build project
+      run: npm run build --if-present
+      
+    - name: Setup FontAwesome if needed
       if: env.FONTAWESOME_TOKEN != ''
       run: npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_TOKEN }}"
       env:
         FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
     
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Build
-      run: npm run build --if-present
-    
-    - name: Configure kernel and install Chrome
+    - name: Install Chrome
       run: |
-        # Install required packages
-        sudo apt update
-        sudo apt install -y chromium-browser
-        
-        # Enable user namespace cloning - critical for sandbox
-        sudo sysctl kernel.unprivileged_userns_clone=1
-        
-        # Create puppeteer config to disable sandboxing only if necessary
-        mkdir -p ~/.config/puppeteer
-        echo '{"args":["--disable-dev-shm-usage","--disable-gpu"]}' > ~/.config/puppeteer/config.json
-        
-    - name: Setup display for browser
+        # Install Chrome and Xvfb
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable xvfb
+    
+    - name: Create test runner
       run: |
-        # Start X virtual framebuffer
-        Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-        echo "DISPLAY=:99" >> $GITHUB_ENV
+        cat > chrome-wrapper.sh << 'EOF'
+        #!/bin/bash
+        # Always add the no-sandbox flag to Chrome
+        google-chrome-stable --no-sandbox --disable-setuid-sandbox "$@"
+        EOF
+        chmod +x chrome-wrapper.sh
+        
+        cat > run-tests.sh << 'EOF'
+        #!/bin/bash
+        export CHROME_BIN="$PWD/chrome-wrapper.sh"
+        export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+        echo "Using Chrome at: $CHROME_BIN"
+        xvfb-run -a --server-args="-screen 0 1280x960x24" npm run test:headless
+        EOF
+        chmod +x run-tests.sh
     
     - name: Run tests
-      run: npm run test:ci
+      run: ./run-tests.sh
       
-    - name: Upload test artifacts
+    - name: Upload artifacts
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: js-test-results-node-${{ matrix.node-version }}
-        path: |
-          ./coverage/
-          ./tests/js/web/index.html
+        name: test-results-node-${{ matrix.node-version }}
+        path: ./coverage/
         if-no-files-found: ignore
-        retention-days: 7
