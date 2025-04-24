@@ -11,6 +11,7 @@
 .main-title {
     color: color(jadu-purple);
     font-family: $font-family-heading;
+    font-weight: $font-weight-heading;
     font-size: 1.5em;
     line-height: 32px;
     width: 100%;
@@ -222,7 +223,7 @@
         h2 {
             font-family: $font-family-heading-light;
             font-size: 1rem;
-            font-weight: normal;
+            font-weight: $font-weight-heading-light;
             line-height: $line-height-base;
             margin: 0 0 $margin-large-vertical;
         }

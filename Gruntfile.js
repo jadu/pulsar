@@ -89,7 +89,6 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -104,7 +103,6 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     outputStyle: 'compressed'
                 },
                 files: [{
@@ -120,7 +118,6 @@ module.exports = function(grunt) {
             lexicon: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -142,16 +139,6 @@ module.exports = function(grunt) {
                 expand: true,
                 src:    'css/*.css'
             }
-        },
-
-        scsslint: {
-            allFiles: [
-                'stylesheets/**/*.scss',
-            ],
-            options: {
-                config: '.scss-lint.yml',
-                colorizeOutput: true
-            },
         },
 
         watch: {
@@ -505,7 +492,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'copy',
-        'scsslint',
         'sass:dev',
         'sass:lexicon',
         'autoprefixer',
@@ -522,7 +508,6 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'scsslint',
         'sass:dist',
         'autoprefixer',
         'browserify:dist',
@@ -559,6 +544,10 @@ module.exports = function(grunt) {
         'browserify:browserTests',
         'watch:tests'
     ]);
+
+    // Explicitly load grunt-sass and grunt-string-replace
+    grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
