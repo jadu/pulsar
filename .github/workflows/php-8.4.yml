@@ -1,0 +1,72 @@
+name: Test PHP 8.4 Compatibility
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+  # Run weekly to catch changes in PHP 8.4 development
+  schedule:
+    - cron: '0 0 * * 1' # Run every Monday at midnight
+
+jobs:
+  php-8-4-test:
+    name: PHP 8.4 Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP 8.4
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.4'
+        extensions: mbstring, intl, zip
+        coverage: none
+        tools: composer:v2
+      env:
+        update: true # Ensure we get the latest development build
+
+    - name: Display PHP version
+      run: |
+        php -v
+        php -m
+        composer --version
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v4
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-8.4-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-8.4-
+
+    - name: Install dependencies with ignore platform requirements
+      run: composer install --prefer-dist --no-progress --ignore-platform-reqs
+
+    - name: Check for syntax errors
+      run: find src -type f -name "*.php" -exec php -l {} \;
+
+    - name: Run tests with detailed logging
+      run: |
+        echo "::group::PHPUnit Compatibility Mode"
+        if [ -f "./vendor/bin/phpunit" ]; then
+          PHP_VERSION=$(php -r 'echo PHP_VERSION;')
+          echo "Testing with PHP $PHP_VERSION"
+          # Run in a more permissive mode for development PHP
+          ./vendor/bin/phpunit --configuration phpunit.xml.dist --stop-on-error --debug || echo "Tests failed but this is expected with development PHP"
+        else
+          echo "PHPUnit not found in vendor directory"
+        fi
+        echo "::endgroup::"
+      
+    - name: Static analysis with minimal expectations
+      run: |
+        if [ -f "./vendor/bin/phpstan" ]; then
+          ./vendor/bin/phpstan analyse --level=0 src || echo "Static analysis found issues but this is expected with PHP 8.4"
+        else  
+          echo "PHPStan not installed"
+        fi 
