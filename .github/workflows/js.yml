@@ -49,45 +49,29 @@ jobs:
     - name: Build
       run: npm run build --if-present
     
-    - name: Configure Chrome for headless testing on GitHub Actions
+    - name: Configure Chrome for headless testing
       run: |
-        # Pre-configure system for Chrome headless to run properly in GitHub Actions
-        # Allow running as root without sandbox in Actions containers
+        # Set environment variables for Chrome
         echo 'export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true' >> $GITHUB_ENV
         echo 'export CHROME_BIN=/usr/bin/google-chrome' >> $GITHUB_ENV
-        # Direct configuration for mochify to use
-        echo "export CHROMIUM_BIN=/usr/bin/google-chrome" >> $GITHUB_ENV
         
-        # Install Chrome dependencies
-        sudo apt-get update
-        sudo apt-get install -y --no-install-recommends xvfb ca-certificates fonts-liberation libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
+        # Install Chrome and its dependencies
+        # Uses apt install instead of apt-get and avoids specifying every dependency
+        sudo apt update
+        sudo apt install -y google-chrome-stable xvfb
         
-        # Create a special puppeteer environment variable file
-        # This ensures puppeteer picks up these flags in all cases
-        mkdir -p ~/.config/puppeteer
-        cat > ~/.config/puppeteer/config.json << EOF
-        {
-          "skipDownload": true,
-          "executablePath": "/usr/bin/google-chrome",
-          "args": ["--no-sandbox", "--disable-dev-shm-usage", "--disable-setuid-sandbox", "--headless", "--disable-gpu"]
-        }
-        EOF
-        
-        # Create a mochify override wrapper script that forces no-sandbox
-        cat > mochify-runner.sh << EOF
+        # Create a simple wrapper script for running tests with proper flags
+        cat > run-tests.sh << EOF
         #!/bin/bash
-        # Add required arguments to the mochify command for headless Chrome in CI
-        NODE_OPTIONS="--max-old-space-size=4096" CHROMIUM_FLAGS="--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage" xvfb-run -a npm run test:headless:ci
+        NODE_OPTIONS="--max-old-space-size=4096" xvfb-run -a npm test
         EOF
-        chmod +x mochify-runner.sh
+        chmod +x run-tests.sh
     
-    - name: Add special test script for CI
-      run: |
-        # Add a special npm script for CI environments
-        node -e "const fs = require('fs'); const pkg = JSON.parse(fs.readFileSync('./package.json')); pkg.scripts['test:headless:ci'] = 'mochify --reporter spec --transform [ babelify ] ./tests/harness/common \"./tests/js/web/**/*Test.js\"'; fs.writeFileSync('./package.json', JSON.stringify(pkg, null, 2));"
-    
-    - name: Run tests via wrapper
-      run: ./mochify-runner.sh
+    - name: Run tests
+      run: ./run-tests.sh
+      env:
+        # Pass required Chrome flags through environment variables
+        CHROMIUM_FLAGS: "--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage"
       
     - name: Upload test artifacts
       if: always()
