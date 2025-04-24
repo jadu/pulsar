@@ -46,8 +46,10 @@ jobs:
     
     - name: Install dependencies
       run: |
-        # Try installing dependencies, falling back to ignoring scripts if needed
-        npm ci || npm ci --ignore-scripts
+        # First try to update the lock file and then install
+        npm install --package-lock-only || true
+        # Then try installing dependencies, falling back to ignoring scripts if needed
+        npm ci || npm ci --ignore-scripts || npm install
     
     - name: Build project
       run: npm run build --if-present
