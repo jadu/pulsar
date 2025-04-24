@@ -48,10 +48,10 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    # Run PHPUnit directly instead of using the action which might use an outdated cache action
     - name: PHPUnit tests
-      uses: php-actions/phpunit@v3
-      with:
-        configuration: phpunit.xml.dist
-        memory_limit: 256M
-        version: '9.6.15'
-        php_version: ${{ matrix.php-versions }}
+      run: |
+        echo "::group::PHPUnit Version"
+        ./vendor/bin/phpunit --version
+        echo "::endgroup::"
+        ./vendor/bin/phpunit --configuration phpunit.xml.dist --memory-limit=256M
