@@ -13,78 +13,42 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
-    name: PHP ${{ matrix.php-version }} Test
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    
     strategy:
-      fail-fast: false
       matrix:
-        php-version: ['8.1', '8.2', '8.3']
-
+        php-versions: ['8.1', '8.2', '8.3']
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 1
+    - uses: actions/checkout@v4
 
-    - name: Setup PHP ${{ matrix.php-version }}
-      id: setup-php
+    - name: PHP ${{ matrix.php-versions }}
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-version }}
-        extensions: mbstring, intl
-        coverage: none
-        tools: composer:v2
-        ini-values: memory_limit=256M
+        php-version: ${{ matrix.php-versions }}
 
-    - name: Validate composer files
+    - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
-    - name: Get Composer cache directory
+    - name: Cache Composer packages
       id: composer-cache
-      run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-    - name: Setup Composer cache
       uses: actions/cache@v4
       with:
-        path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
-          ${{ runner.os }}-php-${{ matrix.php-version }}-
+          ${{ runner.os }}-php-
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    - name: Install PHPUnit if needed
-      id: phpunit-check
-      run: |
-        if [ ! -f "./vendor/bin/phpunit" ]; then
-          echo "Installing PHPUnit..."
-          composer require --dev phpunit/phpunit:^9.6 --prefer-dist --no-progress
-          echo "installed=true" >> $GITHUB_OUTPUT
-        else
-          echo "installed=false" >> $GITHUB_OUTPUT
-        fi
-
-    - name: Run PHPUnit
-      run: |
-        echo "PHPUnit $(./vendor/bin/phpunit --version | head -n1)"
-        ./vendor/bin/phpunit --configuration phpunit.xml.dist
-        
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
+    - name: PHPUnit tests
+      uses: php-actions/phpunit@v3
       with:
-        name: phpunit-results-${{ matrix.php-version }}
-        path: |
-          ./build/logs/
-          ./phpunit.xml.dist
-        retention-days: 7
-        if-no-files-found: ignore
+        configuration: phpunit.xml.dist
+        memory_limit: 256M
+        version: '9.5.10'
+        php_version: ${{ matrix.php-versions }}
