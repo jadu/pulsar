@@ -103,6 +103,7 @@
 
 .dateblock__day {
     font-family: $font-family-heading;
+    font-weight: $font-weight-heading;
     font-size: $font-size-medium;
     text-transform: uppercase;
     width: 100%;
@@ -110,12 +111,14 @@
 
 .dateblock__date {
     font-family: $font-family-heading;
+    font-weight: $font-weight-heading;
     font-size: $font-size-xlarge;
     width: 100%;
 }
 
 .dateblock__month {
     font-family: $font-family-heading;
+    font-weight: $font-weight-heading;
     font-size: $font-size-medium;
     width: 100%;
 }
