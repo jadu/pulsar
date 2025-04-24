@@ -14,21 +14,31 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
        matrix:
-         node-version: [14, 16, 18]
+         node-version: [18, 20]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_TOKEN }}"
-    - run: npm install
-    - run: npm run build --if-present
-    - run: npm test
+    
+    # The local testing-friendly version of the FontAwesome token check
+    - name: Setup FontAwesome if token exists
+      if: env.FONTAWESOME_TOKEN != ''
+      run: npm config set '//npm.fontawesome.com/:_authToken' "${{ env.FONTAWESOME_TOKEN }}"
+      env:
+        FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build --if-present
+    
+    - name: Test
+      run: npm test

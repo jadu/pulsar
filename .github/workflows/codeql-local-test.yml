@@ -1,0 +1,21 @@
+name: Run CodeQL analysis (Local Test)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Simple test to ensure workflow structure is valid
+    - name: Echo test
+      run: echo "CodeQL workflow structure test successful" 

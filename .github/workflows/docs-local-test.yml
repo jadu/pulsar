@@ -1,0 +1,19 @@
+name: deploy-docusaurus (Local Test)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      
+      # Simple test to ensure workflow structure is valid
+      - name: Echo test
+        run: echo "Docs workflow structure test successful" 

@@ -1,0 +1,33 @@
+name: Run PHP test suite (Local Test)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: PHP Setup
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, intl
+        coverage: none
+    
+    # Test PHP version
+    - name: PHP Version
+      run: php -v
+    
+    # Simple test to ensure workflow structure is valid
+    - name: Echo test
+      run: echo "PHP workflow structure test successful" 
+    
+    # Try the cache action directly
+    - name: Test Cache Action
+      uses: actions/cache@v4
+      with:
+        path: ./vendor
+        key: ${{ runner.os }}-php-test
+        restore-keys: |
+          ${{ runner.os }}-php- 
