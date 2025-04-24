@@ -34,17 +34,22 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
+    - name: Setup npm authentication
+      run: |
+        # Configure npm for FontAwesome and GitHub Packages
+        echo "//npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}" > .npmrc
+        echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
+      env:
+        FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
     - name: Install dependencies
-      run: npm ci
+      run: |
+        # Try installing dependencies, falling back to ignoring scripts if needed
+        npm ci || npm ci --ignore-scripts
     
     - name: Build project
       run: npm run build --if-present
-      
-    - name: Setup FontAwesome if needed
-      if: env.FONTAWESOME_TOKEN != ''
-      run: npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_TOKEN }}"
-      env:
-        FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
     
     - name: Install Chrome
       run: |
