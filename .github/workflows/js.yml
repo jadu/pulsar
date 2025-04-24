@@ -46,20 +46,24 @@ jobs:
     - name: Build
       run: npm run build --if-present
     
-    - name: Install Chrome
+    - name: Configure kernel and install Chrome
       run: |
+        # Install required packages
         sudo apt update
         sudo apt install -y chromium-browser
-    
-    - name: Create Puppeteer config
-      run: |
+        
+        # Enable user namespace cloning - critical for sandbox
+        sudo sysctl kernel.unprivileged_userns_clone=1
+        
+        # Create puppeteer config to disable sandboxing only if necessary
         mkdir -p ~/.config/puppeteer
-        echo '{"args":["--no-sandbox","--disable-setuid-sandbox"]}' > ~/.config/puppeteer/config.json
-    
-    - name: Start Xvfb
+        echo '{"args":["--disable-dev-shm-usage","--disable-gpu"]}' > ~/.config/puppeteer/config.json
+        
+    - name: Setup display for browser
       run: |
+        # Start X virtual framebuffer
         Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-        echo "export DISPLAY=:99" >> $GITHUB_ENV
+        echo "DISPLAY=:99" >> $GITHUB_ENV
     
     - name: Run tests
       run: npm run test:ci

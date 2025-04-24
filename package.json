@@ -15,7 +15,7 @@
     "build:tests": "grunt javascript:tests",
     "build:tests:watch": "grunt javascript:tests:watch",
     "test:headless": "mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
-    "test:ci": "mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
+    "test:ci": "DEBUG=puppeteer:* PUPPETEER_SKIP_DOWNLOAD=true mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
     "test:browser": "npm run build:tests && open ./tests/js/web/index.html",
     "test:browser:watch": "npm run build:tests:watch"
   },
