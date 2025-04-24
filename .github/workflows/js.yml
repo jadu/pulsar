@@ -37,7 +37,8 @@ jobs:
     - name: Setup npm authentication
       run: |
         # Configure npm for FontAwesome and GitHub Packages
-        echo "//npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}" > .npmrc
+        echo "@fortawesome:registry=https://npm.fontawesome.com/" > .npmrc
+        echo "//npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}" >> .npmrc
         echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
       env:
         FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
