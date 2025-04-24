@@ -51,11 +51,14 @@ jobs:
     - name: Build project
       run: npm run build --if-present
     
-    - name: Install Puppeteer dependencies
+    - name: Install Chrome and dependencies
       run: |
-        # Install minimal dependencies for Puppeteer
+        # Install Chrome for headless testing
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+        echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends \
+          google-chrome-stable \
           libx11-xcb1 \
           libxcomposite1 \
           libxcursor1 \
@@ -75,19 +78,12 @@ jobs:
     
     - name: Run tests with Mochify
       run: |
-        # Set environment variables to use headless Chrome with required flags
-        export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+        # Set Chrome environment variables
         export CHROME_BIN=$(which google-chrome-stable)
-        export CHROME_PATH=$CHROME_BIN
+        export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
         
-        # Run tests with Mochify using Puppeteer as driver
-        npx mochify \
-          --driver puppeteer \
-          --driver-option.headless true \
-          --driver-option.args="--no-sandbox,--disable-setuid-sandbox" \
-          --reporter spec \
-          --transform [ babelify ] \
-          ./tests/harness/common './tests/js/web/**/*Test.js'
+        # Run headless tests using the project's existing script
+        npm run test:headless
       
     - name: Upload artifacts
       if: always()
