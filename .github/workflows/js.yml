@@ -49,25 +49,33 @@ jobs:
     - name: Build
       run: npm run build --if-present
     
-    - name: Install Chrome dependencies
+    - name: Create Chrome wrapper
       run: |
+        # Install Chrome
         sudo apt update
         sudo apt install -y google-chrome-stable xvfb
-    
-    - name: Create Puppeteer configuration
-      run: |
-        mkdir -p ~/.config/puppeteer
-        echo '{"args":["--no-sandbox","--disable-setuid-sandbox","--disable-dev-shm-usage"]}' > ~/.config/puppeteer/config.json
-        # Force mochify to use system Chrome
-        echo "export PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome" >> $GITHUB_ENV
-    
+
+        # Create wrapper script that forces no-sandbox
+        sudo tee /usr/local/bin/chrome-for-tests <<-'CHROME'
+        #!/bin/bash
+        # This script will be used instead of the actual Chrome binary
+        # It passes the --no-sandbox flag to Chrome regardless of how it's called
+        exec /usr/bin/google-chrome --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage "$@"
+        CHROME
+        
+        # Make executable
+        sudo chmod +x /usr/local/bin/chrome-for-tests
+        
+        # Link as 'google-chrome' in a directory that takes precedence in PATH
+        mkdir -p $HOME/bin
+        ln -s /usr/local/bin/chrome-for-tests $HOME/bin/google-chrome
+        echo "$HOME/bin" >> $GITHUB_PATH
+        
     - name: Run tests
       run: xvfb-run -a npm run test:ci
       env:
         NODE_OPTIONS: "--max-old-space-size=4096"
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
-        CHROME_BIN: /usr/bin/google-chrome
-        CHROME_PATH: /usr/bin/google-chrome
       
     - name: Upload test artifacts
       if: always()
