@@ -73,7 +73,7 @@ jobs:
           libxss1 \
           libxrandr2 \
           libglib2.0-0 \
-          libasound2t64 \
+          libasound2 \
           libatk1.0-0 \
           libatk-bridge2.0-0 \
           libpangocairo-1.0-0 \
