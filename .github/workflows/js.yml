@@ -51,34 +51,43 @@ jobs:
     - name: Build project
       run: npm run build --if-present
     
-    - name: Install Chrome
+    - name: Install Puppeteer dependencies
       run: |
-        # Install Chrome and Xvfb
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        # Install minimal dependencies for Puppeteer
         sudo apt-get update
-        sudo apt-get install -y google-chrome-stable xvfb
+        sudo apt-get install -y --no-install-recommends \
+          libx11-xcb1 \
+          libxcomposite1 \
+          libxcursor1 \
+          libxdamage1 \
+          libxi6 \
+          libxtst6 \
+          libnss3 \
+          libcups2 \
+          libxss1 \
+          libxrandr2 \
+          libglib2.0-0 \
+          libasound2 \
+          libatk1.0-0 \
+          libatk-bridge2.0-0 \
+          libpangocairo-1.0-0 \
+          libgtk-3-0
     
-    - name: Create test runner
+    - name: Run tests with Mochify
       run: |
-        cat > chrome-wrapper.sh << 'EOF'
-        #!/bin/bash
-        # Always add the no-sandbox flag to Chrome
-        google-chrome-stable --no-sandbox --disable-setuid-sandbox "$@"
-        EOF
-        chmod +x chrome-wrapper.sh
-        
-        cat > run-tests.sh << 'EOF'
-        #!/bin/bash
-        export CHROME_BIN="$PWD/chrome-wrapper.sh"
+        # Set environment variables to use headless Chrome with required flags
         export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-        echo "Using Chrome at: $CHROME_BIN"
-        xvfb-run -a --server-args="-screen 0 1280x960x24" npm run test:headless
-        EOF
-        chmod +x run-tests.sh
-    
-    - name: Run tests
-      run: ./run-tests.sh
+        export CHROME_BIN=$(which google-chrome-stable)
+        export CHROME_PATH=$CHROME_BIN
+        
+        # Run tests with Mochify using Puppeteer as driver
+        npx mochify \
+          --driver puppeteer \
+          --driver-option.headless true \
+          --driver-option.args="--no-sandbox,--disable-setuid-sandbox" \
+          --reporter spec \
+          --transform [ babelify ] \
+          ./tests/harness/common './tests/js/web/**/*Test.js'
       
     - name: Upload artifacts
       if: always()
