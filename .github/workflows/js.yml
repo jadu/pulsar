@@ -49,28 +49,46 @@ jobs:
     - name: Build
       run: npm run build --if-present
     
-    - name: Configure Chrome for headless testing
+    - name: Configure Chrome for headless testing on GitHub Actions
       run: |
-        echo "::group::Chrome Sandbox Configuration"
-        echo "Setting up Chrome sandbox for containerized tests"
-        sudo mkdir -p /var/lib/chrome-sandbox
-        sudo chown root:root /var/lib/chrome-sandbox
-        sudo chmod 4755 /var/lib/chrome-sandbox
-        # Create a wrapper script to launch Chrome with flags
-        echo '#!/bin/bash' > chrome-launcher.sh
-        echo 'chromium-browser --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --disable-accelerated-2d-canvas --no-first-run --no-zygote --disable-gpu "$@"' >> chrome-launcher.sh
-        chmod +x chrome-launcher.sh
-        echo "::endgroup::"
-    
-    - name: Run tests
-      run: npm test
-      env:
-        # Tell Puppeteer/mochify to use our launcher script
-        CHROME_BIN: ${{ github.workspace }}/chrome-launcher.sh
-        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
-        # Set Node options to increase memory limit if needed
-        NODE_OPTIONS: "--max-old-space-size=4096"
+        # Pre-configure system for Chrome headless to run properly in GitHub Actions
+        # Allow running as root without sandbox in Actions containers
+        echo 'export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true' >> $GITHUB_ENV
+        echo 'export CHROME_BIN=/usr/bin/google-chrome' >> $GITHUB_ENV
+        # Direct configuration for mochify to use
+        echo "export CHROMIUM_BIN=/usr/bin/google-chrome" >> $GITHUB_ENV
         
+        # Install Chrome dependencies
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends xvfb ca-certificates fonts-liberation libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
+        
+        # Create a special puppeteer environment variable file
+        # This ensures puppeteer picks up these flags in all cases
+        mkdir -p ~/.config/puppeteer
+        cat > ~/.config/puppeteer/config.json << EOF
+        {
+          "skipDownload": true,
+          "executablePath": "/usr/bin/google-chrome",
+          "args": ["--no-sandbox", "--disable-dev-shm-usage", "--disable-setuid-sandbox", "--headless", "--disable-gpu"]
+        }
+        EOF
+        
+        # Create a mochify override wrapper script that forces no-sandbox
+        cat > mochify-runner.sh << EOF
+        #!/bin/bash
+        # Add required arguments to the mochify command for headless Chrome in CI
+        NODE_OPTIONS="--max-old-space-size=4096" CHROMIUM_FLAGS="--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage" xvfb-run -a npm run test:headless:ci
+        EOF
+        chmod +x mochify-runner.sh
+    
+    - name: Add special test script for CI
+      run: |
+        # Add a special npm script for CI environments
+        node -e "const fs = require('fs'); const pkg = JSON.parse(fs.readFileSync('./package.json')); pkg.scripts['test:headless:ci'] = 'mochify --reporter spec --transform [ babelify ] ./tests/harness/common \"./tests/js/web/**/*Test.js\"'; fs.writeFileSync('./package.json', JSON.stringify(pkg, null, 2));"
+    
+    - name: Run tests via wrapper
+      run: ./mochify-runner.sh
+      
     - name: Upload test artifacts
       if: always()
       uses: actions/upload-artifact@v4
