@@ -120,6 +120,7 @@
     .help-block.is-error + .help-block:not(.is-error) {
         color: color(text, help);
         font-family: $font-family-base;
+        font-weight: $font-weight-base;
     }
 
     // Set the border and box shadow on specific inputs to match
@@ -211,6 +212,7 @@
     .help-block.is-error + .help-block:not(.is-error) {
         color: color(text, help);
         font-family: $font-family-base;
+        font-weight: $font-weight-base;
     }
 
     // Set validation states also for addons

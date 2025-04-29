@@ -10,7 +10,9 @@ body {
 body {
   background-color: color(background, backdrop);
   font-family: $font-family-base;
+  font-weight: $font-weight-base;
   font-size: $font-size-base;
+  letter-spacing: -.5px;
   line-height: $line-height-base;
   margin: 0 0 ($line-height-base * 2);
   overflow-x: hidden;

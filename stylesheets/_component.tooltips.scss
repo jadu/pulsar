@@ -12,6 +12,7 @@
   visibility: visible;
   font-size: $font-size-small;
   font-family: $font-family-base;
+  font-weight: $font-weight-base;
   line-height: 1.2;
 
   &.in { @include opacity(1); }
