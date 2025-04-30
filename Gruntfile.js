@@ -226,8 +226,6 @@ module.exports = function(grunt) {
             }
         },
 
-            
-
         clean: {
             dist: ['dist'],
             favicons: ['views/pulsar/components/favicons-*.html'],
@@ -245,27 +243,6 @@ module.exports = function(grunt) {
                 tagName: '%VERSION%',
                 push: true,
                 pushTo: 'origin'
-            }
-        },
-
-        exec: {
-            phantomcss: {
-                cmd: 'phantomjs tests/css/testsuite.js'
-            },
-            updateComposer: {
-                cmd: 'sudo php composer.phar update'
-            },
-            updateBrew: {
-                cmd: 'brew update && brew upgrade'
-            },
-            updateBower: {
-                cmd: 'bower update'
-            },
-            updateGems: {
-                cmd: 'sudo gem update'
-            },
-            updateNpm: {
-                cmd: 'sudo npm install'
             }
         },
 
@@ -443,19 +420,6 @@ module.exports = function(grunt) {
             }
         },
 
-        compress: {
-            dist: {
-                options: {
-                    archive: 'pulsar.zip'
-                },
-                files: [{
-                    expand: true,
-                    cwd: 'dist/',
-                    src: ['**/*']
-                }]
-            }
-        },
-
         browserSync: {
             files: [
                 'css/*',
@@ -496,52 +460,21 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
-    grunt.registerTask('post-merge', [
-        'sass:dev',
-        'browserify'
-    ]);
-
     grunt.registerTask('build', [
         'sass:dist',
         'autoprefixer',
-        'browserify:dist',
-        'copy:dist',
-        'compress'
+        'browserify:dist'
     ]);
 
-    grunt.registerTask('deploy', [
-        'sass:dist',
-        'autoprefixer',
-        'browserify:dist',
-        'copy:dist',
-        'compress'
+    grunt.registerTask('post-merge', [
+        'sass:dev',
+        'browserify'
     ]);
 
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'
     ]);
-
-    grunt.registerTask('update', [
-        'exec:updateComposer',
-        'exec:updateBrew',
-        'exec:updateBower',
-        'exec:updateGems',
-        'exec:updateNpm'
-    ]);
-
-    grunt.registerTask('javascript:tests', [
-        'browserify:browserTests',
-    ]);
-
-    grunt.registerTask('javascript:tests:watch', [
-        'browserify:browserTests',
-        'watch:tests'
-    ]);
-
-    // Explicitly load grunt-sass and grunt-string-replace
-    grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-string-replace');
 
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
