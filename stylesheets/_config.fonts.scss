@@ -1,0 +1,69 @@
+// Font Families
+$font-family-heading:       'Montserrat Bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-weight-heading:       700;
+$font-letter-spacing-heading: -0.5px;
+
+$font-family-heading-light: 'Montserrat SemiBold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-weight-heading-light: 600;
+$font-letter-spacing-heading-light: -0.5px;
+
+$font-family-regular:       'Clarity City Regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-weight-regular:       400;
+
+$font-family-light:         'Clarity City Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-weight-light:         300;
+
+$font-family-monospace:     'Courier New', 'Andale Mono', 'Consolas', monospace;
+
+$font-family-base:          $font-family-regular !default;
+$font-weight-base:          $font-weight-regular !default;
+
+@font-face {
+    font-family: 'Clarity City Light';
+    font-weight: $font-weight-light;
+    font-style: normal;
+    src: 
+      local('Clarity City Light'),
+      url('../fonts/clarity-city/ClarityCity-Light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Clarity City Regular';
+    font-weight: $font-weight-regular;
+    font-style: normal;
+    src: 
+      local('Clarity City Regular'),
+      url('../fonts/clarity-city/ClarityCity-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat Bold';
+    font-weight: $font-weight-heading;
+    font-style: normal;
+    src: 
+      local('Montserrat Bold'),
+      url('../fonts/montserrat/Montserrat-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat SemiBold';
+    font-weight: $font-weight-heading-light;
+    font-style: normal;
+    src: 
+      local('Montserrat SemiBold'),
+      url('../fonts/montserrat/Montserrat-SemiBold.woff2') format('woff2');
+}
+
+// Font Awesome
+$font-family-icons:  'Font Awesome 6 Free';
+$font-family-brands: 'Font Awesome 6 Brands';
+
+$fa-path: '../fonts/fontawesome-free-6.7.2-web' !default;
+$fa-font-path: $fa-path + '/webfonts' !default;
+$fa-css-prefix: 'icon';
+
+@import '../fonts/fontawesome-free-6.7.2-web/scss/fontawesome';
+@import '../fonts/fontawesome-free-6.7.2-web/scss/regular';
+@import '../fonts/fontawesome-free-6.7.2-web/scss/solid';
+@import '../fonts/fontawesome-free-6.7.2-web/scss/brands';
+@import '../fonts/fontawesome-free-6.7.2-web/scss/v4-shims';

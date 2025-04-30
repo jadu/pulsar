@@ -21,9 +21,7 @@ $ie-version: 12 !default;
 @import '../node_modules/pulsar-date-picker/src/scss/pulsar-date-picker';
 // scss-lint:enable all
 
-// Proxima Nova (requires license)
-$font-path: '../fonts/';
-@import '../fonts/config.fonts';
+@import 'config.fonts';
 
 // Mixins
 @import 'mixin.border-radius';
