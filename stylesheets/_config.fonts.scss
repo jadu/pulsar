@@ -18,13 +18,18 @@ $font-family-monospace:     'Courier New', 'Andale Mono', 'Consolas', monospace;
 $font-family-base:          $font-family-regular !default;
 $font-weight-base:          $font-weight-regular !default;
 
+// Font paths
+$font-path: '/fonts' !default;
+$clarity-city-path: '#{$font-path}/clarity-city' !default;
+$montserrat-path: '#{$font-path}/montserrat' !default;
+
 @font-face {
     font-family: 'Clarity City Light';
     font-weight: $font-weight-light;
     font-style: normal;
     src: 
       local('Clarity City Light'),
-      url('../fonts/clarity-city/ClarityCity-Light.woff2') format('woff2');
+      url('#{$clarity-city-path}/ClarityCity-Light.woff2') format('woff2');
 }
 
 @font-face {
@@ -33,7 +38,7 @@ $font-weight-base:          $font-weight-regular !default;
     font-style: normal;
     src: 
       local('Clarity City Regular'),
-      url('../fonts/clarity-city/ClarityCity-Regular.woff2') format('woff2');
+      url('#{$clarity-city-path}/ClarityCity-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -42,7 +47,7 @@ $font-weight-base:          $font-weight-regular !default;
     font-style: normal;
     src: 
       local('Montserrat Bold'),
-      url('../fonts/montserrat/Montserrat-Bold.woff2') format('woff2');
+      url('#{$montserrat-path}/Montserrat-Bold.woff2') format('woff2');
 }
 
 @font-face {
@@ -51,19 +56,19 @@ $font-weight-base:          $font-weight-regular !default;
     font-style: normal;
     src: 
       local('Montserrat SemiBold'),
-      url('../fonts/montserrat/Montserrat-SemiBold.woff2') format('woff2');
+      url('#{$montserrat-path}/Montserrat-SemiBold.woff2') format('woff2');
 }
 
 // Font Awesome
 $font-family-icons:  'Font Awesome 6 Free';
 $font-family-brands: 'Font Awesome 6 Brands';
 
-$fa-path: '../fonts/fontawesome-free-6.7.2-web' !default;
-$fa-font-path: $fa-path + '/webfonts' !default;
+$fa-path: '#{$font-path}/fontawesome-free-6.0.0-web' !default;
+$fa-font-path: '#{$fa-path}/webfonts' !default;
 $fa-css-prefix: 'icon';
 
-@import '../fonts/fontawesome-free-6.7.2-web/scss/fontawesome';
-@import '../fonts/fontawesome-free-6.7.2-web/scss/regular';
-@import '../fonts/fontawesome-free-6.7.2-web/scss/solid';
-@import '../fonts/fontawesome-free-6.7.2-web/scss/brands';
-@import '../fonts/fontawesome-free-6.7.2-web/scss/v4-shims';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/fontawesome';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/regular';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/solid';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/brands';
+@import '../fonts/fontawesome-free-6.0.0-web/scss/v4-shims';
