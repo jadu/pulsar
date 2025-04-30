@@ -14,6 +14,36 @@ Watch a Jadu Academy session presented by Paul Stanton, Pulsar Product Owner whi
 
 Documentation is available online at [https://jadu.github.io/pulsar](https://jadu.github.io/pulsar), we welcome any feedback on areas which may need improvement.
 
+## Installation
+
+### Using Docker Compose
+
+#### Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (version 4.0.0+) - includes Docker Engine and Docker Compose
+- Git (version 2.0.0+)
+
+#### Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/jadu/pulsar.git
+   cd pulsar
+   ```
+
+2. Start the Docker containers:
+   ```bash
+   docker compose up -d
+   ```
+
+3. Access Pulsar:
+   Once the containers are running, Pulsar should be available at `http://localhost:9000`
+
+4. Stop the containers when finished:
+   ```bash
+   docker compose down
+   ```
+
 ## Contributing
 
 New issues can be submitted through the [GitHub Issue Tracker](https://github.com/jadu/pulsar/issues), and [Pull Requests](https://github.com/jadu/pulsar/pulls) are very welcome, please take a minute to read our [notes for contributors](https://jadu.gitbooks.io/pulsar/content/contributing.html).
