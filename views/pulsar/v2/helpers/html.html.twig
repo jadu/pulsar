@@ -1575,32 +1575,25 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
         {% endif %}
         <thead>
             <tr>
+                {% for column in options.data.columns %}
+                    {% if loop.first %}
+                        {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
+                            <th scope="col" class="table-selection" data-orderable="false">
+                                <span class="hide">Row selection controls</span>
+                                <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="Select all rows" data-tippy-placement="right" />
+                            </th>
+                        {% endif %}
+                    {% endif %}
+                    <th{{ attributes(column.attrs|default) }} scope="col">{{ column.title }}</th>
+                {% endfor %}
                 {% if overflow == 'collapse' %}
                     <td><span class="hide">Table controls</span></td>
                 {% endif %}
-                    {% for column in options.data.columns %}
-                        {% if loop.first %}
-                            {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
-                                <th scope="col" class="table-selection" data-orderable="false">
-                                    <span class="hide">Row selection controls</span>
-                                    <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-tippy-content="Select all rows" data-tippy-placement="right" />
-                                </th>
-                            {% endif %}
-                        {% endif %}
-                        <th{{ attributes(column.attrs|default) }} scope="col">{{ column.title }}</th>
-                    {% endfor %}
             </tr>
         </thead>
         <tbody>
             {% for row in options.data.data %}
                 <tr>
-                    {% if overflow == 'collapse' %}
-                        <td class="table-responsive">
-                            <button class="table-child-toggle">
-                                {{ html.icon('plus-sign', { 'label': 'Toggle this rows collapsed columns' }) }}
-                            </button>
-                        </td>
-                    {% endif %}
                     {% if options['data-select'] is not defined or (options['data-select'] is defined and options['data-select'] != 'false') %}
                         <td class="table-selection">
                             <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
@@ -1615,6 +1608,13 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
                             <td>{{ val }}</td>
                         {% endif %}
                     {% endfor %}
+                    {% if overflow == 'collapse' %}
+                        <td class="table-responsive">
+                            <button class="table-child-toggle">
+                                {{ html.icon('chevron-down', { 'label': 'Toggle this rows collapsed columns' }) }}
+                            </button>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
