@@ -17,16 +17,65 @@ $signin-gradient:                     url('../images/branding/central-gradient-l
 //  Typographic grid
 // -----------------------------------------------------------------------------
 
-$font-size-base:                      16px !default;
-$font-size-xxlarge:                   ceil($font-size-base * 2) !default;
-$font-size-xlarge:                    ceil($font-size-base * 1.5) !default;
-$font-size-large:                     18.66px !default; // Meet WCAG 2.1 criteria for 'large text'
-$font-size-medium:                    ceil($font-size-base * .85) !default;
-$font-size-small:                     ceil($font-size-base * .75) !default;
+//  Base Type Size
+// ================
+$base-font-size:                16px;
+
+//  Oversized Type Range
+// ======================
+$giga-px:                       80px;
+$giga:                          $giga-px / $base-font-size * 1rem;
+
+$mega-px:                       48px;
+$mega:                          $mega-px / $base-font-size * 1rem;
+
+$kilo-px:                       40px;
+$kilo:                          $kilo-px / $base-font-size * 1rem;
+
+//  Standard Type Range
+// =====================
+$alpha-px:                      36px;
+$alpha:                         $alpha-px / $base-font-size * 1rem;
+
+$beta-px:                       32px;
+$beta:                          $beta-px / $base-font-size * 1rem;
+
+$gamma-px:                      28px;
+$gamma:                         $gamma-px / $base-font-size * 1rem;
+
+$delta-px:                      24px;
+$delta:                         $delta-px / $base-font-size * 1rem;
+
+$epsilon-px:                    20px;
+$epsilon:                       $epsilon-px / $base-font-size * 1rem;
+
+$zeta-large-px:                 19px;
+$zeta-large:                    $zeta-large-px / $base-font-size * 1rem;
+
+$zeta-px:                       18px;
+$zeta:                          $zeta-px / $base-font-size * 1rem;
+
+$normalis-px:                   $base-font-size;
+$normalis:                      $normalis-px / $base-font-size * 1rem;
+
+//  Small Type Range
+// ==================
+$milli-px:                      14px;
+$milli:                         $milli-px / $base-font-size * 1rem;
+
+$micro-px:                      12px;
+$micro:                         $micro-px / $base-font-size * 1rem;
+
+$font-size-base:                      $normalis !default; // 16px
+$font-size-xxlarge:                   $beta !default; // 32px
+$font-size-xlarge:                    $delta !default; // 24px
+$font-size-large:                     $zeta-large !default; // Meet WCAG 2.1 criteria for 'large text'
+$font-size-medium:                    $milli !default; // 14px
+$font-size-small:                     $micro !default; // 12px
 
 $line-height-base:                    24px !default;
-$line-height-medium:                  ceil($line-height-base * 1.25) !default;
-$line-height-large:                   ceil($line-height-base * 2) !default;
+$line-height-medium:                  ceil($line-height-base * 1.25) !default; // 30px
+$line-height-large:                   ceil($line-height-base * 2) !default; // 48px
 $line-height-small:                   1.5 !default;
 $line-height-computed:                $line-height-base !default;
 
@@ -154,8 +203,8 @@ $input-height-base:                   $line-height-base * 2 !default;
   $input-height-base:                 $line-height-base * 1.2 !default;
 }
 
-$input-height-large:                  (floor($font-size-large * 2) + ($padding-large-vertical * 2) + 2) !default;
-$input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
+$input-height-large:                  (floor($zeta-large-px * 2) + ($padding-large-vertical * 2) + 2) !default;
+$input-height-small:                  (floor($micro-px * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
 
 $input-widths: (
     mini:    50px,
