@@ -60,7 +60,7 @@
 .daterangepicker .calendar th,
 .daterangepicker .calendar td {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-size: $font-size-small;
     min-width: 32px;
     text-align: center;
     white-space: nowrap;
@@ -69,7 +69,7 @@
 .daterangepicker .ranges label {
     color: color(gray, darker);
     display: block;
-    font-size: 11px;
+    font-size: $font-size-small;
     font-weight: normal;
     height: 20px;
     line-height: 20px;
@@ -81,7 +81,7 @@
 }
 
 .daterangepicker .ranges input {
-    font-size: 11px;
+    font-size: $font-size-small;
 }
 
 .daterangepicker .ranges .input-mini {
@@ -90,7 +90,7 @@
     border: 1px solid color(gray, lightest);
     color: color(gray, darker);
     display: block;
-    font-size: 11px;
+    font-size: $font-size-small;
     height: 30px;
     line-height: 30px;
     margin: 0 0 10px;
@@ -111,7 +111,7 @@
     border: 1px solid color(gray, off-white);
     color: color(primary, dark);
     cursor: pointer;
-    font-size: 13px;
+    font-size: $font-size-medium;
     margin-bottom: 8px;
     padding: 3px 12px;
 }
@@ -149,7 +149,7 @@
 
 // scss-lint:disable SelectorFormat
 .daterangepicker .daterangepicker_input i {
-    font-size: 14px;
+    font-size: $font-size-medium;
     position: absolute;
     left: 8px;
     top: 8px;
@@ -160,7 +160,7 @@
     border: 1px solid color(gray, lightest);
     border-radius: $border-radius;
     color: color(gray, darker);
-    font-size: 14px;
+    font-size: $font-size-medium;
     height: 30px;
     line-height: 30px;
     display: block;
@@ -241,7 +241,7 @@
 .daterangepicker select.monthselect,
 .daterangepicker select.yearselect {
     cursor: default;
-    font-size: 12px;
+    font-size: $font-size-small;
     height: auto;
     margin: 0;
     padding: 1px;
