@@ -95,7 +95,7 @@ input.main-search__field::-ms-clear {
 .main-search__extras {
     background-color: #eee;
     display: block;
-    font-size: 14px;
+    font-size: $font-size-medium;
     padding: 5px 12px;
     text-align: left;
     text-transform: lowercase;

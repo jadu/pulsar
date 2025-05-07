@@ -39,7 +39,7 @@
         width: 4em;
 
         &::after {
-            font-size: 32px;
+            font-size: $font-size-xxlarge;
             left: 15px;
             letter-spacing: 32px;
         }

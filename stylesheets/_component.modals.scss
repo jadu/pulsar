@@ -171,7 +171,7 @@
     }
 
     .form-v2 legend {
-        font-size: 20px;
+        font-size: $epsilon;
         margin-left: 0;
 
         &::before {
@@ -216,7 +216,7 @@
     .modal__header {
         border-bottom: 1px solid color(gray, lightest);
         display: flex;
-        font-size: 16px;
+        font-size: $font-size-base;
         height: 60px;
         padding: 0;
     }
@@ -308,7 +308,7 @@
 
         .modal__title-meta {
             color: color(text, help);
-            font-size: 14px;
+            font-size: $font-size-medium;
             margin-bottom: 0;
         }
 

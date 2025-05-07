@@ -312,7 +312,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     width: 100%;
 }
 .sp-input {
-   font-size: 12px !important;
+   font-size: $font-size-small !important;
    border: 1px inset;
    padding: 4px 5px;
    margin: 0;
@@ -470,7 +470,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   border-bottom: 1px solid #bbb;
   border-radius: 3px;
   color: #333;
-  font-size: 14px;
+  font-size: $font-size-medium;
   line-height: 1;
   padding: 5px 4px;
   text-align: center;
@@ -502,7 +502,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 }
 
 .sp-cancel {
-    font-size: 11px;
+    font-size: $font-size-small;
     color: #d93f3f !important;
     margin: 0;
     padding: 2px;
