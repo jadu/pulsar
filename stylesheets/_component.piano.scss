@@ -54,6 +54,10 @@ $piano-bg: #fafafa;
                 background: color(gray, off-white);
             }
         }
+
+        &:focus {
+            outline-offset: -2px;
+        }
     }
 }
 
