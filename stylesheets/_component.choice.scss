@@ -21,6 +21,12 @@
     opacity: .4;
 }
 
+.form__group {
+    .control__label {
+        padding: 12px 8px;
+    }
+}
+
 // Align form-choice to grid
 @include respond-min($screen-tablet) {
     .form-choice > .controls > .control__label {

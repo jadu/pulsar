@@ -4,7 +4,7 @@
     display: block;
     flex: 1 1 100%;
     flex-grow: 1;
-    height: 38px;
+    height: 44px;
     margin-bottom: 12px;
     position: relative;
 
@@ -47,9 +47,9 @@ input.main-search__field {
     box-sizing: border-box;
     color: #555;
     display: block;
-    height: 38px;
     padding: 8.5px;
     position: relative;
+    min-height: 44px;
     width: 100%;
     z-index: 2;
 
@@ -75,10 +75,10 @@ input.main-search__field::-ms-clear {
     background: none;
     border: 0;
     color: #555;
-    padding: 1px 8px 0;
+    padding: 12px 8px;
     position: absolute;
     right: 0;
-    top: 8px;
+    top: 0;
     z-index: 3;
 
     @include respond-min($screen-tablet) {
