@@ -21,7 +21,6 @@
     </div>
 
     <div class="nav-secondary t-nav-secondary nav-flyout" id="aria-secondary-nav">
-
         <div class="nav-controls">
             <button class="nav-controls__close" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
         </div>
@@ -29,10 +28,10 @@
         {% if options.data is iterable %}
             {% for options in options.data %}
                 {% if options.items is defined and options.items is iterable %}
-                    <div class="nav-list" id="{{ options.label|lower|replace({' ': '-'}) }}" data-nav="{{ options.href }}" aria-labelledby="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
+                    <div class="nav-list" id="{{ options.label|lower|replace({' ': '-'}) }}" data-nav="{{ options.href }}">
                         <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
 
-                        <ul class="nav-items">
+                        <ul class="nav-items" aria-labelledby="aria-secondary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
                             {% set heading_id = 'aria-secondary-nav-heading-' ~ options.label|raw %}
                             {% for menu_blocks in options.items %}
                                 {% for item_options in menu_blocks %}
@@ -46,65 +45,57 @@
                             {% endfor %}
                         </ul>
                     </div>
-
                 {% endif %}
             {% endfor %}
         {% endif %}
-
     </div>
 
     <div class="nav-tertiary t-nav-tertiary nav-flyout" id="aria-tertiary-nav">
-
         <div class="nav-controls">
             <button class="nav-controls__close" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
         </div>
 
-        <div class="nav-list" aria-labelledby="aria-tertiary-nav-heading">
+        <div class="nav-list">
             <h2 class="nav-item nav-item--header t-nav-header" id="aria-tertiary-nav-heading">More Categories</h2>
             {% set heading_id = 'aria-tertiary-nav-heading' %}
             {% set aria_controls = 'aria-quaternary-nav' %}
             {% if options.data is iterable %}
-                <ul class="nav-items">
+                <ul class="nav-items" aria-labelledby="aria-tertiary-nav-heading">
                     {% for label, options in options.data %}
                         {{ nav.nav_item(options, heading_id, aria_controls) }}
                     {% endfor %}
                 </ul>
             {% endif %}
         </div>
-
     </div>
 
     <div class="nav-quaternary t-nav-quaternary nav-flyout" id="aria-quaternary-nav">
-
         <div class="nav-controls">
             <button class="nav-controls__close-ltr" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
         </div>
 
-           {% if options.data is iterable %}
-               {% for options in options.data %}
-                   {% if options.items is defined and options.items is iterable %}
+        {% if options.data is iterable %}
+            {% for options in options.data %}
+                {% if options.items is defined and options.items is iterable %}
+                    <div class="nav-list" data-nav="{{ options.href }}">
+                        <h2 class="nav-item nav-item--header t-nav-header" id="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
 
-                        {% set heading_id = 'aria-quaternary-nav-heading-' ~ options.label|raw %}
-                        <div class="nav-list" data-nav="{{ options.href }}" aria-labelledby="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
-                           <h2 class="nav-item nav-item--header t-nav-header" id="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">{{ options.label|raw }}</h2>
-
-                           <ul class="nav-items">
-                               {% for menu_blocks in options.items %}
-                                   {% for item_options in menu_blocks %}
-                                       {{ nav.nav_item(item_options, heading_id) }}
-                                   {% endfor %}
-                                   {% if not loop.last %}
-                                       <li class="nav-item nav-item__divider">
-                                           <hr class="nav-divider t-nav-divider" />
-                                       </li>
-                                   {% endif %}
-                               {% endfor %}
-                           </ul>
-                        </div>
-
-                   {% endif %}
-               {% endfor %}
-           {% endif %}
+                        <ul class="nav-items" aria-labelledby="aria-quaternary-nav-heading-{{ options.label|striptags|replace({' ': '-'})|raw }}">
+                            {% for menu_blocks in options.items %}
+                                {% for item_options in menu_blocks %}
+                                    {{ nav.nav_item(item_options, heading_id) }}
+                                {% endfor %}
+                                {% if not loop.last %}
+                                    <li class="nav-item nav-item__divider">
+                                        <hr class="nav-divider t-nav-divider" />
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
 </nav>
 
