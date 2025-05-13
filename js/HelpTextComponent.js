@@ -48,10 +48,14 @@ HelpTextComponent.prototype.toggleHelpSidebar = function () {
         $tabHelpContainer = component.$html.find('.tab-help-container');
 
     if ($mobileToggleHelpButton.hasClass('is-open')) {
-        $mobileToggleHelpButton.removeClass('is-open');
+        $mobileToggleHelpButton
+            .removeClass('is-open')
+            .attr('aria-expanded', 'false');
         component.toggleChildElementInteractivity($tabHelpContainer, false);
     } else {
-        $mobileToggleHelpButton.addClass('is-open');
+        $mobileToggleHelpButton
+            .addClass('is-open')
+            .attr('aria-expanded', 'true');
         component.toggleChildElementInteractivity($tabHelpContainer, true);
     }
 
@@ -61,10 +65,12 @@ HelpTextComponent.prototype.toggleHelpSidebar = function () {
             $tabHelpContainer
                 .addClass('hide')
                 .attr('aria-hidden', 'true');
+            component.$html.find('.js-show-page-help').trigger('focus');
         } else {
+            // Set focus immediately, then handle animation
+            component.$html.find('.js-show-page-help').trigger('focus');
+            
             $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                component.$html.find('.js-show-page-help').trigger('focus');
-
                 $tabHelpContainer
                     .addClass('hide')
                     .attr('aria-hidden', 'true');
@@ -76,9 +82,12 @@ HelpTextComponent.prototype.toggleHelpSidebar = function () {
             .removeAttr('aria-hidden');
         component.$html.addClass('open-help');
 
-        // Jump focus to the help container
+        // Set focus immediately, then handle animation
+        $tabHelpContainer.find('.js-close-page-help').trigger('focus');
+        
+        // Handle animation completion separately
         $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-            $tabHelpContainer.find('.js-close-page-help').trigger('focus');
+            // Animation completed, no additional focus management needed
         });
     }
 };
