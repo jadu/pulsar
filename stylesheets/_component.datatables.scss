@@ -209,11 +209,14 @@ th.sorting_disabled:hover {
 }
 
 .dataTables_info {
-    display: none;
+    @include  visuallyhidden;
+    
     float: left;
     line-height: 30px;
 
     @include respond-min($screen-tablet) {
+        @include visuallyhiddenreset;
+
         display: block;
     }
 }
