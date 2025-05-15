@@ -145,6 +145,21 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
         style: 'multi'
     };
 
+    // Update aria-labels with correct row numbers
+    $table.on('draw.dt', function() {
+        const api = $table.DataTable();
+        const pageInfo = api.page.info();
+        const start = pageInfo.start;
+        
+        $table.find('tbody tr').each(function(index) {
+            const rowNumber = start + index + 1;
+            const $row = $(this);
+            
+            // Update checkbox aria-label
+            $row.find('.js-select').attr('aria-label', `Select row ${rowNumber}`);
+        });
+    });
+
     return options;
 };
 
