@@ -25,7 +25,7 @@ a.media {
     width: 24px;
 
     &[class^=icon] {
-        font-size: 24px;
+        font-size: $font-size-xlarge;
     }
 }
 

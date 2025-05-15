@@ -187,7 +187,7 @@ $piano-bg: #fafafa;
 .piano__time {
     clear: both;
     display: block;
-    font-size: 14px;
+    font-size: $font-size-medium;
 }
 
 .piano__form {
@@ -197,7 +197,7 @@ $piano-bg: #fafafa;
 }
 
 .piano__item-toggle {
-    font-size: 20px;
+    font-size: $epsilon;
     position: absolute;
     right: 20px;
     text-decoration: none;

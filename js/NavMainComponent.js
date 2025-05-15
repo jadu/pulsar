@@ -54,9 +54,11 @@ NavMainComponent.prototype.init = function () {
     // Open navigation on mobile
     component.$mobileMenuButton.on('click', function(event) {
         var $self = $(this);
+        var $menuExpanded = $self.attr('aria-expanded');
+    
         event.stopImmediatePropagation();
 
-        if ($self.text() === 'Menu') {
+        if ($menuExpanded === 'false') {
             component.showMobileNav(true);
         } else {
             component.showMobileNav(false);
@@ -368,7 +370,6 @@ NavMainComponent.prototype.showMobileNav = function (show) {
         component.$body.removeClass('open-nav');
         component.$mobileMenuButton
             .removeClass('open')
-            .text('Menu')
             .attr('aria-expanded', 'false');
         component.$brandingLink.attr('tabindex', '-1');
         component.$primaryNavLinks.attr('tabindex', '-1');
@@ -384,7 +385,6 @@ NavMainComponent.prototype.showMobileNav = function (show) {
     component.$body.addClass('open-nav');
     component.$mobileMenuButton
         .addClass('open')
-        .text('Close')
         .attr('aria-expanded', 'true');
     component.$brandingLink.attr('tabindex', '3');
     component.$primaryNavLinks.attr('tabindex', '3');

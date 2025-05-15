@@ -75,10 +75,10 @@ input.main-search__field::-ms-clear {
     background: none;
     border: 0;
     color: #555;
-    padding: 1px 8px 0;
+    padding: 3px 8px;
     position: absolute;
     right: 0;
-    top: 8px;
+    top: 6px;
     z-index: 3;
 
     @include respond-min($screen-tablet) {
@@ -95,7 +95,7 @@ input.main-search__field::-ms-clear {
 .main-search__extras {
     background-color: #eee;
     display: block;
-    font-size: 14px;
+    font-size: $font-size-medium;
     padding: 5px 12px;
     text-align: left;
     text-transform: lowercase;
