@@ -69,11 +69,7 @@ PulsarSortableComponent.prototype.initTables = function () {
     this.$html.find('[data-move]').on('click keypress', function () {
         var $this = $(this),
             currentRow = $this.closest('tr'),
-            linkContainer = $this.closest('td'),
-            moveLinks = linkContainer.find('button');
-
-        moveLinks.addClass('hide');
-        linkContainer.addClass('u-text-align-center').append('<span class="js-sortable-moved u-no-wrap"><i class="icon-ok-sign icon--success"></i></span>');
+            linkContainer = $this.closest('td');
 
         if ($this.attr('data-move') === 'up') {
             currentRow.prev().before(currentRow);
@@ -81,15 +77,6 @@ PulsarSortableComponent.prototype.initTables = function () {
         if ($this.attr('data-move') === 'down') {
             currentRow.next().after(currentRow);
         }
-
-        setTimeout(function() {
-            linkContainer
-                .removeClass('u-text-align-center')
-                .find('.js-sortable-moved')
-                .remove();
-
-            moveLinks.removeClass('hide');
-        }, 1500);
 
         // Fake the UI object created by sortable drag and drop
         fakeUi.item = currentRow;
