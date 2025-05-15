@@ -202,7 +202,7 @@
     }
 
     &:focus {
-        border-width: 1px;
+        @include pulsar-button-focused;
     }
 }
 
