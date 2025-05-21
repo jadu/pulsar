@@ -16,7 +16,7 @@ Documentation is available online at [https://jadu.github.io/pulsar](https://jad
 
 ## Contributing
 
-New issues can be submitted through the [GitHub Issue Tracker](https://github.com/jadu/pulsar/issues), and [Pull Requests](https://github.com/jadu/pulsar/pulls) are very welcome, please take a minute to read our [notes for contributors](https://jadu.gitbooks.io/pulsar/content/contributing.html).
+New issues can be submitted through the [GitHub Issue Tracker](https://github.com/jadu/pulsar/issues), and [Pull Requests](https://github.com/jadu/pulsar/pulls) are very welcome, please take a minute to read our [notes for contributors](https://github.com/jadu/pulsar/blob/develop/CONTRIBUTING.md).
 
 ## Mission Statement
 
