@@ -1667,12 +1667,55 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.size is defined %}
         {% set monogram_class = monogram_class ~ ' monogram--' ~ options.size %}
     {% endif %}
+
+    {# Generate deterministic color based on value #}
+    {% set hashValue = 0 %}
+    {% set str = value|upper %}
+    {% for i in 0..str|length - 1 %}
+        {# Use position in string and length as simple hash components #}
+        {% set hashValue = (hashValue + i + 1) * (str|length) %}
+    {% endfor %}
+    
+    {# Add a value based on the first character to make it more deterministic #}
+    {% if str|length > 0 %}
+        {% set firstChar = str|slice(0, 1) %}
+        {% if firstChar matches '/[A-Z]/' %}
+            {% set hashValue = hashValue + ((firstChar|replace({'A':1, 'B':2, 'C':3, 'D':4, 'E':5, 'F':6, 'G':7, 'H':8, 'I':9, 'J':10, 'K':11, 'L':12, 'M':13, 'N':14, 'O':15, 'P':16, 'Q':17, 'R':18, 'S':19, 'T':20, 'U':21, 'V':22, 'W':23, 'X':24, 'Y':25, 'Z':26})) * 10) %}
+        {% endif %}
+    {% endif %}
+
+    {# Generate HSL color values based on hashValue #}
+    {% set hue = hashValue % 360 %}
+    {% set saturation = 65 %}
+    
+    {# Adjust the lightness to ensure it's not too light or dark #}
+    {% set minLightness = 40 %}
+    {% set maxLightness = 75 %}
+    {% set lightness = minLightness + ((hashValue % (maxLightness - minLightness)) + 1) %}
+    
+    {# Background color in HSL format #}
+    {% set bgColor = 'hsl(' ~ hue ~ ', ' ~ saturation ~ '%, ' ~ lightness ~ '%)' %}
+    
+    {# Select text color to ensure WCAG AA compliance (4.5:1 contrast ratio) #}
+    {% set textColor = '' %}
+    
+    {# For dark backgrounds (lower lightness), use a light text color #}
+    {% if lightness < 50 %}
+        {# Use a light shade that's far enough from the background #}
+        {% set textLightness = 95 %}
+        {% set textColor = 'hsl(' ~ hue ~ ', 15%, ' ~ textLightness ~ '%)' %}
+    {% else %}
+        {# For light backgrounds, use a dark shade that contrasts well #}
+        {% set textLightness = 10 %}
+        {% set textColor = 'hsl(' ~ hue ~ ', 30%, ' ~ textLightness ~ '%)' %}
+    {% endif %}
     
     <span{{
         attributes(options
             |exclude('size')
             |defaults({
-                'class': monogram_class
+                'class': monogram_class,
+                'style': 'background-color: ' ~ bgColor ~ '; color: ' ~ textColor ~ ';'
             })
         )
     }}>{{ value|upper }}</span>

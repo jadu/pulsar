@@ -1,16 +1,9 @@
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
 {% block tab_content %}
-    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-    {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-    {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
-
-    {{
-        html.heading({
-            'level': 2,
-            'html': 'Monogram'
-        })
-    }}
 
     <p>The monogram component displays user initials or short text in a circular element with a background color that is consistently and deterministically derived from the input text.</p>
 
@@ -55,23 +48,41 @@
     <div class="panel">
         <div class="panel__body">
             <h3>Multiple Examples</h3>
-            <p>Different text inputs will generate different background colors.</p>
+            <p>Different text inputs will generate different background colors. The color is deterministically derived from the text, ensuring consistency.</p>
             <div class="example">
                 <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-                    {{ html.monogram('AB') }}
-                    {{ html.monogram('CD') }}
-                    {{ html.monogram('EF') }}
-                    {{ html.monogram('GH') }}
-                    {{ html.monogram('IJ') }}
-                    {{ html.monogram('KL') }}
+                    <div style="text-align: center;">
+                        {{ html.monogram('AB') }}
+                        <p>AB</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.monogram('CD') }}
+                        <p>CD</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.monogram('EF') }}
+                        <p>EF</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.monogram('GH') }}
+                        <p>GH</p>
+                    </div>
                 </div>
             </div>
             <pre class="language-twig"><code>{{ '{{ html.monogram(\'AB\') }}
 {{ html.monogram(\'CD\') }}
 {{ html.monogram(\'EF\') }}
-{{ html.monogram(\'GH\') }}
-{{ html.monogram(\'IJ\') }}
-{{ html.monogram(\'KL\') }}' }}</code></pre>
+{{ html.monogram(\'GH\') }}' }}</code></pre>
+
+            <p>Additional examples with different colors:</p>
+            <div class="example">
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    {{ html.monogram('IJ') }}
+                    {{ html.monogram('CK') }}
+                    {{ html.monogram('WL') }}
+                    {{ html.monogram('AM') }}
+                </div>
+            </div>
         </div>
     </div>
 

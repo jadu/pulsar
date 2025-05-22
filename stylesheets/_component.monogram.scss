@@ -9,11 +9,9 @@
 // Base styles for monogram
 .monogram {
     align-items: center;
-    background-color: color(background, light);
     border-radius: 50%;
-    color: color(text, base);
     display: inline-flex;
-    font-family: $font-family-medium;
+    font-family: $font-family-heading;
     font-size: $font-size-base;
     font-weight: 500;
     height: 2rem;
