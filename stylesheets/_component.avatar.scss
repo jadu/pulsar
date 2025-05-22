@@ -11,7 +11,7 @@
 .avatar {
     align-items: center;
     display: inline-flex;
-    gap: $margin-micro-horizontal;
+    gap: 5px;
     position: relative;
     vertical-align: middle;
 
@@ -55,7 +55,13 @@
     // Images inside avatars
     &__image {
         background-color: color(background, light);
+        border-radius: 50%;
         object-fit: cover;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
     }
 
     // Icons inside avatars
