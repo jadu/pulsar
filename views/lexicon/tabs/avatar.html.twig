@@ -1,0 +1,235 @@
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    <p>The avatar component displays user images, initials (monogram), or icons in a consistent format with optional labels.</p>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Basic Avatar</h3>
+            <div class="example">
+                {{ html.avatar({
+                    'image': 'https://i.pravatar.cc/32',
+                    'label': 'John Smith'
+                }) }}
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.avatar({
+    \'image\': \'/path/to/image.jpg\',
+    \'label\': \'John Smith\'
+}) }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Size Variants</h3>
+            <p>Avatars come in three sizes: small, medium (default), and large.</p>
+            <div class="example">
+                <div style="display: flex; align-items: center; gap: 20px; flex-direction: column;">
+                    <div>
+                        {{ html.avatar({
+                            'image': 'https://i.pravatar.cc/24',
+                            'label': 'Small Avatar',
+                            'size': 'small'
+                        }) }}
+                    </div>
+                    <div>
+                        {{ html.avatar({
+                            'image': 'https://i.pravatar.cc/32',
+                            'label': 'Medium Avatar (default)'
+                        }) }}
+                    </div>
+                    <div>
+                        {{ html.avatar({
+                            'image': 'https://i.pravatar.cc/48',
+                            'label': 'Large Avatar',
+                            'size': 'large'
+                        }) }}
+                    </div>
+                </div>
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.avatar({
+    \'image\': \'/path/to/image.jpg\',
+    \'label\': \'Small Avatar\',
+    \'size\': \'small\'
+}) }}
+
+{{ html.avatar({
+    \'image\': \'/path/to/image.jpg\',
+    \'label\': \'Medium Avatar (default)\'
+}) }}
+
+{{ html.avatar({
+    \'image\': \'/path/to/image.jpg\',
+    \'label\': \'Large Avatar\',
+    \'size\': \'large\'
+}) }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Avatar Types</h3>
+            <p>Avatars can display images, monograms (typically user initials), or icons.</p>
+            <div class="example">
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div>
+                        {{ html.avatar({
+                            'image': 'https://i.pravatar.cc/32',
+                            'label': 'Image Avatar'
+                        }) }}
+                    </div>
+                    <div>
+                        {{ html.avatar({
+                            'monogram': 'JS',
+                            'label': 'Monogram Avatar'
+                        }) }}
+                    </div>
+                    <div>
+                        {{ html.avatar({
+                            'icon': 'user',
+                            'label': 'Icon Avatar'
+                        }) }}
+                    </div>
+                </div>
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.avatar({
+    \'image\': \'/path/to/image.jpg\',
+    \'label\': \'Image Avatar\'
+}) }}
+
+{{ html.avatar({
+    \'monogram\': \'JS\',
+    \'label\': \'Monogram Avatar\'
+}) }}
+
+{{ html.avatar({
+    \'icon\': \'user\',
+    \'label\': \'Icon Avatar\'
+}) }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Without Label</h3>
+            <p>Avatars can be displayed without labels for compact layouts.</p>
+            <div class="example">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    {{ html.avatar({
+                        'image': 'https://i.pravatar.cc/32'
+                    }) }}
+                    {{ html.avatar({
+                        'monogram': 'JS'
+                    }) }}
+                    {{ html.avatar({
+                        'icon': 'user'
+                    }) }}
+                </div>
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.avatar({
+    \'image\': \'/path/to/image.jpg\'
+}) }}
+
+{{ html.avatar({
+    \'monogram\': \'JS\'
+}) }}
+
+{{ html.avatar({
+    \'icon\': \'user\'
+}) }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Custom Classes</h3>
+            <p>You can add custom classes to the avatar.</p>
+            <div class="example">
+                {{ html.avatar({
+                    'monogram': 'JS',
+                    'label': 'John Smith',
+                    'class': 'custom-class'
+                }) }}
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.avatar({
+    \'monogram\': \'JS\',
+    \'label\': \'John Smith\',
+    \'class\': \'custom-class\'
+}) }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Accessibility Attributes</h3>
+            <p>You can add IDs and data attributes for accessibility and custom behaviors.</p>
+            <div class="example">
+                {{ html.avatar({
+                    'monogram': 'JS',
+                    'label': 'John Smith',
+                    'id': 'user-avatar',
+                    'data-user-id': '12345'
+                }) }}
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.avatar({
+    \'monogram\': \'JS\',
+    \'label\': \'John Smith\',
+    \'id\': \'user-avatar\', 
+    \'data-user-id\': \'12345\'
+}) }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Consistent Color Generation</h3>
+            <p>When using monograms, the background colors are automatically generated based on the text content. The same text always produces the same color, with text colors chosen to ensure WCAG 2.1 AA compliance.</p>
+            <div class="example">
+                <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                    <div style="text-align: center;">
+                        {{ html.avatar({ 'monogram': 'AB' }) }}
+                        <p style="margin-top: 8px;">AB</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.avatar({ 'monogram': 'CD' }) }}
+                        <p style="margin-top: 8px;">CD</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.avatar({ 'monogram': 'EF' }) }}
+                        <p style="margin-top: 8px;">EF</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.avatar({ 'monogram': 'GH' }) }}
+                        <p style="margin-top: 8px;">GH</p>
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+                    <div style="text-align: center;">
+                        {{ html.avatar({ 'monogram': 'IJ' }) }}
+                        <p style="margin-top: 8px;">IJ</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.avatar({ 'monogram': 'KL' }) }}
+                        <p style="margin-top: 8px;">KL</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.avatar({ 'monogram': 'MN' }) }}
+                        <p style="margin-top: 8px;">MN</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.avatar({ 'monogram': 'OP' }) }}
+                        <p style="margin-top: 8px;">OP</p>
+                    </div>
+                </div>
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.avatar({ \'monogram\': \'AB\' }) }}
+{{ html.avatar({ \'monogram\': \'CD\' }) }}
+{{ html.avatar({ \'monogram\': \'EF\' }) }}
+{{ html.avatar({ \'monogram\': \'GH\' }) }}' }}</code></pre>
+        </div>
+    </div>
+{% endblock %} 

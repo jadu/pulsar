@@ -1,0 +1,82 @@
+// Avatar component
+// -----------------------------------------------------------------------------
+//
+// The avatar component provides a consistent way to display user images or 
+// initials in a circular format.
+// 
+// Available in three sizes: default, small, and large.
+// Can display images, monograms (initials), or fallback icons.
+
+// Base styles for avatars
+.avatar {
+    align-items: center;
+    display: inline-flex;
+    gap: $margin-micro-horizontal;
+    position: relative;
+    vertical-align: middle;
+
+    // Size variants affect the wrapper's layout
+    &--small {
+        .avatar__image,
+        .avatar__icon,
+        .avatar__monogram {
+            height: 24px;
+            width: 24px;
+        }
+    }
+
+    &--large {
+        .avatar__image,
+        .avatar__icon,
+        .avatar__monogram {
+            height: 48px;
+            width: 48px;
+        }
+    }
+
+    // Common styles for the visual element (image, icon, or monogram)
+    &__image,
+    &__icon,
+    &__monogram {
+        align-items: center;
+        border-radius: 50%;
+        display: inline-flex;
+        height: 2rem;
+        justify-content: center;
+        overflow: hidden;
+        width: 2rem;
+    }
+    
+    // Container for monogram component
+    &__monogram {
+        background-color: transparent; // Allow inline styles to control the bg color
+    }
+
+    // Images inside avatars
+    &__image {
+        background-color: color(background, light);
+        object-fit: cover;
+    }
+
+    // Icons inside avatars
+    &__icon {
+        background-color: color(background, light);
+        color: color(text, muted);
+        font-size: 1.125rem;
+
+        .avatar--small & {
+            font-size: 0.875rem;
+        }
+
+        .avatar--large & {
+            font-size: 1.5rem;
+        }
+    }
+
+    // Label next to avatar
+    &__label {
+        color: color(text);
+        font-size: $font-size-base;
+        line-height: $line-height-base;
+    }
+} 

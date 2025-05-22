@@ -1624,6 +1624,55 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
 
 {# -----------------------------------------------------------------------------
 
+# Heading
+
+Generates a heading tag (h1-h6) with optional classes and attributes.
+
+## Example usage
+
+```twig
+{{
+    html.heading({
+        'level': 2,
+        'html': 'Section Heading'
+    })
+}}
+```
+
+## Options
+
+Option | Type   | Description
+------ | ------ | --------------------------------------------------------------
+class  | string | CSS classes, space separated
+html   | string | The heading content (HTML allowed)
+id     | string | A unique identifier, if required
+level  | int    | Heading level (1-6), defaults to 2
+data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro heading(options) %}
+{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    
+    {% set level = options.level|default(2) %}
+    {% if level < 1 %}{% set level = 1 %}{% endif %}
+    {% if level > 6 %}{% set level = 6 %}{% endif %}
+    
+    <h{{ level }}{{
+        attributes(options
+            |exclude('html level')
+            |defaults({
+                'class': options.class|default('')
+            })
+        )
+    }}>
+        {{- options.html|default|raw -}}
+    </h{{ level }}>
+{% endspaceless %}
+{% endmacro %}
+
+{# -----------------------------------------------------------------------------
+
 # Monogram
 
 Displays a user's initials or short text in a circular element with a background color
@@ -1717,5 +1766,107 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         )
     }}>{{ value|upper }}</span>
     
+{% endspaceless %}
+{% endmacro %}
+
+{# -----------------------------------------------------------------------------
+
+# Avatar
+
+Displays a user avatar with optional label. Accepts an image URL, monogram (typically initials), 
+or icon, with consistent styling and accessibility features.
+
+## Example usage with image
+
+```twig
+{{
+    html.avatar({
+        'image': '/path/to/profile.jpg',
+        'label': 'John Smith'
+    })
+}}
+```
+
+## Example usage with monogram
+
+```twig
+{{
+    html.avatar({
+        'monogram': 'JS',
+        'label': 'John Smith'
+    })
+}}
+```
+
+## Example usage with icon
+
+```twig
+{{
+    html.avatar({
+        'icon': 'user',
+        'label': 'John Smith'
+    })
+}}
+```
+
+## Options
+
+Option      | Type   | Description
+----------- | ------ | --------------------------------------------------------------
+class       | string | CSS classes, space separated
+id          | string | A unique identifier, if required
+image       | string | URL for the profile image to display
+image_alt   | string | Alt attribute for the image, defaults to label if provided
+icon        | string | Icon name to use (alternative to image or monogram)
+icon_colour | string | Text colour to use for the icon
+label       | string | Text to display next to the avatar
+monogram    | string | Text to display when no image is available (typically initials)
+size        | string | Size modifier: 'small', 'medium' (default), 'large'
+data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro avatar(options) %}
+{% spaceless %}
+    {% import _self as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    {% set avatar_class = 'avatar' %}
+    {% if options.class is defined and options.class is not empty %}
+        {% set avatar_class = avatar_class ~ ' ' ~ options.class %}
+    {% endif %}
+    
+    {% if options.size is defined %}
+        {% set avatar_class = avatar_class ~ ' avatar--' ~ options.size %}
+    {% endif %}
+
+    <div{{
+        attributes(options
+            |exclude('image image_alt icon icon_colour label monogram size')
+            |defaults({
+                'class': avatar_class
+            })
+        )
+    }}>
+        {% if options.monogram is defined and options.monogram is not empty %}
+            <div class="avatar__monogram">
+                {{ html.monogram(options.monogram, { 'size': options.size|default }) }}
+            </div>
+        {% elseif options.icon is defined and options.icon is not empty %}
+            <div class="avatar__icon">
+                {{ html.icon(options.icon, { 'colour': options.icon_colour|default }) }}
+            </div>
+        {% elseif options.image is defined and options.image is not empty %}
+            {% set alt_text = options.image_alt|default(options.label|default('User avatar')) %}
+            <img src="{{ options.image }}" alt="{{ alt_text }}" class="avatar__image" />
+        {% else %}
+            <div class="avatar__icon">
+                {{ html.icon('user') }}
+            </div>
+        {% endif %}
+        
+        {% if options.label is defined and options.label is not empty %}
+            <span class="avatar__label">{{ options.label|raw }}</span>
+        {% endif %}
+    </div>
 {% endspaceless %}
 {% endmacro %}

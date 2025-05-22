@@ -56,6 +56,9 @@
 {% set tab_monogram %}
     {% include 'lexicon/tabs/monogram.html.twig' %}
 {% endset %}
+{% set tab_avatar %}
+    {% include 'lexicon/tabs/avatar.html.twig' %}
+{% endset %}
 {% set tooltips_v2 %}
     {% include 'lexicon/tabs/tooltips_v2.html.twig' %}
 {% endset %}
@@ -138,6 +141,11 @@
           "id"    : "monogram",
           "label" : "Monogram",
           "src"   : tab_monogram
+        },
+        {
+          "id"    : "avatar",
+          "label" : "Avatar",
+          "src"   : tab_avatar
         },
         {
           "id"    : "pagination",
