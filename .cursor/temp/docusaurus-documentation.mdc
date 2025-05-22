@@ -1,0 +1,153 @@
+---
+description: How to create pulsar documentation
+globs: 
+alwaysApply: false
+---
+# Docusaurus Documentation Guidelines
+
+This document outlines the standard practices for creating and updating documentation in the Pulsar UI framework's Docusaurus site.
+
+## File Format
+
+**IMPORTANT**: All documentation files MUST use the `.mdx` extension, not `.md`. The MDX format allows for embedding interactive React components within markdown content.
+
+## Documentation Structure
+
+Pulsar's documentation follows a specific structure:
+
+1. **Component Documentation**: Located in the `/docs/docs/components/` directory with filenames matching the component name (e.g., `avatar.mdx`).
+2. **Guide Documentation**: Located in the `/docs/docs/guides/` directory for broader topics and tutorials.
+3. **API Documentation**: Located in the `/docs/docs/api/` directory for detailed API references.
+
+## Frontmatter
+
+Each MDX file should begin with frontmatter containing at least:
+
+```md
+---
+title: Component Name
+---
+```
+
+Additional optional frontmatter fields include:
+- `sidebar_label`: A shorter title used in the sidebar
+- `description`: A brief description for SEO
+- `tags`: Array of related topics for searchability
+
+## Content Structure
+
+Component documentation should follow this general structure:
+
+1. **Brief Introduction**: A short paragraph explaining the component's purpose.
+2. **Basic Example**: A simple example showing the most common usage.
+3. **Types/Variants**: If the component has multiple variants, document each with examples.
+4. **Use Cases**: Explain when to use this component (and when not to).
+5. **Props/Options**: A table listing all available options with types and descriptions.
+6. **Accessibility**: Information on accessibility features and considerations.
+7. **Related Components**: Links to related components or guides.
+
+## Code Examples
+
+Code examples should:
+
+1. Use consistent formatting with proper indentation.
+2. Include fully working examples that can be copy-pasted.
+3. Use syntax highlighting with the appropriate language tag (e.g., ```twig).
+4. For complex examples, include explanatory comments.
+5. **MANDATORY**: Always include live, interactive examples using the Docusaurus live code blocks.
+
+## Live Code Examples
+
+Every component documentation **MUST** include live, interactive code examples. Use the following format:
+
+````md
+```jsx live
+function Example() {
+  return (
+    <div className="example-wrapper">
+      {/* Rendered component example */}
+      <div className="monogram" style={{
+        backgroundColor: '#6495ED',
+        color: '#FFFFFF',
+        borderRadius: '50%',
+        width: '40px',
+        height: '40px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontWeight: 'bold'
+      }}>
+        JS
+      </div>
+    </div>
+  );
+}
+```
+````
+
+This allows users to see the component rendered directly in the documentation, and even modify the example code to see how changes affect the output.
+
+## Static Code Examples 
+
+Always include Twig examples alongside live examples:
+
+````md
+```twig
+{{ html.monogram('JS', {
+  'size': 'large',
+  'class': 'my-custom-class'
+}) }}
+```
+````
+
+## Images and Assets
+
+1. Store component screenshots in `/static/img/components/`.
+2. Use descriptive filenames: `component-name-variant.png`.
+3. Include alt text for all images for accessibility.
+4. Optimize images for web to minimize file size.
+
+## Tables
+
+Use tables for presenting props, options, and other structured data:
+
+```md
+| Option      | Type   | Default | Description                        |
+|-------------|--------|---------|----------------------------------- |
+| size        | string | medium  | Size of the component (small/medium/large) |
+| monogram    | string | -       | Text to display as initials        |
+```
+
+## Updating Documentation
+
+When updating components:
+
+1. Always check if the component has existing documentation.
+2. Update the documentation alongside the component changes.
+3. Add new options to the options table.
+4. Add examples for new functionality.
+5. Update screenshots if the visual appearance has changed.
+6. Follow the existing style and structure to maintain consistency.
+
+## Versioning
+
+1. If making breaking changes, coordinate with the documentation versioning strategy.
+2. Use admonitions for version-specific information:
+
+```md
+:::note Version
+This feature is available in v2.3.0 and above.
+:::
+```
+
+## Best Practices
+
+1. **Be Concise**: Write clearly and concisely without unnecessary words.
+2. **Show, Don't Tell**: Provide clear examples rather than lengthy explanations.
+3. **Consistency**: Maintain consistent terminology across documentation.
+4. **Audience Awareness**: Write for the intended audience (developers, designers, etc.).
+5. **Cross-Reference**: Link related components and concepts for better navigation.
+6. **Accessibility**: Ensure documentation itself meets accessibility standards.
+7. **Update Regularly**: Documentation should be treated as a living document that evolves with the code.
+8. **Use MDX Format**: Always use `.mdx` extension to allow for embedded components and future extensibility.
+9. **Include Live Examples**: Every component must have at least one live code example that users can interact with.
