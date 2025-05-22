@@ -1,0 +1,99 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+    {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+    {{
+        html.heading({
+            'level': 2,
+            'html': 'Monogram'
+        })
+    }}
+
+    <p>The monogram component displays user initials or short text in a circular element with a background color that is consistently and deterministically derived from the input text.</p>
+
+    <p>Monograms are often used to represent users when a profile image is not available. The background color is deterministically derived from the input text, ensuring consistency across the interface.</p>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Basic Monogram</h3>
+            <div class="example">
+                {{ html.monogram('JS') }}
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.monogram(\'JS\') }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Size Variants</h3>
+            <p>Monograms come in three sizes: small, medium (default), and large.</p>
+            <div class="example">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="text-align: center;">
+                        {{ html.monogram('JS', {'size': 'small'}) }}
+                        <p>Small</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.monogram('JS') }}
+                        <p>Medium (default)</p>
+                    </div>
+                    <div style="text-align: center;">
+                        {{ html.monogram('JS', {'size': 'large'}) }}
+                        <p>Large</p>
+                    </div>
+                </div>
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.monogram(\'JS\', {\'size\': \'small\'}) }}
+{{ html.monogram(\'JS\') }}
+{{ html.monogram(\'JS\', {\'size\': \'large\'}) }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Multiple Examples</h3>
+            <p>Different text inputs will generate different background colors.</p>
+            <div class="example">
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    {{ html.monogram('AB') }}
+                    {{ html.monogram('CD') }}
+                    {{ html.monogram('EF') }}
+                    {{ html.monogram('GH') }}
+                    {{ html.monogram('IJ') }}
+                    {{ html.monogram('KL') }}
+                </div>
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.monogram(\'AB\') }}
+{{ html.monogram(\'CD\') }}
+{{ html.monogram(\'EF\') }}
+{{ html.monogram(\'GH\') }}
+{{ html.monogram(\'IJ\') }}
+{{ html.monogram(\'KL\') }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Custom Classes</h3>
+            <p>You can add custom classes to the monogram.</p>
+            <div class="example">
+                {{ html.monogram('JS', {'class': 'extra-class'}) }}
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.monogram(\'JS\', {\'class\': \'extra-class\'}) }}' }}</code></pre>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel__body">
+            <h3>Accessibility Attributes</h3>
+            <p>You can add IDs and data attributes for accessibility and custom behaviors.</p>
+            <div class="example">
+                {{ html.monogram('JS', {'id': 'user-monogram', 'data-user-id': '12345'}) }}
+            </div>
+            <pre class="language-twig"><code>{{ '{{ html.monogram(\'JS\', {\'id\': \'user-monogram\', \'data-user-id\': \'12345\'}) }}' }}</code></pre>
+        </div>
+    </div>
+{% endblock %} 

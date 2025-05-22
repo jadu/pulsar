@@ -53,6 +53,9 @@
 {% set tab_metadata %}
     {% include 'lexicon/tabs/metadata.html.twig' %}
 {% endset %}
+{% set tab_monogram %}
+    {% include 'lexicon/tabs/monogram.html.twig' %}
+{% endset %}
 {% set tooltips_v2 %}
     {% include 'lexicon/tabs/tooltips_v2.html.twig' %}
 {% endset %}
@@ -130,6 +133,11 @@
           "id"    : "metadata",
           "label" : "Metadata",
           "src"   : tab_metadata
+        },
+        {
+          "id"    : "monogram",
+          "label" : "Monogram",
+          "src"   : tab_monogram
         },
         {
           "id"    : "pagination",

@@ -1621,3 +1621,61 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
     </table>
     {% endif %}
 {% endmacro %}
+
+{# -----------------------------------------------------------------------------
+
+# Monogram
+
+Displays a user's initials or short text in a circular element with a background color
+that is consistently and deterministically derived from the input text.
+
+## Example usage
+
+```twig
+{{ html.monogram('JS') }}
+```
+
+## Example usage with options
+
+```twig
+{{ 
+    html.monogram('JS', {
+        'size': 'large',
+        'class': 'extra-class',
+        'id': 'unique-id'
+    }) 
+}}
+```
+
+## Options
+
+Option      | Type   | Description
+----------- | ------ | ------------------------------------
+class       | string | CSS classes, space separated
+id          | string | A unique identifier, if required
+size        | string | Size modifier: 'small', 'medium' (default), 'large'
+data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro monogram(value, options) %}
+{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    
+    {% set options = options|default({}) %}
+    {% set monogram_class = 'monogram' %}
+    
+    {% if options.size is defined %}
+        {% set monogram_class = monogram_class ~ ' monogram--' ~ options.size %}
+    {% endif %}
+    
+    <span{{
+        attributes(options
+            |exclude('size')
+            |defaults({
+                'class': monogram_class
+            })
+        )
+    }}>{{ value|upper }}</span>
+    
+{% endspaceless %}
+{% endmacro %}

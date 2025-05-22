@@ -1,0 +1,39 @@
+// Monogram component
+// -----------------------------------------------------------------------------
+//
+// The monogram component provides a consistent way to display user initials or
+// short text in a background with a color derived from the text content.
+//
+// Available in three sizes: small, medium (default), and large.
+
+// Base styles for monogram
+.monogram {
+    align-items: center;
+    background-color: color(background, light);
+    border-radius: 50%;
+    color: color(text, base);
+    display: inline-flex;
+    font-family: $font-family-medium;
+    font-size: $font-size-base;
+    font-weight: 500;
+    height: 2rem;
+    justify-content: center;
+    line-height: 1;
+    overflow: hidden;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 2rem;
+    
+    // Size variations
+    &--small {
+        font-size: $font-size-small;
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    
+    &--large {
+        font-size: $font-size-large;
+        height: 3rem;
+        width: 3rem;
+    }
+} 
