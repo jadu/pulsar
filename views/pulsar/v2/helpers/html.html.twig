@@ -1688,26 +1688,23 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% set hue = hashValue % 360 %}
     {% set saturation = 65 %}
     
-    {# Adjust the lightness to ensure it's not too light or dark #}
-    {% set minLightness = 40 %}
-    {% set maxLightness = 75 %}
-    {% set lightness = minLightness + ((hashValue % (maxLightness - minLightness)) + 1) %}
+    {# Create two distinct background lightness ranges: light (65-80%) and dark (20-35%) 
+       This avoids the middle range which can create contrast issues #}
+    {% set useLightBackground = (hashValue % 2) == 0 %}
+    {% set backgroundLightness = useLightBackground ? 
+                              (65 + (hashValue % 16)) : 
+                              (20 + (hashValue % 16)) %}
     
     {# Background color in HSL format #}
-    {% set bgColor = 'hsl(' ~ hue ~ ', ' ~ saturation ~ '%, ' ~ lightness ~ '%)' %}
+    {% set bgColor = 'hsl(' ~ hue ~ ', ' ~ saturation ~ '%, ' ~ backgroundLightness ~ '%)' %}
     
     {# Select text color to ensure WCAG AA compliance (4.5:1 contrast ratio) #}
-    {% set textColor = '' %}
-    
-    {# For dark backgrounds (lower lightness), use a light text color #}
-    {% if lightness < 50 %}
-        {# Use a light shade that's far enough from the background #}
-        {% set textLightness = 95 %}
-        {% set textColor = 'hsl(' ~ hue ~ ', 15%, ' ~ textLightness ~ '%)' %}
+    {% if useLightBackground %}
+        {# For light backgrounds, use very dark text (8% lightness) #}
+        {% set textColor = 'hsl(' ~ hue ~ ', 30%, 8%)' %}
     {% else %}
-        {# For light backgrounds, use a dark shade that contrasts well #}
-        {% set textLightness = 10 %}
-        {% set textColor = 'hsl(' ~ hue ~ ', 30%, ' ~ textLightness ~ '%)' %}
+        {# For dark backgrounds, use very light text (97% lightness) #}
+        {% set textColor = 'hsl(' ~ hue ~ ', 10%, 97%)' %}
     {% endif %}
     
     <span{{
