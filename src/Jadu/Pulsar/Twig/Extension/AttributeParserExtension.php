@@ -93,7 +93,8 @@ class AttributeParserExtension extends \Twig_Extension
      *                the `disabled` boolean from also being output as it's
      *                invalid HTML
      * @return string A space separated string of key="value" attributes ready
-     *                for including in an HTML element
+     *                for including in an HTML element, or an empty string if no
+     *                valid attributes are supplied
      */
     public function parseAttributes($attributes, array $args = array())
     {
