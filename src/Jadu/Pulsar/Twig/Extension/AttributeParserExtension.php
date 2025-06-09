@@ -8,7 +8,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  * Takes an array of attributes to be converted into HTML formatted attributes
  * ready for use in an HTML element.
  *
- * Unit tests: tests/unit/AttributeParserExtensionTest.php
+ * Unit tests: tests/unit/Jadu/Pulsar/Twig/Extension/AttributeParserExtensionTest.php
  */
 class AttributeParserExtension extends \Twig_Extension
 {
