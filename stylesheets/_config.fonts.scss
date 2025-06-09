@@ -1,22 +1,24 @@
 // Font Families
-$font-family-heading:       'Montserrat Bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$font-weight-heading:       700;
+$font-family-fallback: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+$font-family-heading: 'Montserrat Bold', $font-family-fallback;
+$font-weight-heading: 700;
 $font-letter-spacing-heading: -0.5px;
 
 $font-family-heading-light: 'Montserrat SemiBold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $font-weight-heading-light: 600;
 $font-letter-spacing-heading-light: -0.5px;
 
-$font-family-regular:       'Clarity City Regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$font-weight-regular:       400;
+$font-family-regular: 'Clarity City Regular', $font-family-fallback;
+$font-weight-regular: 400;
 
-$font-family-light:         'Clarity City Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$font-weight-light:         300;
+$font-family-light: 'Clarity City Light', $font-family-fallback;
+$font-weight-light: 300;
 
-$font-family-monospace:     'Courier New', 'Andale Mono', 'Consolas', monospace;
+$font-family-monospace: 'Courier New', 'Andale Mono', 'Consolas', monospace;
 
-$font-family-base:          $font-family-regular !default;
-$font-weight-base:          $font-weight-regular !default;
+$font-family-base: $font-family-regular !default;
+$font-weight-base: $font-weight-regular !default;
 
 // Font paths
 $font-path: '/fonts' !default;
