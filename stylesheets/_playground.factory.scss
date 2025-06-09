@@ -1,0 +1,564 @@
+strong {
+    font-family: $font-family-bold;
+    font-weight: $font-weight-bold;
+}
+
+.tab__container .tab__sidebar h2 {
+    margin-bottom: 1em;
+}
+
+.aex-factory {
+    .settings-nav {
+        margin: 0 -20px -20px;
+    }
+
+    .settings-nav ul {
+        border-top: 4px solid #d8dbea;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .settings-nav li {
+        margin: 0;
+        border-bottom: 4px solid #d8dbea;
+    }
+
+    .settings-nav li:last-child {
+        border-bottom: none;
+    }
+
+    .settings-nav a {
+        display: block;
+        padding: 12px 20px;
+        color: color(text);
+        text-decoration: none;
+    }
+
+    .settings-nav a i {
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+
+    .settings-nav li:hover {
+        background-color: #f5f5f5;
+    }
+
+    .settings-nav li.is-active {
+        background-color: color(primary);
+    }
+
+    .settings-nav li.is-active a:not(:focus) {
+        color: color(primary, alt);
+        font-weight: 600;
+    }
+
+    .settings-nav li.is-active a i {
+        opacity: 1;
+    }
+    
+}
+
+
+.main-title .media {
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    p {
+        font-family: $font-family-heading;
+    }
+
+    .small-type {
+        color: color(text);
+        font-family: $font-family-base;
+        font-size: $font-size-medium;
+        line-height: 1rem;
+    }
+}
+
+.table td.td--avatar {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.layout-divider {
+    background-color: rgba(62, 73, 148, 0.2);
+    margin: 0 -20px;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+// Avatar styles have been moved to _component.avatar.scss
+
+.u-padding-none {
+    padding: 0 !important;
+}
+
+.metadata__key {
+    font-family: $font-family-bold;
+    font-weight: $font-weight-bold;
+}
+
+.metadata--crawl-config {
+    .metadata__key .icon {
+        font-family: $font-family-icons;
+        width: 20px;
+    }
+
+    .metadata__value {
+        padding-left: 24px;
+    }
+}
+
+aside .layout-divider {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.markdown-viewer {
+    background-color: color(background, lightest);
+    overflow: scroll;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.factory-capture-screenshot {
+    outline: 1px solid color(border);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+// Crawler Cards - Material Design inspired with Jadu color palette
+.crawler-card {
+    background-color: map-get(map-get($palette-monochromes, white), base);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+    }
+
+    // Card header
+    &__header {
+        align-items: center;
+        background-color: map-get(map-get($palette-alias, background), light);
+        border-bottom: 1px solid map-get(map-get($palette-monochromes, gray), lightest);
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 20px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: map-get(map-get($palette-alias, background), base);
+        }
+    }
+
+    &__title-container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__title {
+        color: map-get(map-get($palette-alias, text), base);
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    &__toggle {
+        color: map-get(map-get($palette-alias, link), base);
+        cursor: pointer;
+        margin-right: 10px;
+        transition: transform 0.3s ease;
+
+        &--collapsed {
+            transform: rotate(-90deg);
+        }
+    }
+
+    &__status {
+        font-size: 13px;
+        font-weight: 500;
+        margin-right: 8px;
+        padding: 4px 12px;
+        border-radius: 16px;
+        
+        &--active {
+            background-color: map-get(map-get($palette-states, primary), base);
+            color: map-get(map-get($palette-states, primary), alt);
+        }
+        
+        &--scheduled {
+            background-color: map-get(map-get($palette-states, warning), base);
+            color: map-get(map-get($palette-states, warning), alt);
+        }
+    }
+
+    // Card body
+    &__body {
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease, padding 0.3s ease;
+
+        &--expanded {
+            padding: 20px;
+            max-height: 1000px; // Arbitrary large value
+        }
+    }
+
+    // URL section
+    &__url {
+        margin-bottom: 20px;
+        
+        &-link {
+            color: map-get(map-get($palette-alias, link), base);
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+                color: map-get(map-get($palette-alias, link), hover);
+            }
+        }
+        
+        &-meta {
+            color: map-get(map-get($palette-alias, text), help);
+            font-size: 14px;
+        }
+    }
+
+    // Stats section
+    &__stats {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    &__stat {
+        background-color: map-get(map-get($palette-alias, background), light);
+        border-radius: 8px;
+        margin-right: 16px;
+        margin-bottom: 8px;
+        padding: 12px 16px;
+        min-width: 80px;
+        text-align: center;
+        
+        &:last-child {
+            margin-right: 0;
+        }
+        
+        &-value {
+            color: map-get(map-get($palette-states, primary), base);
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        &-label {
+            color: map-get(map-get($palette-alias, text), help);
+            font-size: 13px;
+            font-weight: 400;
+        }
+    }
+
+    // Content sections
+    &__section {
+        margin-bottom: 20px;
+        
+        &-title {
+            color: map-get(map-get($palette-alias, text), help);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        &-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        &-item {
+            align-items: center;
+            display: flex;
+            margin-bottom: 8px;
+            font-size: 14px;
+            margin-right: 12px;
+            
+            .icon {
+                margin-right: 8px;
+            }
+            
+            code {
+                background-color: map-get(map-get($palette-alias, background), dark);
+                border-radius: 4px;
+                color: map-get(map-get($palette-alias, text), help);
+                font-family: monospace;
+                font-size: 13px;
+                padding: 4px 8px;
+            }
+        }
+
+        // Inline labels for target elements and excluded tags
+        &--inline {
+            .crawler-card__section-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .crawler-card__section-item {
+                display: inline-flex;
+                margin-right: 8px;
+                margin-bottom: 8px;
+                
+                code {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    // Footer
+    &__footer {
+        background-color: map-get(map-get($palette-alias, background), light);
+        border-top: 1px solid map-get(map-get($palette-monochromes, gray), lightest);
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+
+        &--expanded {
+            max-height: 60px;
+        }
+    }
+
+    &__action {
+        align-items: center;
+        color: map-get(map-get($palette-alias, link), base);
+        display: inline-flex;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+        
+        &:hover {
+            opacity: 0.8;
+        }
+        
+        .icon {
+            margin-right: 6px;
+        }
+        
+        &--primary {
+            color: map-get(map-get($palette-alias, link), base);
+        }
+        
+        &--danger {
+            color: map-get(map-get($palette-states, danger), base);
+        }
+    }
+
+    // Tags for inline display
+    &__tag {
+        display: inline-flex;
+        align-items: center;
+        background-color: map-get(map-get($palette-alias, background), dark);
+        border-radius: 16px;
+        color: map-get(map-get($palette-alias, text), help);
+        font-size: 13px;
+        font-family: monospace;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        padding: 4px 12px;
+    }
+}
+
+// Add new card button
+.crawler-add {
+    background-color: map-get(map-get($palette-monochromes, white), base);
+    border: 2px dashed map-get(map-get($palette-monochromes, gray), lighter);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 32px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background-color: map-get(map-get($palette-alias, background), light);
+        border-color: map-get(map-get($palette-states, primary), base);
+    }
+    
+    &__icon {
+        color: map-get(map-get($palette-states, primary), base);
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    &__text {
+        color: map-get(map-get($palette-alias, text), help);
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .crawler-card {
+        &__header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        &__title {
+            margin-bottom: 8px;
+        }
+        
+        &__stats {
+            justify-content: space-between;
+        }
+        
+        &__stat {
+            flex: 0 0 calc(33.333% - 8px);
+            margin-right: 8px;
+        }
+        
+        &__footer {
+            flex-direction: column;
+            
+            .crawler-card__action:first-child {
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+
+// Callout styles - lightweight alternatives to panels
+.callout {
+    background-color: rgba(map-get(map-get($palette-monochromes, gray), lightest), 0.6);
+    border-left: 4px solid color(gray, light);
+    border-radius: $border-radius;
+    margin: $line-height-base 0;
+    padding: 16px 20px;
+    position: relative;
+    
+    // Icons inside callouts
+    .icon {
+        margin-right: 8px;
+        opacity: 0.9;
+    }
+    
+    p {
+        margin-bottom: $margin-base-vertical;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    // Callout title styling
+    &__title {
+        font-family: $font-family-bold;
+        font-weight: $font-weight-bold;
+        margin-bottom: 8px;
+    }
+    
+    // State variations
+    &--primary {
+        background-color: rgba(map-get(map-get($palette-states, primary), base), 0.08);
+        border-left-color: map-get(map-get($palette-states, primary), base);
+        
+        .icon {
+            color: map-get(map-get($palette-states, primary), base);
+        }
+    }
+    
+    &--success {
+        background-color: rgba(map-get(map-get($palette-states, success), base), 0.08);
+        border-left-color: map-get(map-get($palette-states, success), base);
+        
+        .icon {
+            color: map-get(map-get($palette-states, success), base);
+        }
+    }
+    
+    &--warning {
+        background-color: rgba(map-get(map-get($palette-states, warning), base), 0.08);
+        border-left-color: map-get(map-get($palette-states, warning), base);
+        
+        .icon {
+            color: map-get(map-get($palette-states, warning), base);
+        }
+    }
+    
+    &--danger {
+        background-color: rgba(map-get(map-get($palette-states, danger), base), 0.08);
+        border-left-color: map-get(map-get($palette-states, danger), base);
+        
+        .icon {
+            color: map-get(map-get($palette-states, danger), base);
+        }
+    }
+    
+    &--info {
+        background-color: rgba(map-get(map-get($palette-states, info), base), 0.08);
+        border-left-color: map-get(map-get($palette-states, info), base);
+        
+        .icon {
+            color: map-get(map-get($palette-states, info), base);
+        }
+    }
+    
+    // Callout with outline instead of filled background
+    &--outline {
+        background-color: transparent;
+        border: 1px solid color(gray, lighter);
+        border-left-width: 4px;
+    }
+    
+    // Dismissible callout with close button
+    &--dismissible {
+        padding-right: 36px;
+        
+        .callout__close {
+            color: color(gray);
+            opacity: 0.6;
+            position: absolute;
+            right: 12px;
+            top: 14px;
+            
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    
+    // Compact callout with less padding
+    &--compact {
+        padding: 10px 16px;
+    }
+}
+
+// Timeline component has been moved to _component.timeline.scss
