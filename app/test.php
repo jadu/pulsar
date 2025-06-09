@@ -13,7 +13,7 @@ use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
 
 $loader = new Twig_Loader_Filesystem($templateDir);
-$loader->addPath($baseDir . 'views', 'pulsar');
+$loader->addPath($baseDir . '/views', 'pulsar');
 
 $twig = new Twig_Environment($loader,
 	array(
@@ -24,7 +24,7 @@ $twig = new Twig_Environment($loader,
 
 $twig->addExtension(new ArrayExtension());
 $twig->addExtension(new AttributeParserExtension());
-$twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
+$twig->addExtension(new ConfigExtension($baseDir . '/pulsar.json'));
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
