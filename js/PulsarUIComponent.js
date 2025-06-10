@@ -111,8 +111,43 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
         buttons: [],
         className: 'dt-row-selected',
         columnDefs: columnDefs,
-        initComplete: initComplete,
-        drawCallback: drawCallback,
+        initComplete: function(settings, json) {
+            initComplete.call(this, settings, json);
+            
+            // Add ARIA attributes to sortable headers
+            $table.find('th.sorting').each(function() {
+                const $th = $(this);
+                $th.attr({
+                    'role': 'button',
+                    'aria-sort': 'none',
+                    'aria-label': 'Column: Currently unsorted, activate to sort'
+                });
+            });
+        },
+        drawCallback: function(settings, json) {
+            drawCallback.call(this, settings, json);
+            
+            // Update ARIA attributes after sorting
+            $table.find('th').each(function() {
+                const $th = $(this);
+                if ($th.hasClass('sorting_asc')) {
+                    $th.attr({
+                        'aria-sort': 'ascending',
+                        'aria-label': 'Column: Currently sorted ascending, activate to sort descending'
+                    });
+                } else if ($th.hasClass('sorting_desc')) {
+                    $th.attr({
+                        'aria-sort': 'descending',
+                        'aria-label': 'Column: Currently sorted descending, activate to remove sorting'
+                    });
+                } else if ($th.hasClass('sorting')) {
+                    $th.attr({
+                        'aria-sort': 'none',
+                        'aria-label': 'Column: Currently unsorted, activate to sort'
+                    });
+                }
+            });
+        },
         dom: dom,
         language: {
             emptyTable: langEmptyTable,
