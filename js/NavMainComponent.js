@@ -52,14 +52,20 @@ NavMainComponent.prototype.init = function () {
     }
 
     // Open navigation on mobile
-    component.$mobileMenuButton.on('click', function(event) {
+    component.$mobileMenuButton.on('click keydown', function(event) {
         var $self = $(this);
-        event.stopImmediatePropagation();
+        var $menuExpanded = $self.attr('aria-expanded');
+        
+        // Handle both click and Enter key
+        if (event.type === 'click' || event.keyCode === 13) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
 
-        if ($self.text() === 'Menu') {
-            component.showMobileNav(true);
-        } else {
-            component.showMobileNav(false);
+            if ($menuExpanded === 'false') {
+                component.showMobileNav(true);
+            } else {
+                component.showMobileNav(false);
+            }
         }
     });
 
@@ -223,10 +229,22 @@ NavMainComponent.prototype.openSecondaryNav = function ($triggeringElement, even
     component.$navPrimary.find('.is-active').removeClass('is-active');
     component.$navPrimary.find('[href="' + target + '"], [data-target="' + target + '"]').addClass('is-active');
 
-    // Manage focus
+    // Store the triggering element for focus management
     component.focusManagementService.storeElement($triggeringElement);
-    component.focusManagementService.focusFirstFocusableElement(component.$navSecondary);
-    component.focusManagementService.trapFocus(component.$navSecondary);
+
+    // Get the close button and menu items
+    const $closeButton = component.$navSecondary.find('.nav-controls__close');
+    const $menuItems = component.$navSecondary.find('.nav-secondary__item');
+
+    // Ensure the close button is focusable
+    $closeButton.attr('tabindex', '0');
+
+    // Set up focus trap for the secondary navigation
+    // Pass the close button as an additional element to ensure it's included in the focus trap
+    component.focusManagementService.trapFocus(component.$navSecondary, $closeButton);
+
+    // Focus the first item in the secondary menu
+    $menuItems.first().focus();
 }
 
 /**
@@ -286,11 +304,17 @@ NavMainComponent.prototype.closeSecondaryNav = function (action) {
     var component = this;
 
     component.$navMain.removeClass('is-open');
-    component.$navMain.find('[aria-expanded=true]').attr( 'aria-expanded', 'false');
+    component.$navMain.find('[aria-expanded=true]').attr('aria-expanded', 'false');
     component.$navSecondary.removeClass('is-open');
     component.$primaryNavLinks.removeClass('is-active');
     component.$navMain.find('.nav-item.is-active').removeClass('is-active');
     component.$navSecondary.find('.nav-list').removeClass('is-active');
+
+    // Remove focus trap
+    component.focusManagementService.removeFocusTrap();
+
+    // Remove the focus trap wrapper
+    $('.focus-trap-wrapper').contents().unwrap();
 
     if (action === undefined) {
         return;
@@ -368,8 +392,8 @@ NavMainComponent.prototype.showMobileNav = function (show) {
         component.$body.removeClass('open-nav');
         component.$mobileMenuButton
             .removeClass('open')
-            .text('Menu')
-            .attr('aria-expanded', 'false');
+            .attr('aria-expanded', 'false')
+            .attr('tabindex', '0');
         component.$brandingLink.attr('tabindex', '-1');
         component.$primaryNavLinks.attr('tabindex', '-1');
         component.$navMain.attr('aria-hidden', 'true');
@@ -378,16 +402,21 @@ NavMainComponent.prototype.showMobileNav = function (show) {
         component.$body.find('.content-main').removeAttr('aria-hidden');
         component.$body.find('.footer').removeAttr('aria-hidden');
 
+        // Remove focus trap
+        component.focusManagementService.removeFocusTrap();
+        
+        // Focus the menu button after closing
+        component.$mobileMenuButton.focus();
         return;
     }
 
     component.$body.addClass('open-nav');
     component.$mobileMenuButton
         .addClass('open')
-        .text('Close')
-        .attr('aria-expanded', 'true');
-    component.$brandingLink.attr('tabindex', '3');
-    component.$primaryNavLinks.attr('tabindex', '3');
+        .attr('aria-expanded', 'true')
+        .attr('tabindex', '0');
+    component.$brandingLink.attr('tabindex', '0');
+    component.$primaryNavLinks.attr('tabindex', '0');
     component.$navMain.attr('aria-hidden', 'false');
 
     // Hide rest of page from SR while nav open
@@ -395,6 +424,12 @@ NavMainComponent.prototype.showMobileNav = function (show) {
     component.$body.find('.toolbar > :not(.mobile-menu-button)').attr('aria-hidden', 'true');
     component.$body.find('.content-main').attr('aria-hidden', 'true');
     component.$body.find('.footer').attr('aria-hidden', 'true');
+
+    // Create focus trap with nav elements and menu button
+    component.focusManagementService.trapFocus(component.$navMain, component.$mobileMenuButton);
+
+    // Set focus to first menu item
+    component.focusManagementService.focusFirstFocusableElement(component.$navMain);
 }
 
 /**
