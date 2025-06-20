@@ -199,6 +199,12 @@ th.sorting_disabled:hover {
     }
 }
 
+.table-responsive.table-responsive {
+    background-color: color(background);
+    padding: 0;
+    vertical-align: middle;
+}
+
 // scss-lint:disable SelectorFormat
 .dataTables_wrapper {
     position: relative;
@@ -282,27 +288,28 @@ th.sorting_disabled:hover {
     background: transparent;
     border: 0;
     box-sizing: border-box;
-    color: color(jadu-purple);
     cursor: pointer;
     display: none;
-    font-size: $font-size-base;
-    font-weight: normal;
+    font-size: $font-size-large;
     line-height: normal;
     margin: 0;
-    padding: 4px 7px 0;
     position: relative;
     text-align: center;
     text-decoration: none;
     user-select: none;
     vertical-align: top;
     white-space: nowrap;
-
+    
     &:focus {
         @include pulsar-button-focused;
     }
-
+    
     &:hover {
         color: color(black);
+    }
+
+    i {
+        font-weight: 400;
     }
 
     .collapsed & {
@@ -311,8 +318,8 @@ th.sorting_disabled:hover {
 }
 
 .parent .table-child-toggle i::before {
-    color: color(jadu-red);
-    // content: $minus-sign;
+    content: '\f32c';
+    font-weight: 900;
 }
 
 .datatable .child ul {
