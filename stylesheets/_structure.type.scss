@@ -18,7 +18,9 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: normal;
+    font-family: $font-family-heading;
+    font-weight: $font-weight-heading;
+    letter-spacing: $font-letter-spacing-heading;
     line-height: 1em;
     margin: 0 0 1em;
 }
@@ -67,11 +69,6 @@ strong,
 dt {
     font-family: $font-family-regular;
     font-weight: normal;
-
-    // IE8 doesn't use Proxima Nova, so use regular bold variant of fallback stack
-    @include ie-lte(8) {
-        font-weight: bold;
-    }
 }
 
 // normalize-css needs updating to 7.0.0, for now we'll use this

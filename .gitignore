@@ -25,8 +25,7 @@ libs/phantomcss
 .vagrant
 pulsar.zip
 /shots
-/fonts
-/fonts/_config.fonts.scss
+
 
 /.csscomb.json
 /validation-status.json

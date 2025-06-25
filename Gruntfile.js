@@ -201,10 +201,6 @@ module.exports = function(grunt) {
                 files: ['stylesheets/**/*.scss'],
                 tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer', 'bless:css']
             },
-            scsslint: {
-                files: 'stylesheets/**/*.scss',
-                tasks: ['scsslint']
-            },
             lexicon: {
                 files: ['js/lexicon/**/*.js'],
                 tasks: ['browserify:lexicon']
@@ -343,9 +339,6 @@ module.exports = function(grunt) {
             },
             wraithLatest: {
                 cmd: 'wraith latest wraith.yml'
-            },
-            fixProximaNova: {
-                cmd: 'git update-index --skip-worktree fonts/_config.fonts.scss'
             }
         },
 
@@ -601,7 +594,6 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('post-merge', [
-        'exec:fixProximaNova',
         'replace',
         'sass:dev',
         'browserify'

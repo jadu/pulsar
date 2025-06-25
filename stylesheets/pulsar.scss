@@ -20,9 +20,7 @@ $ie-version: 12 !default;
 @import '../libs/susy/sass/susy';
 // scss-lint:enable all
 
-// Proxima Nova (requires license)
-$font-path: '../fonts/';
-@import '../fonts/config.fonts';
+@import 'config.fonts';
 
 // Font awesome
 $fa-font-path: '../libs/font-awesome/fonts';

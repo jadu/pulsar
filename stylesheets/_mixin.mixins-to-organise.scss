@@ -114,6 +114,7 @@
 
     .help-block.is-error {
         font-family: $font-family-regular;
+        font-weight: $font-weight-base;
     }
 
     // For backwards compatibility, a help block on it's own needs to match the
@@ -122,6 +123,7 @@
     .help-block.is-error + .help-block:not(.is-error) {
         color: color(text, light);
         font-family: $font-family-base;
+        font-weight: $font-weight-base;
     }
 
     // Set the border and box shadow on specific inputs to match

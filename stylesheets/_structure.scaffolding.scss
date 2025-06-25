@@ -9,7 +9,9 @@ body {
 
 body {
   font-family: $font-family-base;
+  font-weight: $font-weight-base;
   font-size: $font-size-medium;
+  letter-spacing: -.5px;
   line-height: $line-height-small;
   margin: 0 0 ($line-height-base * 2);
   overflow-x: hidden;
