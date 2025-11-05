@@ -41,7 +41,7 @@
     "@babel/preset-react": "^7.28.5",
     "@babel/register": "^7.28.3",
     "aliasify": "^2.1.0",
-    "axios": "^0.26.1",
+    "axios": "^0.30.2",
     "babel-core": "^7.0.0-bridge",
     "babel-preset-es2015": "npm:@babel/preset-env@7.28.5",
     "babelify": "^10.0.0",
