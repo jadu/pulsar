@@ -38,3 +38,4 @@ pulsar.zip
 /docs
 .phpunit.result.cache
 *.cache
+.nyc_output

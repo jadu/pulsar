@@ -8,24 +8,18 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "nyc": {
-    "require": [
-      "@babel/register"
-    ],
-    "extension": [
-      ".js"
-    ],
-    "reporter": [
-      "text-summary",
-      "lcov"
-    ],
-    "exclude": [
-      "tests/**",
-      "node_modules/**",
-      "libs/**"
-    ],
-    "all": true
-  },
+"nyc": {
+  "require": ["@babel/register"],
+  "extension": [".js", ".jsx"],
+  "reporter": ["text-summary", "lcov"],
+  "exclude": [
+    "tests/**",
+    "docs/**",
+    "node_modules/**",
+    "libs/**"
+  ],
+  "all": true
+},
   "scripts": {
     "start": "docker compose up -d && grunt",
     "coverage": "nyc mochify --transform [ babelify ] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
@@ -39,6 +33,7 @@
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
     "@babel/register": "^7.28.3",
     "aliasify": "^2.1.0",
     "axios": "^0.26.1",
