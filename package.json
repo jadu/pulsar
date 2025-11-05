@@ -8,9 +8,27 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "extension": [
+      ".js"
+    ],
+    "reporter": [
+      "text-summary",
+      "lcov"
+    ],
+    "exclude": [
+      "tests/**",
+      "node_modules/**",
+      "libs/**"
+    ],
+    "all": true
+  },
   "scripts": {
     "start": "docker compose up -d && grunt",
-    "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
+    "coverage": "nyc mochify --transform [ babelify ] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
     "test": "npm run test:headless",
     "build:tests": "grunt javascript:tests",
     "build:tests:watch": "grunt javascript:tests:watch",
@@ -25,7 +43,6 @@
     "aliasify": "^2.1.0",
     "axios": "^0.26.1",
     "babel-core": "^7.0.0-bridge",
-    "babel-istanbul": "^0.12.2",
     "babel-preset-es2015": "npm:@babel/preset-env@7.28.5",
     "babelify": "^10.0.0",
     "browser-sync": "^2.27.11",
@@ -63,7 +80,6 @@
     "minifyify": "^6.3.0",
     "mocha": "^10.8.2",
     "mochify": "^9.2.0",
-    "mochify-istanbul": "^2.4.2",
     "nyc": "^17.1.0",
     "require-globify": "^1.4.1",
     "sinon": "^2.4.1",
