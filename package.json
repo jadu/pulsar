@@ -20,6 +20,9 @@
   ],
   "all": true
 },
+"overrides": {
+  "minimist": "^1.2.6"
+},
   "scripts": {
     "start": "docker compose up -d && grunt",
     "coverage": "nyc mochify --transform [ babelify ] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
