@@ -22,7 +22,8 @@
 },
 "overrides": {
   "minimist": "^1.2.6",
-  "form-data": "2.5.5"
+  "form-data": "2.5.5",
+  "tar-fs": "2.1.4"
 },
   "scripts": {
     "start": "docker compose up -d && grunt",
