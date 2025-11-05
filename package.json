@@ -44,7 +44,7 @@
     "babel-core": "^7.0.0-bridge",
     "babel-preset-es2015": "npm:@babel/preset-env@7.28.5",
     "babelify": "^10.0.0",
-    "browser-sync": "^2.27.11",
+    "browser-sync": "^3.0.4",
     "browserify": "17.0.0",
     "browserify-istanbul": "^2.0.0",
     "browserify-shim": "^3.8.16",
