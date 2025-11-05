@@ -21,7 +21,7 @@ module.exports = function(grunt) {
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['@babel/preset-env'], babelrc: false, configFile: false, global: false } ],
                         ['aliasify', { global: true }]
                     ]
                 }
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['@babel/preset-env'], babelrc: false, configFile: false, global: false } ],
                         ['aliasify', { global: true }]
                     ]
                 }
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
                         standalone: 'pulsar'
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['@babel/preset-env'], babelrc: false, configFile: false, global: false } ],
                         ['aliasify', { global: true }],
                         'uglifyify'
                     ]
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['@babel/preset-env'], babelrc: false, configFile: false, global: false } ],
                         ['aliasify', { global: true }],
                         ['require-globify']
                     ]
