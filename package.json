@@ -23,7 +23,8 @@
 "overrides": {
   "minimist": "^1.2.6",
   "form-data": "2.5.5",
-  "tar-fs": "2.1.4"
+  "tar-fs": "2.1.4",
+  "axios": "^0.30.2"
 },
   "scripts": {
     "start": "docker compose up -d && grunt",
