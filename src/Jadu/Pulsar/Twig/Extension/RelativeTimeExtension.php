@@ -2,6 +2,9 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
 /**
  * Relative Time
  *
@@ -12,7 +15,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  *
  * Unit tests: tests/unit/RelativeTimeExtensionTest.php
  */
-class RelativeTimeExtension extends \Twig_Extension
+class RelativeTimeExtension extends AbstractExtension
 {
 
     public function getName()
@@ -23,7 +26,7 @@ class RelativeTimeExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('time_ago', array($this, 'timeAgo'))
+            new TwigFilter('time_ago', array($this, 'timeAgo'))
         );
     }
 

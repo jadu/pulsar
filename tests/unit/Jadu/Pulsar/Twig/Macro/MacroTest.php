@@ -10,12 +10,12 @@ use Jadu\Pulsar\Twig\Extension\HelperOptionsModifierExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
-use Twig_Environment;
-use Twig_Loader_Filesystem;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class MacroTest extends \PHPUnit\Framework\TestCase
 {
@@ -26,12 +26,12 @@ class MacroTest extends \PHPUnit\Framework\TestCase
         parent::setUp();
         $baseDir = __DIR__ . '/../../../../../../';
 
-        $loader = new Twig_Loader_Filesystem($this->getFixturesPath());
+        $loader = new FilesystemLoader($this->getFixturesPath());
         $loader->addPath($baseDir . 'views', 'pulsar');
         $loader->addPath($baseDir . 'tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures', 'tests');
         $loader->addPath($baseDir . 'tests/css', 'cssTests');
 
-        $this->twig = new Twig_Environment($loader, array(
+        $this->twig = new Environment($loader, array(
             'cache' => false,
             'strict_variables' => true,
         ));
@@ -85,7 +85,7 @@ class MacroTest extends \PHPUnit\Framework\TestCase
 
         // Normalise random ids generated and used by help text
         $output = preg_replace('/(guid-)\w+/', 'guid-1', $output);
-        
+
         return $output;
     }
 

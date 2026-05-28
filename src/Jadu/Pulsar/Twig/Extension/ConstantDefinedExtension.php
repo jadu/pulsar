@@ -2,15 +2,15 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class ConstantDefinedExtension extends \Twig_Extension
+class ConstantDefinedExtension extends AbstractExtension
 {
     public function getFunctions()
     {
         return array(
-            new Twig_SimpleFunction('constant_defined', 'defined'),
+            new TwigFunction('constant_defined', 'defined'),
         );
     }
 

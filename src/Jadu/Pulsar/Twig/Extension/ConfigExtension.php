@@ -2,6 +2,9 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
+
 /**
  * Config
  *
@@ -10,7 +13,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  *
  * Unit tests: tests/unit/ConfigExtensionTest.php
  */
-class ConfigExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class ConfigExtension extends AbstractExtension implements GlobalsInterface
 {
 
     protected $configFile;
@@ -20,12 +23,12 @@ class ConfigExtension extends \Twig_Extension implements \Twig_Extension_Globals
         $this->configFile = $configFile;
     }
 
-    public function getName() 
+    public function getName()
     {
         return 'config_extension';
     }
 
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return $this->getConfigVars();
     }

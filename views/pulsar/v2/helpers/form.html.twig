@@ -49,7 +49,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
 
 #}
 {% macro button_group(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -105,7 +105,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
             'inputs': items
         })
     }}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -153,7 +153,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro checkbox(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -179,7 +179,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -230,7 +230,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro checkbox_inline(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -285,7 +285,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 {# -----------------------------------------------------------------------------
@@ -338,7 +338,7 @@ required | bool   | Visually indicates that the field must be completed
 
 #}
 {% macro checkbox_simple(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
@@ -357,7 +357,7 @@ required | bool   | Visually indicates that the field must be completed
         )
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -411,7 +411,7 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
 #}
 {% macro choice(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -552,7 +552,7 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
     {% endif %}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -601,7 +601,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro color(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -617,7 +617,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{ form.text(options) }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -632,7 +632,7 @@ https://jadu.github.io/pulsar/form-helpers/compound
 
 #}
 {% macro compound(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
@@ -707,7 +707,7 @@ https://jadu.github.io/pulsar/form-helpers/compound
     </div>
 </fieldset>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -755,7 +755,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro content(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -774,7 +774,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -831,7 +831,7 @@ attribute on the `form` element will be set to `POST`.
 
 #}
 {% macro create(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -866,7 +866,7 @@ attribute on the `form` element will be set to `POST`.
 
     {{ methodInput|default }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -921,7 +921,7 @@ data-pulsar-datepicker-trigger-label | string | Label for the pulsar date picker
 
 #}
 {% macro date(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
@@ -971,7 +971,7 @@ data-pulsar-datepicker-trigger-label | string | Label for the pulsar date picker
 
     {{ form.text(options) }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1011,7 +1011,7 @@ class   | string | A space separated list of class names
 #}
 {% macro end(options) %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
-    {% spaceless %}
+    {% apply spaceless %}
 
     {% if options.actions is defined %}
         <div{{
@@ -1028,7 +1028,7 @@ class   | string | A space separated list of class names
         </div>
     {% endif %}
     </form>
-    {% endspaceless %}
+    {% endapply %}
 {% endmacro %}
 
 
@@ -1069,7 +1069,7 @@ value  | string, array  | The string, or array of strings to render inside the e
 #}
 {% macro error(options) %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% spaceless %}
+{% apply spaceless %}
     {% if options.value is defined and options.value is not empty %}
         {% if options.value is not iterable %}
             {% set errors = [options.value] %}
@@ -1091,7 +1091,7 @@ value  | string, array  | The string, or array of strings to render inside the e
             {% endfor %}
         {% endif %}
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1124,7 +1124,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro fieldset_start(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <fieldset{{ attributes(options|exclude('legend')) }}>
@@ -1135,7 +1135,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         <legend class="legend">{{ options.legend|raw }}</legend>
     {% endif %}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1153,11 +1153,11 @@ Used in conjunction with `fieldset.start()` and closes the `<fieldset>`.
 
 #}
 {% macro fieldset_end() %}
-{% spaceless %}
+{% apply spaceless %}
 
     </fieldset>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1206,7 +1206,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *
 #}
 {% macro file(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -1225,7 +1225,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 {# -----------------------------------------------------------------------------
@@ -1519,7 +1519,7 @@ value  | string | The string or html markup to render inside the help block
 
 #}
 {% macro help(options) %}
-{% spaceless %}
+{% apply spaceless %}
 
     {% if options.value is defined and options.value is not empty %}
         <span class="help-block"{% if options.id is defined and options.id is not empty %} id="{{- options.id -}}"{% endif %}>
@@ -1527,7 +1527,7 @@ value  | string | The string or html markup to render inside the help block
         </span>
     {% endif %}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1563,7 +1563,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro hidden(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
@@ -1576,7 +1576,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         )
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1628,12 +1628,12 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro password(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
 
     {{ form.text(options|defaults({'type': 'password'})) }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1681,7 +1681,7 @@ data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro radio(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -1706,7 +1706,7 @@ data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1755,7 +1755,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro radio_inline(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -1809,7 +1809,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1864,7 +1864,7 @@ required | bool   | Visually indicates that the field must be completed
 
 #}
 {% macro radio_simple(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
@@ -1883,7 +1883,7 @@ required | bool   | Visually indicates that the field must be completed
         )
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1934,7 +1934,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro range(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
 
     {{ form.text(options
@@ -1942,7 +1942,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         |defaults({'type': 'range', 'class': 'form-range'}))
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -1997,7 +1997,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro select(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -2016,7 +2016,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -2073,7 +2073,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro select2(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -2090,7 +2090,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -2128,7 +2128,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro submit(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
     {{
@@ -2138,7 +2138,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
         }))
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -2193,7 +2193,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro text(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -2212,7 +2212,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -2266,7 +2266,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro textarea(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -2284,7 +2284,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -2334,7 +2334,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro time(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
 
     {%
@@ -2345,7 +2345,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     %}
 
     {{ form.text(options) }}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -2393,7 +2393,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro toggle_switch(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -2421,7 +2421,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 {# -----------------------------------------------------------------------------
@@ -2477,7 +2477,7 @@ actions-column-text     | string | The text content of the actions column header
 {% import _self as form %}
 {% set headingLength = options.headings|length %}
 {% set values = options.values|default([]) %}
-{% spaceless %}
+{% apply spaceless %}
     <div
         class="repeater"
         data-repeater
@@ -2518,12 +2518,12 @@ actions-column-text     | string | The text content of the actions column header
                         <td class="table__form" colspan="{{ headingLength + 1 }}">
                             <div data-repeater-new-group-controls>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 {% macro repeater_end() %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% spaceless %}
+{% apply spaceless %}
                             </div>
                             <div class="form__actions repeater__group-actions">
                                 {{
@@ -2559,7 +2559,7 @@ actions-column-text     | string | The text content of the actions column header
             </div>
         </div>
     </div>
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
@@ -2599,7 +2599,7 @@ errors                  | Array  | An array of error objects. Label should match
 
 #}
 {% macro error_summary(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% if options.errors is defined and options.errors is not empty %}
     <section{{
         attributes(options
@@ -2624,5 +2624,5 @@ errors                  | Array  | An array of error objects. Label should match
         </ul>
     </section>
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}

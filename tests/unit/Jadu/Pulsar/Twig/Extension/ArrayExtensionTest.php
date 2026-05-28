@@ -2,6 +2,9 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 class ArrayExtensionTest extends \PHPUnit\Framework\TestCase
 {
 	public $loader;
@@ -12,8 +15,8 @@ class ArrayExtensionTest extends \PHPUnit\Framework\TestCase
 	public function setUp(): void
 	{
 		parent::setUp();
-		$this->loader = new \Twig_Loader_Filesystem();
-		$this->env = new \Twig_Environment($this->loader);
+		$this->loader = new FilesystemLoader();
+		$this->env = new Environment($this->loader);
 		$this->ext = new ArrayExtension(array());
 		$this->data = array('slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true, 'class' => 'wrapper');
 	}
