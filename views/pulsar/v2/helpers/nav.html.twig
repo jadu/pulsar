@@ -1,5 +1,5 @@
 {% macro primary(options) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import _self as nav %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
@@ -108,12 +108,12 @@
     </div>
 </nav>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 
 {% macro nav_item(options, heading_id, aria_controls) %}
-{% spaceless %}
+{% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -147,11 +147,11 @@
         </{{ tag }}>
     </li>
 
-{% endspaceless %}
+{% endapply %}
 {% endmacro %}
 
 {%- macro breadcrumbs(items) -%}
-    {% spaceless %}
+    {% apply spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     <nav class="breadcrumb" aria-label="breadcrumbs">
     {%- if items is defined and items is not empty %}
@@ -172,7 +172,7 @@
         </ol>
     {%- endif -%}
     </nav>
-    {% endspaceless %}
+    {% endapply %}
 {%- endmacro -%}
 
 

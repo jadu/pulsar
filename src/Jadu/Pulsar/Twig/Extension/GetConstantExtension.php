@@ -2,10 +2,10 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class GetConstantExtension extends Twig_Extension
+class GetConstantExtension extends AbstractExtension
 {
 
     /**
@@ -16,7 +16,7 @@ class GetConstantExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            new Twig_SimpleFunction('get_constant', array($this, 'getConstant')),
+            new TwigFunction('get_constant', array($this, 'getConstant')),
         );
     }
 
