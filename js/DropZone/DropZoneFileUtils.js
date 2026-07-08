@@ -45,7 +45,7 @@ class DropZoneFileUtils {
      * @return {String|Boolean}
      */
     getFileThumbnail (file) {
-        if (file.type.match(/\/(gif|jpeg|png|svg+xml|svg)/) && window.URL.createObjectURL) {
+        if (file.type.match(/\/(gif|jpeg|png|svg+xml|svg|webp)/) && window.URL.createObjectURL) {
             return window.URL.createObjectURL(file);
         } else {
             return false;
