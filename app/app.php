@@ -27,7 +27,7 @@ $twig = new Twig_Environment($loader,
 
 $twig->addExtension(new ArrayExtension());
 $twig->addExtension(new AttributeParserExtension());
-$twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
+$twig->addExtension(new ConfigExtension($baseDir . '/pulsar.json'));
 $twig->addExtension(new ConstantDefinedExtension());
 $twig->addExtension(new HelperOptionsModifierExtension());
 $twig->addExtension(new GetConstantExtension());

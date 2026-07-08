@@ -182,7 +182,6 @@ describe('DropZoneComponent', () => {
             instanceManager.getFiles.returns(rawFiles);
             dropZoneComponent.processInputNode($fileInput[0], 0, options.showInputNode);
             $fileInput[0].dispatchEvent(change);
-            //debugger;
             const dataTransferFile = getDTFileList($fileInput[0])[0];
             const inputFile = $fileInput[0].files[0];
             expect(inputFile.name).to.equal(dataTransferFile.name);

@@ -17,22 +17,22 @@ class AttributeParserExtensionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('attribute_parser_extension', $this->ext->getName());
     }
 
-    public function testParseAttributesReturnsFalseIfNoAttributesSupplied()
+    public function testParseAttributesReturnsEmptyStringIfNoAttributesSupplied()
     {
         $tests = array('', false, null, array());
         foreach ($tests as $test) {
-            $this->assertEquals(false, $this->ext->parseAttributes($test));
+            $this->assertEquals('', $this->ext->parseAttributes($test));
         }
     }
 
-    public function testParseAttributesReturnsFalseIfEmptyStringSupplied()
+    public function testParseAttributesReturnsEmptyStringIfEmptyStringSupplied()
     {
-        $this->assertEquals(false, $this->ext->parseAttributes(''));
+        $this->assertEquals('', $this->ext->parseAttributes(''));
     }
 
-    public function testParseAttributesReturnsFalseIfEmptyArraySupplied()
+    public function testParseAttributesReturnsEmptyStringIfEmptyArraySupplied()
     {
-        $this->assertEquals(false, $this->ext->parseAttributes([]));
+        $this->assertEquals('', $this->ext->parseAttributes([]));
     }
 
     public function testParseAttributesParsesSingleAttribute()

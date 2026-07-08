@@ -285,8 +285,9 @@ fieldset {
 }
 
 .legend {
-    font-family: $font-family-heading-light;
+    font-family: $font-family-heading;
     font-size: $font-size-large;
+    font-weight: $font-weight-heading;
     margin-bottom: .5em;
 }
 

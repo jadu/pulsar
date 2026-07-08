@@ -21,7 +21,7 @@ module.exports = function(grunt) {
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['@babel/preset-env'], babelrc: false, configFile: false, global: false } ],
                         ['aliasify', { global: true }]
                     ]
                 }
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['@babel/preset-env'], babelrc: false, configFile: false, global: false } ],
                         ['aliasify', { global: true }]
                     ]
                 }
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
                         standalone: 'pulsar'
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['@babel/preset-env'], babelrc: false, configFile: false, global: false } ],
                         ['aliasify', { global: true }],
                         'uglifyify'
                     ]
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
                         debug: true
                     },
                     transform: [
-                        ['babelify', { presets: ['es2015'] } ],
+                        ['babelify', { presets: ['@babel/preset-env'], babelrc: false, configFile: false, global: false } ],
                         ['aliasify', { global: true }],
                         ['require-globify']
                     ]
@@ -89,7 +89,6 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -104,7 +103,6 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     outputStyle: 'compressed'
                 },
                 files: [{
@@ -120,7 +118,6 @@ module.exports = function(grunt) {
             lexicon: {
                 options: {
                     implementation: sass,
-                    // fiber: Fiber,
                     sourceMap: true
                 },
                 files: [{
@@ -144,24 +141,10 @@ module.exports = function(grunt) {
             }
         },
 
-        scsslint: {
-            allFiles: [
-                'stylesheets/**/*.scss',
-            ],
-            options: {
-                config: '.scss-lint.yml',
-                colorizeOutput: true
-            },
-        },
-
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
                 tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer']
-            },
-            scsslint: {
-                files: 'stylesheets/**/*.scss',
-                tasks: ['scsslint']
             },
             lexicon: {
                 files: ['js/lexicon/**/*.js'],
@@ -260,30 +243,6 @@ module.exports = function(grunt) {
                 tagName: '%VERSION%',
                 push: true,
                 pushTo: 'origin'
-            }
-        },
-
-        exec: {
-            phantomcss: {
-                cmd: 'phantomjs tests/css/testsuite.js'
-            },
-            updateComposer: {
-                cmd: 'sudo php composer.phar update'
-            },
-            updateBrew: {
-                cmd: 'brew update && brew upgrade'
-            },
-            updateBower: {
-                cmd: 'bower update'
-            },
-            updateGems: {
-                cmd: 'sudo gem update'
-            },
-            updateNpm: {
-                cmd: 'sudo npm install'
-            },
-            fixProximaNova: {
-                cmd: 'git update-index --skip-worktree fonts/_config.fonts.scss'
             }
         },
 
@@ -461,19 +420,6 @@ module.exports = function(grunt) {
             }
         },
 
-        compress: {
-            dist: {
-                options: {
-                    archive: 'pulsar.zip'
-                },
-                files: [{
-                    expand: true,
-                    cwd: 'dist/',
-                    src: ['**/*']
-                }]
-            }
-        },
-
         browserSync: {
             files: [
                 'css/*',
@@ -505,7 +451,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'copy',
-        'scsslint',
         'sass:dev',
         'sass:lexicon',
         'autoprefixer',
@@ -515,49 +460,20 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
+    grunt.registerTask('build', [
+        'sass:dist',
+        'autoprefixer',
+        'browserify:dist'
+    ]);
+
     grunt.registerTask('post-merge', [
-        'exec:fixProximaNova',
         'sass:dev',
         'browserify'
-    ]);
-
-    grunt.registerTask('build', [
-        'scsslint',
-        'sass:dist',
-        'autoprefixer',
-        'browserify:dist',
-        'copy:dist',
-        'compress'
-    ]);
-
-    grunt.registerTask('deploy', [
-        'sass:dist',
-        'autoprefixer',
-        'browserify:dist',
-        'copy:dist',
-        'compress'
     ]);
 
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'
-    ]);
-
-    grunt.registerTask('update', [
-        'exec:updateComposer',
-        'exec:updateBrew',
-        'exec:updateBower',
-        'exec:updateGems',
-        'exec:updateNpm'
-    ]);
-
-    grunt.registerTask('javascript:tests', [
-        'browserify:browserTests',
-    ]);
-
-    grunt.registerTask('javascript:tests:watch', [
-        'browserify:browserTests',
-        'watch:tests'
     ]);
 
     // load all grunt tasks

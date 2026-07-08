@@ -27,8 +27,9 @@
 
 .flash h2 {
     display: inline;
-    font-size: $font-size-base;
     font-family: $font-family-regular;
+    font-size: $font-size-base;
+    font-weight: $font-weight-base;
 }
 
 // Make sure sticky flashes appear over the breadcrumb
