@@ -1,7 +1,7 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
 
 {% block tab_content %}
-{% spaceless %}
+{% apply spaceless %}
 <div class="u-margin-bottom--large">
     <h2 class="heading">Previous link hidden on first page</h2>
     <nav aria-label="Table pagination" class="pagination">
@@ -15,9 +15,9 @@
         </ul>
     </nav>
 </div>
-{% endspaceless %}
+{% endapply %}
 
-{% spaceless %}
+{% apply spaceless %}
 <div class="u-margin-bottom--large">
     <h2 class="heading">Previous and next link shown when previous or next pages exist</h2>
     <nav aria-label="Table pagination" class="pagination">
@@ -32,9 +32,9 @@
         </ul>
     </nav>
 </div>
-{% endspaceless %}
+{% endapply %}
 
-{% spaceless %}
+{% apply spaceless %}
 <div>
     <h2 class="heading">Next link hidden on last page</h2>
     <nav aria-label="Table pagination" class="pagination">
@@ -48,5 +48,5 @@
         </ul>
     </nav>
 </div>
-{% endspaceless %}
+{% endapply %}
 {% endblock tab_content %}

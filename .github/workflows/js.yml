@@ -18,7 +18,7 @@ jobs:
     name: Node ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    
+
     strategy:
       fail-fast: false
       matrix:
@@ -27,13 +27,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    
+
     - name: Setup npm authentication
       run: |
         # Configure npm for FontAwesome and GitHub Packages
@@ -43,21 +43,22 @@ jobs:
       env:
         FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+
     - name: Install dependencies
       run: |
         # First try to update the lock file and then install
         npm install --package-lock-only || true
         # Then try installing dependencies, falling back to ignoring scripts if needed
         npm ci || npm ci --ignore-scripts || npm install
-    
+
     - name: Build project
       run: npm run build --if-present
-    
+
     - name: Install Chrome and dependencies
       run: |
         # Install Chrome for headless testing
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor --batch --yes -o google-chrome.gpg
+        sudo mv google-chrome.gpg /usr/share/keyrings/google-chrome.gpg
         echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends \
@@ -78,7 +79,7 @@ jobs:
           libatk-bridge2.0-0 \
           libpangocairo-1.0-0 \
           libgtk-3-0
-    
+
     - name: Create Chrome wrapper for CI
       run: |
         # Create a wrapper script that always adds the no-sandbox flag
@@ -90,13 +91,13 @@ jobs:
         chmod +x $HOME/bin/chrome-ci
         echo "CHROME_BIN=$HOME/bin/chrome-ci" >> $GITHUB_ENV
         echo "Adding Chrome wrapper at $HOME/bin/chrome-ci"
-    
+
     - name: Run tests with Mochify
       run: |
         # Set Chrome launcher environment variables
         export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
         echo "Using Chrome at: $CHROME_BIN"
-        
+
         # Run headless tests with custom mochify options
         npx mochify \
           --reporter spec \
@@ -104,7 +105,7 @@ jobs:
           --consolify=false \
           --extension=js \
           ./tests/harness/common './tests/js/web/**/*Test.js'
-      
+
     - name: Upload artifacts
       if: always()
       uses: actions/upload-artifact@v4

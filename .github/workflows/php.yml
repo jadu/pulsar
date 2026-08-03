@@ -15,7 +15,22 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  twig-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+          php-version: '8.2'
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Twig lint
+      run: vendor/bin/twig-cs-fixer lint
+
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -44,6 +59,9 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+
+    - name: Twig lint
+      run: vendor/bin/twig-cs-fixer lint
 
     - name: PHPUnit tests
       uses: php-actions/phpunit@v3

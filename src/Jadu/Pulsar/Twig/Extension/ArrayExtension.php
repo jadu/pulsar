@@ -2,7 +2,10 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-class ArrayExtension extends \Twig_Extension
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
+class ArrayExtension extends AbstractExtension
 {
 
 	/**
@@ -13,12 +16,12 @@ class ArrayExtension extends \Twig_Extension
 	public function getFilters()
 	{
 		$filters = array(
-			new \Twig_SimpleFilter(
+			new TwigFilter(
 				'exclude',
 				array($this, 'excludeFromArray'),
 				$options = array()
 			),
-			new \Twig_SimpleFilter(
+			new TwigFilter(
 				'only',
 				array($this, 'onlyFromArray'),
 				$options = array()

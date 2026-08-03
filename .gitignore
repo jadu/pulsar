@@ -39,3 +39,4 @@ pulsar.zip
 .phpunit.result.cache
 *.cache
 .nyc_output
+.twig-cs-fixer.cache
