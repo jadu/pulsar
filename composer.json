@@ -11,6 +11,7 @@
         "twig/twig": "^3.27"
     },
     "require-dev": {
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "jadu/twig-style": "2.0.0-alpha.2"
     }
 }
