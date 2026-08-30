@@ -48,10 +48,14 @@ HelpTextComponent.prototype.toggleHelpSidebar = function () {
         $tabHelpContainer = component.$html.find('.tab-help-container');
 
     if ($mobileToggleHelpButton.hasClass('is-open')) {
-        $mobileToggleHelpButton.removeClass('is-open');
+        $mobileToggleHelpButton
+            .removeClass('is-open')
+            .attr('aria-expanded', 'false');
         component.toggleChildElementInteractivity($tabHelpContainer, false);
     } else {
-        $mobileToggleHelpButton.addClass('is-open');
+        $mobileToggleHelpButton
+            .addClass('is-open')
+            .attr('aria-expanded', 'true');
         component.toggleChildElementInteractivity($tabHelpContainer, true);
     }
 
@@ -87,7 +91,7 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
     var component = this,
         $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container'),
         activeTabSideBarContentHtml = component.$html.find('.tab__pane.is-active .tab__sidebar').html(),
-        $mobileToggleHelpButton = $('<button type="button" class="btn show-page-help js-show-page-help">Show Page Help</button>'),
+        $mobileToggleHelpButton = $('<button type="button" class="btn show-page-help js-show-page-help" aria-expanded="false">Show Page Help</button>'),
         $mobileToggleContainer = component.$html.find('.tab__pane.is-active .tab__content'),
         $tabHelp = component.$html.find('.tab-help'),
         isMobile,

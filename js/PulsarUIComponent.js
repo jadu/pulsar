@@ -145,6 +145,19 @@ PulsarUIComponent.getDatatableOptions = function ($table) {
         style: 'multi'
     };
 
+    // Add event listener for responsive details toggle
+    $table.on('responsive-display', function(e, datatable, row, show) {
+        const $toggle = $(row).find('.table-child-toggle');
+        $toggle.attr('aria-expanded', show);
+    });
+
+    // Add click handler for the toggle button
+    $table.on('click', '.table-child-toggle', function() {
+        const $toggle = $(this);
+        const currentState = $toggle.attr('aria-expanded') === 'true';
+        $toggle.attr('aria-expanded', !currentState);
+    });
+
     return options;
 };
 
