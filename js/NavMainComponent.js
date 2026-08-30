@@ -77,8 +77,15 @@ NavMainComponent.prototype.init = function () {
         component.adjustNavItems();
         component.manageTabIndexes();
 
-        if (!isMobile) {
+        if (isMobile) {
             component.showMobileNav(false);
+            component.$navMain.attr('aria-hidden', 'true');
+        } else {
+            component.$body.removeClass('open-nav');
+            component.$mobileMenuButton
+                .removeClass('open')
+                .text('Menu')
+                .attr('aria-expanded', 'false');
             component.$navMain.removeAttr('aria-hidden');
         }
     });
