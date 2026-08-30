@@ -249,7 +249,7 @@ th.sorting_disabled:hover {
 
 .dataTables_actions {
     position: absolute;
-    font-size: 14px;
+    font-size: $font-size-medium;
     left: 24px;
     top: 62px;
     z-index: 1;

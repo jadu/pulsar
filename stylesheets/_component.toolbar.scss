@@ -34,11 +34,11 @@
     }
 
     [class*=icon-] {
-        font-size: 18px;
+        font-size: $font-size-large;
         vertical-align: middle;
 
         @include respond-min($screen-desktop) {
-            font-size: 14px;
+            font-size: $font-size-medium;
             vertical-align: baseline;
         }
     }

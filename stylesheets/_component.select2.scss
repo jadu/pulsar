@@ -307,7 +307,7 @@
     @include ie-lte(9) {
         color: color(black);
         float: none;
-        font-size: 18px;
+        font-size: $zeta;
         line-height: 20px;
         padding: 0 $padding-base;
     }

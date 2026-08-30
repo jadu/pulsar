@@ -76,16 +76,16 @@
 
     span {
         display: block;
-        font-size: 10px;
+        font-size: $micro;
         line-height: 2.1;
         text-align: center;
 
         @include respond-min($screen-phone) {
-            font-size: 13px;
+            font-size: $font-size-medium;
         }
 
         @include respond-min($screen-tablet) {
-            font-size: 20px;
+            font-size: $epsilon;
         }
     }
 
@@ -209,7 +209,7 @@
 
     &__date {
         display: block;
-        font-size: 14px;
+        font-size: $font-size-medium;
         margin-top: $padding-base;
 
         @include respond-min($screen-tablet) {
