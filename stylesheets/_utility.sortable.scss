@@ -73,6 +73,25 @@ div.is-sorting {
         padding-left: 50px;
     }
 
+    .sortable-control {
+        min-width: 80px;
+    }
+
+    .btn--sortable {
+        min-width: 24px;
+        min-height: 24px;
+        padding: 4px;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:focus {
+            outline: 2px solid color(primary);
+            outline-offset: 2px;
+        }
+    }
+
     .ui-sortable-handle > td:first-of-type {
         @include cursor('grab');
         position: relative;

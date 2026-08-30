@@ -11,6 +11,7 @@
                 <th>Type</th>
                 <th>Size</th>
                 <th>Filename / URL</th>
+                <th class="shrink-to-fit"><span class="hide">Sort</span></th>
                 <th class="shrink-to-fit"><span class="hide">Actions</span></th>
             </tr>
         </thead>
@@ -28,25 +29,27 @@
                 <td>
                     document.docx
                 </td>
-                <td class="u-text-align-right ">
+                <td class="u-text-align-right sortable-control">
                     {{
-                        html.link({
+                        html.button({
                             'label': html.icon('arrow-up'),
-                            'class': 'hide',
-                            'title': 'Move up',
+                            'class': 'btn btn--naked btn--sortable',
+                            'aria-label': 'Move row "My awesome document" up',
                             'data-move': 'up',
-                            'tabindex': '0'
+                            'type': 'button'
                         })
                     }}
                     {{
-                        html.link({
+                        html.button({
                             'label': html.icon('arrow-down'),
-                            'class': 'hide',
-                            'title': 'Move down',
+                            'class': 'btn btn--naked btn--sortable',
+                            'aria-label': 'Move row "My awesome document" down',
                             'data-move': 'down',
-                            'tabindex': '0'
+                            'type': 'button'
                         })
                     }}
+                </td>
+                <td class="u-text-align-right">
                     {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>
@@ -64,25 +67,27 @@
                 <td>
                     anna_kournikova.exe
                 </td>
-                <td class="u-text-align-right">
+                <td class="u-text-align-right sortable-control">
                     {{
-                        html.link({
+                        html.button({
                             'label': html.icon('arrow-up'),
-                            'class': 'hide',
-                            'title': 'Move up',
+                            'class': 'btn btn--naked btn--sortable',
+                            'aria-label': 'Move row "Innocent screensaver" up',
                             'data-move': 'up',
-                            'tabindex': '0'
+                            'type': 'button'
                         })
                     }}
                     {{
-                        html.link({
+                        html.button({
                             'label': html.icon('arrow-down'),
-                            'class': 'hide',
-                            'title': 'Move down',
+                            'class': 'btn btn--naked btn--sortable',
+                            'aria-label': 'Move row "Innocent screensaver" down',
                             'data-move': 'down',
-                            'tabindex': '0'
+                            'type': 'button'
                         })
                     }}
+                </td>
+                <td class="u-text-align-right">
                     {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>
@@ -100,25 +105,27 @@
                 <td>
                     sdfghjkhjifldshjkfdshajkl.pdf
                 </td>
-                <td class="u-text-align-right">
+                <td class="u-text-align-right sortable-control">
                     {{
-                        html.link({
+                        html.button({
                             'label': html.icon('arrow-up'),
-                            'class': 'hide',
-                            'title': 'Move up',
+                            'class': 'btn btn--naked btn--sortable',
+                            'aria-label': 'Move row "My awesome PDF" up',
                             'data-move': 'up',
-                            'tabindex': '0'
+                            'type': 'button'
                         })
                     }}
                     {{
-                        html.link({
+                        html.button({
                             'label': html.icon('arrow-down'),
-                            'class': 'hide',
-                            'title': 'Move down',
+                            'class': 'btn btn--naked btn--sortable',
+                            'aria-label': 'Move row "My awesome PDF" down',
                             'data-move': 'down',
-                            'tabindex': '0'
+                            'type': 'button'
                         })
                     }}
+                </td>
+                <td class="u-text-align-right">
                     {{ html.remove_button({ 'placement': 'right' }) }}
                 </td>
             </tr>

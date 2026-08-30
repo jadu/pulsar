@@ -65,39 +65,11 @@ PulsarSortableComponent.prototype.initTables = function () {
         update(e, ui, $sortableElement);
     });
 
-    // Show arrows when row is tabbed to focus
-    this.$html.find('[data-move]').on('focus', function () {
-
-        // Using keydown instead of keyup as it means that the up/down controls
-        // are displayed if the tab key is being held down until the right
-        // element comes into focus
-        $(component.window).keydown(function (e) {
-            var code = (e.keyCode ? e.keyCode : e.which),
-                $parentElement = $(e.target.parentElement);
-
-            // If tab key has been pressed
-            if (code === 9) {
-                if ($(e.target).hasClass('hide')) {
-                    $parentElement
-                        .width($parentElement.width() + 40);
-
-                    $parentElement.closest('.table.is-sortable')
-                        .find('[data-move]')
-                        .removeClass('hide');
-                }
-            }
-        });
-    });
-
     // Reorder via arrows
     this.$html.find('[data-move]').on('click keypress', function () {
         var $this = $(this),
             currentRow = $this.closest('tr'),
-            linkContainer = $this.closest('td'),
-            moveLinks = linkContainer.find('a');
-
-        moveLinks.addClass('hide');
-        linkContainer.addClass('u-text-align-center').append('<span class="js-sortable-moved u-no-wrap"><i class="icon-ok-sign icon--success"></i></span>');
+            linkContainer = $this.closest('td');
 
         if ($this.attr('data-move') === 'up') {
             currentRow.prev().before(currentRow);
@@ -105,15 +77,6 @@ PulsarSortableComponent.prototype.initTables = function () {
         if ($this.attr('data-move') === 'down') {
             currentRow.next().after(currentRow);
         }
-
-        setTimeout(function() {
-            linkContainer
-                .removeClass('u-text-align-center')
-                .find('.js-sortable-moved')
-                .remove();
-
-            moveLinks.removeClass('hide');
-        }, 1500);
 
         // Fake the UI object created by sortable drag and drop
         fakeUi.item = currentRow;
