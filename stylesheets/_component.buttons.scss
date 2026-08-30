@@ -81,8 +81,9 @@
     &.btn--outline:focus,
     &.btn--outline:hover:focus {
         @include pulsar-button-focused;
+        
         border-color: color(black);
-        box-shadow: 0 0 0 1px color(black);
+        outline-width: 1px;
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
