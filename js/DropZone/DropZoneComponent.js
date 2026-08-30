@@ -152,6 +152,12 @@ class DropZoneComponent {
                 // this guard exists as some js tests do not provide a file type as the input value.
                 input.files = dataTransfer.files;
             }
+
+            // Return focus to the Browse Files button after file upload
+            const browseNode = this.getBrowseNode(id);
+            if (browseNode) {
+                browseNode.focus();
+            }
         });
 
         // visually hide input - this should ideally be done in the CSS also to prevent a
@@ -289,6 +295,12 @@ class DropZoneComponent {
         if (dropZone !== null && file !== null) {
             this.instanceManager.removeFile(dropZone, file);
             this.updateDropZoneFiles(dropZone);
+
+            // Return focus to the Browse Files button after file removal
+            const browseNode = this.getBrowseNode(dropZone);
+            if (browseNode) {
+                browseNode.focus();
+            }
         }
     }
 
