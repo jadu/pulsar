@@ -132,8 +132,14 @@
     width: auto !important;
 }
 
-.visually-hidden {
-    display: none;
+.visually-hidden,
+%visually-hidden {
+    @include visuallyhidden;
+}
+
+.visually-hidden-reset,
+%visually-hidden-reset {
+    @include visuallyhiddenreset;
 }
 
 .u-visible-print {
