@@ -28,7 +28,7 @@
     font-size: $font-size-base;
     font-weight: $font-weight-base;
     line-height: normal;
-    padding: $padding-large-vertical $padding-large-vertical ($padding-large-vertical - 1);
+    padding: $padding-larger-vertical;
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -74,8 +74,8 @@
     background: none;
     border: 1px solid color(base, alt);
     color: color(base, alt);
-    padding-bottom: $padding-large-vertical - 2;
-    padding-top: $padding-large-vertical - 1;
+    padding-bottom: $padding-larger-vertical - 1;
+    padding-top: $padding-larger-vertical - 1;
 
     // Double chain focus states to stop outline state variation overriding background colour
     &.btn--outline:focus,

@@ -2,6 +2,14 @@
 .form-choice {
     overflow: visible;
 
+    .control__label {
+        padding: 9px 0;
+
+        @include respond-min($screen-tablet) {
+            padding: 7px 0;
+        }
+    }
+
     // When using checkbox/radios, push down the controls so the control label
     // and the first input label sit on the same baseline
     .controls > .control__label:first-child {
