@@ -34,7 +34,7 @@
         background-color: color(background, selected);
     }
 
-    tr.is-disabled td:not(.table-row__actions) {
+    tr.is-disabled td:not(.table-row__actions):not(.is-disabled--exempt) {
         &,
         & > * {
             color: color(text, disabled);
